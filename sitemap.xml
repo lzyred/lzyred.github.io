@@ -1,215 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://l2do.com/</loc>
+         <loc>https://blog.l2do.com/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/automation/shell-automation-standard/</loc>
+         <loc>https://blog.l2do.com/automation/shell-automation-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/bi/redash-deployment-standard/</loc>
+         <loc>https://blog.l2do.com/bi/redash-deployment-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/ci-cd/argocd-gitops-standard/</loc>
+         <loc>https://blog.l2do.com/ci-cd/argocd-gitops-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/ci-cd/jenkins-kubernetes-pipeline-standard/</loc>
+         <loc>https://blog.l2do.com/ci-cd/jenkins-kubernetes-pipeline-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/cloud/cloud-network-migration-standard/</loc>
+         <loc>https://blog.l2do.com/cloud/cloud-network-migration-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/containers/buildkit-build-standard/</loc>
+         <loc>https://blog.l2do.com/containers/buildkit-build-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/containers/chartmuseum-helm-repository-standard/</loc>
+         <loc>https://blog.l2do.com/containers/chartmuseum-helm-repository-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/containers/docker-compose-stack-standard/</loc>
+         <loc>https://blog.l2do.com/containers/docker-compose-stack-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/containers/docker-host-operations-standard/</loc>
+         <loc>https://blog.l2do.com/containers/docker-host-operations-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/containers/harbor-registry-standard/</loc>
+         <loc>https://blog.l2do.com/containers/harbor-registry-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/databases/etcd-operations-standard/</loc>
+         <loc>https://blog.l2do.com/databases/etcd-operations-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/databases/mongodb-operations-standard/</loc>
+         <loc>https://blog.l2do.com/databases/mongodb-operations-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/databases/mysql-operations-standard/</loc>
+         <loc>https://blog.l2do.com/databases/mysql-operations-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/databases/redis-operations-standard/</loc>
+         <loc>https://blog.l2do.com/databases/redis-operations-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/document-templates/migration-plan-template/</loc>
+         <loc>https://blog.l2do.com/document-templates/migration-plan-template/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/document-templates/runbook-template/</loc>
+         <loc>https://blog.l2do.com/document-templates/runbook-template/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/document-templates/standard-document-template/</loc>
+         <loc>https://blog.l2do.com/document-templates/standard-document-template/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/iac/terraform-iac-standard/</loc>
+         <loc>https://blog.l2do.com/iac/terraform-iac-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/kubernetes/eks-upgrade-standard/</loc>
+         <loc>https://blog.l2do.com/kubernetes/eks-upgrade-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/kubernetes/kubeadm-installation-standard/</loc>
+         <loc>https://blog.l2do.com/kubernetes/kubeadm-installation-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/kubernetes/kubernetes-cluster-provisioning-standard/</loc>
+         <loc>https://blog.l2do.com/kubernetes/kubernetes-cluster-provisioning-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/kubernetes/kubernetes-storage-ingress-standard/</loc>
+         <loc>https://blog.l2do.com/kubernetes/kubernetes-storage-ingress-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/kubernetes/nfs-pvc-capacity-management/</loc>
+         <loc>https://blog.l2do.com/kubernetes/nfs-pvc-capacity-management/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/linux/server-baseline-standard/</loc>
+         <loc>https://blog.l2do.com/linux/server-baseline-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/middleware/api-gateway-standard/</loc>
+         <loc>https://blog.l2do.com/middleware/api-gateway-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/middleware/dolphinscheduler-standard/</loc>
+         <loc>https://blog.l2do.com/middleware/dolphinscheduler-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/middleware/kafka-zookeeper-operations-standard/</loc>
+         <loc>https://blog.l2do.com/middleware/kafka-zookeeper-operations-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/middleware/nacos-operations-standard/</loc>
+         <loc>https://blog.l2do.com/middleware/nacos-operations-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/migration-cases/anonymous-containerization-migration-case/</loc>
+         <loc>https://blog.l2do.com/migration-cases/anonymous-containerization-migration-case/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/migration-cases/anonymous-kubernetes-upgrade-case/</loc>
+         <loc>https://blog.l2do.com/migration-cases/anonymous-kubernetes-upgrade-case/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/migration-cases/anonymous-object-storage-migration-case/</loc>
+         <loc>https://blog.l2do.com/migration-cases/anonymous-object-storage-migration-case/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/networking/haproxy-load-balancing-standard/</loc>
+         <loc>https://blog.l2do.com/networking/haproxy-load-balancing-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/networking/nginx-reverse-proxy-tls-standard/</loc>
+         <loc>https://blog.l2do.com/networking/nginx-reverse-proxy-tls-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/networking/openvpn-access-standard/</loc>
+         <loc>https://blog.l2do.com/networking/openvpn-access-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/networking/openwrt-network-device-standard/</loc>
+         <loc>https://blog.l2do.com/networking/openwrt-network-device-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/networking/samba-file-sharing-standard/</loc>
+         <loc>https://blog.l2do.com/networking/samba-file-sharing-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/observability/elfk-logging-standard/</loc>
+         <loc>https://blog.l2do.com/observability/elfk-logging-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/observability/exporter-monitoring-standard/</loc>
+         <loc>https://blog.l2do.com/observability/exporter-monitoring-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/observability/loki-logging-standard/</loc>
+         <loc>https://blog.l2do.com/observability/loki-logging-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/observability/node-exporter-standard/</loc>
+         <loc>https://blog.l2do.com/observability/node-exporter-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/observability/prometheus-alerting-standard/</loc>
+         <loc>https://blog.l2do.com/observability/prometheus-alerting-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/observability/signoz-observability-standard/</loc>
+         <loc>https://blog.l2do.com/observability/signoz-observability-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/operations/application-maintenance-health-check-standard/</loc>
+         <loc>https://blog.l2do.com/operations/application-maintenance-health-check-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/platform/gitlab-operations-standard/</loc>
+         <loc>https://blog.l2do.com/platform/gitlab-operations-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/platform/jumpserver-bastion-standard/</loc>
+         <loc>https://blog.l2do.com/platform/jumpserver-bastion-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/process/supervisor-process-management-standard/</loc>
+         <loc>https://blog.l2do.com/process/supervisor-process-management-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/runbooks/deployment-rollback-runbook/</loc>
+         <loc>https://blog.l2do.com/runbooks/deployment-rollback-runbook/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/runbooks/kubernetes-pvc-usage-alert-runbook/</loc>
+         <loc>https://blog.l2do.com/runbooks/kubernetes-pvc-usage-alert-runbook/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/runbooks/linux-disk-lvm-expansion-runbook/</loc>
+         <loc>https://blog.l2do.com/runbooks/linux-disk-lvm-expansion-runbook/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/runbooks/tls-certificate-expiry-runbook/</loc>
+         <loc>https://blog.l2do.com/runbooks/tls-certificate-expiry-runbook/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/security/publication-safety-checklist/</loc>
+         <loc>https://blog.l2do.com/security/publication-safety-checklist/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://l2do.com/system/system-os-patching-standard/</loc>
+         <loc>https://blog.l2do.com/system/system-os-patching-standard/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
 </urlset>
