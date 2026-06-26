@@ -77,7 +77,15 @@
          <lastmod>2026-06-26</lastmod>
     </url>
     <url>
+         <loc>https://blog.l2do.com/en/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
          <loc>https://blog.l2do.com/en/architecture/aws-eks-production-ha-cluster/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
+         <loc>https://blog.l2do.com/en/expert-blog/outline/</loc>
          <lastmod>2026-06-26</lastmod>
     </url>
     <url>
@@ -225,7 +233,15 @@
          <lastmod>2026-06-26</lastmod>
     </url>
     <url>
+         <loc>https://blog.l2do.com/zh/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
          <loc>https://blog.l2do.com/zh/architecture/aws-eks-production-ha-cluster/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
+         <loc>https://blog.l2do.com/zh/expert-blog/outline/</loc>
          <lastmod>2026-06-26</lastmod>
     </url>
 </urlset>
