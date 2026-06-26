@@ -77,6 +77,14 @@
          <lastmod>2026-06-26</lastmod>
     </url>
     <url>
+         <loc>https://blog.l2do.com/en/architecture/aws-eks-production-ha-cluster/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
+         <loc>https://blog.l2do.com/expert-blog/outline/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
          <loc>https://blog.l2do.com/iac/terraform-iac-standard/</loc>
          <lastmod>2026-06-26</lastmod>
     </url>
@@ -214,6 +222,10 @@
     </url>
     <url>
          <loc>https://blog.l2do.com/system/system-os-patching-standard/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
+         <loc>https://blog.l2do.com/zh/architecture/aws-eks-production-ha-cluster/</loc>
          <lastmod>2026-06-26</lastmod>
     </url>
 </urlset>

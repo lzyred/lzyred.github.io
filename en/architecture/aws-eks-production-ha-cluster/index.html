@@ -10,28 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://blog.l2do.com/kubernetes/kubeadm-installation-standard/">
+        <link rel="canonical" href="https://blog.l2do.com/en/architecture/aws-eks-production-ha-cluster/">
       
       
-        <link rel="prev" href="../kubernetes-cluster-provisioning-standard/">
+        <link rel="prev" href="../../../zh/architecture/aws-eks-production-ha-cluster/">
       
       
-        <link rel="next" href="../kubernetes-storage-ingress-standard/">
+        <link rel="next" href="../../../kubernetes/kubernetes-cluster-provisioning-standard/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>kubeadm Installation - Public DevOps Knowledge Base</title>
+        <title>AWS EKS Production HA Cluster - Public DevOps Knowledge Base</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -50,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kubeadm-installation-standard" class="md-skip">
+        <a href="#aws-eks-production-high-availability-cluster-design-and-delivery-standard" class="md-skip">
           Skip to content
         </a>
       
@@ -84,7 +84,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Public DevOps Knowledge Base" class="md-header__button md-logo" aria-label="Public DevOps Knowledge Base" data-md-component="logo">
+    <a href="../../.." title="Public DevOps Knowledge Base" class="md-header__button md-logo" aria-label="Public DevOps Knowledge Base" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              kubeadm Installation
+              AWS EKS Production HA Cluster
             
           </span>
         </div>
@@ -196,7 +196,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Public DevOps Knowledge Base" class="md-nav__button md-logo" aria-label="Public DevOps Knowledge Base" data-md-component="logo">
+    <a href="../../.." title="Public DevOps Knowledge Base" class="md-nav__button md-logo" aria-label="Public DevOps Knowledge Base" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -226,7 +226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -250,8 +250,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -262,11 +264,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -287,7 +289,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -305,7 +307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../expert-blog/outline/" class="md-nav__link">
+      <a href="../../../expert-blog/outline/" class="md-nav__link">
         
   
   
@@ -382,7 +384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zh/architecture/aws-eks-production-ha-cluster/" class="md-nav__link">
+      <a href="../../../zh/architecture/aws-eks-production-ha-cluster/" class="md-nav__link">
         
   
   
@@ -415,6 +417,8 @@
                 
   
   
+    
+  
   
   
     
@@ -424,11 +428,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -449,7 +453,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -459,131 +463,6 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../en/architecture/aws-eks-production-ha-cluster/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    AWS EKS Production HA Cluster
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Kubernetes
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../kubernetes-cluster-provisioning-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Cluster Provisioning
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -608,7 +487,7 @@
   <span class="md-ellipsis">
     
   
-    kubeadm Installation
+    AWS EKS Production HA Cluster
   
 
     
@@ -626,7 +505,7 @@
   <span class="md-ellipsis">
     
   
-    kubeadm Installation
+    AWS EKS Production HA Cluster
   
 
     
@@ -652,10 +531,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#executive-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        Executive Summary
       
     </span>
   </a>
@@ -663,10 +542,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#before-installation" class="md-nav__link">
+  <a href="#when-to-use-this-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Before Installation
+        When To Use This Standard
       
     </span>
   </a>
@@ -674,10 +553,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-validation" class="md-nav__link">
+  <a href="#assumptions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Validation
+        Assumptions
       
     </span>
   </a>
@@ -685,10 +564,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-ons" class="md-nav__link">
+  <a href="#target-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Add-ons
+        Target Architecture
       
     </span>
   </a>
@@ -696,10 +575,165 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-notes" class="md-nav__link">
+  <a href="#key-design-decisions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Notes
+        Key Design Decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Design Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-multi-az-is-the-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-AZ Is The Baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-worker-capacity-should-be-layered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Worker Capacity Should Be Layered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pods-should-not-inherit-broad-node-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Pods Should Not Inherit Broad Node Permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-ingress-is-more-than-an-ingress-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ingress Is More Than An Ingress Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-default-to-managed-services-for-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Default To Managed Services For State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delivery-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delivery Sequence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Delivery Sequence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-network-and-account-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Network And Account Boundary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-create-the-eks-control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Create The EKS Control Plane
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-worker-capacity-and-system-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Worker Capacity And System Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-identity-permissions-and-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Identity, Permissions, And Secrets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-5-ingress-certificates-and-release-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5: Ingress, Certificates, And Release Path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-6-observability-and-alerting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6: Observability And Alerting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback Strategy
       
     </span>
   </a>
@@ -707,10 +741,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#production-acceptance-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        Production Acceptance Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Mistakes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mistake-1-treating-the-managed-control-plane-as-application-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 1: Treating The Managed Control Plane As Application HA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-2-counting-nodes-without-checking-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 2: Counting Nodes Without Checking Placement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-3-migrating-stateful-services-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 3: Migrating Stateful Services First
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-4-leaving-permissions-to-the-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 4: Leaving Permissions To The End
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qa-assistant-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q&amp;A Assistant Blocks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#official-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Official References
       
     </span>
   </a>
@@ -726,6 +843,73 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Kubernetes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -733,7 +917,63 @@
   
   
     <li class="md-nav__item">
-      <a href="../kubernetes-storage-ingress-standard/" class="md-nav__link">
+      <a href="../../../kubernetes/kubernetes-cluster-provisioning-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cluster Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kubernetes/kubeadm-installation-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kubeadm Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kubernetes/kubernetes-storage-ingress-standard/" class="md-nav__link">
         
   
   
@@ -761,7 +1001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../eks-upgrade-standard/" class="md-nav__link">
+      <a href="../../../kubernetes/eks-upgrade-standard/" class="md-nav__link">
         
   
   
@@ -789,7 +1029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nfs-pvc-capacity-management/" class="md-nav__link">
+      <a href="../../../kubernetes/nfs-pvc-capacity-management/" class="md-nav__link">
         
   
   
@@ -876,7 +1116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/server-baseline-standard/" class="md-nav__link">
+      <a href="../../../linux/server-baseline-standard/" class="md-nav__link">
         
   
   
@@ -963,7 +1203,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../containers/docker-host-operations-standard/" class="md-nav__link">
+      <a href="../../../containers/docker-host-operations-standard/" class="md-nav__link">
         
   
   
@@ -991,7 +1231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../containers/buildkit-build-standard/" class="md-nav__link">
+      <a href="../../../containers/buildkit-build-standard/" class="md-nav__link">
         
   
   
@@ -1019,7 +1259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../containers/docker-compose-stack-standard/" class="md-nav__link">
+      <a href="../../../containers/docker-compose-stack-standard/" class="md-nav__link">
         
   
   
@@ -1047,7 +1287,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../containers/harbor-registry-standard/" class="md-nav__link">
+      <a href="../../../containers/harbor-registry-standard/" class="md-nav__link">
         
   
   
@@ -1075,7 +1315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../containers/chartmuseum-helm-repository-standard/" class="md-nav__link">
+      <a href="../../../containers/chartmuseum-helm-repository-standard/" class="md-nav__link">
         
   
   
@@ -1162,7 +1402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ci-cd/jenkins-kubernetes-pipeline-standard/" class="md-nav__link">
+      <a href="../../../ci-cd/jenkins-kubernetes-pipeline-standard/" class="md-nav__link">
         
   
   
@@ -1190,7 +1430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ci-cd/argocd-gitops-standard/" class="md-nav__link">
+      <a href="../../../ci-cd/argocd-gitops-standard/" class="md-nav__link">
         
   
   
@@ -1277,7 +1517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../observability/prometheus-alerting-standard/" class="md-nav__link">
+      <a href="../../../observability/prometheus-alerting-standard/" class="md-nav__link">
         
   
   
@@ -1305,7 +1545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../observability/exporter-monitoring-standard/" class="md-nav__link">
+      <a href="../../../observability/exporter-monitoring-standard/" class="md-nav__link">
         
   
   
@@ -1333,7 +1573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../observability/loki-logging-standard/" class="md-nav__link">
+      <a href="../../../observability/loki-logging-standard/" class="md-nav__link">
         
   
   
@@ -1361,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../observability/elfk-logging-standard/" class="md-nav__link">
+      <a href="../../../observability/elfk-logging-standard/" class="md-nav__link">
         
   
   
@@ -1389,7 +1629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../observability/node-exporter-standard/" class="md-nav__link">
+      <a href="../../../observability/node-exporter-standard/" class="md-nav__link">
         
   
   
@@ -1417,7 +1657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../observability/signoz-observability-standard/" class="md-nav__link">
+      <a href="../../../observability/signoz-observability-standard/" class="md-nav__link">
         
   
   
@@ -1504,7 +1744,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../databases/mysql-operations-standard/" class="md-nav__link">
+      <a href="../../../databases/mysql-operations-standard/" class="md-nav__link">
         
   
   
@@ -1532,7 +1772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../databases/redis-operations-standard/" class="md-nav__link">
+      <a href="../../../databases/redis-operations-standard/" class="md-nav__link">
         
   
   
@@ -1560,7 +1800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../databases/mongodb-operations-standard/" class="md-nav__link">
+      <a href="../../../databases/mongodb-operations-standard/" class="md-nav__link">
         
   
   
@@ -1588,7 +1828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../databases/etcd-operations-standard/" class="md-nav__link">
+      <a href="../../../databases/etcd-operations-standard/" class="md-nav__link">
         
   
   
@@ -1675,7 +1915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../networking/nginx-reverse-proxy-tls-standard/" class="md-nav__link">
+      <a href="../../../networking/nginx-reverse-proxy-tls-standard/" class="md-nav__link">
         
   
   
@@ -1703,7 +1943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../networking/haproxy-load-balancing-standard/" class="md-nav__link">
+      <a href="../../../networking/haproxy-load-balancing-standard/" class="md-nav__link">
         
   
   
@@ -1731,7 +1971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../networking/openvpn-access-standard/" class="md-nav__link">
+      <a href="../../../networking/openvpn-access-standard/" class="md-nav__link">
         
   
   
@@ -1759,7 +1999,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../networking/openwrt-network-device-standard/" class="md-nav__link">
+      <a href="../../../networking/openwrt-network-device-standard/" class="md-nav__link">
         
   
   
@@ -1787,7 +2027,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../networking/samba-file-sharing-standard/" class="md-nav__link">
+      <a href="../../../networking/samba-file-sharing-standard/" class="md-nav__link">
         
   
   
@@ -1874,7 +2114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud/cloud-network-migration-standard/" class="md-nav__link">
+      <a href="../../../cloud/cloud-network-migration-standard/" class="md-nav__link">
         
   
   
@@ -1961,7 +2201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../middleware/api-gateway-standard/" class="md-nav__link">
+      <a href="../../../middleware/api-gateway-standard/" class="md-nav__link">
         
   
   
@@ -1989,7 +2229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../middleware/kafka-zookeeper-operations-standard/" class="md-nav__link">
+      <a href="../../../middleware/kafka-zookeeper-operations-standard/" class="md-nav__link">
         
   
   
@@ -2017,7 +2257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../middleware/nacos-operations-standard/" class="md-nav__link">
+      <a href="../../../middleware/nacos-operations-standard/" class="md-nav__link">
         
   
   
@@ -2045,7 +2285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../middleware/dolphinscheduler-standard/" class="md-nav__link">
+      <a href="../../../middleware/dolphinscheduler-standard/" class="md-nav__link">
         
   
   
@@ -2132,7 +2372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../automation/shell-automation-standard/" class="md-nav__link">
+      <a href="../../../automation/shell-automation-standard/" class="md-nav__link">
         
   
   
@@ -2219,7 +2459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../iac/terraform-iac-standard/" class="md-nav__link">
+      <a href="../../../iac/terraform-iac-standard/" class="md-nav__link">
         
   
   
@@ -2306,7 +2546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platform/gitlab-operations-standard/" class="md-nav__link">
+      <a href="../../../platform/gitlab-operations-standard/" class="md-nav__link">
         
   
   
@@ -2334,7 +2574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platform/jumpserver-bastion-standard/" class="md-nav__link">
+      <a href="../../../platform/jumpserver-bastion-standard/" class="md-nav__link">
         
   
   
@@ -2421,7 +2661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../bi/redash-deployment-standard/" class="md-nav__link">
+      <a href="../../../bi/redash-deployment-standard/" class="md-nav__link">
         
   
   
@@ -2508,7 +2748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../process/supervisor-process-management-standard/" class="md-nav__link">
+      <a href="../../../process/supervisor-process-management-standard/" class="md-nav__link">
         
   
   
@@ -2595,7 +2835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/system-os-patching-standard/" class="md-nav__link">
+      <a href="../../../system/system-os-patching-standard/" class="md-nav__link">
         
   
   
@@ -2682,7 +2922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/application-maintenance-health-check-standard/" class="md-nav__link">
+      <a href="../../../operations/application-maintenance-health-check-standard/" class="md-nav__link">
         
   
   
@@ -2769,7 +3009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../runbooks/kubernetes-pvc-usage-alert-runbook/" class="md-nav__link">
+      <a href="../../../runbooks/kubernetes-pvc-usage-alert-runbook/" class="md-nav__link">
         
   
   
@@ -2797,7 +3037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../runbooks/linux-disk-lvm-expansion-runbook/" class="md-nav__link">
+      <a href="../../../runbooks/linux-disk-lvm-expansion-runbook/" class="md-nav__link">
         
   
   
@@ -2825,7 +3065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../runbooks/tls-certificate-expiry-runbook/" class="md-nav__link">
+      <a href="../../../runbooks/tls-certificate-expiry-runbook/" class="md-nav__link">
         
   
   
@@ -2853,7 +3093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../runbooks/deployment-rollback-runbook/" class="md-nav__link">
+      <a href="../../../runbooks/deployment-rollback-runbook/" class="md-nav__link">
         
   
   
@@ -2940,7 +3180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../security/publication-safety-checklist/" class="md-nav__link">
+      <a href="../../../security/publication-safety-checklist/" class="md-nav__link">
         
   
   
@@ -3027,7 +3267,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../migration-cases/anonymous-kubernetes-upgrade-case/" class="md-nav__link">
+      <a href="../../../migration-cases/anonymous-kubernetes-upgrade-case/" class="md-nav__link">
         
   
   
@@ -3055,7 +3295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../migration-cases/anonymous-object-storage-migration-case/" class="md-nav__link">
+      <a href="../../../migration-cases/anonymous-object-storage-migration-case/" class="md-nav__link">
         
   
   
@@ -3083,7 +3323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../migration-cases/anonymous-containerization-migration-case/" class="md-nav__link">
+      <a href="../../../migration-cases/anonymous-containerization-migration-case/" class="md-nav__link">
         
   
   
@@ -3170,7 +3410,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../document-templates/devops-deep-article-quality-standard/" class="md-nav__link">
+      <a href="../../../document-templates/devops-deep-article-quality-standard/" class="md-nav__link">
         
   
   
@@ -3198,7 +3438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../document-templates/standard-document-template/" class="md-nav__link">
+      <a href="../../../document-templates/standard-document-template/" class="md-nav__link">
         
   
   
@@ -3226,7 +3466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../document-templates/runbook-template/" class="md-nav__link">
+      <a href="../../../document-templates/runbook-template/" class="md-nav__link">
         
   
   
@@ -3254,7 +3494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../document-templates/migration-plan-template/" class="md-nav__link">
+      <a href="../../../document-templates/migration-plan-template/" class="md-nav__link">
         
   
   
@@ -3309,10 +3549,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#executive-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        Executive Summary
       
     </span>
   </a>
@@ -3320,10 +3560,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#before-installation" class="md-nav__link">
+  <a href="#when-to-use-this-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Before Installation
+        When To Use This Standard
       
     </span>
   </a>
@@ -3331,10 +3571,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-validation" class="md-nav__link">
+  <a href="#assumptions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Validation
+        Assumptions
       
     </span>
   </a>
@@ -3342,10 +3582,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-ons" class="md-nav__link">
+  <a href="#target-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Add-ons
+        Target Architecture
       
     </span>
   </a>
@@ -3353,10 +3593,165 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-notes" class="md-nav__link">
+  <a href="#key-design-decisions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Notes
+        Key Design Decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Design Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-multi-az-is-the-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-AZ Is The Baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-worker-capacity-should-be-layered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Worker Capacity Should Be Layered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pods-should-not-inherit-broad-node-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Pods Should Not Inherit Broad Node Permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-ingress-is-more-than-an-ingress-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ingress Is More Than An Ingress Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-default-to-managed-services-for-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Default To Managed Services For State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delivery-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delivery Sequence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Delivery Sequence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-network-and-account-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Network And Account Boundary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-create-the-eks-control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Create The EKS Control Plane
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-worker-capacity-and-system-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Worker Capacity And System Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-identity-permissions-and-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Identity, Permissions, And Secrets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-5-ingress-certificates-and-release-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5: Ingress, Certificates, And Release Path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-6-observability-and-alerting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6: Observability And Alerting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback Strategy
       
     </span>
   </a>
@@ -3364,10 +3759,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#production-acceptance-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        Production Acceptance Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Mistakes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mistake-1-treating-the-managed-control-plane-as-application-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 1: Treating The Managed Control Plane As Application HA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-2-counting-nodes-without-checking-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 2: Counting Nodes Without Checking Placement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-3-migrating-stateful-services-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 3: Migrating Stateful Services First
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mistake-4-leaving-permissions-to-the-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistake 4: Leaving Permissions To The End
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qa-assistant-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q&amp;A Assistant Blocks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#official-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Official References
       
     </span>
   </a>
@@ -3394,39 +3872,319 @@
   
 
 
-<h1 id="kubeadm-installation-standard">kubeadm Installation Standard<a class="headerlink" href="#kubeadm-installation-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard summarizes safe kubeadm cluster installation practices for labs and self-managed environments.</p>
-<h2 id="before-installation">Before Installation<a class="headerlink" href="#before-installation" title="Permanent link">&para;</a></h2>
+<h1 id="aws-eks-production-high-availability-cluster-design-and-delivery-standard">AWS EKS Production High Availability Cluster Design and Delivery Standard<a class="headerlink" href="#aws-eks-production-high-availability-cluster-design-and-delivery-standard" title="Permanent link">&para;</a></h1>
+<p><a href="../../../zh/architecture/aws-eks-production-ha-cluster/">中文版</a></p>
+<h2 id="executive-summary">Executive Summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h2>
+<p>Building a production-grade highly available EKS cluster on AWS is not mainly about increasing node count or creating a Kubernetes control plane. The real work is putting control plane access, worker capacity, networking, identity, ingress, storage, delivery, observability, upgrades, and recovery into one verifiable operating model.</p>
+<p>A credible production EKS design should provide:</p>
 <ul>
-<li>Confirm OS version.</li>
-<li>Disable swap.</li>
-<li>Configure container runtime.</li>
-<li>Load bridge networking modules.</li>
-<li>Configure time sync.</li>
-<li>Plan pod and service CIDRs.</li>
-<li>Plan control plane endpoint for HA clusters.</li>
+<li>Workload placement across multiple Availability Zones.</li>
+<li>Scheduling continuity when one AZ loses capacity.</li>
+<li>Recoverable and scalable worker capacity.</li>
+<li>Workload-level AWS permissions instead of broad node-level credentials.</li>
+<li>Clear ownership for ingress, DNS, certificates, logs, metrics, and alerts.</li>
+<li>Validation and rollback paths for each critical change.</li>
 </ul>
-<h2 id="core-validation">Core Validation<a class="headerlink" href="#core-validation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">kubeadm version
-kubectl get nodes
-kubectl get pods -n kube-system
-kubectl cluster-info
+<p>If a guide stops at <code>eksctl create cluster</code>, it proves that a cluster can be created. It does not prove that the platform can carry production traffic.</p>
+<h2 id="when-to-use-this-standard">When To Use This Standard<a class="headerlink" href="#when-to-use-this-standard" title="Permanent link">&para;</a></h2>
+<p>Use this document when:</p>
+<ul>
+<li>Creating a new production Amazon EKS cluster.</li>
+<li>Migrating workloads from virtual machines or self-managed Kubernetes to EKS.</li>
+<li>Hardening an existing EKS cluster for availability, security, observability, and release safety.</li>
+<li>Building a reusable delivery checklist for platform or DevOps teams.</li>
+</ul>
+<p>Do not use this as:</p>
+<ul>
+<li>A beginner Kubernetes tutorial.</li>
+<li>A short-lived proof-of-concept guide.</li>
+<li>A replacement for multi-Region disaster recovery architecture.</li>
+<li>A complete regulated-industry compliance blueprint.</li>
+</ul>
+<p>Multi-AZ inside one Region is not the same as multi-Region resilience. Treat those as different architecture problems.</p>
+<h2 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h2>
+<p>This standard assumes:</p>
+<ul>
+<li>One AWS Region with at least three Availability Zones.</li>
+<li>Mostly stateless services, with state placed in managed data services or carefully designed persistent storage.</li>
+<li>GitOps or CI/CD based delivery.</li>
+<li>Public or internal ingress traffic.</li>
+<li>Least-privilege access, auditability, and rollback requirements.</li>
+</ul>
+<p>For a small low-risk environment, reduce the design: two capacity classes, one ingress path, basic metrics, basic logs, and explicit backup. Do not add every production component just to make the platform look mature.</p>
+<h2 id="target-architecture">Target Architecture<a class="headerlink" href="#target-architecture" title="Permanent link">&para;</a></h2>
+<pre><code class="language-text">Users
+  |
+Route 53
+  |
+AWS Load Balancer Controller
+  |
+Ingress / Service
+  |
+Application Pods
+  |
+Managed data services / persistent storage
+
+Control and operations plane:
+
+EKS managed control plane
+  - multi-AZ managed by AWS
+
+Worker capacity
+  - managed node groups or Karpenter
+  - spread across at least 3 AZs
+  - separate system and application capacity
+
+Identity
+  - IAM roles for cluster operators
+  - EKS Pod Identity or IRSA for workload permissions
+
+Observability
+  - metrics
+  - logs
+  - events
+  - alerts
+  - audit trail
 </code></pre>
-<h2 id="add-ons">Add-ons<a class="headerlink" href="#add-ons" title="Permanent link">&para;</a></h2>
-<p>Install and validate:</p>
+<p>The key principle: AWS manages the EKS control plane, but application availability still depends on your VPC, subnets, node groups, scheduling rules, Pod replicas, disruption budgets, storage, ingress, and release process.</p>
+<h2 id="key-design-decisions">Key Design Decisions<a class="headerlink" href="#key-design-decisions" title="Permanent link">&para;</a></h2>
+<h3 id="1-multi-az-is-the-baseline">1. Multi-AZ Is The Baseline<a class="headerlink" href="#1-multi-az-is-the-baseline" title="Permanent link">&para;</a></h3>
+<p>A production EKS cluster should normally use at least three AZs. Two AZs can be acceptable for lower-risk systems, but capacity recovery and maintenance flexibility are weaker. A one-AZ EKS cluster should not be described as production high availability.</p>
+<p>Check:</p>
 <ul>
-<li>CNI plugin.</li>
-<li>Metrics server.</li>
-<li>Ingress controller.</li>
-<li>StorageClass.</li>
-<li>Monitoring.</li>
+<li>The VPC spans at least three AZs.</li>
+<li>Each AZ has private subnets for worker nodes.</li>
+<li>Node groups or Karpenter provision capacity across AZs.</li>
+<li>Application replicas are spread with topology spread constraints or anti-affinity.</li>
+<li>Storage classes are understood in terms of AZ binding.</li>
 </ul>
-<h2 id="safety-notes">Safety Notes<a class="headerlink" href="#safety-notes" title="Permanent link">&para;</a></h2>
-<p>Do not publish real join tokens, kubeconfig files, certificate keys, or internal control plane endpoints.</p>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<p>Common failure mode: the cluster is configured with three AZ subnets, but actual worker capacity only exists in one AZ. The architecture diagram says multi-AZ; the scheduler experiences a single-AZ platform.</p>
+<h3 id="2-worker-capacity-should-be-layered">2. Worker Capacity Should Be Layered<a class="headerlink" href="#2-worker-capacity-should-be-layered" title="Permanent link">&para;</a></h3>
+<p>Do not run every Pod on the same worker pool. A minimum production model has:</p>
 <ul>
-<li><a href="../kubernetes-cluster-provisioning-standard/">Kubernetes Cluster Provisioning Standard</a></li>
+<li>System capacity: CoreDNS, ingress controllers, log agents, monitoring agents.</li>
+<li>Application capacity: user-facing and internal services.</li>
+<li>Batch or Spot capacity: retryable jobs and interruptible workloads.</li>
+</ul>
+<p>The purpose is not complexity. The purpose is to prevent business traffic or batch spikes from evicting the components that keep the cluster observable and reachable.</p>
+<p>Recommended principles:</p>
+<ul>
+<li>Keep system components on stable capacity.</li>
+<li>Select instance families based on workload resource profiles.</li>
+<li>Use Spot only for workloads that tolerate interruption and retry.</li>
+<li>Use PodDisruptionBudgets for critical services.</li>
+</ul>
+<h3 id="3-pods-should-not-inherit-broad-node-permissions">3. Pods Should Not Inherit Broad Node Permissions<a class="headerlink" href="#3-pods-should-not-inherit-broad-node-permissions" title="Permanent link">&para;</a></h3>
+<p>Production workloads should not rely on the node IAM role for AWS API access. Use EKS Pod Identity or IRSA so each workload gets the minimum IAM role it needs.</p>
+<p>Acceptance criteria:</p>
+<ul>
+<li>Each workload receives only the AWS permissions it needs.</li>
+<li>Secrets, object storage, queues, and container registry permissions are separated.</li>
+<li>Permission changes are auditable.</li>
+<li>Removing an application also removes or disables its cloud permissions.</li>
+</ul>
+<p>Common failure mode: S3, ECR, CloudWatch, and Secrets Manager permissions are all attached to the node role. It is convenient at first, but any compromised Pod can inherit excessive lateral movement capability.</p>
+<h3 id="4-ingress-is-more-than-an-ingress-object">4. Ingress Is More Than An Ingress Object<a class="headerlink" href="#4-ingress-is-more-than-an-ingress-object" title="Permanent link">&para;</a></h3>
+<p>A production ingress path needs decisions for:</p>
+<ul>
+<li>DNS ownership.</li>
+<li>TLS issuance and renewal.</li>
+<li>Public or internal load balancers.</li>
+<li>WAF requirements.</li>
+<li>Stable health check paths.</li>
+<li>Traffic shifting for rollback or canary releases.</li>
+</ul>
+<p>If a design only contains an Ingress YAML file, the ingress layer is not finished.</p>
+<h3 id="5-default-to-managed-services-for-state">5. Default To Managed Services For State<a class="headerlink" href="#5-default-to-managed-services-for-state" title="Permanent link">&para;</a></h3>
+<p>EKS can run stateful systems, but production teams should not default to placing every database, queue, search engine, or cache inside the cluster. Prefer managed services such as RDS, ElastiCache, MSK, OpenSearch, and S3 where they fit.</p>
+<p>Before running stateful services in the cluster, answer:</p>
+<ul>
+<li>Where are backups stored?</li>
+<li>How does recovery work across AZ failure?</li>
+<li>How are failed upgrades rolled back?</li>
+<li>What happens when a node is lost?</li>
+<li>Does the team really have operational ownership of this component?</li>
+</ul>
+<h2 id="delivery-sequence">Delivery Sequence<a class="headerlink" href="#delivery-sequence" title="Permanent link">&para;</a></h2>
+<h3 id="phase-1-network-and-account-boundary">Phase 1: Network And Account Boundary<a class="headerlink" href="#phase-1-network-and-account-boundary" title="Permanent link">&para;</a></h3>
+<p>Deliver:</p>
+<ul>
+<li>VPC, subnets, route tables, NAT Gateway or an approved alternative.</li>
+<li>Cluster IAM role.</li>
+<li>Node IAM role.</li>
+<li>Operator and CI/CD access boundaries.</li>
+<li>Tagging standards.</li>
+</ul>
+<p>Validate:</p>
+<pre><code class="language-bash">aws sts get-caller-identity
+aws ec2 describe-subnets --filters &quot;Name=vpc-id,Values=&lt;vpc-id&gt;&quot;
+aws eks describe-cluster --name &lt;cluster-name&gt;
+</code></pre>
+<p>Risks: NAT Gateway cost is often underestimated; private cluster access is often forgotten; overly broad administrator access tends to become the default.</p>
+<h3 id="phase-2-create-the-eks-control-plane">Phase 2: Create The EKS Control Plane<a class="headerlink" href="#phase-2-create-the-eks-control-plane" title="Permanent link">&para;</a></h3>
+<p>Deliver:</p>
+<ul>
+<li>EKS cluster.</li>
+<li>Kubernetes version selection.</li>
+<li>API server endpoint access policy.</li>
+<li>Control plane logging.</li>
+<li>Encryption configuration.</li>
+</ul>
+<p>Validate:</p>
+<pre><code class="language-bash">aws eks update-kubeconfig --name &lt;cluster-name&gt; --region &lt;region&gt;
+kubectl cluster-info
+kubectl get nodes
+kubectl get ns
+</code></pre>
+<p>Note: <code>kubectl get nodes</code> can be empty immediately after the control plane is created. A healthy control plane does not mean worker capacity has joined.</p>
+<h3 id="phase-3-worker-capacity-and-system-components">Phase 3: Worker Capacity And System Components<a class="headerlink" href="#phase-3-worker-capacity-and-system-components" title="Permanent link">&para;</a></h3>
+<p>Deliver:</p>
+<ul>
+<li>Managed Node Groups or Karpenter.</li>
+<li>Verified versions for CoreDNS, kube-proxy, and VPC CNI.</li>
+<li>Scheduling separation for system and application components.</li>
+<li>Cluster Autoscaler or Karpenter scale-out behavior.</li>
+</ul>
+<p>Validate:</p>
+<pre><code class="language-bash">kubectl get nodes -o wide
+kubectl -n kube-system get pods -o wide
+kubectl describe node &lt;node-name&gt;
+kubectl top nodes
+</code></pre>
+<p>Failure mode: nodes are Ready, but business Pods stay Pending because subnet IP capacity or CNI configuration is exhausted. The broken object is not the Deployment; it is the network capacity model.</p>
+<h3 id="phase-4-identity-permissions-and-secrets">Phase 4: Identity, Permissions, And Secrets<a class="headerlink" href="#phase-4-identity-permissions-and-secrets" title="Permanent link">&para;</a></h3>
+<p>Deliver:</p>
+<ul>
+<li>EKS Pod Identity or IRSA.</li>
+<li>Least-privilege IAM policies.</li>
+<li>Secret management rules.</li>
+<li>CI/CD deployment permissions.</li>
+</ul>
+<p>Validate:</p>
+<pre><code class="language-bash">kubectl -n &lt;namespace&gt; describe serviceaccount &lt;service-account&gt;
+kubectl -n &lt;namespace&gt; exec deploy/&lt;deployment-name&gt; -- aws sts get-caller-identity
+</code></pre>
+<p>The identity visible from the business Pod should be the workload role, not the node role.</p>
+<h3 id="phase-5-ingress-certificates-and-release-path">Phase 5: Ingress, Certificates, And Release Path<a class="headerlink" href="#phase-5-ingress-certificates-and-release-path" title="Permanent link">&para;</a></h3>
+<p>Deliver:</p>
+<ul>
+<li>AWS Load Balancer Controller.</li>
+<li>IngressClass.</li>
+<li>DNS records.</li>
+<li>TLS certificates.</li>
+<li>Health checks.</li>
+<li>Canary or blue-green release strategy.</li>
+</ul>
+<p>Validate:</p>
+<pre><code class="language-bash">kubectl -n kube-system get deploy aws-load-balancer-controller
+kubectl -n &lt;namespace&gt; get ingress
+kubectl -n &lt;namespace&gt; describe ingress &lt;ingress-name&gt;
+curl -I https://&lt;service-domain&gt;
+</code></pre>
+<p>Failure mode: the Ingress object is created, but no load balancer appears. The usual causes are controller permissions, subnet tags, or incorrect annotations.</p>
+<h3 id="phase-6-observability-and-alerting">Phase 6: Observability And Alerting<a class="headerlink" href="#phase-6-observability-and-alerting" title="Permanent link">&para;</a></h3>
+<p>Deliver:</p>
+<ul>
+<li>Node metrics.</li>
+<li>Pod metrics.</li>
+<li>Application logs.</li>
+<li>Kubernetes Events.</li>
+<li>API server or audit logs.</li>
+<li>Critical alerts.</li>
+</ul>
+<p>Minimum alert set:</p>
+<ul>
+<li>Node NotReady.</li>
+<li>Pod CrashLoopBackOff.</li>
+<li>Deployment replica shortage.</li>
+<li>PVC high usage.</li>
+<li>Ingress 5xx increase.</li>
+<li>HPA unable to scale for a sustained period.</li>
+<li>CoreDNS error rate increase.</li>
+</ul>
+<p>Validate:</p>
+<pre><code class="language-bash">kubectl get events -A --sort-by=.lastTimestamp
+kubectl top pods -A
+kubectl -n &lt;monitoring-namespace&gt; get pods
+</code></pre>
+<h2 id="rollback-strategy">Rollback Strategy<a class="headerlink" href="#rollback-strategy" title="Permanent link">&para;</a></h2>
+<p>EKS rollback cannot rely only on <code>kubectl rollout undo</code>. Roll back by layer.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Rollback Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application release</td>
+<td>Revert image tag, Helm release, or GitOps commit</td>
+</tr>
+<tr>
+<td>Ingress</td>
+<td>Restore old rule, old certificate, or old load balancer</td>
+</tr>
+<tr>
+<td>Worker nodes</td>
+<td>Revert launch template or create a previous-version node group</td>
+</tr>
+<tr>
+<td>Permissions</td>
+<td>Revert IAM policy or ServiceAccount binding</td>
+</tr>
+<tr>
+<td>Cluster add-ons</td>
+<td>Revert to a compatible add-on version or temporarily scale old capacity</td>
+</tr>
+<tr>
+<td>Kubernetes version</td>
+<td>Usually cannot be downgraded in place; recover through a new cluster migration plan</td>
+</tr>
+</tbody>
+</table>
+<p>The Kubernetes version upgrade path is often underestimated. Before upgrading production, confirm compatibility for add-ons, node AMIs, controllers, and critical CRDs.</p>
+<h2 id="production-acceptance-checklist">Production Acceptance Checklist<a class="headerlink" href="#production-acceptance-checklist" title="Permanent link">&para;</a></h2>
+<p>Before production traffic:</p>
+<ul>
+<li>The cluster spans three AZs.</li>
+<li>Private subnet IP capacity is sufficient.</li>
+<li>Worker capacity spans AZs and can recover automatically.</li>
+<li>System and application components have capacity separation.</li>
+<li>CoreDNS has enough replicas and is spread across nodes.</li>
+<li>Critical applications have multiple replicas, PDBs, requests, and limits.</li>
+<li>Ingress has DNS, TLS, health checks, and rollback.</li>
+<li>Workloads use least-privilege identity.</li>
+<li>Secrets are not stored in images, ConfigMaps, or Git.</li>
+<li>Logs, metrics, events, and alerts are available.</li>
+<li>CI/CD permissions are auditable.</li>
+<li>Backup and restore have been tested.</li>
+<li>Upgrade and failure drills are recorded.</li>
+</ul>
+<h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<h3 id="mistake-1-treating-the-managed-control-plane-as-application-ha">Mistake 1: Treating The Managed Control Plane As Application HA<a class="headerlink" href="#mistake-1-treating-the-managed-control-plane-as-application-ha" title="Permanent link">&para;</a></h3>
+<p>AWS reduces control plane operational burden, but application Pods, node capacity, ingress, storage, delivery, and monitoring remain your responsibility. Application availability is designed and verified, not purchased by cluster creation.</p>
+<h3 id="mistake-2-counting-nodes-without-checking-placement">Mistake 2: Counting Nodes Without Checking Placement<a class="headerlink" href="#mistake-2-counting-nodes-without-checking-placement" title="Permanent link">&para;</a></h3>
+<p>Six nodes in one AZ still create an AZ-level failure risk. Replica count and node count only matter when combined with topology distribution.</p>
+<h3 id="mistake-3-migrating-stateful-services-first">Mistake 3: Migrating Stateful Services First<a class="headerlink" href="#mistake-3-migrating-stateful-services-first" title="Permanent link">&para;</a></h3>
+<p>Start migrations with stateless services. Use them to prove image standards, release flow, ingress, logging, metrics, and rollback. Stateful services come later because their hardest problems are data consistency, recovery time, and recovery point.</p>
+<h3 id="mistake-4-leaving-permissions-to-the-end">Mistake 4: Leaving Permissions To The End<a class="headerlink" href="#mistake-4-leaving-permissions-to-the-end" title="Permanent link">&para;</a></h3>
+<p>If permissions are handled last, temporary exceptions become permanent patterns. Pod identity and deployment access boundaries should exist from the start.</p>
+<h2 id="qa-assistant-blocks">Q&amp;A Assistant Blocks<a class="headerlink" href="#qa-assistant-blocks" title="Permanent link">&para;</a></h2>
+<p><strong>Question: Is a Managed Node Group enough for EKS high availability?</strong></p>
+<p>No. Managed Node Groups help with worker lifecycle management, but high availability also depends on multi-AZ subnets, scheduling spread, Pod replicas, PDBs, ingress, storage, permissions, monitoring, and rollback.</p>
+<p><strong>Question: How many AZs should a production EKS cluster use?</strong></p>
+<p>Usually at least three AZs. Two AZs can work for lower-risk systems, but recovery and maintenance flexibility are weaker. A one-AZ cluster should not be called production high availability.</p>
+<p><strong>Question: How should Pods access AWS services?</strong></p>
+<p>Use EKS Pod Identity or IRSA and bind each workload to a least-privilege IAM role. Do not let application Pods inherit broad permissions from the node role.</p>
+<p><strong>Question: Should stateful services run inside EKS?</strong></p>
+<p>Prefer managed AWS services by default. Run stateful systems inside EKS only when the team owns backup, recovery, upgrade, monitoring, and incident handling for that component.</p>
+<h2 id="official-references">Official References<a class="headerlink" href="#official-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.aws.amazon.com/eks/latest/best-practices/reliability.html">Amazon EKS Best Practices Guide: Reliability</a></li>
+<li><a href="https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html">Amazon EKS Pod Identities</a></li>
+<li><a href="https://docs.aws.amazon.com/eks/latest/userguide/security-iam.html">Amazon EKS security and IAM</a></li>
+<li><a href="https://docs.aws.amazon.com/eks/latest/userguide/eks-networking.html">Amazon EKS networking</a></li>
 </ul>
 
 
@@ -3483,10 +4241,10 @@ kubectl cluster-info
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
