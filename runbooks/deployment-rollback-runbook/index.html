@@ -4560,26 +4560,26 @@
 <h2 id="trigger">Trigger<a class="headerlink" href="#trigger" title="Permanent link">&para;</a></h2>
 <p>Use this runbook when a release causes elevated errors, failed readiness, broken smoke tests, or unacceptable latency.</p>
 <h2 id="initial-triage">Initial Triage<a class="headerlink" href="#initial-triage" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">kubectl get deployment example-service -n example-namespace
-kubectl rollout status deployment/example-service -n example-namespace
-kubectl get pods -n example-namespace -l app=example-service
-kubectl get events -n example-namespace --sort-by='.lastTimestamp'
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>deployment<span class="w"> </span>example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace
+kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>example-service
+kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>--sort-by<span class="o">=</span><span class="s1">&#39;.lastTimestamp&#39;</span>
+</code></pre></div>
 <p>Check recent revisions:</p>
-<pre><code class="language-bash">kubectl rollout history deployment/example-service -n example-namespace
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace
+</code></pre></div>
 <h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
 <p>Rollback to the previous revision:</p>
-<pre><code class="language-bash">kubectl rollout undo deployment/example-service -n example-namespace
-kubectl rollout status deployment/example-service -n example-namespace --timeout=5m
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace
+kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>--timeout<span class="o">=</span>5m
+</code></pre></div>
 <p>Rollback to a specific revision:</p>
-<pre><code class="language-bash">kubectl rollout undo deployment/example-service -n example-namespace --to-revision=2
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>--to-revision<span class="o">=</span><span class="m">2</span>
+</code></pre></div>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">kubectl get pods -n example-namespace -l app=example-service
-curl -sS https://service.example.com/health
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>example-service
+curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.com/health
+</code></pre></div>
 <p>Confirm:</p>
 <ul>
 <li>Pods are ready.</li>
@@ -4727,6 +4727,10 @@ curl -sS https://service.example.com/health
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

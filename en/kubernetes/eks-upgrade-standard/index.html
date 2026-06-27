@@ -4764,16 +4764,16 @@
 </ol>
 <h2 id="pre-upgrade-assessment">Pre-Upgrade Assessment<a class="headerlink" href="#pre-upgrade-assessment" title="Permanent link">&para;</a></h2>
 <p>Collect this baseline before making changes:</p>
-<pre><code class="language-bash">kubectl version --short
-kubectl get nodes -o wide
-kubectl get pods -A
-kubectl get deployment,statefulset,daemonset -A
-kubectl get ingress -A
-kubectl get storageclass
-kubectl get pvc -A
-kubectl top nodes
-kubectl top pods -A
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>version<span class="w"> </span>--short
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>deployment,statefulset,daemonset<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>ingress<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
+kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-A
+kubectl<span class="w"> </span>top<span class="w"> </span>nodes
+kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w"> </span>-A
+</code></pre></div>
 <p>Review these compatibility areas:</p>
 <table>
 <thead>
@@ -4818,18 +4818,18 @@ kubectl top pods -A
 <p>Pause unrelated application deployments and infrastructure changes during the upgrade window. Communicate the maintenance window, expected impact, rollback criteria, and owner contacts.</p>
 <h3 id="2-back-up-critical-state">2. Back Up Critical State<a class="headerlink" href="#2-back-up-critical-state" title="Permanent link">&para;</a></h3>
 <p>For managed clusters, export manifests and configuration:</p>
-<pre><code class="language-bash">kubectl get all -A -o yaml &gt; cluster-workloads.snapshot.yaml
-kubectl get configmap,ingress,svc,pvc,storageclass -A -o yaml &gt; cluster-config.snapshot.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>all<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span>&gt;<span class="w"> </span>cluster-workloads.snapshot.yaml
+kubectl<span class="w"> </span>get<span class="w"> </span>configmap,ingress,svc,pvc,storageclass<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span>&gt;<span class="w"> </span>cluster-config.snapshot.yaml
+</code></pre></div>
 <p>Do not export raw Kubernetes Secret values into plain text files. Back up secrets through the platform-approved encrypted backup process or secret management system.</p>
 <p>For self-managed clusters, back up etcd using the platform-recommended encrypted method.</p>
 <h3 id="3-upgrade-control-plane">3. Upgrade Control Plane<a class="headerlink" href="#3-upgrade-control-plane" title="Permanent link">&para;</a></h3>
 <p>Upgrade the control plane through the cloud provider or cluster management tool. Wait until the API server is healthy and all core control plane checks pass.</p>
 <p>Validation:</p>
-<pre><code class="language-bash">kubectl get --raw='/readyz?verbose'
-kubectl get componentstatuses
-kubectl get nodes
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>--raw<span class="o">=</span><span class="s1">&#39;/readyz?verbose&#39;</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>componentstatuses
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</code></pre></div>
 <h3 id="4-upgrade-core-add-ons">4. Upgrade Core Add-ons<a class="headerlink" href="#4-upgrade-core-add-ons" title="Permanent link">&para;</a></h3>
 <p>Upgrade add-ons to versions compatible with the target Kubernetes version:</p>
 <ul>
@@ -4842,29 +4842,29 @@ kubectl get nodes
 <li>Observability agents.</li>
 </ul>
 <p>Validation:</p>
-<pre><code class="language-bash">kubectl get pods -n kube-system
-kubectl rollout status deployment/coredns -n kube-system
-kubectl get daemonset -n kube-system
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
+kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/coredns<span class="w"> </span>-n<span class="w"> </span>kube-system
+kubectl<span class="w"> </span>get<span class="w"> </span>daemonset<span class="w"> </span>-n<span class="w"> </span>kube-system
+</code></pre></div>
 <h3 id="5-create-new-worker-node-group">5. Create New Worker Node Group<a class="headerlink" href="#5-create-new-worker-node-group" title="Permanent link">&para;</a></h3>
 <p>Create a new node group with the target Kubernetes-compatible image, runtime, IAM role, labels, taints, and scaling configuration.</p>
 <p>Validation:</p>
-<pre><code class="language-bash">kubectl get nodes -L kubernetes.io/os,kubernetes.io/arch
-kubectl describe node &lt;new-node-name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-L<span class="w"> </span>kubernetes.io/os,kubernetes.io/arch
+kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span>&lt;new-node-name&gt;
+</code></pre></div>
 <h3 id="6-drain-old-nodes-gradually">6. Drain Old Nodes Gradually<a class="headerlink" href="#6-drain-old-nodes-gradually" title="Permanent link">&para;</a></h3>
 <p>Drain old nodes in small batches:</p>
-<pre><code class="language-bash">kubectl cordon &lt;old-node-name&gt;
-kubectl drain &lt;old-node-name&gt; --ignore-daemonsets --delete-emptydir-data --timeout=10m
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cordon<span class="w"> </span>&lt;old-node-name&gt;
+kubectl<span class="w"> </span>drain<span class="w"> </span>&lt;old-node-name&gt;<span class="w"> </span>--ignore-daemonsets<span class="w"> </span>--delete-emptydir-data<span class="w"> </span>--timeout<span class="o">=</span>10m
+</code></pre></div>
 <p>After each batch, validate application health before continuing.</p>
 <h3 id="7-validate-workloads">7. Validate Workloads<a class="headerlink" href="#7-validate-workloads" title="Permanent link">&para;</a></h3>
 <p>Check:</p>
-<pre><code class="language-bash">kubectl get pods -A
-kubectl get events -A --sort-by='.lastTimestamp'
-kubectl get ingress -A
-kubectl get pvc -A
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-A<span class="w"> </span>--sort-by<span class="o">=</span><span class="s1">&#39;.lastTimestamp&#39;</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>ingress<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-A
+</code></pre></div>
 <p>Application validation should include:</p>
 <ul>
 <li>HTTP health checks.</li>
@@ -5028,6 +5028,10 @@ kubectl get pvc -A
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

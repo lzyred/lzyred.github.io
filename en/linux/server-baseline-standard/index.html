@@ -4714,86 +4714,86 @@
 </ol>
 <h2 id="standard-procedure">Standard Procedure<a class="headerlink" href="#standard-procedure" title="Permanent link">&para;</a></h2>
 <h3 id="1-identify-system">1. Identify System<a class="headerlink" href="#1-identify-system" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bash">cat /etc/os-release
-uname -a
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/etc/os-release
+uname<span class="w"> </span>-a
 hostnamectl
-</code></pre>
+</code></pre></div>
 <p>Record distribution, kernel, architecture, timezone, hostname, and primary network interface.</p>
 <h3 id="2-update-packages">2. Update Packages<a class="headerlink" href="#2-update-packages" title="Permanent link">&para;</a></h3>
 <p>For RHEL-compatible systems:</p>
-<pre><code class="language-bash">sudo dnf makecache
-sudo dnf update -y
-sudo dnf install -y vim curl wget tar unzip net-tools lsof sysstat chrony bash-completion
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>makecache
+sudo<span class="w"> </span>dnf<span class="w"> </span>update<span class="w"> </span>-y
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vim<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>tar<span class="w"> </span>unzip<span class="w"> </span>net-tools<span class="w"> </span>lsof<span class="w"> </span>sysstat<span class="w"> </span>chrony<span class="w"> </span>bash-completion
+</code></pre></div>
 <p>For Debian-compatible systems:</p>
-<pre><code class="language-bash">sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get install -y vim curl wget tar unzip net-tools lsof sysstat chrony bash-completion
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade<span class="w"> </span>-y
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vim<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>tar<span class="w"> </span>unzip<span class="w"> </span>net-tools<span class="w"> </span>lsof<span class="w"> </span>sysstat<span class="w"> </span>chrony<span class="w"> </span>bash-completion
+</code></pre></div>
 <h3 id="3-configure-time-synchronization">3. Configure Time Synchronization<a class="headerlink" href="#3-configure-time-synchronization" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bash">sudo systemctl enable --now chronyd || sudo systemctl enable --now chrony
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>chronyd<span class="w"> </span><span class="o">||</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>chrony
 timedatectl
-chronyc sources -v
-</code></pre>
+chronyc<span class="w"> </span>sources<span class="w"> </span>-v
+</code></pre></div>
 <p>Use the timezone required by the service owner. For public examples:</p>
-<pre><code class="language-bash">sudo timedatectl set-timezone UTC
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>timedatectl<span class="w"> </span>set-timezone<span class="w"> </span>UTC
+</code></pre></div>
 <h3 id="4-configure-ssh-access">4. Configure SSH Access<a class="headerlink" href="#4-configure-ssh-access" title="Permanent link">&para;</a></h3>
 <p>Recommended settings:</p>
-<pre><code class="language-text">PermitRootLogin no
+<div class="highlight"><pre><span></span><code>PermitRootLogin no
 PasswordAuthentication no
 PubkeyAuthentication yes
 UseDNS no
 GSSAPIAuthentication no
-</code></pre>
+</code></pre></div>
 <p>Validation:</p>
-<pre><code class="language-bash">sudo sshd -t
-sudo systemctl reload sshd || sudo systemctl reload ssh
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>sshd<span class="w"> </span>-t
+sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>sshd<span class="w"> </span><span class="o">||</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>ssh
+</code></pre></div>
 <p>Never publish real SSH public keys or usernames in public scripts. Use placeholders such as <code>example-user</code> and <code>ssh-ed25519 AAAA... devops@example.com</code>.</p>
 <h3 id="5-configure-command-history">5. Configure Command History<a class="headerlink" href="#5-configure-command-history" title="Permanent link">&para;</a></h3>
 <p>Recommended:</p>
-<pre><code class="language-bash">cat &lt;&lt;'EOF' | sudo tee /etc/profile.d/history-policy.sh
-export HISTTIMEFORMAT='%F %T '
-export HISTSIZE=10000
-export HISTFILESIZE=20000
-EOF
-</code></pre>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/profile.d/history-policy.sh</span>
+<span class="s">export HISTTIMEFORMAT=&#39;%F %T &#39;</span>
+<span class="s">export HISTSIZE=10000</span>
+<span class="s">export HISTFILESIZE=20000</span>
+<span class="s">EOF</span>
+</code></pre></div>
 <p>Do not rely on shell history as a security audit log. Use centralized audit logging for regulated systems.</p>
 <h3 id="6-configure-kernel-and-limits">6. Configure Kernel and Limits<a class="headerlink" href="#6-configure-kernel-and-limits" title="Permanent link">&para;</a></h3>
 <p>Common baseline:</p>
-<pre><code class="language-bash">cat &lt;&lt;'EOF' | sudo tee /etc/sysctl.d/99-devops-baseline.conf
-net.ipv4.ip_forward = 1
-net.ipv4.tcp_tw_reuse = 1
-vm.swappiness = 10
-fs.file-max = 1048576
-EOF
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/sysctl.d/99-devops-baseline.conf</span>
+<span class="s">net.ipv4.ip_forward = 1</span>
+<span class="s">net.ipv4.tcp_tw_reuse = 1</span>
+<span class="s">vm.swappiness = 10</span>
+<span class="s">fs.file-max = 1048576</span>
+<span class="s">EOF</span>
 
-sudo sysctl --system
-</code></pre>
+sudo<span class="w"> </span>sysctl<span class="w"> </span>--system
+</code></pre></div>
 <p>For service users:</p>
-<pre><code class="language-bash">cat &lt;&lt;'EOF' | sudo tee /etc/security/limits.d/99-devops-baseline.conf
-* soft nofile 65535
-* hard nofile 65535
-* soft nproc 65535
-* hard nproc 65535
-EOF
-</code></pre>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/security/limits.d/99-devops-baseline.conf</span>
+<span class="s">* soft nofile 65535</span>
+<span class="s">* hard nofile 65535</span>
+<span class="s">* soft nproc 65535</span>
+<span class="s">* hard nproc 65535</span>
+<span class="s">EOF</span>
+</code></pre></div>
 <h3 id="7-configure-firewall">7. Configure Firewall<a class="headerlink" href="#7-configure-firewall" title="Permanent link">&para;</a></h3>
 <p>Use a default-deny inbound model where possible. Open only documented ports.</p>
 <p>For <code>firewalld</code>:</p>
-<pre><code class="language-bash">sudo systemctl enable --now firewalld
-sudo firewall-cmd --get-active-zones
-sudo firewall-cmd --add-service=ssh --permanent
-sudo firewall-cmd --reload
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>firewalld
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--get-active-zones
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--add-service<span class="o">=</span>ssh<span class="w"> </span>--permanent
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
+</code></pre></div>
 <p>For cloud servers, align OS firewall rules with cloud security groups.</p>
 <h3 id="8-prepare-data-disks">8. Prepare Data Disks<a class="headerlink" href="#8-prepare-data-disks" title="Permanent link">&para;</a></h3>
 <p>Before formatting a disk:</p>
-<pre><code class="language-bash">lsblk
+<div class="highlight"><pre><span></span><code>lsblk
 blkid
-df -hT
-</code></pre>
+df<span class="w"> </span>-hT
+</code></pre></div>
 <p>Only format disks that have been explicitly approved and are not mounted. See <a href="../../runbooks/linux-disk-lvm-expansion-runbook/">Linux Disk and LVM Expansion Runbook</a>.</p>
 <h2 id="validation-checklist">Validation Checklist<a class="headerlink" href="#validation-checklist" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4930,6 +4930,10 @@ df -hT
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

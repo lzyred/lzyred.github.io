@@ -4559,7 +4559,7 @@
 <p>This standard describes a safe Jenkins pipeline pattern for building container images and deploying to Kubernetes.</p>
 <h2 id="pipeline-stages">Pipeline Stages<a class="headerlink" href="#pipeline-stages" title="Permanent link">&para;</a></h2>
 <p>Use a predictable stage model:</p>
-<pre><code class="language-text">checkout
+<div class="highlight"><pre><span></span><code>checkout
 test
 build
 scan
@@ -4570,7 +4570,7 @@ smoke test
 manual approval
 deploy to production
 post-deploy verification
-</code></pre>
+</code></pre></div>
 <h2 id="required-inputs">Required Inputs<a class="headerlink" href="#required-inputs" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4621,52 +4621,52 @@ post-deploy verification
 </ul>
 <p>Never hardcode credentials in Jenkinsfiles, shell scripts, or public documentation.</p>
 <h2 id="example-jenkinsfile-skeleton">Example Jenkinsfile Skeleton<a class="headerlink" href="#example-jenkinsfile-skeleton" title="Permanent link">&para;</a></h2>
-<pre><code class="language-groovy">pipeline {
-  agent any
+<div class="highlight"><pre><span></span><code><span class="n">pipeline</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="n">agent</span><span class="w"> </span><span class="n">any</span>
 
-  environment {
-    IMAGE = 'registry.example.com/example/app'
-    NAMESPACE = 'example-namespace'
-    DEPLOYMENT = 'example-service'
-  }
+<span class="w">  </span><span class="n">environment</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">IMAGE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;registry.example.com/example/app&#39;</span>
+<span class="w">    </span><span class="n">NAMESPACE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;example-namespace&#39;</span>
+<span class="w">    </span><span class="n">DEPLOYMENT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;example-service&#39;</span>
+<span class="w">  </span><span class="o">}</span>
 
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
-    }
+<span class="w">  </span><span class="n">stages</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Checkout&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">checkout</span><span class="w"> </span><span class="n">scm</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
 
-    stage('Test') {
-      steps {
-        sh 'make test'
-      }
-    }
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Test&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;make test&#39;</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
 
-    stage('Build Image') {
-      steps {
-        sh 'docker build -t ${IMAGE}:${GIT_COMMIT} .'
-      }
-    }
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Build Image&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;docker build -t ${IMAGE}:${GIT_COMMIT} .&#39;</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
 
-    stage('Push Image') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'registry-credentials', usernameVariable: 'REGISTRY_USER', passwordVariable: 'REGISTRY_PASSWORD')]) {
-          sh 'echo &quot;$REGISTRY_PASSWORD&quot; | docker login registry.example.com -u &quot;$REGISTRY_USER&quot; --password-stdin'
-          sh 'docker push ${IMAGE}:${GIT_COMMIT}'
-        }
-      }
-    }
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Push Image&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">withCredentials</span><span class="o">([</span><span class="n">usernamePassword</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s1">&#39;registry-credentials&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">usernameVariable:</span><span class="w"> </span><span class="s1">&#39;REGISTRY_USER&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">passwordVariable:</span><span class="w"> </span><span class="s1">&#39;REGISTRY_PASSWORD&#39;</span><span class="o">)])</span><span class="w"> </span><span class="o">{</span>
+<span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;echo &quot;$REGISTRY_PASSWORD&quot; | docker login registry.example.com -u &quot;$REGISTRY_USER&quot; --password-stdin&#39;</span>
+<span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;docker push ${IMAGE}:${GIT_COMMIT}&#39;</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
 
-    stage('Deploy') {
-      steps {
-        sh 'kubectl -n ${NAMESPACE} set image deployment/${DEPLOYMENT} app=${IMAGE}:${GIT_COMMIT}'
-        sh 'kubectl -n ${NAMESPACE} rollout status deployment/${DEPLOYMENT} --timeout=5m'
-      }
-    }
-  }
-}
-</code></pre>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Deploy&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;kubectl -n ${NAMESPACE} set image deployment/${DEPLOYMENT} app=${IMAGE}:${GIT_COMMIT}&#39;</span>
+<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;kubectl -n ${NAMESPACE} rollout status deployment/${DEPLOYMENT} --timeout=5m&#39;</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
 <h2 id="kubernetes-deploy-safety">Kubernetes Deploy Safety<a class="headerlink" href="#kubernetes-deploy-safety" title="Permanent link">&para;</a></h2>
 <p>Before production deploy:</p>
 <ul>
@@ -4677,9 +4677,9 @@ post-deploy verification
 <li>Confirm monitoring dashboard and alert ownership.</li>
 </ul>
 <p>Rollback:</p>
-<pre><code class="language-bash">kubectl -n example-namespace rollout undo deployment/example-service
-kubectl -n example-namespace rollout status deployment/example-service
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/example-service
+kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service
+</code></pre></div>
 <h2 id="notification-standard">Notification Standard<a class="headerlink" href="#notification-standard" title="Permanent link">&para;</a></h2>
 <p>Notifications should include:</p>
 <ul>
@@ -4815,6 +4815,10 @@ kubectl -n example-namespace rollout status deployment/example-service
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

@@ -4526,8 +4526,8 @@
 </ul>
 <h2 id="required-scan">Required Scan<a class="headerlink" href="#required-scan" title="Permanent link">&para;</a></h2>
 <p>Run:</p>
-<pre><code class="language-bash">rg -n -i '(password|passwd|secret|token|private key|BEGIN .*PRIVATE KEY|AKIA[0-9A-Z]{16}|authorization:|bearer |smtp|telegram|webhook|prod-|\\.key|\\.pem)' public-devops-kb
-</code></pre>
+<div class="highlight"><pre><span></span><code>rg<span class="w"> </span>-n<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;(password|passwd|secret|token|private key|BEGIN .*PRIVATE KEY|AKIA[0-9A-Z]{16}|authorization:|bearer |smtp|telegram|webhook|prod-|\\.key|\\.pem)&#39;</span><span class="w"> </span>public-devops-kb
+</code></pre></div>
 <p>Review every match. Matches in policy documents may be valid. Matches in public how-to documents require careful review.</p>
 
 
@@ -4648,6 +4648,10 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

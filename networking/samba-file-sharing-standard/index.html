@@ -4523,16 +4523,16 @@
 <li>Keep audit logs where required.</li>
 </ul>
 <h2 id="example-share">Example Share<a class="headerlink" href="#example-share" title="Permanent link">&para;</a></h2>
-<pre><code class="language-ini">[example-share]
-  path = /srv/samba/example
-  browsable = yes
-  read only = no
-  valid users = @example-team
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[example-share]</span>
+<span class="w">  </span><span class="na">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/srv/samba/example</span>
+<span class="w">  </span><span class="na">browsable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="w">  </span><span class="na">read only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">no</span>
+<span class="w">  </span><span class="na">valid users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@example-team</span>
+</code></pre></div>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">testparm
-smbclient -L //files.example.internal -U example-user
-</code></pre>
+<div class="highlight"><pre><span></span><code>testparm
+smbclient<span class="w"> </span>-L<span class="w"> </span>//files.example.internal<span class="w"> </span>-U<span class="w"> </span>example-user
+</code></pre></div>
 <h2 id="publication-safety">Publication Safety<a class="headerlink" href="#publication-safety" title="Permanent link">&para;</a></h2>
 <p>Do not publish real share names, user lists, internal hosts, or access paths.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
@@ -4658,6 +4658,10 @@ smbclient -L //files.example.internal -U example-user
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

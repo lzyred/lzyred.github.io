@@ -4522,12 +4522,12 @@
 <li>Monitor connections, replication lag, locks, storage, and memory.</li>
 </ul>
 <h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">mongodump --host mongo.example.internal --out /backup/mongodb
-</code></pre>
+<div class="highlight"><pre><span></span><code>mongodump<span class="w"> </span>--host<span class="w"> </span>mongo.example.internal<span class="w"> </span>--out<span class="w"> </span>/backup/mongodb
+</code></pre></div>
 <p>Store backups encrypted and test restore regularly.</p>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">mongosh --host mongo.example.internal --eval 'rs.status()'
-</code></pre>
+<div class="highlight"><pre><span></span><code>mongosh<span class="w"> </span>--host<span class="w"> </span>mongo.example.internal<span class="w"> </span>--eval<span class="w"> </span><span class="s1">&#39;rs.status()&#39;</span>
+</code></pre></div>
 <h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
 <p>Do not publish MongoDB connection strings, users, passwords, or internal hosts.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
@@ -4653,6 +4653,10 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

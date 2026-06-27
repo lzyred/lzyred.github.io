@@ -4589,47 +4589,47 @@
 <li>Alert messages must be safe to share and must not include secrets.</li>
 </ol>
 <h2 id="recommended-labels">Recommended Labels<a class="headerlink" href="#recommended-labels" title="Permanent link">&para;</a></h2>
-<pre><code class="language-yaml">labels:
-  severity: warning
-  team: platform
-  service: example-service
-  runbook: kubernetes-pvc-usage-alert-runbook
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">labels</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">warning</span>
+<span class="w">  </span><span class="nt">team</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">platform</span>
+<span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-service</span>
+<span class="w">  </span><span class="nt">runbook</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes-pvc-usage-alert-runbook</span>
+</code></pre></div>
 <h2 id="recommended-annotations">Recommended Annotations<a class="headerlink" href="#recommended-annotations" title="Permanent link">&para;</a></h2>
-<pre><code class="language-yaml">annotations:
-  summary: &quot;PVC usage is above warning threshold&quot;
-  description: &quot;PVC {{ $labels.persistentvolumeclaim }} in namespace {{ $labels.namespace }} is using {{ $value }} percent of available capacity.&quot;
-  action: &quot;Check recent growth, confirm owner, and follow the PVC usage runbook.&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PVC</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">above</span><span class="nv"> </span><span class="s">warning</span><span class="nv"> </span><span class="s">threshold&quot;</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PVC</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.persistentvolumeclaim</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">namespace</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.namespace</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$value</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">percent</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">available</span><span class="nv"> </span><span class="s">capacity.&quot;</span>
+<span class="w">  </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Check</span><span class="nv"> </span><span class="s">recent</span><span class="nv"> </span><span class="s">growth,</span><span class="nv"> </span><span class="s">confirm</span><span class="nv"> </span><span class="s">owner,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">follow</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">PVC</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">runbook.&quot;</span>
+</code></pre></div>
 <h2 id="example-rule-pvc-capacity">Example Rule: PVC Capacity<a class="headerlink" href="#example-rule-pvc-capacity" title="Permanent link">&para;</a></h2>
-<pre><code class="language-yaml">groups:
-  - name: kubernetes-storage
-    rules:
-      - alert: KubernetesPVCUsageHigh
-        expr: kubelet_volume_stats_used_bytes / kubelet_volume_stats_capacity_bytes * 100 &gt; 85
-        for: 15m
-        labels:
-          severity: warning
-          team: platform
-          service: storage
-          runbook: kubernetes-pvc-usage-alert-runbook
-        annotations:
-          summary: &quot;PVC usage is above 85%&quot;
-          description: &quot;PVC {{ $labels.persistentvolumeclaim }} in namespace {{ $labels.namespace }} is above 85% usage for 15 minutes.&quot;
-          action: &quot;Review growth, confirm owner, and prepare cleanup or expansion.&quot;
-      - alert: KubernetesPVCUsageCritical
-        expr: kubelet_volume_stats_used_bytes / kubelet_volume_stats_capacity_bytes * 100 &gt; 90
-        for: 10m
-        labels:
-          severity: critical
-          team: platform
-          service: storage
-          runbook: kubernetes-pvc-usage-alert-runbook
-        annotations:
-          summary: &quot;PVC usage is above 90%&quot;
-          description: &quot;PVC {{ $labels.persistentvolumeclaim }} in namespace {{ $labels.namespace }} is above 90% usage for 10 minutes.&quot;
-          action: &quot;Execute the PVC usage runbook and notify the service owner.&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">groups</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes-storage</span>
+<span class="w">    </span><span class="nt">rules</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KubernetesPVCUsageHigh</span>
+<span class="w">        </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubelet_volume_stats_used_bytes / kubelet_volume_stats_capacity_bytes * 100 &gt; 85</span>
+<span class="w">        </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15m</span>
+<span class="w">        </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">warning</span>
+<span class="w">          </span><span class="nt">team</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">platform</span>
+<span class="w">          </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">storage</span>
+<span class="w">          </span><span class="nt">runbook</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes-pvc-usage-alert-runbook</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PVC</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">above</span><span class="nv"> </span><span class="s">85%&quot;</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PVC</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.persistentvolumeclaim</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">namespace</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.namespace</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">above</span><span class="nv"> </span><span class="s">85%</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">15</span><span class="nv"> </span><span class="s">minutes.&quot;</span>
+<span class="w">          </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Review</span><span class="nv"> </span><span class="s">growth,</span><span class="nv"> </span><span class="s">confirm</span><span class="nv"> </span><span class="s">owner,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">prepare</span><span class="nv"> </span><span class="s">cleanup</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">expansion.&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KubernetesPVCUsageCritical</span>
+<span class="w">        </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubelet_volume_stats_used_bytes / kubelet_volume_stats_capacity_bytes * 100 &gt; 90</span>
+<span class="w">        </span><span class="nt">for</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10m</span>
+<span class="w">        </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">critical</span>
+<span class="w">          </span><span class="nt">team</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">platform</span>
+<span class="w">          </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">storage</span>
+<span class="w">          </span><span class="nt">runbook</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes-pvc-usage-alert-runbook</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PVC</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">above</span><span class="nv"> </span><span class="s">90%&quot;</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PVC</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.persistentvolumeclaim</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">namespace</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.namespace</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">above</span><span class="nv"> </span><span class="s">90%</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">10</span><span class="nv"> </span><span class="s">minutes.&quot;</span>
+<span class="w">          </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Execute</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">PVC</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">runbook</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">notify</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">owner.&quot;</span>
+</code></pre></div>
 <h2 id="alert-review-checklist">Alert Review Checklist<a class="headerlink" href="#alert-review-checklist" title="Permanent link">&para;</a></h2>
 <p>Before enabling a new alert:</p>
 <ul>
@@ -4802,6 +4802,10 @@
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

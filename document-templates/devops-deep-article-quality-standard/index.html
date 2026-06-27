@@ -5396,7 +5396,7 @@
 </table>
 <h2 id="source-review-output-format">Source Review Output Format<a class="headerlink" href="#source-review-output-format" title="Permanent link">&para;</a></h2>
 <p>When reviewing a file, use this format:</p>
-<pre><code class="language-text">Conclusion: A/B/C/D
+<div class="highlight"><pre><span></span><code>Conclusion: A/B/C/D
 Recommended action: standalone article / merge / snippet / exclude / quarantine
 Reason:
 Security risk: 0-5
@@ -5414,11 +5414,11 @@ Target directory:
 Required anonymization:
 Missing information:
 Next step:
-</code></pre>
+</code></pre></div>
 <h2 id="public-rewrite-rules">Public Rewrite Rules<a class="headerlink" href="#public-rewrite-rules" title="Permanent link">&para;</a></h2>
 <h3 id="replace-specific-identifiers">Replace Specific Identifiers<a class="headerlink" href="#replace-specific-identifiers" title="Permanent link">&para;</a></h3>
 <p>Use placeholders:</p>
-<pre><code class="language-text">&lt;cluster-name&gt;
+<div class="highlight"><pre><span></span><code>&lt;cluster-name&gt;
 &lt;namespace&gt;
 &lt;service-name&gt;
 &lt;region&gt;
@@ -5430,17 +5430,17 @@ Next step:
 &lt;repository-url&gt;
 &lt;customer-name&gt;
 &lt;team-name&gt;
-</code></pre>
+</code></pre></div>
 <h3 id="rewrite-raw-commands">Rewrite Raw Commands<a class="headerlink" href="#rewrite-raw-commands" title="Permanent link">&para;</a></h3>
 <p>Commands must be safe examples, not production history.</p>
 <p>Bad:</p>
-<pre><code class="language-bash">kubectl config use-context real-prod-cluster
-kubectl delete pod real-customer-payment-7d9d
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>config<span class="w"> </span>use-context<span class="w"> </span>real-prod-cluster
+kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>real-customer-payment-7d9d
+</code></pre></div>
 <p>Good:</p>
-<pre><code class="language-bash">kubectl config use-context &lt;cluster-name&gt;
-kubectl -n &lt;namespace&gt; rollout status deployment/&lt;deployment-name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>config<span class="w"> </span>use-context<span class="w"> </span>&lt;cluster-name&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/&lt;deployment-name&gt;
+</code></pre></div>
 <h3 id="rewrite-architecture-cases">Rewrite Architecture Cases<a class="headerlink" href="#rewrite-architecture-cases" title="Permanent link">&para;</a></h3>
 <p>Do not publish original architecture diagrams, customer routes, service names, or network topology. Convert them into a generalized pattern:</p>
 <ul>
@@ -5609,6 +5609,10 @@ kubectl -n &lt;namespace&gt; rollout status deployment/&lt;deployment-name&gt;
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

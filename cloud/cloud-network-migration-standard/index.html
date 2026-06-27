@@ -4525,17 +4525,17 @@
 <li>Private connectivity such as VPN, peering, transit gateway, or cloud connect.</li>
 </ul>
 <p>Use placeholder identifiers in public documents:</p>
-<pre><code class="language-text">vpc-00000000000000000
+<div class="highlight"><pre><span></span><code>vpc-00000000000000000
 subnet-00000000000000000
 10.0.0.0/16
 203.0.113.10
-</code></pre>
+</code></pre></div>
 <h2 id="connectivity-validation">Connectivity Validation<a class="headerlink" href="#connectivity-validation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">ping 10.0.0.10
-traceroute 10.0.0.10
-curl -I https://service.example.com
-dig service.example.com
-</code></pre>
+<div class="highlight"><pre><span></span><code>ping<span class="w"> </span><span class="m">10</span>.0.0.10
+traceroute<span class="w"> </span><span class="m">10</span>.0.0.10
+curl<span class="w"> </span>-I<span class="w"> </span>https://service.example.com
+dig<span class="w"> </span>service.example.com
+</code></pre></div>
 <p>For private services, prefer application-level checks over raw ping.</p>
 <h2 id="object-storage-migration">Object Storage Migration<a class="headerlink" href="#object-storage-migration" title="Permanent link">&para;</a></h2>
 <p>Before migration:</p>
@@ -4686,6 +4686,10 @@ dig service.example.com
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

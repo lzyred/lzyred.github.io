@@ -4544,13 +4544,13 @@
 <li>Protect peer and client certificates.</li>
 </ul>
 <h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">ETCDCTL_API=3 etcdctl snapshot save snapshot.db
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>snapshot<span class="w"> </span>save<span class="w"> </span>snapshot.db
+</code></pre></div>
 <p>Store snapshots encrypted and test restore regularly.</p>
 <h2 id="health-checks">Health Checks<a class="headerlink" href="#health-checks" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">ETCDCTL_API=3 etcdctl endpoint health
-ETCDCTL_API=3 etcdctl endpoint status --write-out=table
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>endpoint<span class="w"> </span>health
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>endpoint<span class="w"> </span>status<span class="w"> </span>--write-out<span class="o">=</span>table
+</code></pre></div>
 <h2 id="kubernetes-notes">Kubernetes Notes<a class="headerlink" href="#kubernetes-notes" title="Permanent link">&para;</a></h2>
 <p>For managed Kubernetes, control plane etcd is usually provider-managed. For self-managed clusters, etcd backup and restore must be part of the platform runbook.</p>
 <h2 id="publication-safety">Publication Safety<a class="headerlink" href="#publication-safety" title="Permanent link">&para;</a></h2>
@@ -4679,6 +4679,10 @@ ETCDCTL_API=3 etcdctl endpoint status --write-out=table
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

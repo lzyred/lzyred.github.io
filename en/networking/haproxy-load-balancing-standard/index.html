@@ -4492,7 +4492,7 @@
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
 <p>This standard defines public-safe HAProxy reverse proxy and load balancing practices.</p>
 <h2 id="basic-pattern">Basic Pattern<a class="headerlink" href="#basic-pattern" title="Permanent link">&para;</a></h2>
-<pre><code class="language-haproxy">frontend example_http
+<div class="highlight"><pre><span></span><code>frontend example_http
   bind *:80
   default_backend example_backend
 
@@ -4501,12 +4501,12 @@ backend example_backend
   option httpchk GET /health
   server app1 10.0.0.10:8080 check
   server app2 10.0.0.11:8080 check
-</code></pre>
+</code></pre></div>
 <h2 id="operational-checks">Operational Checks<a class="headerlink" href="#operational-checks" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">haproxy -c -f /etc/haproxy/haproxy.cfg
-systemctl reload haproxy
-systemctl status haproxy --no-pager
-</code></pre>
+<div class="highlight"><pre><span></span><code>haproxy<span class="w"> </span>-c<span class="w"> </span>-f<span class="w"> </span>/etc/haproxy/haproxy.cfg
+systemctl<span class="w"> </span>reload<span class="w"> </span>haproxy
+systemctl<span class="w"> </span>status<span class="w"> </span>haproxy<span class="w"> </span>--no-pager
+</code></pre></div>
 <h2 id="safety-notes">Safety Notes<a class="headerlink" href="#safety-notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Do not publish real backend addresses.</li>
@@ -4637,6 +4637,10 @@ systemctl status haproxy --no-pager
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

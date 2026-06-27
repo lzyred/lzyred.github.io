@@ -4935,7 +4935,7 @@
 </ul>
 <p>如果你的业务只有几个低风险服务，可以先降低复杂度：两类节点组、一个入口控制器、基础指标和日志即可。不要为了“看起来生产级”一开始就堆满所有组件。</p>
 <h2 id="_4">目标架构<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<pre><code class="language-text">Users
+<div class="highlight"><pre><span></span><code>Users
   |
 Route 53
   |
@@ -4967,7 +4967,7 @@ Observability
   - events
   - alerts
   - audit trail
-</code></pre>
+</code></pre></div>
 <p>核心原则：AWS 托管 EKS 控制面，但业务高可用仍然取决于你的 VPC、子网、节点组、调度策略、Pod 副本、PDB、存储、入口和发布方式。</p>
 <h2 id="_5">关键设计决策<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <h3 id="1-az">1. 多 AZ 是底线，不是亮点<a class="headerlink" href="#1-az" title="Permanent link">&para;</a></h3>
@@ -5038,10 +5038,10 @@ Observability
 <li>标签规范。</li>
 </ul>
 <p>验证：</p>
-<pre><code class="language-bash">aws sts get-caller-identity
-aws ec2 describe-subnets --filters &quot;Name=vpc-id,Values=&lt;vpc-id&gt;&quot;
-aws eks describe-cluster --name &lt;cluster-name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+aws<span class="w"> </span>ec2<span class="w"> </span>describe-subnets<span class="w"> </span>--filters<span class="w"> </span><span class="s2">&quot;Name=vpc-id,Values=&lt;vpc-id&gt;&quot;</span>
+aws<span class="w"> </span>eks<span class="w"> </span>describe-cluster<span class="w"> </span>--name<span class="w"> </span>&lt;cluster-name&gt;
+</code></pre></div>
 <p>风险点：NAT Gateway 成本容易被低估；私有集群访问路径容易被忘记；过宽的管理员权限会在后续阶段变成默认做法。</p>
 <h3 id="2-eks">阶段 2：创建 EKS 控制面<a class="headerlink" href="#2-eks" title="Permanent link">&para;</a></h3>
 <p>交付内容：</p>
@@ -5053,11 +5053,11 @@ aws eks describe-cluster --name &lt;cluster-name&gt;
 <li>加密配置。</li>
 </ul>
 <p>验证：</p>
-<pre><code class="language-bash">aws eks update-kubeconfig --name &lt;cluster-name&gt; --region &lt;region&gt;
-kubectl cluster-info
-kubectl get nodes
-kubectl get ns
-</code></pre>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>eks<span class="w"> </span>update-kubeconfig<span class="w"> </span>--name<span class="w"> </span>&lt;cluster-name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+kubectl<span class="w"> </span>cluster-info
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+kubectl<span class="w"> </span>get<span class="w"> </span>ns
+</code></pre></div>
 <p>注意：刚创建完控制面时，<code>kubectl get nodes</code> 可能为空。控制面健康不等于节点已经加入。</p>
 <h3 id="3">阶段 3：节点容量和系统组件<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <p>交付内容：</p>
@@ -5068,11 +5068,11 @@ kubectl get ns
 <li>Cluster Autoscaler 或 Karpenter 扩缩容策略。</li>
 </ul>
 <p>验证：</p>
-<pre><code class="language-bash">kubectl get nodes -o wide
-kubectl -n kube-system get pods -o wide
-kubectl describe node &lt;node-name&gt;
-kubectl top nodes
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span>&lt;node-name&gt;
+kubectl<span class="w"> </span>top<span class="w"> </span>nodes
+</code></pre></div>
 <p>失败模式：节点 Ready，但 CNI IP 不足，业务 Pod 卡在 Pending。此时问题不在 Deployment，而在子网地址容量或 CNI 配置。</p>
 <h3 id="4">阶段 4：身份、权限和密钥<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
 <p>交付内容：</p>
@@ -5083,9 +5083,9 @@ kubectl top nodes
 <li>CI/CD 部署权限。</li>
 </ul>
 <p>验证：</p>
-<pre><code class="language-bash">kubectl -n &lt;namespace&gt; describe serviceaccount &lt;service-account&gt;
-kubectl -n &lt;namespace&gt; exec deploy/&lt;deployment-name&gt; -- aws sts get-caller-identity
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>describe<span class="w"> </span>serviceaccount<span class="w"> </span>&lt;service-account&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>deploy/&lt;deployment-name&gt;<span class="w"> </span>--<span class="w"> </span>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+</code></pre></div>
 <p>判断标准：业务 Pod 看到的身份应该是它自己的工作负载角色，而不是节点角色。</p>
 <h3 id="5_1">阶段 5：入口、证书和发布路径<a class="headerlink" href="#5_1" title="Permanent link">&para;</a></h3>
 <p>交付内容：</p>
@@ -5098,11 +5098,11 @@ kubectl -n &lt;namespace&gt; exec deploy/&lt;deployment-name&gt; -- aws sts get-
 <li>灰度或蓝绿发布策略。</li>
 </ul>
 <p>验证：</p>
-<pre><code class="language-bash">kubectl -n kube-system get deploy aws-load-balancer-controller
-kubectl -n &lt;namespace&gt; get ingress
-kubectl -n &lt;namespace&gt; describe ingress &lt;ingress-name&gt;
-curl -I https://&lt;service-domain&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>get<span class="w"> </span>deploy<span class="w"> </span>aws-load-balancer-controller
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>ingress
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>describe<span class="w"> </span>ingress<span class="w"> </span>&lt;ingress-name&gt;
+curl<span class="w"> </span>-I<span class="w"> </span>https://&lt;service-domain&gt;
+</code></pre></div>
 <p>失败模式：Ingress 创建成功，但 Load Balancer 没有被创建。通常是控制器权限、子网标签或 Ingress 注解错误。</p>
 <h3 id="6">阶段 6：可观测性和告警<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
 <p>交付内容：</p>
@@ -5125,10 +5125,10 @@ curl -I https://&lt;service-domain&gt;
 <li>CoreDNS 错误率升高。</li>
 </ul>
 <p>验证：</p>
-<pre><code class="language-bash">kubectl get events -A --sort-by=.lastTimestamp
-kubectl top pods -A
-kubectl -n &lt;monitoring-namespace&gt; get pods
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-A<span class="w"> </span>--sort-by<span class="o">=</span>.lastTimestamp
+kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w"> </span>-A
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;monitoring-namespace&gt;<span class="w"> </span>get<span class="w"> </span>pods
+</code></pre></div>
 <h2 id="_7">回滚策略<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>EKS 集群回滚不能只靠 <code>kubectl rollout undo</code>。需要分层处理。</p>
 <table>
@@ -5327,6 +5327,10 @@ kubectl -n &lt;monitoring-namespace&gt; get pods
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

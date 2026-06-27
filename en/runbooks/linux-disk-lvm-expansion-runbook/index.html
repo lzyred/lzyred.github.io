@@ -4560,13 +4560,13 @@
 <h2 id="safety-warning">Safety Warning<a class="headerlink" href="#safety-warning" title="Permanent link">&para;</a></h2>
 <p>Disk operations can destroy data. Do not run formatting, partitioning, or LVM commands until the target disk is confirmed and approved.</p>
 <h2 id="initial-checks">Initial Checks<a class="headerlink" href="#initial-checks" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">lsblk
+<div class="highlight"><pre><span></span><code>lsblk
 blkid
-df -hT
-sudo pvs
-sudo vgs
-sudo lvs
-</code></pre>
+df<span class="w"> </span>-hT
+sudo<span class="w"> </span>pvs
+sudo<span class="w"> </span>vgs
+sudo<span class="w"> </span>lvs
+</code></pre></div>
 <p>Identify:</p>
 <ul>
 <li>New disk name.</li>
@@ -4577,30 +4577,30 @@ sudo lvs
 </ul>
 <h2 id="add-a-new-disk-to-lvm">Add a New Disk to LVM<a class="headerlink" href="#add-a-new-disk-to-lvm" title="Permanent link">&para;</a></h2>
 <p>Example target disk:</p>
-<pre><code class="language-text">/dev/sdb
-</code></pre>
+<div class="highlight"><pre><span></span><code>/dev/sdb
+</code></pre></div>
 <p>Create a physical volume:</p>
-<pre><code class="language-bash">sudo pvcreate /dev/sdb
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pvcreate<span class="w"> </span>/dev/sdb
+</code></pre></div>
 <p>Extend volume group:</p>
-<pre><code class="language-bash">sudo vgextend example_vg /dev/sdb
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>vgextend<span class="w"> </span>example_vg<span class="w"> </span>/dev/sdb
+</code></pre></div>
 <p>Extend logical volume:</p>
-<pre><code class="language-bash">sudo lvextend -l +100%FREE /dev/example_vg/example_lv
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>lvextend<span class="w"> </span>-l<span class="w"> </span>+100%FREE<span class="w"> </span>/dev/example_vg/example_lv
+</code></pre></div>
 <h2 id="grow-filesystem">Grow Filesystem<a class="headerlink" href="#grow-filesystem" title="Permanent link">&para;</a></h2>
 <p>For XFS:</p>
-<pre><code class="language-bash">sudo xfs_growfs /
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>xfs_growfs<span class="w"> </span>/
+</code></pre></div>
 <p>For ext4:</p>
-<pre><code class="language-bash">sudo resize2fs /dev/example_vg/example_lv
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>resize2fs<span class="w"> </span>/dev/example_vg/example_lv
+</code></pre></div>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">df -hT
-sudo pvs
-sudo vgs
-sudo lvs
-</code></pre>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-hT
+sudo<span class="w"> </span>pvs
+sudo<span class="w"> </span>vgs
+sudo<span class="w"> </span>lvs
+</code></pre></div>
 <p>Application validation:</p>
 <ul>
 <li>Service can write to the expanded path.</li>
@@ -4732,6 +4732,10 @@ sudo lvs
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

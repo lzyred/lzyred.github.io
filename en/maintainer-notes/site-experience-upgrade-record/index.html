@@ -4893,13 +4893,13 @@
 <li>Rollback path.</li>
 </ul>
 <p>Example:</p>
-<pre><code class="language-text">Date: 2026-06-27
+<div class="highlight"><pre><span></span><code>Date: 2026-06-27
 Scope: i18n
 Reason: Replace manual language links with plugin-managed bilingual routing.
 Files: mkdocs.yml, docs/zh, docs/en, tools/create-zh-redirect-aliases.mjs
 Verification: make build, make verifyDist, online HTTP status checks
 Rollback: Restore previous mkdocs.yml and remove i18n plugin config
-</code></pre>
+</code></pre></div>
 <h2 id="recommended-next-step">Recommended Next Step<a class="headerlink" href="#recommended-next-step" title="Permanent link">&para;</a></h2>
 <p>The next step should be Phase 1: light/dark theme switching, navigation improvements, restrained brand colors, and a lightweight logo. This phase is low risk, verifiable, reversible, and immediately improves the site's first impression.</p>
 <h2 id="2026-06-27-execution-record">2026-06-27 Execution Record<a class="headerlink" href="#2026-06-27-execution-record" title="Permanent link">&para;</a></h2>
@@ -4930,9 +4930,9 @@ Rollback: Restore previous mkdocs.yml and remove i18n plugin config
 </ul>
 <h3 id="verification-requirement">Verification Requirement<a class="headerlink" href="#verification-requirement" title="Permanent link">&para;</a></h3>
 <p>After each change, run:</p>
-<pre><code class="language-bash">make build MKDOCS=/private/tmp/devops-kb-mkdocs-venv/bin/mkdocs
-make verifyDist
-</code></pre>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>build<span class="w"> </span><span class="nv">MKDOCS</span><span class="o">=</span>/private/tmp/devops-kb-mkdocs-venv/bin/mkdocs
+make<span class="w"> </span>verifyDist
+</code></pre></div>
 <p>After publishing, check at least:</p>
 <ul>
 <li>Home page.</li>
@@ -5060,6 +5060,10 @@ make verifyDist
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

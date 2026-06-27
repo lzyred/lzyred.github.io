@@ -4500,10 +4500,10 @@
 <li>Monitor JVM, database connectivity, and service registration health.</li>
 </ul>
 <h2 id="kubernetes-checklist">Kubernetes Checklist<a class="headerlink" href="#kubernetes-checklist" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">kubectl get statefulset -n example-namespace
-kubectl get svc -n example-namespace
-kubectl logs -n example-namespace statefulset/example-nacos
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>statefulset<span class="w"> </span>-n<span class="w"> </span>example-namespace
+kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>example-namespace
+kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>statefulset/example-nacos
+</code></pre></div>
 <h2 id="risk-areas">Risk Areas<a class="headerlink" href="#risk-areas" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Configuration changes can affect many services.</li>
@@ -4633,6 +4633,10 @@ kubectl logs -n example-namespace statefulset/example-nacos
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

@@ -4588,24 +4588,24 @@
 <li>Test migration and restore procedures before production use.</li>
 </ol>
 <h2 id="host-tuning">Host Tuning<a class="headerlink" href="#host-tuning" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">echo never | sudo tee /sys/kernel/mm/transparent_hugepage/enabled
-echo 'vm.overcommit_memory = 1' | sudo tee /etc/sysctl.d/99-redis.conf
-sudo sysctl --system
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>never<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/sys/kernel/mm/transparent_hugepage/enabled
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;vm.overcommit_memory = 1&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/sysctl.d/99-redis.conf
+sudo<span class="w"> </span>sysctl<span class="w"> </span>--system
+</code></pre></div>
 <p>Set limits:</p>
-<pre><code class="language-text">redis soft nofile 65535
+<div class="highlight"><pre><span></span><code>redis soft nofile 65535
 redis hard nofile 65535
-</code></pre>
+</code></pre></div>
 <h2 id="single-instance-baseline">Single Instance Baseline<a class="headerlink" href="#single-instance-baseline" title="Permanent link">&para;</a></h2>
 <p>Recommended configuration concepts:</p>
-<pre><code class="language-conf">bind 127.0.0.1 10.0.0.10
+<div class="highlight"><pre><span></span><code>bind 127.0.0.1 10.0.0.10
 protected-mode yes
 port 6379
 dir /var/lib/redis
 appendonly yes
 appendfsync everysec
 maxmemory-policy noeviction
-</code></pre>
+</code></pre></div>
 <p>Store credentials in a secret manager. Do not commit <code>requirepass</code> values.</p>
 <h2 id="persistence-choices">Persistence Choices<a class="headerlink" href="#persistence-choices" title="Permanent link">&para;</a></h2>
 <table>
@@ -4645,8 +4645,8 @@ maxmemory-policy noeviction
 <li>Validate keys, memory, persistence status, and application behavior.</li>
 </ol>
 <p>Example checksum:</p>
-<pre><code class="language-bash">sha256sum appendonly.aof
-</code></pre>
+<div class="highlight"><pre><span></span><code>sha256sum<span class="w"> </span>appendonly.aof
+</code></pre></div>
 <h2 id="cluster-migration-notes">Cluster Migration Notes<a class="headerlink" href="#cluster-migration-notes" title="Permanent link">&para;</a></h2>
 <p>For Redis Cluster:</p>
 <ul>
@@ -4657,10 +4657,10 @@ maxmemory-policy noeviction
 <li>Keep rollback data until post-migration checks pass.</li>
 </ul>
 <p>Validation:</p>
-<pre><code class="language-bash">redis-cli -h 10.0.0.10 -p 6379 INFO persistence
-redis-cli -h 10.0.0.10 -p 6379 INFO replication
-redis-cli -h 10.0.0.10 -p 6379 CLUSTER INFO
-</code></pre>
+<div class="highlight"><pre><span></span><code>redis-cli<span class="w"> </span>-h<span class="w"> </span><span class="m">10</span>.0.0.10<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span><span class="w"> </span>INFO<span class="w"> </span>persistence
+redis-cli<span class="w"> </span>-h<span class="w"> </span><span class="m">10</span>.0.0.10<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span><span class="w"> </span>INFO<span class="w"> </span>replication
+redis-cli<span class="w"> </span>-h<span class="w"> </span><span class="m">10</span>.0.0.10<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span><span class="w"> </span>CLUSTER<span class="w"> </span>INFO
+</code></pre></div>
 <h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Do not expose Redis directly to the public internet.</li>
@@ -4792,6 +4792,10 @@ redis-cli -h 10.0.0.10 -p 6379 CLUSTER INFO
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

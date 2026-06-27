@@ -4615,10 +4615,10 @@
 <li>Keep source cluster read-only until rollback window closes.</li>
 </ol>
 <h2 id="validation-commands">Validation Commands<a class="headerlink" href="#validation-commands" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">kafka-topics.sh --bootstrap-server broker.example.com:9092 --list
-kafka-consumer-groups.sh --bootstrap-server broker.example.com:9092 --all-groups --describe
-kafka-topics.sh --bootstrap-server broker.example.com:9092 --describe --topic example-topic
-</code></pre>
+<div class="highlight"><pre><span></span><code>kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>broker.example.com:9092<span class="w"> </span>--list
+kafka-consumer-groups.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>broker.example.com:9092<span class="w"> </span>--all-groups<span class="w"> </span>--describe
+kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>broker.example.com:9092<span class="w"> </span>--describe<span class="w"> </span>--topic<span class="w"> </span>example-topic
+</code></pre></div>
 <h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
 <p>Rollback depends on whether producers have written to the target. Define the cutoff point before migration. If bidirectional writes are not supported, rollback requires stopping target writes and restoring producer routing to the source.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
@@ -4744,6 +4744,10 @@ kafka-topics.sh --bootstrap-server broker.example.com:9092 --describe --topic ex
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

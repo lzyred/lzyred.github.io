@@ -4800,7 +4800,7 @@
 </table>
 <h2 id="required-metadata">Required Metadata<a class="headerlink" href="#required-metadata" title="Permanent link">&para;</a></h2>
 <p>Track these fields for each PVC:</p>
-<pre><code class="language-text">cluster
+<div class="highlight"><pre><span></span><code>cluster
 namespace
 pvc_name
 pv_name
@@ -4813,34 +4813,34 @@ usage_percent
 owner
 service
 last_checked_at
-</code></pre>
+</code></pre></div>
 <h2 id="standard-procedure">Standard Procedure<a class="headerlink" href="#standard-procedure" title="Permanent link">&para;</a></h2>
 <h3 id="1-identify-nfs-storageclasses">1. Identify NFS StorageClasses<a class="headerlink" href="#1-identify-nfs-storageclasses" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bash">kubectl get storageclass
-kubectl describe storageclass &lt;storage-class-name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
+kubectl<span class="w"> </span>describe<span class="w"> </span>storageclass<span class="w"> </span>&lt;storage-class-name&gt;
+</code></pre></div>
 <p>Record provisioner, server, path pattern, reclaim policy, and expansion support.</p>
 <h3 id="2-list-pvcs-using-the-storageclass">2. List PVCs Using the StorageClass<a class="headerlink" href="#2-list-pvcs-using-the-storageclass" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bash">kubectl get pvc -A -o wide
-kubectl get pv
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>get<span class="w"> </span>pv
+</code></pre></div>
 <p>Map each PVC to its PV and storage path.</p>
 <h3 id="3-measure-filesystem-usage">3. Measure Filesystem Usage<a class="headerlink" href="#3-measure-filesystem-usage" title="Permanent link">&para;</a></h3>
 <p>On the storage server or mounted observation host:</p>
-<pre><code class="language-bash">df -h &lt;storage-root&gt;
-du -sh &lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>&lt;storage-root&gt;
+du<span class="w"> </span>-sh<span class="w"> </span>&lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
+</code></pre></div>
 <p>Use a consistent path convention. If dynamic provisioning creates hashed paths, maintain a PV-to-path mapping.</p>
 <h3 id="4-alert-on-usage">4. Alert on Usage<a class="headerlink" href="#4-alert-on-usage" title="Permanent link">&para;</a></h3>
 <p>Alert messages should include:</p>
-<pre><code class="language-text">Cluster: example-cluster
+<div class="highlight"><pre><span></span><code>Cluster: example-cluster
 Namespace: example-namespace
 PVC: example-pvc
 StorageClass: example-nfs
 Usage: 87%
 Threshold: 85%
 Recommended Action: review growth and expand or clean up
-</code></pre>
+</code></pre></div>
 <p>Do not include credentials, real internal domains, or sensitive mount paths in public alert examples.</p>
 <h3 id="5-remediate">5. Remediate<a class="headerlink" href="#5-remediate" title="Permanent link">&para;</a></h3>
 <p>Common remediation options:</p>
@@ -4863,11 +4863,11 @@ Recommended Action: review growth and expand or clean up
 </ul>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
 <p>After remediation:</p>
-<pre><code class="language-bash">df -h &lt;storage-root&gt;
-du -sh &lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
-kubectl get pvc -n &lt;namespace&gt;
-kubectl describe pvc &lt;pvc-name&gt; -n &lt;namespace&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>&lt;storage-root&gt;
+du<span class="w"> </span>-sh<span class="w"> </span>&lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
+kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</code></pre></div>
 <p>Verify the affected application can still read and write expected data.</p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <h3 id="why-not-rely-only-on-kubectl-get-pvc">Why not rely only on <code>kubectl get pvc</code>?<a class="headerlink" href="#why-not-rely-only-on-kubectl-get-pvc" title="Permanent link">&para;</a></h3>
@@ -4993,6 +4993,10 @@ kubectl describe pvc &lt;pvc-name&gt; -n &lt;namespace&gt;
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

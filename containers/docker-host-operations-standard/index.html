@@ -4590,53 +4590,53 @@
 <li>Avoid running business-critical services from unreviewed Compose files.</li>
 </ol>
 <h2 id="host-preparation">Host Preparation<a class="headerlink" href="#host-preparation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">sudo mkdir -p /etc/docker
-sudo mkdir -p /var/lib/docker
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/docker
+sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/lib/docker
+</code></pre></div>
 <p>Recommended daemon configuration:</p>
-<pre><code class="language-json">{
-  &quot;log-driver&quot;: &quot;json-file&quot;,
-  &quot;log-opts&quot;: {
-    &quot;max-size&quot;: &quot;100m&quot;,
-    &quot;max-file&quot;: &quot;3&quot;
-  },
-  &quot;storage-driver&quot;: &quot;overlay2&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;log-driver&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;json-file&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;log-opts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;max-size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;100m&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max-file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;storage-driver&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;overlay2&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Apply:</p>
-<pre><code class="language-bash">sudo systemctl daemon-reload
-sudo systemctl enable --now docker
-docker info
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>docker
+docker<span class="w"> </span>info
+</code></pre></div>
 <h2 id="routine-maintenance">Routine Maintenance<a class="headerlink" href="#routine-maintenance" title="Permanent link">&para;</a></h2>
 <p>Check disk use:</p>
-<pre><code class="language-bash">docker system df
-df -h /var/lib/docker
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>system<span class="w"> </span>df
+df<span class="w"> </span>-h<span class="w"> </span>/var/lib/docker
+</code></pre></div>
 <p>List resources:</p>
-<pre><code class="language-bash">docker ps -a
-docker images
-docker volume ls
-docker network ls
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps<span class="w"> </span>-a
+docker<span class="w"> </span>images
+docker<span class="w"> </span>volume<span class="w"> </span>ls
+docker<span class="w"> </span>network<span class="w"> </span>ls
+</code></pre></div>
 <p>Safe cleanup:</p>
-<pre><code class="language-bash">docker container prune -f
-docker image prune -f
-docker builder prune -f
-docker network prune -f
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>prune<span class="w"> </span>-f
+docker<span class="w"> </span>image<span class="w"> </span>prune<span class="w"> </span>-f
+docker<span class="w"> </span>builder<span class="w"> </span>prune<span class="w"> </span>-f
+docker<span class="w"> </span>network<span class="w"> </span>prune<span class="w"> </span>-f
+</code></pre></div>
 <p>Volume cleanup is high risk:</p>
-<pre><code class="language-bash">docker volume prune
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>prune
+</code></pre></div>
 <p>Run volume cleanup only after confirming the volumes are not used by stateful applications.</p>
 <h2 id="docker-network-recovery">Docker Network Recovery<a class="headerlink" href="#docker-network-recovery" title="Permanent link">&para;</a></h2>
 <p>Symptoms of Docker network issues include containers failing to resolve names, bridge network conflicts, or services becoming unreachable after IP range changes.</p>
 <p>Low-risk checks:</p>
-<pre><code class="language-bash">docker network ls
-docker network inspect bridge
-ip addr
-iptables -S
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>network<span class="w"> </span>ls
+docker<span class="w"> </span>network<span class="w"> </span>inspect<span class="w"> </span>bridge
+ip<span class="w"> </span>addr
+iptables<span class="w"> </span>-S
+</code></pre></div>
 <p>Recovery sequence:</p>
 <ol>
 <li>Stop affected non-critical containers.</li>
@@ -4657,11 +4657,11 @@ iptables -S
 <li>Document backup and restore for stateful services.</li>
 </ul>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">docker version
-docker info
-docker run --rm hello-world
-docker system df
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>version
+docker<span class="w"> </span>info
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>hello-world
+docker<span class="w"> </span>system<span class="w"> </span>df
+</code></pre></div>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../linux/server-baseline-standard/">Linux Server Baseline Standard</a></li>
@@ -4786,6 +4786,10 @@ docker system df
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

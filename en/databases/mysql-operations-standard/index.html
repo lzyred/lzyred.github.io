@@ -4622,27 +4622,27 @@
 <li>Enable service management through systemd.</li>
 </ul>
 <p>Example configuration concepts:</p>
-<pre><code class="language-ini">[mysqld]
-datadir=/var/lib/mysql
-socket=/var/lib/mysql/mysql.sock
-character-set-server=utf8mb4
-collation-server=utf8mb4_unicode_ci
-slow_query_log=ON
-long_query_time=1
-max_connections=500
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[mysqld]</span>
+<span class="na">datadir</span><span class="o">=</span><span class="s">/var/lib/mysql</span>
+<span class="na">socket</span><span class="o">=</span><span class="s">/var/lib/mysql/mysql.sock</span>
+<span class="na">character-set-server</span><span class="o">=</span><span class="s">utf8mb4</span>
+<span class="na">collation-server</span><span class="o">=</span><span class="s">utf8mb4_unicode_ci</span>
+<span class="na">slow_query_log</span><span class="o">=</span><span class="s">ON</span>
+<span class="na">long_query_time</span><span class="o">=</span><span class="s">1</span>
+<span class="na">max_connections</span><span class="o">=</span><span class="s">500</span>
+</code></pre></div>
 <h2 id="account-model">Account Model<a class="headerlink" href="#account-model" title="Permanent link">&para;</a></h2>
 <p>Use least privilege:</p>
-<pre><code class="language-sql">CREATE USER 'app_user'@'10.0.0.%' IDENTIFIED BY '&lt;REDACTED_PASSWORD&gt;';
-GRANT SELECT, INSERT, UPDATE, DELETE ON example_db.* TO 'app_user'@'10.0.0.%';
-FLUSH PRIVILEGES;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;app_user&#39;</span><span class="o">@</span><span class="s1">&#39;10.0.0.%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&lt;REDACTED_PASSWORD&gt;&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="w"> </span><span class="k">INSERT</span><span class="p">,</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">,</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">example_db</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;app_user&#39;</span><span class="o">@</span><span class="s1">&#39;10.0.0.%&#39;</span><span class="p">;</span>
+<span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
+</code></pre></div>
 <p>The password placeholder must be replaced through a secret manager, not committed to a repository.</p>
 <h2 id="backup-standard">Backup Standard<a class="headerlink" href="#backup-standard" title="Permanent link">&para;</a></h2>
 <p>Use both logical and physical backup when appropriate.</p>
 <p>Logical backup:</p>
-<pre><code class="language-bash">mysqldump --single-transaction --routines --triggers --events example_db &gt; example_db.sql
-</code></pre>
+<div class="highlight"><pre><span></span><code>mysqldump<span class="w"> </span>--single-transaction<span class="w"> </span>--routines<span class="w"> </span>--triggers<span class="w"> </span>--events<span class="w"> </span>example_db<span class="w"> </span>&gt;<span class="w"> </span>example_db.sql
+</code></pre></div>
 <p>Physical backup tools are better for larger datasets. Always document:</p>
 <ul>
 <li>Backup type.</li>
@@ -4663,10 +4663,10 @@ FLUSH PRIVILEGES;
 <li>Prepare rollback plan.</li>
 </ul>
 <p>Migration validation:</p>
-<pre><code class="language-sql">SELECT COUNT(*) FROM important_table;
-SHOW SLAVE STATUS\G
-SHOW REPLICA STATUS\G
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">important_table</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">REPLICA</span><span class="w"> </span><span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
+</code></pre></div>
 <p>Use checksums or application-level validation for critical tables.</p>
 <h2 id="root-password-reset">Root Password Reset<a class="headerlink" href="#root-password-reset" title="Permanent link">&para;</a></h2>
 <p>Root password reset is a break-glass procedure. It should require:</p>
@@ -4681,9 +4681,9 @@ SHOW REPLICA STATUS\G
 <h2 id="benchmarking">Benchmarking<a class="headerlink" href="#benchmarking" title="Permanent link">&para;</a></h2>
 <p>Use benchmarking to compare configurations, not to prove production capacity in isolation.</p>
 <p>Example:</p>
-<pre><code class="language-bash">sysbench oltp_read_write --mysql-host=db.example.internal --mysql-user=example-user --mysql-db=example_db prepare
-sysbench oltp_read_write --mysql-host=db.example.internal --mysql-user=example-user --mysql-db=example_db run
-</code></pre>
+<div class="highlight"><pre><span></span><code>sysbench<span class="w"> </span>oltp_read_write<span class="w"> </span>--mysql-host<span class="o">=</span>db.example.internal<span class="w"> </span>--mysql-user<span class="o">=</span>example-user<span class="w"> </span>--mysql-db<span class="o">=</span>example_db<span class="w"> </span>prepare
+sysbench<span class="w"> </span>oltp_read_write<span class="w"> </span>--mysql-host<span class="o">=</span>db.example.internal<span class="w"> </span>--mysql-user<span class="o">=</span>example-user<span class="w"> </span>--mysql-db<span class="o">=</span>example_db<span class="w"> </span>run
+</code></pre></div>
 <p>Provide the database password through a protected client configuration or secret injection mechanism rather than a command-line argument.</p>
 <p>Avoid running benchmarks against production without explicit approval.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
@@ -4809,6 +4809,10 @@ sysbench oltp_read_write --mysql-host=db.example.internal --mysql-user=example-u
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

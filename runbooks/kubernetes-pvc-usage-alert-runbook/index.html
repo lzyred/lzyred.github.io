@@ -4664,22 +4664,22 @@
 </ul>
 <h2 id="initial-triage">Initial Triage<a class="headerlink" href="#initial-triage" title="Permanent link">&para;</a></h2>
 <p>Identify the affected PVC:</p>
-<pre><code class="language-bash">kubectl get pvc -A | grep &lt;pvc-name&gt;
-kubectl describe pvc &lt;pvc-name&gt; -n &lt;namespace&gt;
-kubectl get pod -n &lt;namespace&gt; -o wide
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;pvc-name&gt;
+kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+</code></pre></div>
 <p>Check whether the application is healthy:</p>
-<pre><code class="language-bash">kubectl get pods -n &lt;namespace&gt;
-kubectl get events -n &lt;namespace&gt; --sort-by='.lastTimestamp'
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>--sort-by<span class="o">=</span><span class="s1">&#39;.lastTimestamp&#39;</span>
+</code></pre></div>
 <h2 id="confirm-usage">Confirm Usage<a class="headerlink" href="#confirm-usage" title="Permanent link">&para;</a></h2>
 <p>If kubelet volume metrics are available, check dashboard or Prometheus:</p>
-<pre><code class="language-promql">kubelet_volume_stats_used_bytes / kubelet_volume_stats_capacity_bytes * 100
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">kubelet_volume_stats_used_bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nv">kubelet_volume_stats_capacity_bytes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span>
+</code></pre></div>
 <p>For NFS-backed storage, confirm on the storage host or observation mount:</p>
-<pre><code class="language-bash">df -h &lt;storage-root&gt;
-du -sh &lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>&lt;storage-root&gt;
+du<span class="w"> </span>-sh<span class="w"> </span>&lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
+</code></pre></div>
 <h2 id="determine-impact">Determine Impact<a class="headerlink" href="#determine-impact" title="Permanent link">&para;</a></h2>
 <p>Ask:</p>
 <ul>
@@ -4714,13 +4714,13 @@ du -sh &lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
 </ol>
 <h2 id="expansion-example">Expansion Example<a class="headerlink" href="#expansion-example" title="Permanent link">&para;</a></h2>
 <p>If the StorageClass supports expansion:</p>
-<pre><code class="language-bash">kubectl patch pvc &lt;pvc-name&gt; -n &lt;namespace&gt; \
-  -p '{&quot;spec&quot;:{&quot;resources&quot;:{&quot;requests&quot;:{&quot;storage&quot;:&quot;200Gi&quot;}}}}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>patch<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;resources&quot;:{&quot;requests&quot;:{&quot;storage&quot;:&quot;200Gi&quot;}}}}&#39;</span>
+</code></pre></div>
 <p>Validate:</p>
-<pre><code class="language-bash">kubectl get pvc &lt;pvc-name&gt; -n &lt;namespace&gt;
-kubectl describe pvc &lt;pvc-name&gt; -n &lt;namespace&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</code></pre></div>
 <h2 id="closure-criteria">Closure Criteria<a class="headerlink" href="#closure-criteria" title="Permanent link">&para;</a></h2>
 <p>Close the incident only when:</p>
 <ul>
@@ -4858,6 +4858,10 @@ kubectl describe pvc &lt;pvc-name&gt; -n &lt;namespace&gt;
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

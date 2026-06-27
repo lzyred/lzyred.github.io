@@ -4580,13 +4580,13 @@
 </table>
 <h2 id="initial-triage">Initial Triage<a class="headerlink" href="#initial-triage" title="Permanent link">&para;</a></h2>
 <p>Check the remote certificate:</p>
-<pre><code class="language-bash">echo | openssl s_client -servername service.example.com -connect service.example.com:443 2&gt;/dev/null \
-  | openssl x509 -noout -subject -issuer -dates
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>s_client<span class="w"> </span>-servername<span class="w"> </span>service.example.com<span class="w"> </span>-connect<span class="w"> </span>service.example.com:443<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-subject<span class="w"> </span>-issuer<span class="w"> </span>-dates
+</code></pre></div>
 <p>For Kubernetes:</p>
-<pre><code class="language-bash">kubectl get ingress -A
-kubectl get secret example-tls -n example-namespace
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>ingress<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>example-tls<span class="w"> </span>-n<span class="w"> </span>example-namespace
+</code></pre></div>
 <p>Do not print or export private keys during triage.</p>
 <h2 id="diagnosis">Diagnosis<a class="headerlink" href="#diagnosis" title="Permanent link">&para;</a></h2>
 <table>
@@ -4625,8 +4625,8 @@ kubectl get secret example-tls -n example-namespace
 <li>Reload ingress controller or proxy if required.</li>
 </ol>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">curl -Iv https://service.example.com
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-Iv<span class="w"> </span>https://service.example.com
+</code></pre></div>
 <p>Confirm:</p>
 <ul>
 <li>Certificate expiry date is extended.</li>
@@ -4763,6 +4763,10 @@ kubectl get secret example-tls -n example-namespace
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

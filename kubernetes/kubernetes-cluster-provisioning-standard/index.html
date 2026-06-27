@@ -4631,12 +4631,12 @@
 <li>Add-on versions.</li>
 </ul>
 <p>Validation:</p>
-<pre><code class="language-bash">kubectl cluster-info
-kubectl get nodes -o wide
-kubectl get pods -A
-kubectl get storageclass
-kubectl get ingressclass
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cluster-info
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
+kubectl<span class="w"> </span>get<span class="w"> </span>ingressclass
+</code></pre></div>
 <h2 id="self-managed-kubeadm-flow">Self-Managed kubeadm Flow<a class="headerlink" href="#self-managed-kubeadm-flow" title="Permanent link">&para;</a></h2>
 <p>Before <code>kubeadm init</code>:</p>
 <ul>
@@ -4648,10 +4648,10 @@ kubectl get ingressclass
 <li>Plan control plane endpoint for HA.</li>
 </ul>
 <p>Validation:</p>
-<pre><code class="language-bash">kubeadm version
-kubectl get nodes
-kubectl get pods -n kube-system
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubeadm<span class="w"> </span>version
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
+</code></pre></div>
 <h2 id="application-readiness-gate">Application Readiness Gate<a class="headerlink" href="#application-readiness-gate" title="Permanent link">&para;</a></h2>
 <p>Do not deploy business applications until these checks pass:</p>
 <ul>
@@ -4789,6 +4789,10 @@ kubectl get pods -n kube-system
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

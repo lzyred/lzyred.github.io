@@ -4567,14 +4567,14 @@
 </ol>
 <h2 id="label-guidance">Label Guidance<a class="headerlink" href="#label-guidance" title="Permanent link">&para;</a></h2>
 <p>Recommended labels:</p>
-<pre><code class="language-text">cluster
+<div class="highlight"><pre><span></span><code>cluster
 namespace
 pod
 container
 app
 environment
 team
-</code></pre>
+</code></pre></div>
 <p>Avoid labels such as request ID, user ID, email, order ID, or full URL because they create high cardinality or privacy risk.</p>
 <h2 id="kubernetes-collection-flow">Kubernetes Collection Flow<a class="headerlink" href="#kubernetes-collection-flow" title="Permanent link">&para;</a></h2>
 <ol>
@@ -4586,9 +4586,9 @@ team
 <li>Validate queries in Grafana.</li>
 </ol>
 <h2 id="validation-queries">Validation Queries<a class="headerlink" href="#validation-queries" title="Permanent link">&para;</a></h2>
-<pre><code class="language-logql">{namespace=&quot;example-namespace&quot;}
+<div class="highlight"><pre><span></span><code>{namespace=&quot;example-namespace&quot;}
 {app=&quot;example-service&quot;} |= &quot;error&quot;
-</code></pre>
+</code></pre></div>
 <h2 id="retention-and-cost">Retention and Cost<a class="headerlink" href="#retention-and-cost" title="Permanent link">&para;</a></h2>
 <p>Define:</p>
 <ul>
@@ -4728,6 +4728,10 @@ team
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>

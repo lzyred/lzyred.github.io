@@ -4590,30 +4590,30 @@
 <h2 id="installation-model">Installation Model<a class="headerlink" href="#installation-model" title="Permanent link">&para;</a></h2>
 <p>Use the official Argo CD manifests or Helm chart. For production, prefer high availability mode and separate the Argo CD namespace from application namespaces.</p>
 <p>Validation:</p>
-<pre><code class="language-bash">kubectl get pods -n argocd
-kubectl get svc -n argocd
-kubectl get applications -n argocd
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>argocd
+kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>argocd
+kubectl<span class="w"> </span>get<span class="w"> </span>applications<span class="w"> </span>-n<span class="w"> </span>argocd
+</code></pre></div>
 <h2 id="application-definition">Application Definition<a class="headerlink" href="#application-definition" title="Permanent link">&para;</a></h2>
-<pre><code class="language-yaml">apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: example-service
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/example/example-repo.git
-    targetRevision: main
-    path: deploy/kubernetes
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: example-namespace
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: true
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argoproj.io/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-service</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/example/example-repo.git</span>
+<span class="w">    </span><span class="nt">targetRevision</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy/kubernetes</span>
+<span class="w">  </span><span class="nt">destination</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubernetes.default.svc</span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-namespace</span>
+<span class="w">  </span><span class="nt">syncPolicy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">automated</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">selfHeal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
 <h2 id="sync-policy-guidance">Sync Policy Guidance<a class="headerlink" href="#sync-policy-guidance" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4650,8 +4650,8 @@ spec:
 <p>Never commit notification webhook URLs or chat tokens in plain text.</p>
 <h2 id="backup-and-restore">Backup and Restore<a class="headerlink" href="#backup-and-restore" title="Permanent link">&para;</a></h2>
 <p>Export Argo CD application state:</p>
-<pre><code class="language-bash">argocd admin export &gt; argocd-export.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>argocd<span class="w"> </span>admin<span class="w"> </span><span class="nb">export</span><span class="w"> </span>&gt;<span class="w"> </span>argocd-export.yaml
+</code></pre></div>
 <p>Store exports securely. Review exports before sharing because repository URLs, project names, and cluster references can reveal internal topology.</p>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <table>
@@ -4804,6 +4804,10 @@ spec:
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/mermaid-init.js"></script>
       
     
   </body>
