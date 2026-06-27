@@ -407,13 +407,6 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/architecture/aws-eks-production-ha-cluster/"/>
     </url>
     <url>
-        <loc>https://blog.l2do.com/blog/posts/2026-06-27-site-experience-upgrade/</loc>
-        <lastmod>2026-06-27</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/blog/posts/2026-06-27-site-experience-upgrade/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/blog/posts/2026-06-27-site-experience-upgrade/"/>
-    </url>
-    <url>
         <loc>https://blog.l2do.com/case-studies/</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
@@ -461,20 +454,6 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/incident-reviews/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/incident-reviews/"/>
-    </url>
-    <url>
-        <loc>https://blog.l2do.com/maintainer-notes/</loc>
-        <lastmod>2026-06-27</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/maintainer-notes/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/maintainer-notes/"/>
-    </url>
-    <url>
-        <loc>https://blog.l2do.com/maintainer-notes/site-experience-upgrade-record/</loc>
-        <lastmod>2026-06-27</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/maintainer-notes/site-experience-upgrade-record/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/maintainer-notes/site-experience-upgrade-record/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/migration-modernization/</loc>
@@ -687,13 +666,6 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/architecture/aws-eks-production-ha-cluster/"/>
     </url>
     <url>
-        <loc>https://blog.l2do.com/en/blog/posts/2026-06-27-site-experience-upgrade/</loc>
-        <lastmod>2026-06-27</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/blog/posts/2026-06-27-site-experience-upgrade/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/blog/posts/2026-06-27-site-experience-upgrade/"/>
-    </url>
-    <url>
         <loc>https://blog.l2do.com/en/case-studies/</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
@@ -741,20 +713,6 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/incident-reviews/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/incident-reviews/"/>
-    </url>
-    <url>
-        <loc>https://blog.l2do.com/en/maintainer-notes/</loc>
-        <lastmod>2026-06-27</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/maintainer-notes/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/maintainer-notes/"/>
-    </url>
-    <url>
-        <loc>https://blog.l2do.com/en/maintainer-notes/site-experience-upgrade-record/</loc>
-        <lastmod>2026-06-27</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/maintainer-notes/site-experience-upgrade-record/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/maintainer-notes/site-experience-upgrade-record/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/migration-modernization/</loc>

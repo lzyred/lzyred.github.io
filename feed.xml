@@ -6,14 +6,6 @@
     <description>DevOps 专家知识库的站点演进、深度文章和维护决策记录。</description>
     <language>zh</language>
     <lastBuildDate>Sat, 27 Jun 2026 00:00:00 GMT</lastBuildDate>
-    <item>
-      <title>站点体验升级：从文档库到可信专家博客</title>
-      <link>https://blog.l2do.com/blog/posts/2026-06-27-site-experience-upgrade/</link>
-      <guid isPermaLink="true">https://blog.l2do.com/blog/posts/2026-06-27-site-experience-upgrade/</guid>
-      <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
-      <description>记录 DevOps 专家知识库从文档站升级为可持续博客站点的前三阶段：主题导航、博客化能力和外部传播能力。</description>
-      <category>Site Operations</category>
-      <category>Platform</category>
-    </item>
+
   </channel>
 </rss>

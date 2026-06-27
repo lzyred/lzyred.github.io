@@ -6,14 +6,6 @@
     <description>Site evolution, deep articles, and maintenance decisions for the Expert DevOps Knowledge Base.</description>
     <language>en</language>
     <lastBuildDate>Sat, 27 Jun 2026 00:00:00 GMT</lastBuildDate>
-    <item>
-      <title>Site Experience Upgrade: From Documentation Archive To Credible Expert Blog</title>
-      <link>https://blog.l2do.com/en/blog/posts/2026-06-27-site-experience-upgrade/</link>
-      <guid isPermaLink="true">https://blog.l2do.com/en/blog/posts/2026-06-27-site-experience-upgrade/</guid>
-      <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Records the first three phases of upgrading the DevOps knowledge base into a sustainable expert blog: theme and navigation, blog features, and external sharing readiness.</description>
-      <category>Site Operations</category>
-      <category>Platform</category>
-    </item>
+
   </channel>
 </rss>
