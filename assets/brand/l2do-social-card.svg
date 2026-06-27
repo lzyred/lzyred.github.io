@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="L2DO DevOps Knowledge Base">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="64" y="64" width="1072" height="502" rx="28" fill="#111827"/>
+  <rect x="64" y="64" width="1072" height="502" rx="28" fill="none" stroke="#2dd4bf" stroke-width="3"/>
+  <rect x="96" y="96" width="92" height="92" rx="22" fill="#0f766e"/>
+  <path d="M121 121h18v47h46v16h-64z" fill="#f8fafc"/>
+  <path d="M148 121h37v16h-22v11h20v16h-35z" fill="#fbbf24"/>
+  <circle cx="184" cy="180" r="8" fill="#f8fafc"/>
+  <text x="220" y="145" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#f8fafc">L2DO DevOps Knowledge Base</text>
+  <text x="220" y="184" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#99f6e4">Production architecture, reliability, delivery, observability, security</text>
+  <text x="96" y="330" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700" fill="#f8fafc">Expert DevOps Notes</text>
+  <text x="96" y="392" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#cbd5e1">Bilingual, sanitized, retrieval-ready knowledge for real production work.</text>
+  <text x="96" y="506" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#fbbf24">blog.l2do.com</text>
+</svg>

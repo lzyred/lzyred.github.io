@@ -1,0 +1,43 @@
+:root {
+  --l2do-border: rgba(15, 118, 110, 0.18);
+  --l2do-surface: rgba(15, 118, 110, 0.055);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 205;
+  --l2do-border: rgba(45, 212, 191, 0.24);
+  --l2do-surface: rgba(45, 212, 191, 0.075);
+}
+
+.md-header__title {
+  font-weight: 700;
+}
+
+.md-content h1 {
+  font-weight: 720;
+}
+
+.md-content h2 {
+  border-bottom: 1px solid var(--l2do-border);
+  padding-bottom: 0.28rem;
+}
+
+.md-typeset a {
+  text-underline-offset: 0.18em;
+}
+
+.md-typeset blockquote {
+  border-left-color: var(--md-accent-fg-color);
+  background: var(--l2do-surface);
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 0.35rem;
+}
+
+.md-typeset table:not([class]) {
+  border-radius: 0.35rem;
+  overflow: hidden;
+}

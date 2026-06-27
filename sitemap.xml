@@ -8,6 +8,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/automation/shell-automation-standard/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/blog/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/blog/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/blog/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/business-intelligence/redash-deployment-standard/</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
@@ -379,11 +386,25 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/tags/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/tags/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/tags/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/architecture/aws-eks-production-ha-cluster/</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/architecture/aws-eks-production-ha-cluster/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/architecture/aws-eks-production-ha-cluster/"/>
+    </url>
+    <url>
+        <loc>https://blog.l2do.com/blog/posts/2026-06-27-site-experience-upgrade/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/blog/posts/2026-06-27-site-experience-upgrade/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/blog/posts/2026-06-27-site-experience-upgrade/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/case-studies/</loc>
@@ -512,6 +533,13 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/automation/shell-automation-standard/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/en/blog/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/blog/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/blog/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/en/business-intelligence/redash-deployment-standard/</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
@@ -638,11 +666,25 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/en/tags/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/tags/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/tags/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/en/architecture/aws-eks-production-ha-cluster/</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/architecture/aws-eks-production-ha-cluster/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/architecture/aws-eks-production-ha-cluster/"/>
+    </url>
+    <url>
+        <loc>https://blog.l2do.com/en/blog/posts/2026-06-27-site-experience-upgrade/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/blog/posts/2026-06-27-site-experience-upgrade/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/blog/posts/2026-06-27-site-experience-upgrade/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/case-studies/</loc>

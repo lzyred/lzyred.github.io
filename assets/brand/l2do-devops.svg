@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="L2DO DevOps">
+  <rect width="64" height="64" rx="14" fill="#0f766e"/>
+  <path d="M18 18h8v22h20v7H18z" fill="#f8fafc"/>
+  <path d="M30 18h16v7H36v5h9v7H30z" fill="#fbbf24"/>
+  <circle cx="46" cy="44" r="4" fill="#f8fafc"/>
+</svg>
