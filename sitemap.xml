@@ -183,6 +183,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/linux/server-baseline-standard/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/linux/ubuntu-26-ai-fullstack-setup-v2/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/linux/ubuntu-26-ai-fullstack-setup-v2/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/linux/ubuntu-26-ai-fullstack-setup-v2/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/middleware/api-gateway-standard/</loc>
         <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
@@ -853,6 +860,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/linux/server-baseline-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/linux/server-baseline-standard/"/>
+    </url>
+    <url>
+        <loc>https://blog.l2do.com/en/linux/ubuntu-26-ai-fullstack-setup-v2/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/linux/ubuntu-26-ai-fullstack-setup-v2/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/linux/ubuntu-26-ai-fullstack-setup-v2/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/middleware/api-gateway-standard/</loc>
