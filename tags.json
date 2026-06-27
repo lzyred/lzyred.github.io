@@ -1,1 +1,1 @@
-{"mappings": [{"item": {"url": "en/", "title": "Home"}, "tags": ["Delivery", "Observability", "Platform", "Reliability"]}]}
+{"mappings": [{"item": {"url": "en/blog/", "title": "Blog"}, "tags": ["Platform", "Reliability", "Site Operations"]}, {"item": {"url": "en/", "title": "Home"}, "tags": ["Delivery", "Observability", "Platform", "Reliability"]}]}
