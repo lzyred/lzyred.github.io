@@ -1,41 +1,41 @@
 
 <!doctype html>
-<html lang="zh" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="面向生产环境的 DevOps 专家知识库，覆盖架构、交付、可靠性、可观测性、安全、迁移和故障复盘。">
+        <meta name="description" content="Production-oriented expert DevOps knowledge base covering architecture, delivery, reliability, observability, security, migration, and incident review.">
       
       
       
-        <link rel="canonical" href="https://blog.l2do.com/process/supervisor-process-management-standard/">
+        <link rel="canonical" href="https://blog.l2do.com/en/maintainer-notes/site-experience-upgrade-record/">
       
       
-        <link rel="prev" href="../../business-intelligence/redash-deployment-standard/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../../system/system-os-patching-standard/">
+        <link rel="next" href="../../kubernetes/kubernetes-cluster-provisioning-standard/">
       
       
         
-          <link rel="alternate" href="./" hreflang="zh">
+          <link rel="alternate" href="../../../maintainer-notes/site-experience-upgrade-record/" hreflang="zh">
         
-          <link rel="alternate" href="../../en/process/supervisor-process-management-standard/" hreflang="en">
+          <link rel="alternate" href="./" hreflang="en">
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Supervisor Process Management - DevOps 专家知识库</title>
+        <title>Site Experience Upgrade Record - Expert DevOps Knowledge Base</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -54,7 +54,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,8 +72,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#supervisor-process-management-standard" class="md-skip">
-          跳转至
+        <a href="#site-experience-upgrade-record" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -87,8 +87,8 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="DevOps 专家知识库" class="md-header__button md-logo" aria-label="DevOps 专家知识库" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="Expert DevOps Knowledge Base" class="md-header__button md-logo" aria-label="Expert DevOps Knowledge Base" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -102,13 +102,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            DevOps 专家知识库
+            Expert DevOps Knowledge Base
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Supervisor Process Management
+              Site Experience Upgrade Record
             
           </span>
         </div>
@@ -122,20 +122,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="选择当前语言">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="zh" class="md-select__link">
+            <a href="../../../maintainer-notes/site-experience-upgrade-record/" hreflang="zh" class="md-select__link">
               中文
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../en/process/supervisor-process-management-standard/" hreflang="en" class="md-select__link">
+            <a href="./" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -156,16 +156,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="查找">
+      <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -178,7 +178,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            正在初始化搜索引擎
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -190,7 +190,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/lzyred/lzyred.github.io" title="前往仓库" class="md-source" data-md-component="source">
+        <a href="https://github.com/lzyred/lzyred.github.io" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -224,19 +224,19 @@
 
 
 
-<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="DevOps 专家知识库" class="md-nav__button md-logo" aria-label="DevOps 专家知识库" data-md-component="logo">
+    <a href="../../" title="Expert DevOps Knowledge Base" class="md-nav__button md-logo" aria-label="Expert DevOps Knowledge Base" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    DevOps 专家知识库
+    Expert DevOps Knowledge Base
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/lzyred/lzyred.github.io" title="前往仓库" class="md-source" data-md-component="source">
+      <a href="https://github.com/lzyred/lzyred.github.io" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -256,14 +256,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    首页
+    Home
   
 
     
@@ -290,7 +290,7 @@
   <span class="md-ellipsis">
     
   
-    开始阅读
+    Start Here
   
 
     
@@ -317,7 +317,7 @@
   <span class="md-ellipsis">
     
   
-    专家内容大纲
+    Expert Content Outline
   
 
     
@@ -360,7 +360,7 @@
   <span class="md-ellipsis">
     
   
-    生产架构
+    Production Architecture
   
 
     
@@ -376,7 +376,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    生产架构
+    Production Architecture
   
 
           </label>
@@ -424,7 +424,7 @@
   <span class="md-ellipsis">
     
   
-    AWS EKS 生产级高可用集群
+    AWS EKS Production HA Cluster
   
 
     
@@ -459,7 +459,7 @@
   <span class="md-ellipsis">
     
   
-    交付工程
+    Delivery Engineering
   
 
     
@@ -486,7 +486,7 @@
   <span class="md-ellipsis">
     
   
-    可靠性工程
+    Reliability Engineering
   
 
     
@@ -513,7 +513,7 @@
   <span class="md-ellipsis">
     
   
-    可观测性
+    Observability
   
 
     
@@ -540,7 +540,7 @@
   <span class="md-ellipsis">
     
   
-    平台工程
+    Platform Engineering
   
 
     
@@ -567,7 +567,7 @@
   <span class="md-ellipsis">
     
   
-    安全与治理
+    Security & Governance
   
 
     
@@ -594,7 +594,7 @@
   <span class="md-ellipsis">
     
   
-    迁移与现代化
+    Migration & Modernization
   
 
     
@@ -773,8 +773,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -785,11 +787,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" checked>
         
           
           <label class="md-nav__link" for="__nav_17" id="__nav_17_label" tabindex="">
@@ -810,7 +812,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_17">
             <span class="md-nav__icon md-icon"></span>
             
@@ -828,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maintainer-notes/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -853,17 +855,44 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../maintainer-notes/site-experience-upgrade-record/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Site Experience Upgrade Record
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    站点体验升级记录
+    Site Experience Upgrade Record
   
 
     
@@ -872,6 +901,192 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Foundation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current Foundation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internationalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internationalization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-upgrade-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Upgrade Path
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Upgrade Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-theme-and-navigation-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Theme And Navigation Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-blog-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Blog Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-external-sharing-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: External Sharing Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-qa-ai-assistant-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Q&amp;A AI Assistant Entry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-not-to-do-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Not To Do Now
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-quality-versus-visual-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content Quality Versus Visual Quality
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-record-requirement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Record Requirement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Next Step
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -888,8 +1103,6 @@
       
   
   
-    
-  
   
   
     
@@ -902,11 +1115,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
         
           
           <label class="md-nav__link" for="__nav_18" id="__nav_18_label" tabindex="">
@@ -927,7 +1140,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_18">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2747,8 +2960,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2758,11 +2969,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18_14" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18_14" >
         
           
           <label class="md-nav__link" for="__nav_18_14" id="__nav_18_14_label" tabindex="0">
@@ -2783,7 +2994,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_18_14_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_18_14_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_18_14">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2798,37 +3009,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Supervisor Process Management
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../process/supervisor-process-management-standard/" class="md-nav__link">
         
   
   
@@ -2844,81 +3028,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When To Use
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#program-template" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Program Template
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Related Documents
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3686,7 +3795,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="目录">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -3695,15 +3804,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目录
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#background" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        Background
       
     </span>
   </a>
@@ -3711,10 +3820,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+  <a href="#design-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Use
+        Design Goals
       
     </span>
   </a>
@@ -3722,10 +3831,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#program-template" class="md-nav__link">
+  <a href="#current-foundation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Program Template
+        Current Foundation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current Foundation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internationalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internationalization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-upgrade-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Upgrade Path
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Upgrade Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-theme-and-navigation-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Theme And Navigation Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-blog-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Blog Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-external-sharing-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: External Sharing Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-qa-ai-assistant-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Q&amp;A AI Assistant Entry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-not-to-do-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Not To Do Now
       
     </span>
   </a>
@@ -3733,10 +3942,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#content-quality-versus-visual-quality" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        Content Quality Versus Visual Quality
       
     </span>
   </a>
@@ -3744,10 +3953,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#change-record-requirement" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        Change Record Requirement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Next Step
       
     </span>
   </a>
@@ -3774,28 +3994,166 @@
   
 
 
-<h1 id="supervisor-process-management-standard">Supervisor Process Management Standard<a class="headerlink" href="#supervisor-process-management-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes using Supervisor for simple process management on Linux hosts.</p>
-<h2 id="when-to-use">When To Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
-<p>Use Supervisor for small legacy services or utilities. Prefer systemd or orchestrators for modern production workloads.</p>
-<h2 id="program-template">Program Template<a class="headerlink" href="#program-template" title="Permanent link">&para;</a></h2>
-<pre><code class="language-ini">[program:example-service]
-command=/opt/example/bin/start.sh
-directory=/opt/example
-autostart=true
-autorestart=true
-stdout_logfile=/var/log/example-service/out.log
-stderr_logfile=/var/log/example-service/err.log
-</code></pre>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">supervisorctl status
-supervisorctl tail example-service
-</code></pre>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h1 id="site-experience-upgrade-record">Site Experience Upgrade Record<a class="headerlink" href="#site-experience-upgrade-record" title="Permanent link">&para;</a></h1>
+<p>This document records the experience upgrade direction, trade-offs, and rollout order for the DevOps blog site. It is not a reader-facing expert article. It is a maintainer decision record for future changes to theme, navigation, blog features, and the AI assistant entry point.</p>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<p>The site already has two foundation capabilities:</p>
 <ul>
-<li><a href="../../linux/server-baseline-standard/">Linux Server Baseline Standard</a></li>
+<li>MkDocs Material is used as the documentation site framework.</li>
+<li><code>mkdocs-static-i18n</code> is used for bilingual publishing. Chinese is published at the site root, English is published under <code>/en/</code>, and old <code>/zh/</code> paths are kept as redirect aliases.</li>
 </ul>
+<p>This solves publishing and bilingual switching, but it does not yet solve the larger problem: making the site feel like a long-lived blog from a senior DevOps practitioner. Future upgrades should focus on credibility, readability, navigation efficiency, and content production discipline rather than decoration.</p>
+<h2 id="design-goals">Design Goals<a class="headerlink" href="#design-goals" title="Permanent link">&para;</a></h2>
+<p>Site experience upgrades should serve four goals:</p>
+<ol>
+<li><strong>Credibility</strong>: the homepage, navigation, and article structure should quickly show that the author has handled production DevOps work, not only collected tool commands.</li>
+<li><strong>Readability</strong>: long articles, standards, reviews, and cases must remain comfortable on desktop and mobile.</li>
+<li><strong>Maintainability</strong>: theme, language, navigation, blog features, and publishing flow must be understandable and reversible.</li>
+<li><strong>Q&amp;A assistant readiness</strong>: content should preserve clear headings, stable URLs, explicit context, and retrieval-friendly knowledge blocks.</li>
+</ol>
+<h2 id="current-foundation">Current Foundation<a class="headerlink" href="#current-foundation" title="Permanent link">&para;</a></h2>
+<h3 id="internationalization">Internationalization<a class="headerlink" href="#internationalization" title="Permanent link">&para;</a></h3>
+<p>The current site uses plugin-level internationalization instead of hand-written language links.</p>
+<ul>
+<li>Chinese source files live under <code>docs/zh/</code>.</li>
+<li>English source files live under <code>docs/en/</code>.</li>
+<li>Chinese is built to the site root.</li>
+<li>English is built to <code>/en/</code>.</li>
+<li>Old <code>/zh/</code> paths remain as redirects to avoid breaking external links.</li>
+</ul>
+<p>Maintenance principles:</p>
+<ul>
+<li>New formal content should have Chinese and English versions when possible.</li>
+<li>If the English version cannot meet the same quality bar yet, do not publish a weak direct translation.</li>
+<li>Do not add manual <code>[English]</code> or <code>[中文]</code> links at the top of pages. Language switching is handled by the plugin.</li>
+</ul>
+<h3 id="content-structure">Content Structure<a class="headerlink" href="#content-structure" title="Permanent link">&para;</a></h3>
+<p>The current site is organized as an expert blog:</p>
+<ul>
+<li>Start Here</li>
+<li>Production Architecture</li>
+<li>Delivery Engineering</li>
+<li>Reliability Engineering</li>
+<li>Observability</li>
+<li>Platform Engineering</li>
+<li>Security &amp; Governance</li>
+<li>Migration &amp; Modernization</li>
+<li>Deep Dives</li>
+<li>Case Studies</li>
+<li>Decision Reviews</li>
+<li>Incident Reviews</li>
+<li>Incident Playbooks</li>
+<li>Standards &amp; Templates</li>
+<li>Maintainer Notes</li>
+<li>Legacy Knowledge Base</li>
+</ul>
+<p>Maintenance principles:</p>
+<ul>
+<li>New deep articles should go into the expert structure instead of being added to Legacy Knowledge Base.</li>
+<li>Legacy Knowledge Base is an archive for sanitized old material, not the main narrative of the site.</li>
+<li>Reader-facing articles and maintainer rules must remain separate.</li>
+</ul>
+<h2 id="recommended-upgrade-path">Recommended Upgrade Path<a class="headerlink" href="#recommended-upgrade-path" title="Permanent link">&para;</a></h2>
+<h3 id="phase-1-theme-and-navigation-quality">Phase 1: Theme And Navigation Quality<a class="headerlink" href="#phase-1-theme-and-navigation-quality" title="Permanent link">&para;</a></h3>
+<p>The goal is to improve first impression with low-risk configuration changes.</p>
+<p>Recommended additions:</p>
+<ul>
+<li>Light and dark theme toggle with system preference support.</li>
+<li>Restrained brand colors without heavy decorative gradients.</li>
+<li>Top navigation tabs for major sections.</li>
+<li>Back-to-top, following table of contents, search highlight, and search suggestions.</li>
+<li>A lightweight logo or icon that fits a technical site.</li>
+</ul>
+<p>Acceptance criteria:</p>
+<ul>
+<li>The homepage does not feel like a generic template.</li>
+<li>Long-form reading is comfortable.</li>
+<li>Mobile navigation does not crowd the article body.</li>
+<li>Changes are mostly limited to <code>mkdocs.yml</code> and small CSS additions, so rollback is easy.</li>
+</ul>
+<h3 id="phase-2-blog-features">Phase 2: Blog Features<a class="headerlink" href="#phase-2-blog-features" title="Permanent link">&para;</a></h3>
+<p>The goal is to make the site feel like a continuously maintained expert blog, not only a documentation archive.</p>
+<p>Features to evaluate:</p>
+<ul>
+<li>Blog plugin.</li>
+<li>Article dates.</li>
+<li>Tags and categories.</li>
+<li>Archive pages.</li>
+<li>RSS.</li>
+<li>Author profile.</li>
+</ul>
+<p>Trade-offs:</p>
+<ul>
+<li>If there is no stable publishing rhythm yet, do not rush into a full blog system.</li>
+<li>Tags must stay disciplined. Avoid many tags that only contain one article.</li>
+<li>Archives and RSS become valuable only after the site publishes consistently.</li>
+</ul>
+<h3 id="phase-3-external-sharing-quality">Phase 3: External Sharing Quality<a class="headerlink" href="#phase-3-external-sharing-quality" title="Permanent link">&para;</a></h3>
+<p>The goal is to make shared articles look professional.</p>
+<p>Features to evaluate:</p>
+<ul>
+<li>Social cards.</li>
+<li>Open Graph metadata.</li>
+<li>Favicon.</li>
+<li>Custom article summaries.</li>
+<li>Lightweight analytics.</li>
+</ul>
+<p>Trade-offs:</p>
+<ul>
+<li>Analytics must not harm loading speed or reader privacy.</li>
+<li>Social cards should prioritize deep articles, not every low-value archived document.</li>
+</ul>
+<h3 id="phase-4-qa-ai-assistant-entry">Phase 4: Q&amp;A AI Assistant Entry<a class="headerlink" href="#phase-4-qa-ai-assistant-entry" title="Permanent link">&para;</a></h3>
+<p>The goal is to reserve a natural entry point for the future DevOps Q&amp;A assistant without turning the site into a chat app.</p>
+<p>Recommended approach:</p>
+<ul>
+<li>Keep an Assistant entry in navigation or Start Here.</li>
+<li>Assistant answers must cite site document sections.</li>
+<li>The assistant must not bypass the public knowledge base to answer sensitive, internal, credential, or private questions.</li>
+<li>When evidence is missing, the assistant should say so instead of inventing an answer.</li>
+</ul>
+<p>Trade-offs:</p>
+<ul>
+<li>Start with retrieval plus cited answers. Do not rush into complex multi-turn automation.</li>
+<li>The assistant should support reading. It should not take over the role of deep articles.</li>
+</ul>
+<h2 id="what-not-to-do-now">What Not To Do Now<a class="headerlink" href="#what-not-to-do-now" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Large custom theme rewrites, especially complex dark UI, animation-heavy pages, or layout rewrites.</li>
+<li>Comment systems, membership, or heavy analytics before the content quality is strong.</li>
+<li>Forcing tags onto every legacy document.</li>
+<li>Exposing internal maintainer rules as primary reader-facing navigation.</li>
+<li>Adding heavy decorative images, gradient backgrounds, or visual noise for a false sense of polish.</li>
+</ul>
+<p>These changes may make the site more complex, but they will not increase expert credibility.</p>
+<h2 id="content-quality-versus-visual-quality">Content Quality Versus Visual Quality<a class="headerlink" href="#content-quality-versus-visual-quality" title="Permanent link">&para;</a></h2>
+<p>The polish of a senior DevOps blog mostly comes from three things:</p>
+<ul>
+<li>Articles explain production constraints, failure modes, and trade-offs.</li>
+<li>Cases preserve anonymized scale, symptoms, decision pressure, and review conclusions.</li>
+<li>The site structure lets readers enter from problems, not only from tool categories.</li>
+</ul>
+<p>Visual upgrades can amplify credibility, but they cannot replace it. If Deep Dives, Case Studies, and Decision Reviews lack evidence density, a beautiful theme will only make the site look like a better template.</p>
+<h2 id="change-record-requirement">Change Record Requirement<a class="headerlink" href="#change-record-requirement" title="Permanent link">&para;</a></h2>
+<p>Every site-experience change should record:</p>
+<ul>
+<li>Date.</li>
+<li>Scope.</li>
+<li>Reason.</li>
+<li>Files affected.</li>
+<li>Verification method.</li>
+<li>Rollback path.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-text">Date: 2026-06-27
+Scope: i18n
+Reason: Replace manual language links with plugin-managed bilingual routing.
+Files: mkdocs.yml, docs/zh, docs/en, tools/create-zh-redirect-aliases.mjs
+Verification: make build, make verifyDist, online HTTP status checks
+Rollback: Restore previous mkdocs.yml and remove i18n plugin config
+</code></pre>
+<h2 id="recommended-next-step">Recommended Next Step<a class="headerlink" href="#recommended-next-step" title="Permanent link">&para;</a></h2>
+<p>The next step should be Phase 1: light/dark theme switching, navigation improvements, restrained brand colors, and a lightweight logo. This phase is low risk, verifiable, reversible, and immediately improves the site's first impression.</p>
 
 
 
@@ -3819,7 +4177,7 @@ supervisorctl tail example-service
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  回到页面顶部
+  Back to top
 </button>
         
       </main>
@@ -3851,10 +4209,10 @@ supervisorctl tail example-service
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

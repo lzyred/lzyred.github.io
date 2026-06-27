@@ -2,994 +2,1008 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://blog.l2do.com/automation/shell-automation-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/automation/shell-automation-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/automation/shell-automation-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/business-intelligence/redash-deployment-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/business-intelligence/redash-deployment-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/business-intelligence/redash-deployment-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/ci-cd/argocd-gitops-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/ci-cd/argocd-gitops-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/ci-cd/argocd-gitops-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/ci-cd/jenkins-kubernetes-pipeline-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/ci-cd/jenkins-kubernetes-pipeline-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/ci-cd/jenkins-kubernetes-pipeline-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/cloud/cloud-network-migration-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/cloud/cloud-network-migration-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/cloud/cloud-network-migration-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/containers/buildkit-build-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/containers/buildkit-build-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/containers/buildkit-build-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/containers/chartmuseum-helm-repository-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/containers/chartmuseum-helm-repository-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/containers/chartmuseum-helm-repository-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/containers/docker-compose-stack-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/containers/docker-compose-stack-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/containers/docker-compose-stack-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/containers/docker-host-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/containers/docker-host-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/containers/docker-host-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/containers/harbor-registry-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/containers/harbor-registry-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/containers/harbor-registry-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/databases/etcd-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/databases/etcd-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/databases/etcd-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/databases/mongodb-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/databases/mongodb-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/databases/mongodb-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/databases/mysql-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/databases/mysql-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/databases/mysql-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/databases/redis-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/databases/redis-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/databases/redis-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/document-templates/devops-deep-article-quality-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/document-templates/devops-deep-article-quality-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/document-templates/devops-deep-article-quality-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/document-templates/migration-plan-template/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/document-templates/migration-plan-template/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/document-templates/migration-plan-template/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/document-templates/runbook-template/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/document-templates/runbook-template/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/document-templates/runbook-template/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/document-templates/standard-document-template/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/document-templates/standard-document-template/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/document-templates/standard-document-template/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/iac/terraform-iac-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/iac/terraform-iac-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/iac/terraform-iac-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/kubernetes/eks-upgrade-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/kubernetes/eks-upgrade-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/kubernetes/eks-upgrade-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/kubernetes/kubeadm-installation-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/kubernetes/kubeadm-installation-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/kubernetes/kubeadm-installation-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/kubernetes/kubernetes-cluster-provisioning-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/kubernetes/kubernetes-cluster-provisioning-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/kubernetes/kubernetes-cluster-provisioning-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/kubernetes/kubernetes-storage-ingress-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/kubernetes/kubernetes-storage-ingress-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/kubernetes/kubernetes-storage-ingress-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/kubernetes/nfs-pvc-capacity-management/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/kubernetes/nfs-pvc-capacity-management/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/kubernetes/nfs-pvc-capacity-management/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/linux/server-baseline-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/linux/server-baseline-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/linux/server-baseline-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/middleware/api-gateway-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/middleware/api-gateway-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/middleware/api-gateway-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/middleware/dolphinscheduler-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/middleware/dolphinscheduler-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/middleware/dolphinscheduler-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/middleware/kafka-zookeeper-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/middleware/kafka-zookeeper-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/middleware/kafka-zookeeper-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/middleware/nacos-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/middleware/nacos-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/middleware/nacos-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/migration-cases/anonymous-containerization-migration-case/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/migration-cases/anonymous-containerization-migration-case/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/migration-cases/anonymous-containerization-migration-case/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/migration-cases/anonymous-kubernetes-upgrade-case/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/migration-cases/anonymous-kubernetes-upgrade-case/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/migration-cases/anonymous-kubernetes-upgrade-case/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/migration-cases/anonymous-object-storage-migration-case/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/migration-cases/anonymous-object-storage-migration-case/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/migration-cases/anonymous-object-storage-migration-case/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/networking/haproxy-load-balancing-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/networking/haproxy-load-balancing-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/networking/haproxy-load-balancing-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/networking/nginx-reverse-proxy-tls-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/networking/nginx-reverse-proxy-tls-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/networking/nginx-reverse-proxy-tls-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/networking/openvpn-access-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/networking/openvpn-access-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/networking/openvpn-access-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/networking/openwrt-network-device-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/networking/openwrt-network-device-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/networking/openwrt-network-device-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/networking/samba-file-sharing-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/networking/samba-file-sharing-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/networking/samba-file-sharing-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/observability/elfk-logging-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/elfk-logging-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/elfk-logging-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/observability/exporter-monitoring-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/exporter-monitoring-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/exporter-monitoring-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/observability/loki-logging-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/loki-logging-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/loki-logging-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/observability/node-exporter-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/node-exporter-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/node-exporter-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/observability/prometheus-alerting-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/prometheus-alerting-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/prometheus-alerting-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/observability/signoz-observability-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/signoz-observability-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/signoz-observability-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/operations/application-maintenance-health-check-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/operations/application-maintenance-health-check-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/operations/application-maintenance-health-check-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/platform/gitlab-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/platform/gitlab-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/platform/gitlab-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/platform/jumpserver-bastion-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/platform/jumpserver-bastion-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/platform/jumpserver-bastion-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/process/supervisor-process-management-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/process/supervisor-process-management-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/process/supervisor-process-management-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/runbooks/deployment-rollback-runbook/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/runbooks/deployment-rollback-runbook/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/runbooks/deployment-rollback-runbook/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/runbooks/kubernetes-pvc-usage-alert-runbook/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/runbooks/kubernetes-pvc-usage-alert-runbook/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/runbooks/kubernetes-pvc-usage-alert-runbook/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/runbooks/linux-disk-lvm-expansion-runbook/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/runbooks/linux-disk-lvm-expansion-runbook/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/runbooks/linux-disk-lvm-expansion-runbook/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/runbooks/tls-certificate-expiry-runbook/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/runbooks/tls-certificate-expiry-runbook/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/runbooks/tls-certificate-expiry-runbook/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/security/publication-safety-checklist/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/security/publication-safety-checklist/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/security/publication-safety-checklist/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/system/system-os-patching-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system/system-os-patching-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system/system-os-patching-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/architecture/aws-eks-production-ha-cluster/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/architecture/aws-eks-production-ha-cluster/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/architecture/aws-eks-production-ha-cluster/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/case-studies/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/case-studies/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/case-studies/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/decision-reviews/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/decision-reviews/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/decision-reviews/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/deep-dives/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/deep-dives/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/deep-dives/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/delivery-engineering/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/delivery-engineering/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/delivery-engineering/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/expert-blog/outline/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/expert-blog/outline/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/expert-blog/outline/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/incident-playbooks/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/incident-playbooks/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/incident-playbooks/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/incident-reviews/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/incident-reviews/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/incident-reviews/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/maintainer-notes/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/maintainer-notes/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/maintainer-notes/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/maintainer-notes/site-experience-upgrade-record/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/maintainer-notes/site-experience-upgrade-record/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/maintainer-notes/site-experience-upgrade-record/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/migration-modernization/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/migration-modernization/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/migration-modernization/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/observability/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/platform-engineering/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/platform-engineering/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/platform-engineering/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/production-architecture/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/production-architecture/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/production-architecture/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/reliability-engineering/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/reliability-engineering/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/reliability-engineering/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/security-governance/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/security-governance/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/security-governance/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/standards-templates/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/standards-templates/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/standards-templates/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/start-here/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/start-here/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/start-here/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/automation/shell-automation-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/automation/shell-automation-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/automation/shell-automation-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/business-intelligence/redash-deployment-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/business-intelligence/redash-deployment-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/business-intelligence/redash-deployment-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/ci-cd/argocd-gitops-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/ci-cd/argocd-gitops-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/ci-cd/argocd-gitops-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/ci-cd/jenkins-kubernetes-pipeline-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/ci-cd/jenkins-kubernetes-pipeline-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/ci-cd/jenkins-kubernetes-pipeline-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/cloud/cloud-network-migration-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/cloud/cloud-network-migration-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/cloud/cloud-network-migration-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/containers/buildkit-build-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/containers/buildkit-build-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/containers/buildkit-build-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/containers/chartmuseum-helm-repository-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/containers/chartmuseum-helm-repository-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/containers/chartmuseum-helm-repository-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/containers/docker-compose-stack-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/containers/docker-compose-stack-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/containers/docker-compose-stack-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/containers/docker-host-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/containers/docker-host-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/containers/docker-host-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/containers/harbor-registry-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/containers/harbor-registry-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/containers/harbor-registry-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/databases/etcd-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/databases/etcd-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/databases/etcd-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/databases/mongodb-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/databases/mongodb-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/databases/mongodb-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/databases/mysql-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/databases/mysql-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/databases/mysql-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/databases/redis-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/databases/redis-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/databases/redis-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/document-templates/devops-deep-article-quality-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/document-templates/devops-deep-article-quality-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/document-templates/devops-deep-article-quality-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/document-templates/migration-plan-template/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/document-templates/migration-plan-template/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/document-templates/migration-plan-template/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/document-templates/runbook-template/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/document-templates/runbook-template/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/document-templates/runbook-template/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/document-templates/standard-document-template/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/document-templates/standard-document-template/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/document-templates/standard-document-template/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/architecture/aws-eks-production-ha-cluster/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/architecture/aws-eks-production-ha-cluster/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/architecture/aws-eks-production-ha-cluster/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/case-studies/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/case-studies/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/case-studies/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/decision-reviews/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/decision-reviews/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/decision-reviews/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/deep-dives/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/deep-dives/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/deep-dives/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/delivery-engineering/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/delivery-engineering/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/delivery-engineering/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/expert-blog/outline/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/expert-blog/outline/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/expert-blog/outline/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/incident-playbooks/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/incident-playbooks/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/incident-playbooks/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/incident-reviews/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/incident-reviews/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/incident-reviews/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/maintainer-notes/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/maintainer-notes/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/maintainer-notes/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/en/maintainer-notes/site-experience-upgrade-record/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/maintainer-notes/site-experience-upgrade-record/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/maintainer-notes/site-experience-upgrade-record/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/en/migration-modernization/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/migration-modernization/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/migration-modernization/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/observability/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/platform-engineering/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/platform-engineering/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/platform-engineering/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/production-architecture/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/production-architecture/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/production-architecture/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/reliability-engineering/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/reliability-engineering/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/reliability-engineering/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/security-governance/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/security-governance/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/security-governance/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/standards-templates/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/standards-templates/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/standards-templates/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/start-here/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/start-here/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/start-here/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/iac/terraform-iac-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/iac/terraform-iac-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/iac/terraform-iac-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/kubernetes/eks-upgrade-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/kubernetes/eks-upgrade-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/kubernetes/eks-upgrade-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/kubernetes/kubeadm-installation-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/kubernetes/kubeadm-installation-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/kubernetes/kubeadm-installation-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/kubernetes/kubernetes-cluster-provisioning-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/kubernetes/kubernetes-cluster-provisioning-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/kubernetes/kubernetes-cluster-provisioning-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/kubernetes/kubernetes-storage-ingress-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/kubernetes/kubernetes-storage-ingress-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/kubernetes/kubernetes-storage-ingress-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/kubernetes/nfs-pvc-capacity-management/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/kubernetes/nfs-pvc-capacity-management/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/kubernetes/nfs-pvc-capacity-management/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/linux/server-baseline-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/linux/server-baseline-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/linux/server-baseline-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/middleware/api-gateway-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/middleware/api-gateway-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/middleware/api-gateway-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/middleware/dolphinscheduler-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/middleware/dolphinscheduler-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/middleware/dolphinscheduler-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/middleware/kafka-zookeeper-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/middleware/kafka-zookeeper-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/middleware/kafka-zookeeper-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/middleware/nacos-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/middleware/nacos-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/middleware/nacos-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/migration-cases/anonymous-containerization-migration-case/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/migration-cases/anonymous-containerization-migration-case/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/migration-cases/anonymous-containerization-migration-case/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/migration-cases/anonymous-kubernetes-upgrade-case/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/migration-cases/anonymous-kubernetes-upgrade-case/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/migration-cases/anonymous-kubernetes-upgrade-case/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/migration-cases/anonymous-object-storage-migration-case/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/migration-cases/anonymous-object-storage-migration-case/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/migration-cases/anonymous-object-storage-migration-case/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/networking/haproxy-load-balancing-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/networking/haproxy-load-balancing-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/networking/haproxy-load-balancing-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/networking/nginx-reverse-proxy-tls-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/networking/nginx-reverse-proxy-tls-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/networking/nginx-reverse-proxy-tls-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/networking/openvpn-access-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/networking/openvpn-access-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/networking/openvpn-access-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/networking/openwrt-network-device-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/networking/openwrt-network-device-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/networking/openwrt-network-device-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/networking/samba-file-sharing-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/networking/samba-file-sharing-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/networking/samba-file-sharing-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/observability/elfk-logging-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/elfk-logging-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/elfk-logging-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/observability/exporter-monitoring-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/exporter-monitoring-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/exporter-monitoring-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/observability/loki-logging-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/loki-logging-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/loki-logging-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/observability/node-exporter-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/node-exporter-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/node-exporter-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/observability/prometheus-alerting-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/prometheus-alerting-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/prometheus-alerting-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/observability/signoz-observability-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/observability/signoz-observability-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/observability/signoz-observability-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/operations/application-maintenance-health-check-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/operations/application-maintenance-health-check-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/operations/application-maintenance-health-check-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/platform/gitlab-operations-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/platform/gitlab-operations-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/platform/gitlab-operations-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/platform/jumpserver-bastion-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/platform/jumpserver-bastion-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/platform/jumpserver-bastion-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/process/supervisor-process-management-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/process/supervisor-process-management-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/process/supervisor-process-management-standard/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/runbooks/deployment-rollback-runbook/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/runbooks/deployment-rollback-runbook/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/runbooks/deployment-rollback-runbook/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/runbooks/kubernetes-pvc-usage-alert-runbook/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/runbooks/kubernetes-pvc-usage-alert-runbook/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/runbooks/kubernetes-pvc-usage-alert-runbook/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/runbooks/linux-disk-lvm-expansion-runbook/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/runbooks/linux-disk-lvm-expansion-runbook/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/runbooks/linux-disk-lvm-expansion-runbook/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/runbooks/tls-certificate-expiry-runbook/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/runbooks/tls-certificate-expiry-runbook/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/runbooks/tls-certificate-expiry-runbook/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/security/publication-safety-checklist/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/security/publication-safety-checklist/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/security/publication-safety-checklist/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/system/system-os-patching-standard/</loc>
-        <lastmod>2026-06-26</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system/system-os-patching-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system/system-os-patching-standard/"/>

@@ -10,19 +10,19 @@
       
       
       
-        <link rel="canonical" href="https://blog.l2do.com/process/supervisor-process-management-standard/">
+        <link rel="canonical" href="https://blog.l2do.com/maintainer-notes/site-experience-upgrade-record/">
       
       
-        <link rel="prev" href="../../business-intelligence/redash-deployment-standard/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../../system/system-os-patching-standard/">
+        <link rel="next" href="../../kubernetes/kubernetes-cluster-provisioning-standard/">
       
       
         
           <link rel="alternate" href="./" hreflang="zh">
         
-          <link rel="alternate" href="../../en/process/supervisor-process-management-standard/" hreflang="en">
+          <link rel="alternate" href="../../en/maintainer-notes/site-experience-upgrade-record/" hreflang="en">
         
       
       
@@ -31,7 +31,7 @@
     
     
       
-        <title>Supervisor Process Management - DevOps 专家知识库</title>
+        <title>站点体验升级记录 - DevOps 专家知识库</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#supervisor-process-management-standard" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Supervisor Process Management
+              站点体验升级记录
             
           </span>
         </div>
@@ -135,7 +135,7 @@
           </li>
         
           <li class="md-select__item">
-            <a href="../../en/process/supervisor-process-management-standard/" hreflang="en" class="md-select__link">
+            <a href="../../en/maintainer-notes/site-experience-upgrade-record/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -773,8 +773,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -785,11 +787,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" checked>
         
           
           <label class="md-nav__link" for="__nav_17" id="__nav_17_label" tabindex="">
@@ -810,7 +812,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_17">
             <span class="md-nav__icon md-icon"></span>
             
@@ -828,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maintainer-notes/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -853,10 +855,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../maintainer-notes/site-experience-upgrade-record/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    站点体验升级记录
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -872,6 +901,192 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        背景
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设计目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已采用的基础方案
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="已采用的基础方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        国际化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推荐升级路线
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐升级路线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一阶段：主题与导航质感
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二阶段：博客化能力
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三阶段：外部传播能力
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第四阶段：问答 AI 助手入口
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不建议现在做的事
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容质量与视觉质量的关系
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        后续变更记录要求
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        当前建议的下一步
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -888,8 +1103,6 @@
       
   
   
-    
-  
   
   
     
@@ -902,11 +1115,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
         
           
           <label class="md-nav__link" for="__nav_18" id="__nav_18_label" tabindex="">
@@ -927,7 +1140,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_18">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2747,8 +2960,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2758,11 +2969,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18_14" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18_14" >
         
           
           <label class="md-nav__link" for="__nav_18_14" id="__nav_18_14_label" tabindex="0">
@@ -2783,7 +2994,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_18_14_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_18_14_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_18_14">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2798,37 +3009,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Supervisor Process Management
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../process/supervisor-process-management-standard/" class="md-nav__link">
         
   
   
@@ -2844,81 +3028,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When To Use
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#program-template" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Program Template
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Related Documents
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3700,10 +3809,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        背景
       
     </span>
   </a>
@@ -3711,10 +3820,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Use
+        设计目标
       
     </span>
   </a>
@@ -3722,10 +3831,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#program-template" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Program Template
+        已采用的基础方案
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="已采用的基础方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        国际化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推荐升级路线
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐升级路线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一阶段：主题与导航质感
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二阶段：博客化能力
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三阶段：外部传播能力
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第四阶段：问答 AI 助手入口
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不建议现在做的事
       
     </span>
   </a>
@@ -3733,10 +3942,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        内容质量与视觉质量的关系
       
     </span>
   </a>
@@ -3744,10 +3953,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        后续变更记录要求
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        当前建议的下一步
       
     </span>
   </a>
@@ -3774,28 +3994,166 @@
   
 
 
-<h1 id="supervisor-process-management-standard">Supervisor Process Management Standard<a class="headerlink" href="#supervisor-process-management-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes using Supervisor for simple process management on Linux hosts.</p>
-<h2 id="when-to-use">When To Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
-<p>Use Supervisor for small legacy services or utilities. Prefer systemd or orchestrators for modern production workloads.</p>
-<h2 id="program-template">Program Template<a class="headerlink" href="#program-template" title="Permanent link">&para;</a></h2>
-<pre><code class="language-ini">[program:example-service]
-command=/opt/example/bin/start.sh
-directory=/opt/example
-autostart=true
-autorestart=true
-stdout_logfile=/var/log/example-service/out.log
-stderr_logfile=/var/log/example-service/err.log
-</code></pre>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">supervisorctl status
-supervisorctl tail example-service
-</code></pre>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h1 id="_1">站点体验升级记录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>本文记录 DevOps 博客站点的体验升级方向、取舍边界和落地顺序。它不是面向普通读者的专家文章，而是维护者在后续调整主题、导航、博客能力和 AI 助手入口时使用的决策记录。</p>
+<h2 id="_2">背景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>当前站点已经完成了两个基础能力：</p>
 <ul>
-<li><a href="../../linux/server-baseline-standard/">Linux Server Baseline Standard</a></li>
+<li>使用 MkDocs Material 作为文档站点框架。</li>
+<li>使用 <code>mkdocs-static-i18n</code> 将中文作为默认站点根路径，将英文发布到 <code>/en/</code>，并保留旧 <code>/zh/</code> 路径的跳转兼容。</li>
 </ul>
+<p>这解决了“能发布”和“能中英文切换”的问题，但还没有解决“看起来像一个资深 DevOps 专家的长期站点”的问题。后续升级需要围绕可信度、可读性、导航效率和内容生产秩序展开，而不是只做视觉装饰。</p>
+<h2 id="_3">设计目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>站点体验升级应服务于四个目标：</p>
+<ol>
+<li><strong>可信</strong>：首页、导航和文章结构要让读者快速判断作者确实做过生产级 DevOps 工作，而不是只整理工具命令。</li>
+<li><strong>耐读</strong>：长文、标准、复盘、案例都要在桌面和移动端保持稳定阅读体验。</li>
+<li><strong>可维护</strong>：主题、语言、导航、博客能力和发布流程要能被后续维护者理解和回滚。</li>
+<li><strong>适合问答助手复用</strong>：内容结构应保留清晰标题、稳定 URL、明确上下文和可检索知识块。</li>
+</ol>
+<h2 id="_4">已采用的基础方案<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">国际化<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>当前采用插件级国际化，而不是手写语言切换链接。</p>
+<ul>
+<li>中文源文件位于 <code>docs/zh/</code>。</li>
+<li>英文源文件位于 <code>docs/en/</code>。</li>
+<li>中文构建到站点根路径。</li>
+<li>英文构建到 <code>/en/</code>。</li>
+<li>旧 <code>/zh/</code> 路径保留跳转，避免外部链接失效。</li>
+</ul>
+<p>维护原则：</p>
+<ul>
+<li>新增正式内容时优先同步中英文版本。</li>
+<li>如果英文暂时无法达到同等质量，可以先不发布该英文页面，而不是发布低质量直译。</li>
+<li>不再在页面顶部手写 <code>[English]</code> 或 <code>[中文]</code> 链接，语言切换交给插件生成。</li>
+</ul>
+<h3 id="_6">内容结构<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>当前站点按专家博客结构组织：</p>
+<ul>
+<li>Start Here</li>
+<li>Production Architecture</li>
+<li>Delivery Engineering</li>
+<li>Reliability Engineering</li>
+<li>Observability</li>
+<li>Platform Engineering</li>
+<li>Security &amp; Governance</li>
+<li>Migration &amp; Modernization</li>
+<li>Deep Dives</li>
+<li>Case Studies</li>
+<li>Decision Reviews</li>
+<li>Incident Reviews</li>
+<li>Incident Playbooks</li>
+<li>Standards &amp; Templates</li>
+<li>Maintainer Notes</li>
+<li>Legacy Knowledge Base</li>
+</ul>
+<p>维护原则：</p>
+<ul>
+<li>新的深度文章优先进入专家结构，不要继续堆到 Legacy Knowledge Base。</li>
+<li>Legacy Knowledge Base 只作为已清洗旧资料的归档区，不应承担站点主叙事。</li>
+<li>面向读者的文章和面向维护者的规则要分开，避免公开站点像内部说明书。</li>
+</ul>
+<h2 id="_7">推荐升级路线<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="_8">第一阶段：主题与导航质感<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>目标是用低风险配置提升第一眼体验。</p>
+<p>建议加入：</p>
+<ul>
+<li>明暗主题切换，支持系统偏好。</li>
+<li>更克制的品牌色，不使用大面积花哨渐变。</li>
+<li>顶部导航标签，突出主要栏目。</li>
+<li>返回顶部、目录跟随、搜索高亮和搜索建议。</li>
+<li>轻量 logo 或图标，保持技术站点气质。</li>
+</ul>
+<p>判断标准：</p>
+<ul>
+<li>首页不像模板站。</li>
+<li>长文阅读不刺眼。</li>
+<li>移动端目录和导航不挤压正文。</li>
+<li>改动主要集中在 <code>mkdocs.yml</code> 和少量 CSS，便于回滚。</li>
+</ul>
+<h3 id="_9">第二阶段：博客化能力<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>目标是让站点不只是文档库，也像一个持续更新的专家博客。</p>
+<p>建议评估：</p>
+<ul>
+<li>博客插件。</li>
+<li>文章日期。</li>
+<li>标签和分类。</li>
+<li>归档页。</li>
+<li>RSS。</li>
+<li>作者说明。</li>
+</ul>
+<p>取舍：</p>
+<ul>
+<li>如果站点还没有稳定的文章发布节奏，不急着启用完整博客系统。</li>
+<li>标签数量必须克制，避免出现大量只有一篇文章的标签。</li>
+<li>归档和 RSS 只有在持续发布后才有明显价值。</li>
+</ul>
+<h3 id="_10">第三阶段：外部传播能力<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>目标是让文章被分享时更专业。</p>
+<p>建议评估：</p>
+<ul>
+<li>社交分享卡片。</li>
+<li>Open Graph 元信息。</li>
+<li>站点 favicon。</li>
+<li>自定义文章摘要。</li>
+<li>轻量访问分析。</li>
+</ul>
+<p>取舍：</p>
+<ul>
+<li>不应为了追踪数据牺牲加载速度或隐私。</li>
+<li>社交卡片应服务于深度文章传播，不必覆盖每一篇低价值归档文档。</li>
+</ul>
+<h3 id="ai">第四阶段：问答 AI 助手入口<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h3>
+<p>目标是为后续 DevOps 问答助手预留自然入口，而不是把站点变成聊天应用。</p>
+<p>建议方式：</p>
+<ul>
+<li>在导航保留 Assistant 入口或 Start Here 中放置入口。</li>
+<li>助手回答必须引用站内文档小节。</li>
+<li>助手不能绕过公开知识库直接回答疑似敏感、内部、凭证类问题。</li>
+<li>对无依据回答要明确说明缺少证据，而不是编造。</li>
+</ul>
+<p>取舍：</p>
+<ul>
+<li>早期可以先做“文档检索 + 引用回答”，不急着做复杂多轮自动化。</li>
+<li>助手入口应辅助阅读，不应抢走深度文章的主位置。</li>
+</ul>
+<h2 id="_11">不建议现在做的事<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li>大规模自定义主题，尤其是复杂暗色 UI、动效和重写布局。</li>
+<li>在内容质量不足时先追求评论系统、会员系统或复杂分析。</li>
+<li>为每篇旧文档都强行补标签。</li>
+<li>把内部维护规则暴露成主导航里的读者内容。</li>
+<li>为了“高级感”加入大量装饰图、渐变背景或视觉噪音。</li>
+</ul>
+<p>这些改动容易让站点看起来更复杂，但不会提高专家可信度。</p>
+<h2 id="_12">内容质量与视觉质量的关系<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>一个资深 DevOps 博客的“高级感”主要来自三件事：</p>
+<ul>
+<li>文章能解释生产环境里的约束、失败模式和取舍。</li>
+<li>案例能保留匿名化后的规模、现象、决策压力和复盘结论。</li>
+<li>站点结构能帮助读者从问题进入，而不是从工具分类进入。</li>
+</ul>
+<p>视觉升级只能放大内容的可信度，不能替代内容本身。如果 Deep Dives、Case Studies 和 Decision Reviews 没有真实密度，再漂亮的主题也只会让站点更像模板。</p>
+<h2 id="_13">后续变更记录要求<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>每次站点体验相关改动都应记录：</p>
+<ul>
+<li>改动日期。</li>
+<li>改动范围。</li>
+<li>变更原因。</li>
+<li>影响的文件。</li>
+<li>验证方式。</li>
+<li>可回滚路径。</li>
+</ul>
+<p>示例：</p>
+<pre><code class="language-text">Date: 2026-06-27
+Scope: i18n
+Reason: Replace manual language links with plugin-managed bilingual routing.
+Files: mkdocs.yml, docs/zh, docs/en, tools/create-zh-redirect-aliases.mjs
+Verification: make build, make verifyDist, online HTTP status checks
+Rollback: Restore previous mkdocs.yml and remove i18n plugin config
+</code></pre>
+<h2 id="_14">当前建议的下一步<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>下一步优先做第一阶段：明暗主题切换、导航体验、品牌色和轻量 logo。这个阶段风险低、可验证、可回滚，也能立刻改善当前站点的第一印象。</p>
 
 
 
