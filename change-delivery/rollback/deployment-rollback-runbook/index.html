@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Kubernetes deployment rollback runbook for rapid incident response.">
+        <meta name="description" content="Kubernetes Deployment 安全回滚 Runbook，覆盖触发条件、影响判断、命令、验证、升级和收尾。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="部署回滚 Runbook - DevOps 专家知识库" />
-<meta property="og:description" content="Kubernetes deployment rollback runbook for rapid incident response." />
+<meta property="og:description" content="Kubernetes Deployment 安全回滚 Runbook，覆盖触发条件、影响判断、命令、验证、升级和收尾。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/change-delivery/rollback/deployment-rollback-runbook.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/change-delivery/rollback/deployment-rollback-runbook/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="部署回滚 Runbook - DevOps 专家知识库" />
-<meta property="twitter:description" content="Kubernetes deployment rollback runbook for rapid incident response." />
+<meta property="twitter:description" content="Kubernetes Deployment 安全回滚 Runbook，覆盖触发条件、影响判断、命令、验证、升级和收尾。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/change-delivery/rollback/deployment-rollback-runbook.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kubernetes-deployment-rollback-runbook" class="md-skip">
+        <a href="#runbook" class="md-skip">
           跳转至
         </a>
       
@@ -1354,10 +1354,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -1365,10 +1365,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#trigger" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Trigger
+        触发条件
       
     </span>
   </a>
@@ -1376,10 +1376,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-triage" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Triage
+        前置条件
       
     </span>
   </a>
@@ -1387,10 +1387,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
+        影响判断
       
     </span>
   </a>
@@ -1398,10 +1398,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        回滚决策
       
     </span>
   </a>
@@ -1409,10 +1409,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-rollback-is-not-enough" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When Rollback Is Not Enough
+        操作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 冻结后续变更
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 查看 rollout 历史
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 执行回滚
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 验证服务健康
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 阻止坏版本再次部署
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -1420,10 +1492,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#closure-criteria" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Closure Criteria
+        什么时候回滚不够
       
     </span>
   </a>
@@ -1431,10 +1503,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        升级
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        收尾检查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3956,10 +4050,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3967,10 +4061,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#trigger" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Trigger
+        触发条件
       
     </span>
   </a>
@@ -3978,10 +4072,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-triage" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Triage
+        前置条件
       
     </span>
   </a>
@@ -3989,10 +4083,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
+        影响判断
       
     </span>
   </a>
@@ -4000,10 +4094,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        回滚决策
       
     </span>
   </a>
@@ -4011,10 +4105,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-rollback-is-not-enough" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When Rollback Is Not Enough
+        操作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 冻结后续变更
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 查看 rollout 历史
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 执行回滚
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 验证服务健康
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 阻止坏版本再次部署
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -4022,10 +4188,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#closure-criteria" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Closure Criteria
+        什么时候回滚不够
       
     </span>
   </a>
@@ -4033,10 +4199,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        升级
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        收尾检查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4147,6 +4335,18 @@
         
       
       
+        <a href="../../../tags/#tag:kubernetes" class="md-tag md-tag-icon md-tag--kubernetes">Kubernetes</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
       
     
@@ -4169,59 +4369,208 @@
   
 
 
-<h1 id="kubernetes-deployment-rollback-runbook">Kubernetes Deployment Rollback Runbook<a class="headerlink" href="#kubernetes-deployment-rollback-runbook" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This runbook describes how to roll back a Kubernetes Deployment after a failed release.</p>
-<h2 id="trigger">Trigger<a class="headerlink" href="#trigger" title="Permanent link">&para;</a></h2>
-<p>Use this runbook when a release causes elevated errors, failed readiness, broken smoke tests, or unacceptable latency.</p>
-<h2 id="initial-triage">Initial Triage<a class="headerlink" href="#initial-triage" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>deployment<span class="w"> </span>example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace
-kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace
-kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>example-service
-kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>--sort-by<span class="o">=</span><span class="s1">&#39;.lastTimestamp&#39;</span>
-</code></pre></div>
-<p>Check recent revisions:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace
-</code></pre></div>
-<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
-<p>Rollback to the previous revision:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace
-kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>--timeout<span class="o">=</span>5m
-</code></pre></div>
-<p>Rollback to a specific revision:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>--to-revision<span class="o">=</span><span class="m">2</span>
-</code></pre></div>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>example-service
-curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.com/health
-</code></pre></div>
-<p>Confirm:</p>
+<h1 id="runbook">部署回滚 Runbook<a class="headerlink" href="#runbook" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本 Runbook 定义当一次发布造成用户影响、可靠性下降或运营风险时，如何回滚 Kubernetes <code>Deployment</code>。</p>
+<p>核心判断是：</p>
+<blockquote>
+<p>回滚是受控恢复动作，不是慌乱执行的一条命令。</p>
+</blockquote>
+<p><code>kubectl rollout undo</code> 只是其中一步。安全回滚还要冻结后续变更、捕获当前状态、验证旧版本健康、防止坏版本再次部署，并保留足够证据供后续修复。</p>
+<h2 id="_2">触发条件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>发布后出现以下任一情况，使用本 Runbook：</p>
 <ul>
-<li>Pods are ready.</li>
-<li>Error rate returns to normal.</li>
-<li>Latency returns to normal.</li>
-<li>Business smoke tests pass.</li>
-<li>No database or schema rollback is required.</li>
+<li>错误率、延迟、资源饱和或重启次数超过发布护栏。</li>
+<li>readiness 或 liveness 失败影响服务容量。</li>
+<li>关键用户路径在发布后失败。</li>
+<li>依赖或配置变更导致新 Pod 不健康。</li>
+<li>发布负责人、事故指挥或服务负责人判断恢复速度比继续发布更重要。</li>
 </ul>
-<h2 id="when-rollback-is-not-enough">When Rollback Is Not Enough<a class="headerlink" href="#when-rollback-is-not-enough" title="Permanent link">&para;</a></h2>
-<p>Stop and escalate if:</p>
+<p>如果当前症状与本次发布无关，不要把回滚当作诊断替代品。先确认发布是合理嫌疑。</p>
+<h2 id="_3">前置条件<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>执行回滚前确认：</p>
 <ul>
-<li>The release included irreversible database migration.</li>
-<li>The previous image is unavailable.</li>
-<li>Config or secret changes caused the incident.</li>
-<li>External dependencies changed at the same time.</li>
+<li>已知命名空间和 Deployment 名称。</li>
+<li>你有更新该 Deployment 的权限。</li>
+<li>上一个 ReplicaSet 或镜像版本已知，或可从 rollout history 推断。</li>
+<li>上一个版本预期是安全的。</li>
+<li>没有并发自动化会立刻重新应用坏版本。</li>
+<li>有人正在观察应用健康状态。</li>
 </ul>
-<h2 id="closure-criteria">Closure Criteria<a class="headerlink" href="#closure-criteria" title="Permanent link">&para;</a></h2>
+<p>如果服务由 GitOps 管理，先决定回滚通过 Git revert、镜像标签变更，还是应急 <code>kubectl</code> 操作后再同步 Git。</p>
+<h2 id="_4">影响判断<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>变更工作负载前记录影响：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>deploy<span class="w"> </span>&lt;deployment&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>rs<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>&lt;app-label&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>&lt;app-label&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>describe<span class="w"> </span>deploy<span class="w"> </span>&lt;deployment&gt;
+</code></pre></div>
+<p>捕获：</p>
 <ul>
-<li>Service recovered.</li>
-<li>Failed release is blocked from redeploying automatically.</li>
-<li>Root cause investigation is opened.</li>
-<li>Follow-up fix has an owner.</li>
+<li>当前镜像或发布版本。</li>
+<li>desired、updated、available、unavailable 副本数。</li>
+<li>失败 Pod 名称。</li>
+<li>最近发布时间。</li>
+<li>主要症状和受影响用户路径。</li>
 </ul>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<p>这不应拖慢恢复。简短命令记录就足够。</p>
+<h2 id="_5">回滚决策<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>选择动作：</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新版本明确造成影响，旧版本已知可用。</td>
+<td>立即回滚。</td>
+</tr>
+<tr>
+<td>发布仍在进行，只有少量实例受影响。</td>
+<td>暂停发布，验证影响，再回滚或恢复发布。</td>
+</tr>
+<tr>
+<td>坏配置或 Secret 导致所有版本失败。</td>
+<td>修复配置或 Secret；单纯回滚无法恢复。</td>
+</tr>
+<tr>
+<td>数据库迁移与旧应用版本不兼容。</td>
+<td>停止并升级；使用该发布专属恢复计划。</td>
+</tr>
+<tr>
+<td>根因未知但用户影响严重。</td>
+<td>如果旧版本大概率安全，先回滚，再调查。</td>
+</tr>
+</tbody>
+</table>
+<p>如果回滚可能造成数据不兼容，必须得到服务负责人或事故指挥确认。</p>
+<h2 id="_6">操作流程<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 冻结后续变更<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>暂停会重新应用坏版本的自动化或流水线：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span>pause<span class="w"> </span>deployment/&lt;deployment&gt;
+</code></pre></div>
+<p>对于 GitOps 管理的服务，还要按平台流程暂停或更新事实源。手工回滚被 GitOps 立刻覆盖，不算恢复。</p>
+<h3 id="2-rollout">2. 查看 rollout 历史<a class="headerlink" href="#2-rollout" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment/&lt;deployment&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment/&lt;deployment&gt;<span class="w"> </span>--revision<span class="o">=</span>&lt;revision&gt;
+</code></pre></div>
+<p>确认目标 revision。如果 rollout history 缺少有用 change cause，从 ReplicaSet 中识别上一版镜像：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>rs<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .items[*]}{.metadata.name}{&quot;\t&quot;}{.spec.template.spec.containers[*].image}{&quot;\n&quot;}{end}&#39;</span>
+</code></pre></div>
+<h3 id="3">3. 执行回滚<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>回滚到上一版：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/&lt;deployment&gt;
+</code></pre></div>
+<p>回滚到指定 revision：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/&lt;deployment&gt;<span class="w"> </span>--to-revision<span class="o">=</span>&lt;revision&gt;
+</code></pre></div>
+<p>然后观察状态：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/&lt;deployment&gt;<span class="w"> </span>--timeout<span class="o">=</span>10m
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>&lt;app-label&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+</code></pre></div>
+<h3 id="4">4. 验证服务健康<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p>同时验证 Kubernetes 状态和用户可见行为：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>deploy<span class="w"> </span>&lt;deployment&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>&lt;app-label&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>logs<span class="w"> </span>deploy/&lt;deployment&gt;<span class="w"> </span>--tail<span class="o">=</span><span class="m">100</span>
+</code></pre></div>
+<p>检查服务仪表盘：</p>
 <ul>
-<li><a href="../../cicd/jenkins-kubernetes-pipeline-standard/">Jenkins to Kubernetes Pipeline Standard</a></li>
-<li><a href="../../cicd/argocd-gitops-standard/">Argo CD GitOps Standard</a></li>
+<li>错误率回到基线。</li>
+<li>延迟回到基线。</li>
+<li>重启次数稳定。</li>
+<li>readiness 成功。</li>
+<li>业务冒烟测试通过。</li>
+<li>Ingress 或网关 5xx 下降。</li>
+</ul>
+<h3 id="5">5. 阻止坏版本再次部署<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<p>恢复后，阻断坏版本再次应用：</p>
+<ul>
+<li>revert 或修正 GitOps commit。</li>
+<li>停止失败版本的流水线晋级。</li>
+<li>在发布记录中标记失败镜像或版本为阻断。</li>
+<li>通知服务负责人和平台负责人。</li>
+</ul>
+<p>只要自动化事实源仍指向坏版本，就不能关闭事故。</p>
+<h2 id="_7">验证<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>只有全部满足，才算回滚成功：</p>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>通过条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment 状态</td>
+<td>desired 副本数等于 available 副本数。</td>
+</tr>
+<tr>
+<td>Pod</td>
+<td>新 Pod 运行目标回滚镜像或 revision。</td>
+</tr>
+<tr>
+<td>Readiness</td>
+<td>无持续 readiness 失败。</td>
+</tr>
+<tr>
+<td>日志</td>
+<td>与发布相关的错误模式停止或回到基线。</td>
+</tr>
+<tr>
+<td>指标</td>
+<td>错误率、延迟、饱和、重启指标回到护栏内。</td>
+</tr>
+<tr>
+<td>用户路径</td>
+<td>受影响关键路径冒烟测试通过。</td>
+</tr>
+<tr>
+<td>自动化</td>
+<td>GitOps 或 CI/CD 不会重新部署坏版本。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">什么时候回滚不够<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>以下情况回滚可能失败或不安全：</p>
+<ul>
+<li>发布包含不可逆或未评审的数据库迁移。</li>
+<li>故障由外部依赖造成，而不是应用版本。</li>
+<li>共享配置、Secret 或特性开关在多个版本间都损坏。</li>
+<li>新版本写入的数据与旧版本不兼容。</li>
+<li>旧镜像已从镜像仓库删除。</li>
+<li>故障是当前流量造成的资源耗尽，不是发布造成的。</li>
+</ul>
+<p>这些情况应升级给事故指挥和服务负责人。恢复路径可能是修复配置、削减流量、关闭特性开关、数据库恢复或重建镜像。</p>
+<h2 id="_9">升级<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>以下情况立即升级：</p>
+<ul>
+<li>回滚未在预期窗口内完成。</li>
+<li>available 副本数持续低于服务最低要求。</li>
+<li>旧版本运行后错误率仍未恢复。</li>
+<li>数据兼容性不确定。</li>
+<li>多个服务受影响。</li>
+<li>你没有更新 Deployment 或事实源的权限。</li>
+</ul>
+<p>升级信息应包含命名空间、Deployment、失败版本、目标回滚版本、当前症状和已执行命令。</p>
+<h2 id="_10">收尾检查<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>恢复后：</p>
+<ul>
+<li>记录失败版本、回滚版本、发现时间和恢复时间。</li>
+<li>将命令记录或仪表盘链接附到事故或变更记录。</li>
+<li>创建根因修复跟进项。</li>
+<li>如果故障逃过发布检测，补充或收紧发布护栏。</li>
+<li>评审部署策略、探针或 canary 策略是否需要调整。</li>
+</ul>
+<h2 id="_11">相关文档<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../system-design/production-architecture/kubernetes-cluster-provisioning-standard/">Kubernetes 集群供给标准</a></li>
+<li><a href="../../../system-design/production-architecture/kubernetes-storage-ingress-standard/">Kubernetes 存储与 Ingress 标准</a></li>
+<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus 告警标准</a></li>
 </ul>
 
 
@@ -4245,7 +4594,7 @@ curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.c
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:51:03 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4255,7 +4604,7 @@ curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.c
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:51:03 UTC">2026年6月28日</span>
   </span>
 
     

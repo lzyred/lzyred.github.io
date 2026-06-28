@@ -43,13 +43,6 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/change-delivery/cicd/jenkins-kubernetes-pipeline-standard/"/>
     </url>
     <url>
-        <loc>https://blog.l2do.com/change-delivery/rollback/deployment-rollback-runbook/</loc>
-        <lastmod>2026-06-28</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/change-delivery/rollback/deployment-rollback-runbook/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/change-delivery/rollback/deployment-rollback-runbook/"/>
-    </url>
-    <url>
         <loc>https://blog.l2do.com/platform-governance/gitlab-operations-standard/</loc>
         <lastmod>2026-06-28</lastmod>
         <changefreq>daily</changefreq>
@@ -104,13 +97,6 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/reliable-operations/recovery/application-maintenance-health-check-standard/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/reliable-operations/recovery/application-maintenance-health-check-standard/"/>
-    </url>
-    <url>
-        <loc>https://blog.l2do.com/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/</loc>
-        <lastmod>2026-06-28</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/reliable-operations/recovery/linux-disk-lvm-expansion-runbook/</loc>
@@ -316,27 +302,6 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/kubeadm-installation-standard/"/>
     </url>
     <url>
-        <loc>https://blog.l2do.com/system-design/production-architecture/kubernetes-cluster-provisioning-standard/</loc>
-        <lastmod>2026-06-28</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/kubernetes-cluster-provisioning-standard/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/kubernetes-cluster-provisioning-standard/"/>
-    </url>
-    <url>
-        <loc>https://blog.l2do.com/system-design/production-architecture/kubernetes-storage-ingress-standard/</loc>
-        <lastmod>2026-06-28</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/kubernetes-storage-ingress-standard/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/kubernetes-storage-ingress-standard/"/>
-    </url>
-    <url>
-        <loc>https://blog.l2do.com/system-design/production-architecture/nfs-pvc-capacity-management/</loc>
-        <lastmod>2026-06-28</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/nfs-pvc-capacity-management/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/nfs-pvc-capacity-management/"/>
-    </url>
-    <url>
         <loc>https://blog.l2do.com/</loc>
         <lastmod>2026-06-28</lastmod>
         <changefreq>daily</changefreq>
@@ -407,6 +372,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/change-delivery/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/change-delivery/rollback/deployment-rollback-runbook/</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/change-delivery/rollback/deployment-rollback-runbook/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/change-delivery/rollback/deployment-rollback-runbook/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/platform-governance/</loc>
         <lastmod>2026-06-28</lastmod>
         <changefreq>daily</changefreq>
@@ -470,6 +442,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/reliable-operations/recovery/harbor-certificate-rotation-runbook/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/reliable-operations/recovery/tls-certificate-expiry-runbook/</loc>
         <lastmod>2026-06-28</lastmod>
         <changefreq>daily</changefreq>
@@ -519,6 +498,27 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/aws-eks-production-ha-cluster/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/system-design/production-architecture/kubernetes-cluster-provisioning-standard/</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/kubernetes-cluster-provisioning-standard/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/kubernetes-cluster-provisioning-standard/"/>
+    </url>
+    <url>
+        <loc>https://blog.l2do.com/system-design/production-architecture/kubernetes-storage-ingress-standard/</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/kubernetes-storage-ingress-standard/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/kubernetes-storage-ingress-standard/"/>
+    </url>
+    <url>
+        <loc>https://blog.l2do.com/system-design/production-architecture/nfs-pvc-capacity-management/</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/nfs-pvc-capacity-management/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/nfs-pvc-capacity-management/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/en/blog/</loc>
         <lastmod>2026-06-28</lastmod>
         <changefreq>daily</changefreq>
@@ -559,13 +559,6 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/change-delivery/cicd/jenkins-kubernetes-pipeline-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/change-delivery/cicd/jenkins-kubernetes-pipeline-standard/"/>
-    </url>
-    <url>
-        <loc>https://blog.l2do.com/en/change-delivery/rollback/deployment-rollback-runbook/</loc>
-        <lastmod>2026-06-28</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/change-delivery/rollback/deployment-rollback-runbook/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/change-delivery/rollback/deployment-rollback-runbook/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/</loc>
@@ -638,6 +631,13 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/change-delivery/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/en/change-delivery/rollback/deployment-rollback-runbook/</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/change-delivery/rollback/deployment-rollback-runbook/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/change-delivery/rollback/deployment-rollback-runbook/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/en/platform-governance/</loc>
         <lastmod>2026-06-28</lastmod>
         <changefreq>daily</changefreq>
@@ -701,6 +701,13 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/reliable-operations/recovery/harbor-certificate-rotation-runbook/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/en/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/en/reliable-operations/recovery/tls-certificate-expiry-runbook/</loc>
         <lastmod>2026-06-28</lastmod>
         <changefreq>daily</changefreq>
@@ -748,6 +755,27 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/aws-eks-production-ha-cluster/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/aws-eks-production-ha-cluster/"/>
+    </url>
+    <url>
+        <loc>https://blog.l2do.com/en/system-design/production-architecture/kubernetes-cluster-provisioning-standard/</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/kubernetes-cluster-provisioning-standard/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/kubernetes-cluster-provisioning-standard/"/>
+    </url>
+    <url>
+        <loc>https://blog.l2do.com/en/system-design/production-architecture/kubernetes-storage-ingress-standard/</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/kubernetes-storage-ingress-standard/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/kubernetes-storage-ingress-standard/"/>
+    </url>
+    <url>
+        <loc>https://blog.l2do.com/en/system-design/production-architecture/nfs-pvc-capacity-management/</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/nfs-pvc-capacity-management/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/nfs-pvc-capacity-management/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/platform-governance/gitlab-operations-standard/</loc>
@@ -804,13 +832,6 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/reliable-operations/recovery/application-maintenance-health-check-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/reliable-operations/recovery/application-maintenance-health-check-standard/"/>
-    </url>
-    <url>
-        <loc>https://blog.l2do.com/en/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/</loc>
-        <lastmod>2026-06-28</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/reliable-operations/recovery/linux-disk-lvm-expansion-runbook/</loc>
@@ -1014,26 +1035,5 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/kubeadm-installation-standard/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/kubeadm-installation-standard/"/>
-    </url>
-    <url>
-        <loc>https://blog.l2do.com/en/system-design/production-architecture/kubernetes-cluster-provisioning-standard/</loc>
-        <lastmod>2026-06-28</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/kubernetes-cluster-provisioning-standard/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/kubernetes-cluster-provisioning-standard/"/>
-    </url>
-    <url>
-        <loc>https://blog.l2do.com/en/system-design/production-architecture/kubernetes-storage-ingress-standard/</loc>
-        <lastmod>2026-06-28</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/kubernetes-storage-ingress-standard/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/kubernetes-storage-ingress-standard/"/>
-    </url>
-    <url>
-        <loc>https://blog.l2do.com/en/system-design/production-architecture/nfs-pvc-capacity-management/</loc>
-        <lastmod>2026-06-28</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/system-design/production-architecture/nfs-pvc-capacity-management/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/system-design/production-architecture/nfs-pvc-capacity-management/"/>
     </url>
 </urlset>

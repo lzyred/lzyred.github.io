@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Kubernetes storage and ingress standard for PVC, StorageClass, and Ingress.">
+        <meta name="description" content="Production standard for Kubernetes storage and ingress as platform contracts covering CSI, StorageClass, IngressClass, TLS, validation, and failure modes.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Kubernetes Storage and Ingress - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Kubernetes storage and ingress standard for PVC, StorageClass, and Ingress." />
+<meta property="og:description" content="Production standard for Kubernetes storage and ingress as platform contracts covering CSI, StorageClass, IngressClass, TLS, validation, and failure modes." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/system-design/production-architecture/kubernetes-storage-ingress-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/system-design/production-architecture/kubernetes-storage-ingress-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Kubernetes Storage and Ingress - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Kubernetes storage and ingress standard for PVC, StorageClass, and Ingress." />
+<meta property="twitter:description" content="Production standard for Kubernetes storage and ingress as platform contracts covering CSI, StorageClass, IngressClass, TLS, validation, and failure modes." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/system-design/production-architecture/kubernetes-storage-ingress-standard.png" />
 </head>
   
@@ -987,10 +987,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#storage-classes" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Storage Classes
+        When to Use
       
     </span>
   </a>
@@ -998,10 +998,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#csi-driver-checklist" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CSI Driver Checklist
+        Non-Goals
       
     </span>
   </a>
@@ -1009,10 +1009,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pvc-test" class="md-nav__link">
+  <a href="#design-principle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PVC Test
+        Design Principle
       
     </span>
   </a>
@@ -1020,10 +1020,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ingress-controller-checklist" class="md-nav__link">
+  <a href="#storage-decisions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ingress Controller Checklist
+        Storage Decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-storage-profiles-explicitly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define storage profiles explicitly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-reclaim-policy-a-deliberate-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Make reclaim policy a deliberate decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treat-expansion-as-a-runbook-not-a-checkbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Treat expansion as a runbook, not a checkbox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-backup-responsibility-from-storage-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separate backup responsibility from storage provisioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#csi-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSI Validation
       
     </span>
   </a>
@@ -1031,10 +1092,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ingress-template" class="md-nav__link">
+  <a href="#ingress-decisions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ingress Template
+        Ingress Decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ingress Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-ingress-classes-as-exposure-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define ingress classes as exposure contracts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#own-tls-as-a-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Own TLS as a lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standardize-ingress-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standardize ingress defaults
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingress-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ingress Validation
       
     </span>
   </a>
@@ -1042,10 +1153,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-failure-modes" class="md-nav__link">
+  <a href="#validation-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Failure Modes
+        Validation Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-and-change-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback and Change Boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3964,10 +4119,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#storage-classes" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Storage Classes
+        When to Use
       
     </span>
   </a>
@@ -3975,10 +4130,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#csi-driver-checklist" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CSI Driver Checklist
+        Non-Goals
       
     </span>
   </a>
@@ -3986,10 +4141,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pvc-test" class="md-nav__link">
+  <a href="#design-principle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PVC Test
+        Design Principle
       
     </span>
   </a>
@@ -3997,10 +4152,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ingress-controller-checklist" class="md-nav__link">
+  <a href="#storage-decisions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ingress Controller Checklist
+        Storage Decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-storage-profiles-explicitly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define storage profiles explicitly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-reclaim-policy-a-deliberate-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Make reclaim policy a deliberate decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treat-expansion-as-a-runbook-not-a-checkbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Treat expansion as a runbook, not a checkbox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-backup-responsibility-from-storage-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separate backup responsibility from storage provisioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#csi-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSI Validation
       
     </span>
   </a>
@@ -4008,10 +4224,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ingress-template" class="md-nav__link">
+  <a href="#ingress-decisions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ingress Template
+        Ingress Decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ingress Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-ingress-classes-as-exposure-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define ingress classes as exposure contracts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#own-tls-as-a-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Own TLS as a lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standardize-ingress-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standardize ingress defaults
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingress-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ingress Validation
       
     </span>
   </a>
@@ -4019,10 +4285,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-failure-modes" class="md-nav__link">
+  <a href="#validation-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Failure Modes
+        Validation Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-and-change-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback and Change Boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4132,7 +4442,31 @@
         
       
       
+        <a href="../../../tags/#tag:architecture" class="md-tag md-tag-icon md-tag--architecture">Architecture</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:kubernetes" class="md-tag md-tag-icon md-tag--kubernetes">Kubernetes</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:networking" class="md-tag md-tag-icon md-tag--networking">Networking</a>
       
     
       
@@ -4156,154 +4490,403 @@
 
 <h1 id="kubernetes-storage-and-ingress-standard">Kubernetes Storage and Ingress Standard<a class="headerlink" href="#kubernetes-storage-and-ingress-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes how to design and validate Kubernetes storage and ingress for public reusable guidance.</p>
-<h2 id="storage-classes">Storage Classes<a class="headerlink" href="#storage-classes" title="Permanent link">&para;</a></h2>
-<p>Use separate StorageClasses for different workload types:</p>
+<p>This standard defines how to design and validate Kubernetes storage and ingress before business workloads depend on them.</p>
+<p>The core judgment is:</p>
+<blockquote>
+<p>Storage and ingress are not add-ons. They are production contracts between the platform and every application team.</p>
+</blockquote>
+<p>Storage decides whether state survives, expands, moves, and restores. Ingress decides how users reach services, how TLS is renewed, how traffic is logged, and where the external boundary of the cluster begins. If either is treated as a default installed component, production risk becomes invisible until the first outage.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when:</p>
+<ul>
+<li>Provisioning a new Kubernetes cluster.</li>
+<li>Introducing or changing a CSI driver, StorageClass, IngressClass, or ingress controller.</li>
+<li>Onboarding stateful workloads.</li>
+<li>Publishing services through public or private ingress.</li>
+<li>Reviewing a cluster before it becomes a shared production platform.</li>
+</ul>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>Full database backup architecture.</li>
+<li>Service mesh traffic policy.</li>
+<li>Cloud-specific load balancer billing optimization.</li>
+<li>Application-level data model design.</li>
+<li>Every possible ingress controller feature.</li>
+</ul>
+<h2 id="design-principle">Design Principle<a class="headerlink" href="#design-principle" title="Permanent link">&para;</a></h2>
+<p>A production platform should expose a small number of named choices, not a large pile of implicit defaults.</p>
+<p>Application teams should be able to answer:</p>
+<ul>
+<li>Which StorageClass should I use for normal persistent data?</li>
+<li>Which StorageClass supports expansion?</li>
+<li>Which storage profile supports <code>ReadWriteMany</code>, if any?</li>
+<li>Who owns backup and restore?</li>
+<li>Which IngressClass should expose public traffic?</li>
+<li>Which IngressClass should expose private traffic?</li>
+<li>Who owns DNS and TLS renewal?</li>
+<li>What request limits and timeout defaults apply?</li>
+</ul>
+<p>If these answers require reading the platform install history, the platform contract is not clear enough.</p>
+<h2 id="storage-decisions">Storage Decisions<a class="headerlink" href="#storage-decisions" title="Permanent link">&para;</a></h2>
+<h3 id="define-storage-profiles-explicitly">Define storage profiles explicitly<a class="headerlink" href="#define-storage-profiles-explicitly" title="Permanent link">&para;</a></h3>
+<p>At minimum, define storage profiles like this:</p>
 <table>
 <thead>
 <tr>
-<th>Storage Type</th>
+<th>Profile</th>
 <th>Typical Use</th>
+<th>Access Mode</th>
+<th>Expansion</th>
+<th>Backup Expectation</th>
 <th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Block storage</td>
-<td>Databases and single-writer stateful workloads</td>
-<td>Usually ReadWriteOnce.</td>
+<td><code>standard-rwo</code></td>
+<td>Normal application persistence</td>
+<td><code>ReadWriteOnce</code></td>
+<td>Supported</td>
+<td>Application or platform policy</td>
+<td>Default only if it is safe for most apps.</td>
 </tr>
 <tr>
-<td>Shared file storage</td>
-<td>Multi-pod shared files, uploads, reports</td>
-<td>Often ReadWriteMany.</td>
+<td><code>fast-rwo</code></td>
+<td>Latency-sensitive state</td>
+<td><code>ReadWriteOnce</code></td>
+<td>Supported</td>
+<td>Required</td>
+<td>Use only when performance need is proven.</td>
 </tr>
 <tr>
-<td>Ephemeral storage</td>
-<td>Cache or temporary processing</td>
-<td>Must tolerate data loss.</td>
+<td><code>shared-rwx</code></td>
+<td>Shared files, uploads, model artifacts</td>
+<td><code>ReadWriteMany</code></td>
+<td>Platform-defined</td>
+<td>Required</td>
+<td>Often NFS or managed file storage; monitor real filesystem usage.</td>
+</tr>
+<tr>
+<td><code>ephemeral</code></td>
+<td>Disposable cache or temporary state</td>
+<td>Depends</td>
+<td>Not guaranteed</td>
+<td>None</td>
+<td>Must not hold business-critical data.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="csi-driver-checklist">CSI Driver Checklist<a class="headerlink" href="#csi-driver-checklist" title="Permanent link">&para;</a></h2>
-<p>Before production use:</p>
+<p>Do not make a StorageClass default until its behavior under provision, mount, expansion, deletion, and failure is known.</p>
+<h3 id="make-reclaim-policy-a-deliberate-decision">Make reclaim policy a deliberate decision<a class="headerlink" href="#make-reclaim-policy-a-deliberate-decision" title="Permanent link">&para;</a></h3>
+<p><code>Delete</code> is convenient but can destroy data when a PVC is deleted. <code>Retain</code> protects data but creates cleanup responsibility.</p>
+<p>Use this rule:</p>
 <ul>
-<li>Driver version matches Kubernetes version.</li>
-<li>IAM or workload identity is configured.</li>
-<li>Node plugin pods are healthy.</li>
-<li>Controller plugin pods are healthy.</li>
-<li>Volume provisioning works.</li>
-<li>Volume expansion works if required.</li>
-<li>Snapshot support is tested if required.</li>
+<li>Use <code>Delete</code> only for disposable or easily recreated data.</li>
+<li>Use <code>Retain</code> for business data unless a backup and restore contract says otherwise.</li>
+<li>Document who can delete retained volumes and how they verify the data is no longer needed.</li>
 </ul>
-<p>Validation:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>csidriver
-kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>csi
+<h3 id="treat-expansion-as-a-runbook-not-a-checkbox">Treat expansion as a runbook, not a checkbox<a class="headerlink" href="#treat-expansion-as-a-runbook-not-a-checkbox" title="Permanent link">&para;</a></h3>
+<p><code>allowVolumeExpansion: true</code> only means Kubernetes accepts the resize request. It does not prove that the underlying filesystem, CSI driver, quota, and application can safely absorb the change.</p>
+<p>Before approving expansion for a profile, verify:</p>
+<ul>
+<li>The CSI driver supports online or offline expansion.</li>
+<li>The filesystem reflects the new size.</li>
+<li>The application tolerates the resize path.</li>
+<li>Monitoring follows the real filesystem after expansion.</li>
+<li>Rollback expectations are clear. Shrinking a volume is usually not a safe rollback.</li>
+</ul>
+<h3 id="separate-backup-responsibility-from-storage-provisioning">Separate backup responsibility from storage provisioning<a class="headerlink" href="#separate-backup-responsibility-from-storage-provisioning" title="Permanent link">&para;</a></h3>
+<p>Provisioning a PV is not the same thing as protecting the data in it.</p>
+<p>For every storage profile, document:</p>
+<ul>
+<li>Whether backups are required.</li>
+<li>Whether snapshots are crash-consistent or application-consistent.</li>
+<li>Who owns restore testing.</li>
+<li>How long recovery is expected to take.</li>
+<li>Which workloads must not use the profile.</li>
+</ul>
+<h2 id="csi-validation">CSI Validation<a class="headerlink" href="#csi-validation" title="Permanent link">&para;</a></h2>
+<p>Validate CSI before onboarding stateful workloads:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>csidrivers
 kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
+kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-A<span class="w"> </span>--sort-by<span class="o">=</span>.lastTimestamp
 </code></pre></div>
-<h2 id="pvc-test">PVC Test<a class="headerlink" href="#pvc-test" title="Permanent link">&para;</a></h2>
-<p>Create a test PVC and pod in a non-production namespace:</p>
+<p>Then run a real PVC test:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
 <span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-pvc</span>
-<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-namespace</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">storage-validation</span>
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+<span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">standard-rwo</span>
 <span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span>
-<span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-storage-class</span>
+<span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">storage-validation</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Never</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">writer</span>
+<span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">busybox:1.36</span>
+<span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;sh&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;-c&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;date</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">/data/proof</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">cat</span><span class="nv"> </span><span class="s">/data/proof&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data</span>
+<span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data</span>
+<span class="w">      </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">storage-validation</span>
 </code></pre></div>
-<p>Validate:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-n<span class="w"> </span>example-namespace
-kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>example-pvc<span class="w"> </span>-n<span class="w"> </span>example-namespace
-</code></pre></div>
-<h2 id="ingress-controller-checklist">Ingress Controller Checklist<a class="headerlink" href="#ingress-controller-checklist" title="Permanent link">&para;</a></h2>
-<p>Before exposing services:</p>
+<p>Pass conditions:</p>
 <ul>
-<li>IngressClass exists.</li>
-<li>Controller pods are healthy.</li>
-<li>Load balancer annotations are documented.</li>
-<li>TLS certificate lifecycle is defined.</li>
-<li>Default backend behavior is understood.</li>
-<li>Access logs and metrics are enabled.</li>
-<li>Health checks match application behavior.</li>
+<li>PVC becomes <code>Bound</code>.</li>
+<li>Pod schedules on an expected node.</li>
+<li>File write succeeds.</li>
+<li>Events show no CSI errors.</li>
+<li>Deleting the test resources produces the intended reclaim behavior.</li>
 </ul>
-<p>Validation:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>ingressclass
-kubectl<span class="w"> </span>get<span class="w"> </span>ingress<span class="w"> </span>-A
-kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>LoadBalancer
-</code></pre></div>
-<h2 id="ingress-template">Ingress Template<a class="headerlink" href="#ingress-template" title="Permanent link">&para;</a></h2>
+<h2 id="ingress-decisions">Ingress Decisions<a class="headerlink" href="#ingress-decisions" title="Permanent link">&para;</a></h2>
+<h3 id="define-ingress-classes-as-exposure-contracts">Define ingress classes as exposure contracts<a class="headerlink" href="#define-ingress-classes-as-exposure-contracts" title="Permanent link">&para;</a></h3>
+<p>IngressClass names should communicate exposure and ownership.</p>
+<p>Recommended pattern:</p>
+<table>
+<thead>
+<tr>
+<th>IngressClass</th>
+<th>Exposure</th>
+<th>Typical Owner</th>
+<th>Required Controls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>public-web</code></td>
+<td>Internet-facing</td>
+<td>Platform or edge team</td>
+<td>TLS, DNS, access logs, WAF or gateway review if required.</td>
+</tr>
+<tr>
+<td><code>private-web</code></td>
+<td>Internal network</td>
+<td>Platform team</td>
+<td>Internal load balancer, private DNS, access logs.</td>
+</tr>
+<tr>
+<td><code>partner-web</code></td>
+<td>Restricted external access</td>
+<td>Platform plus security</td>
+<td>Allowlist, TLS, audit, explicit approval.</td>
+</tr>
+</tbody>
+</table>
+<p>Avoid leaving multiple ingress controllers active without a defaulting rule. An application should not be exposed through the wrong controller because an annotation was omitted.</p>
+<h3 id="own-tls-as-a-lifecycle">Own TLS as a lifecycle<a class="headerlink" href="#own-tls-as-a-lifecycle" title="Permanent link">&para;</a></h3>
+<p>TLS is not complete when the first certificate is issued.</p>
+<p>Document:</p>
+<ul>
+<li>Certificate issuer.</li>
+<li>Renewal mechanism.</li>
+<li>DNS validation owner.</li>
+<li>Expiry alert.</li>
+<li>Secret namespace and access policy.</li>
+<li>Emergency replacement procedure.</li>
+</ul>
+<p>If TLS renewal is manual, the service must have an expiry alert and a named owner.</p>
+<h3 id="standardize-ingress-defaults">Standardize ingress defaults<a class="headerlink" href="#standardize-ingress-defaults" title="Permanent link">&para;</a></h3>
+<p>Set and document defaults for:</p>
+<ul>
+<li>Request timeout.</li>
+<li>Body size.</li>
+<li>WebSocket support.</li>
+<li>HTTP to HTTPS redirect.</li>
+<li>Access log format.</li>
+<li>Real client IP handling.</li>
+<li>Health check path.</li>
+<li>Rate limiting or WAF boundary if used.</li>
+</ul>
+<p>These values affect application behavior. They must not be hidden inside an ingress controller chart with no platform documentation.</p>
+<h2 id="ingress-validation">Ingress Validation<a class="headerlink" href="#ingress-validation" title="Permanent link">&para;</a></h2>
+<p>Use a small validation service before exposing real traffic:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ingress</span>
 <span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-ingress</span>
-<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-namespace</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-validation</span>
 <span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">nginx.ingress.kubernetes.io/proxy-body-size</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;20m&quot;</span>
+<span class="w">    </span><span class="nt">cert-manager.io/cluster-issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">letsencrypt-production</span>
 <span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ingressClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">  </span><span class="nt">ingressClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">public-web</span>
 <span class="w">  </span><span class="nt">tls</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service.example.com</span>
-<span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-tls</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.devops.test</span>
+<span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-validation-tls</span>
 <span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service.example.com</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.devops.test</span>
 <span class="w">      </span><span class="nt">http</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">paths</span><span class="p">:</span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
 <span class="w">            </span><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prefix</span>
 <span class="w">            </span><span class="nt">backend</span><span class="p">:</span>
 <span class="w">              </span><span class="nt">service</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-service</span>
+<span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-validation</span>
 <span class="w">                </span><span class="nt">port</span><span class="p">:</span>
 <span class="w">                  </span><span class="nt">number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
 </code></pre></div>
-<p>Do not commit real TLS secrets.</p>
-<h2 id="common-failure-modes">Common Failure Modes<a class="headerlink" href="#common-failure-modes" title="Permanent link">&para;</a></h2>
+<p>Pass conditions:</p>
+<ul>
+<li>Ingress is assigned to the intended controller.</li>
+<li>Load balancer or gateway address appears.</li>
+<li>DNS resolves to the expected target.</li>
+<li>TLS certificate is valid and renewable.</li>
+<li>Access logs and request metrics appear.</li>
+<li>A 404, 5xx, and slow request can be observed in the expected dashboard or query path.</li>
+</ul>
+<h2 id="validation-checklist">Validation Checklist<a class="headerlink" href="#validation-checklist" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>Area</th>
-<th>Symptom</th>
 <th>Check</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Storage</td>
-<td>PVC stuck pending</td>
-<td>StorageClass, CSI controller, IAM, quota</td>
+<td>StorageClass</td>
+<td>Default is deliberate, documented, and tested.</td>
 </tr>
 <tr>
-<td>Storage</td>
-<td>Pod mount failure</td>
-<td>Node plugin, filesystem, access mode</td>
+<td>CSI</td>
+<td>Controller and node plugins are healthy across node pools.</td>
 </tr>
 <tr>
-<td>Ingress</td>
-<td>404</td>
-<td>Ingress class, path, service selector</td>
+<td>PVC</td>
+<td>Provision, mount, write, delete, and expansion behavior are known.</td>
 </tr>
 <tr>
-<td>Ingress</td>
-<td>502</td>
-<td>Backend pod readiness or service port</td>
+<td>Reclaim</td>
+<td>Data retention behavior matches workload criticality.</td>
 </tr>
 <tr>
-<td>Ingress</td>
-<td>TLS error</td>
-<td>Secret, certificate chain, host mismatch</td>
+<td>Backup</td>
+<td>Restore owner and restore test expectation are documented.</td>
+</tr>
+<tr>
+<td>IngressClass</td>
+<td>Public and private exposure paths are distinct.</td>
+</tr>
+<tr>
+<td>TLS</td>
+<td>Issuer, renewal, expiry alert, and emergency replacement are known.</td>
+</tr>
+<tr>
+<td>Logs and metrics</td>
+<td>Storage and ingress failures are observable.</td>
+</tr>
+<tr>
+<td>Ownership</td>
+<td>Platform and application responsibilities are separate.</td>
 </tr>
 </tbody>
 </table>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Symptom</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Missing default StorageClass</td>
+<td>PVC stays <code>Pending</code>.</td>
+<td>Either define a safe default or require explicit <code>storageClassName</code>.</td>
+</tr>
+<tr>
+<td>Wrong access mode</td>
+<td>Pod cannot mount volume or multi-writer workload corrupts data.</td>
+<td>Map workloads to approved profiles.</td>
+</tr>
+<tr>
+<td>CSI IAM or identity failure</td>
+<td>PVC never provisions, events show cloud permission errors.</td>
+<td>Validate workload identity before onboarding.</td>
+</tr>
+<tr>
+<td>Unclear reclaim policy</td>
+<td>Data is deleted too early or retained forever.</td>
+<td>Document reclaim policy and cleanup owner.</td>
+</tr>
+<tr>
+<td>NFS used as invisible capacity pool</td>
+<td>PVC appears fine while backend filesystem fills.</td>
+<td>Monitor real filesystem usage and PVC metadata together.</td>
+</tr>
+<tr>
+<td>Wrong IngressClass</td>
+<td>Service becomes unreachable or publicly exposed unintentionally.</td>
+<td>Use explicit <code>ingressClassName</code> and admission checks where possible.</td>
+</tr>
+<tr>
+<td>TLS renewal missing</td>
+<td>Service fails when certificate expires.</td>
+<td>Add expiry alert and named renewal owner.</td>
+</tr>
+<tr>
+<td>Controller defaults hidden</td>
+<td>Large uploads, WebSockets, or slow requests fail unexpectedly.</td>
+<td>Publish default timeout and body-size policy.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback-and-change-boundary">Rollback and Change Boundary<a class="headerlink" href="#rollback-and-change-boundary" title="Permanent link">&para;</a></h2>
+<p>Storage and ingress changes have different rollback properties.</p>
+<p>Usually reversible:</p>
+<ul>
+<li>Adding a new StorageClass.</li>
+<li>Adding a new IngressClass.</li>
+<li>Changing annotations on a validation ingress.</li>
+<li>Replacing an ingress controller configuration after a canary.</li>
+</ul>
+<p>High-risk or not safely reversible:</p>
+<ul>
+<li>Changing the default StorageClass after workloads already depend on it.</li>
+<li>Changing reclaim policy without a migration plan.</li>
+<li>Shrinking storage.</li>
+<li>Moving a stateful workload between storage backends without backup and restore proof.</li>
+<li>Replacing a public ingress path without DNS, TLS, and client cache planning.</li>
+</ul>
+<p>If the rollback path is "restore from backup," the change is not a normal configuration rollback. Treat it as a data recovery operation.</p>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Do not publish real hostnames, certificate details, private IPs, or customer domains in examples.</li>
+<li>Restrict access to TLS secrets.</li>
+<li>Avoid mounting broad cloud credentials into CSI components.</li>
+<li>Use least-privilege workload identity for storage drivers.</li>
+<li>Review public ingress exposure before DNS is delegated.</li>
+<li>Keep access logs available for incident review, but avoid logging sensitive request bodies.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review this standard:</p>
+<ul>
+<li>Before a new cluster accepts workloads.</li>
+<li>Before changing CSI drivers, StorageClasses, ingress controllers, or IngressClasses.</li>
+<li>After any data-loss, storage saturation, certificate expiry, or public exposure incident.</li>
+<li>Before onboarding a new class of stateful workload.</li>
+</ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="../kubernetes-cluster-provisioning-standard/">Kubernetes Cluster Provisioning Standard</a></li>
 <li><a href="../nfs-pvc-capacity-management/">NFS PVC Capacity Management</a></li>
-<li><a href="../../../standards-manual/networking/nginx-reverse-proxy-tls-standard/">Nginx Reverse Proxy and TLS Standard</a></li>
+<li><a href="../../../reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/">PVC Usage Alert Runbook</a></li>
+<li><a href="../../../reliable-operations/recovery/tls-certificate-expiry-runbook/">TLS Certificate Expiry Runbook</a></li>
 </ul>
 
 
@@ -4327,7 +4910,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 11:51:03 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4337,7 +4920,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 11:51:03 UTC">June 28, 2026</span>
   </span>
 
     

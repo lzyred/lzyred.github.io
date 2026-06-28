@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="NFS PVC capacity management for monitoring, alerting, and cleanup.">
+        <meta name="description" content="Standard for managing NFS-backed Kubernetes PVC capacity by joining PVC metadata with real backend filesystem usage, ownership, thresholds, and response rules.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="NFS PVC Capacity - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="NFS PVC capacity management for monitoring, alerting, and cleanup." />
+<meta property="og:description" content="Standard for managing NFS-backed Kubernetes PVC capacity by joining PVC metadata with real backend filesystem usage, ownership, thresholds, and response rules." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/system-design/production-architecture/nfs-pvc-capacity-management.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/system-design/production-architecture/nfs-pvc-capacity-management/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="NFS PVC Capacity - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="NFS PVC capacity management for monitoring, alerting, and cleanup." />
+<meta property="twitter:description" content="Standard for managing NFS-backed Kubernetes PVC capacity by joining PVC metadata with real backend filesystem usage, ownership, thresholds, and response rules." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/system-design/production-architecture/nfs-pvc-capacity-management.png" />
 </head>
   
@@ -1071,10 +1071,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#problem" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Problem
+        When to Use
       
     </span>
   </a>
@@ -1082,10 +1082,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-approach" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Approach
+        Non-Goals
       
     </span>
   </a>
@@ -1093,10 +1093,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-thresholds" class="md-nav__link">
+  <a href="#two-layer-capacity-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended Thresholds
+        Two-Layer Capacity Model
       
     </span>
   </a>
@@ -1104,10 +1104,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#required-metadata" class="md-nav__link">
+  <a href="#required-inventory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Required Metadata
+        Required Inventory
       
     </span>
   </a>
@@ -1115,22 +1115,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-procedure" class="md-nav__link">
+  <a href="#standard-thresholds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Procedure
+        Standard Thresholds
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Standard Procedure">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring Standard">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-identify-nfs-storageclasses" class="md-nav__link">
+  <a href="#collect-kubernetes-metadata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Identify NFS StorageClasses
+        Collect Kubernetes metadata
       
     </span>
   </a>
@@ -1138,10 +1149,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-list-pvcs-using-the-storageclass" class="md-nav__link">
+  <a href="#collect-backend-filesystem-usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. List PVCs Using the StorageClass
+        Collect backend filesystem usage
       
     </span>
   </a>
@@ -1149,10 +1160,38 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-measure-filesystem-usage" class="md-nav__link">
+  <a href="#join-the-two-layers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Measure Filesystem Usage
+        Join the two layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacity-response-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity Response Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capacity Response Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-classify-data-before-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Classify data before action
       
     </span>
   </a>
@@ -1160,10 +1199,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-alert-on-usage" class="md-nav__link">
+  <a href="#2-choose-the-capacity-action" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Alert on Usage
+        2. Choose the capacity action
       
     </span>
   </a>
@@ -1171,10 +1210,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-remediate" class="md-nav__link">
+  <a href="#3-expand-deliberately" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Remediate
+        3. Expand deliberately
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-migrate-when-nfs-is-the-wrong-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Migrate when NFS is the wrong abstraction
       
     </span>
   </a>
@@ -1209,41 +1259,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        FAQ
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="FAQ">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#why-not-rely-only-on-kubectl-get-pvc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why not rely only on kubectl get pvc?
+        Known Failure Modes
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#should-cleanup-be-automatic" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Should cleanup be automatic?
+        Security Notes
       
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documents
+      
+    </span>
+  </a>
   
 </li>
       
@@ -4064,10 +4119,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#problem" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Problem
+        When to Use
       
     </span>
   </a>
@@ -4075,10 +4130,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-approach" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Approach
+        Non-Goals
       
     </span>
   </a>
@@ -4086,10 +4141,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-thresholds" class="md-nav__link">
+  <a href="#two-layer-capacity-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended Thresholds
+        Two-Layer Capacity Model
       
     </span>
   </a>
@@ -4097,10 +4152,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#required-metadata" class="md-nav__link">
+  <a href="#required-inventory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Required Metadata
+        Required Inventory
       
     </span>
   </a>
@@ -4108,22 +4163,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-procedure" class="md-nav__link">
+  <a href="#standard-thresholds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Procedure
+        Standard Thresholds
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Standard Procedure">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring Standard">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-identify-nfs-storageclasses" class="md-nav__link">
+  <a href="#collect-kubernetes-metadata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Identify NFS StorageClasses
+        Collect Kubernetes metadata
       
     </span>
   </a>
@@ -4131,10 +4197,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-list-pvcs-using-the-storageclass" class="md-nav__link">
+  <a href="#collect-backend-filesystem-usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. List PVCs Using the StorageClass
+        Collect backend filesystem usage
       
     </span>
   </a>
@@ -4142,10 +4208,38 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-measure-filesystem-usage" class="md-nav__link">
+  <a href="#join-the-two-layers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Measure Filesystem Usage
+        Join the two layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacity-response-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity Response Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capacity Response Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-classify-data-before-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Classify data before action
       
     </span>
   </a>
@@ -4153,10 +4247,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-alert-on-usage" class="md-nav__link">
+  <a href="#2-choose-the-capacity-action" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Alert on Usage
+        2. Choose the capacity action
       
     </span>
   </a>
@@ -4164,10 +4258,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-remediate" class="md-nav__link">
+  <a href="#3-expand-deliberately" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Remediate
+        3. Expand deliberately
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-migrate-when-nfs-is-the-wrong-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Migrate when NFS is the wrong abstraction
       
     </span>
   </a>
@@ -4202,41 +4307,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        FAQ
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="FAQ">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#why-not-rely-only-on-kubectl-get-pvc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why not rely only on kubectl get pvc?
+        Known Failure Modes
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#should-cleanup-be-automatic" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Should cleanup be automatic?
+        Security Notes
       
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documents
+      
+    </span>
+  </a>
   
 </li>
       
@@ -4368,124 +4478,405 @@
 
 <h1 id="nfs-pvc-capacity-management">NFS PVC Capacity Management<a class="headerlink" href="#nfs-pvc-capacity-management" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This document defines a standard approach for monitoring and managing Kubernetes PersistentVolumeClaim capacity when NFS or NFS-like shared storage is used.</p>
-<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
-<p>Kubernetes can show requested PVC capacity, but it does not always provide actual filesystem usage for NFS-backed paths. If usage is not monitored at the storage path level, applications can fail unexpectedly when the underlying shared filesystem fills up.</p>
-<h2 id="standard-approach">Standard Approach<a class="headerlink" href="#standard-approach" title="Permanent link">&para;</a></h2>
-<p>Use a two-layer model:</p>
-<ol>
-<li>Kubernetes metadata: namespace, PVC name, PV, StorageClass, requested size.</li>
-<li>Storage filesystem usage: actual path usage from the NFS server or mounted host.</li>
-</ol>
-<p>The monitoring system should join both views and alert when usage crosses defined thresholds.</p>
-<h2 id="recommended-thresholds">Recommended Thresholds<a class="headerlink" href="#recommended-thresholds" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to manage capacity for Kubernetes PVCs backed by NFS or NFS-like shared file storage.</p>
+<p>The core judgment is:</p>
+<blockquote>
+<p>NFS-backed PVC capacity is a shared filesystem problem wearing Kubernetes metadata.</p>
+</blockquote>
+<p>A PVC request tells Kubernetes what the workload asked for. It does not always tell you how much space exists on the backend filesystem, how many other PVCs share that backend, or whether the backend can enforce per-claim limits. Capacity management must join both layers.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when:</p>
+<ul>
+<li>Kubernetes PVCs are provisioned from an NFS server, managed file service, or shared filesystem.</li>
+<li>Multiple PVCs map to directories under the same backend export.</li>
+<li>PVC usage alerts do not match backend filesystem usage.</li>
+<li>Application teams use shared files, uploads, model artifacts, reports, or batch outputs.</li>
+<li>The platform needs a standard for capacity ownership and alert thresholds.</li>
+</ul>
+<p>This standard is especially important when NFS is used as a convenient <code>ReadWriteMany</code> solution. Convenience does not remove the need for capacity isolation, monitoring, and cleanup rules.</p>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>Designing high-availability NFS from scratch.</li>
+<li>Database storage tuning.</li>
+<li>Replacing object storage for large immutable artifacts.</li>
+<li>Full backup architecture for shared files.</li>
+<li>Vendor-specific file service operations.</li>
+</ul>
+<h2 id="two-layer-capacity-model">Two-Layer Capacity Model<a class="headerlink" href="#two-layer-capacity-model" title="Permanent link">&para;</a></h2>
+<p>Manage NFS PVC capacity as two related but different layers:</p>
 <table>
 <thead>
 <tr>
-<th>Level</th>
-<th style="text-align: right;">Usage</th>
-<th>Response</th>
+<th>Layer</th>
+<th>What It Shows</th>
+<th>What It Cannot Prove</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Warning</td>
-<td style="text-align: right;">75%</td>
-<td>Review growth rate and owner.</td>
+<td>Kubernetes PVC metadata</td>
+<td>Namespace, claim name, requested size, StorageClass, PV, mount relationship.</td>
+<td>Real backend free space, shared usage, filesystem pressure.</td>
 </tr>
 <tr>
-<td>High</td>
-<td style="text-align: right;">85%</td>
-<td>Plan cleanup, expansion, or migration.</td>
-</tr>
-<tr>
-<td>Critical</td>
-<td style="text-align: right;">90%</td>
-<td>Take immediate action and notify service owner.</td>
-</tr>
-<tr>
-<td>Emergency</td>
-<td style="text-align: right;">95%</td>
-<td>Stop nonessential writes and execute expansion or cleanup.</td>
+<td>NFS backend filesystem</td>
+<td>Actual total, used, available, inode use, per-directory growth.</td>
+<td>Kubernetes owner, namespace, workload intent, data criticality.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="required-metadata">Required Metadata<a class="headerlink" href="#required-metadata" title="Permanent link">&para;</a></h2>
-<p>Track these fields for each PVC:</p>
-<div class="highlight"><pre><span></span><code>cluster
-namespace
-pvc_name
-pv_name
-storage_class
-requested_capacity
-storage_path
-actual_used
-actual_available
-usage_percent
-owner
-service
-last_checked_at
-</code></pre></div>
-<h2 id="standard-procedure">Standard Procedure<a class="headerlink" href="#standard-procedure" title="Permanent link">&para;</a></h2>
-<h3 id="1-identify-nfs-storageclasses">1. Identify NFS StorageClasses<a class="headerlink" href="#1-identify-nfs-storageclasses" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
-kubectl<span class="w"> </span>describe<span class="w"> </span>storageclass<span class="w"> </span>&lt;storage-class-name&gt;
-</code></pre></div>
-<p>Record provisioner, server, path pattern, reclaim policy, and expansion support.</p>
-<h3 id="2-list-pvcs-using-the-storageclass">2. List PVCs Using the StorageClass<a class="headerlink" href="#2-list-pvcs-using-the-storageclass" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>wide
-kubectl<span class="w"> </span>get<span class="w"> </span>pv
-</code></pre></div>
-<p>Map each PVC to its PV and storage path.</p>
-<h3 id="3-measure-filesystem-usage">3. Measure Filesystem Usage<a class="headerlink" href="#3-measure-filesystem-usage" title="Permanent link">&para;</a></h3>
-<p>On the storage server or mounted observation host:</p>
-<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>&lt;storage-root&gt;
-du<span class="w"> </span>-sh<span class="w"> </span>&lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
-</code></pre></div>
-<p>Use a consistent path convention. If dynamic provisioning creates hashed paths, maintain a PV-to-path mapping.</p>
-<h3 id="4-alert-on-usage">4. Alert on Usage<a class="headerlink" href="#4-alert-on-usage" title="Permanent link">&para;</a></h3>
-<p>Alert messages should include:</p>
-<div class="highlight"><pre><span></span><code>Cluster: example-cluster
-Namespace: example-namespace
-PVC: example-pvc
-StorageClass: example-nfs
-Usage: 87%
-Threshold: 85%
-Recommended Action: review growth and expand or clean up
-</code></pre></div>
-<p>Do not include credentials, real internal domains, or sensitive mount paths in public alert examples.</p>
-<h3 id="5-remediate">5. Remediate<a class="headerlink" href="#5-remediate" title="Permanent link">&para;</a></h3>
-<p>Common remediation options:</p>
+<p>Neither layer is enough by itself.</p>
+<p>Kubernetes-only monitoring can miss a backend filesystem filling up across many claims. NFS-only monitoring can tell you a directory is large but not which namespace, workload, and team owns it.</p>
+<h2 id="required-inventory">Required Inventory<a class="headerlink" href="#required-inventory" title="Permanent link">&para;</a></h2>
+<p>Maintain an inventory that maps each PVC to backend reality:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td><code>payments-prod</code></td>
+</tr>
+<tr>
+<td>PVC</td>
+<td><code>uploads-data</code></td>
+</tr>
+<tr>
+<td>PV</td>
+<td><code>pvc-abc123</code></td>
+</tr>
+<tr>
+<td>StorageClass</td>
+<td><code>shared-rwx</code></td>
+</tr>
+<tr>
+<td>Backend export</td>
+<td><code>nfs-shared-01:/exports/k8s</code></td>
+</tr>
+<tr>
+<td>Backend path</td>
+<td><code>/exports/k8s/payments-prod/uploads-data</code></td>
+</tr>
+<tr>
+<td>Workload</td>
+<td><code>payments-api</code></td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Platform or application team alias</td>
+</tr>
+<tr>
+<td>Data class</td>
+<td>Uploads, cache, reports, artifacts, logs, unknown</td>
+</tr>
+<tr>
+<td>Retention</td>
+<td>30 days, owner-defined, or none</td>
+</tr>
+<tr>
+<td>Backup</td>
+<td>Required, not required, or unknown</td>
+</tr>
+<tr>
+<td>Expansion model</td>
+<td>Backend pool expansion, directory quota, or migration</td>
+</tr>
+</tbody>
+</table>
+<p>If the platform cannot map a full directory to an owner, it must not delete from that directory.</p>
+<h2 id="standard-thresholds">Standard Thresholds<a class="headerlink" href="#standard-thresholds" title="Permanent link">&para;</a></h2>
+<p>Use two sets of thresholds: backend filesystem thresholds and per-PVC or per-directory growth thresholds.</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th style="text-align: right;">Warning</th>
+<th style="text-align: right;">Critical</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backend filesystem used percent</td>
+<td style="text-align: right;">75%</td>
+<td style="text-align: right;">90%</td>
+<td>Review growth, plan expansion, or clean approved data.</td>
+</tr>
+<tr>
+<td>Backend inode usage</td>
+<td style="text-align: right;">70%</td>
+<td style="text-align: right;">85%</td>
+<td>Find small-file sources and owner.</td>
+</tr>
+<tr>
+<td>Single PVC directory growth</td>
+<td style="text-align: right;">20% in 24h</td>
+<td style="text-align: right;">40% in 24h</td>
+<td>Identify writer and data class.</td>
+</tr>
+<tr>
+<td>Forecast full</td>
+<td style="text-align: right;">7 days</td>
+<td style="text-align: right;">72 hours</td>
+<td>Prepare capacity action.</td>
+</tr>
+<tr>
+<td>Unknown owner data</td>
+<td style="text-align: right;">Any sustained growth</td>
+<td style="text-align: right;">Any critical pressure</td>
+<td>Escalate; do not delete blindly.</td>
+</tr>
+</tbody>
+</table>
+<p>Tune thresholds for backend size and business risk. Large filesystems may need forecast-based alerts earlier than percent-based alerts.</p>
+<h2 id="monitoring-standard">Monitoring Standard<a class="headerlink" href="#monitoring-standard" title="Permanent link">&para;</a></h2>
+<h3 id="collect-kubernetes-metadata">Collect Kubernetes metadata<a class="headerlink" href="#collect-kubernetes-metadata" title="Permanent link">&para;</a></h3>
+<p>Collect:</p>
 <ul>
-<li>Remove expired application files.</li>
-<li>Archive old logs or attachments.</li>
-<li>Expand the backing NFS volume.</li>
-<li>Migrate a high-growth workload to a dedicated volume.</li>
-<li>Add retention policies at application or storage level.</li>
+<li>PVC name.</li>
+<li>Namespace.</li>
+<li>PV name.</li>
+<li>StorageClass.</li>
+<li>Requested capacity.</li>
+<li>Volume mode.</li>
+<li>Access mode.</li>
+<li>Workload using the claim.</li>
+</ul>
+<p>Kubernetes metrics alone do not always expose backend path. If the provisioner writes path information into PV attributes or annotations, ingest it into the inventory.</p>
+<h3 id="collect-backend-filesystem-usage">Collect backend filesystem usage<a class="headerlink" href="#collect-backend-filesystem-usage" title="Permanent link">&para;</a></h3>
+<p>Collect from the NFS server, managed file service metrics, or an approved observation host:</p>
+<ul>
+<li>Filesystem total, used, available, and percent used.</li>
+<li>Inode total, used, available, and percent used.</li>
+<li>Per-export usage.</li>
+<li>Per-directory usage where feasible.</li>
+<li>Growth rate.</li>
+<li>Top directories by size and file count.</li>
+</ul>
+<p>For Linux NFS servers, platform-owned collection may use commands like:</p>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>/exports/k8s
+df<span class="w"> </span>-i<span class="w"> </span>/exports/k8s
+du<span class="w"> </span>-xh<span class="w"> </span>--max-depth<span class="o">=</span><span class="m">2</span><span class="w"> </span>/exports/k8s<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-h
+</code></pre></div>
+<p>Do not run expensive recursive scans during peak hours on a busy file server without understanding the impact.</p>
+<h3 id="join-the-two-layers">Join the two layers<a class="headerlink" href="#join-the-two-layers" title="Permanent link">&para;</a></h3>
+<p>Capacity dashboards and alerts should show:</p>
+<ul>
+<li>Backend filesystem pressure.</li>
+<li>Top PVC directories.</li>
+<li>Namespace and owner.</li>
+<li>Workload and data class.</li>
+<li>Growth trend.</li>
+<li>Last review date.</li>
+</ul>
+<p>The useful question is not "which disk is full?" but "which workload and data class is consuming shared capacity, and what action is safe?"</p>
+<h2 id="capacity-response-model">Capacity Response Model<a class="headerlink" href="#capacity-response-model" title="Permanent link">&para;</a></h2>
+<h3 id="1-classify-data-before-action">1. Classify data before action<a class="headerlink" href="#1-classify-data-before-action" title="Permanent link">&para;</a></h3>
+<p>Use this classification:</p>
+<table>
+<thead>
+<tr>
+<th>Data Class</th>
+<th>Default Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cache</td>
+<td>Clean by approved application method or recreate.</td>
+</tr>
+<tr>
+<td>Temporary export</td>
+<td>Apply retention and move long-term artifacts elsewhere.</td>
+</tr>
+<tr>
+<td>User upload</td>
+<td>Do not delete without owner approval and backup confirmation.</td>
+</tr>
+<tr>
+<td>Application state</td>
+<td>Treat as business data; expand or migrate.</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td>Move to logging pipeline or object storage; clean after retention.</td>
+</tr>
+<tr>
+<td>Unknown</td>
+<td>Escalate; no destructive action.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-choose-the-capacity-action">2. Choose the capacity action<a class="headerlink" href="#2-choose-the-capacity-action" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backend has enough capacity but one PVC directory is growing.</td>
+<td>Work with owner; enforce retention, move data, or resize claim expectation.</td>
+</tr>
+<tr>
+<td>Backend filesystem is filling because many claims share one pool.</td>
+<td>Expand backend, split tenants, or migrate high-growth claims.</td>
+</tr>
+<tr>
+<td>Inodes are filling before bytes.</td>
+<td>Find small-file workload, archive or compact, and change application behavior.</td>
+</tr>
+<tr>
+<td>NFS performance degrades under load.</td>
+<td>Reduce scan pressure, split workload, or move to a more suitable storage backend.</td>
+</tr>
+<tr>
+<td>PVC request does not match actual usage.</td>
+<td>Update inventory and alerting; do not rely on request size alone.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-expand-deliberately">3. Expand deliberately<a class="headerlink" href="#3-expand-deliberately" title="Permanent link">&para;</a></h3>
+<p>For NFS, expansion may mean increasing the backend filesystem or changing a quota, not patching an individual PVC.</p>
+<p>Before expansion:</p>
+<ul>
+<li>Confirm backend pool headroom or provider quota.</li>
+<li>Confirm backup or snapshot posture.</li>
+<li>Confirm whether the expansion affects all tenants.</li>
+<li>Confirm alert thresholds after expansion.</li>
+<li>Record the new capacity and expected forecast.</li>
+</ul>
+<h3 id="4-migrate-when-nfs-is-the-wrong-abstraction">4. Migrate when NFS is the wrong abstraction<a class="headerlink" href="#4-migrate-when-nfs-is-the-wrong-abstraction" title="Permanent link">&para;</a></h3>
+<p>NFS is often misused for data that belongs elsewhere.</p>
+<p>Consider migration when:</p>
+<ul>
+<li>Large immutable artifacts would fit object storage better.</li>
+<li>A database is placed on shared file storage without a strong reason.</li>
+<li>A single tenant dominates the shared filesystem.</li>
+<li>Application performance depends on filesystem semantics NFS cannot guarantee.</li>
+<li>Cleanup requires risky manual file deletion.</li>
 </ul>
 <h2 id="cleanup-safety">Cleanup Safety<a class="headerlink" href="#cleanup-safety" title="Permanent link">&para;</a></h2>
-<p>Never delete PVC data using a generic script unless all of these are true:</p>
+<p>Never delete from NFS solely because a directory is large.</p>
+<p>Minimum deletion requirements:</p>
 <ul>
-<li>The owner approved the cleanup.</li>
-<li>The target namespace and PVC are explicitly selected.</li>
-<li>A backup or snapshot exists if data is business-critical.</li>
-<li>The script has a dry-run mode.</li>
-<li>The cleanup rule uses age, path, and file type filters.</li>
-<li>The action logs every deleted object.</li>
+<li>Owner identified.</li>
+<li>Data class identified.</li>
+<li>Retention policy or explicit approval confirmed.</li>
+<li>Backup or non-critical classification confirmed.</li>
+<li>Exact path reviewed.</li>
+<li>Command scoped to the intended directory.</li>
+<li>Result validated.</li>
 </ul>
+<p>Prefer application-level deletion over platform shell deletion. The application usually knows which files are indexed, referenced, or safe to remove.</p>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<p>After remediation:</p>
-<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>&lt;storage-root&gt;
-du<span class="w"> </span>-sh<span class="w"> </span>&lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
-kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-</code></pre></div>
-<p>Verify the affected application can still read and write expected data.</p>
-<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
-<h3 id="why-not-rely-only-on-kubectl-get-pvc">Why not rely only on <code>kubectl get pvc</code>?<a class="headerlink" href="#why-not-rely-only-on-kubectl-get-pvc" title="Permanent link">&para;</a></h3>
-<p>PVC capacity shows requested storage, not always real usage. NFS-backed storage requires filesystem-level observation.</p>
-<h3 id="should-cleanup-be-automatic">Should cleanup be automatic?<a class="headerlink" href="#should-cleanup-be-automatic" title="Permanent link">&para;</a></h3>
-<p>Automatic cleanup is acceptable only for clearly disposable data such as temporary files. Business data should require owner approval or a policy-controlled retention system.</p>
+<p>This standard is implemented when:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Pass Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inventory</td>
+<td>Each NFS-backed PVC maps to namespace, workload, owner, backend export, and path.</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>Backend bytes, backend inodes, and PVC metadata are visible together.</td>
+</tr>
+<tr>
+<td>Alerts</td>
+<td>Backend pressure and rapid per-directory growth are both detected.</td>
+</tr>
+<tr>
+<td>Ownership</td>
+<td>Unknown-owner directories are tracked as risk.</td>
+</tr>
+<tr>
+<td>Response</td>
+<td>Cleanup, expansion, migration, and escalation paths are documented.</td>
+</tr>
+<tr>
+<td>Safety</td>
+<td>No destructive cleanup occurs without owner and data classification.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Result</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monitoring only PVC requested size</td>
+<td>Backend fills while PVCs appear normal.</td>
+<td>Monitor backend filesystem usage.</td>
+</tr>
+<tr>
+<td>Monitoring only NFS server</td>
+<td>Large directory has no clear Kubernetes owner.</td>
+<td>Maintain PVC-to-path inventory.</td>
+</tr>
+<tr>
+<td>Shared pool with no tenant separation</td>
+<td>One workload consumes capacity for all workloads.</td>
+<td>Use quotas, separate exports, or separate storage classes.</td>
+</tr>
+<tr>
+<td>Manual deletion of unknown files</td>
+<td>Data loss or application corruption.</td>
+<td>Require owner and data class before cleanup.</td>
+</tr>
+<tr>
+<td>Recursive scans during peak load</td>
+<td>NFS latency worsens during investigation.</td>
+<td>Schedule scans or use lightweight metrics.</td>
+</tr>
+<tr>
+<td>No inode alerting</td>
+<td>Millions of tiny files break writes before bytes fill.</td>
+<td>Alert on inode usage and file count growth.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Do not publish real export paths, server names, IPs, or customer directory names.</li>
+<li>Restrict shell access to NFS servers.</li>
+<li>Avoid broad read access to shared application files.</li>
+<li>Treat user uploads and reports as potentially sensitive.</li>
+<li>Keep cleanup commands out of public docs unless they are generic and placeholder-based.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review this standard:</p>
+<ul>
+<li>Before onboarding a new NFS-backed StorageClass.</li>
+<li>After any NFS capacity or performance incident.</li>
+<li>When a tenant becomes a top capacity consumer.</li>
+<li>Before increasing backend capacity by a material amount.</li>
+<li>When application data retention changes.</li>
+</ul>
+<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/">PVC Usage Alert Runbook</a></li>
+<li><a href="../kubernetes-storage-ingress-standard/">Kubernetes Storage and Ingress Standard</a></li>
+<li><a href="../kubernetes-cluster-provisioning-standard/">Kubernetes Cluster Provisioning Standard</a></li>
+</ul>
 
 
 
@@ -4508,7 +4899,7 @@ kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 11:51:03 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4518,7 +4909,7 @@ kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 11:51:03 UTC">June 28, 2026</span>
   </span>
 
     

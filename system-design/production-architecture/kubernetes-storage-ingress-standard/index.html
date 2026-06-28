@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Kubernetes storage and ingress standard for PVC, StorageClass, and Ingress.">
+        <meta name="description" content="Kubernetes 存储与 Ingress 的生产标准，覆盖 CSI、StorageClass、IngressClass、TLS、验证和失败模式。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Kubernetes 存储与 Ingress - DevOps 专家知识库" />
-<meta property="og:description" content="Kubernetes storage and ingress standard for PVC, StorageClass, and Ingress." />
+<meta property="og:description" content="Kubernetes 存储与 Ingress 的生产标准，覆盖 CSI、StorageClass、IngressClass、TLS、验证和失败模式。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/system-design/production-architecture/kubernetes-storage-ingress-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/system-design/production-architecture/kubernetes-storage-ingress-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Kubernetes 存储与 Ingress - DevOps 专家知识库" />
-<meta property="twitter:description" content="Kubernetes storage and ingress standard for PVC, StorageClass, and Ingress." />
+<meta property="twitter:description" content="Kubernetes 存储与 Ingress 的生产标准，覆盖 CSI、StorageClass、IngressClass、TLS、验证和失败模式。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/system-design/production-architecture/kubernetes-storage-ingress-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kubernetes-storage-and-ingress-standard" class="md-skip">
+        <a href="#kubernetes-ingress" class="md-skip">
           跳转至
         </a>
       
@@ -976,10 +976,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -987,10 +987,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#storage-classes" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Storage Classes
+        适用场景
       
     </span>
   </a>
@@ -998,10 +998,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#csi-driver-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CSI Driver Checklist
+        非目标
       
     </span>
   </a>
@@ -1009,10 +1009,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pvc-test" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PVC Test
+        设计原则
       
     </span>
   </a>
@@ -1020,10 +1020,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ingress-controller-checklist" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ingress Controller Checklist
+        存储决策
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="存储决策">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        显式定义存储画像
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把回收策略作为刻意决策
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把扩容当作 Runbook，而不是勾选项
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把备份责任与存储供给分开
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#csi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSI 验证
       
     </span>
   </a>
@@ -1031,10 +1092,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ingress-template" class="md-nav__link">
+  <a href="#ingress" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ingress Template
+        Ingress 决策
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ingress 决策">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingressclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把 IngressClass 定义为暴露契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把 TLS 当作生命周期来拥有
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingress_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标准化 Ingress 默认值
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingress_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ingress 验证
       
     </span>
   </a>
@@ -1042,10 +1153,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-failure-modes" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Failure Modes
+        验证清单
       
     </span>
   </a>
@@ -1053,10 +1164,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        常见失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚与变更边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3953,10 +4108,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3964,10 +4119,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#storage-classes" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Storage Classes
+        适用场景
       
     </span>
   </a>
@@ -3975,10 +4130,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#csi-driver-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CSI Driver Checklist
+        非目标
       
     </span>
   </a>
@@ -3986,10 +4141,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pvc-test" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PVC Test
+        设计原则
       
     </span>
   </a>
@@ -3997,10 +4152,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ingress-controller-checklist" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ingress Controller Checklist
+        存储决策
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="存储决策">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        显式定义存储画像
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把回收策略作为刻意决策
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把扩容当作 Runbook，而不是勾选项
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把备份责任与存储供给分开
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#csi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSI 验证
       
     </span>
   </a>
@@ -4008,10 +4224,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ingress-template" class="md-nav__link">
+  <a href="#ingress" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ingress Template
+        Ingress 决策
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ingress 决策">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingressclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把 IngressClass 定义为暴露契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把 TLS 当作生命周期来拥有
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingress_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标准化 Ingress 默认值
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingress_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ingress 验证
       
     </span>
   </a>
@@ -4019,10 +4285,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-failure-modes" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Failure Modes
+        验证清单
       
     </span>
   </a>
@@ -4030,10 +4296,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        常见失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚与变更边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4132,7 +4442,31 @@
         
       
       
+        <a href="../../../tags/#tag:architecture" class="md-tag md-tag-icon md-tag--architecture">Architecture</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:kubernetes" class="md-tag md-tag-icon md-tag--kubernetes">Kubernetes</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:networking" class="md-tag md-tag-icon md-tag--networking">Networking</a>
       
     
       
@@ -4154,156 +4488,405 @@
   
 
 
-<h1 id="kubernetes-storage-and-ingress-standard">Kubernetes Storage and Ingress Standard<a class="headerlink" href="#kubernetes-storage-and-ingress-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes how to design and validate Kubernetes storage and ingress for public reusable guidance.</p>
-<h2 id="storage-classes">Storage Classes<a class="headerlink" href="#storage-classes" title="Permanent link">&para;</a></h2>
-<p>Use separate StorageClasses for different workload types:</p>
+<h1 id="kubernetes-ingress">Kubernetes 存储与 Ingress 标准<a class="headerlink" href="#kubernetes-ingress" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义在业务工作负载依赖 Kubernetes 存储和 Ingress 之前，如何设计和验证这两项能力。</p>
+<p>核心判断是：</p>
+<blockquote>
+<p>存储和 Ingress 不是插件，而是平台与每个应用团队之间的生产契约。</p>
+</blockquote>
+<p>存储决定状态能否保留、扩容、迁移和恢复。Ingress 决定用户如何访问服务、TLS 如何续期、流量如何记录，以及集群的外部边界从哪里开始。如果把它们当作默认安装组件，生产风险会一直不可见，直到第一次故障才爆出来。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
+<ul>
+<li>供给新的 Kubernetes 集群。</li>
+<li>引入或变更 CSI 驱动、StorageClass、IngressClass 或 Ingress 控制器。</li>
+<li>接入有状态工作负载。</li>
+<li>通过公网或内网 Ingress 发布服务。</li>
+<li>在集群成为共享生产平台前进行评审。</li>
+</ul>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不覆盖：</p>
+<ul>
+<li>完整数据库备份架构。</li>
+<li>服务网格流量策略。</li>
+<li>云负载均衡成本优化细节。</li>
+<li>应用层数据模型设计。</li>
+<li>某个 Ingress 控制器的所有功能。</li>
+</ul>
+<h2 id="_4">设计原则<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>生产平台应暴露少量命名清晰的选择，而不是一堆隐式默认值。</p>
+<p>应用团队应该能回答：</p>
+<ul>
+<li>普通持久化数据应使用哪个 StorageClass？</li>
+<li>哪个 StorageClass 支持扩容？</li>
+<li>如有，哪个存储画像支持 <code>ReadWriteMany</code>？</li>
+<li>谁拥有备份和恢复？</li>
+<li>哪个 IngressClass 用于公网流量？</li>
+<li>哪个 IngressClass 用于内网流量？</li>
+<li>谁拥有 DNS 和 TLS 续期？</li>
+<li>默认请求限制和超时是多少？</li>
+</ul>
+<p>如果这些答案必须翻安装历史才能找到，平台契约就不够清晰。</p>
+<h2 id="_5">存储决策<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">显式定义存储画像<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>至少定义这些存储画像：</p>
 <table>
 <thead>
 <tr>
-<th>Storage Type</th>
-<th>Typical Use</th>
-<th>Notes</th>
+<th>画像</th>
+<th>典型用途</th>
+<th>访问模式</th>
+<th>扩容</th>
+<th>备份预期</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Block storage</td>
-<td>Databases and single-writer stateful workloads</td>
-<td>Usually ReadWriteOnce.</td>
+<td><code>standard-rwo</code></td>
+<td>普通应用持久化</td>
+<td><code>ReadWriteOnce</code></td>
+<td>支持</td>
+<td>应用或平台策略</td>
+<td>只有对大多数应用安全时才设为默认。</td>
 </tr>
 <tr>
-<td>Shared file storage</td>
-<td>Multi-pod shared files, uploads, reports</td>
-<td>Often ReadWriteMany.</td>
+<td><code>fast-rwo</code></td>
+<td>延迟敏感状态</td>
+<td><code>ReadWriteOnce</code></td>
+<td>支持</td>
+<td>必须</td>
+<td>仅在性能需求被证明后使用。</td>
 </tr>
 <tr>
-<td>Ephemeral storage</td>
-<td>Cache or temporary processing</td>
-<td>Must tolerate data loss.</td>
+<td><code>shared-rwx</code></td>
+<td>共享文件、上传、模型产物</td>
+<td><code>ReadWriteMany</code></td>
+<td>平台定义</td>
+<td>必须</td>
+<td>通常是 NFS 或托管文件存储；必须监控真实文件系统使用率。</td>
+</tr>
+<tr>
+<td><code>ephemeral</code></td>
+<td>可丢弃缓存或临时状态</td>
+<td>视实现而定</td>
+<td>不保证</td>
+<td>无</td>
+<td>不得保存业务关键数据。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="csi-driver-checklist">CSI Driver Checklist<a class="headerlink" href="#csi-driver-checklist" title="Permanent link">&para;</a></h2>
-<p>Before production use:</p>
+<p>在创建、挂载、扩容、删除和失败行为都被验证前，不要把某个 StorageClass 设为默认。</p>
+<h3 id="_7">把回收策略作为刻意决策<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><code>Delete</code> 很方便，但 PVC 被删除时可能直接销毁数据。<code>Retain</code> 能保护数据，但会制造清理责任。</p>
+<p>使用以下规则：</p>
 <ul>
-<li>Driver version matches Kubernetes version.</li>
-<li>IAM or workload identity is configured.</li>
-<li>Node plugin pods are healthy.</li>
-<li>Controller plugin pods are healthy.</li>
-<li>Volume provisioning works.</li>
-<li>Volume expansion works if required.</li>
-<li>Snapshot support is tested if required.</li>
+<li>只有可丢弃或易重建数据才使用 <code>Delete</code>。</li>
+<li>业务数据默认使用 <code>Retain</code>，除非备份和恢复契约另有说明。</li>
+<li>记录谁可以删除保留卷，以及如何确认数据已经不再需要。</li>
 </ul>
-<p>Validation:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>csidriver
-kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>csi
+<h3 id="runbook">把扩容当作 Runbook，而不是勾选项<a class="headerlink" href="#runbook" title="Permanent link">&para;</a></h3>
+<p><code>allowVolumeExpansion: true</code> 只能说明 Kubernetes 接受扩容请求，不证明底层文件系统、CSI 驱动、配额和应用都能安全承受这个变化。</p>
+<p>批准某个画像支持扩容前，验证：</p>
+<ul>
+<li>CSI 驱动支持在线或离线扩容。</li>
+<li>文件系统能看到新的容量。</li>
+<li>应用能容忍扩容路径。</li>
+<li>扩容后监控仍跟踪真实文件系统。</li>
+<li>回滚预期明确。缩小卷通常不是安全回滚。</li>
+</ul>
+<h3 id="_8">把备份责任与存储供给分开<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>创建 PV 不等于保护其中的数据。</p>
+<p>每个存储画像都要记录：</p>
+<ul>
+<li>是否需要备份。</li>
+<li>快照是崩溃一致还是应用一致。</li>
+<li>谁拥有恢复测试。</li>
+<li>预期恢复耗时。</li>
+<li>哪些工作负载不得使用该画像。</li>
+</ul>
+<h2 id="csi">CSI 验证<a class="headerlink" href="#csi" title="Permanent link">&para;</a></h2>
+<p>有状态工作负载接入前，验证 CSI：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>csidrivers
 kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
+kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-A<span class="w"> </span>--sort-by<span class="o">=</span>.lastTimestamp
 </code></pre></div>
-<h2 id="pvc-test">PVC Test<a class="headerlink" href="#pvc-test" title="Permanent link">&para;</a></h2>
-<p>Create a test PVC and pod in a non-production namespace:</p>
+<p>然后运行真实 PVC 测试：</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
 <span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-pvc</span>
-<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-namespace</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">storage-validation</span>
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+<span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">standard-rwo</span>
 <span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span>
-<span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-storage-class</span>
+<span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">storage-validation</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Never</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">writer</span>
+<span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">busybox:1.36</span>
+<span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;sh&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;-c&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;date</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">/data/proof</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">cat</span><span class="nv"> </span><span class="s">/data/proof&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data</span>
+<span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data</span>
+<span class="w">      </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">storage-validation</span>
 </code></pre></div>
-<p>Validate:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-n<span class="w"> </span>example-namespace
-kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>example-pvc<span class="w"> </span>-n<span class="w"> </span>example-namespace
-</code></pre></div>
-<h2 id="ingress-controller-checklist">Ingress Controller Checklist<a class="headerlink" href="#ingress-controller-checklist" title="Permanent link">&para;</a></h2>
-<p>Before exposing services:</p>
+<p>通过条件：</p>
 <ul>
-<li>IngressClass exists.</li>
-<li>Controller pods are healthy.</li>
-<li>Load balancer annotations are documented.</li>
-<li>TLS certificate lifecycle is defined.</li>
-<li>Default backend behavior is understood.</li>
-<li>Access logs and metrics are enabled.</li>
-<li>Health checks match application behavior.</li>
+<li>PVC 变为 <code>Bound</code>。</li>
+<li>Pod 调度到预期节点。</li>
+<li>文件写入成功。</li>
+<li>Events 中没有 CSI 错误。</li>
+<li>删除测试资源后，表现符合预期回收行为。</li>
 </ul>
-<p>Validation:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>ingressclass
-kubectl<span class="w"> </span>get<span class="w"> </span>ingress<span class="w"> </span>-A
-kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>LoadBalancer
-</code></pre></div>
-<h2 id="ingress-template">Ingress Template<a class="headerlink" href="#ingress-template" title="Permanent link">&para;</a></h2>
+<h2 id="ingress">Ingress 决策<a class="headerlink" href="#ingress" title="Permanent link">&para;</a></h2>
+<h3 id="ingressclass">把 IngressClass 定义为暴露契约<a class="headerlink" href="#ingressclass" title="Permanent link">&para;</a></h3>
+<p>IngressClass 名称应表达暴露范围和所有权。</p>
+<p>推荐模式：</p>
+<table>
+<thead>
+<tr>
+<th>IngressClass</th>
+<th>暴露范围</th>
+<th>典型所有者</th>
+<th>必须控制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>public-web</code></td>
+<td>面向互联网</td>
+<td>平台或边缘团队</td>
+<td>TLS、DNS、访问日志、如需要则 WAF 或网关评审。</td>
+</tr>
+<tr>
+<td><code>private-web</code></td>
+<td>内部网络</td>
+<td>平台团队</td>
+<td>内网负载均衡、私有 DNS、访问日志。</td>
+</tr>
+<tr>
+<td><code>partner-web</code></td>
+<td>受限外部访问</td>
+<td>平台与安全团队</td>
+<td>白名单、TLS、审计、显式审批。</td>
+</tr>
+</tbody>
+</table>
+<p>避免在没有默认规则的情况下运行多个 Ingress 控制器。应用不应因为漏了一个注解就暴露到错误控制器。</p>
+<h3 id="tls">把 TLS 当作生命周期来拥有<a class="headerlink" href="#tls" title="Permanent link">&para;</a></h3>
+<p>TLS 不是证书首次签发后就结束。</p>
+<p>必须记录：</p>
+<ul>
+<li>证书签发者。</li>
+<li>续期机制。</li>
+<li>DNS 验证所有者。</li>
+<li>过期告警。</li>
+<li>Secret 所在命名空间与访问策略。</li>
+<li>应急替换流程。</li>
+</ul>
+<p>如果 TLS 续期是手工流程，服务必须有过期告警和明确负责人。</p>
+<h3 id="ingress_1">标准化 Ingress 默认值<a class="headerlink" href="#ingress_1" title="Permanent link">&para;</a></h3>
+<p>设置并记录：</p>
+<ul>
+<li>请求超时。</li>
+<li>请求体大小。</li>
+<li>WebSocket 支持。</li>
+<li>HTTP 到 HTTPS 跳转。</li>
+<li>访问日志格式。</li>
+<li>真实客户端 IP 处理方式。</li>
+<li>健康检查路径。</li>
+<li>如使用，限流或 WAF 边界。</li>
+</ul>
+<p>这些值会影响应用行为，不能隐藏在 Ingress 控制器 chart 中而没有平台文档。</p>
+<h2 id="ingress_2">Ingress 验证<a class="headerlink" href="#ingress_2" title="Permanent link">&para;</a></h2>
+<p>暴露真实流量前，先使用小型验证服务：</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ingress</span>
 <span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-ingress</span>
-<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-namespace</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-validation</span>
 <span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">nginx.ingress.kubernetes.io/proxy-body-size</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;20m&quot;</span>
+<span class="w">    </span><span class="nt">cert-manager.io/cluster-issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">letsencrypt-production</span>
 <span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ingressClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">  </span><span class="nt">ingressClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">public-web</span>
 <span class="w">  </span><span class="nt">tls</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service.example.com</span>
-<span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-tls</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.devops.test</span>
+<span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-validation-tls</span>
 <span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service.example.com</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.devops.test</span>
 <span class="w">      </span><span class="nt">http</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">paths</span><span class="p">:</span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
 <span class="w">            </span><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prefix</span>
 <span class="w">            </span><span class="nt">backend</span><span class="p">:</span>
 <span class="w">              </span><span class="nt">service</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-service</span>
+<span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-validation</span>
 <span class="w">                </span><span class="nt">port</span><span class="p">:</span>
 <span class="w">                  </span><span class="nt">number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
 </code></pre></div>
-<p>Do not commit real TLS secrets.</p>
-<h2 id="common-failure-modes">Common Failure Modes<a class="headerlink" href="#common-failure-modes" title="Permanent link">&para;</a></h2>
+<p>通过条件：</p>
+<ul>
+<li>Ingress 被分配给预期控制器。</li>
+<li>负载均衡或网关地址出现。</li>
+<li>DNS 解析到预期目标。</li>
+<li>TLS 证书有效并可续期。</li>
+<li>访问日志和请求指标出现。</li>
+<li>404、5xx 和慢请求能在预期仪表盘或查询路径里看到。</li>
+</ul>
+<h2 id="_9">验证清单<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Area</th>
-<th>Symptom</th>
-<th>Check</th>
+<th>领域</th>
+<th>检查</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Storage</td>
-<td>PVC stuck pending</td>
-<td>StorageClass, CSI controller, IAM, quota</td>
+<td>StorageClass</td>
+<td>默认值是刻意设置、已记录、已验证。</td>
 </tr>
 <tr>
-<td>Storage</td>
-<td>Pod mount failure</td>
-<td>Node plugin, filesystem, access mode</td>
+<td>CSI</td>
+<td>控制器和节点插件在各节点池健康。</td>
 </tr>
 <tr>
-<td>Ingress</td>
-<td>404</td>
-<td>Ingress class, path, service selector</td>
+<td>PVC</td>
+<td>创建、挂载、写入、删除和扩容行为已知。</td>
 </tr>
 <tr>
-<td>Ingress</td>
-<td>502</td>
-<td>Backend pod readiness or service port</td>
+<td>回收</td>
+<td>数据保留行为匹配工作负载重要性。</td>
 </tr>
 <tr>
-<td>Ingress</td>
-<td>TLS error</td>
-<td>Secret, certificate chain, host mismatch</td>
+<td>备份</td>
+<td>恢复负责人和恢复测试预期已记录。</td>
+</tr>
+<tr>
+<td>IngressClass</td>
+<td>公网与内网暴露路径清晰分离。</td>
+</tr>
+<tr>
+<td>TLS</td>
+<td>签发者、续期、过期告警和应急替换明确。</td>
+</tr>
+<tr>
+<td>日志与指标</td>
+<td>存储和 Ingress 故障可观测。</td>
+</tr>
+<tr>
+<td>所有权</td>
+<td>平台责任和应用责任分离。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_10">常见失败模式<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>症状</th>
+<th>预防方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>缺少默认 StorageClass</td>
+<td>PVC 一直 <code>Pending</code>。</td>
+<td>定义安全默认值，或要求显式设置 <code>storageClassName</code>。</td>
+</tr>
+<tr>
+<td>访问模式错误</td>
+<td>Pod 无法挂载卷，或多写工作负载造成数据损坏。</td>
+<td>将工作负载映射到批准的画像。</td>
+</tr>
+<tr>
+<td>CSI IAM 或身份失败</td>
+<td>PVC 无法创建，Events 显示云权限错误。</td>
+<td>接入前验证工作负载身份。</td>
+</tr>
+<tr>
+<td>回收策略不清</td>
+<td>数据过早删除或永久保留。</td>
+<td>记录回收策略和清理负责人。</td>
+</tr>
+<tr>
+<td>把 NFS 当作隐形容量池</td>
+<td>PVC 看似正常，后端文件系统却被写满。</td>
+<td>同时监控真实文件系统使用率和 PVC 元数据。</td>
+</tr>
+<tr>
+<td>IngressClass 错误</td>
+<td>服务不可达或意外公网暴露。</td>
+<td>使用显式 <code>ingressClassName</code>，必要时加准入检查。</td>
+</tr>
+<tr>
+<td>TLS 续期缺失</td>
+<td>证书过期后服务失败。</td>
+<td>添加过期告警和明确续期负责人。</td>
+</tr>
+<tr>
+<td>控制器默认值隐藏</td>
+<td>大文件上传、WebSocket 或慢请求异常失败。</td>
+<td>发布默认超时和请求体大小策略。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">回滚与变更边界<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>存储和 Ingress 变更的回滚属性不同。</p>
+<p>通常可逆：</p>
 <ul>
-<li><a href="../nfs-pvc-capacity-management/">NFS PVC Capacity Management</a></li>
-<li><a href="../../../standards-manual/networking/nginx-reverse-proxy-tls-standard/">Nginx Reverse Proxy and TLS Standard</a></li>
+<li>新增 StorageClass。</li>
+<li>新增 IngressClass。</li>
+<li>修改验证 Ingress 的注解。</li>
+<li>在 canary 后替换 Ingress 控制器配置。</li>
+</ul>
+<p>高风险或无法安全回滚：</p>
+<ul>
+<li>在已有工作负载依赖后改变默认 StorageClass。</li>
+<li>没有迁移计划就改变回收策略。</li>
+<li>缩小存储。</li>
+<li>没有备份与恢复证明就迁移有状态工作负载到新存储后端。</li>
+<li>没有规划 DNS、TLS 和客户端缓存就替换公网入口。</li>
+</ul>
+<p>如果回滚路径是“从备份恢复”，这就不是普通配置回滚，而是数据恢复操作。</p>
+<h2 id="_12">安全说明<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li>不要在示例中公开真实主机名、证书细节、私有 IP 或客户域名。</li>
+<li>限制 TLS Secret 访问。</li>
+<li>避免把过宽云凭据挂载给 CSI 组件。</li>
+<li>存储驱动使用最小权限工作负载身份。</li>
+<li>DNS 委派前评审公网 Ingress 暴露。</li>
+<li>保留访问日志用于事故复盘，但避免记录敏感请求体。</li>
+</ul>
+<h2 id="_13">评审周期<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>在以下时点评审本标准：</p>
+<ul>
+<li>新集群接收工作负载前。</li>
+<li>变更 CSI 驱动、StorageClass、Ingress 控制器或 IngressClass 前。</li>
+<li>任何数据丢失、存储饱和、证书过期或公网暴露事故后。</li>
+<li>接入新的有状态工作负载类别前。</li>
+</ul>
+<h2 id="_14">相关文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../kubernetes-cluster-provisioning-standard/">Kubernetes 集群供给标准</a></li>
+<li><a href="../nfs-pvc-capacity-management/">NFS PVC 容量管理</a></li>
+<li><a href="../../../reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/">PVC 使用率告警 Runbook</a></li>
+<li><a href="../../../reliable-operations/recovery/tls-certificate-expiry-runbook/">TLS 证书过期 Runbook</a></li>
 </ul>
 
 
@@ -4327,7 +4910,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:51:03 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4337,7 +4920,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:51:03 UTC">2026年6月28日</span>
   </span>
 
     

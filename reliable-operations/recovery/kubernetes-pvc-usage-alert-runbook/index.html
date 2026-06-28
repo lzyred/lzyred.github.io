@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Kubernetes PVC usage alert runbook for storage capacity response.">
+        <meta name="description" content="Kubernetes PVC 使用率告警响应 Runbook，覆盖真实使用量、影响、数据重要性、扩容路径、清理安全和升级。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="PVC 使用率告警 - DevOps 专家知识库" />
-<meta property="og:description" content="Kubernetes PVC usage alert runbook for storage capacity response." />
+<meta property="og:description" content="Kubernetes PVC 使用率告警响应 Runbook，覆盖真实使用量、影响、数据重要性、扩容路径、清理安全和升级。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="PVC 使用率告警 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Kubernetes PVC usage alert runbook for storage capacity response." />
+<meta property="twitter:description" content="Kubernetes PVC 使用率告警响应 Runbook，覆盖真实使用量、影响、数据重要性、扩容路径、清理安全和升级。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kubernetes-pvc-usage-alert-runbook" class="md-skip">
+        <a href="#pvc-runbook" class="md-skip">
           跳转至
         </a>
       
@@ -1841,10 +1841,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -1852,10 +1852,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alert-names" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alert Names
+        触发条件
       
     </span>
   </a>
@@ -1863,10 +1863,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-triage" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Triage
+        前置条件
       
     </span>
   </a>
@@ -1874,10 +1874,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#confirm-usage" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Confirm Usage
+        影响检查
       
     </span>
   </a>
@@ -1885,10 +1885,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#determine-impact" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Determine Impact
+        确认真实使用量
       
     </span>
   </a>
@@ -1896,22 +1896,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#response-paths" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Response Paths
+        决策树
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Response Paths">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作流程">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#path-a-temporary-or-disposable-data" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path A: Temporary or Disposable Data
+        1. 识别负责人和数据类别
       
     </span>
   </a>
@@ -1919,10 +1930,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#path-b-business-critical-data" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path B: Business-Critical Data
+        2. 必要时停止不安全增长
       
     </span>
   </a>
@@ -1930,10 +1941,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#path-c-rapid-unexpected-growth" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path C: Rapid Unexpected Growth
+        3. 只清理被批准的数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 数据必须保留时扩容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 不能扩容时迁移
       
     </span>
   </a>
@@ -1946,10 +1979,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#expansion-example" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Expansion Example
+        验证
       
     </span>
   </a>
@@ -1957,10 +1990,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#closure-criteria" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Closure Criteria
+        回滚与升级
       
     </span>
   </a>
@@ -1968,10 +2001,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#post-incident-notes" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Incident Notes
+        事故后复盘
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4006,10 +4050,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -4017,10 +4061,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alert-names" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alert Names
+        触发条件
       
     </span>
   </a>
@@ -4028,10 +4072,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-triage" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Triage
+        前置条件
       
     </span>
   </a>
@@ -4039,10 +4083,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#confirm-usage" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Confirm Usage
+        影响检查
       
     </span>
   </a>
@@ -4050,10 +4094,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#determine-impact" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Determine Impact
+        确认真实使用量
       
     </span>
   </a>
@@ -4061,22 +4105,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#response-paths" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Response Paths
+        决策树
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Response Paths">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作流程">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#path-a-temporary-or-disposable-data" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path A: Temporary or Disposable Data
+        1. 识别负责人和数据类别
       
     </span>
   </a>
@@ -4084,10 +4139,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#path-b-business-critical-data" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path B: Business-Critical Data
+        2. 必要时停止不安全增长
       
     </span>
   </a>
@@ -4095,10 +4150,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#path-c-rapid-unexpected-growth" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path C: Rapid Unexpected Growth
+        3. 只清理被批准的数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 数据必须保留时扩容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 不能扩容时迁移
       
     </span>
   </a>
@@ -4111,10 +4188,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#expansion-example" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Expansion Example
+        验证
       
     </span>
   </a>
@@ -4122,10 +4199,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#closure-criteria" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Closure Criteria
+        回滚与升级
       
     </span>
   </a>
@@ -4133,10 +4210,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#post-incident-notes" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Incident Notes
+        事故后复盘
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4269,90 +4357,265 @@
   
 
 
-<h1 id="kubernetes-pvc-usage-alert-runbook">Kubernetes PVC Usage Alert Runbook<a class="headerlink" href="#kubernetes-pvc-usage-alert-runbook" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This runbook guides an operator through responding to a Kubernetes PVC usage alert.</p>
-<h2 id="alert-names">Alert Names<a class="headerlink" href="#alert-names" title="Permanent link">&para;</a></h2>
+<h1 id="pvc-runbook">PVC 使用率告警 Runbook<a class="headerlink" href="#pvc-runbook" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本 Runbook 定义当 Kubernetes PersistentVolumeClaim 接近或达到容量阈值时，如何响应。</p>
+<p>核心判断是：</p>
+<blockquote>
+<p>PVC 使用率告警是数据风险告警，不是磁盘清理工单。</p>
+</blockquote>
+<p>响应必须识别所属工作负载、确认真实文件系统使用量、理解数据是可丢弃还是业务关键，并选择不会悄悄删除状态的恢复路径。</p>
+<h2 id="_2">触发条件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>以下告警适用本 Runbook：</p>
 <ul>
-<li><code>KubernetesPVCUsageHigh</code></li>
-<li><code>KubernetesPVCUsageCritical</code></li>
+<li><code>KubePersistentVolumeFillingUp</code></li>
+<li><code>KubePersistentVolumeUsageHigh</code></li>
+<li><code>KubeletVolumeStatsUsedBytes</code> 阈值告警</li>
+<li>与 Kubernetes PVC 关联的 NFS 或共享文件系统容量告警</li>
+<li>表示写入因存储满而失败的应用告警</li>
 </ul>
-<h2 id="initial-triage">Initial Triage<a class="headerlink" href="#initial-triage" title="Permanent link">&para;</a></h2>
-<p>Identify the affected PVC:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;pvc-name&gt;
-kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span>wide
-</code></pre></div>
-<p>Check whether the application is healthy:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>--sort-by<span class="o">=</span><span class="s1">&#39;.lastTimestamp&#39;</span>
-</code></pre></div>
-<h2 id="confirm-usage">Confirm Usage<a class="headerlink" href="#confirm-usage" title="Permanent link">&para;</a></h2>
-<p>If kubelet volume metrics are available, check dashboard or Prometheus:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">kubelet_volume_stats_used_bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nv">kubelet_volume_stats_capacity_bytes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span>
-</code></pre></div>
-<p>For NFS-backed storage, confirm on the storage host or observation mount:</p>
-<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>&lt;storage-root&gt;
-du<span class="w"> </span>-sh<span class="w"> </span>&lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
-</code></pre></div>
-<h2 id="determine-impact">Determine Impact<a class="headerlink" href="#determine-impact" title="Permanent link">&para;</a></h2>
-<p>Ask:</p>
+<p>推荐阈值模型：</p>
+<table>
+<thead>
+<tr>
+<th>严重级别</th>
+<th style="text-align: right;">建议阈值</th>
+<th>预期响应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Warning</td>
+<td style="text-align: right;">已使用 75%，或预计 7 天内写满</td>
+<td>评审负责人和增长模式。</td>
+</tr>
+<tr>
+<td>High</td>
+<td style="text-align: right;">已使用 85%，或预计 72 小时内写满</td>
+<td>准备清理或扩容。</td>
+</tr>
+<tr>
+<td>Critical</td>
+<td style="text-align: right;">已使用 90% 到 95%，或写入失败</td>
+<td>立即行动，负责人不可用时升级。</td>
+</tr>
+</tbody>
+</table>
+<p>阈值应按增长速率调整。增长很慢的归档卷和快速增长的上传卷，不应共享同一种运营紧急度。</p>
+<h2 id="_3">前置条件<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>行动前确认：</p>
 <ul>
-<li>Is the application currently failing writes?</li>
-<li>Is usage increasing quickly?</li>
-<li>Is the PVC used by a stateful service?</li>
-<li>Is the data business-critical?</li>
-<li>Is there a recent release or job that explains growth?</li>
+<li>命名空间、PVC 名、PV 名、StorageClass 和所属工作负载。</li>
+<li>卷类型是块存储、文件存储、本地盘、云盘还是 NFS。</li>
+<li>数据是可丢弃、缓存类、可重建还是业务关键。</li>
+<li>StorageClass 和后端是否支持扩容。</li>
+<li>业务关键数据是否有备份或快照。</li>
+<li>应用负责人是否在线。</li>
 </ul>
-<h2 id="response-paths">Response Paths<a class="headerlink" href="#response-paths" title="Permanent link">&para;</a></h2>
-<h3 id="path-a-temporary-or-disposable-data">Path A: Temporary or Disposable Data<a class="headerlink" href="#path-a-temporary-or-disposable-data" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Confirm the directory contains disposable files.</li>
-<li>Run cleanup in dry-run mode if available.</li>
-<li>Delete only files matching approved retention rules.</li>
-<li>Recheck usage and application health.</li>
-</ol>
-<h3 id="path-b-business-critical-data">Path B: Business-Critical Data<a class="headerlink" href="#path-b-business-critical-data" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Notify the service owner.</li>
-<li>Confirm backup or snapshot status.</li>
-<li>Expand the volume if supported.</li>
-<li>If expansion is not supported, prepare migration to a larger volume.</li>
-<li>Avoid manual deletion unless explicitly approved.</li>
-</ol>
-<h3 id="path-c-rapid-unexpected-growth">Path C: Rapid Unexpected Growth<a class="headerlink" href="#path-c-rapid-unexpected-growth" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Identify the writer process or workload.</li>
-<li>Check recent deployments, batch jobs, and logs.</li>
-<li>Stop or throttle the source of growth if risk is critical.</li>
-<li>Expand or clean up after the growth source is controlled.</li>
-</ol>
-<h2 id="expansion-example">Expansion Example<a class="headerlink" href="#expansion-example" title="Permanent link">&para;</a></h2>
-<p>If the StorageClass supports expansion:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>patch<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;resources&quot;:{&quot;requests&quot;:{&quot;storage&quot;:&quot;200Gi&quot;}}}}&#39;</span>
+<p>如果所有权未知且告警为 critical，在删除任何内容前升级给平台负责人和事故指挥。</p>
+<h2 id="_4">影响检查<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>检查应用是否已经受影响：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;workload-or-pvc-hint&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>--sort-by<span class="o">=</span>.lastTimestamp
 </code></pre></div>
-<p>Validate:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-</code></pre></div>
-<h2 id="closure-criteria">Closure Criteria<a class="headerlink" href="#closure-criteria" title="Permanent link">&para;</a></h2>
-<p>Close the incident only when:</p>
+<p>关注：</p>
 <ul>
-<li>Usage is below the warning threshold or expansion is complete.</li>
-<li>Application read/write checks pass.</li>
-<li>Owner confirms no data loss.</li>
-<li>Monitoring returns to normal.</li>
-<li>A follow-up task exists for retention or capacity planning if needed.</li>
+<li>写入失败。</li>
+<li>Pod 重启。</li>
+<li>readiness 失败。</li>
+<li>应用日志中的 <code>no space left on device</code>。</li>
+<li>由该工作负载引起的 Ingress 或 API 错误。</li>
+<li>队列积压或任务延迟。</li>
 </ul>
-<h2 id="post-incident-notes">Post-Incident Notes<a class="headerlink" href="#post-incident-notes" title="Permanent link">&para;</a></h2>
-<p>Record:</p>
+<p>如果已经有用户影响，把告警当作事故处理，而不是例行维护。</p>
+<h2 id="_5">确认真实使用量<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>Kubernetes PVC 容量和真实文件系统使用量并不总是同一个信号。</p>
+<p>查看 kubelet volume stats 相关对象：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-using-pvc&gt;
+</code></pre></div>
+<p>从批准的诊断 Pod 或应用 Pod 内查看：</p>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>&lt;mount-path&gt;
+du<span class="w"> </span>-xh<span class="w"> </span>--max-depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>&lt;mount-path&gt;<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-h
+</code></pre></div>
+<p>对于 NFS-backed PVC，还要在 NFS 服务器或平台监控路径确认使用量。PVC 可能只请求 <code>100Gi</code>，而真实共享文件系统是承载多个 claim 目录的更大容量池。</p>
+<p>记录：</p>
 <ul>
-<li>Root cause.</li>
-<li>Peak usage.</li>
-<li>Remediation action.</li>
-<li>Prevention item.</li>
-<li>Whether alert thresholds need adjustment.</li>
+<li>PVC 申请容量。</li>
+<li>文件系统总量、已用、可用和使用率。</li>
+<li>最大目录或文件类别。</li>
+<li>最近增长速率。</li>
+<li>所属工作负载和负责人。</li>
+</ul>
+<h2 id="_6">决策树<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>根据数据类型和增长行为选择响应：</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>首选动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可丢弃缓存或临时文件占用空间。</td>
+<td>通过应用批准路径清理。</td>
+</tr>
+<tr>
+<td>业务关键数据按预期增长。</td>
+<td>扩容卷或后端容量。</td>
+</tr>
+<tr>
+<td>业务关键数据异常增长。</td>
+<td>为安全先扩容（如需要），再调查增长来源。</td>
+</tr>
+<tr>
+<td>日志或导出文件写入持久数据路径。</td>
+<td>停止写入者或改路径，再清理批准文件。</td>
+</tr>
+<tr>
+<td>NFS 后端池被多个 PVC 共同写满。</td>
+<td>作为共享存储事故处理；容量动作属于 NFS 层。</td>
+</tr>
+<tr>
+<td>StorageClass 不支持扩容。</td>
+<td>迁移到更大卷或新的存储画像。</td>
+</tr>
+<tr>
+<td>负责人未知。</td>
+<td>不删除；升级，并只做非破坏性缓解。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">操作流程<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 识别负责人和数据类别<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>找到使用 PVC 的工作负载：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .items[*]}{.metadata.name}{&quot;\t&quot;}{range .spec.volumes[*]}{.persistentVolumeClaim.claimName}{&quot; &quot;}{end}{&quot;\n&quot;}{end}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;pvc&gt;
+</code></pre></div>
+<p>识别标签、Deployment、StatefulSet、CronJob 或 Helm release：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>&lt;pod&gt;<span class="w"> </span>--show-labels
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>ownerreferences<span class="w"> </span>&lt;pod&gt;
+</code></pre></div>
+<p>如果当前 kubectl 版本不支持第二条命令，使用：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>&lt;pod&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.metadata.ownerReferences}&#39;</span>
+</code></pre></div>
+<h3 id="2">2. 必要时停止不安全增长<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>如果容量快速耗尽，先停止来源再清理：</p>
+<ul>
+<li>暂停写入数据的 Job 或 CronJob。</li>
+<li>关闭产生文件的 feature flag。</li>
+<li>经批准后缩容非关键写入者。</li>
+<li>将日志或导出从持久路径重定向。</li>
+</ul>
+<p>不要盲目缩容有状态系统。数据库、消息队列和队列类系统必须遵循服务专属 Runbook。</p>
+<h3 id="3">3. 只清理被批准的数据<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>只有理解数据类别后才允许清理。</p>
+<p>安全示例：</p>
+<ul>
+<li>应用拥有的过期临时文件。</li>
+<li>服务负责人批准的可重建缓存目录。</li>
+<li>超过保留期的已完成导出文件。</li>
+<li>保留事故证据后的重复诊断 dump。</li>
+</ul>
+<p>不安全示例：</p>
+<ul>
+<li>数据库目录。</li>
+<li>队列 segment。</li>
+<li>用户上传文件。</li>
+<li>对象元数据。</li>
+<li>所有权未知的文件。</li>
+</ul>
+<p>删除前，如应用负责人需要证据，优先将小样本移动到隔离路径。</p>
+<h3 id="4">4. 数据必须保留时扩容<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p>确认扩容支持：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>storageclass<span class="w"> </span>&lt;storageclass&gt;<span class="w"> </span>-o<span class="w"> </span>yaml
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;<span class="w"> </span>-o<span class="w"> </span>yaml
+</code></pre></div>
+<p>如支持，申请更大容量：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>patch<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--type<span class="w"> </span>merge<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;resources&quot;:{&quot;requests&quot;:{&quot;storage&quot;:&quot;&lt;new-size&gt;&quot;}}}}&#39;</span>
+</code></pre></div>
+<p>然后验证：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;<span class="w"> </span>-w
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;
+</code></pre></div>
+<p>扩容后检查挂载文件系统。有些驱动只有在 Pod 重启或重新挂载后才完成文件系统扩容。</p>
+<h3 id="5">5. 不能扩容时迁移<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<p>如果 StorageClass 不能扩容，或后端不适合该工作负载：</p>
+<ul>
+<li>使用批准的存储画像创建新 PVC。</li>
+<li>停止写入。</li>
+<li>使用批准工具复制数据，并做 checksum 或应用级验证。</li>
+<li>让工作负载使用新 PVC 启动。</li>
+<li>在验证和回滚窗口结束前保留旧 PVC。</li>
+</ul>
+<p>除非数据明确可丢弃，否则迁移后不要立刻删除旧 PVC。</p>
+<h2 id="_8">验证<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>只有全部满足，响应才算完成：</p>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>通过条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用率</td>
+<td>PVC 或后端使用率低于恢复阈值，且不再异常增长。</td>
+</tr>
+<tr>
+<td>应用</td>
+<td>写入成功，readiness 稳定。</td>
+</tr>
+<tr>
+<td>告警</td>
+<td>Critical 告警清除，或降级并有负责人和截止时间。</td>
+</tr>
+<tr>
+<td>数据安全</td>
+<td>没有未经负责人批准删除业务关键数据。</td>
+</tr>
+<tr>
+<td>监控</td>
+<td>仪表盘展示的容量现实与应用看到的一致。</td>
+</tr>
+<tr>
+<td>跟进</td>
+<td>增长原因、负责人和下一次评审日期已记录。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">回滚与升级<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>只有在删除前移动或备份了文件，清理才可能回滚。如果数据已经删除，恢复依赖备份或应用重建能力。</p>
+<p>以下情况升级：</p>
+<ul>
+<li>用户可见写入失败。</li>
+<li>PVC 超过 critical 阈值且负责人不可用。</li>
+<li>数据类别未知。</li>
+<li>扩容失败或持续 pending。</li>
+<li>PVC 层处理后，后端存储仍然满。</li>
+<li>同一 NFS 或共享存储后端上的多个 PVC 同时增长。</li>
+</ul>
+<p>升级信息应包含命名空间、PVC、PV、StorageClass、工作负载、使用率、增长速率和疑似最大路径。</p>
+<h2 id="_10">事故后复盘<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>恢复后回答：</p>
+<ul>
+<li>为什么数据增长没有更早被预测？</li>
+<li>阈值或预测告警是否需要调整？</li>
+<li>工作负载是否需要保留策略？</li>
+<li>日志、导出或临时文件是否应迁移到对象存储？</li>
+<li>当前 StorageClass 是否适合该工作负载？</li>
+<li>是否需要把负责人映射加入平台 inventory？</li>
+</ul>
+<h2 id="_11">相关文档<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../system-design/production-architecture/nfs-pvc-capacity-management/">NFS PVC 容量管理</a></li>
+<li><a href="../../../system-design/production-architecture/kubernetes-storage-ingress-standard/">Kubernetes 存储与 Ingress 标准</a></li>
+<li><a href="../../observability/prometheus-alerting-standard/">Prometheus 告警标准</a></li>
 </ul>
 
 
@@ -4376,7 +4639,7 @@ kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:51:03 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4386,7 +4649,7 @@ kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:51:03 UTC">2026年6月28日</span>
   </span>
 
     

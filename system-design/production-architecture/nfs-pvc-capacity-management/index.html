@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="NFS PVC capacity management for monitoring, alerting, and cleanup.">
+        <meta name="description" content="NFS-backed Kubernetes PVC 容量管理标准，通过连接 PVC 元数据与真实后端文件系统使用量、所有权、阈值和响应规则来降低风险。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="NFS PVC 容量管理 - DevOps 专家知识库" />
-<meta property="og:description" content="NFS PVC capacity management for monitoring, alerting, and cleanup." />
+<meta property="og:description" content="NFS-backed Kubernetes PVC 容量管理标准，通过连接 PVC 元数据与真实后端文件系统使用量、所有权、阈值和响应规则来降低风险。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/system-design/production-architecture/nfs-pvc-capacity-management.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/system-design/production-architecture/nfs-pvc-capacity-management/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="NFS PVC 容量管理 - DevOps 专家知识库" />
-<meta property="twitter:description" content="NFS PVC capacity management for monitoring, alerting, and cleanup." />
+<meta property="twitter:description" content="NFS-backed Kubernetes PVC 容量管理标准，通过连接 PVC 元数据与真实后端文件系统使用量、所有权、阈值和响应规则来降低风险。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/system-design/production-architecture/nfs-pvc-capacity-management.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nfs-pvc-capacity-management" class="md-skip">
+        <a href="#nfs-pvc" class="md-skip">
           跳转至
         </a>
       
@@ -1060,10 +1060,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -1071,10 +1071,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#problem" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Problem
+        适用场景
       
     </span>
   </a>
@@ -1082,10 +1082,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-approach" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Approach
+        非目标
       
     </span>
   </a>
@@ -1093,10 +1093,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-thresholds" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended Thresholds
+        双层容量模型
       
     </span>
   </a>
@@ -1104,10 +1104,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#required-metadata" class="md-nav__link">
+  <a href="#inventory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Required Metadata
+        必需 Inventory
       
     </span>
   </a>
@@ -1115,22 +1115,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-procedure" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Procedure
+        标准阈值
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Standard Procedure">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        监控标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="监控标准">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-identify-nfs-storageclasses" class="md-nav__link">
+  <a href="#kubernetes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Identify NFS StorageClasses
+        收集 Kubernetes 元数据
       
     </span>
   </a>
@@ -1138,10 +1149,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-list-pvcs-using-the-storageclass" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. List PVCs Using the StorageClass
+        收集后端文件系统使用量
       
     </span>
   </a>
@@ -1149,32 +1160,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-measure-filesystem-usage" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Measure Filesystem Usage
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-alert-on-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Alert on Usage
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-remediate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Remediate
+        连接两层信息
       
     </span>
   </a>
@@ -1187,44 +1176,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cleanup-safety" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cleanup Safety
+        容量响应模型
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        FAQ
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="FAQ">
+    <nav class="md-nav" aria-label="容量响应模型">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#why-not-rely-only-on-kubectl-get-pvc" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why not rely only on kubectl get pvc?
+        1. 行动前先分类数据
       
     </span>
   </a>
@@ -1232,10 +1199,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#should-cleanup-be-automatic" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Should cleanup be automatic?
+        2. 选择容量动作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 谨慎扩容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. NFS 抽象错误时迁移
       
     </span>
   </a>
@@ -1244,6 +1233,72 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理安全
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
+      
+    </span>
+  </a>
   
 </li>
       
@@ -4053,10 +4108,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -4064,10 +4119,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#problem" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Problem
+        适用场景
       
     </span>
   </a>
@@ -4075,10 +4130,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-approach" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Approach
+        非目标
       
     </span>
   </a>
@@ -4086,10 +4141,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-thresholds" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended Thresholds
+        双层容量模型
       
     </span>
   </a>
@@ -4097,10 +4152,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#required-metadata" class="md-nav__link">
+  <a href="#inventory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Required Metadata
+        必需 Inventory
       
     </span>
   </a>
@@ -4108,22 +4163,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-procedure" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Procedure
+        标准阈值
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Standard Procedure">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        监控标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="监控标准">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-identify-nfs-storageclasses" class="md-nav__link">
+  <a href="#kubernetes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Identify NFS StorageClasses
+        收集 Kubernetes 元数据
       
     </span>
   </a>
@@ -4131,10 +4197,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-list-pvcs-using-the-storageclass" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. List PVCs Using the StorageClass
+        收集后端文件系统使用量
       
     </span>
   </a>
@@ -4142,32 +4208,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-measure-filesystem-usage" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Measure Filesystem Usage
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-alert-on-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Alert on Usage
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-remediate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Remediate
+        连接两层信息
       
     </span>
   </a>
@@ -4180,44 +4224,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cleanup-safety" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cleanup Safety
+        容量响应模型
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        FAQ
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="FAQ">
+    <nav class="md-nav" aria-label="容量响应模型">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#why-not-rely-only-on-kubectl-get-pvc" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why not rely only on kubectl get pvc?
+        1. 行动前先分类数据
       
     </span>
   </a>
@@ -4225,10 +4247,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#should-cleanup-be-automatic" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Should cleanup be automatic?
+        2. 选择容量动作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 谨慎扩容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. NFS 抽象错误时迁移
       
     </span>
   </a>
@@ -4237,6 +4281,72 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理安全
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
+      
+    </span>
+  </a>
   
 </li>
       
@@ -4366,126 +4476,407 @@
   
 
 
-<h1 id="nfs-pvc-capacity-management">NFS PVC Capacity Management<a class="headerlink" href="#nfs-pvc-capacity-management" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This document defines a standard approach for monitoring and managing Kubernetes PersistentVolumeClaim capacity when NFS or NFS-like shared storage is used.</p>
-<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
-<p>Kubernetes can show requested PVC capacity, but it does not always provide actual filesystem usage for NFS-backed paths. If usage is not monitored at the storage path level, applications can fail unexpectedly when the underlying shared filesystem fills up.</p>
-<h2 id="standard-approach">Standard Approach<a class="headerlink" href="#standard-approach" title="Permanent link">&para;</a></h2>
-<p>Use a two-layer model:</p>
-<ol>
-<li>Kubernetes metadata: namespace, PVC name, PV, StorageClass, requested size.</li>
-<li>Storage filesystem usage: actual path usage from the NFS server or mounted host.</li>
-</ol>
-<p>The monitoring system should join both views and alert when usage crosses defined thresholds.</p>
-<h2 id="recommended-thresholds">Recommended Thresholds<a class="headerlink" href="#recommended-thresholds" title="Permanent link">&para;</a></h2>
+<h1 id="nfs-pvc">NFS PVC 容量管理<a class="headerlink" href="#nfs-pvc" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何管理由 NFS 或类似共享文件存储支撑的 Kubernetes PVC 容量。</p>
+<p>核心判断是：</p>
+<blockquote>
+<p>NFS-backed PVC 容量，本质是披着 Kubernetes 元数据外衣的共享文件系统问题。</p>
+</blockquote>
+<p>PVC request 只告诉 Kubernetes 这个工作负载申请了多少容量。它不一定告诉你后端文件系统真实剩余多少、还有多少 PVC 共享同一个后端，也不一定说明后端是否能强制每个 claim 的容量限制。容量管理必须把两层信息连接起来。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
+<ul>
+<li>Kubernetes PVC 来自 NFS 服务器、托管文件服务或共享文件系统。</li>
+<li>多个 PVC 映射到同一个后端 export 下的不同目录。</li>
+<li>PVC 使用率告警与后端文件系统使用率不一致。</li>
+<li>应用团队使用共享文件、上传、模型产物、报表或批处理输出。</li>
+<li>平台需要容量所有权和告警阈值标准。</li>
+</ul>
+<p>当 NFS 被作为便利的 <code>ReadWriteMany</code> 方案时，本标准尤其重要。便利不等于可以放弃容量隔离、监控和清理规则。</p>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不覆盖：</p>
+<ul>
+<li>从零设计高可用 NFS。</li>
+<li>数据库存储调优。</li>
+<li>用 NFS 替代对象存储保存大型不可变产物。</li>
+<li>共享文件的完整备份架构。</li>
+<li>厂商特定文件服务操作。</li>
+</ul>
+<h2 id="_4">双层容量模型<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>把 NFS PVC 容量作为两个相关但不同的层来管理：</p>
 <table>
 <thead>
 <tr>
-<th>Level</th>
-<th style="text-align: right;">Usage</th>
-<th>Response</th>
+<th>层</th>
+<th>能看到什么</th>
+<th>不能证明什么</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Warning</td>
-<td style="text-align: right;">75%</td>
-<td>Review growth rate and owner.</td>
+<td>Kubernetes PVC 元数据</td>
+<td>Namespace、claim 名、申请容量、StorageClass、PV、挂载关系。</td>
+<td>真实后端剩余空间、共享使用量、文件系统压力。</td>
 </tr>
 <tr>
-<td>High</td>
-<td style="text-align: right;">85%</td>
-<td>Plan cleanup, expansion, or migration.</td>
-</tr>
-<tr>
-<td>Critical</td>
-<td style="text-align: right;">90%</td>
-<td>Take immediate action and notify service owner.</td>
-</tr>
-<tr>
-<td>Emergency</td>
-<td style="text-align: right;">95%</td>
-<td>Stop nonessential writes and execute expansion or cleanup.</td>
+<td>NFS 后端文件系统</td>
+<td>实际总量、已用、可用、inode 使用、目录增长。</td>
+<td>Kubernetes 所有者、命名空间、工作负载意图、数据重要性。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="required-metadata">Required Metadata<a class="headerlink" href="#required-metadata" title="Permanent link">&para;</a></h2>
-<p>Track these fields for each PVC:</p>
-<div class="highlight"><pre><span></span><code>cluster
-namespace
-pvc_name
-pv_name
-storage_class
-requested_capacity
-storage_path
-actual_used
-actual_available
-usage_percent
-owner
-service
-last_checked_at
-</code></pre></div>
-<h2 id="standard-procedure">Standard Procedure<a class="headerlink" href="#standard-procedure" title="Permanent link">&para;</a></h2>
-<h3 id="1-identify-nfs-storageclasses">1. Identify NFS StorageClasses<a class="headerlink" href="#1-identify-nfs-storageclasses" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
-kubectl<span class="w"> </span>describe<span class="w"> </span>storageclass<span class="w"> </span>&lt;storage-class-name&gt;
-</code></pre></div>
-<p>Record provisioner, server, path pattern, reclaim policy, and expansion support.</p>
-<h3 id="2-list-pvcs-using-the-storageclass">2. List PVCs Using the StorageClass<a class="headerlink" href="#2-list-pvcs-using-the-storageclass" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>wide
-kubectl<span class="w"> </span>get<span class="w"> </span>pv
-</code></pre></div>
-<p>Map each PVC to its PV and storage path.</p>
-<h3 id="3-measure-filesystem-usage">3. Measure Filesystem Usage<a class="headerlink" href="#3-measure-filesystem-usage" title="Permanent link">&para;</a></h3>
-<p>On the storage server or mounted observation host:</p>
-<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>&lt;storage-root&gt;
-du<span class="w"> </span>-sh<span class="w"> </span>&lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
-</code></pre></div>
-<p>Use a consistent path convention. If dynamic provisioning creates hashed paths, maintain a PV-to-path mapping.</p>
-<h3 id="4-alert-on-usage">4. Alert on Usage<a class="headerlink" href="#4-alert-on-usage" title="Permanent link">&para;</a></h3>
-<p>Alert messages should include:</p>
-<div class="highlight"><pre><span></span><code>Cluster: example-cluster
-Namespace: example-namespace
-PVC: example-pvc
-StorageClass: example-nfs
-Usage: 87%
-Threshold: 85%
-Recommended Action: review growth and expand or clean up
-</code></pre></div>
-<p>Do not include credentials, real internal domains, or sensitive mount paths in public alert examples.</p>
-<h3 id="5-remediate">5. Remediate<a class="headerlink" href="#5-remediate" title="Permanent link">&para;</a></h3>
-<p>Common remediation options:</p>
+<p>任何单层都不够。</p>
+<p>只看 Kubernetes，可能错过多个 claim 共同写满后端文件系统。只看 NFS，可能知道某个目录很大，却不知道它属于哪个 namespace、工作负载和团队。</p>
+<h2 id="inventory">必需 Inventory<a class="headerlink" href="#inventory" title="Permanent link">&para;</a></h2>
+<p>维护每个 PVC 到后端现实的映射：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td><code>payments-prod</code></td>
+</tr>
+<tr>
+<td>PVC</td>
+<td><code>uploads-data</code></td>
+</tr>
+<tr>
+<td>PV</td>
+<td><code>pvc-abc123</code></td>
+</tr>
+<tr>
+<td>StorageClass</td>
+<td><code>shared-rwx</code></td>
+</tr>
+<tr>
+<td>Backend export</td>
+<td><code>nfs-shared-01:/exports/k8s</code></td>
+</tr>
+<tr>
+<td>Backend path</td>
+<td><code>/exports/k8s/payments-prod/uploads-data</code></td>
+</tr>
+<tr>
+<td>Workload</td>
+<td><code>payments-api</code></td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>平台或应用团队别名</td>
+</tr>
+<tr>
+<td>Data class</td>
+<td>上传、缓存、报表、产物、日志、未知</td>
+</tr>
+<tr>
+<td>Retention</td>
+<td>30 天、负责人定义或无</td>
+</tr>
+<tr>
+<td>Backup</td>
+<td>必须、不需要或未知</td>
+</tr>
+<tr>
+<td>Expansion model</td>
+<td>后端池扩容、目录 quota 或迁移</td>
+</tr>
+</tbody>
+</table>
+<p>如果平台无法把某个目录完整映射到负责人，就不得删除该目录下内容。</p>
+<h2 id="_5">标准阈值<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>使用两组阈值：后端文件系统阈值，以及每 PVC 或每目录增长阈值。</p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th style="text-align: right;">Warning</th>
+<th style="text-align: right;">Critical</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>后端文件系统使用率</td>
+<td style="text-align: right;">75%</td>
+<td style="text-align: right;">90%</td>
+<td>评审增长，计划扩容或清理批准数据。</td>
+</tr>
+<tr>
+<td>后端 inode 使用率</td>
+<td style="text-align: right;">70%</td>
+<td style="text-align: right;">85%</td>
+<td>找出小文件来源和负责人。</td>
+</tr>
+<tr>
+<td>单 PVC 目录增长</td>
+<td style="text-align: right;">24 小时增长 20%</td>
+<td style="text-align: right;">24 小时增长 40%</td>
+<td>识别写入者和数据类别。</td>
+</tr>
+<tr>
+<td>预计写满</td>
+<td style="text-align: right;">7 天</td>
+<td style="text-align: right;">72 小时</td>
+<td>准备容量动作。</td>
+</tr>
+<tr>
+<td>未知负责人数据</td>
+<td style="text-align: right;">任何持续增长</td>
+<td style="text-align: right;">任何 critical 压力</td>
+<td>升级；不要盲删。</td>
+</tr>
+</tbody>
+</table>
+<p>按后端规模和业务风险调节阈值。大型文件系统通常需要比百分比告警更早的预测告警。</p>
+<h2 id="_6">监控标准<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="kubernetes">收集 Kubernetes 元数据<a class="headerlink" href="#kubernetes" title="Permanent link">&para;</a></h3>
+<p>收集：</p>
 <ul>
-<li>Remove expired application files.</li>
-<li>Archive old logs or attachments.</li>
-<li>Expand the backing NFS volume.</li>
-<li>Migrate a high-growth workload to a dedicated volume.</li>
-<li>Add retention policies at application or storage level.</li>
+<li>PVC 名。</li>
+<li>Namespace。</li>
+<li>PV 名。</li>
+<li>StorageClass。</li>
+<li>申请容量。</li>
+<li>Volume mode。</li>
+<li>Access mode。</li>
+<li>使用该 claim 的工作负载。</li>
 </ul>
-<h2 id="cleanup-safety">Cleanup Safety<a class="headerlink" href="#cleanup-safety" title="Permanent link">&para;</a></h2>
-<p>Never delete PVC data using a generic script unless all of these are true:</p>
+<p>Kubernetes 指标不总是暴露后端路径。如果 provisioner 把路径写在 PV attributes 或 annotations 中，应把它纳入 inventory。</p>
+<h3 id="_7">收集后端文件系统使用量<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>从 NFS 服务器、托管文件服务指标或批准的观测主机收集：</p>
 <ul>
-<li>The owner approved the cleanup.</li>
-<li>The target namespace and PVC are explicitly selected.</li>
-<li>A backup or snapshot exists if data is business-critical.</li>
-<li>The script has a dry-run mode.</li>
-<li>The cleanup rule uses age, path, and file type filters.</li>
-<li>The action logs every deleted object.</li>
+<li>文件系统总量、已用、可用和使用率。</li>
+<li>inode 总量、已用、可用和使用率。</li>
+<li>每个 export 使用量。</li>
+<li>可行时的每目录使用量。</li>
+<li>增长速率。</li>
+<li>按大小和文件数排序的 top 目录。</li>
 </ul>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<p>After remediation:</p>
-<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>&lt;storage-root&gt;
-du<span class="w"> </span>-sh<span class="w"> </span>&lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
-kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+<p>对于 Linux NFS 服务器，平台侧采集可能使用：</p>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>/exports/k8s
+df<span class="w"> </span>-i<span class="w"> </span>/exports/k8s
+du<span class="w"> </span>-xh<span class="w"> </span>--max-depth<span class="o">=</span><span class="m">2</span><span class="w"> </span>/exports/k8s<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-h
 </code></pre></div>
-<p>Verify the affected application can still read and write expected data.</p>
-<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
-<h3 id="why-not-rely-only-on-kubectl-get-pvc">Why not rely only on <code>kubectl get pvc</code>?<a class="headerlink" href="#why-not-rely-only-on-kubectl-get-pvc" title="Permanent link">&para;</a></h3>
-<p>PVC capacity shows requested storage, not always real usage. NFS-backed storage requires filesystem-level observation.</p>
-<h3 id="should-cleanup-be-automatic">Should cleanup be automatic?<a class="headerlink" href="#should-cleanup-be-automatic" title="Permanent link">&para;</a></h3>
-<p>Automatic cleanup is acceptable only for clearly disposable data such as temporary files. Business data should require owner approval or a policy-controlled retention system.</p>
+<p>在繁忙文件服务器的高峰期，不要在不了解影响的情况下运行昂贵的递归扫描。</p>
+<h3 id="_8">连接两层信息<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>容量仪表盘和告警应显示：</p>
+<ul>
+<li>后端文件系统压力。</li>
+<li>Top PVC 目录。</li>
+<li>Namespace 和 owner。</li>
+<li>Workload 和数据类别。</li>
+<li>增长趋势。</li>
+<li>最近评审日期。</li>
+</ul>
+<p>真正有用的问题不是“哪块盘满了”，而是“哪个工作负载、哪类数据正在消耗共享容量，什么动作是安全的？”</p>
+<h2 id="_9">容量响应模型<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 行动前先分类数据<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>使用以下分类：</p>
+<table>
+<thead>
+<tr>
+<th>数据类别</th>
+<th>默认动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>缓存</td>
+<td>通过批准的应用方法清理或重建。</td>
+</tr>
+<tr>
+<td>临时导出</td>
+<td>应用保留策略，并把长期产物迁到其他位置。</td>
+</tr>
+<tr>
+<td>用户上传</td>
+<td>未经负责人批准和备份确认，不删除。</td>
+</tr>
+<tr>
+<td>应用状态</td>
+<td>当作业务数据；扩容或迁移。</td>
+</tr>
+<tr>
+<td>日志</td>
+<td>迁移到日志管道或对象存储，按保留期清理。</td>
+</tr>
+<tr>
+<td>未知</td>
+<td>升级；不做破坏性操作。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2">2. 选择容量动作<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>后端容量充足，但单个 PVC 目录增长。</td>
+<td>与负责人协作；执行保留策略、迁移数据或调整 claim 预期。</td>
+</tr>
+<tr>
+<td>多个 claim 共享一个池导致后端写满。</td>
+<td>扩容后端、拆分租户或迁移高增长 claim。</td>
+</tr>
+<tr>
+<td>inode 先于字节耗尽。</td>
+<td>找到小文件工作负载，归档或压缩，并改变应用行为。</td>
+</tr>
+<tr>
+<td>NFS 在负载下性能下降。</td>
+<td>降低扫描压力、拆分工作负载或迁移到更合适后端。</td>
+</tr>
+<tr>
+<td>PVC request 与实际使用不匹配。</td>
+<td>更新 inventory 和告警；不要只依赖申请容量。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3">3. 谨慎扩容<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>对 NFS，扩容可能意味着增加后端文件系统或调整 quota，而不是 patch 某个 PVC。</p>
+<p>扩容前确认：</p>
+<ul>
+<li>后端池余量或云厂商 quota。</li>
+<li>备份或快照姿态。</li>
+<li>扩容是否影响所有租户。</li>
+<li>扩容后的告警阈值。</li>
+<li>新容量和预期 forecast 已记录。</li>
+</ul>
+<h3 id="4-nfs">4. NFS 抽象错误时迁移<a class="headerlink" href="#4-nfs" title="Permanent link">&para;</a></h3>
+<p>NFS 经常被误用于本该放在其他地方的数据。</p>
+<p>以下情况考虑迁移：</p>
+<ul>
+<li>大型不可变产物更适合对象存储。</li>
+<li>数据库被放在共享文件存储上且缺少强理由。</li>
+<li>单个租户主导了共享文件系统容量。</li>
+<li>应用性能依赖 NFS 无法保证的文件系统语义。</li>
+<li>清理依赖高风险手工删除。</li>
+</ul>
+<h2 id="_10">清理安全<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>绝不能因为某个目录很大就直接从 NFS 删除。</p>
+<p>最低删除要求：</p>
+<ul>
+<li>负责人已识别。</li>
+<li>数据类别已识别。</li>
+<li>保留策略或明确审批已确认。</li>
+<li>备份或非关键分类已确认。</li>
+<li>精确路径已评审。</li>
+<li>命令范围限定在目标目录。</li>
+<li>结果已验证。</li>
+</ul>
+<p>优先使用应用级删除，而不是平台 shell 删除。应用通常更知道哪些文件被索引、被引用或可以安全移除。</p>
+<h2 id="_11">验证<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>本标准落地的条件：</p>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>通过条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inventory</td>
+<td>每个 NFS-backed PVC 都映射到 namespace、workload、owner、backend export 和 path。</td>
+</tr>
+<tr>
+<td>指标</td>
+<td>后端字节、后端 inode 和 PVC 元数据能一起看到。</td>
+</tr>
+<tr>
+<td>告警</td>
+<td>后端压力和每目录快速增长都能被发现。</td>
+</tr>
+<tr>
+<td>所有权</td>
+<td>未知 owner 目录被作为风险跟踪。</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>清理、扩容、迁移和升级路径已记录。</td>
+</tr>
+<tr>
+<td>安全</td>
+<td>未经 owner 和数据分类，不做破坏性清理。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_12">常见失败模式<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>只监控 PVC 申请容量</td>
+<td>后端写满而 PVC 看似正常。</td>
+<td>监控后端文件系统使用率。</td>
+</tr>
+<tr>
+<td>只监控 NFS 服务器</td>
+<td>大目录没有清晰 Kubernetes owner。</td>
+<td>维护 PVC 到路径的 inventory。</td>
+</tr>
+<tr>
+<td>共享池没有租户隔离</td>
+<td>单个工作负载消耗所有人的容量。</td>
+<td>使用 quota、独立 export 或独立 StorageClass。</td>
+</tr>
+<tr>
+<td>手工删除未知文件</td>
+<td>数据丢失或应用损坏。</td>
+<td>清理前要求 owner 和数据类别。</td>
+</tr>
+<tr>
+<td>高峰期递归扫描</td>
+<td>调查时进一步拉高 NFS 延迟。</td>
+<td>安排扫描窗口或使用轻量指标。</td>
+</tr>
+<tr>
+<td>没有 inode 告警</td>
+<td>大量小文件在字节未满前破坏写入。</td>
+<td>对 inode 使用率和文件数增长告警。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_13">安全说明<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>不公开真实 export 路径、服务器名、IP 或客户目录名。</li>
+<li>限制 NFS 服务器 shell 访问。</li>
+<li>避免对共享应用文件赋予过宽读取权限。</li>
+<li>用户上传和报表都按潜在敏感数据处理。</li>
+<li>公开文档中的清理命令必须是通用占位示例。</li>
+</ul>
+<h2 id="_14">评审周期<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>在以下时点评审本标准：</p>
+<ul>
+<li>接入新的 NFS-backed StorageClass 前。</li>
+<li>每次 NFS 容量或性能事故后。</li>
+<li>某个租户成为 top 容量消费者时。</li>
+<li>显著增加后端容量前。</li>
+<li>应用数据保留策略变化时。</li>
+</ul>
+<h2 id="_15">相关文档<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/">PVC 使用率告警 Runbook</a></li>
+<li><a href="../kubernetes-storage-ingress-standard/">Kubernetes 存储与 Ingress 标准</a></li>
+<li><a href="../kubernetes-cluster-provisioning-standard/">Kubernetes 集群供给标准</a></li>
+</ul>
 
 
 
@@ -4508,7 +4899,7 @@ kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:51:03 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4518,7 +4909,7 @@ kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:51:03 UTC">2026年6月28日</span>
   </span>
 
     

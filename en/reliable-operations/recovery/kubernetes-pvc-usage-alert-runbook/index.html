@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Kubernetes PVC usage alert runbook for storage capacity response.">
+        <meta name="description" content="Runbook for responding to Kubernetes PVC usage alerts by validating real usage, impact, data criticality, expansion path, cleanup safety, and escalation.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="PVC Usage Alert - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Kubernetes PVC usage alert runbook for storage capacity response." />
+<meta property="og:description" content="Runbook for responding to Kubernetes PVC usage alerts by validating real usage, impact, data criticality, expansion path, cleanup safety, and escalation." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="PVC Usage Alert - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Kubernetes PVC usage alert runbook for storage capacity response." />
+<meta property="twitter:description" content="Runbook for responding to Kubernetes PVC usage alerts by validating real usage, impact, data criticality, expansion path, cleanup safety, and escalation." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kubernetes-pvc-usage-alert-runbook" class="md-skip">
+        <a href="#pvc-usage-alert-runbook" class="md-skip">
           Skip to content
         </a>
       
@@ -1852,10 +1852,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alert-names" class="md-nav__link">
+  <a href="#trigger" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alert Names
+        Trigger
       
     </span>
   </a>
@@ -1863,10 +1863,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-triage" class="md-nav__link">
+  <a href="#preconditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Triage
+        Preconditions
       
     </span>
   </a>
@@ -1874,10 +1874,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#confirm-usage" class="md-nav__link">
+  <a href="#impact-check" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Confirm Usage
+        Impact Check
       
     </span>
   </a>
@@ -1885,10 +1885,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#determine-impact" class="md-nav__link">
+  <a href="#confirm-real-usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Determine Impact
+        Confirm Real Usage
       
     </span>
   </a>
@@ -1896,22 +1896,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#response-paths" class="md-nav__link">
+  <a href="#decision-tree" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Response Paths
+        Decision Tree
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Response Paths">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procedure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#path-a-temporary-or-disposable-data" class="md-nav__link">
+  <a href="#1-identify-owner-and-data-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path A: Temporary or Disposable Data
+        1. Identify owner and data class
       
     </span>
   </a>
@@ -1919,10 +1930,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#path-b-business-critical-data" class="md-nav__link">
+  <a href="#2-stop-unsafe-growth-if-needed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path B: Business-Critical Data
+        2. Stop unsafe growth if needed
       
     </span>
   </a>
@@ -1930,10 +1941,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#path-c-rapid-unexpected-growth" class="md-nav__link">
+  <a href="#3-clean-only-approved-data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path C: Rapid Unexpected Growth
+        3. Clean only approved data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-expand-when-data-must-be-retained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Expand when data must be retained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-migrate-when-expansion-is-not-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Migrate when expansion is not available
       
     </span>
   </a>
@@ -1946,10 +1979,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#expansion-example" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Expansion Example
+        Validation
       
     </span>
   </a>
@@ -1957,10 +1990,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#closure-criteria" class="md-nav__link">
+  <a href="#rollback-and-escalation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Closure Criteria
+        Rollback and Escalation
       
     </span>
   </a>
@@ -1968,10 +2001,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#post-incident-notes" class="md-nav__link">
+  <a href="#post-incident-review" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Incident Notes
+        Post-Incident Review
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documents
       
     </span>
   </a>
@@ -4017,10 +4061,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alert-names" class="md-nav__link">
+  <a href="#trigger" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alert Names
+        Trigger
       
     </span>
   </a>
@@ -4028,10 +4072,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-triage" class="md-nav__link">
+  <a href="#preconditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Triage
+        Preconditions
       
     </span>
   </a>
@@ -4039,10 +4083,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#confirm-usage" class="md-nav__link">
+  <a href="#impact-check" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Confirm Usage
+        Impact Check
       
     </span>
   </a>
@@ -4050,10 +4094,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#determine-impact" class="md-nav__link">
+  <a href="#confirm-real-usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Determine Impact
+        Confirm Real Usage
       
     </span>
   </a>
@@ -4061,22 +4105,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#response-paths" class="md-nav__link">
+  <a href="#decision-tree" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Response Paths
+        Decision Tree
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Response Paths">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procedure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#path-a-temporary-or-disposable-data" class="md-nav__link">
+  <a href="#1-identify-owner-and-data-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path A: Temporary or Disposable Data
+        1. Identify owner and data class
       
     </span>
   </a>
@@ -4084,10 +4139,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#path-b-business-critical-data" class="md-nav__link">
+  <a href="#2-stop-unsafe-growth-if-needed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path B: Business-Critical Data
+        2. Stop unsafe growth if needed
       
     </span>
   </a>
@@ -4095,10 +4150,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#path-c-rapid-unexpected-growth" class="md-nav__link">
+  <a href="#3-clean-only-approved-data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path C: Rapid Unexpected Growth
+        3. Clean only approved data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-expand-when-data-must-be-retained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Expand when data must be retained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-migrate-when-expansion-is-not-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Migrate when expansion is not available
       
     </span>
   </a>
@@ -4111,10 +4188,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#expansion-example" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Expansion Example
+        Validation
       
     </span>
   </a>
@@ -4122,10 +4199,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#closure-criteria" class="md-nav__link">
+  <a href="#rollback-and-escalation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Closure Criteria
+        Rollback and Escalation
       
     </span>
   </a>
@@ -4133,10 +4210,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#post-incident-notes" class="md-nav__link">
+  <a href="#post-incident-review" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Incident Notes
+        Post-Incident Review
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documents
       
     </span>
   </a>
@@ -4269,90 +4357,265 @@
   
 
 
-<h1 id="kubernetes-pvc-usage-alert-runbook">Kubernetes PVC Usage Alert Runbook<a class="headerlink" href="#kubernetes-pvc-usage-alert-runbook" title="Permanent link">&para;</a></h1>
+<h1 id="pvc-usage-alert-runbook">PVC Usage Alert Runbook<a class="headerlink" href="#pvc-usage-alert-runbook" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This runbook guides an operator through responding to a Kubernetes PVC usage alert.</p>
-<h2 id="alert-names">Alert Names<a class="headerlink" href="#alert-names" title="Permanent link">&para;</a></h2>
+<p>This runbook defines how to respond when a Kubernetes PersistentVolumeClaim approaches or reaches its capacity threshold.</p>
+<p>The core judgment is:</p>
+<blockquote>
+<p>A PVC usage alert is a data-risk alert, not a disk-cleanup ticket.</p>
+</blockquote>
+<p>The response must identify the owning workload, confirm real filesystem usage, understand whether the data is disposable or business-critical, and choose a recovery path that does not silently delete state.</p>
+<h2 id="trigger">Trigger<a class="headerlink" href="#trigger" title="Permanent link">&para;</a></h2>
+<p>Use this runbook for alerts such as:</p>
 <ul>
-<li><code>KubernetesPVCUsageHigh</code></li>
-<li><code>KubernetesPVCUsageCritical</code></li>
+<li><code>KubePersistentVolumeFillingUp</code></li>
+<li><code>KubePersistentVolumeUsageHigh</code></li>
+<li><code>KubeletVolumeStatsUsedBytes</code> threshold alerts</li>
+<li>NFS or shared filesystem capacity alerts linked to Kubernetes PVCs</li>
+<li>Application alerts that indicate failed writes caused by full storage</li>
 </ul>
-<h2 id="initial-triage">Initial Triage<a class="headerlink" href="#initial-triage" title="Permanent link">&para;</a></h2>
-<p>Identify the affected PVC:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;pvc-name&gt;
-kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span>wide
-</code></pre></div>
-<p>Check whether the application is healthy:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>--sort-by<span class="o">=</span><span class="s1">&#39;.lastTimestamp&#39;</span>
-</code></pre></div>
-<h2 id="confirm-usage">Confirm Usage<a class="headerlink" href="#confirm-usage" title="Permanent link">&para;</a></h2>
-<p>If kubelet volume metrics are available, check dashboard or Prometheus:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">kubelet_volume_stats_used_bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nv">kubelet_volume_stats_capacity_bytes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span>
-</code></pre></div>
-<p>For NFS-backed storage, confirm on the storage host or observation mount:</p>
-<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>&lt;storage-root&gt;
-du<span class="w"> </span>-sh<span class="w"> </span>&lt;storage-root&gt;/&lt;namespace&gt;/&lt;pvc-name&gt;
-</code></pre></div>
-<h2 id="determine-impact">Determine Impact<a class="headerlink" href="#determine-impact" title="Permanent link">&para;</a></h2>
-<p>Ask:</p>
+<p>Recommended threshold model:</p>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th style="text-align: right;">Suggested Threshold</th>
+<th>Expected Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Warning</td>
+<td style="text-align: right;">75 percent used or forecast full within 7 days</td>
+<td>Review owner and growth pattern.</td>
+</tr>
+<tr>
+<td>High</td>
+<td style="text-align: right;">85 percent used or forecast full within 72 hours</td>
+<td>Prepare cleanup or expansion.</td>
+</tr>
+<tr>
+<td>Critical</td>
+<td style="text-align: right;">90 to 95 percent used or writes failing</td>
+<td>Act immediately and escalate if owner is unavailable.</td>
+</tr>
+</tbody>
+</table>
+<p>Adjust thresholds for workload growth rate. A slow archival volume and a rapidly growing upload volume should not share the same operational urgency.</p>
+<h2 id="preconditions">Preconditions<a class="headerlink" href="#preconditions" title="Permanent link">&para;</a></h2>
+<p>Before acting, confirm:</p>
 <ul>
-<li>Is the application currently failing writes?</li>
-<li>Is usage increasing quickly?</li>
-<li>Is the PVC used by a stateful service?</li>
-<li>Is the data business-critical?</li>
-<li>Is there a recent release or job that explains growth?</li>
+<li>Namespace, PVC name, PV name, StorageClass, and owning workload.</li>
+<li>Whether the volume is block, file, local, cloud disk, or NFS-backed.</li>
+<li>Whether the data is disposable, cache-like, reconstructable, or business-critical.</li>
+<li>Whether expansion is supported by the StorageClass and backend.</li>
+<li>Whether backup or snapshot exists for business-critical data.</li>
+<li>Whether the application owner is available.</li>
 </ul>
-<h2 id="response-paths">Response Paths<a class="headerlink" href="#response-paths" title="Permanent link">&para;</a></h2>
-<h3 id="path-a-temporary-or-disposable-data">Path A: Temporary or Disposable Data<a class="headerlink" href="#path-a-temporary-or-disposable-data" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Confirm the directory contains disposable files.</li>
-<li>Run cleanup in dry-run mode if available.</li>
-<li>Delete only files matching approved retention rules.</li>
-<li>Recheck usage and application health.</li>
-</ol>
-<h3 id="path-b-business-critical-data">Path B: Business-Critical Data<a class="headerlink" href="#path-b-business-critical-data" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Notify the service owner.</li>
-<li>Confirm backup or snapshot status.</li>
-<li>Expand the volume if supported.</li>
-<li>If expansion is not supported, prepare migration to a larger volume.</li>
-<li>Avoid manual deletion unless explicitly approved.</li>
-</ol>
-<h3 id="path-c-rapid-unexpected-growth">Path C: Rapid Unexpected Growth<a class="headerlink" href="#path-c-rapid-unexpected-growth" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Identify the writer process or workload.</li>
-<li>Check recent deployments, batch jobs, and logs.</li>
-<li>Stop or throttle the source of growth if risk is critical.</li>
-<li>Expand or clean up after the growth source is controlled.</li>
-</ol>
-<h2 id="expansion-example">Expansion Example<a class="headerlink" href="#expansion-example" title="Permanent link">&para;</a></h2>
-<p>If the StorageClass supports expansion:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>patch<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;resources&quot;:{&quot;requests&quot;:{&quot;storage&quot;:&quot;200Gi&quot;}}}}&#39;</span>
+<p>If ownership is unknown and the alert is critical, escalate to the platform owner and incident commander before deleting anything.</p>
+<h2 id="impact-check">Impact Check<a class="headerlink" href="#impact-check" title="Permanent link">&para;</a></h2>
+<p>Check whether the application is already affected:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;workload-or-pvc-hint&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>--sort-by<span class="o">=</span>.lastTimestamp
 </code></pre></div>
-<p>Validate:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-</code></pre></div>
-<h2 id="closure-criteria">Closure Criteria<a class="headerlink" href="#closure-criteria" title="Permanent link">&para;</a></h2>
-<p>Close the incident only when:</p>
+<p>Look for:</p>
 <ul>
-<li>Usage is below the warning threshold or expansion is complete.</li>
-<li>Application read/write checks pass.</li>
-<li>Owner confirms no data loss.</li>
-<li>Monitoring returns to normal.</li>
-<li>A follow-up task exists for retention or capacity planning if needed.</li>
+<li>Failed writes.</li>
+<li>Pod restarts.</li>
+<li>Readiness failures.</li>
+<li>Application errors related to <code>no space left on device</code>.</li>
+<li>Ingress or API errors caused by the workload.</li>
+<li>Queue backlog or delayed jobs.</li>
 </ul>
-<h2 id="post-incident-notes">Post-Incident Notes<a class="headerlink" href="#post-incident-notes" title="Permanent link">&para;</a></h2>
+<p>If user impact exists, treat the alert as an incident, not routine maintenance.</p>
+<h2 id="confirm-real-usage">Confirm Real Usage<a class="headerlink" href="#confirm-real-usage" title="Permanent link">&para;</a></h2>
+<p>Kubernetes PVC capacity and actual filesystem usage are not always the same signal.</p>
+<p>For kubelet volume stats:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-using-pvc&gt;
+</code></pre></div>
+<p>From inside an approved diagnostic pod or the application pod:</p>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w"> </span>&lt;mount-path&gt;
+du<span class="w"> </span>-xh<span class="w"> </span>--max-depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>&lt;mount-path&gt;<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-h
+</code></pre></div>
+<p>For NFS-backed PVCs, confirm usage on the NFS server or the platform monitoring path as well. A PVC may request <code>100Gi</code>, while the real shared filesystem is a larger pool with many claim directories.</p>
 <p>Record:</p>
 <ul>
-<li>Root cause.</li>
-<li>Peak usage.</li>
-<li>Remediation action.</li>
-<li>Prevention item.</li>
-<li>Whether alert thresholds need adjustment.</li>
+<li>PVC requested capacity.</li>
+<li>Filesystem total, used, available, and percent used.</li>
+<li>Largest directories or file classes.</li>
+<li>Recent growth rate.</li>
+<li>Owning workload and owner.</li>
+</ul>
+<h2 id="decision-tree">Decision Tree<a class="headerlink" href="#decision-tree" title="Permanent link">&para;</a></h2>
+<p>Choose the response based on data type and growth behavior:</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Preferred Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disposable cache or temporary files consume space.</td>
+<td>Clean up through the application-approved path.</td>
+</tr>
+<tr>
+<td>Business-critical data is growing normally.</td>
+<td>Expand the volume or backend capacity.</td>
+</tr>
+<tr>
+<td>Business-critical data is growing unexpectedly.</td>
+<td>Expand only if needed for safety, then investigate growth source.</td>
+</tr>
+<tr>
+<td>Logs or exports are written to persistent data path.</td>
+<td>Stop the writer or change path, then clean up approved files.</td>
+</tr>
+<tr>
+<td>NFS backend pool is filling across many PVCs.</td>
+<td>Treat as shared storage incident; capacity action belongs to NFS layer.</td>
+</tr>
+<tr>
+<td>StorageClass does not support expansion.</td>
+<td>Migrate to a larger volume or new storage profile.</td>
+</tr>
+<tr>
+<td>Owner is unknown.</td>
+<td>Do not delete. Escalate and apply only non-destructive mitigation.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="procedure">Procedure<a class="headerlink" href="#procedure" title="Permanent link">&para;</a></h2>
+<h3 id="1-identify-owner-and-data-class">1. Identify owner and data class<a class="headerlink" href="#1-identify-owner-and-data-class" title="Permanent link">&para;</a></h3>
+<p>Find the workload using the PVC:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .items[*]}{.metadata.name}{&quot;\t&quot;}{range .spec.volumes[*]}{.persistentVolumeClaim.claimName}{&quot; &quot;}{end}{&quot;\n&quot;}{end}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;pvc&gt;
+</code></pre></div>
+<p>Identify labels, deployment, StatefulSet, CronJob, or Helm release:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>&lt;pod&gt;<span class="w"> </span>--show-labels
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>ownerreferences<span class="w"> </span>&lt;pod&gt;
+</code></pre></div>
+<p>If the second command is unavailable in your kubectl version, inspect owner references with:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>&lt;pod&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.metadata.ownerReferences}&#39;</span>
+</code></pre></div>
+<h3 id="2-stop-unsafe-growth-if-needed">2. Stop unsafe growth if needed<a class="headerlink" href="#2-stop-unsafe-growth-if-needed" title="Permanent link">&para;</a></h3>
+<p>If the volume is filling fast, stop the source before cleaning:</p>
+<ul>
+<li>Pause the job or CronJob writing the data.</li>
+<li>Disable the feature flag producing files.</li>
+<li>Scale down a non-critical writer if approved.</li>
+<li>Redirect logs or exports away from the persistent path.</li>
+</ul>
+<p>Do not scale down stateful systems blindly. For databases, brokers, and queues, follow the service-specific runbook.</p>
+<h3 id="3-clean-only-approved-data">3. Clean only approved data<a class="headerlink" href="#3-clean-only-approved-data" title="Permanent link">&para;</a></h3>
+<p>Cleanup is allowed only when the data class is understood.</p>
+<p>Safe examples:</p>
+<ul>
+<li>Expired temporary files owned by the application.</li>
+<li>Rebuildable cache directories approved by the service owner.</li>
+<li>Completed export files after retention period.</li>
+<li>Duplicate diagnostic dumps after incident evidence is preserved.</li>
+</ul>
+<p>Unsafe examples:</p>
+<ul>
+<li>Database directories.</li>
+<li>Queue segments.</li>
+<li>User uploads.</li>
+<li>Object metadata.</li>
+<li>Files with unknown ownership.</li>
+</ul>
+<p>Before deletion, prefer moving a small sample to a quarantine path when the application owner needs proof.</p>
+<h3 id="4-expand-when-data-must-be-retained">4. Expand when data must be retained<a class="headerlink" href="#4-expand-when-data-must-be-retained" title="Permanent link">&para;</a></h3>
+<p>Confirm expansion support:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>storageclass<span class="w"> </span>&lt;storageclass&gt;<span class="w"> </span>-o<span class="w"> </span>yaml
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;<span class="w"> </span>-o<span class="w"> </span>yaml
+</code></pre></div>
+<p>If supported, request a larger size:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>patch<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--type<span class="w"> </span>merge<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;resources&quot;:{&quot;requests&quot;:{&quot;storage&quot;:&quot;&lt;new-size&gt;&quot;}}}}&#39;</span>
+</code></pre></div>
+<p>Then verify:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;<span class="w"> </span>-w
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>&lt;pvc&gt;
+</code></pre></div>
+<p>Check the mounted filesystem after expansion. For some drivers, filesystem resize completes only after pod restart or remount.</p>
+<h3 id="5-migrate-when-expansion-is-not-available">5. Migrate when expansion is not available<a class="headerlink" href="#5-migrate-when-expansion-is-not-available" title="Permanent link">&para;</a></h3>
+<p>If the StorageClass cannot expand or the backend is wrong for the workload:</p>
+<ul>
+<li>Provision a new PVC using the approved storage profile.</li>
+<li>Stop writes.</li>
+<li>Copy data with an approved tool and checksum or application-level validation.</li>
+<li>Start the workload against the new PVC.</li>
+<li>Keep the old PVC retained until validation and rollback window expire.</li>
+</ul>
+<p>Do not delete the old PVC immediately after migration unless the data is explicitly disposable.</p>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>The response is complete only when:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Pass Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Usage</td>
+<td>PVC or backend usage is below the recovery threshold and no longer rising unexpectedly.</td>
+</tr>
+<tr>
+<td>Application</td>
+<td>Writes succeed and readiness is stable.</td>
+</tr>
+<tr>
+<td>Alerts</td>
+<td>Critical alert cleared or downgraded with an owner and deadline.</td>
+</tr>
+<tr>
+<td>Data safety</td>
+<td>No business-critical data was deleted without owner approval.</td>
+</tr>
+<tr>
+<td>Monitoring</td>
+<td>Dashboards show the same capacity reality as the application sees.</td>
+</tr>
+<tr>
+<td>Follow-up</td>
+<td>Growth cause, owner, and next review date are recorded.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback-and-escalation">Rollback and Escalation<a class="headerlink" href="#rollback-and-escalation" title="Permanent link">&para;</a></h2>
+<p>Cleanup rollback is only possible if files were moved or backed up before deletion. If data was deleted, recovery depends on backups or application reconstruction.</p>
+<p>Escalate when:</p>
+<ul>
+<li>User-facing writes are failing.</li>
+<li>The PVC is above critical threshold and owner is unavailable.</li>
+<li>Data class is unknown.</li>
+<li>Expansion fails or stays pending.</li>
+<li>Backend storage is full even after PVC-level action.</li>
+<li>Multiple PVCs on the same NFS or shared storage backend are filling.</li>
+</ul>
+<p>Include namespace, PVC, PV, StorageClass, workload, usage percent, growth rate, and suspected largest paths.</p>
+<h2 id="post-incident-review">Post-Incident Review<a class="headerlink" href="#post-incident-review" title="Permanent link">&para;</a></h2>
+<p>After recovery, answer:</p>
+<ul>
+<li>Why was the data growth not predicted earlier?</li>
+<li>Should the threshold or forecast alert change?</li>
+<li>Does the workload need retention policy?</li>
+<li>Should logs, exports, or temporary files move to object storage?</li>
+<li>Is the StorageClass appropriate for this workload?</li>
+<li>Does the owner mapping need to be added to the platform inventory?</li>
+</ul>
+<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../system-design/production-architecture/nfs-pvc-capacity-management/">NFS PVC Capacity Management</a></li>
+<li><a href="../../../system-design/production-architecture/kubernetes-storage-ingress-standard/">Kubernetes Storage and Ingress Standard</a></li>
+<li><a href="../../observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
 </ul>
 
 
@@ -4376,7 +4639,7 @@ kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 11:51:03 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4386,7 +4649,7 @@ kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 11:51:03 UTC">June 28, 2026</span>
   </span>
 
     

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Kubernetes cluster provisioning standard for EKS, CCE, and kubeadm-based clusters.">
+        <meta name="description" content="把 Kubernetes 集群供给作为有顺序的平台依赖图来建设的生产标准，而不是一次性的集群创建命令。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Kubernetes 集群供给 - DevOps 专家知识库" />
-<meta property="og:description" content="Kubernetes cluster provisioning standard for EKS, CCE, and kubeadm-based clusters." />
+<meta property="og:description" content="把 Kubernetes 集群供给作为有顺序的平台依赖图来建设的生产标准，而不是一次性的集群创建命令。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/system-design/production-architecture/kubernetes-cluster-provisioning-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/system-design/production-architecture/kubernetes-cluster-provisioning-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Kubernetes 集群供给 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Kubernetes cluster provisioning standard for EKS, CCE, and kubeadm-based clusters." />
+<meta property="twitter:description" content="把 Kubernetes 集群供给作为有顺序的平台依赖图来建设的生产标准，而不是一次性的集群创建命令。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/system-design/production-architecture/kubernetes-cluster-provisioning-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kubernetes-cluster-provisioning-standard" class="md-skip">
+        <a href="#kubernetes" class="md-skip">
           跳转至
         </a>
       
@@ -948,10 +948,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -959,10 +959,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#provisioning-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Provisioning Principles
+        适用场景
       
     </span>
   </a>
@@ -970,10 +970,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#planning-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Planning Checklist
+        非目标
       
     </span>
   </a>
@@ -981,10 +981,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-add-on-order" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Add-on Order
+        供给判断
       
     </span>
   </a>
@@ -992,10 +992,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#managed-cluster-creation-flow" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Managed Cluster Creation Flow
+        决策输入
       
     </span>
   </a>
@@ -1003,10 +1003,126 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#self-managed-kubeadm-flow" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Self-Managed kubeadm Flow
+        参考供给顺序
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参考供给顺序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 定义平台边界
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 冻结版本与插件矩阵
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 先验证网络，再创建节点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 应用接入前配置身份与访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 把节点池当作工作负载契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 在工作负载接入前安装存储
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-ingress-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 发布服务前安装 Ingress 与 TLS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 业务流量进入前安装可观测性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 加入交付与回滚控制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        托管集群画像
       
     </span>
   </a>
@@ -1014,10 +1130,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#application-readiness-gate" class="md-nav__link">
+  <a href="#kubeadm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Application Readiness Gate
+        kubeadm 自建画像
       
     </span>
   </a>
@@ -1025,10 +1141,76 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        应用接入就绪门禁
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚与重建边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3953,10 +4135,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3964,10 +4146,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#provisioning-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Provisioning Principles
+        适用场景
       
     </span>
   </a>
@@ -3975,10 +4157,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#planning-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Planning Checklist
+        非目标
       
     </span>
   </a>
@@ -3986,10 +4168,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-add-on-order" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Add-on Order
+        供给判断
       
     </span>
   </a>
@@ -3997,10 +4179,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#managed-cluster-creation-flow" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Managed Cluster Creation Flow
+        决策输入
       
     </span>
   </a>
@@ -4008,10 +4190,126 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#self-managed-kubeadm-flow" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Self-Managed kubeadm Flow
+        参考供给顺序
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参考供给顺序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 定义平台边界
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 冻结版本与插件矩阵
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 先验证网络，再创建节点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 应用接入前配置身份与访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 把节点池当作工作负载契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 在工作负载接入前安装存储
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-ingress-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 发布服务前安装 Ingress 与 TLS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 业务流量进入前安装可观测性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 加入交付与回滚控制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        托管集群画像
       
     </span>
   </a>
@@ -4019,10 +4317,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#application-readiness-gate" class="md-nav__link">
+  <a href="#kubeadm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Application Readiness Gate
+        kubeadm 自建画像
       
     </span>
   </a>
@@ -4030,10 +4328,76 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        应用接入就绪门禁
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚与重建边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4159,6 +4523,18 @@
         <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
+      
+    
   </nav>
 
 
@@ -4166,121 +4542,411 @@
   
 
 
-<h1 id="kubernetes-cluster-provisioning-standard">Kubernetes Cluster Provisioning Standard<a class="headerlink" href="#kubernetes-cluster-provisioning-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines a repeatable process for creating Kubernetes clusters on managed platforms such as EKS and CCE, or self-managed platforms built with kubeadm.</p>
-<h2 id="provisioning-principles">Provisioning Principles<a class="headerlink" href="#provisioning-principles" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Separate cluster planning from cluster creation.</li>
-<li>Use infrastructure as code or declarative configuration where possible.</li>
-<li>Keep network, IAM, storage, ingress, observability, and CI/CD requirements in the initial design.</li>
-<li>Install only required add-ons.</li>
-<li>Validate each platform layer before deploying applications.</li>
-</ol>
-<h2 id="planning-checklist">Planning Checklist<a class="headerlink" href="#planning-checklist" title="Permanent link">&para;</a></h2>
+<h1 id="kubernetes">Kubernetes 集群供给标准<a class="headerlink" href="#kubernetes" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何供给一个可以承载生产工作负载的 Kubernetes 集群。</p>
+<p>最重要的判断是：</p>
+<blockquote>
+<p>集群供给不是创建控制面的那条命令，而是按顺序构建一张平台依赖图。</p>
+</blockquote>
+<p><code>kubectl get nodes</code> 返回 <code>Ready</code>，只能说明节点加入了集群，不能说明集群已经可生产使用。只有当工作负载身份、网络边界、节点池、存储、Ingress、可观测性、发布控制、备份预期和所有权规则都被明确并验证后，集群才算真正准备好。</p>
+<p>本标准适用于 EKS、CCE、ACK、GKE、AKS 等托管集群，也适用于 kubeadm 自建集群。实现细节不同，但就绪契约相同。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
+<ul>
+<li>建设新的生产或预发 Kubernetes 集群。</li>
+<li>在重大网络、身份或运行时变更后重建集群。</li>
+<li>为多个团队创建可复用的集群画像。</li>
+<li>评审现有集群是否成熟到可以承载业务工作负载。</li>
+<li>把实验性集群转换为平台团队正式拥有的服务。</li>
+</ul>
+<p>本标准不是本地开发集群的快速清单。开发集群可以跳过很多生产控制，但不能把开发集群误认为生产参考架构。</p>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不覆盖：</p>
+<ul>
+<li>某个云厂商控制台的逐步点击流程。</li>
+<li>完整 Kubernetes 安全加固。</li>
+<li>集群内应用架构设计。</li>
+<li>服务网格设计。</li>
+<li>超出供给就绪边界之外的灾难恢复设计。</li>
+</ul>
+<h2 id="_4">供给判断<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>生产集群在部署第一个业务工作负载前，必须回答七个问题：</p>
 <table>
 <thead>
 <tr>
-<th>Area</th>
-<th>Questions</th>
+<th>问题</th>
+<th>必须明确的决策</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Version</td>
-<td>Which Kubernetes version is supported by the platform and add-ons?</td>
+<td>谁拥有平台？</td>
+<td>平台负责人、升级路径、变更窗口和生命周期策略。</td>
 </tr>
 <tr>
-<td>Network</td>
-<td>What VPC, subnets, service CIDR, pod CIDR, and ingress model are required?</td>
+<td>流量能流向哪里？</td>
+<td>VPC 或 VNet、CIDR、Service CIDR、Pod CIDR、DNS、出站、私有端点和入口暴露方式。</td>
 </tr>
 <tr>
-<td>Nodes</td>
-<td>What instance types, architectures, labels, taints, and scaling rules are required?</td>
+<td>谁可以执行操作？</td>
+<td>人员访问、工作负载身份、服务账号、应急访问和审计日志。</td>
 </tr>
 <tr>
-<td>Storage</td>
-<td>Which CSI drivers and default StorageClasses are needed?</td>
+<td>工作负载运行在哪里？</td>
+<td>节点池边界、污点、标签、自动伸缩、运行时、镜像和维护策略。</td>
 </tr>
 <tr>
-<td>Access</td>
-<td>Who has admin access, deploy access, and read-only access?</td>
+<td>状态数据如何保存？</td>
+<td>StorageClass、CSI 驱动、扩容、备份、快照、回收策略和拓扑约束。</td>
 </tr>
 <tr>
-<td>Ingress</td>
-<td>Which ingress controller and load balancer mode will be used?</td>
+<td>用户如何进入？</td>
+<td>IngressClass、负载均衡模型、TLS 归属、DNS 归属和证书续期。</td>
 </tr>
 <tr>
-<td>Observability</td>
-<td>How will metrics, logs, dashboards, and alerts be deployed?</td>
-</tr>
-<tr>
-<td>CI/CD</td>
-<td>How will images be built, pushed, and deployed?</td>
+<td>故障如何被看见和回退？</td>
+<td>指标、日志、事件、告警、发布控制、回滚流程和恢复边界。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="standard-add-on-order">Standard Add-on Order<a class="headerlink" href="#standard-add-on-order" title="Permanent link">&para;</a></h2>
-<p>Install and validate in this order:</p>
-<ol>
-<li>Core DNS and kube-proxy compatibility.</li>
-<li>CNI plugin.</li>
-<li>CSI drivers for block and shared storage.</li>
-<li>Metrics server.</li>
-<li>Ingress controller.</li>
-<li>Cluster autoscaler or managed node autoscaling.</li>
-<li>Observability stack.</li>
-<li>GitOps or CI/CD deploy tooling.</li>
-<li>Security policy and admission controls.</li>
-</ol>
-<h2 id="managed-cluster-creation-flow">Managed Cluster Creation Flow<a class="headerlink" href="#managed-cluster-creation-flow" title="Permanent link">&para;</a></h2>
-<p>Use the provider tool or infrastructure as code to create:</p>
+<p>如果任何答案缺失，集群可能已经存在，但还不是生产就绪。</p>
+<h2 id="_5">决策输入<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>供给前先固化这些输入：</p>
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>必须输入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kubernetes 版本</td>
+<td>目标版本、版本偏移支持、插件兼容性、升级窗口。</td>
+</tr>
+<tr>
+<td>网络</td>
+<td>VPC 或 VNet、CIDR 规划、Pod/Service 网段、DNS、出站 NAT、私有端点要求。</td>
+</tr>
+<tr>
+<td>身份</td>
+<td>集群管理员模型、用户组映射、工作负载身份机制、应急账号。</td>
+</tr>
+<tr>
+<td>节点池</td>
+<td>CPU 与内存画像、按量或竞价策略、GPU 或特殊硬件、污点、标签。</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>默认 StorageClass、有状态负载需求、备份与恢复预期、扩容策略。</td>
+</tr>
+<tr>
+<td>Ingress</td>
+<td>公网或内网暴露、控制器、TLS 签发者、DNS 归属、WAF 或网关边界。</td>
+</tr>
+<tr>
+<td>可观测性</td>
+<td>指标、日志、事件、链路、告警路由、仪表盘归属。</td>
+</tr>
+<tr>
+<td>交付</td>
+<td>GitOps 或流水线归属、命名空间 onboarding、回滚路径、发布策略。</td>
+</tr>
+<tr>
+<td>治理</td>
+<td>命名、标签、成本归集、资源配额、镜像策略、平台评审周期。</td>
+</tr>
+</tbody>
+</table>
+<p>供给记录不需要很长，但必须明确。依赖默认值的集群，会在第一次事故中变成运营惊喜。</p>
+<h2 id="_6">参考供给顺序<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 定义平台边界<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>先决定这个集群允许拥有什么。不要因为安装时顺手配置了 DNS、Secret、证书、Ingress、CI/CD、数据库和监控，就让集群意外成为这些能力的所有者。</p>
+<p>至少明确：</p>
 <ul>
-<li>Cluster control plane.</li>
-<li>Node groups.</li>
-<li>IAM roles or workload identity.</li>
-<li>Security groups or network policies.</li>
-<li>Add-on versions.</li>
+<li>生产、预发、开发或共享平台范围。</li>
+<li>允许承载的工作负载类型。</li>
+<li>网络暴露模型。</li>
+<li>团队接入流程。</li>
+<li>平台插件所有权。</li>
+<li>事故升级路径。</li>
 </ul>
-<p>Validation:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cluster-info
-kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+<h3 id="2">2. 冻结版本与插件矩阵<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>选择 Kubernetes 版本时必须同时选择要运行的插件版本。不要先选集群版本，再事后发现插件不兼容。</p>
+<p>矩阵必须包含：</p>
+<ul>
+<li>CNI 插件及版本。</li>
+<li>CoreDNS。</li>
+<li>kube-proxy 或替代组件。</li>
+<li>CSI 驱动。</li>
+<li>Ingress 控制器。</li>
+<li>metrics-server。</li>
+<li>Cluster Autoscaler 或 Karpenter 类组件。</li>
+<li>日志与指标 agent。</li>
+<li>如使用策略控制器，也要纳入矩阵。</li>
+</ul>
+<p>最低可接受产物是一张表：哪些版本已批准、哪些版本被阻断、需要什么升级顺序。</p>
+<h3 id="3">3. 先验证网络，再创建节点<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>网络比集群更难改。创建节点池前先验证网络。</p>
+<p>必查项：</p>
+<ul>
+<li>Pod 与 Service CIDR 不与 VPC/VNet、对等网络、VPN 网段或本地数据中心网段冲突。</li>
+<li>DNS 可以解析云 API、内部服务和私有端点。</li>
+<li>节点可以访问必要的镜像仓库和控制面端点。</li>
+<li>出站策略是刻意设计的，不是偶然全开放。</li>
+<li>如有需要，入口子网与内网负载均衡子网分离。</li>
+</ul>
+<p>如果网络规划不清楚，就停止。重建一个年轻集群，比长期忍受网段冲突便宜得多。</p>
+<h3 id="4">4. 应用接入前配置身份与访问<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p>人员访问和工作负载访问必须在应用团队进入前设好。</p>
+<p>必须决策：</p>
+<ul>
+<li>哪些用户组拥有 cluster-admin。</li>
+<li>哪些用户组拥有命名空间级管理员权限。</li>
+<li>服务账号如何获得云权限。</li>
+<li>应急访问如何授予、记录和回收。</li>
+<li>哪些审计日志需要保留。</li>
+</ul>
+<p>避免把永久 cluster-admin 绑定到个人用户。使用用户组、限时应急访问和有记录的定期评审。</p>
+<h3 id="5">5. 把节点池当作工作负载契约<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<p>节点池不只是容量，而是工作负载放置契约。</p>
+<p>至少定义：</p>
+<ul>
+<li>通用无状态节点池。</li>
+<li>如有需要，系统或平台插件节点池。</li>
+<li>如有要求，有状态或存储敏感节点池。</li>
+<li>竞价或可抢占节点池只能给可容忍中断的工作负载。</li>
+<li>GPU 或特殊硬件节点池必须通过污点与标签隔离。</li>
+</ul>
+<p>每个节点池都应有标签、必要的污点、自动伸缩边界、镜像生命周期规则和补丁或替换策略。</p>
+<h3 id="6">6. 在工作负载接入前安装存储<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<p>应用部署前先安装 CSI 驱动和 StorageClass。没有经过测试的默认存储路径，集群就不适合承载有状态工作负载。</p>
+<p>最小验证：</p>
+<ul>
+<li>PVC 可以动态创建。</li>
+<li>Pod 可以挂载并写入文件系统。</li>
+<li>扩容行为已知。</li>
+<li>回收策略是刻意选择的。</li>
+<li>备份或快照预期已记录。</li>
+<li>zone 或拓扑约束对调度器可见。</li>
+</ul>
+<p>存储细节见 <a href="../kubernetes-storage-ingress-standard/">Kubernetes 存储与 Ingress 标准</a>。</p>
+<h3 id="7-ingress-tls">7. 发布服务前安装 Ingress 与 TLS<a class="headerlink" href="#7-ingress-tls" title="Permanent link">&para;</a></h3>
+<p>Ingress 必须是平台托管能力，不能让每个团队自行 improvisation。</p>
+<p>验证：</p>
+<ul>
+<li>IngressClass 归属。</li>
+<li>公网或内网暴露方式。</li>
+<li>TLS 证书签发者与续期责任。</li>
+<li>DNS 归属。</li>
+<li>请求超时、请求体大小和 WebSocket 预期。</li>
+<li>访问日志和指标可用。</li>
+<li>如需要，明确 WAF 或网关边界。</li>
+</ul>
+<h3 id="8">8. 业务流量进入前安装可观测性<a class="headerlink" href="#8" title="Permanent link">&para;</a></h3>
+<p>可观测性是上线依赖，不是事故后补装项。</p>
+<p>最小信号：</p>
+<ul>
+<li>节点健康和资源饱和。</li>
+<li>Pod 重启、调度失败、拉镜像失败。</li>
+<li>如平台暴露，API Server 健康。</li>
+<li>Ingress 请求量、延迟和错误率。</li>
+<li>存在有状态工作负载时的 PVC 使用率与扩容风险。</li>
+<li>用于排障的事件采集。</li>
+<li>告警路由到责任团队。</li>
+</ul>
+<h3 id="9">9. 加入交付与回滚控制<a class="headerlink" href="#9" title="Permanent link">&para;</a></h3>
+<p>第一个部署机制先要能回滚，再追求速度。</p>
+<p>必须控制：</p>
+<ul>
+<li>命名空间 onboarding 模式。</li>
+<li>发布负责人。</li>
+<li>镜像来源预期。</li>
+<li>滚动发布策略。</li>
+<li>回滚命令或 GitOps revert 路径。</li>
+<li>发布健康检查。</li>
+<li>变更记录。</li>
+</ul>
+<p>操作回滚流程见 <a href="../../../change-delivery/rollback/deployment-rollback-runbook/">部署回滚 Runbook</a>。</p>
+<h2 id="_7">托管集群画像<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>对托管 Kubernetes 服务，优先使用云厂商托管控制面，避免自管那些云厂商能更稳定运营的组件。</p>
+<p>必须决策：</p>
+<ul>
+<li>控制面端点是私有还是公开。</li>
+<li>控制面访问白名单。</li>
+<li>托管节点组还是自管节点组。</li>
+<li>IAM 或工作负载身份集成。</li>
+<li>云厂商支持的 CSI 和负载均衡控制器。</li>
+<li>云厂商版本支持窗口。</li>
+<li>平台团队与云厂商之间的升级责任边界。</li>
+</ul>
+<p>不要把“托管”理解成“生产就绪”。云厂商只运营平台的一部分；你的团队仍然拥有工作负载访问、插件、交付、可观测性、数据保护和事故响应。</p>
+<h2 id="kubeadm">kubeadm 自建画像<a class="headerlink" href="#kubeadm" title="Permanent link">&para;</a></h2>
+<p>对 kubeadm 集群，团队必须显式拥有控制面。</p>
+<p>额外要求：</p>
+<ul>
+<li>高可用 API Server 入口。</li>
+<li>etcd 备份与恢复测试。</li>
+<li>证书轮换流程。</li>
+<li>控制面节点补丁流程。</li>
+<li>CNI 安装与升级策略。</li>
+<li>kubelet 与容器运行时生命周期。</li>
+<li>灾难恢复 Runbook。</li>
+</ul>
+<p>如果这些能力无法配人并测试，除非有硬约束阻止，否则应使用托管集群。</p>
+<h2 id="_8">应用接入就绪门禁<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>接收业务工作负载前，执行以下门禁：</p>
+<table>
+<thead>
+<tr>
+<th>门禁</th>
+<th>通过条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>节点</td>
+<td>目标节点池全部 Ready，标签、污点符合设计，自动伸缩边界正确。</td>
+</tr>
+<tr>
+<td>系统 Pod</td>
+<td>CoreDNS、CNI、CSI、Ingress、metrics-server、可观测性 agent 健康。</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>测试 PVC 可以创建、挂载、写入、按支持情况扩容，并符合回收策略。</td>
+</tr>
+<tr>
+<td>Ingress</td>
+<td>测试服务能通过预期公网或内网路径访问，TLS 有效。</td>
+</tr>
+<tr>
+<td>身份</td>
+<td>工作负载能通过预期云身份访问资源，不依赖静态密钥。</td>
+</tr>
+<tr>
+<td>可观测性</td>
+<td>测试故障能产生可搜索的日志、指标、事件和告警。</td>
+</tr>
+<tr>
+<td>交付</td>
+<td>测试部署能通过批准机制前进和回滚。</td>
+</tr>
+<tr>
+<td>成本与所有权</td>
+<td>命名空间、标签、配额和升级路径可见。</td>
+</tr>
+</tbody>
+</table>
+<p>每个门禁都有负责人和结果后，集群才可以开放 onboarding。</p>
+<h2 id="_9">验证<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>从干净的运维工作站或 CI runner，以正常平台权限执行验证：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
 kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
 kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
 kubectl<span class="w"> </span>get<span class="w"> </span>ingressclass
+kubectl<span class="w"> </span>top<span class="w"> </span>nodes
+kubectl<span class="w"> </span>auth<span class="w"> </span>can-i<span class="w"> </span>create<span class="w"> </span>deployments<span class="w"> </span>--namespace<span class="w"> </span>&lt;test-namespace&gt;
+kubectl<span class="w"> </span>auth<span class="w"> </span>can-i<span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"> </span>--as<span class="w"> </span>&lt;non-admin-user&gt;
 </code></pre></div>
-<h2 id="self-managed-kubeadm-flow">Self-Managed kubeadm Flow<a class="headerlink" href="#self-managed-kubeadm-flow" title="Permanent link">&para;</a></h2>
-<p>Before <code>kubeadm init</code>:</p>
+<p>然后创建并删除一个小型验证工作负载：</p>
 <ul>
-<li>Disable swap.</li>
-<li>Load bridge network modules.</li>
-<li>Configure container runtime.</li>
-<li>Configure system time.</li>
-<li>Confirm hostnames and DNS.</li>
-<li>Plan control plane endpoint for HA.</li>
+<li>带 readiness probe 的无状态 Deployment。</li>
+<li>使用 PVC 的 Pod。</li>
+<li>内部 Service。</li>
+<li>带 TLS 的 Ingress 路由。</li>
+<li>一次故意失败的发布，以及随后的回滚。</li>
 </ul>
-<p>Validation:</p>
-<div class="highlight"><pre><span></span><code>kubeadm<span class="w"> </span>version
-kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
-</code></pre></div>
-<h2 id="application-readiness-gate">Application Readiness Gate<a class="headerlink" href="#application-readiness-gate" title="Permanent link">&para;</a></h2>
-<p>Do not deploy business applications until these checks pass:</p>
+<p>把结果记录在集群就绪文档中。截图不如可重复命令和预期输出可靠。</p>
+<h2 id="_10">常见失败模式<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>为什么危险</th>
+<th>预防方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CIDR 冲突</td>
+<td>对等、VPN 和服务路由后续失败。</td>
+<td>创建集群前验证全部地址范围。</td>
+</tr>
+<tr>
+<td>插件版本不匹配</td>
+<td>CNI、CSI 或 Ingress 在升级后损坏。</td>
+<td>冻结并评审版本矩阵。</td>
+</tr>
+<tr>
+<td>未测试 StorageClass</td>
+<td>有状态工作负载阻塞或丢数据。</td>
+<td>执行 PVC 创建、挂载、写入、扩容和回收测试。</td>
+</tr>
+<tr>
+<td>先做 Ingress 后定 TLS 归属</td>
+<td>服务公开了，但无人负责证书续期。</td>
+<td>暴露前明确 DNS 与证书所有权。</td>
+</tr>
+<tr>
+<td>应用先于可观测性上线</td>
+<td>第一次事故没有有用证据。</td>
+<td>把可观测性作为上线依赖。</td>
+</tr>
+<tr>
+<td>个人永久 admin 权限</td>
+<td>审计和离职回收变弱。</td>
+<td>使用用户组、应急访问和定期评审。</td>
+</tr>
+<tr>
+<td>节点自动伸缩无边界</td>
+<td>成本暴涨或调度不稳定。</td>
+<td>设置最小、最大、标签、污点、配额和告警。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">回滚与重建边界<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>有些供给错误应该通过重建集群解决，而不是持续打补丁。</p>
+<p>优先重建的情况：</p>
 <ul>
-<li>Nodes are <code>Ready</code>.</li>
-<li>System pods are healthy.</li>
-<li>Metrics server returns data.</li>
-<li>Default StorageClass is correct.</li>
-<li>Ingress test endpoint works.</li>
-<li>Cluster autoscaling behavior is understood.</li>
-<li>Backup and restore process is documented.</li>
-<li>Alert routing is tested.</li>
+<li>Pod 或 Service CIDR 与其他网络冲突。</li>
+<li>集群创建在错误 VPC、区域或账号边界。</li>
+<li>身份集成围绕长期静态凭据建立。</li>
+<li>插件所有权不清晰，没人能安全升级。</li>
+<li>集群已经接入业务但缺少基线可观测性，且迁移成本仍低。</li>
 </ul>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<p>优先原地修正的情况：</p>
 <ul>
-<li><a href="../eks-upgrade-standard/">EKS and Kubernetes Upgrade Standard</a></li>
-<li><a href="../kubernetes-storage-ingress-standard/">Kubernetes Storage and Ingress Standard</a></li>
-<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
+<li>节点池需要扩容、缩容或替换。</li>
+<li>插件配置错误，但版本兼容。</li>
+<li>StorageClass 或 IngressClass 需要在迁移计划后更换默认值。</li>
+<li>RBAC 需要通过可审计访问评审收紧。</li>
+</ul>
+<p>问题发现得越早，就越应认真考虑重建。</p>
+<h2 id="_12">安全说明<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li>不要在公开文档中保存 kubeconfig、token、证书或云密钥。</li>
+<li>不要公开私有端点地址、客户域名或内部 CIDR。</li>
+<li>使用 <code>&lt;pod-cidr&gt;</code> 或 <code>&lt;service-cidr&gt;</code> 这类符号占位符，不复制生产网段。</li>
+<li>优先使用工作负载身份，不把静态云凭据挂进 Pod。</li>
+<li>在授予团队访问前启用审计日志。</li>
+<li>每次团队接入和事故之后，评审 cluster-admin 绑定。</li>
+</ul>
+<h2 id="_13">评审周期<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>在以下时点评审本标准：</p>
+<ul>
+<li>每次新建集群前。</li>
+<li>每次 Kubernetes minor 版本升级前。</li>
+<li>每次网络、身份、存储或 Ingress 事故后。</li>
+<li>新工作负载类型需要新节点池或存储画像时。</li>
+</ul>
+<h2 id="_14">相关文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../kubernetes-storage-ingress-standard/">Kubernetes 存储与 Ingress 标准</a></li>
+<li><a href="../nfs-pvc-capacity-management/">NFS PVC 容量管理</a></li>
+<li><a href="../../../change-delivery/rollback/deployment-rollback-runbook/">部署回滚 Runbook</a></li>
+<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus 告警标准</a></li>
 </ul>
 
 
@@ -4304,7 +4970,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> <
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:51:03 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4314,7 +4980,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> <
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:51:03 UTC">2026年6月28日</span>
   </span>
 
     

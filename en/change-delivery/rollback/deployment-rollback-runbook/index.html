@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Kubernetes deployment rollback runbook for rapid incident response.">
+        <meta name="description" content="Operational runbook for safely rolling back a Kubernetes Deployment, including trigger, impact check, commands, validation, escalation, and closure.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Deployment Rollback Runbook - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Kubernetes deployment rollback runbook for rapid incident response." />
+<meta property="og:description" content="Operational runbook for safely rolling back a Kubernetes Deployment, including trigger, impact check, commands, validation, escalation, and closure." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/change-delivery/rollback/deployment-rollback-runbook.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/change-delivery/rollback/deployment-rollback-runbook/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Deployment Rollback Runbook - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Kubernetes deployment rollback runbook for rapid incident response." />
+<meta property="twitter:description" content="Operational runbook for safely rolling back a Kubernetes Deployment, including trigger, impact check, commands, validation, escalation, and closure." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/change-delivery/rollback/deployment-rollback-runbook.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kubernetes-deployment-rollback-runbook" class="md-skip">
+        <a href="#deployment-rollback-runbook" class="md-skip">
           Skip to content
         </a>
       
@@ -1376,10 +1376,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-triage" class="md-nav__link">
+  <a href="#preconditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Triage
+        Preconditions
       
     </span>
   </a>
@@ -1387,13 +1387,96 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#impact-check" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
+        Impact Check
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback Decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-freeze-further-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Freeze further changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-review-rollout-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Review rollout history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-execute-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Execute rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verify-service-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Verify service health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-prevent-redeployment-of-the-bad-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Prevent redeployment of the bad version
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1409,10 +1492,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-rollback-is-not-enough" class="md-nav__link">
+  <a href="#rollback-is-not-enough-when" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When Rollback Is Not Enough
+        Rollback Is Not Enough When
       
     </span>
   </a>
@@ -1420,10 +1503,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#closure-criteria" class="md-nav__link">
+  <a href="#escalation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Closure Criteria
+        Escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Check
       
     </span>
   </a>
@@ -3978,10 +4072,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-triage" class="md-nav__link">
+  <a href="#preconditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Triage
+        Preconditions
       
     </span>
   </a>
@@ -3989,13 +4083,96 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#impact-check" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
+        Impact Check
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback Decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-freeze-further-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Freeze further changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-review-rollout-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Review rollout history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-execute-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Execute rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verify-service-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Verify service health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-prevent-redeployment-of-the-bad-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Prevent redeployment of the bad version
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4011,10 +4188,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-rollback-is-not-enough" class="md-nav__link">
+  <a href="#rollback-is-not-enough-when" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When Rollback Is Not Enough
+        Rollback Is Not Enough When
       
     </span>
   </a>
@@ -4022,10 +4199,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#closure-criteria" class="md-nav__link">
+  <a href="#escalation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Closure Criteria
+        Escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Check
       
     </span>
   </a>
@@ -4147,6 +4335,18 @@
         
       
       
+        <a href="../../../tags/#tag:kubernetes" class="md-tag md-tag-icon md-tag--kubernetes">Kubernetes</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
       
     
@@ -4169,59 +4369,208 @@
   
 
 
-<h1 id="kubernetes-deployment-rollback-runbook">Kubernetes Deployment Rollback Runbook<a class="headerlink" href="#kubernetes-deployment-rollback-runbook" title="Permanent link">&para;</a></h1>
+<h1 id="deployment-rollback-runbook">Deployment Rollback Runbook<a class="headerlink" href="#deployment-rollback-runbook" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This runbook describes how to roll back a Kubernetes Deployment after a failed release.</p>
+<p>This runbook defines how to roll back a Kubernetes <code>Deployment</code> when a release causes user impact, reliability degradation, or operational risk.</p>
+<p>The core judgment is:</p>
+<blockquote>
+<p>A rollback is a controlled recovery action, not a panic command.</p>
+</blockquote>
+<p><code>kubectl rollout undo</code> is only one step. A safe rollback also freezes further change, captures current state, verifies that the previous version is healthy, prevents the bad version from being redeployed, and leaves enough evidence for a later fix.</p>
 <h2 id="trigger">Trigger<a class="headerlink" href="#trigger" title="Permanent link">&para;</a></h2>
-<p>Use this runbook when a release causes elevated errors, failed readiness, broken smoke tests, or unacceptable latency.</p>
-<h2 id="initial-triage">Initial Triage<a class="headerlink" href="#initial-triage" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>deployment<span class="w"> </span>example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace
-kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace
-kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>example-service
-kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>--sort-by<span class="o">=</span><span class="s1">&#39;.lastTimestamp&#39;</span>
+<p>Use this runbook when any of the following happens after a deployment:</p>
+<ul>
+<li>Error rate, latency, saturation, or restart count increases beyond the release guardrail.</li>
+<li>Readiness or liveness failures affect serving capacity.</li>
+<li>A critical user journey fails after release.</li>
+<li>A dependency or configuration change makes the new pods unhealthy.</li>
+<li>The release owner, incident commander, or service owner decides that recovery speed is more important than continuing the rollout.</li>
+</ul>
+<p>Do not use rollback as a substitute for diagnosis when the current version is not related to the symptom. First confirm that the release is a plausible cause.</p>
+<h2 id="preconditions">Preconditions<a class="headerlink" href="#preconditions" title="Permanent link">&para;</a></h2>
+<p>Before executing rollback, confirm:</p>
+<ul>
+<li>You know the namespace and deployment name.</li>
+<li>You have permission to update the deployment.</li>
+<li>The previous ReplicaSet or image revision is known or can be inferred from rollout history.</li>
+<li>The previous version is expected to be safe.</li>
+<li>No concurrent automation will immediately reapply the bad version.</li>
+<li>Someone is watching application health while the rollback runs.</li>
+</ul>
+<p>If the deployment is managed by GitOps, decide whether the rollback will be performed through Git revert, image tag change, or emergency kubectl operation followed by Git reconciliation.</p>
+<h2 id="impact-check">Impact Check<a class="headerlink" href="#impact-check" title="Permanent link">&para;</a></h2>
+<p>Record impact before changing the workload:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>deploy<span class="w"> </span>&lt;deployment&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>rs<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>&lt;app-label&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>&lt;app-label&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>describe<span class="w"> </span>deploy<span class="w"> </span>&lt;deployment&gt;
 </code></pre></div>
-<p>Check recent revisions:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace
+<p>Capture:</p>
+<ul>
+<li>Current image or release version.</li>
+<li>Desired, updated, available, and unavailable replicas.</li>
+<li>Failing pod names.</li>
+<li>Last deployment time.</li>
+<li>Primary symptom and affected user path.</li>
+</ul>
+<p>This does not need to delay recovery. A short command transcript is enough.</p>
+<h2 id="rollback-decision">Rollback Decision<a class="headerlink" href="#rollback-decision" title="Permanent link">&para;</a></h2>
+<p>Choose the action:</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New version is clearly causing impact and previous version is known good.</td>
+<td>Roll back immediately.</td>
+</tr>
+<tr>
+<td>Rollout is still progressing and only a small subset is affected.</td>
+<td>Pause rollout, verify impact, then roll back or resume.</td>
+</tr>
+<tr>
+<td>Bad config or secret caused all versions to fail.</td>
+<td>Fix config or secret; rollback alone will not recover.</td>
+</tr>
+<tr>
+<td>Database migration is incompatible with the previous app version.</td>
+<td>Stop and escalate; use the release-specific recovery plan.</td>
+</tr>
+<tr>
+<td>Unknown root cause but user impact is severe.</td>
+<td>Roll back if previous version is likely safe, then investigate.</td>
+</tr>
+</tbody>
+</table>
+<p>If the rollback could make data incompatible, do not proceed without the service owner or incident commander.</p>
+<h2 id="procedure">Procedure<a class="headerlink" href="#procedure" title="Permanent link">&para;</a></h2>
+<h3 id="1-freeze-further-changes">1. Freeze further changes<a class="headerlink" href="#1-freeze-further-changes" title="Permanent link">&para;</a></h3>
+<p>Pause automation or stop the pipeline that could reapply the bad release:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span>pause<span class="w"> </span>deployment/&lt;deployment&gt;
 </code></pre></div>
-<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<p>For GitOps-managed services, also suspend or update the source of truth according to the platform process. A manual rollback that GitOps immediately overwrites is not recovery.</p>
+<h3 id="2-review-rollout-history">2. Review rollout history<a class="headerlink" href="#2-review-rollout-history" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment/&lt;deployment&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment/&lt;deployment&gt;<span class="w"> </span>--revision<span class="o">=</span>&lt;revision&gt;
+</code></pre></div>
+<p>Confirm the target revision. If rollout history lacks useful change cause, identify the previous image from ReplicaSets:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>rs<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .items[*]}{.metadata.name}{&quot;\t&quot;}{.spec.template.spec.containers[*].image}{&quot;\n&quot;}{end}&#39;</span>
+</code></pre></div>
+<h3 id="3-execute-rollback">3. Execute rollback<a class="headerlink" href="#3-execute-rollback" title="Permanent link">&para;</a></h3>
 <p>Rollback to the previous revision:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace
-kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>--timeout<span class="o">=</span>5m
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/&lt;deployment&gt;
 </code></pre></div>
 <p>Rollback to a specific revision:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/example-service<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>--to-revision<span class="o">=</span><span class="m">2</span>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/&lt;deployment&gt;<span class="w"> </span>--to-revision<span class="o">=</span>&lt;revision&gt;
 </code></pre></div>
+<p>Then watch status:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/&lt;deployment&gt;<span class="w"> </span>--timeout<span class="o">=</span>10m
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>&lt;app-label&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+</code></pre></div>
+<h3 id="4-verify-service-health">4. Verify service health<a class="headerlink" href="#4-verify-service-health" title="Permanent link">&para;</a></h3>
+<p>Validate both Kubernetes state and user-facing behavior:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>deploy<span class="w"> </span>&lt;deployment&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>&lt;app-label&gt;
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>logs<span class="w"> </span>deploy/&lt;deployment&gt;<span class="w"> </span>--tail<span class="o">=</span><span class="m">100</span>
+</code></pre></div>
+<p>Check the service dashboards for:</p>
+<ul>
+<li>Error rate returning to baseline.</li>
+<li>Latency returning to baseline.</li>
+<li>Restart count stabilizing.</li>
+<li>Successful readiness.</li>
+<li>Successful business smoke test.</li>
+<li>Ingress or gateway 5xx rate dropping.</li>
+</ul>
+<h3 id="5-prevent-redeployment-of-the-bad-version">5. Prevent redeployment of the bad version<a class="headerlink" href="#5-prevent-redeployment-of-the-bad-version" title="Permanent link">&para;</a></h3>
+<p>After recovery, block the bad version from being applied again:</p>
+<ul>
+<li>Revert or amend the GitOps commit.</li>
+<li>Disable the failed pipeline promotion.</li>
+<li>Mark the failed image or release as blocked in the release record.</li>
+<li>Notify the service owner and platform owner.</li>
+</ul>
+<p>Do not close the incident while the automation source still points at the bad release.</p>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>example-service
-curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.com/health
-</code></pre></div>
-<p>Confirm:</p>
+<p>The rollback is successful only when all conditions are met:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Pass Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment status</td>
+<td>Desired replicas equal available replicas.</td>
+</tr>
+<tr>
+<td>Pods</td>
+<td>New pods are running the intended rollback image or revision.</td>
+</tr>
+<tr>
+<td>Readiness</td>
+<td>No sustained readiness failure.</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td>The release-related error pattern has stopped or returned to baseline.</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>Error rate, latency, saturation, and restart metrics are back within guardrail.</td>
+</tr>
+<tr>
+<td>User path</td>
+<td>The affected critical path passes a smoke test.</td>
+</tr>
+<tr>
+<td>Automation</td>
+<td>GitOps or CI/CD will not redeploy the bad version.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback-is-not-enough-when">Rollback Is Not Enough When<a class="headerlink" href="#rollback-is-not-enough-when" title="Permanent link">&para;</a></h2>
+<p>Rollback alone may fail or be unsafe when:</p>
 <ul>
-<li>Pods are ready.</li>
-<li>Error rate returns to normal.</li>
-<li>Latency returns to normal.</li>
-<li>Business smoke tests pass.</li>
-<li>No database or schema rollback is required.</li>
+<li>The release included an irreversible or unreviewed database migration.</li>
+<li>The failure is caused by an external dependency, not the application version.</li>
+<li>A shared config, secret, or feature flag is broken across versions.</li>
+<li>Data written by the new version is incompatible with the old version.</li>
+<li>The previous image has been removed from the registry.</li>
+<li>The failure is resource exhaustion caused by current traffic, not the release.</li>
 </ul>
-<h2 id="when-rollback-is-not-enough">When Rollback Is Not Enough<a class="headerlink" href="#when-rollback-is-not-enough" title="Permanent link">&para;</a></h2>
-<p>Stop and escalate if:</p>
+<p>In these cases, escalate to the incident commander and service owner. The recovery path may require config repair, traffic shedding, feature flag disablement, database recovery, or image rebuild.</p>
+<h2 id="escalation">Escalation<a class="headerlink" href="#escalation" title="Permanent link">&para;</a></h2>
+<p>Escalate immediately when:</p>
 <ul>
-<li>The release included irreversible database migration.</li>
-<li>The previous image is unavailable.</li>
-<li>Config or secret changes caused the incident.</li>
-<li>External dependencies changed at the same time.</li>
+<li>Rollback does not complete within the expected window.</li>
+<li>Available replicas stay below the service minimum.</li>
+<li>Error rate does not recover after the old version is running.</li>
+<li>Data compatibility is uncertain.</li>
+<li>Multiple services are affected.</li>
+<li>You lack permission to update the deployment or source of truth.</li>
 </ul>
-<h2 id="closure-criteria">Closure Criteria<a class="headerlink" href="#closure-criteria" title="Permanent link">&para;</a></h2>
+<p>Escalation should include namespace, deployment, failed version, target rollback version, current symptoms, and commands already executed.</p>
+<h2 id="post-check">Post-Check<a class="headerlink" href="#post-check" title="Permanent link">&para;</a></h2>
+<p>After recovery:</p>
 <ul>
-<li>Service recovered.</li>
-<li>Failed release is blocked from redeploying automatically.</li>
-<li>Root cause investigation is opened.</li>
-<li>Follow-up fix has an owner.</li>
+<li>Record the failed version, rollback version, time to detect, and time to recover.</li>
+<li>Attach the command transcript or dashboard links to the incident or change record.</li>
+<li>Create a follow-up item for the root fix.</li>
+<li>Add or tighten release guardrails if the failure escaped detection.</li>
+<li>Review whether the deployment strategy, probes, or canary policy should change.</li>
 </ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../cicd/jenkins-kubernetes-pipeline-standard/">Jenkins to Kubernetes Pipeline Standard</a></li>
-<li><a href="../../cicd/argocd-gitops-standard/">Argo CD GitOps Standard</a></li>
+<li><a href="../../../system-design/production-architecture/kubernetes-cluster-provisioning-standard/">Kubernetes Cluster Provisioning Standard</a></li>
+<li><a href="../../../system-design/production-architecture/kubernetes-storage-ingress-standard/">Kubernetes Storage and Ingress Standard</a></li>
+<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
 </ul>
 
 
@@ -4245,7 +4594,7 @@ curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.c
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 11:51:03 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4255,7 +4604,7 @@ curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.c
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 11:51:03 UTC">June 28, 2026</span>
   </span>
 
     

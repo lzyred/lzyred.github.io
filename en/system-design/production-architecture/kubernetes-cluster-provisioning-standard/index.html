@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Kubernetes cluster provisioning standard for EKS, CCE, and kubeadm-based clusters.">
+        <meta name="description" content="Production standard for provisioning Kubernetes clusters as an ordered platform dependency graph instead of a one-time cluster creation command.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Kubernetes Cluster Provisioning - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Kubernetes cluster provisioning standard for EKS, CCE, and kubeadm-based clusters." />
+<meta property="og:description" content="Production standard for provisioning Kubernetes clusters as an ordered platform dependency graph instead of a one-time cluster creation command." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/system-design/production-architecture/kubernetes-cluster-provisioning-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/system-design/production-architecture/kubernetes-cluster-provisioning-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Kubernetes Cluster Provisioning - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Kubernetes cluster provisioning standard for EKS, CCE, and kubeadm-based clusters." />
+<meta property="twitter:description" content="Production standard for provisioning Kubernetes clusters as an ordered platform dependency graph instead of a one-time cluster creation command." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/system-design/production-architecture/kubernetes-cluster-provisioning-standard.png" />
 </head>
   
@@ -959,10 +959,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#provisioning-principles" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Provisioning Principles
+        When to Use
       
     </span>
   </a>
@@ -970,10 +970,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#planning-checklist" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Planning Checklist
+        Non-Goals
       
     </span>
   </a>
@@ -981,10 +981,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-add-on-order" class="md-nav__link">
+  <a href="#provisioning-judgment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Add-on Order
+        Provisioning Judgment
       
     </span>
   </a>
@@ -992,10 +992,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#managed-cluster-creation-flow" class="md-nav__link">
+  <a href="#decision-inputs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Managed Cluster Creation Flow
+        Decision Inputs
       
     </span>
   </a>
@@ -1003,10 +1003,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#self-managed-kubeadm-flow" class="md-nav__link">
+  <a href="#reference-provisioning-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Self-Managed kubeadm Flow
+        Reference Provisioning Sequence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reference Provisioning Sequence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-define-the-platform-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Define the platform boundary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-freeze-the-version-and-add-on-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Freeze the version and add-on matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-provision-network-before-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Provision network before nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configure-identity-and-access-before-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Configure identity and access before applications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-build-node-pools-as-workload-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Build node pools as workload contracts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-install-storage-before-workload-onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Install storage before workload onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-install-ingress-and-tls-before-publishing-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Install ingress and TLS before publishing services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-install-observability-before-business-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Install observability before business traffic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-add-delivery-and-rollback-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Add delivery and rollback controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed-cluster-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managed Cluster Profile
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-managed-kubeadm-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-Managed kubeadm Profile
       
     </span>
   </a>
@@ -1018,6 +1145,61 @@
     <span class="md-ellipsis">
       
         Application Readiness Gate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-and-rebuild-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback and Rebuild Boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3964,10 +4146,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#provisioning-principles" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Provisioning Principles
+        When to Use
       
     </span>
   </a>
@@ -3975,10 +4157,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#planning-checklist" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Planning Checklist
+        Non-Goals
       
     </span>
   </a>
@@ -3986,10 +4168,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-add-on-order" class="md-nav__link">
+  <a href="#provisioning-judgment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Add-on Order
+        Provisioning Judgment
       
     </span>
   </a>
@@ -3997,10 +4179,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#managed-cluster-creation-flow" class="md-nav__link">
+  <a href="#decision-inputs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Managed Cluster Creation Flow
+        Decision Inputs
       
     </span>
   </a>
@@ -4008,10 +4190,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#self-managed-kubeadm-flow" class="md-nav__link">
+  <a href="#reference-provisioning-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Self-Managed kubeadm Flow
+        Reference Provisioning Sequence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reference Provisioning Sequence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-define-the-platform-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Define the platform boundary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-freeze-the-version-and-add-on-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Freeze the version and add-on matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-provision-network-before-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Provision network before nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configure-identity-and-access-before-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Configure identity and access before applications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-build-node-pools-as-workload-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Build node pools as workload contracts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-install-storage-before-workload-onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Install storage before workload onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-install-ingress-and-tls-before-publishing-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Install ingress and TLS before publishing services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-install-observability-before-business-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Install observability before business traffic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-add-delivery-and-rollback-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Add delivery and rollback controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed-cluster-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managed Cluster Profile
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-managed-kubeadm-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-Managed kubeadm Profile
       
     </span>
   </a>
@@ -4023,6 +4332,61 @@
     <span class="md-ellipsis">
       
         Application Readiness Gate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-and-rebuild-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback and Rebuild Boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4159,6 +4523,18 @@
         <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
+      
+    
   </nav>
 
 
@@ -4168,118 +4544,408 @@
 
 <h1 id="kubernetes-cluster-provisioning-standard">Kubernetes Cluster Provisioning Standard<a class="headerlink" href="#kubernetes-cluster-provisioning-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines a repeatable process for creating Kubernetes clusters on managed platforms such as EKS and CCE, or self-managed platforms built with kubeadm.</p>
-<h2 id="provisioning-principles">Provisioning Principles<a class="headerlink" href="#provisioning-principles" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Separate cluster planning from cluster creation.</li>
-<li>Use infrastructure as code or declarative configuration where possible.</li>
-<li>Keep network, IAM, storage, ingress, observability, and CI/CD requirements in the initial design.</li>
-<li>Install only required add-ons.</li>
-<li>Validate each platform layer before deploying applications.</li>
-</ol>
-<h2 id="planning-checklist">Planning Checklist<a class="headerlink" href="#planning-checklist" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to provision a Kubernetes cluster that can safely host production workloads.</p>
+<p>The most important judgment is simple:</p>
+<blockquote>
+<p>Cluster provisioning is not the command that creates the control plane. It is the ordered construction of a platform dependency graph.</p>
+</blockquote>
+<p>A cluster is not ready because <code>kubectl get nodes</code> returns <code>Ready</code>. It is ready only when workload identity, network boundaries, node pools, storage, ingress, observability, deployment controls, backup expectations, and ownership rules are all explicit and validated.</p>
+<p>This standard applies to managed clusters such as EKS, CCE, ACK, GKE, and AKS, and to self-managed clusters built with kubeadm. The implementation details differ, but the readiness contract is the same.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when:</p>
+<ul>
+<li>Building a new production or staging Kubernetes cluster.</li>
+<li>Rebuilding a cluster after a major network, identity, or runtime change.</li>
+<li>Creating a repeatable cluster profile for multiple teams.</li>
+<li>Reviewing whether an existing cluster is mature enough for business workloads.</li>
+<li>Converting an experimental cluster into a platform-owned service.</li>
+</ul>
+<p>Do not use this as a quick local development checklist. Development clusters can skip many production controls, but they should not be mistaken for production reference architecture.</p>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>A vendor-specific click-by-click console procedure.</li>
+<li>Full Kubernetes security hardening.</li>
+<li>Application architecture inside the cluster.</li>
+<li>Service mesh design.</li>
+<li>Disaster recovery design beyond the provisioning readiness boundary.</li>
+</ul>
+<h2 id="provisioning-judgment">Provisioning Judgment<a class="headerlink" href="#provisioning-judgment" title="Permanent link">&para;</a></h2>
+<p>A production cluster must answer seven questions before the first business workload is deployed:</p>
 <table>
 <thead>
 <tr>
-<th>Area</th>
-<th>Questions</th>
+<th>Question</th>
+<th>Required Decision</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Version</td>
-<td>Which Kubernetes version is supported by the platform and add-ons?</td>
+<td>Who owns the platform?</td>
+<td>Platform owner, escalation path, change window, and lifecycle policy.</td>
 </tr>
 <tr>
-<td>Network</td>
-<td>What VPC, subnets, service CIDR, pod CIDR, and ingress model are required?</td>
+<td>Where can traffic flow?</td>
+<td>VPC or VNet, CIDR, service CIDR, pod CIDR, DNS, egress, private endpoints, and ingress exposure.</td>
 </tr>
 <tr>
-<td>Nodes</td>
-<td>What instance types, architectures, labels, taints, and scaling rules are required?</td>
+<td>Who can act?</td>
+<td>Human access, workload identity, service accounts, emergency access, and audit logging.</td>
 </tr>
 <tr>
-<td>Storage</td>
-<td>Which CSI drivers and default StorageClasses are needed?</td>
+<td>Where do workloads run?</td>
+<td>Node pool boundaries, taints, labels, autoscaling, runtime, images, and maintenance policy.</td>
 </tr>
 <tr>
-<td>Access</td>
-<td>Who has admin access, deploy access, and read-only access?</td>
+<td>How is state stored?</td>
+<td>StorageClass, CSI driver, expansion, backup, snapshot, reclaim policy, and topology constraints.</td>
 </tr>
 <tr>
-<td>Ingress</td>
-<td>Which ingress controller and load balancer mode will be used?</td>
+<td>How do users enter?</td>
+<td>Ingress class, load balancer model, TLS ownership, DNS ownership, and certificate renewal.</td>
 </tr>
 <tr>
-<td>Observability</td>
-<td>How will metrics, logs, dashboards, and alerts be deployed?</td>
-</tr>
-<tr>
-<td>CI/CD</td>
-<td>How will images be built, pushed, and deployed?</td>
+<td>How is failure seen and reversed?</td>
+<td>Metrics, logs, events, alerts, rollout controls, rollback procedure, and restore boundary.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="standard-add-on-order">Standard Add-on Order<a class="headerlink" href="#standard-add-on-order" title="Permanent link">&para;</a></h2>
-<p>Install and validate in this order:</p>
-<ol>
-<li>Core DNS and kube-proxy compatibility.</li>
-<li>CNI plugin.</li>
-<li>CSI drivers for block and shared storage.</li>
-<li>Metrics server.</li>
-<li>Ingress controller.</li>
-<li>Cluster autoscaler or managed node autoscaling.</li>
-<li>Observability stack.</li>
-<li>GitOps or CI/CD deploy tooling.</li>
-<li>Security policy and admission controls.</li>
-</ol>
-<h2 id="managed-cluster-creation-flow">Managed Cluster Creation Flow<a class="headerlink" href="#managed-cluster-creation-flow" title="Permanent link">&para;</a></h2>
-<p>Use the provider tool or infrastructure as code to create:</p>
+<p>If any answer is missing, the cluster may exist, but it is not production-ready.</p>
+<h2 id="decision-inputs">Decision Inputs<a class="headerlink" href="#decision-inputs" title="Permanent link">&para;</a></h2>
+<p>Capture these inputs before provisioning:</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Required Input</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kubernetes version</td>
+<td>Target version, supported skew, add-on compatibility, upgrade window.</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>VPC or VNet, CIDR plan, pod/service ranges, DNS, egress NAT, private endpoint requirements.</td>
+</tr>
+<tr>
+<td>Identity</td>
+<td>Cluster admin model, group mapping, workload identity mechanism, break-glass account.</td>
+</tr>
+<tr>
+<td>Node pools</td>
+<td>CPU and memory profile, on-demand or spot policy, GPU or special hardware, taints, labels.</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Default StorageClass, stateful workload needs, backup and restore expectation, expansion policy.</td>
+</tr>
+<tr>
+<td>Ingress</td>
+<td>Public or private exposure, controller, TLS issuer, DNS ownership, WAF or gateway boundary.</td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>Metrics, logs, events, traces, alert routing, dashboard ownership.</td>
+</tr>
+<tr>
+<td>Delivery</td>
+<td>GitOps or pipeline ownership, namespace onboarding, rollback path, deployment policy.</td>
+</tr>
+<tr>
+<td>Governance</td>
+<td>Naming, tagging, cost allocation, resource quota, image policy, platform review cadence.</td>
+</tr>
+</tbody>
+</table>
+<p>The provisioning record should be short, but it must be explicit. A cluster with undocumented defaults becomes an operational surprise during the first incident.</p>
+<h2 id="reference-provisioning-sequence">Reference Provisioning Sequence<a class="headerlink" href="#reference-provisioning-sequence" title="Permanent link">&para;</a></h2>
+<h3 id="1-define-the-platform-boundary">1. Define the platform boundary<a class="headerlink" href="#1-define-the-platform-boundary" title="Permanent link">&para;</a></h3>
+<p>Decide what the cluster is allowed to own. A cluster should not accidentally become the owner of DNS, secrets, certificates, ingress, CI/CD, databases, and monitoring simply because those things were installed during setup.</p>
+<p>At minimum, define:</p>
 <ul>
-<li>Cluster control plane.</li>
-<li>Node groups.</li>
-<li>IAM roles or workload identity.</li>
-<li>Security groups or network policies.</li>
-<li>Add-on versions.</li>
+<li>Production, staging, development, or shared platform scope.</li>
+<li>Allowed workload classes.</li>
+<li>Network exposure model.</li>
+<li>Team onboarding process.</li>
+<li>Ownership for platform add-ons.</li>
+<li>Incident escalation path.</li>
 </ul>
-<p>Validation:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cluster-info
-kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+<h3 id="2-freeze-the-version-and-add-on-matrix">2. Freeze the version and add-on matrix<a class="headerlink" href="#2-freeze-the-version-and-add-on-matrix" title="Permanent link">&para;</a></h3>
+<p>Select the Kubernetes version together with the add-ons that must run on it. Do not choose a cluster version first and discover compatibility later.</p>
+<p>The matrix must include:</p>
+<ul>
+<li>CNI plugin and version.</li>
+<li>CoreDNS.</li>
+<li>kube-proxy or replacement.</li>
+<li>CSI drivers.</li>
+<li>Ingress controller.</li>
+<li>Metrics server.</li>
+<li>Autoscaler or Karpenter-equivalent component.</li>
+<li>Log and metric agents.</li>
+<li>Policy controllers if used.</li>
+</ul>
+<p>The minimum acceptable output is a table that says which versions are approved, which are blocked, and which upgrade sequence is required.</p>
+<h3 id="3-provision-network-before-nodes">3. Provision network before nodes<a class="headerlink" href="#3-provision-network-before-nodes" title="Permanent link">&para;</a></h3>
+<p>The network is harder to change than the cluster. Validate it before creating node pools.</p>
+<p>Required checks:</p>
+<ul>
+<li>Pod and service CIDRs do not overlap with VPC/VNet, peered networks, VPN ranges, or on-premises ranges.</li>
+<li>DNS resolution works for cloud APIs, internal services, and private endpoints.</li>
+<li>Nodes can reach required image registries and control-plane endpoints.</li>
+<li>Egress policy is deliberate, not an accidental open route.</li>
+<li>Ingress subnets and internal load balancer subnets are separated when needed.</li>
+</ul>
+<p>If the network plan is unclear, stop. Rebuilding a young cluster is cheaper than living with overlapping address space.</p>
+<h3 id="4-configure-identity-and-access-before-applications">4. Configure identity and access before applications<a class="headerlink" href="#4-configure-identity-and-access-before-applications" title="Permanent link">&para;</a></h3>
+<p>Human and workload access must be set before application teams arrive.</p>
+<p>Required decisions:</p>
+<ul>
+<li>Which groups have cluster-admin access.</li>
+<li>Which groups have namespace-scoped admin access.</li>
+<li>How service accounts obtain cloud permissions.</li>
+<li>How emergency access is granted, logged, and revoked.</li>
+<li>Which audit logs are retained.</li>
+</ul>
+<p>Avoid binding permanent cluster-admin rights to individual users. Use groups, time-bounded emergency access, and documented review.</p>
+<h3 id="5-build-node-pools-as-workload-contracts">5. Build node pools as workload contracts<a class="headerlink" href="#5-build-node-pools-as-workload-contracts" title="Permanent link">&para;</a></h3>
+<p>Node pools are not just capacity. They are workload placement contracts.</p>
+<p>Define at least:</p>
+<ul>
+<li>General stateless pool.</li>
+<li>System or platform add-on pool where appropriate.</li>
+<li>Stateful or storage-sensitive pool if required.</li>
+<li>Spot or preemptible pool only for tolerant workloads.</li>
+<li>GPU or hardware-specific pools only when isolated by taints and labels.</li>
+</ul>
+<p>Every pool should have labels, taints where appropriate, autoscaling boundaries, image lifecycle rules, and a patch or replacement strategy.</p>
+<h3 id="6-install-storage-before-workload-onboarding">6. Install storage before workload onboarding<a class="headerlink" href="#6-install-storage-before-workload-onboarding" title="Permanent link">&para;</a></h3>
+<p>Install CSI drivers and StorageClasses before application deployment. A cluster without a tested default storage path is not ready for stateful workloads.</p>
+<p>Minimum validation:</p>
+<ul>
+<li>A PVC can be dynamically provisioned.</li>
+<li>The mounted filesystem is writable from a pod.</li>
+<li>Expansion behavior is known.</li>
+<li>Reclaim policy is deliberate.</li>
+<li>Backup or snapshot expectation is documented.</li>
+<li>Zone or topology constraints are visible to schedulers.</li>
+</ul>
+<p>Storage design details belong in <a href="../kubernetes-storage-ingress-standard/">Kubernetes Storage and Ingress Standard</a>.</p>
+<h3 id="7-install-ingress-and-tls-before-publishing-services">7. Install ingress and TLS before publishing services<a class="headerlink" href="#7-install-ingress-and-tls-before-publishing-services" title="Permanent link">&para;</a></h3>
+<p>Ingress must be a managed platform capability, not something each team improvises.</p>
+<p>Validate:</p>
+<ul>
+<li>IngressClass ownership.</li>
+<li>Public versus private exposure.</li>
+<li>TLS certificate issuer and renewal.</li>
+<li>DNS ownership.</li>
+<li>Request timeout, body size, and WebSocket expectations.</li>
+<li>Access log and metric availability.</li>
+<li>WAF or gateway boundary if required.</li>
+</ul>
+<h3 id="8-install-observability-before-business-traffic">8. Install observability before business traffic<a class="headerlink" href="#8-install-observability-before-business-traffic" title="Permanent link">&para;</a></h3>
+<p>Observability is a launch dependency. Do not wait for the first incident to install it.</p>
+<p>Minimum signals:</p>
+<ul>
+<li>Node health and resource saturation.</li>
+<li>Pod restart, scheduling, and image pull failures.</li>
+<li>API server health if exposed by the platform.</li>
+<li>Ingress request rate, latency, and error rate.</li>
+<li>PVC usage and expansion risk where stateful workloads exist.</li>
+<li>Event collection for debugging.</li>
+<li>Alert routing to the owning team.</li>
+</ul>
+<h3 id="9-add-delivery-and-rollback-controls">9. Add delivery and rollback controls<a class="headerlink" href="#9-add-delivery-and-rollback-controls" title="Permanent link">&para;</a></h3>
+<p>The first deployment mechanism should include rollback before it includes speed.</p>
+<p>Required controls:</p>
+<ul>
+<li>Namespace onboarding pattern.</li>
+<li>Deployment owner.</li>
+<li>Image provenance expectation.</li>
+<li>Rollout strategy.</li>
+<li>Rollback command or GitOps revert path.</li>
+<li>Release health check.</li>
+<li>Change record.</li>
+</ul>
+<p>See <a href="../../../change-delivery/rollback/deployment-rollback-runbook/">Deployment Rollback Runbook</a> for the operational rollback procedure.</p>
+<h2 id="managed-cluster-profile">Managed Cluster Profile<a class="headerlink" href="#managed-cluster-profile" title="Permanent link">&para;</a></h2>
+<p>For managed Kubernetes services, prefer the provider-managed control plane and avoid self-managing components that the provider can operate more safely.</p>
+<p>Required managed-cluster decisions:</p>
+<ul>
+<li>Private or public control-plane endpoint.</li>
+<li>Control-plane access allowlist.</li>
+<li>Managed node group versus self-managed node group.</li>
+<li>IAM or workload identity integration.</li>
+<li>Provider-supported CSI and load balancer controllers.</li>
+<li>Provider version support window.</li>
+<li>Upgrade ownership between platform team and provider.</li>
+</ul>
+<p>Do not assume "managed" means "production-ready." The provider operates part of the platform; your team still owns workload access, add-ons, delivery, observability, data protection, and incident response.</p>
+<h2 id="self-managed-kubeadm-profile">Self-Managed kubeadm Profile<a class="headerlink" href="#self-managed-kubeadm-profile" title="Permanent link">&para;</a></h2>
+<p>For kubeadm clusters, the team must explicitly own the control plane.</p>
+<p>Additional requirements:</p>
+<ul>
+<li>Highly available API server endpoint.</li>
+<li>etcd backup and restore test.</li>
+<li>Certificate rotation procedure.</li>
+<li>Control-plane node patching process.</li>
+<li>CNI installation and upgrade policy.</li>
+<li>kubelet and container runtime lifecycle.</li>
+<li>Disaster recovery runbook.</li>
+</ul>
+<p>If these cannot be staffed and tested, use a managed cluster unless there is a hard constraint that prevents it.</p>
+<h2 id="application-readiness-gate">Application Readiness Gate<a class="headerlink" href="#application-readiness-gate" title="Permanent link">&para;</a></h2>
+<p>Before accepting business workloads, run this gate:</p>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Pass Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nodes</td>
+<td>All intended node pools are ready, labeled, tainted as designed, and autoscaling within bounds.</td>
+</tr>
+<tr>
+<td>System pods</td>
+<td>CoreDNS, CNI, CSI, ingress, metrics, and observability agents are healthy.</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>A test PVC provisions, mounts, writes, expands if supported, and follows the intended reclaim policy.</td>
+</tr>
+<tr>
+<td>Ingress</td>
+<td>A test service is reachable through the intended public or private route with valid TLS.</td>
+</tr>
+<tr>
+<td>Identity</td>
+<td>A workload can use the intended cloud identity without static secrets.</td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>Test failures produce searchable logs, metrics, events, and alerts.</td>
+</tr>
+<tr>
+<td>Delivery</td>
+<td>A test deployment can roll forward and roll back through the approved mechanism.</td>
+</tr>
+<tr>
+<td>Cost and ownership</td>
+<td>Namespaces, labels, quotas, and escalation routes are visible.</td>
+</tr>
+</tbody>
+</table>
+<p>The cluster is not open for onboarding until every gate has an owner and a result.</p>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>Run validation from a clean operator workstation or CI runner with normal platform permissions:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
 kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
 kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
 kubectl<span class="w"> </span>get<span class="w"> </span>ingressclass
+kubectl<span class="w"> </span>top<span class="w"> </span>nodes
+kubectl<span class="w"> </span>auth<span class="w"> </span>can-i<span class="w"> </span>create<span class="w"> </span>deployments<span class="w"> </span>--namespace<span class="w"> </span>&lt;test-namespace&gt;
+kubectl<span class="w"> </span>auth<span class="w"> </span>can-i<span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"> </span>--as<span class="w"> </span>&lt;non-admin-user&gt;
 </code></pre></div>
-<h2 id="self-managed-kubeadm-flow">Self-Managed kubeadm Flow<a class="headerlink" href="#self-managed-kubeadm-flow" title="Permanent link">&para;</a></h2>
-<p>Before <code>kubeadm init</code>:</p>
+<p>Then create and remove a small validation workload:</p>
 <ul>
-<li>Disable swap.</li>
-<li>Load bridge network modules.</li>
-<li>Configure container runtime.</li>
-<li>Configure system time.</li>
-<li>Confirm hostnames and DNS.</li>
-<li>Plan control plane endpoint for HA.</li>
+<li>Stateless deployment with readiness probe.</li>
+<li>PVC-backed pod.</li>
+<li>Internal service.</li>
+<li>Ingress route with TLS.</li>
+<li>Deliberate failed rollout followed by rollback.</li>
 </ul>
-<p>Validation:</p>
-<div class="highlight"><pre><span></span><code>kubeadm<span class="w"> </span>version
-kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
-</code></pre></div>
-<h2 id="application-readiness-gate">Application Readiness Gate<a class="headerlink" href="#application-readiness-gate" title="Permanent link">&para;</a></h2>
-<p>Do not deploy business applications until these checks pass:</p>
+<p>Record the result in the cluster readiness document. A screenshot is weaker than a repeatable command and expected output.</p>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Why It Hurts</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CIDR overlap</td>
+<td>Peering, VPN, and service routing fail later.</td>
+<td>Validate all address ranges before cluster creation.</td>
+</tr>
+<tr>
+<td>Add-on version mismatch</td>
+<td>CNI, CSI, or ingress breaks after upgrade.</td>
+<td>Freeze and review the version matrix.</td>
+</tr>
+<tr>
+<td>No tested StorageClass</td>
+<td>Stateful workloads block or lose data.</td>
+<td>Run PVC provision, mount, write, expand, and reclaim tests.</td>
+</tr>
+<tr>
+<td>Ingress before TLS ownership</td>
+<td>Services go public without renewal accountability.</td>
+<td>Define DNS and certificate ownership before exposure.</td>
+</tr>
+<tr>
+<td>App deployment before observability</td>
+<td>First incident has no useful evidence.</td>
+<td>Treat observability as a launch dependency.</td>
+</tr>
+<tr>
+<td>Permanent individual admin access</td>
+<td>Audit and offboarding become weak.</td>
+<td>Use groups, emergency access, and periodic review.</td>
+</tr>
+<tr>
+<td>Unbounded node autoscaling</td>
+<td>Cost spikes or scheduling instability.</td>
+<td>Set min, max, labels, taints, quotas, and alerts.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback-and-rebuild-boundary">Rollback and Rebuild Boundary<a class="headerlink" href="#rollback-and-rebuild-boundary" title="Permanent link">&para;</a></h2>
+<p>Some provisioning mistakes should be fixed by rebuilding the cluster, not patching around them.</p>
+<p>Prefer rebuild when:</p>
 <ul>
-<li>Nodes are <code>Ready</code>.</li>
-<li>System pods are healthy.</li>
-<li>Metrics server returns data.</li>
-<li>Default StorageClass is correct.</li>
-<li>Ingress test endpoint works.</li>
-<li>Cluster autoscaling behavior is understood.</li>
-<li>Backup and restore process is documented.</li>
-<li>Alert routing is tested.</li>
+<li>Pod or service CIDR conflicts with another network.</li>
+<li>The cluster was created in the wrong VPC, region, or account boundary.</li>
+<li>Identity integration was built around long-lived static credentials.</li>
+<li>Add-on ownership is unclear and no team can safely upgrade it.</li>
+<li>The cluster has accepted business workloads without baseline observability, and the migration cost is still low.</li>
+</ul>
+<p>Prefer in-place correction when:</p>
+<ul>
+<li>A node pool needs resizing or replacement.</li>
+<li>An add-on configuration is wrong but version-compatible.</li>
+<li>A StorageClass or IngressClass needs a new default after migration planning.</li>
+<li>RBAC needs tightening with an auditable access review.</li>
+</ul>
+<p>The earlier the problem is found, the more aggressive the rebuild option should be.</p>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Do not store kubeconfigs, tokens, certificates, or cloud keys in public documentation.</li>
+<li>Do not document private endpoint addresses, customer domains, or internal CIDR values in public examples.</li>
+<li>Use symbolic placeholders such as <code>&lt;pod-cidr&gt;</code> or <code>&lt;service-cidr&gt;</code> instead of copied production ranges.</li>
+<li>Prefer workload identity over static cloud credentials mounted into pods.</li>
+<li>Keep audit logging enabled before granting team access.</li>
+<li>Review cluster-admin bindings after every onboarding wave and after every incident.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review this standard:</p>
+<ul>
+<li>Before each new cluster build.</li>
+<li>Before each Kubernetes minor version upgrade.</li>
+<li>After any network, identity, storage, or ingress incident.</li>
+<li>When a new workload class requires a new node pool or storage profile.</li>
 </ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../eks-upgrade-standard/">EKS and Kubernetes Upgrade Standard</a></li>
 <li><a href="../kubernetes-storage-ingress-standard/">Kubernetes Storage and Ingress Standard</a></li>
+<li><a href="../nfs-pvc-capacity-management/">NFS PVC Capacity Management</a></li>
+<li><a href="../../../change-delivery/rollback/deployment-rollback-runbook/">Deployment Rollback Runbook</a></li>
 <li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
 </ul>
 
@@ -4304,7 +4970,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> <
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 11:51:03 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4314,7 +4980,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> <
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 11:51:03 UTC">June 28, 2026</span>
   </span>
 
     
