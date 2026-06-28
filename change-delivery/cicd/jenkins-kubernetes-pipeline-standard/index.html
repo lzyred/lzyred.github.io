@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Jenkins to Kubernetes pipeline standard for container-based CI/CD.">
+        <meta name="description" content="Jenkins 构建并部署到 Kubernetes 的流水线标准——不可变镜像标签、密钥处理、带门禁的晋级、验证后发布与回滚。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Jenkins 到 Kubernetes 流水线 - DevOps 专家知识库" />
-<meta property="og:description" content="Jenkins to Kubernetes pipeline standard for container-based CI/CD." />
+<meta property="og:description" content="Jenkins 构建并部署到 Kubernetes 的流水线标准——不可变镜像标签、密钥处理、带门禁的晋级、验证后发布与回滚。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/change-delivery/cicd/jenkins-kubernetes-pipeline-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/change-delivery/cicd/jenkins-kubernetes-pipeline-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Jenkins 到 Kubernetes 流水线 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Jenkins to Kubernetes pipeline standard for container-based CI/CD." />
+<meta property="twitter:description" content="Jenkins 构建并部署到 Kubernetes 的流水线标准——不可变镜像标签、密钥处理、带门禁的晋级、验证后发布与回滚。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/change-delivery/cicd/jenkins-kubernetes-pipeline-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#jenkins-to-kubernetes-pipeline-standard" class="md-skip">
+        <a href="#jenkins-kubernetes" class="md-skip">
           跳转至
         </a>
       
@@ -1263,10 +1263,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -1274,10 +1274,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pipeline-stages" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pipeline Stages
+        适用场景
       
     </span>
   </a>
@@ -1285,10 +1285,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#required-inputs" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Required Inputs
+        非目标
       
     </span>
   </a>
@@ -1296,10 +1296,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#credential-handling" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Credential Handling
+        流水线阶段
       
     </span>
   </a>
@@ -1307,10 +1307,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-jenkinsfile-skeleton" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example Jenkinsfile Skeleton
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不可变镜像标签
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        凭据处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经验证、带门禁的晋级
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jenkinsfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jenkinsfile 骨架示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生产部署前检查清单
       
     </span>
   </a>
@@ -1318,10 +1379,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-deploy-safety" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes Deploy Safety
+        校验
       
     </span>
   </a>
@@ -1329,10 +1390,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notification-standard" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notification Standard
+        已知失败模式
       
     </span>
   </a>
@@ -1340,10 +1401,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -1696,34 +1790,6 @@
     
   
     ELFK 日志
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
   
 
     
@@ -2187,34 +2253,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3493,34 +3531,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3858,34 +3868,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3956,10 +3938,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3967,10 +3949,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pipeline-stages" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pipeline Stages
+        适用场景
       
     </span>
   </a>
@@ -3978,10 +3960,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#required-inputs" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Required Inputs
+        非目标
       
     </span>
   </a>
@@ -3989,10 +3971,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#credential-handling" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Credential Handling
+        流水线阶段
       
     </span>
   </a>
@@ -4000,10 +3982,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-jenkinsfile-skeleton" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example Jenkinsfile Skeleton
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不可变镜像标签
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        凭据处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经验证、带门禁的晋级
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jenkinsfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jenkinsfile 骨架示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生产部署前检查清单
       
     </span>
   </a>
@@ -4011,10 +4054,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-deploy-safety" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes Deploy Safety
+        校验
       
     </span>
   </a>
@@ -4022,10 +4065,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notification-standard" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notification Standard
+        已知失败模式
       
     </span>
   </a>
@@ -4033,10 +4076,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4135,6 +4211,18 @@
         
       
       
+        <a href="../../../tags/#tag:cicd" class="md-tag md-tag-icon md-tag--ci-cd">CI/CD</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:delivery" class="md-tag md-tag-icon md-tag--delivery">Delivery</a>
       
     
@@ -4157,111 +4245,79 @@
   
 
 
-<h1 id="jenkins-to-kubernetes-pipeline-standard">Jenkins to Kubernetes Pipeline Standard<a class="headerlink" href="#jenkins-to-kubernetes-pipeline-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes a safe Jenkins pipeline pattern for building container images and deploying to Kubernetes.</p>
-<h2 id="pipeline-stages">Pipeline Stages<a class="headerlink" href="#pipeline-stages" title="Permanent link">&para;</a></h2>
-<p>Use a predictable stage model:</p>
-<div class="highlight"><pre><span></span><code>checkout
-test
-build
-scan
-package
-push image
-deploy to staging
-smoke test
-manual approval
-deploy to production
-post-deploy verification
-</code></pre></div>
-<h2 id="required-inputs">Required Inputs<a class="headerlink" href="#required-inputs" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Input</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Git repository</td>
-<td><code>https://github.com/example/example-repo.git</code></td>
-</tr>
-<tr>
-<td>Branch</td>
-<td><code>main</code></td>
-</tr>
-<tr>
-<td>Image</td>
-<td><code>registry.example.com/example/app</code></td>
-</tr>
-<tr>
-<td>Version</td>
-<td>Git SHA or release tag</td>
-</tr>
-<tr>
-<td>Kubernetes namespace</td>
-<td><code>example-namespace</code></td>
-</tr>
-<tr>
-<td>Deployment name</td>
-<td><code>example-service</code></td>
-</tr>
-<tr>
-<td>Environment</td>
-<td><code>staging</code> or <code>production</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="credential-handling">Credential Handling<a class="headerlink" href="#credential-handling" title="Permanent link">&para;</a></h2>
-<p>Store credentials in Jenkins credentials or an external secret manager:</p>
+<h1 id="jenkins-kubernetes">Jenkins 到 Kubernetes 流水线标准<a class="headerlink" href="#jenkins-kubernetes" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义用 Jenkins 构建容器镜像并部署到 Kubernetes 的安全流水线模式：如何保持构建可复现、如何处理凭据，以及如何让生产部署带门禁、经验证且可回退。</p>
+<p>本标准的核心判断：</p>
+<blockquote>
+<p>流水线的职责不是"去部署"——而是让每次部署可复现、可追溯、可回退。实现这一点最关键的单项决策是使用<strong>不可变镜像标签</strong>（提交 SHA），使你测试过的正是你发布的，也正是你能回滚到的。</p>
+</blockquote>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
 <ul>
-<li>Git credentials.</li>
-<li>Registry credentials.</li>
-<li>Kubernetes deploy credentials.</li>
-<li>Notification webhook.</li>
-<li>Cloud credentials.</li>
+<li>从 Jenkins 构建容器镜像并部署到 Kubernetes。</li>
+<li>需要跨服务一致的阶段模型、凭据模型与回滚路径。</li>
+<li>希望 CI（本标准）交接给 GitOps CD，或带验证地直接部署。</li>
 </ul>
-<p>Never hardcode credentials in Jenkinsfiles, shell scripts, or public documentation.</p>
-<h2 id="example-jenkinsfile-skeleton">Example Jenkinsfile Skeleton<a class="headerlink" href="#example-jenkinsfile-skeleton" title="Permanent link">&para;</a></h2>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不涵盖：</p>
+<ul>
+<li>GitOps 协调——若由 Argo CD 掌管集群状态，则流水线推送镜像并更新 Git，由 Argo CD 部署（见 Argo CD GitOps 标准）。</li>
+<li>Jenkins 控制器/agent 基础设施与扩缩。</li>
+<li>某语言的构建工具细节。</li>
+</ul>
+<h2 id="_4">流水线阶段<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>使用可预期的阶段模型，使失败被局部化、晋级显式化：</p>
+<div class="highlight"><pre><span></span><code>checkout → test → 构建镜像 → 扫描 → 推送镜像 →
+部署到 staging → 冒烟测试 → 人工审批 → 部署到生产 → 验证
+</code></pre></div>
+<p>每个阶段出错都必须使构建失败；测试或镜像扫描失败必须阻断晋级，而非告警后继续。</p>
+<h2 id="_5">推荐标准<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">不可变镜像标签<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>用 Git 提交 SHA（可附加发布 tag）打标，绝不用 <code>latest</code> 这类移动标签。移动标签意味着"staging 跑的"与"生产跑的"可能悄悄不同，且回滚没有精确目标。</p>
+<h3 id="_7">凭据处理<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>所有凭据存于 Jenkins credentials 或外部密钥管理系统——绝不硬编码在 <code>Jenkinsfile</code>、脚本或文档中：</p>
+<ul>
+<li>Git、镜像仓库、Kubernetes 部署、通知、云凭据。</li>
+<li>在需要的阶段用 <code>withCredentials</code> 注入；绝不回显。</li>
+</ul>
+<h3 id="_8">经验证、带门禁的晋级<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>进入任何生产阶段前，先部署到 staging 并跑真实冒烟测试。</li>
+<li>生产部署设人工审批门禁（或 GitOps PR），记录谁批准。</li>
+<li>生产发布后<strong>验证</strong>——不要因"kubectl 已 apply"就宣布成功。</li>
+</ul>
+<h3 id="jenkinsfile">Jenkinsfile 骨架示例<a class="headerlink" href="#jenkinsfile" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="n">pipeline</span><span class="w"> </span><span class="o">{</span>
 <span class="w">  </span><span class="n">agent</span><span class="w"> </span><span class="n">any</span>
-
 <span class="w">  </span><span class="n">environment</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="n">IMAGE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;registry.example.com/example/app&#39;</span>
-<span class="w">    </span><span class="n">NAMESPACE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;example-namespace&#39;</span>
+<span class="w">    </span><span class="n">IMAGE</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;registry.example.com/example/app&#39;</span>
+<span class="w">    </span><span class="n">NAMESPACE</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;example-namespace&#39;</span>
 <span class="w">    </span><span class="n">DEPLOYMENT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;example-service&#39;</span>
 <span class="w">  </span><span class="o">}</span>
-
 <span class="w">  </span><span class="n">stages</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Checkout&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Checkout&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">checkout</span><span class="w"> </span><span class="n">scm</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Test&#39;</span><span class="o">)</span><span class="w">     </span><span class="o">{</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;make test&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Build&#39;</span><span class="o">)</span><span class="w">    </span><span class="o">{</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;docker build -t ${IMAGE}:${GIT_COMMIT} .&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Scan&#39;</span><span class="o">)</span><span class="w">     </span><span class="o">{</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;trivy image --exit-code 1 --severity HIGH,CRITICAL ${IMAGE}:${GIT_COMMIT}&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Push&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
 <span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<span class="w">        </span><span class="n">checkout</span><span class="w"> </span><span class="n">scm</span>
-<span class="w">      </span><span class="o">}</span>
-<span class="w">    </span><span class="o">}</span>
-
-<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Test&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;make test&#39;</span>
-<span class="w">      </span><span class="o">}</span>
-<span class="w">    </span><span class="o">}</span>
-
-<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Build Image&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;docker build -t ${IMAGE}:${GIT_COMMIT} .&#39;</span>
-<span class="w">      </span><span class="o">}</span>
-<span class="w">    </span><span class="o">}</span>
-
-<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Push Image&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<span class="w">        </span><span class="n">withCredentials</span><span class="o">([</span><span class="n">usernamePassword</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s1">&#39;registry-credentials&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">usernameVariable:</span><span class="w"> </span><span class="s1">&#39;REGISTRY_USER&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">passwordVariable:</span><span class="w"> </span><span class="s1">&#39;REGISTRY_PASSWORD&#39;</span><span class="o">)])</span><span class="w"> </span><span class="o">{</span>
-<span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;echo &quot;$REGISTRY_PASSWORD&quot; | docker login registry.example.com -u &quot;$REGISTRY_USER&quot; --password-stdin&#39;</span>
+<span class="w">        </span><span class="n">withCredentials</span><span class="o">([</span><span class="n">usernamePassword</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s1">&#39;registry-credentials&#39;</span><span class="o">,</span>
+<span class="w">            </span><span class="nl">usernameVariable:</span><span class="w"> </span><span class="s1">&#39;REG_USER&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">passwordVariable:</span><span class="w"> </span><span class="s1">&#39;REG_PASS&#39;</span><span class="o">)])</span><span class="w"> </span><span class="o">{</span>
+<span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;echo &quot;$REG_PASS&quot; | docker login registry.example.com -u &quot;$REG_USER&quot; --password-stdin&#39;</span>
 <span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;docker push ${IMAGE}:${GIT_COMMIT}&#39;</span>
 <span class="w">        </span><span class="o">}</span>
 <span class="w">      </span><span class="o">}</span>
 <span class="w">    </span><span class="o">}</span>
-
-<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Deploy&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Deploy staging&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;kubectl -n ${NAMESPACE}-staging set image deployment/${DEPLOYMENT} app=${IMAGE}:${GIT_COMMIT}&#39;</span>
+<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;kubectl -n ${NAMESPACE}-staging rollout status deployment/${DEPLOYMENT} --timeout=5m&#39;</span>
+<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;make smoke-test ENV=staging&#39;</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Approve&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="nl">message:</span><span class="w"> </span><span class="s1">&#39;晋级到生产？&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Deploy production&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
 <span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
 <span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;kubectl -n ${NAMESPACE} set image deployment/${DEPLOYMENT} app=${IMAGE}:${GIT_COMMIT}&#39;</span>
 <span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;kubectl -n ${NAMESPACE} rollout status deployment/${DEPLOYMENT} --timeout=5m&#39;</span>
@@ -4270,34 +4326,97 @@ post-deploy verification
 <span class="w">  </span><span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div>
-<h2 id="kubernetes-deploy-safety">Kubernetes Deploy Safety<a class="headerlink" href="#kubernetes-deploy-safety" title="Permanent link">&para;</a></h2>
-<p>Before production deploy:</p>
+<p>镜像扫描（<code>trivy ... --exit-code 1</code>）在 HIGH/CRITICAL 漏洞上阻断晋级——只记录不阻断的扫描是做样子。</p>
+<h2 id="_9">生产部署前检查清单<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>进入生产阶段前：</p>
 <ul>
-<li>Confirm image tag is immutable.</li>
-<li>Confirm Kubernetes context and namespace.</li>
-<li>Confirm rollout strategy and readiness probes.</li>
-<li>Confirm rollback command.</li>
-<li>Confirm monitoring dashboard and alert ownership.</li>
+<li>镜像标签不可变（SHA），且正是 staging 测试过的制品。</li>
+<li>目标 Kubernetes context 与命名空间正确。</li>
+<li>Deployment 有就绪探针与合理的发布策略（<code>maxUnavailable</code>/<code>maxSurge</code>）。</li>
+<li>回滚命令已知且已测试。</li>
+<li>该服务有监控仪表盘与告警归属。</li>
 </ul>
-<p>Rollback:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/example-service
-kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service
+<h2 id="_10">校验<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service<span class="w"> </span>--timeout<span class="o">=</span>5m
+kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>example-service
 </code></pre></div>
-<h2 id="notification-standard">Notification Standard<a class="headerlink" href="#notification-standard" title="Permanent link">&para;</a></h2>
-<p>Notifications should include:</p>
+<p>确认：</p>
 <ul>
-<li>Job name.</li>
-<li>Build number.</li>
-<li>Git commit.</li>
-<li>Environment.</li>
-<li>Deployment status.</li>
-<li>Runbook link.</li>
+<li>发布完成；新 Pod <code>Ready</code> 且镜像 SHA 符合预期。</li>
+<li>staging 冒烟测试通过；生产的部署后检查（错误率、延迟）在阈值内。</li>
+<li>发布窗口后无崩溃循环或就绪失败。</li>
 </ul>
-<p>Do not include webhook URLs, credentials, or sensitive logs in notification templates.</p>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_11">已知失败模式<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>症状</th>
+<th>可能原因</th>
+<th>正确处置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>staging ≠ 生产</td>
+<td>staging 正常、生产坏</td>
+<td>移动标签（<code>latest</code>）</td>
+<td>端到端使用不可变 SHA 标签。</td>
+</tr>
+<tr>
+<td>凭据泄漏</td>
+<td>日志/仓库中出现密钥</td>
+<td>硬编码在 Jenkinsfile/被回显</td>
+<td>用 <code>withCredentials</code>；轮换泄漏的密钥。</td>
+</tr>
+<tr>
+<td>"已部署"却坏</td>
+<td>流水线绿、服务故障</td>
+<td>因 apply 就宣布成功、未验证</td>
+<td>用 <code>rollout status</code> + 冒烟/部署后检查。</td>
+</tr>
+<tr>
+<td>扫描被忽略</td>
+<td>漏洞镜像被发布</td>
+<td>扫描只记录不阻断</td>
+<td>让扫描在 HIGH/CRITICAL 上失败。</td>
+</tr>
+<tr>
+<td>发布卡住</td>
+<td>卡在 <code>rollout status</code></td>
+<td>就绪探针错误或容量不足</td>
+<td>回滚；在 staging 修探针/容量。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_12">回滚<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/example-service
+kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service<span class="w"> </span>--timeout<span class="o">=</span>5m
+</code></pre></div>
+<ol>
+<li>由于标签是不可变 SHA，回滚即重新部署上一已知良好 SHA（或 <code>rollout undo</code> 到上一个 ReplicaSet）。</li>
+<li>若流水线更新了 Git（GitOps），通过 revert 提交回滚，以免控制器重新 apply 坏版本。</li>
+<li>回滚后与部署后一样验证——确认 Pod、镜像 SHA 与服务健康。</li>
+</ol>
+<h2 id="_13">安全注记<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../system-design/production-architecture/eks-upgrade-standard/">EKS and Kubernetes Upgrade Standard</a></li>
-<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
+<li>所有凭据存于 Jenkins/密钥管理系统；绝不放在 <code>Jenkinsfile</code>、脚本或通知里。</li>
+<li>部署凭据限定到目标命名空间；流水线不要用 cluster-admin。</li>
+<li>用镜像扫描阻断晋级；固定基础镜像。</li>
+<li>通知模板不含 webhook URL、token 或敏感日志——只通知任务、构建号、提交、环境、状态与 runbook 链接。</li>
+</ul>
+<h2 id="_14">评审周期<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li>负责人：交付/平台团队。</li>
+<li>当风险容忍度变化时复核门禁与扫描阈值。</li>
+<li>按周期实测回滚是否可用，而非停留纸面。</li>
+<li>当命名空间或集群变化时复核部署凭据范围。</li>
+</ul>
+<h2 id="_15">相关文档<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../argocd-gitops-standard/">Argo CD GitOps 标准</a></li>
+<li><a href="../../rollback/deployment-rollback-runbook/">部署回滚 Runbook</a></li>
+<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus 告警标准</a></li>
 </ul>
 
 
@@ -4321,7 +4440,7 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span 
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:15:46 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4331,7 +4450,7 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span 
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:15:46 UTC">2026年6月28日</span>
   </span>
 
     

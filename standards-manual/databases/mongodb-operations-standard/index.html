@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="MongoDB operations standard for production deployment and maintenance.">
+        <meta name="description" content="生产 MongoDB 标准——副本集可用性、write concern/持久化权衡、以恢复验证的备份、安全升级与回滚。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="MongoDB 运维 - DevOps 专家知识库" />
-<meta property="og:description" content="MongoDB operations standard for production deployment and maintenance." />
+<meta property="og:description" content="生产 MongoDB 标准——副本集可用性、write concern/持久化权衡、以恢复验证的备份、安全升级与回滚。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/databases/mongodb-operations-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/databases/mongodb-operations-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="MongoDB 运维 - DevOps 专家知识库" />
-<meta property="twitter:description" content="MongoDB operations standard for production deployment and maintenance." />
+<meta property="twitter:description" content="生产 MongoDB 标准——副本集可用性、write concern/持久化权衡、以恢复验证的备份、安全升级与回滚。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/databases/mongodb-operations-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mongodb-operations-standard" class="md-skip">
+        <a href="#mongodb" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -2902,10 +2846,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -2913,10 +2857,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#baseline" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Baseline
+        适用场景
       
     </span>
   </a>
@@ -2924,10 +2868,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup
+        非目标
       
     </span>
   </a>
@@ -2935,10 +2879,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        运维原则
       
     </span>
   </a>
@@ -2946,10 +2890,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-notes" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Notes
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拓扑：副本集，而非单实例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-concern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        持久化由 write concern 决定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        认证与访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        备份与恢复
       
     </span>
   </a>
@@ -2957,10 +2951,76 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        升级与迁移
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        校验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3480,34 +3540,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3851,34 +3883,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3949,10 +3953,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3960,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#baseline" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Baseline
+        适用场景
       
     </span>
   </a>
@@ -3971,10 +3975,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup
+        非目标
       
     </span>
   </a>
@@ -3982,10 +3986,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        运维原则
       
     </span>
   </a>
@@ -3993,10 +3997,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-notes" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Notes
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拓扑：副本集，而非单实例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-concern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        持久化由 write concern 决定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        认证与访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        备份与恢复
       
     </span>
   </a>
@@ -4004,10 +4058,76 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        升级与迁移
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        校验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4114,6 +4234,16 @@
       
         
         
+      
+      
+        <a href="../../../tags/#tag:mongodb" class="md-tag md-tag-icon">MongoDB</a>
+      
+    
+      
+      
+      
+        
+        
           
         
       
@@ -4128,29 +4258,182 @@
   
 
 
-<h1 id="mongodb-operations-standard">MongoDB Operations Standard<a class="headerlink" href="#mongodb-operations-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes safe MongoDB deployment, monitoring, backup, and migration practices.</p>
-<h2 id="baseline">Baseline<a class="headerlink" href="#baseline" title="Permanent link">&para;</a></h2>
+<h1 id="mongodb">MongoDB 运维标准<a class="headerlink" href="#mongodb" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何在生产环境安全运行 MongoDB：能带来真正可用性的拓扑、决定"一条已确认的写是否仍可能丢失"的 write concern 选择，以及一份你真正恢复过的备份。</p>
+<p>本标准的核心判断：</p>
+<blockquote>
+<p>单个 <code>mongod</code> 不是"生产环境的 MongoDB"——它是一个没有故障切换、且 write concern 可能确认了一条你即将丢失的数据的数据库。MongoDB 的可用性与持久化是配置决策（副本集 + write concern），不是你默认继承的。</p>
+</blockquote>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
 <ul>
-<li>Enable authentication.</li>
-<li>Bind only to private interfaces.</li>
-<li>Use replica sets for availability.</li>
-<li>Back up with a documented restore process.</li>
-<li>Monitor connections, replication lag, locks, storage, and memory.</li>
+<li>自管 MongoDB（虚机、裸机或容器/operator）。</li>
+<li>需要为某个持久化要求选择拓扑与读/写 concern。</li>
+<li>计划版本升级、迁移主机或迁移。</li>
 </ul>
-<h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>mongodump<span class="w"> </span>--host<span class="w"> </span>mongo.example.internal<span class="w"> </span>--out<span class="w"> </span>/backup/mongodb
-</code></pre></div>
-<p>Store backups encrypted and test restore regularly.</p>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>mongosh<span class="w"> </span>--host<span class="w"> </span>mongo.example.internal<span class="w"> </span>--eval<span class="w"> </span><span class="s1">&#39;rs.status()&#39;</span>
-</code></pre></div>
-<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
-<p>Do not publish MongoDB connection strings, users, passwords, or internal hosts.</p>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不涵盖：</p>
 <ul>
-<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter Monitoring Standard</a></li>
+<li>文档建模与索引设计。</li>
+<li>托管 MongoDB（Atlas 类）内部机制——使用厂商的 HA 与备份契约；write concern 与恢复验证的判断仍适用。</li>
+<li>分片设计（仅说明何时考虑）。</li>
+</ul>
+<h2 id="_4">运维原则<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ol>
+<li>生产环境运行<strong>副本集</strong>（奇数个投票成员）——对不可丢失的数据，绝不用单实例。</li>
+<li>启用认证与基于角色的访问；仅绑定私有网卡。</li>
+<li>按负载刻意选择 write concern 与 read concern；它们是持久化/一致性的旋钮。</li>
+<li>通过恢复来验证备份，并记录恢复耗时。</li>
+<li>监控复制延迟、连接、锁/争用、存储与 oplog 窗口。</li>
+</ol>
+<h2 id="_5">推荐标准<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">拓扑：副本集，而非单实例<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>副本集提供自动故障切换（当前主节点失败时选举出新主），并作为备份/读取来源。使用奇数个投票成员（常见 3 个）使选举有法定人数。把成员分散到不同故障域（主机/可用区）。</p>
+<h3 id="write-concern">持久化由 write concern 决定<a class="headerlink" href="#write-concern" title="Permanent link">&para;</a></h3>
+<p>这是多数团队因沿用默认而出错之处。</p>
+<table>
+<thead>
+<tr>
+<th>Write concern</th>
+<th>何时确认</th>
+<th>丢失风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>w:1</code></td>
+<td>主节点已写入（尚未复制）</td>
+<td>一次主切换可能丢失最近已确认的写</td>
+</tr>
+<tr>
+<td><code>w:majority</code></td>
+<td>多数成员已写入</td>
+<td>可承受单成员切换</td>
+</tr>
+<tr>
+<td><code>w:majority, j:true</code></td>
+<td>多数成员<strong>且</strong>已落盘日志</td>
+<td>最强的常见持久化</td>
+</tr>
+</tbody>
+</table>
+<p>对必须承受节点丢失的数据，使用 <code>w:majority</code>。<code>w:1</code> 仅用于可接受丢失的缓存/派生数据，并把该决策写下来。</p>
+<h3 id="_7">认证与访问<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>启用认证；创建最小权限角色（应用用户获库级读写，而非集群管理）。</li>
+<li>仅绑定私有网卡；切勿将 MongoDB 暴露到公网。</li>
+<li>凭据存于密钥管理系统；切勿公开连接串、用户、密码或内部主机。</li>
+</ul>
+<h2 id="_8">备份与恢复<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>中小数据集，逻辑备份可移植：</p>
+<div class="highlight"><pre><span></span><code>mongodump<span class="w"> </span>--uri<span class="o">=</span><span class="s2">&quot;mongodb://&lt;user&gt;@&lt;host&gt;/?authSource=admin&quot;</span><span class="w"> </span>--out<span class="w"> </span>/backup/mongodb
+<span class="c1"># 恢复：</span>
+mongorestore<span class="w"> </span>--uri<span class="o">=</span><span class="s2">&quot;mongodb://&lt;user&gt;@&lt;host&gt;/?authSource=admin&quot;</span><span class="w"> </span>/backup/mongodb
+</code></pre></div>
+<p>大数据集，优先对已停止或 fsync 锁定的从节点做文件系统/卷快照，或用托管/持续备份。无论何种方式：</p>
+<ul>
+<li>加密备份并限制可读人员（备份是数据的完整副本）。</li>
+<li><strong>按计划做恢复演练</strong>，恢复到隔离实例；校验集合计数与一项应用级检查。记录恢复耗时——它才是真正的恢复目标。</li>
+</ul>
+<h2 id="_9">升级与迁移<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>MongoDB 升级必须遵循受支持的版本路径与 <code>featureCompatibilityVersion</code>（FCV）规则——跨版本或过早提升 FCV 会阻断回滚。</p>
+<ol>
+<li>确认受支持的升级路径；不要跨大版本。</li>
+<li>先取一份经验证的备份。</li>
+<li>对副本集，<strong>先升级从节点</strong>，再让主节点 step down 并最后升级它（滚动升级保持副本集可用）。</li>
+<li>仅在整个副本集升级完成且确信不会回滚后，再提升 FCV。</li>
+<li>完成前先校验（见下）。</li>
+</ol>
+<h2 id="_10">校验<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>mongosh<span class="w"> </span>--host<span class="w"> </span>&lt;host&gt;<span class="w"> </span>--eval<span class="w"> </span><span class="s1">&#39;rs.status()&#39;</span><span class="w">      </span><span class="c1"># 成员状态、谁是主</span>
+mongosh<span class="w"> </span>--host<span class="w"> </span>&lt;host&gt;<span class="w"> </span>--eval<span class="w"> </span><span class="s1">&#39;rs.printSecondaryReplicationInfo()&#39;</span><span class="w">   </span><span class="c1"># 延迟</span>
+mongosh<span class="w"> </span>--host<span class="w"> </span>&lt;host&gt;<span class="w"> </span>--eval<span class="w"> </span><span class="s1">&#39;db.serverStatus().connections&#39;</span>
+</code></pre></div>
+<p>确认：</p>
+<ul>
+<li>一个 <code>PRIMARY</code> 与健康的 <code>SECONDARY</code>；没有成员卡在 <code>RECOVERING</code>/<code>DOWN</code>。</li>
+<li>复制延迟接近零且在 oplog 窗口内。</li>
+<li>最近一次恢复演练在周期内通过。</li>
+<li>连接远低于上限；无持续锁争用。</li>
+</ul>
+<h2 id="_11">已知失败模式<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>症状</th>
+<th>可能原因</th>
+<th>正确处置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>已确认的写丢失</td>
+<td>切换后数据消失</td>
+<td>持久数据用了 <code>w:1</code></td>
+<td>对必须承受切换的数据用 <code>w:majority</code>。</td>
+</tr>
+<tr>
+<td>无故障切换</td>
+<td>节点宕时写失败</td>
+<td>单实例，或偶数成员/丢失法定人数</td>
+<td>跨故障域运行奇数副本集。</td>
+</tr>
+<tr>
+<td>复制落后</td>
+<td>从节点延迟，oplog 滚动覆盖</td>
+<td>oplog 过小、磁盘慢、写入重</td>
+<td>调大 oplog；修磁盘；重做从节点。</td>
+</tr>
+<tr>
+<td>备份无法恢复</td>
+<td>恢复失败/不全</td>
+<td>从未做恢复演练</td>
+<td>安排恢复演练；校验计数。</td>
+</tr>
+<tr>
+<td>升级无法回滚</td>
+<td>升级后卡住</td>
+<td>FCV 提升过早</td>
+<td>仅在确定版本后提升 FCV。</td>
+</tr>
+<tr>
+<td>实例暴露</td>
+<td>未授权访问</td>
+<td>绑定公网/无认证</td>
+<td>绑定私有；启用认证；限制网络。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_12">回滚<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ol>
+<li>在变更后校验通过前，保留经验证的备份与旧版本二进制。</li>
+<li>对失败的滚动升级（FCV 提升前），让受影响成员 step down 并重装旧版本；让副本集重新同步。</li>
+<li>若数据损坏，从变更前备份恢复到干净实例并把应用指过去。</li>
+<li>轮换变更期间暴露的凭据。</li>
+</ol>
+<h2 id="_13">安全注记<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>启用认证与 TLS；绑定私有网卡。</li>
+<li>使用最小权限角色；管理用户与应用用户分离。</li>
+<li>加密并访问控制备份。</li>
+<li>切勿公开连接串、凭据或内部主机名。</li>
+<li>限制谁可执行管理命令与触发选举。</li>
+</ul>
+<h2 id="_14">评审周期<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li>负责人：数据库/平台团队。</li>
+<li>当某负载的持久化要求变化时，重新确认 write concern 选择。</li>
+<li>每个周期验证一次成功的恢复演练。</li>
+<li>每次大版本升级前重新确认受支持路径与 FCV 计划。</li>
+</ul>
+<h2 id="_15">相关文档<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter 监控标准</a></li>
+<li><a href="../mysql-operations-standard/">MySQL 运维标准</a></li>
+<li><a href="../redis-operations-standard/">Redis 运维标准</a></li>
+<li><a href="https://www.mongodb.com/docs/manual/administration/production-notes/">MongoDB 生产注意事项</a></li>
 </ul>
 
 
@@ -4174,7 +4457,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:15:46 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4184,7 +4467,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:15:46 UTC">2026年6月28日</span>
   </span>
 
     

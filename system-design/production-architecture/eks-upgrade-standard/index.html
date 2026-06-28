@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="EKS and Kubernetes upgrade standard with zero-downtime node rollout and validation.">
+        <meta name="description" content="升级 Kubernetes 集群（EKS 或自管）的标准——控制面/插件/节点的有序升级、废弃 API 检查、节点组迁移与回滚触发器。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="EKS 与 Kubernetes 升级 - DevOps 专家知识库" />
-<meta property="og:description" content="EKS and Kubernetes upgrade standard with zero-downtime node rollout and validation." />
+<meta property="og:description" content="升级 Kubernetes 集群（EKS 或自管）的标准——控制面/插件/节点的有序升级、废弃 API 检查、节点组迁移与回滚触发器。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/system-design/production-architecture/eks-upgrade-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/system-design/production-architecture/eks-upgrade-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="EKS 与 Kubernetes 升级 - DevOps 专家知识库" />
-<meta property="twitter:description" content="EKS and Kubernetes upgrade standard with zero-downtime node rollout and validation." />
+<meta property="twitter:description" content="升级 Kubernetes 集群（EKS 或自管）的标准——控制面/插件/节点的有序升级、废弃 API 检查、节点组迁移与回滚触发器。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/system-design/production-architecture/eks-upgrade-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#eks-and-kubernetes-upgrade-standard" class="md-skip">
+        <a href="#eks-kubernetes" class="md-skip">
           跳转至
         </a>
       
@@ -1032,10 +1032,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -1043,10 +1043,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Use
+        适用场景
       
     </span>
   </a>
@@ -1054,10 +1054,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-principles" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upgrade Principles
+        非目标
       
     </span>
   </a>
@@ -1065,10 +1065,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pre-upgrade-assessment" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pre-Upgrade Assessment
+        升级原则
       
     </span>
   </a>
@@ -1076,22 +1076,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-upgrade-sequence" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Upgrade Sequence
+        升级前评估
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Standard Upgrade Sequence">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标准升级序列
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="标准升级序列">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-freeze-risky-changes" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Freeze Risky Changes
+        1. 冻结并通告
       
     </span>
   </a>
@@ -1099,10 +1110,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-back-up-critical-state" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Back Up Critical State
+        2. 备份集群状态
       
     </span>
   </a>
@@ -1110,10 +1121,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-upgrade-control-plane" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Upgrade Control Plane
+        3. 升级控制面
       
     </span>
   </a>
@@ -1121,10 +1132,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-upgrade-core-add-ons" class="md-nav__link">
+  <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Upgrade Core Add-ons
+        4. 把核心插件升级到目标兼容版本
       
     </span>
   </a>
@@ -1132,10 +1143,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-create-new-worker-node-group" class="md-nav__link">
+  <a href="#5-drain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Create New Worker Node Group
+        5. 加新节点组，逐步 drain 旧节点
       
     </span>
   </a>
@@ -1143,32 +1154,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-drain-old-nodes-gradually" class="md-nav__link">
+  <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Drain Old Nodes Gradually
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-validate-workloads" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. Validate Workloads
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-decommission-old-node-group" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. Decommission Old Node Group
+        6. 校验，再下线旧节点
       
     </span>
   </a>
@@ -1181,10 +1170,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback-strategy" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback Strategy
+        校验
       
     </span>
   </a>
@@ -1192,10 +1181,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#post-upgrade-review" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Upgrade Review
+        已知失败模式
       
     </span>
   </a>
@@ -1203,10 +1192,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        升级后复盘
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -1807,34 +1840,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2278,34 +2283,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3584,34 +3561,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3949,34 +3898,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -4047,10 +3968,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -4058,10 +3979,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Use
+        适用场景
       
     </span>
   </a>
@@ -4069,10 +3990,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-principles" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upgrade Principles
+        非目标
       
     </span>
   </a>
@@ -4080,10 +4001,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pre-upgrade-assessment" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pre-Upgrade Assessment
+        升级原则
       
     </span>
   </a>
@@ -4091,22 +4012,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-upgrade-sequence" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Upgrade Sequence
+        升级前评估
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Standard Upgrade Sequence">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标准升级序列
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="标准升级序列">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-freeze-risky-changes" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Freeze Risky Changes
+        1. 冻结并通告
       
     </span>
   </a>
@@ -4114,10 +4046,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-back-up-critical-state" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Back Up Critical State
+        2. 备份集群状态
       
     </span>
   </a>
@@ -4125,10 +4057,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-upgrade-control-plane" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Upgrade Control Plane
+        3. 升级控制面
       
     </span>
   </a>
@@ -4136,10 +4068,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-upgrade-core-add-ons" class="md-nav__link">
+  <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Upgrade Core Add-ons
+        4. 把核心插件升级到目标兼容版本
       
     </span>
   </a>
@@ -4147,10 +4079,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-create-new-worker-node-group" class="md-nav__link">
+  <a href="#5-drain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Create New Worker Node Group
+        5. 加新节点组，逐步 drain 旧节点
       
     </span>
   </a>
@@ -4158,32 +4090,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-drain-old-nodes-gradually" class="md-nav__link">
+  <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Drain Old Nodes Gradually
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-validate-workloads" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. Validate Workloads
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-decommission-old-node-group" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. Decommission Old Node Group
+        6. 校验，再下线旧节点
       
     </span>
   </a>
@@ -4196,10 +4106,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback-strategy" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback Strategy
+        校验
       
     </span>
   </a>
@@ -4207,10 +4117,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#post-upgrade-review" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Upgrade Review
+        已知失败模式
       
     </span>
   </a>
@@ -4218,10 +4128,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        升级后复盘
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4354,172 +4308,199 @@
   
 
 
-<h1 id="eks-and-kubernetes-upgrade-standard">EKS and Kubernetes Upgrade Standard<a class="headerlink" href="#eks-and-kubernetes-upgrade-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes a safe process for upgrading a managed or self-managed Kubernetes cluster. It is written for public reuse and does not depend on any private environment.</p>
-<h2 id="when-to-use">When To Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
-<p>Use this procedure when:</p>
+<h1 id="eks-kubernetes">EKS 与 Kubernetes 升级标准<a class="headerlink" href="#eks-kubernetes" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义安全升级托管（EKS 类）或自管 Kubernetes 集群跨一个小版本、且不引发计划外故障的流程。</p>
+<p>本标准的核心判断：</p>
+<blockquote>
+<p>Kubernetes 升级是三个耦合的升级——控制面、插件、节点——必须按序进行，外加一次在开始<strong>之前</strong>就能发现破坏的 API 兼容性检查。多数升级事故不是控制面，而是某个不再匹配版本的插件，或某个使用了新版本已移除 API 的工作负载。</p>
+</blockquote>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
 <ul>
-<li>Upgrading Amazon EKS, self-managed Kubernetes, or a Kubernetes-compatible platform.</li>
-<li>Moving workloads from an older minor version to a newer supported minor version.</li>
-<li>Replacing worker node groups during a platform upgrade.</li>
-<li>Upgrading core add-ons such as CNI, CoreDNS, kube-proxy, ingress controllers, CSI drivers, monitoring, or logging agents.</li>
+<li>跨小版本升级 EKS、自管 Kubernetes 或兼容平台。</li>
+<li>作为平台升级的一部分替换工作节点组。</li>
+<li>升级核心插件（CNI、CoreDNS、kube-proxy、CSI 驱动、ingress、可观测性 agent）。</li>
 </ul>
-<h2 id="upgrade-principles">Upgrade Principles<a class="headerlink" href="#upgrade-principles" title="Permanent link">&para;</a></h2>
+<p>这是<strong>升级</strong>标准。新建集群见集群供给标准；本标准假设集群已在运行。</p>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不涵盖：</p>
+<ul>
+<li>集群初次创建（见 Kubernetes 集群供给标准）。</li>
+<li>应用发布机制（见部署回滚 Runbook）。</li>
+<li>某云厂商确切的控制台/CLI 步骤——在本序列内使用厂商记录的升级路径。</li>
+</ul>
+<h2 id="_4">升级原则<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Upgrade one minor version at a time unless the platform explicitly supports a larger jump.</li>
-<li>Treat add-ons as part of the cluster, not as optional extras.</li>
-<li>Upgrade control plane, add-ons, and nodes in a controlled sequence.</li>
-<li>Use new node groups for workload migration instead of in-place mutation when possible.</li>
-<li>Validate both Kubernetes health and application behavior before declaring the upgrade complete.</li>
-<li>Keep rollback paths available until post-upgrade monitoring is stable.</li>
+<li><strong>一次升一个小版本</strong>，除非平台明确支持更大跨度。</li>
+<li>把插件当作集群的一部分，而非可选项——控制面与插件的版本偏移是破坏的首要原因。</li>
+<li>按序升级：控制面 → 插件 → 节点。</li>
+<li>优先<strong>新节点组 + drain</strong>，而非就地改节点，使回滚是"停止 drain"而非"给节点降级"。</li>
+<li>在宣布完成前同时校验 Kubernetes 健康与应用行为。</li>
+<li>预先定义回滚触发器，并在观察窗口内保持回滚路径开放。</li>
 </ol>
-<h2 id="pre-upgrade-assessment">Pre-Upgrade Assessment<a class="headerlink" href="#pre-upgrade-assessment" title="Permanent link">&para;</a></h2>
-<p>Collect this baseline before making changes:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>version<span class="w"> </span>--short
+<h2 id="_5">升级前评估<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>捕获基线并运行兼容性检查——这里正是你预防故障之处。</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>version
 kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
-kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
-kubectl<span class="w"> </span>get<span class="w"> </span>deployment,statefulset,daemonset<span class="w"> </span>-A
-kubectl<span class="w"> </span>get<span class="w"> </span>ingress<span class="w"> </span>-A
-kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
-kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-A
-kubectl<span class="w"> </span>top<span class="w"> </span>nodes
-kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>deploy,statefulset,daemonset<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>ingress,svc,pvc,storageclass<span class="w"> </span>-A
+kubectl<span class="w"> </span>top<span class="w"> </span>nodes<span class="p">;</span><span class="w"> </span>kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w"> </span>-A
 </code></pre></div>
-<p>Review these compatibility areas:</p>
 <table>
 <thead>
 <tr>
-<th>Area</th>
-<th>Check</th>
+<th>领域</th>
+<th>检查</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Kubernetes APIs</td>
-<td>Deprecated APIs removed in the target version.</td>
+<td><strong>废弃 API</strong></td>
+<td>找出使用了目标版本已移除 API 的工作负载（如用 <code>pluto</code>/<code>kubent</code>）。这是价值最高的检查。</td>
 </tr>
 <tr>
-<td>Add-ons</td>
-<td>CNI, CoreDNS, kube-proxy, CSI drivers, ingress controller, cert-manager, metrics-server.</td>
+<td>插件</td>
+<td>CNI、CoreDNS、kube-proxy、CSI 驱动、ingress 控制器、cert-manager、metrics-server 与目标版本的兼容性。</td>
 </tr>
 <tr>
-<td>Workloads</td>
-<td>Pod disruption budgets, probes, resource requests, priority classes, security contexts.</td>
+<td>工作负载</td>
+<td>PodDisruptionBudget、探针、资源请求、优先级类、安全上下文。</td>
 </tr>
 <tr>
-<td>Storage</td>
-<td>CSI driver compatibility, PVC binding behavior, snapshot and backup support.</td>
+<td>存储</td>
+<td>CSI 驱动兼容性、PVC 绑定、快照/备份支持。</td>
 </tr>
 <tr>
-<td>Networking</td>
-<td>Ingress class behavior, load balancer annotations, service type changes, network policies.</td>
+<td>网络</td>
+<td>Ingress class 行为、负载均衡器注解、NetworkPolicy。</td>
 </tr>
 <tr>
-<td>Observability</td>
-<td>Prometheus scrape targets, alert rules, dashboards, log collectors.</td>
-</tr>
-<tr>
-<td>Access</td>
-<td>IAM roles, RBAC, service accounts, cluster admin access, break-glass access.</td>
+<td>访问</td>
+<td>IAM/RBAC、服务账号，以及可用的应急（break-glass）路径。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="standard-upgrade-sequence">Standard Upgrade Sequence<a class="headerlink" href="#standard-upgrade-sequence" title="Permanent link">&para;</a></h2>
-<h3 id="1-freeze-risky-changes">1. Freeze Risky Changes<a class="headerlink" href="#1-freeze-risky-changes" title="Permanent link">&para;</a></h3>
-<p>Pause unrelated application deployments and infrastructure changes during the upgrade window. Communicate the maintenance window, expected impact, rollback criteria, and owner contacts.</p>
-<h3 id="2-back-up-critical-state">2. Back Up Critical State<a class="headerlink" href="#2-back-up-critical-state" title="Permanent link">&para;</a></h3>
-<p>For managed clusters, export manifests and configuration:</p>
+<p>一个阻断所有驱逐的 PDB，或一个仍在使用的废弃 API，会让升级中途卡住——现在就找出来，而不是在 drain 时。</p>
+<h2 id="_6">标准升级序列<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 冻结并通告<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>窗口期暂停无关部署与基础设施变更。沟通影响、回滚标准与负责人。</p>
+<h3 id="2">2. 备份集群状态<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>all<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span>&gt;<span class="w"> </span>cluster-workloads.snapshot.yaml
 kubectl<span class="w"> </span>get<span class="w"> </span>configmap,ingress,svc,pvc,storageclass<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span>&gt;<span class="w"> </span>cluster-config.snapshot.yaml
 </code></pre></div>
-<p>Do not export raw Kubernetes Secret values into plain text files. Back up secrets through the platform-approved encrypted backup process or secret management system.</p>
-<p>For self-managed clusters, back up etcd using the platform-recommended encrypted method.</p>
-<h3 id="3-upgrade-control-plane">3. Upgrade Control Plane<a class="headerlink" href="#3-upgrade-control-plane" title="Permanent link">&para;</a></h3>
-<p>Upgrade the control plane through the cloud provider or cluster management tool. Wait until the API server is healthy and all core control plane checks pass.</p>
-<p>Validation:</p>
+<p><strong>不要</strong>把 Secret 值导出为明文。通过平台的加密流程备份密钥；自管集群用推荐的加密方式备份 etcd（见 etcd 标准）。</p>
+<h3 id="3">3. 升级控制面<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>通过厂商/集群工具升级；等待 API server 健康。</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>--raw<span class="o">=</span><span class="s1">&#39;/readyz?verbose&#39;</span>
-kubectl<span class="w"> </span>get<span class="w"> </span>componentstatuses
 kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 </code></pre></div>
-<h3 id="4-upgrade-core-add-ons">4. Upgrade Core Add-ons<a class="headerlink" href="#4-upgrade-core-add-ons" title="Permanent link">&para;</a></h3>
-<p>Upgrade add-ons to versions compatible with the target Kubernetes version:</p>
-<ul>
-<li>CNI plugin.</li>
-<li>CoreDNS.</li>
-<li>kube-proxy.</li>
-<li>CSI drivers.</li>
-<li>Metrics server.</li>
-<li>Ingress controller.</li>
-<li>Observability agents.</li>
-</ul>
-<p>Validation:</p>
+<h3 id="4">4. 把核心插件升级到目标兼容版本<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
 kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/coredns<span class="w"> </span>-n<span class="w"> </span>kube-system
 kubectl<span class="w"> </span>get<span class="w"> </span>daemonset<span class="w"> </span>-n<span class="w"> </span>kube-system
 </code></pre></div>
-<h3 id="5-create-new-worker-node-group">5. Create New Worker Node Group<a class="headerlink" href="#5-create-new-worker-node-group" title="Permanent link">&para;</a></h3>
-<p>Create a new node group with the target Kubernetes-compatible image, runtime, IAM role, labels, taints, and scaling configuration.</p>
-<p>Validation:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-L<span class="w"> </span>kubernetes.io/os,kubernetes.io/arch
-kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span>&lt;new-node-name&gt;
+<p>在移动工作负载之前做——以新版本加入的节点需要兼容的 CNI/kube-proxy。</p>
+<h3 id="5-drain">5. 加新节点组，逐步 drain 旧节点<a class="headerlink" href="#5-drain" title="Permanent link">&para;</a></h3>
+<p>在目标版本上创建新节点组，再小批量移动工作负载：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cordon<span class="w"> </span>&lt;old-node&gt;
+kubectl<span class="w"> </span>drain<span class="w"> </span>&lt;old-node&gt;<span class="w"> </span>--ignore-daemonsets<span class="w"> </span>--delete-emptydir-data<span class="w"> </span>--timeout<span class="o">=</span>10m
 </code></pre></div>
-<h3 id="6-drain-old-nodes-gradually">6. Drain Old Nodes Gradually<a class="headerlink" href="#6-drain-old-nodes-gradually" title="Permanent link">&para;</a></h3>
-<p>Drain old nodes in small batches:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cordon<span class="w"> </span>&lt;old-node-name&gt;
-kubectl<span class="w"> </span>drain<span class="w"> </span>&lt;old-node-name&gt;<span class="w"> </span>--ignore-daemonsets<span class="w"> </span>--delete-emptydir-data<span class="w"> </span>--timeout<span class="o">=</span>10m
-</code></pre></div>
-<p>After each batch, validate application health before continuing.</p>
-<h3 id="7-validate-workloads">7. Validate Workloads<a class="headerlink" href="#7-validate-workloads" title="Permanent link">&para;</a></h3>
-<p>Check:</p>
+<p>每批后先校验应用健康再继续。这是可逆模型：若某批异常，停下并保留仍健康的旧节点。</p>
+<h3 id="6">6. 校验，再下线旧节点<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<p>观察窗口后，缩容并移除旧节点组。保留快照与记录。</p>
+<h2 id="_7">校验<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
 kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-A<span class="w"> </span>--sort-by<span class="o">=</span><span class="s1">&#39;.lastTimestamp&#39;</span>
-kubectl<span class="w"> </span>get<span class="w"> </span>ingress<span class="w"> </span>-A
-kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>ingress,pvc<span class="w"> </span>-A
 </code></pre></div>
-<p>Application validation should include:</p>
+<p>应用校验必须包括：HTTP 健康、核心 API/登录冒烟、后台任务处理、数据库连通、外部 webhook/回调，以及告警/仪表盘仍可用。仅在这些通过且指标在观察窗口内稳定后才宣布成功。</p>
+<h2 id="_8">已知失败模式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>症状</th>
+<th>可能原因</th>
+<th>正确处置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>废弃 API 破坏</td>
+<td>升级后控制器/CI 失败</td>
+<td>工作负载用了目标已移除的 API</td>
+<td>升级<strong>前</strong>用 <code>pluto</code>/<code>kubent</code> 找出；迁移清单。</td>
+</tr>
+<tr>
+<td>插件版本偏移</td>
+<td>控制面升级后 DNS/网络/存储不稳</td>
+<td>插件未升到匹配版本</td>
+<td>移动节点前先升插件。</td>
+</tr>
+<tr>
+<td>drain 卡住</td>
+<td><code>kubectl drain</code> 挂起</td>
+<td>PDB 阻断驱逐/单副本</td>
+<td>修 PDB/副本；切勿盲目 <code>--force</code>。</td>
+</tr>
+<tr>
+<td>Pod 无法调度</td>
+<td>节点迁移后 Pending</td>
+<td>新组 taint/label/容量不匹配</td>
+<td>对齐 label/taint/规格；检查资源请求。</td>
+</tr>
+<tr>
+<td>存储无法挂载</td>
+<td>StatefulSet Pod 卡住</td>
+<td>CSI 驱动不兼容</td>
+<td>在评估阶段核实 CSI 兼容；回滚节点。</td>
+</tr>
+<tr>
+<td>控制面不可逆</td>
+<td>出问题后无法降级</td>
+<td>托管升级只能向前</td>
+<td>用节点/插件/应用回滚 + 备份恢复（见下）。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">回滚<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>托管控制面升级通常<strong>不</strong>可直接逆转——围绕可逆层设计回滚。</p>
+<ol>
+<li><strong>立即停止节点迁移</strong>；在旧节点组仍受支持时保留/重建它。</li>
+<li>在安全处把<strong>插件</strong>回滚到兼容版本。</li>
+<li>回滚<strong>应用</strong>部署（<code>kubectl rollout undo</code>）。</li>
+<li>若数据受影响，从<strong>备份</strong>恢复有状态组件。</li>
+</ol>
+<p>开始前定义回滚触发器：</p>
 <ul>
-<li>HTTP health checks.</li>
-<li>Login or core API smoke tests.</li>
-<li>Background job processing.</li>
-<li>Database connection checks.</li>
-<li>External callback or webhook checks.</li>
-<li>Alerting and dashboard visibility.</li>
+<li>核心业务冒烟测试失败。</li>
+<li>错误率超阈值持续超过约 10 分钟。</li>
+<li>关键 Pod 无法调度。</li>
+<li>存储 attach/mount 错误命中有状态负载。</li>
+<li>Ingress/负载均衡器行为破坏外部流量。</li>
 </ul>
-<h3 id="8-decommission-old-node-group">8. Decommission Old Node Group<a class="headerlink" href="#8-decommission-old-node-group" title="Permanent link">&para;</a></h3>
-<p>After the observation window passes, scale down and remove the old node group. Keep snapshots and upgrade notes for review.</p>
-<h2 id="rollback-strategy">Rollback Strategy<a class="headerlink" href="#rollback-strategy" title="Permanent link">&para;</a></h2>
-<p>Managed Kubernetes control plane upgrades are often not directly reversible. Practical rollback usually means:</p>
+<h2 id="_10">升级后复盘<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>记录源/目标版本、插件升级前后版本、节点组变更、废弃 API 发现、事故与缓解，以及后续工作。</p>
+<h2 id="_11">安全注记<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Stop node migration.</li>
-<li>Keep or recreate old node groups if still supported.</li>
-<li>Roll back add-ons to compatible versions when safe.</li>
-<li>Roll back application deployments.</li>
-<li>Restore from backups if stateful components are affected.</li>
+<li>备份期间绝不把 Secret 值导出为明文；用加密/密钥管理系统备份。</li>
+<li>在下线旧路径前，验证 RBAC、IAM 与应急访问在新版本上仍可用。</li>
+<li>切勿公开真实集群名、账号 ID、endpoint 或节点名。</li>
 </ul>
-<p>Define rollback triggers before starting:</p>
+<h2 id="_12">评审周期<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Core business smoke test fails.</li>
-<li>Error rate exceeds threshold for more than 10 minutes.</li>
-<li>Critical pods cannot schedule.</li>
-<li>Storage attach or mount errors affect stateful workloads.</li>
-<li>Ingress or load balancer behavior breaks external traffic.</li>
+<li>负责人：平台/集群团队。</li>
+<li>每次升级前重跑废弃 API 与插件兼容性检查。</li>
+<li>每个升级窗口前重新确认回滚触发器与备份/恢复路径。</li>
+<li>跟踪 Kubernetes 版本支持窗口，使升级是计划性的，而非被生命周期终点逼迫。</li>
 </ul>
-<h2 id="post-upgrade-review">Post-Upgrade Review<a class="headerlink" href="#post-upgrade-review" title="Permanent link">&para;</a></h2>
-<p>Record:</p>
+<h2 id="_13">相关文档<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Source and target versions.</li>
-<li>Add-on versions before and after.</li>
-<li>Node group changes.</li>
-<li>Incidents and mitigations.</li>
-<li>Deprecated API findings.</li>
-<li>Follow-up platform work.</li>
-</ul>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../nfs-pvc-capacity-management/">NFS PVC Capacity Management</a></li>
-<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
-<li><a href="../../../cases-reviews/cases/anonymous-kubernetes-upgrade-case/">Anonymous Kubernetes Upgrade Case</a></li>
+<li><a href="../kubernetes-cluster-provisioning-standard/">Kubernetes 集群供给标准</a></li>
+<li><a href="../kubernetes-storage-ingress-standard/">Kubernetes 存储与 Ingress 标准</a></li>
+<li><a href="../../../change-delivery/rollback/deployment-rollback-runbook/">部署回滚 Runbook</a></li>
+<li><a href="../../../standards-manual/databases/etcd-operations-standard/">etcd 运维标准</a></li>
 </ul>
 
 
@@ -4543,7 +4524,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:31:41 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4553,7 +4534,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:31:41 UTC">2026年6月28日</span>
   </span>
 
     

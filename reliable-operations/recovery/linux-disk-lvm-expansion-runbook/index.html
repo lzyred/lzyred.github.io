@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Linux disk and LVM expansion runbook for production storage emergency.">
+        <meta name="description" content="用 LVM 安全扩容 Linux 存储的 Runbook——识别正确磁盘、扩展 PV/VG/LV、在线增长文件系统、校验与升级处理。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="磁盘与 LVM 扩容 - DevOps 专家知识库" />
-<meta property="og:description" content="Linux disk and LVM expansion runbook for production storage emergency." />
+<meta property="og:description" content="用 LVM 安全扩容 Linux 存储的 Runbook——识别正确磁盘、扩展 PV/VG/LV、在线增长文件系统、校验与升级处理。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/recovery/linux-disk-lvm-expansion-runbook.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/reliable-operations/recovery/linux-disk-lvm-expansion-runbook/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="磁盘与 LVM 扩容 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Linux disk and LVM expansion runbook for production storage emergency." />
+<meta property="twitter:description" content="用 LVM 安全扩容 Linux 存储的 Runbook——识别正确磁盘、扩展 PV/VG/LV、在线增长文件系统、校验与升级处理。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/recovery/linux-disk-lvm-expansion-runbook.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#linux-disk-and-lvm-expansion-runbook" class="md-skip">
+        <a href="#linux-lvm-runbook" class="md-skip">
           跳转至
         </a>
       
@@ -1576,34 +1576,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -1869,10 +1841,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        触发条件
       
     </span>
   </a>
@@ -1880,10 +1852,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-warning" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Warning
+        前置条件
       
     </span>
   </a>
@@ -1891,10 +1863,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-checks" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Checks
+        影响检查
       
     </span>
   </a>
@@ -1902,10 +1874,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-a-new-disk-to-lvm" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Add a New Disk to LVM
+        操作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-lvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 将新盘加入 LVM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 扩展逻辑卷
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 增长文件系统（在线）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        校验
       
     </span>
   </a>
@@ -1913,10 +1935,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#grow-filesystem" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Grow Filesystem
+        回滚 / 升级处理
       
     </span>
   </a>
@@ -1924,10 +1946,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        事后检查
       
     </span>
   </a>
@@ -1935,21 +1957,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Related Documents
+        相关文档
       
     </span>
   </a>
@@ -2187,34 +2198,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3493,34 +3476,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3858,34 +3813,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3956,10 +3883,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        触发条件
       
     </span>
   </a>
@@ -3967,10 +3894,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-warning" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Warning
+        前置条件
       
     </span>
   </a>
@@ -3978,10 +3905,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-checks" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Checks
+        影响检查
       
     </span>
   </a>
@@ -3989,10 +3916,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-a-new-disk-to-lvm" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Add a New Disk to LVM
+        操作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-lvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 将新盘加入 LVM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 扩展逻辑卷
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 增长文件系统（在线）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        校验
       
     </span>
   </a>
@@ -4000,10 +3977,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#grow-filesystem" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Grow Filesystem
+        回滚 / 升级处理
       
     </span>
   </a>
@@ -4011,10 +3988,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        事后检查
       
     </span>
   </a>
@@ -4022,21 +3999,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Related Documents
+        相关文档
       
     </span>
   </a>
@@ -4169,64 +4135,81 @@
   
 
 
-<h1 id="linux-disk-and-lvm-expansion-runbook">Linux Disk and LVM Expansion Runbook<a class="headerlink" href="#linux-disk-and-lvm-expansion-runbook" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This runbook describes how to safely expand Linux storage using a new disk, partition, LVM, and filesystem growth.</p>
-<h2 id="safety-warning">Safety Warning<a class="headerlink" href="#safety-warning" title="Permanent link">&para;</a></h2>
-<p>Disk operations can destroy data. Do not run formatting, partitioning, or LVM commands until the target disk is confirmed and approved.</p>
-<h2 id="initial-checks">Initial Checks<a class="headerlink" href="#initial-checks" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>lsblk
-blkid
-df<span class="w"> </span>-hT
-sudo<span class="w"> </span>pvs
-sudo<span class="w"> </span>vgs
-sudo<span class="w"> </span>lvs
-</code></pre></div>
-<p>Identify:</p>
+<h1 id="linux-lvm-runbook">Linux 磁盘与 LVM 扩容 Runbook<a class="headerlink" href="#linux-lvm-runbook" title="Permanent link">&para;</a></h1>
+<h2 id="_1">触发条件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在 Linux 卷接近容量上限、需要扩容时使用本 Runbook，通常发生于：</p>
 <ul>
-<li>New disk name.</li>
-<li>Existing volume group.</li>
-<li>Root or data logical volume.</li>
-<li>Filesystem type.</li>
-<li>Backup status.</li>
+<li>主机或数据卷的磁盘使用告警（如文件系统 &gt; 85%）。</li>
+<li>增长前的计划性扩容。</li>
+<li>文件系统已满导致写失败的事故中。</li>
 </ul>
-<h2 id="add-a-new-disk-to-lvm">Add a New Disk to LVM<a class="headerlink" href="#add-a-new-disk-to-lvm" title="Permanent link">&para;</a></h2>
-<p>Example target disk:</p>
-<div class="highlight"><pre><span></span><code>/dev/sdb
+<h2 id="_2">前置条件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>执行任何破坏性命令前，确认全部满足：</p>
+<ul>
+<li><strong>存在经验证的备份。</strong> LVM 在线扩容基本不可逆；真正的回滚是恢复。无备份不得继续。</li>
+<li>目标磁盘/卷已精确识别并获批——操作错盘会毁数据。</li>
+<li>已知文件系统类型（XFS vs ext4——增长工具不同）。</li>
+<li>有变更窗口或明确批准，且回滚负责人可联系。</li>
+</ul>
+<blockquote>
+<p>核心判断：LVM 扩容的危险之处不是 <code>lvextend</code>，而是操作到了错误设备。这里几乎所有丢数据事故都来自对正在使用的磁盘执行了 <code>pvcreate</code>/<code>mkfs</code>。先识别，再动手。</p>
+</blockquote>
+<h2 id="_3">影响检查<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>lsblk<span class="w">                 </span><span class="c1"># 块设备、大小、挂载点</span>
+blkid<span class="w">                 </span><span class="c1"># 文件系统类型与 UUID</span>
+df<span class="w"> </span>-hT<span class="w">                </span><span class="c1"># 各挂载点使用率与 fs 类型</span>
+sudo<span class="w"> </span>pvs<span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>vgs<span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>lvs<span class="w">   </span><span class="c1"># 当前 LVM 布局</span>
 </code></pre></div>
-<p>Create a physical volume:</p>
+<p>识别并记录：新/空磁盘名、现有卷组、目标逻辑卷、文件系统类型，并确认新盘<strong>未挂载、未加入任何 VG</strong>。</p>
+<h2 id="_4">操作流程<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="1-lvm">1. 将新盘加入 LVM<a class="headerlink" href="#1-lvm" title="Permanent link">&para;</a></h3>
+<p>确认目标盘是那块新的、未使用的盘（如 <code>/dev/sdb</code>）——用 <code>lsblk</code> 核实它无分区、无文件系统、无挂载点。</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pvcreate<span class="w"> </span>/dev/sdb
+sudo<span class="w"> </span>vgextend<span class="w"> </span>example_vg<span class="w"> </span>/dev/sdb
 </code></pre></div>
-<p>Extend volume group:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>vgextend<span class="w"> </span>example_vg<span class="w"> </span>/dev/sdb
+<h3 id="2">2. 扩展逻辑卷<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 把 LV 扩展到新的空闲空间：</span>
+sudo<span class="w"> </span>lvextend<span class="w"> </span>-l<span class="w"> </span>+100%FREE<span class="w"> </span>/dev/example_vg/example_lv
 </code></pre></div>
-<p>Extend logical volume:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>lvextend<span class="w"> </span>-l<span class="w"> </span>+100%FREE<span class="w"> </span>/dev/example_vg/example_lv
+<h3 id="3">3. 增长文件系统（在线）<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>工具要与文件系统匹配；两者都可在线增长已挂载的文件系统。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># XFS（不可缩小）——按挂载点增长：</span>
+sudo<span class="w"> </span>xfs_growfs<span class="w"> </span>/data
+
+<span class="c1"># ext4——按设备增长：</span>
+sudo<span class="w"> </span>resize2fs<span class="w"> </span>/dev/example_vg/example_lv
 </code></pre></div>
-<h2 id="grow-filesystem">Grow Filesystem<a class="headerlink" href="#grow-filesystem" title="Permanent link">&para;</a></h2>
-<p>For XFS:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>xfs_growfs<span class="w"> </span>/
+<p>或者用 <code>lvextend -r</code> 一步同时增长 LV 与文件系统。</p>
+<h2 id="_5">校验<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-hT<span class="w">                 </span><span class="c1"># 目标挂载点显示新容量</span>
+sudo<span class="w"> </span>pvs<span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>vgs<span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>lvs
+dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w">           </span><span class="c1"># 无文件系统/IO 错误</span>
 </code></pre></div>
-<p>For ext4:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>resize2fs<span class="w"> </span>/dev/example_vg/example_lv
-</code></pre></div>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-hT
-sudo<span class="w"> </span>pvs
-sudo<span class="w"> </span>vgs
-sudo<span class="w"> </span>lvs
-</code></pre></div>
-<p>Application validation:</p>
+<p>确认：</p>
 <ul>
-<li>Service can write to the expanded path.</li>
-<li>Monitoring sees the new capacity.</li>
-<li>No filesystem errors appear in <code>dmesg</code>.</li>
+<li>挂载点显示增大后的大小，空闲空间已回收。</li>
+<li>应用能写入扩容后的路径（做一次真实写测试）。</li>
+<li>监控/告警反映新容量，使用告警已消除。</li>
+<li><code>dmesg</code> 无文件系统或 I/O 错误。</li>
 </ul>
-<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
-<p>LVM expansion rollback is not always simple. The safe rollback is a verified backup restore. For this reason, backup validation is required before the change.</p>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_6">回滚 / 升级处理<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../standards-manual/linux/server-baseline-standard/">Linux Server Baseline Standard</a></li>
+<li><strong>XFS 没有干净的在线缩小，ext4 缩小需离线且有风险。</strong> 把扩容当作只能向前。</li>
+<li>若操作了错误设备或数据受损，<strong>立即停止</strong>并从经验证的备份恢复；不要再用 LVM 命令去"撤销"。</li>
+<li>若 <code>lvextend</code> 成功但 <code>xfs_growfs</code>/<code>resize2fs</code> 失败，则 LV 已变大而文件系统未变——诊断后可安全重试增长步骤，数据完好。</li>
+<li>当 VG 无空闲空间可扩、或卷位于由其他团队负责加盘的共享/SAN 存储时，升级给存储/平台负责人。</li>
+</ul>
+<h2 id="_7">事后检查<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>容量余量回到告警阈值之上并有裕度。</li>
+<li>记录容量增长趋势，使下次扩容是计划性的而非被动的。</li>
+<li>更新该主机的磁盘布局文档。</li>
+</ul>
+<h2 id="_8">相关文档<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../standards-manual/linux/server-baseline-standard/">Linux 服务器基线标准</a></li>
+<li><a href="../kubernetes-pvc-usage-alert-runbook/">Kubernetes PVC 使用告警 Runbook</a></li>
+<li><a href="../../../system-design/production-architecture/nfs-pvc-capacity-management/">NFS PVC 容量管理</a></li>
 </ul>
 
 
@@ -4250,7 +4233,7 @@ sudo<span class="w"> </span>lvs
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:31:41 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4260,7 +4243,7 @@ sudo<span class="w"> </span>lvs
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:31:41 UTC">2026年6月28日</span>
   </span>
 
     

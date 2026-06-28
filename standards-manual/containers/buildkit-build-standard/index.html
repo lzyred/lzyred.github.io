@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="BuildKit build standard for efficient and reproducible container image builds.">
+        <meta name="description" content="BuildKit 构建标准，覆盖可复现镜像构建、缓存安全、密钥处理、来源证明、验证和回滚。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="BuildKit 构建 - DevOps 专家知识库" />
-<meta property="og:description" content="BuildKit build standard for efficient and reproducible container image builds." />
+<meta property="og:description" content="BuildKit 构建标准，覆盖可复现镜像构建、缓存安全、密钥处理、来源证明、验证和回滚。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/containers/buildkit-build-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/containers/buildkit-build-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="BuildKit 构建 - DevOps 专家知识库" />
-<meta property="twitter:description" content="BuildKit build standard for efficient and reproducible container image builds." />
+<meta property="twitter:description" content="BuildKit 构建标准，覆盖可复现镜像构建、缓存安全、密钥处理、来源证明、验证和回滚。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/containers/buildkit-build-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#buildkit-build-standard" class="md-skip">
+        <a href="#buildkit" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -2671,10 +2615,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -2682,10 +2626,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Cases
+        适用场景
       
     </span>
   </a>
@@ -2693,10 +2637,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#baseline" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Baseline
+        非目标
       
     </span>
   </a>
@@ -2704,10 +2648,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-safety" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Build Safety
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分离构建输入和部署状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        固定基础镜像和依赖
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secret-mount-build-arg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 secret mount，不用 build arg 传密钥
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把缓存当作共享状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        产出必须可追踪
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -2715,10 +2731,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        失败模式
       
     </span>
   </a>
@@ -2726,10 +2742,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3480,34 +3529,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3851,34 +3872,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3949,10 +3942,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3960,10 +3953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Cases
+        适用场景
       
     </span>
   </a>
@@ -3971,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#baseline" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Baseline
+        非目标
       
     </span>
   </a>
@@ -3982,10 +3975,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-safety" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Build Safety
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分离构建输入和部署状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        固定基础镜像和依赖
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secret-mount-build-arg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 secret mount，不用 build arg 传密钥
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把缓存当作共享状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        产出必须可追踪
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -3993,10 +4058,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        失败模式
       
     </span>
   </a>
@@ -4004,10 +4069,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4121,6 +4219,18 @@
         <a href="../../../tags/#tag:delivery" class="md-tag md-tag-icon md-tag--delivery">Delivery</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:security" class="md-tag md-tag-icon md-tag--security">Security</a>
+      
+    
   </nav>
 
 
@@ -4128,35 +4238,185 @@
   
 
 
-<h1 id="buildkit-build-standard">BuildKit Build Standard<a class="headerlink" href="#buildkit-build-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes safe use of BuildKit for container image builds.</p>
-<h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
+<h1 id="buildkit">BuildKit 构建标准<a class="headerlink" href="#buildkit" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何使用 BuildKit 和 Docker Buildx 构建容器镜像，避免泄漏密钥、生成不可复现镜像或隐藏供应链风险。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>容器构建是供应链事件，不是打包捷径。</p>
+</blockquote>
+<p>BuildKit 能提升速度、缓存效率、多平台输出和密钥处理能力。但只有当构建输入、密钥、缓存来源、镜像标签和验证被控制时，这些收益才真正有价值。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
 <ul>
-<li>Faster Dockerfile builds.</li>
-<li>Build cache optimization.</li>
-<li>Multi-platform image builds.</li>
-<li>CI/CD image pipelines.</li>
+<li>在 CI/CD 中构建容器镜像。</li>
+<li>启用 <code>docker buildx</code> 或远程 BuildKit builder。</li>
+<li>在流水线间使用构建缓存。</li>
+<li>构建多平台镜像。</li>
+<li>构建时传入私有依赖凭据。</li>
+<li>将镜像发布到共享 registry。</li>
 </ul>
-<h2 id="baseline">Baseline<a class="headerlink" href="#baseline" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>buildctl<span class="w"> </span>--version
-docker<span class="w"> </span>buildx<span class="w"> </span>version
-</code></pre></div>
-<h2 id="build-safety">Build Safety<a class="headerlink" href="#build-safety" title="Permanent link">&para;</a></h2>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不完整定义应用 Dockerfile 风格、registry 治理或 Kubernetes 运行时部署策略，只覆盖构建期控制。</p>
+<h2 id="_4">推荐标准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">分离构建输入和部署状态<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>构建应消费源码、Dockerfile、lockfile、构建参数和批准的密钥。它不应依赖可变主机状态、本地开发者文件或运行期 <code>.env</code>。</p>
+<p>必需输入：</p>
 <ul>
-<li>Do not bake secrets into image layers.</li>
-<li>Use secret mounts for build-time credentials.</li>
-<li>Pin base image versions.</li>
-<li>Scan output images.</li>
-<li>Push only to approved registries.</li>
+<li>Dockerfile 路径。</li>
+<li>构建上下文。</li>
+<li>基础镜像 tag 或 digest。</li>
+<li>依赖 lockfile。</li>
+<li>目标平台。</li>
+<li>镜像 tag 和不可变 digest 输出。</li>
+<li>构建密钥名称，而不是密钥值。</li>
 </ul>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span>--platform<span class="w"> </span>linux/amd64<span class="w"> </span>-t<span class="w"> </span>registry.example.com/example/app:1.0.0<span class="w"> </span>.
-</code></pre></div>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h3 id="_6">固定基础镜像和依赖<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>使用明确的基础镜像版本。高控制环境可按 digest pin，并通过定期更新流程刷新。</p>
+<p>避免：</p>
 <ul>
-<li><a href="../docker-host-operations-standard/">Docker Host Operations Standard</a></li>
-<li><a href="../../../change-delivery/cicd/jenkins-kubernetes-pipeline-standard/">Jenkins to Kubernetes Pipeline Standard</a></li>
+<li><code>FROM ubuntu:latest</code></li>
+<li>发布构建中使用未固定的软件包管理行为。</li>
+<li>构建时从任意 URL 下载脚本。</li>
+<li>把环境特定配置烤进镜像层。</li>
+</ul>
+<h3 id="secret-mount-build-arg">使用 secret mount，不用 build arg 传密钥<a class="headerlink" href="#secret-mount-build-arg" title="Permanent link">&para;</a></h3>
+<p>Build arg 会出现在镜像历史和构建元数据里。私有依赖 token 或包仓库凭据应使用 BuildKit secret mount。</p>
+<p>模式：</p>
+<div class="highlight"><pre><span></span><code><span class="c"># syntax=docker/dockerfile:1.7</span>
+<span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>secret,id<span class="o">=</span>package_token<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>./scripts/install-private-deps.sh
+</code></pre></div>
+<p>构建命令：</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--secret<span class="w"> </span><span class="nv">id</span><span class="o">=</span>package_token,env<span class="o">=</span>PACKAGE_TOKEN<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tag<span class="w"> </span>registry.example.com/example/app:1.0.0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--push<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>.
+</code></pre></div>
+<p>构建日志不得打印密钥值。</p>
+<h3 id="_7">把缓存当作共享状态<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>缓存能提升速度，也可能携带陈旧或不安全假设。</p>
+<table>
+<thead>
+<tr>
+<th>缓存类型</th>
+<th>用途</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本地缓存</td>
+<td>开发者构建。</td>
+<td>不作为发布正确性依据。</td>
+</tr>
+<tr>
+<td>Registry cache</td>
+<td>CI 加速。</td>
+<td>按项目或信任边界隔离。</td>
+</tr>
+<tr>
+<td>Inline cache</td>
+<td>重建优化。</td>
+<td>仅随批准镜像发布。</td>
+</tr>
+</tbody>
+</table>
+<p>基础镜像、包索引、lockfile 或安全补丁变化时，要刻意失效缓存。</p>
+<h3 id="_8">产出必须可追踪<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>每个发布镜像应有：</p>
+<ul>
+<li>不可变 digest。</li>
+<li>源码 revision。</li>
+<li>构建时间。</li>
+<li>builder 身份。</li>
+<li>目标平台。</li>
+<li>可用时的 SBOM 或等价依赖清单。</li>
+<li>漏洞扫描结果或例外记录。</li>
+</ul>
+<h2 id="_9">验证<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>发布镜像前：</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>buildx<span class="w"> </span>version
+docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span>--platform<span class="w"> </span>linux/amd64<span class="w"> </span>--tag<span class="w"> </span>registry.example.com/example/app:1.0.0<span class="w"> </span>--push<span class="w"> </span>.
+docker<span class="w"> </span>buildx<span class="w"> </span>imagetools<span class="w"> </span>inspect<span class="w"> </span>registry.example.com/example/app:1.0.0
+</code></pre></div>
+<p>通过条件：</p>
+<ul>
+<li>构建能在干净 runner 上完成。</li>
+<li>镜像 digest 已记录。</li>
+<li>目标平台符合发布计划。</li>
+<li>日志和镜像历史中没有密钥值。</li>
+<li>漏洞扫描结果已附到发布记录。</li>
+<li>冒烟测试基于构建出的镜像，而不是本地临时容器。</li>
+</ul>
+<h2 id="_10">失败模式<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用 build arg 传密钥</td>
+<td>密钥可能泄漏到历史或元数据。</td>
+<td>使用 BuildKit secret mount。</td>
+</tr>
+<tr>
+<td>基础镜像未固定</td>
+<td>源码不变但重建结果改变。</td>
+<td>固定版本或 digest。</td>
+</tr>
+<tr>
+<td>跨信任边界共享缓存</td>
+<td>一个项目影响另一个构建。</td>
+<td>按仓库和信任域隔离缓存。</td>
+</tr>
+<tr>
+<td>多平台镜像未测试</td>
+<td>错误架构运行失败。</td>
+<td>检查 manifest 并测试目标平台。</td>
+</tr>
+<tr>
+<td>构建下载可变脚本</td>
+<td>供应链漂移。</td>
+<td>内置脚本或校验 checksum。</td>
+</tr>
+<tr>
+<td>未扫描即推送</td>
+<td>已知漏洞静默进入发布。</td>
+<td>把扫描纳入发布门禁。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">回滚<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>回滚使用上一个已批准镜像 digest。不要重新构建旧 tag 并假设它完全相同。</p>
+<p>保留：</p>
+<ul>
+<li>上一版 digest。</li>
+<li>Dockerfile revision。</li>
+<li>SBOM 或依赖清单。</li>
+<li>足够长的 registry 保留期。</li>
+</ul>
+<p>如果基础镜像漏洞触发重建，即使应用代码没有变化，也应把新镜像当作新发布。</p>
+<h2 id="_12">安全说明<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li>远程 builder 不得无 owner、无隔离地特权运行。</li>
+<li>构建凭据只授予所需 registry 或包仓库权限。</li>
+<li>避免把宿主 Docker socket 挂给不可信构建任务。</li>
+<li>不要把 <code>.git</code>、本地凭据或开发者缓存复制进 image context。</li>
+<li>定期评审 <code>.dockerignore</code>。</li>
+</ul>
+<h2 id="_13">评审周期<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>启用新 builder、改变缓存策略、增加私有依赖、增加目标平台或改变 registry 晋级规则时，评审本标准。</p>
+<h2 id="_14">相关文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../docker-compose-stack-standard/">Docker Compose 栈标准</a></li>
+<li><a href="../docker-host-operations-standard/">Docker 主机运维标准</a></li>
+<li><a href="../../../change-delivery/cicd/jenkins-kubernetes-pipeline-standard/">Jenkins 到 Kubernetes 流水线标准</a></li>
 </ul>
 
 
@@ -4180,7 +4440,7 @@ docker<span class="w"> </span>buildx<span class="w"> </span>version
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4190,7 +4450,7 @@ docker<span class="w"> </span>buildx<span class="w"> </span>version
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     

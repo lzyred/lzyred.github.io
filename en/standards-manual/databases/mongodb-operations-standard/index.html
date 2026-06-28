@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="MongoDB operations standard for production deployment and maintenance.">
+        <meta name="description" content="Standard for production MongoDB — replica-set availability, write-concern/durability trade-offs, restore-proven backup, safe upgrade, and rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="MongoDB Operations - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="MongoDB operations standard for production deployment and maintenance." />
+<meta property="og:description" content="Standard for production MongoDB — replica-set availability, write-concern/durability trade-offs, restore-proven backup, safe upgrade, and rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/databases/mongodb-operations-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/databases/mongodb-operations-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="MongoDB Operations - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="MongoDB operations standard for production deployment and maintenance." />
+<meta property="twitter:description" content="Standard for production MongoDB — replica-set availability, write-concern/durability trade-offs, restore-proven backup, safe upgrade, and rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/databases/mongodb-operations-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -2913,10 +2857,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#baseline" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Baseline
+        When to Use
       
     </span>
   </a>
@@ -2924,10 +2868,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operating-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operating Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#topology-replica-set-not-standalone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topology: replica set, not standalone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#durability-is-set-by-write-concern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Durability is set by write concern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-and-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication and access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-and-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup and Restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-and-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upgrade and Migration
       
     </span>
   </a>
@@ -2946,10 +2973,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#security-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3480,34 +3540,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3851,34 +3883,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3960,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#baseline" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Baseline
+        When to Use
       
     </span>
   </a>
@@ -3971,10 +3975,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operating-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operating Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#topology-replica-set-not-standalone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topology: replica set, not standalone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#durability-is-set-by-write-concern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Durability is set by write concern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-and-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication and access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-and-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup and Restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-and-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upgrade and Migration
       
     </span>
   </a>
@@ -3993,10 +4080,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#security-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4114,6 +4234,16 @@
       
         
         
+      
+      
+        <a href="../../../tags/#tag:mongodb" class="md-tag md-tag-icon">MongoDB</a>
+      
+    
+      
+      
+      
+        
+        
           
         
       
@@ -4130,27 +4260,180 @@
 
 <h1 id="mongodb-operations-standard">MongoDB Operations Standard<a class="headerlink" href="#mongodb-operations-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes safe MongoDB deployment, monitoring, backup, and migration practices.</p>
-<h2 id="baseline">Baseline<a class="headerlink" href="#baseline" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to run MongoDB safely in production: the topology that gives real availability, the write-concern choices that decide whether an acknowledged write can still be lost, and a backup you have actually restored.</p>
+<p>The core judgment of this standard:</p>
+<blockquote>
+<p>A single <code>mongod</code> is not "MongoDB in production" — it is a database with no failover and a write concern that can acknowledge data you are about to lose. Availability and durability in MongoDB are configuration decisions (replica set + write concern), not defaults you inherit.</p>
+</blockquote>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when you:</p>
 <ul>
-<li>Enable authentication.</li>
-<li>Bind only to private interfaces.</li>
-<li>Use replica sets for availability.</li>
-<li>Back up with a documented restore process.</li>
-<li>Monitor connections, replication lag, locks, storage, and memory.</li>
+<li>Run self-managed MongoDB (VM, bare metal, or container/operator).</li>
+<li>Need to choose a topology and write/read concern for a given durability requirement.</li>
+<li>Plan a version upgrade, host move, or migration.</li>
 </ul>
-<h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>mongodump<span class="w"> </span>--host<span class="w"> </span>mongo.example.internal<span class="w"> </span>--out<span class="w"> </span>/backup/mongodb
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>Schema/document modeling and index design.</li>
+<li>Managed MongoDB (Atlas-style) internals — use the provider's HA and backup contract; the write-concern and restore-validation judgment still applies.</li>
+<li>Sharding design beyond noting when to consider it.</li>
+</ul>
+<h2 id="operating-principles">Operating Principles<a class="headerlink" href="#operating-principles" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Run a <strong>replica set</strong> (odd number of voting members) in production — never a standalone for data you cannot lose.</li>
+<li>Enable authentication and role-based access; bind only to private interfaces.</li>
+<li>Choose write concern and read concern deliberately per workload; they are the durability/consistency dial.</li>
+<li>Prove backups by restoring them, and record the restore time.</li>
+<li>Monitor replication lag, connections, locks/contention, storage, and oplog window.</li>
+</ol>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="topology-replica-set-not-standalone">Topology: replica set, not standalone<a class="headerlink" href="#topology-replica-set-not-standalone" title="Permanent link">&para;</a></h3>
+<p>A replica set provides automated failover (a member is elected primary if the current primary fails) and a source for backups/reads. Use an odd number of voting members (commonly 3) so elections have a quorum. Spread members across failure domains (hosts/zones).</p>
+<h3 id="durability-is-set-by-write-concern">Durability is set by write concern<a class="headerlink" href="#durability-is-set-by-write-concern" title="Permanent link">&para;</a></h3>
+<p>This is the decision most teams get wrong by leaving it default.</p>
+<table>
+<thead>
+<tr>
+<th>Write concern</th>
+<th>Acknowledged when</th>
+<th>Loss risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>w:1</code></td>
+<td>Primary has it (not yet replicated)</td>
+<td>A primary failover can lose the last acknowledged writes</td>
+</tr>
+<tr>
+<td><code>w:majority</code></td>
+<td>A majority of members have it</td>
+<td>Survives a single-member failover</td>
+</tr>
+<tr>
+<td><code>w:majority, j:true</code></td>
+<td>Majority <strong>and</strong> journaled to disk</td>
+<td>Strongest common durability</td>
+</tr>
+</tbody>
+</table>
+<p>For data that must survive a node loss, use <code>w:majority</code>. Reserve <code>w:1</code> for caches/derived data where loss is acceptable, and write that decision down.</p>
+<h3 id="authentication-and-access">Authentication and access<a class="headerlink" href="#authentication-and-access" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Enable auth; create least-privilege roles (application users get DB-scoped read/write, not cluster admin).</li>
+<li>Bind to private interfaces only; never expose MongoDB to the public internet.</li>
+<li>Keep credentials in a secret manager; never publish connection strings, users, passwords, or internal hosts.</li>
+</ul>
+<h2 id="backup-and-restore">Backup and Restore<a class="headerlink" href="#backup-and-restore" title="Permanent link">&para;</a></h2>
+<p>For small/medium datasets, logical backup is portable:</p>
+<div class="highlight"><pre><span></span><code>mongodump<span class="w"> </span>--uri<span class="o">=</span><span class="s2">&quot;mongodb://&lt;user&gt;@&lt;host&gt;/?authSource=admin&quot;</span><span class="w"> </span>--out<span class="w"> </span>/backup/mongodb
+<span class="c1"># restore:</span>
+mongorestore<span class="w"> </span>--uri<span class="o">=</span><span class="s2">&quot;mongodb://&lt;user&gt;@&lt;host&gt;/?authSource=admin&quot;</span><span class="w"> </span>/backup/mongodb
 </code></pre></div>
-<p>Store backups encrypted and test restore regularly.</p>
+<p>For large datasets, prefer filesystem/volume snapshots of a stopped or fsync-locked secondary, or a managed/continuous backup. Whatever the method:</p>
+<ul>
+<li>Encrypt backups and restrict who can read them (a backup is a full copy of the data).</li>
+<li><strong>Restore-test on a schedule</strong> into an isolated instance; verify collection counts and an application-level check. Record the restore time — it is your real recovery objective.</li>
+</ul>
+<h2 id="upgrade-and-migration">Upgrade and Migration<a class="headerlink" href="#upgrade-and-migration" title="Permanent link">&para;</a></h2>
+<p>MongoDB upgrades must follow the supported version path and the <code>featureCompatibilityVersion</code> (FCV) rules — skipping versions or raising FCV prematurely can block rollback.</p>
+<ol>
+<li>Confirm the supported upgrade path; do not skip major versions.</li>
+<li>Take a verified backup first.</li>
+<li>For a replica set, upgrade <strong>secondaries first</strong>, then step down the primary and upgrade it last (rolling upgrade keeps the set available).</li>
+<li>Raise FCV only after the whole set is upgraded and you are confident you will not roll back.</li>
+<li>Validate (below) before considering it done.</li>
+</ol>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>mongosh<span class="w"> </span>--host<span class="w"> </span>mongo.example.internal<span class="w"> </span>--eval<span class="w"> </span><span class="s1">&#39;rs.status()&#39;</span>
+<div class="highlight"><pre><span></span><code>mongosh<span class="w"> </span>--host<span class="w"> </span>&lt;host&gt;<span class="w"> </span>--eval<span class="w"> </span><span class="s1">&#39;rs.status()&#39;</span><span class="w">      </span><span class="c1"># member states, who is primary</span>
+mongosh<span class="w"> </span>--host<span class="w"> </span>&lt;host&gt;<span class="w"> </span>--eval<span class="w"> </span><span class="s1">&#39;rs.printSecondaryReplicationInfo()&#39;</span><span class="w">   </span><span class="c1"># lag</span>
+mongosh<span class="w"> </span>--host<span class="w"> </span>&lt;host&gt;<span class="w"> </span>--eval<span class="w"> </span><span class="s1">&#39;db.serverStatus().connections&#39;</span>
 </code></pre></div>
+<p>Confirm:</p>
+<ul>
+<li>One <code>PRIMARY</code> and healthy <code>SECONDARY</code> members; no member stuck in <code>RECOVERING</code>/<code>DOWN</code>.</li>
+<li>Replication lag is near zero and within the oplog window.</li>
+<li>The latest restore test passed within its interval.</li>
+<li>Connections are well below the limit; no sustained lock contention.</li>
+</ul>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Correct response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acknowledged write lost</td>
+<td>Data gone after failover</td>
+<td><code>w:1</code> on durable data</td>
+<td>Use <code>w:majority</code> for data that must survive failover.</td>
+</tr>
+<tr>
+<td>No failover</td>
+<td>Writes fail when a node dies</td>
+<td>Standalone, or even member count / lost quorum</td>
+<td>Run an odd-numbered replica set across failure domains.</td>
+</tr>
+<tr>
+<td>Replication falls behind</td>
+<td>Secondary lags, oplog rolls over</td>
+<td>Undersized oplog, slow disk, heavy writes</td>
+<td>Resize oplog; fix disk; reseed the secondary.</td>
+</tr>
+<tr>
+<td>Backup won't restore</td>
+<td>Restore fails / incomplete</td>
+<td>Never restore-tested</td>
+<td>Schedule restore tests; validate counts.</td>
+</tr>
+<tr>
+<td>Upgrade can't roll back</td>
+<td>Stuck after upgrade</td>
+<td>FCV raised too early</td>
+<td>Raise FCV only after committing to the version.</td>
+</tr>
+<tr>
+<td>Exposed instance</td>
+<td>Unauthorized access</td>
+<td>Bound to public interface / no auth</td>
+<td>Bind private; enable auth; restrict network.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Keep a verified backup and the prior binaries until post-change validation passes.</li>
+<li>For a failed rolling upgrade (before FCV raised), step down and reinstall the prior version on the affected member; let the set re-sync.</li>
+<li>If data was corrupted, restore from the pre-change backup into a clean instance and re-point the application.</li>
+<li>Rotate credentials exposed during the change.</li>
+</ol>
 <h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
-<p>Do not publish MongoDB connection strings, users, passwords, or internal hosts.</p>
+<ul>
+<li>Enable auth and TLS; bind to private interfaces.</li>
+<li>Use least-privilege roles; separate admin from application users.</li>
+<li>Encrypt and access-control backups.</li>
+<li>Never publish connection strings, credentials, or internal hostnames.</li>
+<li>Restrict who can run administrative commands and trigger elections.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Owner: the database/platform team.</li>
+<li>Re-confirm write-concern choices when a workload's durability requirement changes.</li>
+<li>Verify a successful restore test each interval.</li>
+<li>Re-confirm the supported upgrade path and FCV plan before each major upgrade.</li>
+</ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter Monitoring Standard</a></li>
+<li><a href="../mysql-operations-standard/">MySQL Operations Standard</a></li>
+<li><a href="../redis-operations-standard/">Redis Operations Standard</a></li>
+<li><a href="https://www.mongodb.com/docs/manual/administration/production-notes/">MongoDB production notes</a></li>
 </ul>
 
 
@@ -4174,7 +4457,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:15:46 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4184,7 +4467,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:15:46 UTC">June 28, 2026</span>
   </span>
 
     

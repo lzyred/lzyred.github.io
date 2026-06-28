@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Docker Compose stack standard for multi-container service orchestration.">
+        <meta name="description" content="Standard for operating Docker Compose stacks as small, transitional, or single-host services with explicit ownership, state, validation, and rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Docker Compose Stack - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Docker Compose stack standard for multi-container service orchestration." />
+<meta property="og:description" content="Standard for operating Docker Compose stacks as small, transitional, or single-host services with explicit ownership, state, validation, and rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/containers/docker-compose-stack-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/containers/docker-compose-stack-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Docker Compose Stack - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Docker Compose stack standard for multi-container service orchestration." />
+<meta property="twitter:description" content="Standard for operating Docker Compose stacks as small, transitional, or single-host services with explicit ownership, state, validation, and rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/containers/docker-compose-stack-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -2713,7 +2657,7 @@
   <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Use
+        When to Use
       
     </span>
   </a>
@@ -2721,10 +2665,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#stack-checklist" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stack Checklist
+        Non-Goals
       
     </span>
   </a>
@@ -2732,13 +2676,74 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#compose-pattern" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Compose Pattern
+        Recommended Standard
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-the-stack-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define the stack contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pin-images-and-keep-build-separate-from-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pin images and keep build separate from run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treat-volumes-as-data-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Treat volumes as data contracts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-network-exposure-deliberate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keep network exposure deliberate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-service-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard service pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2747,6 +2752,50 @@
     <span class="md-ellipsis">
       
         Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3480,34 +3529,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3851,34 +3872,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3963,7 +3956,7 @@
   <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Use
+        When to Use
       
     </span>
   </a>
@@ -3971,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#stack-checklist" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stack Checklist
+        Non-Goals
       
     </span>
   </a>
@@ -3982,13 +3975,74 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#compose-pattern" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Compose Pattern
+        Recommended Standard
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-the-stack-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define the stack contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pin-images-and-keep-build-separate-from-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pin images and keep build separate from run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treat-volumes-as-data-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Treat volumes as data contracts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-network-exposure-deliberate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keep network exposure deliberate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-service-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard service pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3997,6 +4051,50 @@
     <span class="md-ellipsis">
       
         Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4121,6 +4219,18 @@
         <a href="../../../tags/#tag:delivery" class="md-tag md-tag-icon md-tag--delivery">Delivery</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
+      
+    
   </nav>
 
 
@@ -4130,43 +4240,219 @@
 
 <h1 id="docker-compose-stack-standard">Docker Compose Stack Standard<a class="headerlink" href="#docker-compose-stack-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines how to operate small or transitional service stacks with Docker Compose without publishing environment-specific secrets or runtime data.</p>
-<h2 id="when-to-use">When To Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
-<p>Use Docker Compose for development, demos, low-risk internal tools, or migration staging. Use Kubernetes or managed services for production workloads that require scheduling, autoscaling, or high availability.</p>
-<h2 id="stack-checklist">Stack Checklist<a class="headerlink" href="#stack-checklist" title="Permanent link">&para;</a></h2>
+<p>This standard defines when Docker Compose is an acceptable operating model and how to run Compose stacks without turning them into undocumented production platforms.</p>
+<p>The core judgment:</p>
+<blockquote>
+<p>Docker Compose is useful for bounded stacks, not for hidden orchestration.</p>
+</blockquote>
+<p>Compose is strongest when the service boundary is small, the host is explicit, the data model is understood, and recovery is documented. It becomes risky when teams use it as an invisible replacement for scheduling, high availability, secrets management, and production deployment control.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use Docker Compose for:</p>
 <ul>
-<li>Pin image versions.</li>
-<li>Put persistent data in named volumes or documented bind mounts.</li>
-<li>Add restart policies.</li>
-<li>Configure log size limits.</li>
-<li>Keep <code>.env</code> files out of public repositories.</li>
-<li>Document backup and restore for every stateful service.</li>
-<li>Review exposed ports.</li>
+<li>Local development and integration environments.</li>
+<li>Demonstrations and disposable test stacks.</li>
+<li>Small internal services with low availability requirements.</li>
+<li>Transitional workloads before Kubernetes or a managed service migration.</li>
+<li>Single-host tools where the failure domain is accepted.</li>
 </ul>
-<h2 id="compose-pattern">Compose Pattern<a class="headerlink" href="#compose-pattern" title="Permanent link">&para;</a></h2>
+<p>Do not use it for workloads that require multi-node scheduling, automated failover, horizontal autoscaling, strong tenant isolation, or complex release governance.</p>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not replace Kubernetes, service mesh, managed database, or full platform operations standards. It also does not approve publishing real <code>.env</code> files, production hostnames, private registry URLs, or credentials.</p>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="define-the-stack-contract">Define the stack contract<a class="headerlink" href="#define-the-stack-contract" title="Permanent link">&para;</a></h3>
+<p>Every Compose stack needs a short contract:</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Required Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td>Team or person responsible for deployment, logs, backup, and restore.</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>Where the stack runs and whether it is disposable.</td>
+</tr>
+<tr>
+<td>State</td>
+<td>Which volumes contain business data and which are cache-like.</td>
+</tr>
+<tr>
+<td>Exposure</td>
+<td>Which ports are reachable and from where.</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>Where runtime secrets come from; never commit <code>.env</code>.</td>
+</tr>
+<tr>
+<td>Recovery</td>
+<td>How to restart, restore, or rebuild the stack.</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td>How images are pinned and promoted.</td>
+</tr>
+</tbody>
+</table>
+<p>If nobody owns restore, the stack is not production-ready even if the containers are running.</p>
+<h3 id="pin-images-and-keep-build-separate-from-run">Pin images and keep build separate from run<a class="headerlink" href="#pin-images-and-keep-build-separate-from-run" title="Permanent link">&para;</a></h3>
+<p>Use pinned image tags or digests for services. Do not let a production-like stack pull <code>latest</code>.</p>
+<p>Compose may build images for development, but production-like stacks should consume images produced by a controlled build pipeline. This keeps build credentials, source code, and runtime deployment separate.</p>
+<h3 id="treat-volumes-as-data-contracts">Treat volumes as data contracts<a class="headerlink" href="#treat-volumes-as-data-contracts" title="Permanent link">&para;</a></h3>
+<p>Named volumes and bind mounts must be documented.</p>
+<table>
+<thead>
+<tr>
+<th>Volume Type</th>
+<th>Use</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Named volume</td>
+<td>Normal single-host persistent data.</td>
+<td>Backup and restore path required.</td>
+</tr>
+<tr>
+<td>Bind mount</td>
+<td>Host-integrated files, configs, or uploads.</td>
+<td>Exact host path must be owned and permissioned.</td>
+</tr>
+<tr>
+<td>tmpfs</td>
+<td>Temporary sensitive or disposable runtime data.</td>
+<td>Must not hold business data.</td>
+</tr>
+</tbody>
+</table>
+<p>Do not delete a volume until the data class and owner are known.</p>
+<h3 id="keep-network-exposure-deliberate">Keep network exposure deliberate<a class="headerlink" href="#keep-network-exposure-deliberate" title="Permanent link">&para;</a></h3>
+<p>Avoid publishing every container port to the host. Prefer an internal Compose network and expose only the edge service.</p>
+<p>Document:</p>
+<ul>
+<li>Host ports.</li>
+<li>Protocols.</li>
+<li>Allowed clients.</li>
+<li>Reverse proxy or TLS boundary.</li>
+<li>Health endpoint.</li>
+</ul>
+<h3 id="standard-service-pattern">Standard service pattern<a class="headerlink" href="#standard-service-pattern" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">app</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry.example.com/example/app:1.0.0</span>
 <span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
 <span class="w">    </span><span class="nt">env_file</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span>
 <span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080:8080&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-data:/var/lib/app</span>
 <span class="w">    </span><span class="nt">logging</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json-file</span>
 <span class="w">      </span><span class="nt">options</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">max-size</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100m&quot;</span>
 <span class="w">        </span><span class="nt">max-file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
+<span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;CMD&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;wget&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;-qO-&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;http://localhost:8080/healthz&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">app-data</span><span class="p">:</span>
 </code></pre></div>
-<p>Do not publish the actual <code>.env</code> file. Publish <code>.env.example</code> with placeholder values only.</p>
+<p>Publish <code>.env.example</code> with placeholder keys. Never publish the actual <code>.env</code>.</p>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>Run before deployment or after change:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>config
+docker<span class="w"> </span>compose<span class="w"> </span>pull
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 docker<span class="w"> </span>compose<span class="w"> </span>ps
 docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>--tail<span class="o">=</span><span class="m">100</span><span class="w"> </span>app
 </code></pre></div>
+<p>Pass conditions:</p>
+<ul>
+<li><code>docker compose config</code> renders without surprises.</li>
+<li>All intended services are healthy or explicitly one-shot.</li>
+<li>Only intended ports are exposed.</li>
+<li>Logs are bounded and readable.</li>
+<li>State volumes are visible and backup scope is known.</li>
+</ul>
+<h2 id="failure-modes">Failure Modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Result</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>latest</code> image drift</td>
+<td>Restarts deploy unreviewed versions.</td>
+<td>Pin tags or digests.</td>
+</tr>
+<tr>
+<td>Undocumented bind mount</td>
+<td>Data loss during host cleanup.</td>
+<td>Inventory host paths and owners.</td>
+</tr>
+<tr>
+<td>No log limits</td>
+<td>Host disk fills.</td>
+<td>Set log rotation options.</td>
+</tr>
+<tr>
+<td>Port sprawl</td>
+<td>Internal services become reachable.</td>
+<td>Expose only edge ports.</td>
+</tr>
+<tr>
+<td><code>.env</code> committed</td>
+<td>Secret leakage.</td>
+<td>Commit only <code>.env.example</code>; use local secret distribution.</td>
+</tr>
+<tr>
+<td>No restore test</td>
+<td>Backup confidence is false.</td>
+<td>Run restore verification for stateful services.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<p>Rollback is safe only when the previous image and data format are compatible.</p>
+<p>Use:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>pull
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<p>after changing the image tag back to the approved previous version.</p>
+<p>Escalate before rollback when the release changed database schema, volume layout, or file format. In those cases, recovery may require restoring data, not only reverting containers.</p>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Keep <code>.env</code> files out of git.</li>
+<li>Avoid privileged containers unless there is a documented host integration reason.</li>
+<li>Do not mount the Docker socket into application containers.</li>
+<li>Run containers as non-root where images support it.</li>
+<li>Limit host port exposure.</li>
+<li>Keep registry credentials outside the Compose file.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review a Compose stack before first production-like use, before image major upgrades, after host incidents, and before migrating the workload to Kubernetes or a managed service.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../docker-host-operations-standard/">Docker Host Operations Standard</a></li>
+<li><a href="../buildkit-build-standard/">BuildKit Build Standard</a></li>
+<li><a href="../../networking/nginx-reverse-proxy-tls-standard/">Nginx Reverse Proxy and TLS Standard</a></li>
 </ul>
 
 
@@ -4190,7 +4476,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4200,7 +4486,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     

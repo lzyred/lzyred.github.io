@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Anonymous Kubernetes upgrade case with zero-downtime strategy and lessons learned.">
+        <meta name="description" content="Kubernetes 小版本升级的匿名案例——为何插件与节点组策略比控制面风险更大，以及所用的校验与回滚模型。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Kubernetes 升级案例 - DevOps 专家知识库" />
-<meta property="og:description" content="Anonymous Kubernetes upgrade case with zero-downtime strategy and lessons learned." />
+<meta property="og:description" content="Kubernetes 小版本升级的匿名案例——为何插件与节点组策略比控制面风险更大，以及所用的校验与回滚模型。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/cases-reviews/cases/anonymous-kubernetes-upgrade-case.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/cases-reviews/cases/anonymous-kubernetes-upgrade-case/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Kubernetes 升级案例 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Anonymous Kubernetes upgrade case with zero-downtime strategy and lessons learned." />
+<meta property="twitter:description" content="Kubernetes 小版本升级的匿名案例——为何插件与节点组策略比控制面风险更大，以及所用的校验与回滚模型。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/cases-reviews/cases/anonymous-kubernetes-upgrade-case.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#anonymous-kubernetes-upgrade-case" class="md-skip">
+        <a href="#kubernetes" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2059,34 +2031,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../platform-governance/redash-deployment-standard/" class="md-nav__link">
         
   
@@ -2324,10 +2268,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#case-type" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case Type
+        核心经验
       
     </span>
   </a>
@@ -2335,10 +2279,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Background
+        背景
       
     </span>
   </a>
@@ -2346,10 +2290,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#challenges" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Challenges
+        起始状态
       
     </span>
   </a>
@@ -2357,10 +2301,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-solution" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Solution
+        约束
       
     </span>
   </a>
@@ -2368,10 +2312,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-model" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Model
+        计划
       
     </span>
   </a>
@@ -2379,10 +2323,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback-model" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback Model
+        执行与校验
       
     </span>
   </a>
@@ -2390,10 +2334,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reusable-lessons" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reusable Lessons
+        遇到的问题
       
     </span>
   </a>
@@ -2401,10 +2345,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-standards" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Standards
+        结果
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可复用经验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3493,34 +3459,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3858,34 +3796,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3956,10 +3866,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#case-type" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case Type
+        核心经验
       
     </span>
   </a>
@@ -3967,10 +3877,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Background
+        背景
       
     </span>
   </a>
@@ -3978,10 +3888,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#challenges" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Challenges
+        起始状态
       
     </span>
   </a>
@@ -3989,10 +3899,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-solution" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Solution
+        约束
       
     </span>
   </a>
@@ -4000,10 +3910,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-model" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Model
+        计划
       
     </span>
   </a>
@@ -4011,10 +3921,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback-model" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback Model
+        执行与校验
       
     </span>
   </a>
@@ -4022,10 +3932,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reusable-lessons" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reusable Lessons
+        遇到的问题
       
     </span>
   </a>
@@ -4033,10 +3943,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-standards" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Standards
+        结果
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可复用经验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4169,79 +4101,89 @@
   
 
 
-<h1 id="anonymous-kubernetes-upgrade-case">Anonymous Kubernetes Upgrade Case<a class="headerlink" href="#anonymous-kubernetes-upgrade-case" title="Permanent link">&para;</a></h1>
-<h2 id="case-type">Case Type<a class="headerlink" href="#case-type" title="Permanent link">&para;</a></h2>
-<p>Kubernetes platform upgrade and workload migration.</p>
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>An organization operated a Kubernetes cluster running an older minor version. The cluster hosted multiple stateless services, ingress routes, monitoring components, and stateful dependencies. The platform needed to move to a newer supported version while minimizing service interruption.</p>
-<p>All identifiers in this case are generic. No original service names, domains, regions, accounts, repositories, or customer details are preserved.</p>
-<h2 id="challenges">Challenges<a class="headerlink" href="#challenges" title="Permanent link">&para;</a></h2>
+<h1 id="kubernetes">匿名 Kubernetes 升级案例<a class="headerlink" href="#kubernetes" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>本案例中所有标识均为通用化。未保留任何原始服务名、域名、区域、账号、仓库或客户细节。</p>
+</blockquote>
+<h2 id="_1">核心经验<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>控制面版本升级是人人都会规划的部分，却很少是出问题的部分。真正的风险在于必须与新版本同步推进的插件，以及工作节点如何被替换。把插件当作一等升级对象、用新节点组作为回滚边界，正是让这次升级安全的关键。</p>
+</blockquote>
+<h2 id="_2">背景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>某组织在较旧的小版本上运行一个 Kubernetes 集群，承载多个无状态服务、ingress 路由、监控组件与有状态依赖。需要在尽量不中断的前提下迁移到较新的受支持版本。</p>
+<h2 id="_3">起始状态<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The target Kubernetes version required add-on compatibility checks.</li>
-<li>Some workloads depended on ingress and load balancer behavior.</li>
-<li>Stateful components used persistent storage.</li>
-<li>Monitoring and alerting needed to remain available throughout the change.</li>
-<li>Old worker nodes could not be replaced all at once without risking capacity pressure.</li>
+<li>单集群，较旧的受支持小版本。</li>
+<li>混合负载：无状态服务、ingress、监控，以及位于持久存储上的有状态组件。</li>
+<li>核心插件（CNI、CoreDNS、kube-proxy、CSI、ingress 控制器、可观测性 agent）的版本与当前 Kubernetes 版本绑定。</li>
 </ul>
-<h2 id="standard-solution">Standard Solution<a class="headerlink" href="#standard-solution" title="Permanent link">&para;</a></h2>
-<p>The upgrade was modeled as a phased migration:</p>
+<h2 id="_4">约束<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>目标版本需要插件兼容性检查。</li>
+<li>部分负载依赖 ingress 与负载均衡器行为。</li>
+<li>有状态组件使用持久存储，不能容忍数据丢失。</li>
+<li>监控与告警在整个变更期间必须保持可用。</li>
+<li>工作节点不能一次性全部替换，否则有容量压力风险。</li>
+</ul>
+<h2 id="_5">计划<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>把升级建模为分阶段迁移，而非一次切换：</p>
 <ol>
-<li>Build a baseline inventory of workloads, nodes, ingress, PVCs, add-ons, and alerts.</li>
-<li>Freeze unrelated infrastructure changes during the upgrade window.</li>
-<li>Upgrade the control plane using the platform-supported method.</li>
-<li>Upgrade core add-ons to versions compatible with the target Kubernetes version.</li>
-<li>Create a new worker node group with the target runtime and image.</li>
-<li>Migrate workloads by cordoning and draining old nodes in small batches.</li>
-<li>Validate application health after each batch.</li>
-<li>Keep old nodes available until the observation window passes.</li>
-<li>Remove old nodes after metrics and business checks remain stable.</li>
+<li>建立工作负载、节点、ingress、PVC、插件与告警的基线清单。</li>
+<li>窗口期冻结无关基础设施变更。</li>
+<li>通过平台支持的方式升级控制面。</li>
+<li>把核心插件升级到目标兼容版本。</li>
+<li>在目标版本上创建新工作节点组。</li>
+<li>通过小批量 cordon/drain 旧节点来迁移工作负载。</li>
+<li>每批后校验。</li>
+<li>保留旧节点至观察窗口通过，再移除。</li>
 </ol>
-<h2 id="validation-model">Validation Model<a class="headerlink" href="#validation-model" title="Permanent link">&para;</a></h2>
-<p>The team used three validation layers:</p>
+<h2 id="_6">执行与校验<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>团队分三层校验，并在第一层失败处停止：</p>
 <table>
 <thead>
 <tr>
-<th>Layer</th>
-<th>Examples</th>
+<th>层</th>
+<th>示例</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Cluster health</td>
-<td>API readiness, node readiness, system pods, events.</td>
+<td>集群健康</td>
+<td>API 就绪、节点就绪、系统 Pod、事件。</td>
 </tr>
 <tr>
-<td>Workload health</td>
-<td>Pod readiness, rollout status, logs, probes, job completion.</td>
+<td>负载健康</td>
+<td>Pod 就绪、发布状态、日志、探针、任务完成。</td>
 </tr>
 <tr>
-<td>Business smoke tests</td>
-<td>Login, core API calls, scheduled jobs, external callbacks, dashboard visibility.</td>
+<td>业务冒烟</td>
+<td>登录、核心 API 调用、定时任务、外部回调、仪表盘可见性。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="rollback-model">Rollback Model<a class="headerlink" href="#rollback-model" title="Permanent link">&para;</a></h2>
-<p>The control plane upgrade itself was treated as forward-only. Rollback protection came from:</p>
+<p>工作负载小批量迁移；在 drain 下一批旧节点之前，先对每批确认应用健康。</p>
+<h2 id="_7">遇到的问题<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Keeping old worker nodes until workload validation passed.</li>
-<li>Migrating workloads gradually.</li>
-<li>Preserving manifest snapshots.</li>
-<li>Maintaining application rollback ability.</li>
-<li>Avoiding irreversible storage changes during the same window.</li>
+<li><strong>造成摩擦的是插件兼容性，而非控制面。</strong> 落后于新版本的插件产生了 DNS 与网络抖动，直到升级到匹配版本。</li>
+<li><strong>存储压力险些被误判为升级 bug。</strong> 一个接近容量的 PVC 产生了看似与升级相关的症状；事先检查 PVC 余量本可避免混淆。</li>
+<li>ingress 与 CSI 行为需要显式测试用例——它们是对本次变更最敏感的负载。</li>
 </ul>
-<h2 id="reusable-lessons">Reusable Lessons<a class="headerlink" href="#reusable-lessons" title="Permanent link">&para;</a></h2>
+<h2 id="_8">结果<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>集群达到目标版本且无持续停机。由于旧节点组在观察窗口内保留，每个问题都是在有可用回退下被发现，且同一窗口内未做任何不可逆的存储变更。</p>
+<h2 id="_9">可复用经验<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Add-on compatibility often causes more practical risk than the control plane version change.</li>
-<li>New node groups provide a cleaner rollback boundary than in-place node mutation.</li>
-<li>Ingress, CSI drivers, and monitoring agents deserve explicit test cases.</li>
-<li>PVC capacity should be checked before migration to avoid confusing upgrade issues with storage pressure.</li>
-<li>Every critical alert should link to a runbook before the maintenance window.</li>
+<li>插件兼容性通常比控制面版本变更本身带来更大的实际风险。</li>
+<li>新节点组比就地改节点提供更干净的回滚边界。</li>
+<li>ingress、CSI 驱动与监控 agent 值得显式测试用例。</li>
+<li>迁移前检查 PVC 容量，以免把存储压力误认为升级故障。</li>
+<li>在维护窗口开启前，每条关键告警都应链接到 runbook。</li>
+<li>把控制面升级视为只能向前；用节点组、清单快照与应用级回滚构建回滚。</li>
 </ul>
-<h2 id="related-standards">Related Standards<a class="headerlink" href="#related-standards" title="Permanent link">&para;</a></h2>
+<h2 id="_10">相关文档<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../system-design/production-architecture/eks-upgrade-standard/">EKS and Kubernetes Upgrade Standard</a></li>
-<li><a href="../../../system-design/production-architecture/nfs-pvc-capacity-management/">NFS PVC Capacity Management</a></li>
-<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
+<li><a href="../../../system-design/production-architecture/eks-upgrade-standard/">EKS 与 Kubernetes 升级标准</a></li>
+<li><a href="../../../system-design/production-architecture/nfs-pvc-capacity-management/">NFS PVC 容量管理</a></li>
+<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus 告警标准</a></li>
 </ul>
 
 
@@ -4265,7 +4207,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 15:17:17 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4275,7 +4217,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 15:17:17 UTC">2026年6月28日</span>
   </span>
 
     

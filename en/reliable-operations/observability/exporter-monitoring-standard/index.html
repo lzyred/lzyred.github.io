@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Prometheus exporter monitoring standard for custom metrics collection.">
+        <meta name="description" content="Standard for adding Prometheus exporters as a controlled change — placement, least-privilege metrics access, the down/target-down distinction, and required alert coverage.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Exporter Monitoring - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Prometheus exporter monitoring standard for custom metrics collection." />
+<meta property="og:description" content="Standard for adding Prometheus exporters as a controlled change — placement, least-privilege metrics access, the down/target-down distinction, and required alert coverage." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/reliable-operations/observability/exporter-monitoring-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/reliable-operations/observability/exporter-monitoring-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Exporter Monitoring - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Prometheus exporter monitoring standard for custom metrics collection." />
+<meta property="twitter:description" content="Standard for adding Prometheus exporters as a controlled change — placement, least-privilege metrics access, the down/target-down distinction, and required alert coverage." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/reliable-operations/observability/exporter-monitoring-standard.png" />
 </head>
   
@@ -1565,6 +1565,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exporter-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1576,13 +1598,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exporter-checklist" class="md-nav__link">
+  <a href="#exporter-coverage-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exporter Checklist
+        Exporter Coverage Checklist
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Exporter Coverage Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-exporter-specifics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node Exporter specifics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1598,10 +1637,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alert-coverage" class="md-nav__link">
+  <a href="#required-alert-coverage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alert Coverage
+        Required Alert Coverage
       
     </span>
   </a>
@@ -1620,10 +1659,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-removal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback / Removal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#security-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -1693,34 +1765,6 @@
     
   
     ELFK Logging
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
   
 
     
@@ -2187,34 +2231,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3493,34 +3509,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3858,34 +3846,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3967,6 +3927,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exporter-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3978,13 +3960,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exporter-checklist" class="md-nav__link">
+  <a href="#exporter-coverage-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exporter Checklist
+        Exporter Coverage Checklist
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Exporter Coverage Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-exporter-specifics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node Exporter specifics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4000,10 +3999,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alert-coverage" class="md-nav__link">
+  <a href="#required-alert-coverage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alert Coverage
+        Required Alert Coverage
       
     </span>
   </a>
@@ -4022,10 +4021,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-removal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback / Removal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#security-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4143,6 +4175,16 @@
       
         
         
+      
+      
+        <a href="../../../tags/#tag:prometheus" class="md-tag md-tag-icon">Prometheus</a>
+      
+    
+      
+      
+      
+        
+        
           
         
       
@@ -4159,93 +4201,200 @@
 
 <h1 id="prometheus-exporter-monitoring-standard">Prometheus Exporter Monitoring Standard<a class="headerlink" href="#prometheus-exporter-monitoring-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines how to add Prometheus exporters for services such as MySQL, Redis, MongoDB, Nginx, JVM applications, Node Exporter, and blackbox monitoring.</p>
+<p>This standard defines how to add Prometheus exporters (Node Exporter, database exporters, Nginx, JVM, blackbox, etc.) so that the metrics are trustworthy, the exporter does not become its own risk, and every exporter ships with the alerts that make it useful.</p>
+<p>The core judgment of this standard:</p>
+<blockquote>
+<p>An exporter you can scrape is not the same as monitoring you can trust. An exporter with no alerts is decoration; and the difference between "exporter down" and "target down" is the difference between a blind spot and a real outage — your alerts must tell them apart.</p>
+</blockquote>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when you:</p>
+<ul>
+<li>Add Prometheus monitoring for a host, database, web server, or application runtime.</li>
+<li>Standardize how exporters are deployed, labeled, and secured across services.</li>
+<li>Need a minimum alert baseline so a new exporter is actually actionable.</li>
+</ul>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>Prometheus server sizing, federation, or long-term storage design.</li>
+<li>Dashboard design beyond requiring that one exists.</li>
+<li>Application-level custom metrics instrumentation (use OpenTelemetry/SDK instrumentation for that).</li>
+<li>Alert routing and on-call policy (see the Prometheus alerting standard).</li>
+</ul>
 <h2 id="exporter-principles">Exporter Principles<a class="headerlink" href="#exporter-principles" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Run exporters close to the target service.</li>
-<li>Use least-privilege metrics accounts.</li>
-<li>Avoid exposing exporters publicly.</li>
-<li>Add labels that identify service, environment, and owner.</li>
-<li>Pair every exporter with dashboards and alert rules.</li>
+<li>Run the exporter close to the target service (same host or sidecar), so exporter health reflects target reachability locally.</li>
+<li>Use a least-privilege metrics account for database/service exporters — read-only stats access, never an admin account.</li>
+<li>Do not expose exporters publicly; restrict the metrics port to Prometheus.</li>
+<li>Add labels that identify service, environment, team, and owner so alerts are routable.</li>
+<li>Every exporter ships with a dashboard <strong>and</strong> alert rules, or it is not done.</li>
 </ol>
-<h2 id="exporter-checklist">Exporter Checklist<a class="headerlink" href="#exporter-checklist" title="Permanent link">&para;</a></h2>
+<h2 id="exporter-coverage-checklist">Exporter Coverage Checklist<a class="headerlink" href="#exporter-coverage-checklist" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>Exporter</th>
-<th>Key Checks</th>
+<th>Key signals to scrape</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Node Exporter</td>
-<td>CPU, memory, disk, filesystem, network.</td>
+<td>CPU saturation, memory pressure, disk capacity &amp; inodes, filesystem/read-only errors, network errors, load average</td>
 </tr>
 <tr>
 <td>MySQL Exporter</td>
-<td>Connection, replication, slow queries, buffer pool.</td>
+<td>Up, connections vs <code>max_connections</code>, replication running &amp; lag, slow queries, buffer pool</td>
 </tr>
 <tr>
 <td>Redis Exporter</td>
-<td>Memory, clients, persistence, replication, keyspace.</td>
+<td>Up, memory vs <code>maxmemory</code>, evictions, clients, persistence status, replication</td>
 </tr>
 <tr>
 <td>MongoDB Exporter</td>
-<td>Connections, locks, replication, storage.</td>
+<td>Connections, locks/contention, replication lag, storage</td>
 </tr>
 <tr>
 <td>Nginx Exporter</td>
-<td>Requests, connections, status endpoint.</td>
+<td>Up, requests, active connections, 5xx rate (via status endpoint)</td>
 </tr>
 <tr>
 <td>JVM Exporter</td>
-<td>Heap, GC, threads, class loading.</td>
+<td>Heap usage, GC pause/frequency, threads, class loading</td>
 </tr>
 <tr>
 <td>Blackbox Exporter</td>
-<td>HTTP, TCP, DNS, TLS expiry.</td>
+<td>HTTP/TCP/DNS probe success, and TLS certificate expiry</td>
 </tr>
 </tbody>
 </table>
+<h3 id="node-exporter-specifics">Node Exporter specifics<a class="headerlink" href="#node-exporter-specifics" title="Permanent link">&para;</a></h3>
+<p>Node Exporter is the canonical host exporter; run it on every Linux host and restrict its port to Prometheus. The signals that most often catch real incidents:</p>
+<ul>
+<li>Disk capacity <strong>and inodes</strong> (a full inode table fails writes while <code>df</code> still shows free space).</li>
+<li>Read-only / failing filesystems.</li>
+<li>Memory pressure and OOM indicators.</li>
+<li>CPU saturation and sustained load average.</li>
+</ul>
 <h2 id="scrape-configuration-pattern">Scrape Configuration Pattern<a class="headerlink" href="#scrape-configuration-pattern" title="Permanent link">&para;</a></h2>
+<p>Attach identifying labels at scrape time so every series is routable and ownable.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">scrape_configs</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-service</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">node</span>
 <span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exporter.example.internal:9100</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;exporter-host&gt;:9100</span>
 <span class="w">        </span><span class="nt">labels</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-service</span>
+<span class="w">          </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod</span>
 <span class="w">          </span><span class="nt">team</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">platform</span>
 </code></pre></div>
-<p>Do not publish real internal targets.</p>
-<h2 id="alert-coverage">Alert Coverage<a class="headerlink" href="#alert-coverage" title="Permanent link">&para;</a></h2>
-<p>Minimum alert categories:</p>
+<p>Do not publish real internal targets or hostnames. Prefer service discovery over hand-maintained static target lists at scale.</p>
+<h2 id="required-alert-coverage">Required Alert Coverage<a class="headerlink" href="#required-alert-coverage" title="Permanent link">&para;</a></h2>
+<p>A new exporter is not "monitored" until these exist, as applicable:</p>
 <ul>
-<li>Exporter down.</li>
-<li>Target down.</li>
-<li>Disk capacity.</li>
+<li><strong>Exporter down</strong> — <code>up == 0</code> for the exporter job. Means you are <em>blind</em>, not that the service is down. Page or warn accordingly.</li>
+<li><strong>Target down</strong> — the service the exporter watches is unreachable/unhealthy. This is the real outage signal.</li>
+<li>Disk capacity and inode exhaustion.</li>
 <li>Memory pressure.</li>
-<li>Error rate.</li>
-<li>Replication lag.</li>
-<li>TLS expiry.</li>
-<li>JVM GC pressure.</li>
+<li>Error-rate (5xx, failed connections) above threshold.</li>
+<li>Replication lag (databases).</li>
+<li>TLS certificate expiry (blackbox).</li>
+<li>JVM GC pressure / heap exhaustion (JVM apps).</li>
 </ul>
+<blockquote>
+<p>Distinguishing <strong>exporter down</strong> from <strong>target down</strong> is the single most important design point. If they collapse into one alert, you cannot tell "we lost visibility" from "the service is failing" — and you will eventually trust a green dashboard that is green only because the exporter died.</p>
+</blockquote>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sS<span class="w"> </span>http://exporter.example.internal:9100/metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
+<div class="highlight"><pre><span></span><code><span class="c1"># Exporter serves metrics locally:</span>
+curl<span class="w"> </span>-sS<span class="w"> </span>http://&lt;exporter-host&gt;:9100/metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
 </code></pre></div>
 <p>In Prometheus:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">up</span><span class="p">{</span><span class="nl">job</span><span class="o">=</span><span class="p">&quot;</span><span class="s">example-service</span><span class="p">&quot;}</span>
+<div class="highlight"><pre><span></span><code><span class="nv">up</span><span class="p">{</span><span class="nl">job</span><span class="o">=</span><span class="p">&quot;</span><span class="s">node</span><span class="p">&quot;}</span><span class="w">                      </span><span class="c1"># 1 = scraped OK, 0 = exporter unreachable</span>
+<span class="kr">rate</span><span class="o">(</span><span class="nv">node_filesystem_avail_bytes</span><span class="p">[</span><span class="s">5m</span><span class="p">]</span><span class="o">)</span><span class="w"> </span><span class="c1"># signal is present and changing</span>
 </code></pre></div>
+<p>Confirm:</p>
+<ul>
+<li>The target appears in Prometheus targets as <code>UP</code> with the expected labels.</li>
+<li>Key metrics for the exporter type are present and non-stale.</li>
+<li>The dashboard renders and the alert rules load without error (<code>promtool check rules</code>).</li>
+<li>A deliberately failed scrape (stop the exporter briefly in staging) fires the "exporter down" alert.</li>
+</ul>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Correct response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Green dashboard, dead service</td>
+<td>All looks fine but users report errors</td>
+<td>"Exporter down" and "target down" not separated</td>
+<td>Split the alerts; alert on <code>up == 0</code> distinctly.</td>
+</tr>
+<tr>
+<td>Missing labels</td>
+<td>Alert fires but nobody owns it</td>
+<td>No service/team/owner labels at scrape</td>
+<td>Add identifying labels in <code>scrape_configs</code>.</td>
+</tr>
+<tr>
+<td>Exporter is a security hole</td>
+<td>Metrics reachable from untrusted networks</td>
+<td>Exporter port exposed publicly</td>
+<td>Bind to private interface; restrict port to Prometheus.</td>
+</tr>
+<tr>
+<td>Over-privileged exporter</td>
+<td>DB exporter has write/admin access</td>
+<td>Reused an admin account</td>
+<td>Create a least-privilege read-only stats user.</td>
+</tr>
+<tr>
+<td>Stale metrics</td>
+<td>Values frozen, no alert</td>
+<td>Exporter up but not collecting</td>
+<td>Check exporter logs and the target connection; alert on staleness.</td>
+</tr>
+<tr>
+<td>Cardinality blowup</td>
+<td>Prometheus memory/CPU spike</td>
+<td>High-cardinality labels (per-request IDs)</td>
+<td>Drop/aggregate high-cardinality labels at scrape.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback-removal">Rollback / Removal<a class="headerlink" href="#rollback-removal" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Removing an exporter removes visibility — confirm nothing depends on its alerts before doing so.</li>
+<li>Remove the scrape job and the associated alert rules together; an orphaned alert rule referencing a gone job is noise.</li>
+<li>If an exporter caused load or a security concern, restrict its port or stop it first, then remove cleanly.</li>
+</ol>
 <h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Exporters may expose service metadata.</li>
-<li>Restrict exporter ports to Prometheus.</li>
-<li>Use TLS or private networking where required.</li>
-<li>Store database metrics credentials in a secret manager.</li>
+<li>Exporters expose service metadata; treat the metrics endpoint as internal and restrict it to Prometheus.</li>
+<li>Use least-privilege, read-only credentials for database/service exporters; store them in a secret manager.</li>
+<li>Use TLS or private networking where the metrics are sensitive.</li>
+<li>Avoid high-cardinality labels that can leak identifiers (user IDs, request IDs) into metrics.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Owner: the platform/observability team.</li>
+<li>Re-check the alert baseline whenever a new exporter type is introduced.</li>
+<li>Re-validate the exporter-down vs target-down split after Prometheus or exporter upgrades.</li>
+<li>Review metrics-account privileges when a database exporter is added or rotated.</li>
 </ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
+<li><a href="../opentelemetry-auto-instrumentation-standard/">OpenTelemetry Auto-Instrumentation Standard</a></li>
+<li><a href="../../../standards-manual/databases/redis-operations-standard/">Redis Operations Standard</a></li>
+<li><a href="../../../standards-manual/databases/mysql-operations-standard/">MySQL Operations Standard</a></li>
+<li><a href="https://prometheus.io/docs/instrumenting/exporters/">Prometheus exporters documentation</a></li>
 </ul>
 
 
@@ -4269,7 +4418,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4279,7 +4428,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 13:53:36 UTC">June 28, 2026</span>
   </span>
 
     

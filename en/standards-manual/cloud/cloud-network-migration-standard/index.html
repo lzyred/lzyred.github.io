@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Cloud network and object storage migration standard for cross-provider moves.">
+        <meta name="description" content="Standard for cloud network and object storage migrations with route isolation, data validation, cutover, rollback, and security controls.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Network and Object Storage Migration - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Cloud network and object storage migration standard for cross-provider moves." />
+<meta property="og:description" content="Standard for cloud network and object storage migrations with route isolation, data validation, cutover, rollback, and security controls." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/cloud/cloud-network-migration-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/cloud/cloud-network-migration-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Network and Object Storage Migration - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Cloud network and object storage migration standard for cross-provider moves." />
+<meta property="twitter:description" content="Standard for cloud network and object storage migrations with route isolation, data validation, cutover, rollback, and security controls." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/cloud/cloud-network-migration-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3365,34 +3309,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3585,10 +3501,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#network-planning" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Network Planning
+        When to Use
       
     </span>
   </a>
@@ -3596,10 +3512,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#connectivity-validation" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Connectivity Validation
+        Non-Goals
       
     </span>
   </a>
@@ -3607,10 +3523,132 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#object-storage-migration" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Object Storage Migration
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separate-migration-planes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separate migration planes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-placeholders-in-public-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use placeholders in public documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-a-route-and-identity-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build a route and identity matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrate-object-storage-in-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrate object storage in phases
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cutover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cutover
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
       
     </span>
   </a>
@@ -3622,6 +3660,17 @@
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3851,34 +3900,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3960,10 +3981,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#network-planning" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Network Planning
+        When to Use
       
     </span>
   </a>
@@ -3971,10 +3992,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#connectivity-validation" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Connectivity Validation
+        Non-Goals
       
     </span>
   </a>
@@ -3982,10 +4003,132 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#object-storage-migration" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Object Storage Migration
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separate-migration-planes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separate migration planes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-placeholders-in-public-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use placeholders in public documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-a-route-and-identity-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build a route and identity matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrate-object-storage-in-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrate object storage in phases
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cutover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cutover
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
       
     </span>
   </a>
@@ -3997,6 +4140,17 @@
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4121,6 +4275,30 @@
         <a href="../../../tags/#tag:migration" class="md-tag md-tag-icon md-tag--migration">Migration</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:networking" class="md-tag md-tag-icon md-tag--networking">Networking</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
+      
+    
   </nav>
 
 
@@ -4130,60 +4308,193 @@
 
 <h1 id="cloud-network-and-object-storage-migration-standard">Cloud Network and Object Storage Migration Standard<a class="headerlink" href="#cloud-network-and-object-storage-migration-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes safe planning for cloud network connectivity and object storage migration across providers or accounts.</p>
-<h2 id="network-planning">Network Planning<a class="headerlink" href="#network-planning" title="Permanent link">&para;</a></h2>
-<p>Document:</p>
+<p>This standard defines how to plan and execute cloud network and object storage migrations across accounts, regions, or providers.</p>
+<p>The core judgment:</p>
+<blockquote>
+<p>A cloud migration fails less often because copying is impossible, and more often because routes, identity, DNS, metadata, and rollback were treated as afterthoughts.</p>
+</blockquote>
+<p>Network migration and object storage migration should be planned together when application traffic, private connectivity, and data paths change at the same time.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when:</p>
 <ul>
-<li>Source and target VPC or VNet CIDRs.</li>
-<li>Subnet layout.</li>
-<li>Routing tables.</li>
-<li>NAT and egress design.</li>
-<li>Security groups or firewall policies.</li>
-<li>DNS resolution.</li>
-<li>Private connectivity such as VPN, peering, transit gateway, or cloud connect.</li>
+<li>Moving workloads between cloud accounts, regions, or providers.</li>
+<li>Rebuilding VPC/VNet network boundaries.</li>
+<li>Migrating object storage buckets or prefixes.</li>
+<li>Changing DNS, private connectivity, NAT, or egress paths.</li>
+<li>Preparing a cutover where application reads and writes move to a new location.</li>
 </ul>
-<p>Use placeholder identifiers in public documents:</p>
-<div class="highlight"><pre><span></span><code>vpc-00000000000000000
-subnet-00000000000000000
-10.0.0.0/16
-203.0.113.10
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover database migration internals, application refactoring, or vendor-specific console steps. It defines the control model for migration safety.</p>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="separate-migration-planes">Separate migration planes<a class="headerlink" href="#separate-migration-planes" title="Permanent link">&para;</a></h3>
+<p>Plan three planes independently:</p>
+<table>
+<thead>
+<tr>
+<th>Plane</th>
+<th>Scope</th>
+<th>Failure Signal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Network</td>
+<td>CIDR, routes, firewall rules, private links, DNS, egress.</td>
+<td>Application cannot connect, connects to old target, or bypasses policy.</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Object count, size, metadata, encryption, versioning, lifecycle.</td>
+<td>Missing object, wrong metadata, access denied, stale reads.</td>
+</tr>
+<tr>
+<td>Application</td>
+<td>Config, endpoint selection, cutover switch, read/write behavior.</td>
+<td>Writes split across systems or users hit inconsistent data.</td>
+</tr>
+</tbody>
+</table>
+<p>Do not declare migration complete because data copied once. Completion requires traffic and ownership to move safely.</p>
+<h3 id="use-placeholders-in-public-documentation">Use placeholders in public documentation<a class="headerlink" href="#use-placeholders-in-public-documentation" title="Permanent link">&para;</a></h3>
+<p>Public docs must not include real cloud account IDs, VPC IDs, subnet IDs, bucket names, domains, private endpoints, or IP addresses. Use placeholders such as <code>&lt;source-vpc&gt;</code>, <code>&lt;target-bucket&gt;</code>, and <code>&lt;private-service-endpoint&gt;</code>.</p>
+<h3 id="build-a-route-and-identity-matrix">Build a route and identity matrix<a class="headerlink" href="#build-a-route-and-identity-matrix" title="Permanent link">&para;</a></h3>
+<p>Before data movement, document:</p>
+<ul>
+<li>Source and target network boundaries.</li>
+<li>Required application connections.</li>
+<li>DNS names and where they resolve.</li>
+<li>Security groups, firewall policy, and route tables.</li>
+<li>NAT or egress path.</li>
+<li>Private connectivity approval.</li>
+<li>IAM or role mapping for migration jobs.</li>
+</ul>
+<p>The matrix should show both allowed and deliberately blocked paths.</p>
+<h3 id="migrate-object-storage-in-phases">Migrate object storage in phases<a class="headerlink" href="#migrate-object-storage-in-phases" title="Permanent link">&para;</a></h3>
+<p>Use phased migration:</p>
+<ol>
+<li>Inventory source buckets or prefixes.</li>
+<li>Classify data sensitivity and retention.</li>
+<li>Create target bucket, encryption, lifecycle, logging, and access policy.</li>
+<li>Run initial bulk sync.</li>
+<li>Run incremental sync until drift is small.</li>
+<li>Freeze or dual-write only if the application design supports it.</li>
+<li>Cut reads and writes to the target.</li>
+<li>Validate, observe, and retain the source for rollback window.</li>
+</ol>
+<p>Avoid permanent dual-write unless the application has conflict resolution and ownership rules.</p>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<h3 id="network-validation">Network validation<a class="headerlink" href="#network-validation" title="Permanent link">&para;</a></h3>
+<p>Validate from the workload perspective, not only from a bastion host:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsS<span class="w"> </span>https://&lt;service-endpoint&gt;/healthz
+dig<span class="w"> </span>&lt;service-name&gt;
+nc<span class="w"> </span>-vz<span class="w"> </span>&lt;private-service-endpoint&gt;<span class="w"> </span>&lt;port&gt;
 </code></pre></div>
-<h2 id="connectivity-validation">Connectivity Validation<a class="headerlink" href="#connectivity-validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>ping<span class="w"> </span><span class="m">10</span>.0.0.10
-traceroute<span class="w"> </span><span class="m">10</span>.0.0.10
-curl<span class="w"> </span>-I<span class="w"> </span>https://service.example.com
-dig<span class="w"> </span>service.example.com
-</code></pre></div>
-<p>For private services, prefer application-level checks over raw ping.</p>
-<h2 id="object-storage-migration">Object Storage Migration<a class="headerlink" href="#object-storage-migration" title="Permanent link">&para;</a></h2>
-<p>Before migration:</p>
+<p>Expected evidence:</p>
 <ul>
-<li>Estimate object count and total size.</li>
-<li>Check object naming and prefix strategy.</li>
-<li>Validate permissions.</li>
-<li>Decide metadata preservation requirements.</li>
-<li>Plan incremental sync.</li>
-<li>Define cutover and rollback.</li>
+<li>DNS resolves to the intended target.</li>
+<li>Private endpoints are reachable from approved networks only.</li>
+<li>Egress follows the intended path.</li>
+<li>Denied paths are actually denied.</li>
+<li>Logs show the expected source identity.</li>
 </ul>
-<p>Validation:</p>
+<h3 id="object-validation">Object validation<a class="headerlink" href="#object-validation" title="Permanent link">&para;</a></h3>
+<p>Validate:</p>
 <ul>
-<li>Object count comparison.</li>
-<li>Size comparison.</li>
-<li>Sample checksum comparison.</li>
-<li>Application read test.</li>
-<li>Access policy test.</li>
+<li>Total object count.</li>
+<li>Total logical size.</li>
+<li>Sample checksums.</li>
+<li>Metadata and content type.</li>
+<li>Encryption state.</li>
+<li>Access policy from application role.</li>
+<li>Application read path.</li>
+<li>Write path after cutover.</li>
 </ul>
+<p>For large stores, use deterministic sampling plus inventory comparison rather than trusting a single sync command summary.</p>
+<h2 id="cutover">Cutover<a class="headerlink" href="#cutover" title="Permanent link">&para;</a></h2>
+<p>Cutover must have:</p>
+<ul>
+<li>Freeze or final sync plan.</li>
+<li>DNS or config switch owner.</li>
+<li>Application smoke test.</li>
+<li>Monitoring owner.</li>
+<li>Rollback decision window.</li>
+<li>Communication to affected teams.</li>
+</ul>
+<p>Do not cut over if the rollback condition is vague. The team must know what signal triggers rollback and who can decide.</p>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<p>Rollback is possible when the source remains intact and writes have not diverged beyond reconciliation.</p>
+<p>Rollback options:</p>
+<ul>
+<li>Repoint DNS or config to source.</li>
+<li>Re-enable source route.</li>
+<li>Replay accepted writes if captured.</li>
+<li>Restore from retained source copy.</li>
+</ul>
+<p>Rollback is risky when:</p>
+<ul>
+<li>Writes occurred in both source and target.</li>
+<li>Object versioning or metadata changed incompatibly.</li>
+<li>Source lifecycle policy deleted old data.</li>
+<li>Application schema or URL generation changed.</li>
+</ul>
+<h2 id="failure-modes">Failure Modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Result</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CIDR or route overlap</td>
+<td>Traffic reaches wrong or no target.</td>
+<td>Validate route matrix before cutover.</td>
+</tr>
+<tr>
+<td>DNS TTL ignored</td>
+<td>Some clients keep old endpoint.</td>
+<td>Lower TTL and test resolver behavior.</td>
+</tr>
+<tr>
+<td>IAM mismatch</td>
+<td>Sync succeeds but application cannot read.</td>
+<td>Validate with application role.</td>
+</tr>
+<tr>
+<td>Metadata lost</td>
+<td>Downloads, caching, or content type break.</td>
+<td>Compare metadata, not only bytes.</td>
+</tr>
+<tr>
+<td>Source deleted early</td>
+<td>No rollback.</td>
+<td>Retain source through rollback window.</td>
+</tr>
+<tr>
+<td>Permanent dual-write</td>
+<td>Inconsistent objects.</td>
+<td>Prefer freeze, final sync, and single writer.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Do not publish access keys or secret keys.</li>
-<li>Use temporary roles where possible.</li>
-<li>Restrict migration permissions to required buckets and prefixes.</li>
-<li>Encrypt objects at rest and in transit.</li>
-<li>Remove migration credentials after cutover.</li>
+<li>Use temporary migration roles with least privilege.</li>
+<li>Encrypt objects in transit and at rest.</li>
+<li>Do not copy public access policy by accident.</li>
+<li>Log data access during migration.</li>
+<li>Remove migration roles and temporary routes after cutover.</li>
+<li>Keep migration evidence generic in public documentation.</li>
 </ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review this standard before any migration wave, after each cutover, and after any route, DNS, IAM, object metadata, or rollback incident.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../platform-governance/publication-safety-checklist/">Publication Safety Checklist</a></li>
+<li><a href="../../../cases-reviews/cases/anonymous-object-storage-migration-case/">Object Storage Migration Case</a></li>
+<li><a href="../../iac/terraform-iac-standard/">Terraform IaC Standard</a></li>
+<li><a href="../../networking/nginx-reverse-proxy-tls-standard/">Nginx Reverse Proxy and TLS Standard</a></li>
 </ul>
 
 
@@ -4207,7 +4518,7 @@ dig<span class="w"> </span>service.example.com
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4217,7 +4528,7 @@ dig<span class="w"> </span>service.example.com
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     

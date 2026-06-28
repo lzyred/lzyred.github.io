@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Linux server baseline standard for OS hardening, patching, and initial configuration.">
+        <meta name="description" content="Standard for a safe, repeatable Linux server baseline — identity, patching, SSH hardening, kernel/limits, firewall, and validation, with no secrets in bootstrap.">
       
       
       
@@ -16,7 +16,7 @@
         <link rel="prev" href="../../middleware/dolphinscheduler-standard/">
       
       
-        <link rel="next" href="../ubuntu-26-ai-fullstack-setup-v2/">
+        <link rel="next" href="../system-os-patching-standard/">
       
       
         
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Server Baseline - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Linux server baseline standard for OS hardening, patching, and initial configuration." />
+<meta property="og:description" content="Standard for a safe, repeatable Linux server baseline — identity, patching, SSH hardening, kernel/limits, firewall, and validation, with no secrets in bootstrap." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/linux/server-baseline-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/linux/server-baseline-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Server Baseline - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Linux server baseline standard for OS hardening, patching, and initial configuration." />
+<meta property="twitter:description" content="Standard for a safe, repeatable Linux server baseline — identity, patching, SSH hardening, kernel/limits, firewall, and validation, with no secrets in bootstrap." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/linux/server-baseline-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3410,10 +3354,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and Non-Goals
       
     </span>
   </a>
@@ -3432,22 +3387,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-procedure" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Procedure
+        Recommended Standard
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Standard Procedure">
+    <nav class="md-nav" aria-label="Recommended Standard">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-identify-system" class="md-nav__link">
+  <a href="#1-identify-the-system" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Identify System
+        1. Identify the system
       
     </span>
   </a>
@@ -3455,10 +3410,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-update-packages" class="md-nav__link">
+  <a href="#2-patch-and-install-base-tooling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Update Packages
+        2. Patch and install base tooling
       
     </span>
   </a>
@@ -3466,10 +3421,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-configure-time-synchronization" class="md-nav__link">
+  <a href="#3-time-synchronization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Configure Time Synchronization
+        3. Time synchronization
       
     </span>
   </a>
@@ -3477,10 +3432,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-configure-ssh-access" class="md-nav__link">
+  <a href="#4-ssh-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Configure SSH Access
+        4. SSH hardening
       
     </span>
   </a>
@@ -3488,10 +3443,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-configure-command-history" class="md-nav__link">
+  <a href="#5-kernel-parameters-and-limits" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Configure Command History
+        5. Kernel parameters and limits
       
     </span>
   </a>
@@ -3499,10 +3454,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-configure-kernel-and-limits" class="md-nav__link">
+  <a href="#6-firewall-default-deny-inbound" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Configure Kernel and Limits
+        6. Firewall: default-deny inbound
       
     </span>
   </a>
@@ -3510,21 +3465,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#7-configure-firewall" class="md-nav__link">
+  <a href="#7-data-disks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Configure Firewall
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-prepare-data-disks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. Prepare Data Disks
+        7. Data disks
       
     </span>
   </a>
@@ -3548,6 +3492,50 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related-documents" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3562,34 +3550,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -3945,34 +3905,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -4054,10 +3986,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and Non-Goals
       
     </span>
   </a>
@@ -4076,22 +4019,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-procedure" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Procedure
+        Recommended Standard
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Standard Procedure">
+    <nav class="md-nav" aria-label="Recommended Standard">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-identify-system" class="md-nav__link">
+  <a href="#1-identify-the-system" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Identify System
+        1. Identify the system
       
     </span>
   </a>
@@ -4099,10 +4042,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-update-packages" class="md-nav__link">
+  <a href="#2-patch-and-install-base-tooling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Update Packages
+        2. Patch and install base tooling
       
     </span>
   </a>
@@ -4110,10 +4053,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-configure-time-synchronization" class="md-nav__link">
+  <a href="#3-time-synchronization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Configure Time Synchronization
+        3. Time synchronization
       
     </span>
   </a>
@@ -4121,10 +4064,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-configure-ssh-access" class="md-nav__link">
+  <a href="#4-ssh-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Configure SSH Access
+        4. SSH hardening
       
     </span>
   </a>
@@ -4132,10 +4075,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-configure-command-history" class="md-nav__link">
+  <a href="#5-kernel-parameters-and-limits" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Configure Command History
+        5. Kernel parameters and limits
       
     </span>
   </a>
@@ -4143,10 +4086,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-configure-kernel-and-limits" class="md-nav__link">
+  <a href="#6-firewall-default-deny-inbound" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Configure Kernel and Limits
+        6. Firewall: default-deny inbound
       
     </span>
   </a>
@@ -4154,21 +4097,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#7-configure-firewall" class="md-nav__link">
+  <a href="#7-data-disks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Configure Firewall
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-prepare-data-disks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. Prepare Data Disks
+        7. Data disks
       
     </span>
   </a>
@@ -4185,6 +4117,50 @@
     <span class="md-ellipsis">
       
         Validation Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4330,116 +4306,162 @@
 
 <h1 id="linux-server-baseline-standard">Linux Server Baseline Standard<a class="headerlink" href="#linux-server-baseline-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines a safe baseline for preparing Linux servers for DevOps workloads. It is intended for new servers, rebuilds, and post-provisioning hardening.</p>
-<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
-<p>The baseline applies to common Linux distributions such as Rocky Linux, CentOS-compatible systems, Ubuntu, and Debian. Provider-specific steps should be handled in separate cloud build templates.</p>
+<p>This standard defines a safe, repeatable baseline for preparing Linux servers for production workloads: what every new server gets before it runs anything, hardened in a way you can re-apply and verify.</p>
+<p>The core judgment of this standard:</p>
+<blockquote>
+<p>A baseline is only useful if it is repeatable and auditable. A server configured by hand, once, drifts and cannot be trusted; a baseline that bakes a real SSH key, password, or internal mirror into a bootstrap script becomes a leaked credential the moment it is shared. Make it idempotent, and keep secrets out of it.</p>
+</blockquote>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard for:</p>
+<ul>
+<li>New servers, rebuilds, and post-provisioning hardening.</li>
+<li>Defining the baseline a configuration-management tool (Ansible, cloud-init, image build) should enforce.</li>
+<li>Auditing whether an existing host meets a known-good baseline.</li>
+</ul>
+<h2 id="scope-and-non-goals">Scope and Non-Goals<a class="headerlink" href="#scope-and-non-goals" title="Permanent link">&para;</a></h2>
+<p>Applies to common distributions (RHEL/Rocky-compatible, Ubuntu/Debian). Provider-specific build steps belong in cloud image templates, not here. This standard does <strong>not</strong> cover application deployment, container-host specifics (see the Docker host standard), or full CIS-benchmark compliance — it is the practical baseline beneath those.</p>
 <h2 id="baseline-principles">Baseline Principles<a class="headerlink" href="#baseline-principles" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Make changes idempotent where possible.</li>
+<li>Make every step <strong>idempotent</strong> so the baseline can be re-applied safely.</li>
 <li>Keep access control separate from application deployment.</li>
-<li>Prefer SSH key authentication over password login.</li>
-<li>Record every non-default system setting.</li>
-<li>Avoid embedding personal users, public keys, passwords, or internal mirrors in public scripts.</li>
-<li>Validate the server after each major configuration block.</li>
+<li>Prefer SSH key authentication; disable password and root login.</li>
+<li>Record every non-default setting; an unrecorded tweak is future drift.</li>
+<li><strong>Never</strong> embed real users, public keys, passwords, or internal mirror URLs in public scripts — use placeholders.</li>
+<li>Validate after each major block, not just at the end.</li>
 </ol>
-<h2 id="standard-procedure">Standard Procedure<a class="headerlink" href="#standard-procedure" title="Permanent link">&para;</a></h2>
-<h3 id="1-identify-system">1. Identify System<a class="headerlink" href="#1-identify-system" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/etc/os-release
-uname<span class="w"> </span>-a
-hostnamectl
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="1-identify-the-system">1. Identify the system<a class="headerlink" href="#1-identify-the-system" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/etc/os-release<span class="p">;</span><span class="w"> </span>uname<span class="w"> </span>-a<span class="p">;</span><span class="w"> </span>hostnamectl
 </code></pre></div>
-<p>Record distribution, kernel, architecture, timezone, hostname, and primary network interface.</p>
-<h3 id="2-update-packages">2. Update Packages<a class="headerlink" href="#2-update-packages" title="Permanent link">&para;</a></h3>
-<p>For RHEL-compatible systems:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>makecache
-sudo<span class="w"> </span>dnf<span class="w"> </span>update<span class="w"> </span>-y
-sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vim<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>tar<span class="w"> </span>unzip<span class="w"> </span>net-tools<span class="w"> </span>lsof<span class="w"> </span>sysstat<span class="w"> </span>chrony<span class="w"> </span>bash-completion
+<p>Record distribution, kernel, architecture, timezone, hostname, and primary interface.</p>
+<h3 id="2-patch-and-install-base-tooling">2. Patch and install base tooling<a class="headerlink" href="#2-patch-and-install-base-tooling" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># RHEL/Rocky:</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>makecache<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>update<span class="w"> </span>-y
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vim<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>tar<span class="w"> </span>unzip<span class="w"> </span>lsof<span class="w"> </span>sysstat<span class="w"> </span>chrony<span class="w"> </span>bash-completion
+<span class="c1"># Debian/Ubuntu:</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade<span class="w"> </span>-y
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vim<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>tar<span class="w"> </span>unzip<span class="w"> </span>lsof<span class="w"> </span>sysstat<span class="w"> </span>chrony<span class="w"> </span>bash-completion
 </code></pre></div>
-<p>For Debian-compatible systems:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade<span class="w"> </span>-y
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vim<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>tar<span class="w"> </span>unzip<span class="w"> </span>net-tools<span class="w"> </span>lsof<span class="w"> </span>sysstat<span class="w"> </span>chrony<span class="w"> </span>bash-completion
-</code></pre></div>
-<h3 id="3-configure-time-synchronization">3. Configure Time Synchronization<a class="headerlink" href="#3-configure-time-synchronization" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>chronyd<span class="w"> </span><span class="o">||</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>chrony
+<p>Patching is part of the baseline, not a later task — see the OS patching standard for the ongoing cadence.</p>
+<h3 id="3-time-synchronization">3. Time synchronization<a class="headerlink" href="#3-time-synchronization" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>chronyd<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>chrony
 timedatectl
 chronyc<span class="w"> </span>sources<span class="w"> </span>-v
 </code></pre></div>
-<p>Use the timezone required by the service owner. For public examples:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>timedatectl<span class="w"> </span>set-timezone<span class="w"> </span>UTC
-</code></pre></div>
-<h3 id="4-configure-ssh-access">4. Configure SSH Access<a class="headerlink" href="#4-configure-ssh-access" title="Permanent link">&para;</a></h3>
-<p>Recommended settings:</p>
+<p>Clock skew breaks TLS, tokens, logs, and distributed systems; treat working time sync as mandatory.</p>
+<h3 id="4-ssh-hardening">4. SSH hardening<a class="headerlink" href="#4-ssh-hardening" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>PermitRootLogin no
 PasswordAuthentication no
 PubkeyAuthentication yes
 UseDNS no
-GSSAPIAuthentication no
 </code></pre></div>
-<p>Validation:</p>
+<p>Validate before reloading so a bad config never locks you out:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>sshd<span class="w"> </span>-t
-sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>sshd<span class="w"> </span><span class="o">||</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>ssh
+sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>sshd<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>ssh
 </code></pre></div>
-<p>Never publish real SSH public keys or usernames in public scripts. Use placeholders such as <code>example-user</code> and <code>ssh-ed25519 AAAA... devops@example.com</code>.</p>
-<h3 id="5-configure-command-history">5. Configure Command History<a class="headerlink" href="#5-configure-command-history" title="Permanent link">&para;</a></h3>
-<p>Recommended:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/profile.d/history-policy.sh</span>
-<span class="s">export HISTTIMEFORMAT=&#39;%F %T &#39;</span>
-<span class="s">export HISTSIZE=10000</span>
-<span class="s">export HISTFILESIZE=20000</span>
-<span class="s">EOF</span>
-</code></pre></div>
-<p>Do not rely on shell history as a security audit log. Use centralized audit logging for regulated systems.</p>
-<h3 id="6-configure-kernel-and-limits">6. Configure Kernel and Limits<a class="headerlink" href="#6-configure-kernel-and-limits" title="Permanent link">&para;</a></h3>
-<p>Common baseline:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/sysctl.d/99-devops-baseline.conf</span>
-<span class="s">net.ipv4.ip_forward = 1</span>
-<span class="s">net.ipv4.tcp_tw_reuse = 1</span>
+<p>Keep an active session open while changing SSH, and confirm a new login works before closing it. Use placeholders in any published example (<code>example-user</code>, <code>ssh-ed25519 AAAA... &lt;key-comment&gt;</code>) — never a real key.</p>
+<h3 id="5-kernel-parameters-and-limits">5. Kernel parameters and limits<a class="headerlink" href="#5-kernel-parameters-and-limits" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/sysctl.d/99-baseline.conf</span>
 <span class="s">vm.swappiness = 10</span>
 <span class="s">fs.file-max = 1048576</span>
 <span class="s">EOF</span>
-
 sudo<span class="w"> </span>sysctl<span class="w"> </span>--system
-</code></pre></div>
-<p>For service users:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/security/limits.d/99-devops-baseline.conf</span>
+
+cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/security/limits.d/99-baseline.conf</span>
 <span class="s">* soft nofile 65535</span>
 <span class="s">* hard nofile 65535</span>
 <span class="s">* soft nproc 65535</span>
 <span class="s">* hard nproc 65535</span>
 <span class="s">EOF</span>
 </code></pre></div>
-<h3 id="7-configure-firewall">7. Configure Firewall<a class="headerlink" href="#7-configure-firewall" title="Permanent link">&para;</a></h3>
-<p>Use a default-deny inbound model where possible. Open only documented ports.</p>
-<p>For <code>firewalld</code>:</p>
+<p>Set <code>net.ipv4.ip_forward = 1</code> only on hosts that actually route (gateways, container hosts) — not as a blanket default.</p>
+<h3 id="6-firewall-default-deny-inbound">6. Firewall: default-deny inbound<a class="headerlink" href="#6-firewall-default-deny-inbound" title="Permanent link">&para;</a></h3>
+<p>Open only documented ports. On cloud hosts, align the OS firewall with security groups rather than running two conflicting policies.</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>firewalld
-sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--get-active-zones
 sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--add-service<span class="o">=</span>ssh<span class="w"> </span>--permanent
 sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
 </code></pre></div>
-<p>For cloud servers, align OS firewall rules with cloud security groups.</p>
-<h3 id="8-prepare-data-disks">8. Prepare Data Disks<a class="headerlink" href="#8-prepare-data-disks" title="Permanent link">&para;</a></h3>
-<p>Before formatting a disk:</p>
-<div class="highlight"><pre><span></span><code>lsblk
-blkid
-df<span class="w"> </span>-hT
-</code></pre></div>
-<p>Only format disks that have been explicitly approved and are not mounted. See <a href="../../../reliable-operations/recovery/linux-disk-lvm-expansion-runbook/">Linux Disk and LVM Expansion Runbook</a>.</p>
+<h3 id="7-data-disks">7. Data disks<a class="headerlink" href="#7-data-disks" title="Permanent link">&para;</a></h3>
+<p>Inspect before touching any disk; only format disks explicitly approved and not mounted. See the <a href="../../../reliable-operations/recovery/linux-disk-lvm-expansion-runbook/">Linux Disk and LVM Expansion Runbook</a>.</p>
 <h2 id="validation-checklist">Validation Checklist<a class="headerlink" href="#validation-checklist" title="Permanent link">&para;</a></h2>
 <ul>
-<li>System packages updated.</li>
-<li>Time sync enabled and healthy.</li>
-<li>SSH config validates.</li>
-<li>Firewall enabled or explicitly managed by cloud security groups.</li>
-<li>Baseline sysctl settings applied.</li>
-<li>Limits file installed where required.</li>
+<li>Packages updated; reboot taken if a kernel update requires it.</li>
+<li>Time sync enabled and healthy (<code>chronyc sources</code>).</li>
+<li><code>sshd -t</code> passes; password and root login disabled; key login confirmed.</li>
+<li>Firewall enabled (or deliberately delegated to cloud security groups).</li>
+<li>Baseline sysctl and limits applied (<code>sysctl -a | grep swappiness</code>, <code>ulimit -n</code>).</li>
 <li>Disk layout documented.</li>
-<li>No plaintext credentials stored in bootstrap scripts.</li>
+<li>No plaintext credentials, real keys, or internal URLs in any bootstrap script.</li>
+</ul>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Correct response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Locked out of SSH</td>
+<td>Cannot log in after change</td>
+<td>Reloaded a bad sshd config / disabled key login without a working key</td>
+<td>Always <code>sshd -t</code> first; keep a session open; fix via console.</td>
+</tr>
+<tr>
+<td>Drift</td>
+<td>Hosts diverge over time</td>
+<td>One-off manual changes</td>
+<td>Drive the baseline from config management; re-apply idempotently.</td>
+</tr>
+<tr>
+<td>Secret leaked</td>
+<td>Credential exposed</td>
+<td>Real key/password baked into a shared script</td>
+<td>Use placeholders + secret injection; rotate the leaked secret.</td>
+</tr>
+<tr>
+<td>Clock-skew failures</td>
+<td>TLS/token/log errors</td>
+<td>Time sync not running</td>
+<td>Ensure chrony is enabled and sources are reachable.</td>
+</tr>
+<tr>
+<td>Conflicting firewalls</td>
+<td>Intermittent connectivity</td>
+<td>OS firewall vs cloud SG disagree</td>
+<td>Pick one authority; align rules.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Each block is idempotent and independently reversible; keep backups of files you modify (<code>sshd_config</code>, sysctl, limits).</li>
+<li>To roll back SSH changes, restore the previous <code>sshd_config</code>, <code>sshd -t</code>, reload — using a console session if locked out.</li>
+<li>For sysctl/limits, remove the baseline drop-in file and re-apply (<code>sysctl --system</code>).</li>
+<li>Re-run the validation checklist after any rollback.</li>
+</ol>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>SSH keys only; no password or root login. Restrict who has keys.</li>
+<li>Default-deny inbound; document every open port and its owner.</li>
+<li>Do not store credentials, real keys, internal mirror URLs, or hostnames in public/bootstrap scripts.</li>
+<li>Use centralized audit logging for regulated systems; shell history is not an audit log.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Owner: the platform/infrastructure team.</li>
+<li>Re-baseline images on a regular cadence as distributions and recommendations change.</li>
+<li>Re-audit hosts against the baseline after incidents or major changes.</li>
+<li>Review SSH and firewall policy when access requirements change.</li>
 </ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../reliable-operations/recovery/linux-disk-lvm-expansion-runbook/">Linux Disk and LVM Expansion Runbook</a></li>
 <li><a href="../../containers/docker-host-operations-standard/">Docker Host Operations Standard</a></li>
+<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter Monitoring Standard</a></li>
 </ul>
 
 
@@ -4463,7 +4485,7 @@ df<span class="w"> </span>-hT
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4473,7 +4495,7 @@ df<span class="w"> </span>-hT
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:31:41 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4546,13 +4568,13 @@ df<span class="w"> </span>-hT
         
         
           
-          <a href="../ubuntu-26-ai-fullstack-setup-v2/" class="md-footer__link md-footer__link--next" aria-label="Next: Ubuntu 26.04 AI Dev Setup">
+          <a href="../system-os-patching-standard/" class="md-footer__link md-footer__link--next" aria-label="Next: OS Patching">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Ubuntu 26.04 AI Dev Setup
+                OS Patching
               </div>
             </div>
             <div class="md-footer__button md-icon">

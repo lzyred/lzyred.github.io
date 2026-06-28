@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="GitLab operations standard for self-hosted source control and CI/CD platform.">
+        <meta name="description" content="GitLab 运维标准，覆盖源码控制、CI/CD、访问治理、备份、runner 隔离、验证和事故恢复。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="GitLab 运维 - DevOps 专家知识库" />
-<meta property="og:description" content="GitLab operations standard for self-hosted source control and CI/CD platform." />
+<meta property="og:description" content="GitLab 运维标准，覆盖源码控制、CI/CD、访问治理、备份、runner 隔离、验证和事故恢复。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/platform-governance/gitlab-operations-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/platform-governance/gitlab-operations-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="GitLab 运维 - DevOps 专家知识库" />
-<meta property="twitter:description" content="GitLab operations standard for self-hosted source control and CI/CD platform." />
+<meta property="twitter:description" content="GitLab 运维标准，覆盖源码控制、CI/CD、访问治理、备份、runner 隔离、验证和事故恢复。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/platform-governance/gitlab-operations-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gitlab-operations-standard" class="md-skip">
+        <a href="#gitlab" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2068,10 +2040,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -2079,10 +2051,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#controls" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Controls
+        适用场景
       
     </span>
   </a>
@@ -2090,10 +2062,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup-validation" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup Validation
+        非目标
       
     </span>
   </a>
@@ -2101,10 +2073,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        保护变更授权
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按信任级别隔离 runner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        备份平台状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚与恢复
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -2135,34 +2212,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3441,34 +3490,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3806,34 +3827,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3904,10 +3897,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3915,10 +3908,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#controls" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Controls
+        适用场景
       
     </span>
   </a>
@@ -3926,10 +3919,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup-validation" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup Validation
+        非目标
       
     </span>
   </a>
@@ -3937,10 +3930,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        保护变更授权
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按信任级别隔离 runner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        备份平台状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚与恢复
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4036,6 +4134,18 @@
         <a href="../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../tags/#tag:security" class="md-tag md-tag-icon md-tag--security">Security</a>
+      
+    
   </nav>
 
 
@@ -4043,23 +4153,165 @@
   
 
 
-<h1 id="gitlab-operations-standard">GitLab Operations Standard<a class="headerlink" href="#gitlab-operations-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes safe GitLab operations for backups, CI runners, and deployment repositories.</p>
-<h2 id="controls">Controls<a class="headerlink" href="#controls" title="Permanent link">&para;</a></h2>
+<h1 id="gitlab">GitLab 运维标准<a class="headerlink" href="#gitlab" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何把 GitLab 作为源码控制和交付平台来运营。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>GitLab 不只是仓库服务器，它是生产变更授权中心。</p>
+</blockquote>
+<p>当 GitLab 控制源码、CI/CD、受保护分支、发布审批、镜像仓库和密钥时，它的可用性和治理会直接影响生产风险。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>适用于：</p>
 <ul>
-<li>Back up repositories and metadata.</li>
-<li>Protect default branches.</li>
-<li>Store CI/CD variables securely.</li>
-<li>Use scoped deploy tokens.</li>
-<li>Rotate runner registration tokens.</li>
-<li>Review pipeline permissions.</li>
+<li>GitLab 托管生产源码或基础设施代码。</li>
+<li>GitLab CI/CD 部署工作负载。</li>
+<li>GitLab runner 能访问云、Kubernetes、registry 或密钥。</li>
+<li>多团队用 GitLab 做发布治理。</li>
 </ul>
-<h2 id="backup-validation">Backup Validation<a class="headerlink" href="#backup-validation" title="Permanent link">&para;</a></h2>
-<p>Do not trust backup creation alone. Restore to a test instance on a schedule and validate repository access.</p>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不定义 GitLab 每个功能或 UI 设置，只定义平台运营契约。</p>
+<h2 id="_4">推荐标准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">保护变更授权<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>定义：</p>
 <ul>
-<li><a href="../../change-delivery/cicd/jenkins-kubernetes-pipeline-standard/">Jenkins to Kubernetes Pipeline Standard</a></li>
+<li>Group 和 project 所有权。</li>
+<li>受保护分支。</li>
+<li>必需 review。</li>
+<li>Merge 权限。</li>
+<li>发布审批人。</li>
+<li>应急变更流程。</li>
+<li>审计日志保留。</li>
+</ul>
+<p>任何生产关键 group 都不应只有单个个人管理员。</p>
+<h3 id="runner">按信任级别隔离 runner<a class="headerlink" href="#runner" title="Permanent link">&para;</a></h3>
+<p>Runner 访问权限经常比仓库读权限更危险。</p>
+<table>
+<thead>
+<tr>
+<th>Runner 类型</th>
+<th>用途</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>共享低信任 runner</td>
+<td>构建和测试非特权代码。</td>
+<td>无生产凭据。</td>
+</tr>
+<tr>
+<td>Project runner</td>
+<td>项目专用流水线。</td>
+<td>只授予项目范围凭据。</td>
+</tr>
+<tr>
+<td>Protected runner</td>
+<td>从受保护分支或 tag 部署。</td>
+<td>只运行 protected job。</td>
+</tr>
+<tr>
+<td>Privileged runner</td>
+<td>容器构建或特殊操作。</td>
+<td>隔离、审计并最小化。</td>
+</tr>
+</tbody>
+</table>
+<p>不要让不可信 merge request 运行带部署凭据的 job。</p>
+<h3 id="_6">备份平台状态<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>备份必须覆盖：</p>
+<ul>
+<li>仓库。</li>
+<li>数据库。</li>
+<li>GitLab 配置。</li>
+<li>Secrets 文件。</li>
+<li>CI/CD 变量。</li>
+<li>如使用，容器 registry。</li>
+<li>如需要，包和构建产物。</li>
+</ul>
+<p>恢复必须测试。没有恢复证明的 GitLab 备份不是恢复计划。</p>
+<h2 id="_7">验证<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>定期检查：</p>
+<div class="highlight"><pre><span></span><code>gitlab-rake<span class="w"> </span>gitlab:check
+gitlab-rake<span class="w"> </span>gitlab:doctor:secrets
+gitlab-ctl<span class="w"> </span>status
+</code></pre></div>
+<p>运营通过条件：</p>
+<ul>
+<li>Web、Git SSH 或 HTTP、registry、CI 健康。</li>
+<li>受保护分支规则匹配发布策略。</li>
+<li>Runner fleet 在线且范围正确。</li>
+<li>备份完成并安排恢复测试。</li>
+<li>管理员访问已评审。</li>
+</ul>
+<h2 id="_8">失败模式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Runner 凭据过宽</td>
+<td>CI 被攻陷变成生产被攻陷。</td>
+<td>限定 runner 和密钥范围。</td>
+</tr>
+<tr>
+<td>无恢复测试</td>
+<td>故障恢复失败。</td>
+<td>在隔离环境测试恢复。</td>
+</tr>
+<tr>
+<td>共享 admin 账号</td>
+<td>无法问责。</td>
+<td>使用实名用户和 break-glass 流程。</td>
+</tr>
+<tr>
+<td>关闭受保护分支</td>
+<td>未评审代码可部署。</td>
+<td>强制分支保护。</td>
+</tr>
+<tr>
+<td>Artifact 保留无治理</td>
+<td>存储写满或发布证据消失。</td>
+<td>定义保留策略。</td>
+</tr>
+<tr>
+<td>密钥进仓库</td>
+<td>凭据泄漏。</td>
+<td>使用 masked variables 或密钥管理器。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">回滚与恢复<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>恢复方式包括：</p>
+<ul>
+<li>从测试过的备份恢复 GitLab。</li>
+<li>禁用被攻陷 runner。</li>
+<li>轮转 CI/CD 变量。</li>
+<li>回退受保护分支变更。</li>
+<li>从备份或 mirror 恢复仓库。</li>
+</ul>
+<p>如果事故中 GitLab 不可用，按应急发布流程操作，并在恢复后把变更 reconcile 回 GitLab。</p>
+<h2 id="_10">安全说明<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>特权用户强制 MFA。</li>
+<li>管理员成员保持小范围并定期评审。</li>
+<li>分离构建凭据和部署凭据。</li>
+<li>保护 deploy token 和 project access token。</li>
+<li>评审 webhook 目标。</li>
+<li>保持 GitLab 和 runner 补丁更新。</li>
+</ul>
+<h2 id="_11">评审周期<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>Runner 事故后、访问变化后、GitLab 升级后、备份失败后或发布治理变化后，评审本标准。</p>
+<h2 id="_12">相关文档<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../change-delivery/cicd/jenkins-kubernetes-pipeline-standard/">Jenkins 到 Kubernetes 流水线标准</a></li>
+<li><a href="../../change-delivery/cicd/argocd-gitops-standard/">Argo CD GitOps 标准</a></li>
+<li><a href="../../standards-manual/automation/shell-automation-standard/">Shell 自动化标准</a></li>
 </ul>
 
 
@@ -4083,7 +4335,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4093,7 +4345,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     

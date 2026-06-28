@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="HAProxy load balancing standard for production TCP/HTTP traffic distribution.">
+        <meta name="description" content="Standard for HAProxy load balancing — health checks that match readiness, validated reloads, L4 vs L7 choice, draining, and rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="HAProxy Load Balancing - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="HAProxy load balancing standard for production TCP/HTTP traffic distribution." />
+<meta property="og:description" content="Standard for HAProxy load balancing — health checks that match readiness, validated reloads, L4 vs L7 choice, draining, and rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/networking/haproxy-load-balancing-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/networking/haproxy-load-balancing-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="HAProxy Load Balancing - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="HAProxy load balancing standard for production TCP/HTTP traffic distribution." />
+<meta property="twitter:description" content="Standard for HAProxy load balancing — health checks that match readiness, validated reloads, L4 vs L7 choice, draining, and rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/networking/haproxy-load-balancing-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3060,10 +3004,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#basic-pattern" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic Pattern
+        When to Use
       
     </span>
   </a>
@@ -3071,10 +3015,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operational-checks" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operational Checks
+        Non-Goals
       
     </span>
   </a>
@@ -3082,10 +3026,126 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-notes" class="md-nav__link">
+  <a href="#core-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Notes
+        Core Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frontend-backend-and-a-readiness-matching-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend, backend, and a readiness-matching check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l4-vs-l7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L4 vs L7
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balancing-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Balancing algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Procedure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3469,34 +3529,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3840,34 +3872,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3949,10 +3953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#basic-pattern" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic Pattern
+        When to Use
       
     </span>
   </a>
@@ -3960,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operational-checks" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operational Checks
+        Non-Goals
       
     </span>
   </a>
@@ -3971,10 +3975,126 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-notes" class="md-nav__link">
+  <a href="#core-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Notes
+        Core Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frontend-backend-and-a-readiness-matching-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend, backend, and a readiness-matching check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l4-vs-l7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L4 vs L7
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balancing-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Balancing algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Procedure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4108,33 +4228,172 @@
 
 <h1 id="haproxy-load-balancing-standard">HAProxy Load Balancing Standard<a class="headerlink" href="#haproxy-load-balancing-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines public-safe HAProxy reverse proxy and load balancing practices.</p>
-<h2 id="basic-pattern">Basic Pattern<a class="headerlink" href="#basic-pattern" title="Permanent link">&para;</a></h2>
+<p>This standard defines safe patterns for using HAProxy to distribute TCP/HTTP traffic across backends in production.</p>
+<p>The core judgment of this standard:</p>
+<blockquote>
+<p>A load balancer is only as good as its health check. A check that passes when the app is not actually ready will route users straight into errors; a check that is too aggressive will flap healthy backends out of rotation. The health check is the design, not a detail.</p>
+</blockquote>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when you:</p>
+<ul>
+<li>Balance traffic across multiple backends (HTTP or raw TCP).</li>
+<li>Need a single validated reload procedure and a draining model for safe backend changes.</li>
+<li>Are deciding between HAProxy (connection/L4-L7 balancing) and an application proxy.</li>
+</ul>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>TLS termination patterns and HTTP header handling in depth — see the Nginx reverse proxy + TLS standard; the validated-reload and certificate-lifecycle principles there apply.</li>
+<li>Kubernetes Ingress controllers.</li>
+<li>WAF or DDoS mitigation.</li>
+</ul>
+<h2 id="core-principles">Core Principles<a class="headerlink" href="#core-principles" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Match the health check to real application readiness, not just "port is open".</li>
+<li>Validate config (<code>haproxy -c</code>) before every reload; reload (not restart) to avoid dropping connections.</li>
+<li>Choose L4 (<code>mode tcp</code>) vs L7 (<code>mode http</code>) deliberately — you only get HTTP-aware features in L7.</li>
+<li>Drain backends before maintenance instead of yanking them.</li>
+<li>Restrict the stats/admin socket; never publish real backend addresses.</li>
+</ol>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="frontend-backend-and-a-readiness-matching-check">Frontend, backend, and a readiness-matching check<a class="headerlink" href="#frontend-backend-and-a-readiness-matching-check" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>frontend example_http
   bind *:80
+  mode http
   default_backend example_backend
 
 backend example_backend
+  mode http
   balance roundrobin
-  option httpchk GET /health
-  server app1 10.0.0.10:8080 check
-  server app2 10.0.0.11:8080 check
+  option httpchk GET /health           # check a real readiness endpoint
+  http-check expect status 200
+  default-server inter 3s fall 3 rise 2 # fail after 3 bad, recover after 2 good
+  server app-a &lt;backend-a-host&gt;:8080 check
+  server app-b &lt;backend-b-host&gt;:8080 check
 </code></pre></div>
-<h2 id="operational-checks">Operational Checks<a class="headerlink" href="#operational-checks" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>option httpchk GET /health</code> plus <code>http-check expect status 200</code> means a backend is only "up" when its readiness endpoint actually returns 200 — not merely when the TCP port accepts a connection.</li>
+<li><code>fall</code>/<code>rise</code> give hysteresis so a single blip does not eject a healthy backend, and a single good response does not prematurely re-add a flapping one.</li>
+</ul>
+<h3 id="l4-vs-l7">L4 vs L7<a class="headerlink" href="#l4-vs-l7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Use for</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mode http</code> (L7)</td>
+<td>HTTP services needing path/host routing, header logic, HTTP health checks</td>
+<td>Slightly more overhead; HTTP-aware</td>
+</tr>
+<tr>
+<td><code>mode tcp</code> (L4)</td>
+<td>Databases, message brokers, TLS passthrough, non-HTTP protocols</td>
+<td>No HTTP features; check with <code>option tcp-check</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="balancing-algorithm">Balancing algorithm<a class="headerlink" href="#balancing-algorithm" title="Permanent link">&para;</a></h3>
+<p><code>roundrobin</code> is a fine default. Use <code>leastconn</code> for long-lived connections (databases, websockets) where request duration varies widely. Persistent sessions (cookie/stick-table) only when the app genuinely needs affinity — sticky sessions undermine even balancing and complicate draining.</p>
+<h2 id="change-procedure">Change Procedure<a class="headerlink" href="#change-procedure" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Edit the config.</li>
+<li>Validate:</li>
+</ol>
 <div class="highlight"><pre><span></span><code>haproxy<span class="w"> </span>-c<span class="w"> </span>-f<span class="w"> </span>/etc/haproxy/haproxy.cfg
-systemctl<span class="w"> </span>reload<span class="w"> </span>haproxy
+</code></pre></div>
+<ol>
+<li>Reload (graceful — existing connections finish):</li>
+</ol>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>reload<span class="w"> </span>haproxy
 systemctl<span class="w"> </span>status<span class="w"> </span>haproxy<span class="w"> </span>--no-pager
 </code></pre></div>
-<h2 id="safety-notes">Safety Notes<a class="headerlink" href="#safety-notes" title="Permanent link">&para;</a></h2>
+<ol>
+<li>To take a backend out for maintenance, <strong>drain</strong> it first (set it to <code>MAINT</code>/drain via the admin socket or config) so in-flight requests complete, then remove it. Do not delete a live backend and reload — that drops its connections.</li>
+</ol>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>haproxy<span class="w"> </span>-c<span class="w"> </span>-f<span class="w"> </span>/etc/haproxy/haproxy.cfg<span class="w">     </span><span class="c1"># config valid</span>
+<span class="c1"># via stats socket (restricted): show backend/server state</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;show stat&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>socat<span class="w"> </span>stdio<span class="w"> </span>/run/haproxy/admin.sock<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d,<span class="w"> </span>-f1,2,18
+</code></pre></div>
+<p>Confirm:</p>
 <ul>
-<li>Do not publish real backend addresses.</li>
-<li>Use health checks that match application readiness.</li>
-<li>Use TLS termination only with managed certificate lifecycle.</li>
-<li>Restrict stats page access.</li>
+<li>All intended servers show <code>UP</code>; none stuck <code>DOWN</code> or flapping.</li>
+<li>The health check targets a real readiness endpoint and reflects app state.</li>
+<li>After a reload, no connection errors or 5xx spike; traffic is distributed as intended.</li>
+</ul>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Check / response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Users hit errors despite "healthy" LB</td>
+<td>Health check passes before app is ready</td>
+<td>Point <code>httpchk</code> at a true readiness endpoint; add <code>expect status</code>.</td>
+</tr>
+<tr>
+<td>Backends flap in/out</td>
+<td><code>fall</code>/<code>rise</code>/<code>inter</code> too aggressive, or backend overloaded</td>
+<td>Add hysteresis; investigate backend latency.</td>
+</tr>
+<tr>
+<td>Connections dropped on change</td>
+<td>Backend removed + reload instead of drain</td>
+<td>Drain to <code>MAINT</code> first, let connections finish, then remove.</td>
+</tr>
+<tr>
+<td>Uneven load</td>
+<td>Sticky sessions or <code>roundrobin</code> with long-lived conns</td>
+<td>Use <code>leastconn</code>; reconsider session affinity.</td>
+</tr>
+<tr>
+<td>TCP service mis-checked</td>
+<td>L4 service with HTTP check</td>
+<td>Use <code>mode tcp</code> + <code>option tcp-check</code>.</td>
+</tr>
+<tr>
+<td>Restart caused an outage</td>
+<td>Used restart, not reload</td>
+<td>Always <code>reload</code> for config changes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Keep the previous config under version control or as a timestamped copy.</li>
+<li>Restore the prior config, <code>haproxy -c</code>, then <code>systemctl reload haproxy</code>.</li>
+<li>If a backend change went wrong, re-enable the drained/removed backend and reload; confirm it returns to <code>UP</code>.</li>
+<li>If a reload left HAProxy degraded and config won't validate, restore the last-known-good file before debugging further.</li>
+</ol>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Restrict the stats page and admin socket to trusted operators/networks; they can change routing.</li>
+<li>Do not publish real backend addresses, hostnames, or the admin socket path.</li>
+<li>For TLS termination, use a managed certificate lifecycle (see the Nginx + TLS standard).</li>
+<li>Keep HAProxy patched; it is on the request path and often internet-facing.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Owner: the platform/networking team.</li>
+<li>Re-validate that health checks still reflect readiness when an app's startup behavior changes.</li>
+<li>Review balancing algorithm and affinity when traffic patterns change.</li>
+<li>Confirm stats/admin access controls on a regular cadence.</li>
 </ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../nginx-reverse-proxy-tls-standard/">Nginx Reverse Proxy and TLS Standard</a></li>
+<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter Monitoring Standard</a></li>
+<li><a href="https://docs.haproxy.org/">HAProxy configuration manual</a></li>
 </ul>
 
 
@@ -4158,7 +4417,7 @@ systemctl<span class="w"> </span>status<span class="w"> </span>haproxy<span clas
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4168,7 +4427,7 @@ systemctl<span class="w"> </span>status<span class="w"> </span>haproxy<span clas
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:15:46 UTC">June 28, 2026</span>
   </span>
 
     

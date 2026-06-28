@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Argo CD GitOps standard for declarative continuous delivery on Kubernetes.">
+        <meta name="description" content="Standard for operating Argo CD as a GitOps controller — sync-policy by risk tier, secret handling, drift control, disaster recovery, and rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Argo CD GitOps - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Argo CD GitOps standard for declarative continuous delivery on Kubernetes." />
+<meta property="og:description" content="Standard for operating Argo CD as a GitOps controller — sync-policy by risk tier, secret handling, drift control, disaster recovery, and rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/change-delivery/cicd/argocd-gitops-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/change-delivery/cicd/argocd-gitops-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Argo CD GitOps - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Argo CD GitOps standard for declarative continuous delivery on Kubernetes." />
+<meta property="twitter:description" content="Standard for operating Argo CD as a GitOps controller — sync-policy by risk tier, secret handling, drift control, disaster recovery, and rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/change-delivery/cicd/argocd-gitops-standard.png" />
 </head>
   
@@ -1246,6 +1246,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gitops-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1268,10 +1290,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#application-definition" class="md-nav__link">
+  <a href="#sync-policy-by-risk-tier" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Application Definition
+        Sync Policy by Risk Tier
       
     </span>
   </a>
@@ -1279,10 +1301,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sync-policy-guidance" class="md-nav__link">
+  <a href="#secret-handling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sync Policy Guidance
+        Secret Handling
       
     </span>
   </a>
@@ -1290,10 +1312,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notification-standard" class="md-nav__link">
+  <a href="#drift-rollback-and-recovery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notification Standard
+        Drift, Rollback, and Recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Drift, Rollback, and Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rollback-an-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback an application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disaster-recovery-of-argo-cd-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disaster recovery of Argo CD itself
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
       
     </span>
   </a>
@@ -1301,10 +1362,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup-and-restore" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup and Restore
+        Known Failure Modes
       
     </span>
   </a>
@@ -1312,10 +1373,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
+  <a href="#rollback-operational-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Troubleshooting
+        Rollback (Operational Summary)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -1707,34 +1790,6 @@
     
   
     ELFK Logging
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
   
 
     
@@ -2198,34 +2253,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3504,34 +3531,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3869,34 +3868,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3978,6 +3949,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gitops-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4000,10 +3993,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#application-definition" class="md-nav__link">
+  <a href="#sync-policy-by-risk-tier" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Application Definition
+        Sync Policy by Risk Tier
       
     </span>
   </a>
@@ -4011,10 +4004,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sync-policy-guidance" class="md-nav__link">
+  <a href="#secret-handling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sync Policy Guidance
+        Secret Handling
       
     </span>
   </a>
@@ -4022,10 +4015,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notification-standard" class="md-nav__link">
+  <a href="#drift-rollback-and-recovery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notification Standard
+        Drift, Rollback, and Recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Drift, Rollback, and Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rollback-an-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback an application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disaster-recovery-of-argo-cd-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disaster recovery of Argo CD itself
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
       
     </span>
   </a>
@@ -4033,10 +4065,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup-and-restore" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup and Restore
+        Known Failure Modes
       
     </span>
   </a>
@@ -4044,10 +4076,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
+  <a href="#rollback-operational-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Troubleshooting
+        Rollback (Operational Summary)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4169,6 +4223,18 @@
         
       
       
+        <a href="../../../tags/#tag:kubernetes" class="md-tag md-tag-icon md-tag--kubernetes">Kubernetes</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
       
     
@@ -4181,32 +4247,91 @@
 
 <h1 id="argo-cd-gitops-standard">Argo CD GitOps Standard<a class="headerlink" href="#argo-cd-gitops-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes how to operate Argo CD as a GitOps deployment controller for Kubernetes.</p>
+<p>This standard defines how to operate Argo CD as a GitOps deployment controller for Kubernetes: what belongs in Git, how aggressively to let Argo CD reconcile, and how to recover both an application and Argo CD itself.</p>
+<p>The core judgment of this standard:</p>
+<blockquote>
+<p>GitOps moves the risk from "who ran the command" to "what is in Git and how fast it reconciles." <code>selfHeal</code> and <code>prune</code> are not convenience flags — they decide whether a bad commit or a manual hotfix repairs itself or gets reverted under you. Choose them per risk tier, deliberately.</p>
+</blockquote>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when you:</p>
+<ul>
+<li>Deploy to Kubernetes and want Git to be the source of truth for cluster state.</li>
+<li>Run, or plan to run, Argo CD as the reconciliation controller.</li>
+<li>Need a defensible sync policy, secret-handling model, and recovery plan for GitOps.</li>
+</ul>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>CI (building and testing artifacts). GitOps is the CD half; see the Jenkins-to-Kubernetes pipeline standard for the CI half.</li>
+<li>Manifest templating choice (Helm vs Kustomize vs plain YAML) beyond how it interacts with sync.</li>
+<li>Multi-cluster fleet design and ApplicationSets generators beyond the single-Application model shown here.</li>
+</ul>
 <h2 id="gitops-principles">GitOps Principles<a class="headerlink" href="#gitops-principles" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Git is the desired-state source.</li>
-<li>Cluster changes should flow through reviewed commits.</li>
-<li>Secrets should be referenced through a secret management process, not stored in plain Git.</li>
-<li>Applications should have clear sync policies.</li>
-<li>Notifications should be routed without exposing webhook secrets.</li>
+<li>Git is the desired state. Cluster changes flow through reviewed commits, not <code>kubectl edit</code>.</li>
+<li>Secrets are referenced through a secret-management process, never committed in plain text.</li>
+<li>Every Application has a deliberate sync policy matched to its risk tier.</li>
+<li>Drift is visible and handled by policy, not silently overwritten everywhere.</li>
+<li>Notifications expose status, not webhook secrets or tokens.</li>
 </ol>
 <h2 id="installation-model">Installation Model<a class="headerlink" href="#installation-model" title="Permanent link">&para;</a></h2>
-<p>Use the official Argo CD manifests or Helm chart. For production, prefer high availability mode and separate the Argo CD namespace from application namespaces.</p>
+<p>Use the official manifests or Helm chart. For production:</p>
+<ul>
+<li>Run Argo CD in high-availability mode.</li>
+<li>Keep Argo CD in its own namespace, separate from application namespaces.</li>
+<li>Restrict who can create/modify <code>Application</code> and <code>AppProject</code> resources via RBAC.</li>
+<li>Scope <code>AppProject</code> to the repos, destinations, and resource kinds each team may deploy — this is the real blast-radius control.</li>
+</ul>
 <p>Validation:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>argocd
-kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>argocd
 kubectl<span class="w"> </span>get<span class="w"> </span>applications<span class="w"> </span>-n<span class="w"> </span>argocd
+argocd<span class="w"> </span>app<span class="w"> </span>list
 </code></pre></div>
-<h2 id="application-definition">Application Definition<a class="headerlink" href="#application-definition" title="Permanent link">&para;</a></h2>
+<h2 id="sync-policy-by-risk-tier">Sync Policy by Risk Tier<a class="headerlink" href="#sync-policy-by-risk-tier" title="Permanent link">&para;</a></h2>
+<p>This is the central decision. Match the policy to the service, not the convenience of the operator.</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th><code>automated</code></th>
+<th><code>selfHeal</code></th>
+<th><code>prune</code></th>
+<th>Use for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Production / stateful</td>
+<td>off (manual sync)</td>
+<td>off</td>
+<td>off</td>
+<td>High-risk services; a human approves each sync.</td>
+</tr>
+<tr>
+<td>Standard service</td>
+<td>on</td>
+<td>on</td>
+<td>off</td>
+<td>Most stateless services; drift is auto-corrected, deletions stay manual.</td>
+</tr>
+<tr>
+<td>Mature, well-tested</td>
+<td>on</td>
+<td>on</td>
+<td>on</td>
+<td>Strong review + rollback; Git fully owns lifecycle including deletion.</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argoproj.io/v1alpha1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application</span>
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-service</span>
 <span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd</span>
 <span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">  </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-team</span>
 <span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/example/example-repo.git</span>
+<span class="w">    </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://git.example.com/example/example-repo.git</span>
 <span class="w">    </span><span class="nt">targetRevision</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
 <span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy/kubernetes</span>
 <span class="w">  </span><span class="nt">destination</span><span class="p">:</span>
@@ -4214,79 +4339,119 @@ kubectl<span class="w"> </span>get<span class="w"> </span>applications<span clas
 <span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-namespace</span>
 <span class="w">  </span><span class="nt">syncPolicy</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">automated</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="nt">selfHeal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">      </span><span class="c1"># deletions stay manual for this tier</span>
+<span class="w">      </span><span class="nt">selfHeal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">    </span><span class="c1"># revert out-of-band drift</span>
 </code></pre></div>
-<h2 id="sync-policy-guidance">Sync Policy Guidance<a class="headerlink" href="#sync-policy-guidance" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Policy</th>
-<th>Use When</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Manual sync</td>
-<td>Production or high-risk services.</td>
-</tr>
-<tr>
-<td>Automated sync without prune</td>
-<td>Lower-risk services where deletion should remain manual.</td>
-</tr>
-<tr>
-<td>Automated sync with prune</td>
-<td>Mature services with strong review and rollback controls.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="notification-standard">Notification Standard<a class="headerlink" href="#notification-standard" title="Permanent link">&para;</a></h2>
-<p>Notifications should include:</p>
+<p>Two flags worth understanding before you enable them:</p>
 <ul>
-<li>Application name.</li>
-<li>Sync status.</li>
-<li>Health status.</li>
-<li>Revision.</li>
-<li>Environment.</li>
-<li>Link to runbook or dashboard.</li>
+<li><strong><code>selfHeal: true</code></strong> reverts any change made directly to the cluster. That is the point — but it also means an emergency <code>kubectl</code> hotfix will be undone within minutes. The correct emergency path is a commit, or temporarily disabling auto-sync, not fighting the controller.</li>
+<li><strong><code>prune: true</code></strong> lets Argo CD delete resources that disappear from Git. Powerful for lifecycle hygiene, dangerous if someone deletes a manifest by mistake. Reserve it for services with strong review.</li>
 </ul>
-<p>Never commit notification webhook URLs or chat tokens in plain text.</p>
-<h2 id="backup-and-restore">Backup and Restore<a class="headerlink" href="#backup-and-restore" title="Permanent link">&para;</a></h2>
-<p>Export Argo CD application state:</p>
-<div class="highlight"><pre><span></span><code>argocd<span class="w"> </span>admin<span class="w"> </span><span class="nb">export</span><span class="w"> </span>&gt;<span class="w"> </span>argocd-export.yaml
+<h2 id="secret-handling">Secret Handling<a class="headerlink" href="#secret-handling" title="Permanent link">&para;</a></h2>
+<p>Plain secrets must never live in Git. Choose one model and apply it consistently:</p>
+<ul>
+<li>Sealed Secrets (encrypted in Git, decrypted in-cluster), or</li>
+<li>An external secret operator pulling from a secret manager, or</li>
+<li>A CSI secrets driver mounting from a vault.</li>
+</ul>
+<p>Argo CD <code>Application</code> manifests themselves contain repo URLs, project names, and cluster references — treat exports as sensitive topology.</p>
+<h2 id="drift-rollback-and-recovery">Drift, Rollback, and Recovery<a class="headerlink" href="#drift-rollback-and-recovery" title="Permanent link">&para;</a></h2>
+<h3 id="rollback-an-application">Rollback an application<a class="headerlink" href="#rollback-an-application" title="Permanent link">&para;</a></h3>
+<p>Because Git is the source of truth, rollback is a Git operation:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Preferred: revert the commit, let Argo CD reconcile.</span>
+git<span class="w"> </span>revert<span class="w"> </span>&lt;bad-commit&gt;<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>push
+
+<span class="c1"># Or roll back to a previous synced revision directly:</span>
+argocd<span class="w"> </span>app<span class="w"> </span><span class="nb">history</span><span class="w"> </span>example-service
+argocd<span class="w"> </span>app<span class="w"> </span>rollback<span class="w"> </span>example-service<span class="w"> </span>&lt;revision&gt;
 </code></pre></div>
-<p>Store exports securely. Review exports before sharing because repository URLs, project names, and cluster references can reveal internal topology.</p>
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<p>A direct <code>argocd app rollback</code> is fine for a fast recovery, but follow it with a Git revert so Git and the cluster do not diverge (especially with <code>selfHeal</code>, which will otherwise pull the cluster back to the Git HEAD).</p>
+<h3 id="disaster-recovery-of-argo-cd-itself">Disaster recovery of Argo CD itself<a class="headerlink" href="#disaster-recovery-of-argo-cd-itself" title="Permanent link">&para;</a></h3>
+<p>Argo CD is a production dependency; plan for losing it.</p>
+<div class="highlight"><pre><span></span><code>argocd<span class="w"> </span>admin<span class="w"> </span><span class="nb">export</span><span class="w"> </span>&gt;<span class="w"> </span>argocd-backup.yaml<span class="w">   </span><span class="c1"># store securely; contains topology</span>
+<span class="c1"># restore:</span>
+argocd<span class="w"> </span>admin<span class="w"> </span>import<span class="w"> </span>-<span class="w"> </span>&lt;<span class="w"> </span>argocd-backup.yaml
+</code></pre></div>
+<p>Because desired state lives in Git, a rebuilt Argo CD plus the Git repos can reconstruct the cluster — but only if the <code>Application</code>/<code>AppProject</code> definitions are also captured (in Git or in the export).</p>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>argocd<span class="w"> </span>app<span class="w"> </span>get<span class="w"> </span>example-service
+kubectl<span class="w"> </span>get<span class="w"> </span>applications<span class="w"> </span>-n<span class="w"> </span>argocd
+</code></pre></div>
+<p>Confirm:</p>
+<ul>
+<li>Sync status is <code>Synced</code> and health is <code>Healthy</code> for changed apps.</li>
+<li>The synced revision matches the intended Git commit.</li>
+<li>No unexpected <code>OutOfSync</code> resources (drift) remain after sync.</li>
+<li>For <code>prune</code>-enabled apps, nothing was deleted that you did not intend.</li>
+</ul>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>Symptom</th>
-<th>Check</th>
+<th>Likely cause</th>
+<th>Check / response</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Application out of sync</td>
-<td>Git revision, generated manifests, ignored differences</td>
+<td>App stuck <code>OutOfSync</code></td>
+<td>Live drift, ignored diffs, or generated-manifest mismatch</td>
+<td><code>argocd app diff</code>; reconcile or add <code>ignoreDifferences</code> deliberately.</td>
 </tr>
 <tr>
 <td>Sync fails</td>
-<td>RBAC, namespace existence, CRDs, admission policies</td>
+<td>RBAC, missing namespace, missing CRD, admission policy</td>
+<td>Read the sync error; create prerequisites; check <code>AppProject</code> allow-lists.</td>
 </tr>
 <tr>
-<td>Health unknown</td>
-<td>Resource health customization, CRD status fields</td>
+<td>Emergency fix keeps reverting</td>
+<td><code>selfHeal</code> is reverting out-of-band changes</td>
+<td>Commit the fix, or temporarily disable auto-sync; don't fight the controller.</td>
+</tr>
+<tr>
+<td>Health stays <code>Unknown</code></td>
+<td>Custom resource without health assessment</td>
+<td>Add a resource health customization.</td>
 </tr>
 <tr>
 <td>Repo connection fails</td>
-<td>Repository credentials, network, known hosts</td>
+<td>Bad credentials, network, or unknown host key</td>
+<td>Re-check repo credentials and connectivity.</td>
+</tr>
+<tr>
+<td>Unexpected deletion</td>
+<td><code>prune: true</code> plus a removed/misgenerated manifest</td>
+<td>Restore via Git revert; reconsider prune for that tier.</td>
 </tr>
 </tbody>
 </table>
+<h2 id="rollback-operational-summary">Rollback (Operational Summary)<a class="headerlink" href="#rollback-operational-summary" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Prefer <code>git revert</code> of the offending commit; let Argo CD reconcile back to good state.</li>
+<li>For speed, <code>argocd app rollback</code> to a known-good revision, then reconcile Git to match.</li>
+<li>If Argo CD itself is the problem, disable auto-sync on critical apps to freeze the cluster while you recover the controller.</li>
+<li>Restore Argo CD from <code>argocd admin export</code>; verify apps return to <code>Synced</code>/<code>Healthy</code>.</li>
+</ol>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Never commit secrets, webhook URLs, or chat tokens in plain text.</li>
+<li>Scope <code>AppProject</code> to allowed repos, destinations, and resource kinds — this bounds blast radius.</li>
+<li>Use SSO and least-privilege RBAC; restrict who can sync production-tier apps.</li>
+<li>Treat <code>argocd admin export</code> output as sensitive internal topology; store it encrypted.</li>
+<li>Pin Argo CD versions and patch promptly; it has cluster-wide reconciliation power.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Owner: the platform/delivery team.</li>
+<li>Re-review each Application's risk tier and sync flags on significant change.</li>
+<li>Test Argo CD disaster recovery (export/import) on a cadence, not just on paper.</li>
+<li>Re-check <code>AppProject</code> allow-lists when a team's deployment scope changes.</li>
+</ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../jenkins-kubernetes-pipeline-standard/">Jenkins to Kubernetes Pipeline Standard</a></li>
-<li><a href="../../../platform-governance/publication-safety-checklist/">Publication Safety Checklist</a></li>
+<li><a href="../../rollback/deployment-rollback-runbook/">Deployment Rollback Runbook</a></li>
+<li><a href="https://argo-cd.readthedocs.io/">Argo CD documentation</a></li>
 </ul>
 
 
@@ -4310,7 +4475,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>applications<span clas
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 13:53:36 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4320,7 +4485,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>applications<span clas
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 13:53:36 UTC">June 28, 2026</span>
   </span>
 
     

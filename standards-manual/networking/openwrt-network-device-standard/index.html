@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="OpenWrt network device standard for edge router configuration.">
+        <meta name="description" content="OpenWrt 网络设备标准，适用于实验室、边缘和小站点路由器，覆盖配置安全、固件控制、备份、验证和回滚。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="OpenWrt 网络设备 - DevOps 专家知识库" />
-<meta property="og:description" content="OpenWrt network device standard for edge router configuration." />
+<meta property="og:description" content="OpenWrt 网络设备标准，适用于实验室、边缘和小站点路由器，覆盖配置安全、固件控制、备份、验证和回滚。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/networking/openwrt-network-device-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/networking/openwrt-network-device-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="OpenWrt 网络设备 - DevOps 专家知识库" />
-<meta property="twitter:description" content="OpenWrt network device standard for edge router configuration." />
+<meta property="twitter:description" content="OpenWrt 网络设备标准，适用于实验室、边缘和小站点路由器，覆盖配置安全、固件控制、备份、验证和回滚。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/networking/openwrt-network-device-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#openwrt-network-device-standard" class="md-skip">
+        <a href="#openwrt" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3105,10 +3049,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3116,10 +3060,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Cases
+        适用场景
       
     </span>
   </a>
@@ -3127,10 +3071,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-rules" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Rules
+        非目标
       
     </span>
   </a>
@@ -3138,10 +3082,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分离固件、配置和密钥
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变更前备份
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制暴露
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -3149,10 +3143,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3449,34 +3487,6 @@
     
   
     服务器基线
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
   
 
     
@@ -3840,34 +3850,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3938,10 +3920,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3949,10 +3931,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Cases
+        适用场景
       
     </span>
   </a>
@@ -3960,10 +3942,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-rules" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Rules
+        非目标
       
     </span>
   </a>
@@ -3971,10 +3953,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分离固件、配置和密钥
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变更前备份
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制暴露
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -3982,10 +4014,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4099,6 +4175,18 @@
         <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:security" class="md-tag md-tag-icon md-tag--security">Security</a>
+      
+    
   </nav>
 
 
@@ -4106,31 +4194,131 @@
   
 
 
-<h1 id="openwrt-network-device-standard">OpenWrt Network Device Standard<a class="headerlink" href="#openwrt-network-device-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard covers safe handling of OpenWrt build, configuration, and device operations notes.</p>
-<h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
+<h1 id="openwrt">OpenWrt 网络设备标准<a class="headerlink" href="#openwrt" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何处理基于 OpenWrt 的实验室、边缘或小站点网络设备。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>边缘路由器即使小到能放在桌上，也仍然是基础设施。</p>
+</blockquote>
+<p>OpenWrt 设备会影响路由、VPN、DNS、防火墙策略和无线访问。它们的配置必须备份、评审并可恢复。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>适用于：</p>
 <ul>
-<li>Lab routing.</li>
-<li>VPN gateway.</li>
-<li>Network testing.</li>
-<li>Edge device customization.</li>
+<li>实验室路由。</li>
+<li>小办公室或边缘路由。</li>
+<li>VPN 网关实验。</li>
+<li>网络测试。</li>
+<li>自定义固件评估。</li>
 </ul>
-<h2 id="safety-rules">Safety Rules<a class="headerlink" href="#safety-rules" title="Permanent link">&para;</a></h2>
+<p>不要把无人管理的 OpenWrt 设备作为隐藏生产网络依赖。</p>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不推荐把 OpenWrt 作为默认生产路由平台，也不记录 ISP 专属配置、Wi-Fi 密码、VPN profile 或完整防火墙策略。</p>
+<h2 id="_4">推荐标准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">分离固件、配置和密钥<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>分别记录：</p>
 <ul>
-<li>Do not publish real Wi-Fi passwords.</li>
-<li>Do not publish VPN profiles or keys.</li>
-<li>Do not publish ISP account details.</li>
-<li>Keep firmware build notes separate from live configuration.</li>
+<li>固件版本。</li>
+<li>包列表。</li>
+<li>网络配置。</li>
+<li>防火墙策略。</li>
+<li>VPN 配置。</li>
+<li>无线设置。</li>
+<li>密钥和 key。</li>
 </ul>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>密钥不得提交或公开。</p>
+<h3 id="_6">变更前备份<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>改变固件或网络策略前：</p>
+<div class="highlight"><pre><span></span><code>uci<span class="w"> </span><span class="nb">export</span><span class="w"> </span>network
+uci<span class="w"> </span><span class="nb">export</span><span class="w"> </span>firewall
+uci<span class="w"> </span><span class="nb">export</span><span class="w"> </span>dhcp
+</code></pre></div>
+<p>备份保存到批准的私有位置。</p>
+<h3 id="_7">控制暴露<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>记录：</p>
+<ul>
+<li>管理接口。</li>
+<li>允许的管理网络。</li>
+<li>WAN 暴露。</li>
+<li>VPN peer。</li>
+<li>防火墙 zone。</li>
+<li>DNS 行为。</li>
+</ul>
+<h2 id="_8">验证<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>uci<span class="w"> </span>show<span class="w"> </span>network
 uci<span class="w"> </span>show<span class="w"> </span>firewall
 logread<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail
 </code></pre></div>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<p>通过条件：</p>
 <ul>
-<li><a href="../../cloud/cloud-network-migration-standard/">Cloud Network and Object Storage Migration Standard</a></li>
+<li>管理访问只能从批准网络成功。</li>
+<li>未批准的 WAN 管理访问被阻断。</li>
+<li>必需路由可用。</li>
+<li>DNS 行为符合计划。</li>
+<li>防火墙 zone 匹配信任边界。</li>
+<li>备份是最新的。</li>
+</ul>
+<h2 id="_9">失败模式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无配置备份</td>
+<td>设备变更难恢复。</td>
+<td>变更前 export 配置。</td>
+</tr>
+<tr>
+<td>WAN admin 暴露</td>
+<td>设备可被远程攻击。</td>
+<td>限制管理接口。</td>
+</tr>
+<tr>
+<td>VPN key 公开</td>
+<td>私有网络暴露。</td>
+<td>Key 不进文档和仓库。</td>
+</tr>
+<tr>
+<td>固件漂移</td>
+<td>行为与预期不一致。</td>
+<td>记录固件和包。</td>
+</tr>
+<tr>
+<td>防火墙 zone 错误</td>
+<td>网络之间过度信任。</td>
+<td>验证 zone 和被拒绝路径。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_10">回滚<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>回滚方式：</p>
+<ul>
+<li>恢复上一版 UCI 配置。</li>
+<li>回退防火墙规则。</li>
+<li>如支持，恢复上一版固件。</li>
+<li>Factory reset 后重新应用备份。</li>
+</ul>
+<p>对远程设备做高风险网络变更前，必须有带外恢复或现场支持。</p>
+<h2 id="_11">安全说明<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li>不公开 Wi-Fi 密码、VPN profile、key、ISP 账号、MAC 列表或真实路由。</li>
+<li>修改默认密码。</li>
+<li>限制 SSH 和 LuCI 访问。</li>
+<li>保持固件更新。</li>
+<li>禁用不需要的服务。</li>
+</ul>
+<h2 id="_12">评审周期<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>固件升级、VPN 变更、防火墙变更、远程访问变更和网络事故后，评审本标准。</p>
+<h2 id="_13">相关文档<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../openvpn-access-standard/">OpenVPN 访问标准</a></li>
+<li><a href="../../cloud/cloud-network-migration-standard/">云网络与对象存储迁移标准</a></li>
+<li><a href="../../linux/server-baseline-standard/">服务器基线标准</a></li>
 </ul>
 
 
@@ -4154,7 +4342,7 @@ logread<span class="w"> </span><span class="p">|</span><span class="w"> </span>t
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4164,7 +4352,7 @@ logread<span class="w"> </span><span class="p">|</span><span class="w"> </span>t
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     

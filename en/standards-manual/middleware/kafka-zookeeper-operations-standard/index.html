@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Kafka and ZooKeeper operations standard for production message queue management.">
+        <meta name="description" content="Standard for operating Kafka (with or without ZooKeeper) — replication and min.insync.replicas durability, partition/lag monitoring, safe migration, and rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Kafka and ZooKeeper - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Kafka and ZooKeeper operations standard for production message queue management." />
+<meta property="og:description" content="Standard for operating Kafka (with or without ZooKeeper) — replication and min.insync.replicas durability, partition/lag monitoring, safe migration, and rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/middleware/kafka-zookeeper-operations-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/middleware/kafka-zookeeper-operations-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Kafka and ZooKeeper - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Kafka and ZooKeeper operations standard for production message queue management." />
+<meta property="twitter:description" content="Standard for operating Kafka (with or without ZooKeeper) — replication and min.insync.replicas durability, partition/lag monitoring, safe migration, and rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/middleware/kafka-zookeeper-operations-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3263,10 +3207,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
       
     </span>
   </a>
@@ -3285,10 +3240,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-principles" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deployment Principles
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#durability-is-three-settings-not-one" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Durability is three settings, not one
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-that-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring that matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration / Upgrade
       
     </span>
   </a>
@@ -3296,10 +3301,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#migration-flow" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Migration Flow
+        Validation
       
     </span>
   </a>
@@ -3307,10 +3312,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-commands" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Commands
+        Known Failure Modes
       
     </span>
   </a>
@@ -3322,6 +3327,28 @@
     <span class="md-ellipsis">
       
         Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3482,34 +3509,6 @@
     
   
     Server Baseline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
   
 
     
@@ -3873,34 +3872,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3982,10 +3953,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
       
     </span>
   </a>
@@ -4004,10 +3986,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-principles" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deployment Principles
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#durability-is-three-settings-not-one" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Durability is three settings, not one
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-that-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring that matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration / Upgrade
       
     </span>
   </a>
@@ -4015,10 +4047,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#migration-flow" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Migration Flow
+        Validation
       
     </span>
   </a>
@@ -4026,10 +4058,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-commands" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Commands
+        Known Failure Modes
       
     </span>
   </a>
@@ -4041,6 +4073,28 @@
     <span class="md-ellipsis">
       
         Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4146,6 +4200,16 @@
       
         
         
+      
+      
+        <a href="../../../tags/#tag:kafka" class="md-tag md-tag-icon">Kafka</a>
+      
+    
+      
+      
+      
+        
+        
           
         
       
@@ -4174,9 +4238,25 @@
 
 <h1 id="kafka-and-zookeeper-operations-standard">Kafka and ZooKeeper Operations Standard<a class="headerlink" href="#kafka-and-zookeeper-operations-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes public-safe deployment, migration, and validation practices for Kafka and ZooKeeper.</p>
-<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
-<p>Use this for legacy ZooKeeper-backed Kafka clusters and migration planning. For new systems, evaluate modern Kafka modes and managed streaming services.</p>
+<p>This standard defines how to run Kafka safely in production — including the ZooKeeper-backed clusters still common in the field — and how to migrate or upgrade one without losing messages or stalling consumers.</p>
+<p>The core judgment of this standard:</p>
+<blockquote>
+<p>Kafka's durability is not "replication factor 3" — it is the combination of replication factor, <code>min.insync.replicas</code>, and producer <code>acks</code>. Get those three wrong together and an acknowledged message can still be lost on a single broker failure, no matter how many replicas you configured.</p>
+</blockquote>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when you:</p>
+<ul>
+<li>Operate a self-managed Kafka cluster (ZooKeeper-backed or KRaft).</li>
+<li>Need durability, monitoring, and migration practices you can defend in an incident review.</li>
+<li>Plan a broker addition, version upgrade, or cluster migration.</li>
+</ul>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>Stream-processing application design (Kafka Streams, ksqlDB, connectors).</li>
+<li>Managed streaming services internals — use the provider's durability/HA contract; the producer/consumer and durability judgment still applies.</li>
+<li>The full ZooKeeper-to-KRaft migration procedure beyond noting it as a planned, version-gated change.</li>
+</ul>
 <h2 id="planning-checklist">Planning Checklist<a class="headerlink" href="#planning-checklist" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4188,60 +4268,154 @@
 <tbody>
 <tr>
 <td>Brokers</td>
-<td>How many brokers and what storage class?</td>
+<td>How many brokers, on what storage class, across how many failure domains?</td>
 </tr>
 <tr>
-<td>ZooKeeper</td>
-<td>Is ZooKeeper still required by the Kafka version?</td>
+<td>Metadata</td>
+<td>ZooKeeper or KRaft? Does the Kafka version still require ZooKeeper?</td>
 </tr>
 <tr>
 <td>Topics</td>
-<td>What partitions, replication factors, and retention policies are required?</td>
+<td>Partition count, replication factor, retention, and cleanup policy per topic?</td>
+</tr>
+<tr>
+<td>Durability</td>
+<td><code>acks</code>, <code>min.insync.replicas</code>, and replication factor — do they agree?</td>
 </tr>
 <tr>
 <td>Clients</td>
-<td>Can producers and consumers tolerate rolling restarts?</td>
+<td>Can producers/consumers tolerate rolling restarts and rebalances?</td>
 </tr>
 <tr>
 <td>Security</td>
-<td>Are authentication, authorization, and TLS required?</td>
+<td>Authentication (SASL), authorization (ACLs), and TLS required?</td>
 </tr>
 <tr>
 <td>Observability</td>
-<td>Are broker, topic, consumer lag, and JVM metrics collected?</td>
+<td>Are under-replicated partitions, offline partitions, consumer lag, and JVM/GC collected?</td>
 </tr>
 </tbody>
 </table>
-<h2 id="deployment-principles">Deployment Principles<a class="headerlink" href="#deployment-principles" title="Permanent link">&para;</a></h2>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="durability-is-three-settings-not-one">Durability is three settings, not one<a class="headerlink" href="#durability-is-three-settings-not-one" title="Permanent link">&para;</a></h3>
+<p>For a topic that must not lose acknowledged writes:</p>
+<ul>
+<li><strong>Replication factor ≥ 3</strong> — survive a broker loss.</li>
+<li><strong><code>min.insync.replicas = 2</code></strong> — a write is only acknowledged when at least 2 replicas have it.</li>
+<li><strong>Producer <code>acks=all</code></strong> — wait for the in-sync replicas before acknowledging.</li>
+</ul>
+<p>Replication factor 3 with <code>acks=1</code> still loses data if the leader dies before replicas catch up. The three settings must be chosen together. The cost is latency and that a topic with RF=3/<code>min.insync=2</code> goes read-only if it drops below 2 in-sync replicas — a deliberate availability-vs-durability trade.</p>
+<h3 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Keep broker IDs stable.</li>
-<li>Store data on dedicated persistent volumes.</li>
-<li>Use replication factor greater than one for critical topics.</li>
-<li>Monitor under-replicated partitions and consumer lag.</li>
-<li>Test producer and consumer behavior before production cutover.</li>
+<li>Keep broker IDs stable; brokers are identity-bearing.</li>
+<li>Store log segments on dedicated persistent volumes sized for retention × throughput.</li>
+<li>Spread brokers (and ZooKeeper/KRaft quorum members) across failure domains; use an odd quorum count.</li>
+<li>Set retention deliberately per topic (size and/or time); unbounded retention fills disks and takes the cluster down.</li>
 </ol>
-<h2 id="migration-flow">Migration Flow<a class="headerlink" href="#migration-flow" title="Permanent link">&para;</a></h2>
+<h3 id="monitoring-that-matters">Monitoring that matters<a class="headerlink" href="#monitoring-that-matters" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Under-replicated partitions</strong> &gt; 0 and <strong>offline partitions</strong> &gt; 0 are leading indicators of data-loss risk — alert on them.</li>
+<li><strong>Consumer lag</strong> per group — the signal that consumers are falling behind.</li>
+<li>Broker disk usage vs. retention; JVM heap and GC.</li>
+</ul>
+<h2 id="migration-upgrade">Migration / Upgrade<a class="headerlink" href="#migration-upgrade" title="Permanent link">&para;</a></h2>
+<p>Treat as a controlled change with a defined cutoff and rollback owner.</p>
 <ol>
-<li>Freeze topic topology changes.</li>
-<li>Capture topic list, partition count, replication factor, and consumer groups.</li>
-<li>Deploy target cluster.</li>
-<li>Configure secure connectivity between source and target.</li>
-<li>Mirror or copy data using an approved migration tool.</li>
-<li>Validate topic offsets and consumer lag.</li>
-<li>Cut over producers.</li>
-<li>Cut over consumers.</li>
-<li>Keep source cluster read-only until rollback window closes.</li>
+<li>Freeze topic-topology changes for the window.</li>
+<li>Capture the topic list, partition counts, replication factors, configs, and consumer groups.</li>
+<li>Stand up / upgrade the target; for upgrades, do a <strong>rolling</strong> broker restart (one broker at a time, waiting for under-replicated partitions to return to 0 before the next).</li>
+<li>For a cluster migration, mirror data with an approved tool (e.g. MirrorMaker 2) and configure secure connectivity.</li>
+<li>Validate topic offsets and consumer lag on the target.</li>
+<li>Cut over <strong>producers</strong> first, then <strong>consumers</strong>.</li>
+<li>Keep the source cluster read-only until the rollback window closes.</li>
 </ol>
-<h2 id="validation-commands">Validation Commands<a class="headerlink" href="#validation-commands" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>broker.example.com:9092<span class="w"> </span>--list
-kafka-consumer-groups.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>broker.example.com:9092<span class="w"> </span>--all-groups<span class="w"> </span>--describe
-kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>broker.example.com:9092<span class="w"> </span>--describe<span class="w"> </span>--topic<span class="w"> </span>example-topic
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>&lt;broker&gt;:9092<span class="w"> </span>--describe<span class="w"> </span>--under-replicated-partitions
+kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>&lt;broker&gt;:9092<span class="w"> </span>--describe<span class="w"> </span>--topic<span class="w"> </span>example-topic
+kafka-consumer-groups.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>&lt;broker&gt;:9092<span class="w"> </span>--all-groups<span class="w"> </span>--describe
 </code></pre></div>
+<p>Confirm:</p>
+<ul>
+<li>Zero under-replicated and zero offline partitions.</li>
+<li>Each critical topic has the intended replication factor and <code>min.insync.replicas</code>.</li>
+<li>Consumer lag is bounded and draining, not growing.</li>
+<li>After a rolling restart/upgrade, every broker rejoined the ISR.</li>
+</ul>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Correct response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acknowledged message lost</td>
+<td>Data gone after broker failure</td>
+<td><code>acks=1</code> or <code>min.insync.replicas=1</code></td>
+<td>Use <code>acks=all</code> + <code>min.insync.replicas=2</code> + RF≥3.</td>
+</tr>
+<tr>
+<td>Topic goes read-only</td>
+<td>Producers blocked</td>
+<td>In-sync replicas dropped below <code>min.insync.replicas</code></td>
+<td>Restore a broker; this is the durability trade-off working as designed.</td>
+</tr>
+<tr>
+<td>Consumers fall behind</td>
+<td>Growing lag</td>
+<td>Slow consumers, repartition, or broker pressure</td>
+<td>Scale consumers/partitions; investigate broker load.</td>
+</tr>
+<tr>
+<td>Disk fills</td>
+<td>Broker down / cluster unstable</td>
+<td>Unbounded retention</td>
+<td>Set retention; alert on disk; expand or trim.</td>
+</tr>
+<tr>
+<td>Rolling restart causes loss</td>
+<td>Under-replicated during restart</td>
+<td>Restarted next broker too soon</td>
+<td>Wait for URP=0 between brokers.</td>
+</tr>
+<tr>
+<td>ZooKeeper quorum loss</td>
+<td>Cluster metadata unavailable</td>
+<td>Even count / members down</td>
+<td>Odd ZK/KRaft quorum across failure domains.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
-<p>Rollback depends on whether producers have written to the target. Define the cutoff point before migration. If bidirectional writes are not supported, rollback requires stopping target writes and restoring producer routing to the source.</p>
+<ol>
+<li>Define the cutover cutoff <strong>before</strong> migrating — once producers write to the target, rollback gets expensive.</li>
+<li>If producers have not yet cut over, roll back by leaving them on the source and tearing down the target.</li>
+<li>If they have cut over and bidirectional sync is not in place, rollback means stopping target writes and routing producers back to the source, accepting the gap — plan this explicitly.</li>
+<li>For a failed broker upgrade, reinstall the prior version on that broker and let it rejoin the ISR before touching the next.</li>
+</ol>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Enable SASL authentication and ACL authorization; do not run an open broker.</li>
+<li>Use TLS for client and inter-broker traffic where confidentiality is required.</li>
+<li>Never publish real broker addresses, topic names with business meaning, or credentials.</li>
+<li>Restrict who can create/alter topics and ACLs.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Owner: the platform/messaging team.</li>
+<li>Re-confirm durability settings (<code>acks</code>/<code>min.insync</code>/RF) when a topic's loss tolerance changes.</li>
+<li>Re-test rolling-restart behavior on each Kafka upgrade.</li>
+<li>Plan the ZooKeeper-to-KRaft transition as a version-gated change before ZooKeeper support is dropped.</li>
+</ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter Monitoring Standard</a></li>
+<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
+<li><a href="https://kafka.apache.org/documentation/">Kafka documentation</a></li>
 </ul>
 
 
@@ -4265,7 +4439,7 @@ kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:31:41 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4275,7 +4449,7 @@ kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:31:41 UTC">June 28, 2026</span>
   </span>
 
     

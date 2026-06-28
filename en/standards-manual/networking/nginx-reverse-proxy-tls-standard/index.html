@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Nginx reverse proxy and TLS standard for production HTTPS termination.">
+        <meta name="description" content="Standard for running Nginx/OpenResty as a production reverse proxy with TLS — config separation, validated reloads, certificate lifecycle, and rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Nginx Reverse Proxy and TLS - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Nginx reverse proxy and TLS standard for production HTTPS termination." />
+<meta property="og:description" content="Standard for running Nginx/OpenResty as a production reverse proxy with TLS — config separation, validated reloads, certificate lifecycle, and rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/networking/nginx-reverse-proxy-tls-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/networking/nginx-reverse-proxy-tls-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Nginx Reverse Proxy and TLS - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Nginx reverse proxy and TLS standard for production HTTPS termination." />
+<meta property="twitter:description" content="Standard for running Nginx/OpenResty as a production reverse proxy with TLS — config separation, validated reloads, certificate lifecycle, and rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/networking/nginx-reverse-proxy-tls-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3032,6 +2976,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#core-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3043,10 +3009,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#basic-reverse-proxy-template" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic Reverse Proxy Template
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reverse-proxy-with-explicit-upstream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverse proxy with explicit upstream
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-listener" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS listener
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forwarded-headers-must-be-consistent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forwarded headers must be consistent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Procedure
       
     </span>
   </a>
@@ -3054,10 +3070,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tls-template" class="md-nav__link">
+  <a href="#certificate-lifecycle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        TLS Template
+        Certificate Lifecycle
       
     </span>
   </a>
@@ -3065,10 +3081,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#certificate-expiry-check" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Certificate Expiry Check
+        Validation
       
     </span>
   </a>
@@ -3076,10 +3092,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reload-procedure" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reload Procedure
+        Known Failure Modes
       
     </span>
   </a>
@@ -3087,10 +3103,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-failure-modes" class="md-nav__link">
+  <a href="#rollback" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Failure Modes
+        Rollback
       
     </span>
   </a>
@@ -3102,6 +3118,17 @@
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3513,34 +3540,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3884,34 +3883,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3993,6 +3964,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#core-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4004,10 +3997,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#basic-reverse-proxy-template" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic Reverse Proxy Template
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reverse-proxy-with-explicit-upstream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverse proxy with explicit upstream
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-listener" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS listener
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forwarded-headers-must-be-consistent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forwarded headers must be consistent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Procedure
       
     </span>
   </a>
@@ -4015,10 +4058,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tls-template" class="md-nav__link">
+  <a href="#certificate-lifecycle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        TLS Template
+        Certificate Lifecycle
       
     </span>
   </a>
@@ -4026,10 +4069,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#certificate-expiry-check" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Certificate Expiry Check
+        Validation
       
     </span>
   </a>
@@ -4037,10 +4080,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reload-procedure" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reload Procedure
+        Known Failure Modes
       
     </span>
   </a>
@@ -4048,10 +4091,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-failure-modes" class="md-nav__link">
+  <a href="#rollback" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Failure Modes
+        Rollback
       
     </span>
   </a>
@@ -4063,6 +4106,17 @@
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4208,122 +4262,194 @@
 
 <h1 id="nginx-reverse-proxy-and-tls-standard">Nginx Reverse Proxy and TLS Standard<a class="headerlink" href="#nginx-reverse-proxy-and-tls-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines safe public patterns for deploying Nginx or OpenResty as a reverse proxy with TLS.</p>
+<p>This standard defines safe patterns for deploying Nginx or OpenResty as a reverse proxy that terminates TLS in front of application upstreams.</p>
+<p>The core judgment of this standard:</p>
+<blockquote>
+<p>A reverse proxy is a live production dependency on the request path. Every config change must be validated before it is applied, and reversible after, because a bad reload takes down everything behind it — not one service.</p>
+</blockquote>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when you:</p>
+<ul>
+<li>Terminate HTTPS for one or more upstream services behind Nginx/OpenResty.</li>
+<li>Need a consistent, reviewable proxy configuration pattern across services.</li>
+<li>Manage TLS certificates and their renewal.</li>
+</ul>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>Ingress controllers in Kubernetes (use the Kubernetes ingress standard; the TLS and header principles still apply).</li>
+<li>WAF rule design or DDoS mitigation.</li>
+<li>L4/TCP load balancing as the primary concern — see the HAProxy standard for connection-level balancing.</li>
+<li>CDN or edge-cache strategy.</li>
+</ul>
 <h2 id="core-principles">Core Principles<a class="headerlink" href="#core-principles" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Separate public listener configuration from upstream service configuration.</li>
-<li>Use TLS certificates from a controlled lifecycle process.</li>
-<li>Do not publish real certificates, private keys, domains, or upstream addresses.</li>
-<li>Use health checks and reload validation before applying changes.</li>
-<li>Keep access logs useful while avoiding sensitive request data where possible.</li>
+<li>Separate the public listener configuration from upstream/service configuration so each can be reviewed and changed independently.</li>
+<li>Source TLS certificates from a controlled lifecycle (automated issuance/renewal where possible).</li>
+<li>Never commit real certificates, private keys, domains, or upstream addresses.</li>
+<li>Always <code>nginx -t</code> before reload; never apply an unvalidated config to a live proxy.</li>
+<li>Keep access logs useful while avoiding sensitive request data (no auth headers, no full query strings with secrets).</li>
 </ol>
-<h2 id="basic-reverse-proxy-template">Basic Reverse Proxy Template<a class="headerlink" href="#basic-reverse-proxy-template" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="reverse-proxy-with-explicit-upstream">Reverse proxy with explicit upstream<a class="headerlink" href="#reverse-proxy-with-explicit-upstream" title="Permanent link">&para;</a></h3>
+<p>Define upstreams separately, with health-related limits, so a single bad backend does not blackhole traffic.</p>
+<div class="highlight"><pre><span></span><code><span class="k">upstream</span><span class="w"> </span><span class="s">example_upstream</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;backend-a-host&gt;:8080</span><span class="w"> </span><span class="s">max_fails=3</span><span class="w"> </span><span class="s">fail_timeout=30s</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;backend-b-host&gt;:8080</span><span class="w"> </span><span class="s">max_fails=3</span><span class="w"> </span><span class="s">fail_timeout=30s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
 <span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">service.example.com</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://example-upstream</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_connect_timeout</span><span class="w"> </span><span class="s">5s</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_send_timeout</span><span class="w"> </span><span class="s">60s</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_read_timeout</span><span class="w"> </span><span class="s">60s</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1"># Redirect all plaintext to HTTPS; do not serve the app over :80.</span>
+<span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">301</span><span class="w"> </span><span class="s">https://</span><span class="nv">$host$request_uri</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Upstream example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">upstream</span><span class="w"> </span><span class="s">example-upstream</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="n">10.0.0.10</span><span class="p">:</span><span class="mi">8080</span><span class="w"> </span><span class="s">max_fails=3</span><span class="w"> </span><span class="s">fail_timeout=30s</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="n">10.0.0.11</span><span class="p">:</span><span class="mi">8080</span><span class="w"> </span><span class="s">max_fails=3</span><span class="w"> </span><span class="s">fail_timeout=30s</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="tls-template">TLS Template<a class="headerlink" href="#tls-template" title="Permanent link">&para;</a></h2>
+<h3 id="tls-listener">TLS listener<a class="headerlink" href="#tls-listener" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="w"> </span><span class="s">http2</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">http2</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
 <span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">service.example.com</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w"> </span><span class="s">/etc/nginx/certs/service.example.com.crt</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w">     </span><span class="s">/etc/nginx/certs/service.example.com.crt</span><span class="p">;</span>
 <span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w"> </span><span class="s">/etc/nginx/certs/service.example.com.key</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">ssl_protocols</span><span class="w"> </span><span class="s">TLSv1.2</span><span class="w"> </span><span class="s">TLSv1.3</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_protocols</span><span class="w">       </span><span class="s">TLSv1.2</span><span class="w"> </span><span class="s">TLSv1.3</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_ciphers</span><span class="w">         </span><span class="s">HIGH:!aNULL:!MD5</span><span class="p">;</span>
 <span class="w">    </span><span class="kn">ssl_prefer_server_ciphers</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_session_cache</span><span class="w">   </span><span class="s">shared:SSL:10m</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">client_max_body_size</span><span class="w"> </span><span class="mi">16m</span><span class="p">;</span><span class="w">   </span><span class="c1"># size to the largest legitimate upload</span>
 
 <span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://example-upstream</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="s">https</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://example_upstream</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_http_version</span><span class="w"> </span><span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w">              </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w">         </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w">   </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_connect_timeout</span><span class="w"> </span><span class="s">5s</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_send_timeout</span><span class="w">    </span><span class="s">60s</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_read_timeout</span><span class="w">    </span><span class="s">60s</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The key path is illustrative. Never commit actual private key files.</p>
-<h2 id="certificate-expiry-check">Certificate Expiry Check<a class="headerlink" href="#certificate-expiry-check" title="Permanent link">&para;</a></h2>
+<p>Certificate and key paths are illustrative. The private key file must have restrictive permissions and must never be committed.</p>
+<h3 id="forwarded-headers-must-be-consistent">Forwarded headers must be consistent<a class="headerlink" href="#forwarded-headers-must-be-consistent" title="Permanent link">&para;</a></h3>
+<p><code>X-Forwarded-Proto</code> is the most common source of redirect loops: if the app builds HTTPS redirects from a header the proxy sets wrong, the browser bounces forever. Set it to <code>$scheme</code> on the listener that actually terminated TLS, and make sure the app trusts the proxy.</p>
+<h2 id="change-procedure">Change Procedure<a class="headerlink" href="#change-procedure" title="Permanent link">&para;</a></h2>
+<p>Treat every change as a controlled change on the request path.</p>
+<ol>
+<li>Edit the relevant config fragment (listener or upstream), not a monolith.</li>
+<li>Validate syntax and referenced files:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nginx<span class="w"> </span>-t
+</code></pre></div>
+<ol>
+<li>Reload (graceful; in-flight requests finish on old workers):</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>nginx
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>nginx<span class="w"> </span>--no-pager
+</code></pre></div>
+<ol>
+<li>Validate behavior (see below) before considering the change done.</li>
+<li>If validation fails, roll back immediately — do not iterate live.</li>
+</ol>
+<h2 id="certificate-lifecycle">Certificate Lifecycle<a class="headerlink" href="#certificate-lifecycle" title="Permanent link">&para;</a></h2>
+<p>Automate issuance and renewal where possible; manual renewal is a recurring outage waiting for the day someone forgets.</p>
+<p>Check expiry of a live endpoint:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>s_client<span class="w"> </span>-servername<span class="w"> </span>service.example.com<span class="w"> </span>-connect<span class="w"> </span>service.example.com:443<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-dates
 </code></pre></div>
-<p>For local files:</p>
+<p>Check a local certificate file:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-in<span class="w"> </span>/etc/nginx/certs/service.example.com.crt<span class="w"> </span>-noout<span class="w"> </span>-dates
 </code></pre></div>
-<h2 id="reload-procedure">Reload Procedure<a class="headerlink" href="#reload-procedure" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nginx<span class="w"> </span>-t
-sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>nginx
-sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>nginx<span class="w"> </span>--no-pager
-</code></pre></div>
-<p>Validation:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-I<span class="w"> </span>https://service.example.com
+<ul>
+<li>Test renewal in staging before production.</li>
+<li>Alert on certificate expiry well ahead of the deadline (see the Prometheus alerting / blackbox TLS-expiry check).</li>
+<li>Reload Nginx after renewal so it picks up the new certificate.</li>
+</ul>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>nginx<span class="w"> </span>-t<span class="w">                                  </span><span class="c1"># config valid</span>
+curl<span class="w"> </span>-I<span class="w"> </span>https://service.example.com<span class="w">       </span><span class="c1"># status line + headers</span>
 curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.com/health
 </code></pre></div>
-<h2 id="common-failure-modes">Common Failure Modes<a class="headerlink" href="#common-failure-modes" title="Permanent link">&para;</a></h2>
+<p>Confirm:</p>
+<ul>
+<li>TLS handshake succeeds with the expected protocol and a non-expired certificate.</li>
+<li>The expected status code returns and <code>X-Forwarded-Proto</code> reaches the app correctly (no redirect loop).</li>
+<li>Upstream is reachable from the proxy host; both backends serve traffic.</li>
+<li>Error and access logs show no spike of 5xx after reload.</li>
+</ul>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>Symptom</th>
-<th>Likely Cause</th>
-<th>Check</th>
+<th>Likely cause</th>
+<th>Check / response</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>502 Bad Gateway</td>
-<td>Upstream unavailable or wrong port</td>
-<td><code>curl</code> upstream from proxy host</td>
+<td>Upstream down or wrong port</td>
+<td><code>curl</code> the upstream from the proxy host; fix <code>proxy_pass</code>/upstream.</td>
 </tr>
 <tr>
-<td>TLS warning</td>
-<td>Expired or wrong certificate</td>
-<td><code>openssl x509 -noout -dates</code></td>
+<td>504 Gateway Timeout</td>
+<td>Upstream slow; proxy timeout too low</td>
+<td>Raise <code>proxy_read_timeout</code> only if the upstream is legitimately slow; otherwise fix the upstream.</td>
 </tr>
 <tr>
-<td>Redirect loop</td>
-<td>Incorrect forwarded protocol</td>
-<td>Check <code>X-Forwarded-Proto</code> handling</td>
+<td>TLS warning / handshake failure</td>
+<td>Expired or wrong certificate, missing chain</td>
+<td><code>openssl x509 -noout -dates</code>; ensure full chain is served.</td>
 </tr>
 <tr>
-<td>Large upload fails</td>
-<td>Body size too small</td>
-<td><code>client_max_body_size</code></td>
+<td>Infinite redirect loop</td>
+<td>App builds HTTPS redirects from a wrong <code>X-Forwarded-Proto</code></td>
+<td>Set <code>X-Forwarded-Proto $scheme</code>; ensure app trusts the proxy.</td>
 </tr>
 <tr>
-<td>Long request times out</td>
-<td>Proxy timeout too low</td>
-<td><code>proxy_read_timeout</code></td>
+<td>Large upload rejected (413)</td>
+<td><code>client_max_body_size</code> too small</td>
+<td>Raise to the largest legitimate upload.</td>
+</tr>
+<tr>
+<td>Reload "succeeded" but old config served</td>
+<td>Reload skipped or failed silently</td>
+<td><code>nginx -t</code> then <code>systemctl reload</code>; check <code>systemctl status</code>.</td>
 </tr>
 </tbody>
 </table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Keep the previous config (version control or a timestamped copy) so you can restore it in one step.</li>
+<li>Restore the prior config fragment, run <code>nginx -t</code>, then <code>systemctl reload nginx</code>.</li>
+<li>If a reload left Nginx serving errors and the config won't validate, restore the last-known-good file and reload; do not leave a broken proxy while debugging.</li>
+<li>For a certificate rollback, restore the previous valid certificate/key pair and reload.</li>
+</ol>
 <h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Store private keys with restrictive permissions.</li>
-<li>Use automation for renewal where possible.</li>
-<li>Test renewal in staging before production.</li>
-<li>Avoid logging authorization headers.</li>
-<li>Do not expose admin routes through public listeners unless explicitly required and protected.</li>
+<li>Store private keys with restrictive permissions (owner-only); never commit them.</li>
+<li>Do not log <code>Authorization</code> headers, cookies, or full query strings that may carry tokens.</li>
+<li>Do not expose admin or internal routes through a public listener unless explicitly required and access-controlled.</li>
+<li>Disable old TLS versions (keep TLS 1.2+); review cipher suites on a schedule.</li>
+<li>Keep the proxy and OpenResty/Lua modules patched; the proxy is internet-facing.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Owner: the platform/networking team.</li>
+<li>Review cipher and protocol settings on a regular cadence as recommendations change.</li>
+<li>Confirm certificate renewal automation and expiry alerting still work each quarter.</li>
+<li>Re-validate forwarded-header handling whenever an upstream app changes its redirect logic.</li>
 </ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
+<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter Monitoring Standard</a></li>
+<li><a href="https://ssl-config.mozilla.org/">Mozilla SSL configuration generator</a></li>
 </ul>
 
 
@@ -4347,7 +4473,7 @@ curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.c
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4357,7 +4483,7 @@ curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.c
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 13:53:36 UTC">June 28, 2026</span>
   </span>
 
     

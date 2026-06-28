@@ -1578,34 +1578,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2259,34 +2231,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3565,34 +3509,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3917,34 +3833,6 @@
     
   
     Migration Plan Template
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
   
 
     
@@ -4359,7 +4247,7 @@
 <li>Point the ruler at an internal Alertmanager address only. Use a generic placeholder in any published example:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nt">ruler</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">alertmanager_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://alertmanager.example.internal:9093</span>
+<span class="w">  </span><span class="nt">alertmanager_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;alertmanager-host&gt;:9093</span>
 <span class="w">  </span><span class="nt">storage</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
 <span class="w">    </span><span class="nt">local</span><span class="p">:</span>
@@ -4374,7 +4262,7 @@
 <ul>
 <li>Never embed webhook URLs, bot tokens, chat IDs, or SMTP credentials in Loki, ruler, Alertmanager, or Grafana configuration that could be committed or published.</li>
 <li>Load notification secrets from a separate file referenced by environment, a secret store, or systemd credentials — not from the tracked config.</li>
-<li>In any documentation or example, use placeholders only: <code>https://hooks.example.com/services/REDACTED</code>, <code>smtp.example.com</code>, <code>alerts@example.com</code>.</li>
+<li>In any documentation or example, use placeholders only: <code>&lt;webhook-url&gt;</code>, <code>&lt;smtp-host&gt;</code>, <code>&lt;alert-email&gt;</code>.</li>
 </ul>
 <p>Example Alertmanager receiver using an environment-provided secret rather than an inline value:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">receivers</span><span class="p">:</span>
@@ -4463,7 +4351,7 @@ curl<span class="w"> </span>-s<span class="w"> </span>http://127.0.0.1:3100/metr
 <ul>
 <li><a href="../loki-logging-standard/">Loki Logging Standard</a></li>
 <li><a href="../prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
-<li><a href="../../../platform-governance/publication-safety-checklist/">Publication Safety Checklist</a></li>
+<li><a href="../../../standards-manual/templates/standard-document-template/">Standard Document Template</a></li>
 </ul>
 
 
@@ -4487,7 +4375,7 @@ curl<span class="w"> </span>-s<span class="w"> </span>http://127.0.0.1:3100/metr
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 11:02:49 UTC">June 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     

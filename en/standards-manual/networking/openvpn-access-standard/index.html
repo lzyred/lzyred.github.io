@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="OpenVPN access standard for secure remote administration.">
+        <meta name="description" content="OpenVPN access standard for controlled remote access, identity, network scope, logging, revocation, validation, and migration boundaries.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="OpenVPN Access - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="OpenVPN access standard for secure remote administration." />
+<meta property="og:description" content="OpenVPN access standard for controlled remote access, identity, network scope, logging, revocation, validation, and migration boundaries." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/networking/openvpn-access-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/networking/openvpn-access-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="OpenVPN Access - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="OpenVPN access standard for secure remote administration." />
+<meta property="twitter:description" content="OpenVPN access standard for controlled remote access, identity, network scope, logging, revocation, validation, and migration boundaries." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/networking/openvpn-access-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3088,10 +3032,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#principles" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Principles
+        When to Use
       
     </span>
   </a>
@@ -3099,10 +3043,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operational-checklist" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operational Checklist
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-access-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define access scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manage-certificates-and-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage certificates and users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-and-review-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log and review access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
       
     </span>
   </a>
@@ -3114,6 +3141,17 @@
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3449,34 +3487,6 @@
     
   
     Server Baseline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
   
 
     
@@ -3840,34 +3850,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3949,10 +3931,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#principles" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Principles
+        When to Use
       
     </span>
   </a>
@@ -3960,10 +3942,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operational-checklist" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operational Checklist
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-access-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define access scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manage-certificates-and-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage certificates and users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-and-review-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log and review access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
       
     </span>
   </a>
@@ -3975,6 +4040,17 @@
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4120,28 +4196,132 @@
 
 <h1 id="openvpn-access-standard">OpenVPN Access Standard<a class="headerlink" href="#openvpn-access-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines safe operational practices for OpenVPN-based administrative access.</p>
-<h2 id="principles">Principles<a class="headerlink" href="#principles" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to operate OpenVPN as a controlled remote access mechanism.</p>
+<p>The core judgment:</p>
+<blockquote>
+<p>VPN access is privileged network reachability, not a convenience tunnel.</p>
+</blockquote>
+<p>OpenVPN can be appropriate for small or transitional environments, but it must have identity ownership, network scope, logging, certificate lifecycle, revocation, and periodic access review.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when:</p>
 <ul>
-<li>Use VPN for administrative access, not as a substitute for least privilege.</li>
-<li>Issue named user certificates.</li>
-<li>Revoke unused certificates.</li>
-<li>Restrict routes to required networks.</li>
-<li>Log connections without exposing private keys.</li>
+<li>Engineers need remote access to private systems.</li>
+<li>A small environment does not yet have a stronger zero-trust access layer.</li>
+<li>Vendor or emergency access needs a bounded temporary path.</li>
+<li>Legacy systems require network-level reachability.</li>
 </ul>
-<h2 id="operational-checklist">Operational Checklist<a class="headerlink" href="#operational-checklist" title="Permanent link">&para;</a></h2>
+<p>Prefer identity-aware access, bastion workflows, or workload-specific gateways when they provide stronger audit and least privilege.</p>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover consumer VPN usage, anonymous browsing, or bypassing corporate access controls.</p>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="define-access-scope">Define access scope<a class="headerlink" href="#define-access-scope" title="Permanent link">&para;</a></h3>
+<p>Document:</p>
 <ul>
-<li>Server certificate is valid.</li>
-<li>Client certificates are tracked.</li>
-<li>Revocation list is active.</li>
-<li>Firewall allows only required VPN traffic.</li>
-<li>Admin access is logged.</li>
+<li>Who can connect.</li>
+<li>Which networks are reachable.</li>
+<li>Which ports or services are allowed.</li>
+<li>Which environments are excluded.</li>
+<li>Who approves temporary access.</li>
+<li>How access is revoked.</li>
 </ul>
+<p>Avoid broad routes that make every private subnet reachable to every VPN user.</p>
+<h3 id="manage-certificates-and-users">Manage certificates and users<a class="headerlink" href="#manage-certificates-and-users" title="Permanent link">&para;</a></h3>
+<p>Each user or automation identity needs its own certificate or credential. Shared VPN profiles are not acceptable for production access.</p>
+<p>Track:</p>
+<ul>
+<li>User identity.</li>
+<li>Issue date.</li>
+<li>Expiry date.</li>
+<li>Approval.</li>
+<li>Revocation status.</li>
+<li>Device or use case.</li>
+</ul>
+<h3 id="log-and-review-access">Log and review access<a class="headerlink" href="#log-and-review-access" title="Permanent link">&para;</a></h3>
+<p>Logs should show connection time, user identity, assigned address, disconnect time, and source context where available. Access should be reviewed on a schedule and after personnel or vendor changes.</p>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>Before granting access:</p>
+<div class="highlight"><pre><span></span><code>openvpn<span class="w"> </span>--version
+</code></pre></div>
+<p>From a test client:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsS<span class="w"> </span>https://&lt;internal-service&gt;/healthz
+nc<span class="w"> </span>-vz<span class="w"> </span>&lt;internal-host&gt;<span class="w"> </span>&lt;port&gt;
+</code></pre></div>
+<p>Pass conditions:</p>
+<ul>
+<li>User can reach only approved services.</li>
+<li>Denied networks are unreachable.</li>
+<li>DNS behavior is understood.</li>
+<li>Logs identify the user.</li>
+<li>Revocation test removes access.</li>
+</ul>
+<h2 id="failure-modes">Failure Modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Result</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared client profile</td>
+<td>No user accountability.</td>
+<td>Issue per-user credentials.</td>
+</tr>
+<tr>
+<td>Overbroad route push</td>
+<td>VPN users reach unrelated systems.</td>
+<td>Restrict routes and firewall rules.</td>
+</tr>
+<tr>
+<td>No revocation test</td>
+<td>Former users retain access.</td>
+<td>Test CRL or revocation path.</td>
+</tr>
+<tr>
+<td>Split DNS confusion</td>
+<td>Users hit wrong service endpoint.</td>
+<td>Document DNS behavior.</td>
+</tr>
+<tr>
+<td>No log retention</td>
+<td>Incident review lacks evidence.</td>
+<td>Retain access logs.</td>
+</tr>
+<tr>
+<td>Long-lived vendor access</td>
+<td>Temporary path becomes permanent.</td>
+<td>Expiry and review.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<p>Rollback access by:</p>
+<ul>
+<li>Revoking user certificate.</li>
+<li>Removing user profile.</li>
+<li>Removing route or firewall rule.</li>
+<li>Rotating shared secrets if a shared profile existed.</li>
+<li>Disabling the VPN service only as an incident response measure.</li>
+</ul>
+<p>Verify from the revoked client path that access is no longer possible.</p>
 <h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
-<p>Never publish VPN profiles, private keys, user certificates, or shared secrets.</p>
+<ul>
+<li>Use MFA or an identity-aware layer where available.</li>
+<li>Do not share <code>.ovpn</code> profiles.</li>
+<li>Protect private keys on client devices.</li>
+<li>Keep VPN endpoints patched.</li>
+<li>Restrict management interface access.</li>
+<li>Avoid publishing real routes, hostnames, or client names.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review VPN access monthly or quarterly depending on risk, after staff changes, after vendor work ends, and after any network exposure incident.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../platform-governance/publication-safety-checklist/">Publication Safety Checklist</a></li>
+<li><a href="../../../platform-governance/jumpserver-bastion-standard/">JumpServer and Bastion Access Standard</a></li>
+<li><a href="../../linux/server-baseline-standard/">Server Baseline Standard</a></li>
+<li><a href="../nginx-reverse-proxy-tls-standard/">Nginx Reverse Proxy and TLS Standard</a></li>
 </ul>
 
 
@@ -4165,7 +4345,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4175,7 +4355,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     

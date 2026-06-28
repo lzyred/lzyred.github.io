@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Terraform IaC standard for reproducible and auditable infrastructure provisioning.">
+        <meta name="description" content="Standard for safe Terraform usage — remote locked state, plan-review gates, secret and drift discipline, and safe destroy/rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Terraform IaC - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Terraform IaC standard for reproducible and auditable infrastructure provisioning." />
+<meta property="og:description" content="Standard for safe Terraform usage — remote locked state, plan-review gates, secret and drift discipline, and safe destroy/rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/iac/terraform-iac-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/iac/terraform-iac-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Terraform IaC - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Terraform IaC standard for reproducible and auditable infrastructure provisioning." />
+<meta property="twitter:description" content="Standard for safe Terraform usage — remote locked state, plan-review gates, secret and drift discipline, and safe destroy/rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/iac/terraform-iac-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3365,34 +3309,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3613,6 +3529,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#principles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3624,10 +3562,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#workflow" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Workflow
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remote-locked-encrypted-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote, locked, encrypted state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pin-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pin versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plan-review-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plan, review, apply
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-secrets-out-of-tf-and-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keep secrets out of .tf and state
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
       
     </span>
   </a>
@@ -3635,10 +3634,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#publication-safety" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Publication Safety
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#destroy-and-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Destroy and Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3840,34 +3872,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3949,6 +3953,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#principles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3960,10 +3986,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#workflow" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Workflow
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remote-locked-encrypted-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote, locked, encrypted state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pin-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pin versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plan-review-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plan, review, apply
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-secrets-out-of-tf-and-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keep secrets out of .tf and state
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
       
     </span>
   </a>
@@ -3971,10 +4058,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#publication-safety" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Publication Safety
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#destroy-and-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Destroy and Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4120,26 +4240,164 @@
 
 <h1 id="terraform-iac-standard">Terraform IaC Standard<a class="headerlink" href="#terraform-iac-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines safe Terraform usage for infrastructure as code.</p>
-<h2 id="principles">Principles<a class="headerlink" href="#principles" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to use Terraform so that infrastructure changes are reproducible, reviewable, and recoverable — and so that the two most dangerous Terraform failure modes (a corrupted/lost state file and an <code>apply</code> that destroys something it should have replaced) are designed out.</p>
+<p>The core judgment of this standard:</p>
+<blockquote>
+<p>The Terraform state file <em>is</em> your infrastructure's source of truth, and <code>terraform plan</code> is the only place you find out what <code>apply</code> will actually do. Protect the state, and never apply a plan you have not read.</p>
+</blockquote>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when you:</p>
 <ul>
-<li>Store state remotely and encrypted.</li>
-<li>Lock state during applies.</li>
-<li>Keep secrets out of <code>.tf</code> files and state where possible.</li>
-<li>Use modules for repeated infrastructure.</li>
-<li>Review plans before apply.</li>
+<li>Provision cloud or on-prem infrastructure with Terraform/OpenTofu.</li>
+<li>Work in a team where more than one person can run <code>apply</code>.</li>
+<li>Need an auditable, rollback-aware infrastructure change process.</li>
 </ul>
-<h2 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>terraform<span class="w"> </span>fmt
-terraform<span class="w"> </span>validate
-terraform<span class="w"> </span>plan
-terraform<span class="w"> </span>apply
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>Module design patterns for a specific provider in depth.</li>
+<li>Choosing a cloud provider or designing the target architecture (that is an architecture decision).</li>
+<li>CI system specifics; this defines the Terraform discipline that any pipeline must enforce.</li>
+</ul>
+<h2 id="principles">Principles<a class="headerlink" href="#principles" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Store state remotely, encrypted, with locking enabled.</li>
+<li>Lock state during every <code>apply</code> so two operators cannot race.</li>
+<li>Keep secrets out of <code>.tf</code> files and, as far as possible, out of state.</li>
+<li>Use modules and pinned versions for repeatable infrastructure.</li>
+<li>Read every plan before applying; gate <code>apply</code> behind review for shared environments.</li>
+</ol>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="remote-locked-encrypted-state">Remote, locked, encrypted state<a class="headerlink" href="#remote-locked-encrypted-state" title="Permanent link">&para;</a></h3>
+<p>Local state on a laptop is a single point of failure and cannot be shared safely. Use a remote backend with locking and encryption.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">required_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;= 1.6&quot;</span>
+<span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">example</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">source</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example/example&quot;</span>
+<span class="w">      </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;~&gt; 5.0&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="kr">backend</span><span class="w"> </span><span class="nv">&quot;s3&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">bucket</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-tf-state&quot;</span><span class="c1">     # placeholder; never publish the real name</span>
+<span class="w">    </span><span class="na">key</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;env/prod/terraform.tfstate&quot;</span>
+<span class="w">    </span><span class="na">region</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-region&quot;</span>
+<span class="w">    </span><span class="na">dynamodb_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-tf-locks&quot;</span><span class="c1">     # state locking</span>
+<span class="w">    </span><span class="na">encrypt</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-<h2 id="publication-safety">Publication Safety<a class="headerlink" href="#publication-safety" title="Permanent link">&para;</a></h2>
-<p>Do not publish real account IDs, resource IDs, backend bucket names, state files, or provider credentials.</p>
+<ul>
+<li>Enable versioning on the state store so you can recover a previous state.</li>
+<li>Use a separate state key per environment; never share one state across prod and non-prod.</li>
+<li>The lock table/mechanism is not optional in a team — without it, concurrent applies corrupt state.</li>
+</ul>
+<h3 id="pin-versions">Pin versions<a class="headerlink" href="#pin-versions" title="Permanent link">&para;</a></h3>
+<p>Pin both <code>required_version</code> and provider versions. Unpinned providers mean an unrelated change can silently alter a plan. Commit the <code>.terraform.lock.hcl</code> lock file.</p>
+<h3 id="plan-review-apply">Plan, review, apply<a class="headerlink" href="#plan-review-apply" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>terraform<span class="w"> </span>fmt<span class="w"> </span>-check
+terraform<span class="w"> </span>validate
+terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="o">=</span>plan.tfout<span class="w">      </span><span class="c1"># save the exact plan</span>
+<span class="c1"># review plan.tfout output, then apply exactly that plan:</span>
+terraform<span class="w"> </span>apply<span class="w"> </span>plan.tfout
+</code></pre></div>
+<p>Saving the plan and applying <em>that file</em> guarantees <code>apply</code> does only what you reviewed — not whatever the world looks like a few minutes later. In the plan output, the symbols that matter most:</p>
+<ul>
+<li><code>+</code> create, <code>~</code> update in place — usually safe.</li>
+<li><code>-/+</code> <strong>destroy and recreate</strong> — this is where data-bearing resources get lost. Stop and confirm before applying any <code>-/+</code> on a database, volume, or anything stateful.</li>
+</ul>
+<h3 id="keep-secrets-out-of-tf-and-state">Keep secrets out of <code>.tf</code> and state<a class="headerlink" href="#keep-secrets-out-of-tf-and-state" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Pass secrets via environment variables or a secret manager / vault provider, not literals in <code>.tf</code>.</li>
+<li>Remember that many resources write sensitive values <strong>into state</strong> even if you injected them safely — so the state file must be encrypted and access-controlled like a secret.</li>
+<li>Mark sensitive outputs <code>sensitive = true</code>; never commit <code>*.tfstate</code> or <code>*.tfvars</code> containing secrets.</li>
+</ul>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>terraform<span class="w"> </span>validate<span class="w">          </span><span class="c1"># config is internally consistent</span>
+terraform<span class="w"> </span>plan<span class="w">              </span><span class="c1"># no unexpected changes after apply (clean plan = no drift)</span>
+terraform<span class="w"> </span>state<span class="w"> </span>list<span class="w">        </span><span class="c1"># expected resources are tracked</span>
+</code></pre></div>
+<p>Confirm:</p>
+<ul>
+<li>A post-apply <code>plan</code> is clean (empty) — meaning real state matches desired state.</li>
+<li>No <code>-/+</code> destroy/recreate happened on stateful resources unintentionally.</li>
+<li>State is stored remotely and the lock was acquired and released.</li>
+</ul>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Correct response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State lost or corrupted</td>
+<td><code>apply</code> errors; resources "missing" from Terraform</td>
+<td>Local state, no versioning, or manual edit</td>
+<td>Restore from state-store versioning; never hand-edit state.</td>
+</tr>
+<tr>
+<td>Concurrent apply</td>
+<td>State conflict / overwrite</td>
+<td>No locking backend</td>
+<td>Enable a lock table; serialize applies.</td>
+</tr>
+<tr>
+<td>Unintended destroy</td>
+<td>A resource is deleted/recreated</td>
+<td>Forced replacement from a changed immutable attribute</td>
+<td>Read <code>-/+</code> in the plan; use <code>create_before_destroy</code> or <code>prevent_destroy</code>.</td>
+</tr>
+<tr>
+<td>Drift</td>
+<td>Plan shows changes nobody made</td>
+<td>Out-of-band console changes</td>
+<td>Reconcile: import, or revert the manual change; enforce change-through-Terraform.</td>
+</tr>
+<tr>
+<td>Secret in state/repo</td>
+<td>Credential exposed</td>
+<td>Literal secret in <code>.tf</code> or committed state</td>
+<td>Rotate the secret; remove from history; encrypt state.</td>
+</tr>
+<tr>
+<td>Provider upgrade surprise</td>
+<td>Plan changes after no code change</td>
+<td>Unpinned provider version</td>
+<td>Pin versions; commit the lock file.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="destroy-and-rollback">Destroy and Rollback<a class="headerlink" href="#destroy-and-rollback" title="Permanent link">&para;</a></h2>
+<p>Terraform has no universal "undo" — rollback is forward-applying a previous known-good configuration, plus protecting against accidental destroy.</p>
+<ol>
+<li>Guard stateful resources with <code>lifecycle { prevent_destroy = true }</code> so a stray plan cannot delete them.</li>
+<li>To roll back a change, check out the previous configuration revision and <code>plan</code>/<code>apply</code> it — review the plan, because reversing a change can itself force replacements.</li>
+<li>If state was damaged, restore the prior state version from the backend's versioning before applying anything.</li>
+<li>Use <code>terraform plan -destroy</code> to preview a teardown; never run <code>terraform destroy</code> against shared environments without explicit approval and a saved plan.</li>
+</ol>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Never publish real account IDs, resource IDs, backend bucket names, regions, state files, or provider credentials.</li>
+<li>Treat the state file as secret-bearing: encrypt at rest, restrict read access, and audit it.</li>
+<li>Use least-privilege credentials for the Terraform runner; do not run prod applies with broad admin keys casually.</li>
+<li>Review module sources; pin them to trusted versions/commits, not floating refs.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Owner: the platform/infrastructure team.</li>
+<li>Re-pin and review provider/module versions on a regular cadence.</li>
+<li>Confirm state-store versioning, encryption, and locking remain in place each quarter.</li>
+<li>Re-review <code>prevent_destroy</code> coverage on stateful resources when the architecture changes.</li>
+</ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../cloud/cloud-network-migration-standard/">Cloud Network and Object Storage Migration Standard</a></li>
+<li><a href="../../../change-delivery/cicd/argocd-gitops-standard/">Argo CD GitOps Standard</a></li>
+<li><a href="https://developer.hashicorp.com/terraform/docs">Terraform documentation</a></li>
 </ul>
 
 
@@ -4163,7 +4421,7 @@ terraform<span class="w"> </span>apply
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 13:53:36 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4173,7 +4431,7 @@ terraform<span class="w"> </span>apply
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 13:53:36 UTC">June 28, 2026</span>
   </span>
 
     

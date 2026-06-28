@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Prometheus exporter monitoring standard for custom metrics collection.">
+        <meta name="description" content="将 Prometheus exporter 作为受控变更加入的标准——部署位置、最小权限指标账号、down/target-down 区分，以及必备告警覆盖。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Exporter 监控 - DevOps 专家知识库" />
-<meta property="og:description" content="Prometheus exporter monitoring standard for custom metrics collection." />
+<meta property="og:description" content="将 Prometheus exporter 作为受控变更加入的标准——部署位置、最小权限指标账号、down/target-down 区分，以及必备告警覆盖。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/observability/exporter-monitoring-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/reliable-operations/observability/exporter-monitoring-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Exporter 监控 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Prometheus exporter monitoring standard for custom metrics collection." />
+<meta property="twitter:description" content="将 Prometheus exporter 作为受控变更加入的标准——部署位置、最小权限指标账号、down/target-down 区分，以及必备告警覆盖。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/observability/exporter-monitoring-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#prometheus-exporter-monitoring-standard" class="md-skip">
+        <a href="#prometheus-exporter" class="md-skip">
           跳转至
         </a>
       
@@ -1554,10 +1554,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -1565,10 +1565,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exporter-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exporter Principles
+        适用场景
       
     </span>
   </a>
@@ -1576,10 +1576,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exporter-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exporter Checklist
+        非目标
       
     </span>
   </a>
@@ -1587,10 +1587,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scrape-configuration-pattern" class="md-nav__link">
+  <a href="#exporter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scrape Configuration Pattern
+        Exporter 原则
       
     </span>
   </a>
@@ -1598,10 +1598,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alert-coverage" class="md-nav__link">
+  <a href="#exporter_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alert Coverage
+        Exporter 覆盖检查清单
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exporter 覆盖检查清单">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-exporter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node Exporter 要点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        抓取配置模式
       
     </span>
   </a>
@@ -1609,10 +1637,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        必备告警覆盖
       
     </span>
   </a>
@@ -1620,10 +1648,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-notes" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Notes
+        校验
       
     </span>
   </a>
@@ -1631,10 +1659,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚/移除
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -1693,34 +1765,6 @@
     
   
     ELFK 日志
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
   
 
     
@@ -2187,34 +2231,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3493,34 +3509,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3858,34 +3846,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3956,10 +3916,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3967,10 +3927,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exporter-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exporter Principles
+        适用场景
       
     </span>
   </a>
@@ -3978,10 +3938,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exporter-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exporter Checklist
+        非目标
       
     </span>
   </a>
@@ -3989,10 +3949,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scrape-configuration-pattern" class="md-nav__link">
+  <a href="#exporter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scrape Configuration Pattern
+        Exporter 原则
       
     </span>
   </a>
@@ -4000,10 +3960,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alert-coverage" class="md-nav__link">
+  <a href="#exporter_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alert Coverage
+        Exporter 覆盖检查清单
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exporter 覆盖检查清单">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-exporter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node Exporter 要点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        抓取配置模式
       
     </span>
   </a>
@@ -4011,10 +3999,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        必备告警覆盖
       
     </span>
   </a>
@@ -4022,10 +4010,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-notes" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Notes
+        校验
       
     </span>
   </a>
@@ -4033,10 +4021,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚/移除
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4143,6 +4175,16 @@
       
         
         
+      
+      
+        <a href="../../../tags/#tag:prometheus" class="md-tag md-tag-icon">Prometheus</a>
+      
+    
+      
+      
+      
+        
+        
           
         
       
@@ -4157,95 +4199,202 @@
   
 
 
-<h1 id="prometheus-exporter-monitoring-standard">Prometheus Exporter Monitoring Standard<a class="headerlink" href="#prometheus-exporter-monitoring-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines how to add Prometheus exporters for services such as MySQL, Redis, MongoDB, Nginx, JVM applications, Node Exporter, and blackbox monitoring.</p>
-<h2 id="exporter-principles">Exporter Principles<a class="headerlink" href="#exporter-principles" title="Permanent link">&para;</a></h2>
+<h1 id="prometheus-exporter">Prometheus Exporter 监控标准<a class="headerlink" href="#prometheus-exporter" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何加入 Prometheus exporter（Node Exporter、数据库 exporter、Nginx、JVM、blackbox 等），使指标可信、exporter 自身不成为风险，且每个 exporter 都随附让它真正有用的告警。</p>
+<p>本标准的核心判断：</p>
+<blockquote>
+<p>"能抓到的 exporter"不等于"可信的监控"。没有告警的 exporter 只是装饰；而"exporter 宕了"与"目标宕了"的区别，就是"盲区"与"真实故障"的区别——你的告警必须能区分二者。</p>
+</blockquote>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
+<ul>
+<li>为主机、数据库、Web 服务器或应用运行时添加 Prometheus 监控。</li>
+<li>跨服务统一 exporter 的部署、打标与加固方式。</li>
+<li>需要一条最小告警基线，使新 exporter 真正可处置。</li>
+</ul>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不涵盖：</p>
+<ul>
+<li>Prometheus 服务端容量、联邦或长期存储设计。</li>
+<li>仪表盘设计（仅要求存在一个）。</li>
+<li>应用级自定义指标埋点（请用 OpenTelemetry/SDK 埋点）。</li>
+<li>告警路由与值班策略（见 Prometheus 告警标准）。</li>
+</ul>
+<h2 id="exporter">Exporter 原则<a class="headerlink" href="#exporter" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Run exporters close to the target service.</li>
-<li>Use least-privilege metrics accounts.</li>
-<li>Avoid exposing exporters publicly.</li>
-<li>Add labels that identify service, environment, and owner.</li>
-<li>Pair every exporter with dashboards and alert rules.</li>
+<li>让 exporter 靠近目标服务（同主机或 sidecar），使 exporter 健康在本地反映目标可达性。</li>
+<li>数据库/服务 exporter 使用最小权限指标账号——只读统计访问，绝不用管理账号。</li>
+<li>不公开暴露 exporter；将指标端口限制到 Prometheus。</li>
+<li>打上标识 service、env、team、owner 的标签，使告警可路由。</li>
+<li>每个 exporter 都随附仪表盘<strong>和</strong>告警规则，否则不算完成。</li>
 </ol>
-<h2 id="exporter-checklist">Exporter Checklist<a class="headerlink" href="#exporter-checklist" title="Permanent link">&para;</a></h2>
+<h2 id="exporter_1">Exporter 覆盖检查清单<a class="headerlink" href="#exporter_1" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>Exporter</th>
-<th>Key Checks</th>
+<th>需抓取的关键信号</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Node Exporter</td>
-<td>CPU, memory, disk, filesystem, network.</td>
+<td>CPU 饱和、内存压力、磁盘容量与 inode、文件系统/只读错误、网络错误、负载</td>
 </tr>
 <tr>
 <td>MySQL Exporter</td>
-<td>Connection, replication, slow queries, buffer pool.</td>
+<td>up、连接数 vs <code>max_connections</code>、复制是否运行与延迟、慢查询、buffer pool</td>
 </tr>
 <tr>
 <td>Redis Exporter</td>
-<td>Memory, clients, persistence, replication, keyspace.</td>
+<td>up、内存 vs <code>maxmemory</code>、淘汰、客户端、持久化状态、复制</td>
 </tr>
 <tr>
 <td>MongoDB Exporter</td>
-<td>Connections, locks, replication, storage.</td>
+<td>连接、锁/争用、复制延迟、存储</td>
 </tr>
 <tr>
 <td>Nginx Exporter</td>
-<td>Requests, connections, status endpoint.</td>
+<td>up、请求、活动连接、5xx 比例（经 status 端点）</td>
 </tr>
 <tr>
 <td>JVM Exporter</td>
-<td>Heap, GC, threads, class loading.</td>
+<td>堆使用、GC 暂停/频率、线程、类加载</td>
 </tr>
 <tr>
 <td>Blackbox Exporter</td>
-<td>HTTP, TCP, DNS, TLS expiry.</td>
+<td>HTTP/TCP/DNS 探测成功率，及 TLS 证书到期</td>
 </tr>
 </tbody>
 </table>
-<h2 id="scrape-configuration-pattern">Scrape Configuration Pattern<a class="headerlink" href="#scrape-configuration-pattern" title="Permanent link">&para;</a></h2>
+<h3 id="node-exporter">Node Exporter 要点<a class="headerlink" href="#node-exporter" title="Permanent link">&para;</a></h3>
+<p>Node Exporter 是规范的主机 exporter；在每台 Linux 主机运行，并将其端口限制到 Prometheus。最常抓住真实事故的信号：</p>
+<ul>
+<li>磁盘容量<strong>与 inode</strong>（inode 表满会导致写失败，而 <code>df</code> 仍显示有空间）。</li>
+<li>只读/故障的文件系统。</li>
+<li>内存压力与 OOM 指标。</li>
+<li>CPU 饱和与持续负载。</li>
+</ul>
+<h2 id="_4">抓取配置模式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>在抓取时附上标识标签，使每条 series 可路由、可归属。</p>
 <div class="highlight"><pre><span></span><code><span class="nt">scrape_configs</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-service</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">node</span>
 <span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exporter.example.internal:9100</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;exporter-host&gt;:9100</span>
 <span class="w">        </span><span class="nt">labels</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-service</span>
+<span class="w">          </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod</span>
 <span class="w">          </span><span class="nt">team</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">platform</span>
 </code></pre></div>
-<p>Do not publish real internal targets.</p>
-<h2 id="alert-coverage">Alert Coverage<a class="headerlink" href="#alert-coverage" title="Permanent link">&para;</a></h2>
-<p>Minimum alert categories:</p>
+<p>不要公开真实内部目标或主机名。规模化时优先用服务发现，而非手工维护的静态目标列表。</p>
+<h2 id="_5">必备告警覆盖<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>在以下告警（按适用）就位之前，新 exporter 不算"已监控"：</p>
 <ul>
-<li>Exporter down.</li>
-<li>Target down.</li>
-<li>Disk capacity.</li>
-<li>Memory pressure.</li>
-<li>Error rate.</li>
-<li>Replication lag.</li>
-<li>TLS expiry.</li>
-<li>JVM GC pressure.</li>
+<li><strong>Exporter down</strong> —— exporter 任务的 <code>up == 0</code>。表示你<strong>失明</strong>了，而非服务宕了。据此 page 或 warn。</li>
+<li><strong>Target down</strong> —— exporter 所观测的服务不可达/不健康。这才是真实故障信号。</li>
+<li>磁盘容量与 inode 耗尽。</li>
+<li>内存压力。</li>
+<li>错误率（5xx、连接失败）超阈值。</li>
+<li>复制延迟（数据库）。</li>
+<li>TLS 证书到期（blackbox）。</li>
+<li>JVM GC 压力/堆耗尽（JVM 应用）。</li>
 </ul>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sS<span class="w"> </span>http://exporter.example.internal:9100/metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
+<blockquote>
+<p>区分 <strong>exporter down</strong> 与 <strong>target down</strong> 是最重要的设计点。若二者合成一条告警，你将无法分辨"我们失去了可见性"与"服务正在故障"——并最终会信任一块只因 exporter 死掉而变绿的仪表盘。</p>
+</blockquote>
+<h2 id="_6">校验<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># exporter 在本地提供指标：</span>
+curl<span class="w"> </span>-sS<span class="w"> </span>http://&lt;exporter-host&gt;:9100/metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
 </code></pre></div>
-<p>In Prometheus:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">up</span><span class="p">{</span><span class="nl">job</span><span class="o">=</span><span class="p">&quot;</span><span class="s">example-service</span><span class="p">&quot;}</span>
+<p>在 Prometheus 中：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">up</span><span class="p">{</span><span class="nl">job</span><span class="o">=</span><span class="p">&quot;</span><span class="s">node</span><span class="p">&quot;}</span><span class="w">                      </span><span class="c1"># 1 = 抓取正常，0 = exporter 不可达</span>
+<span class="kr">rate</span><span class="o">(</span><span class="nv">node_filesystem_avail_bytes</span><span class="p">[</span><span class="s">5m</span><span class="p">]</span><span class="o">)</span><span class="w"> </span><span class="c1"># 信号存在且在变化</span>
 </code></pre></div>
-<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<p>确认：</p>
 <ul>
-<li>Exporters may expose service metadata.</li>
-<li>Restrict exporter ports to Prometheus.</li>
-<li>Use TLS or private networking where required.</li>
-<li>Store database metrics credentials in a secret manager.</li>
+<li>目标在 Prometheus targets 中为 <code>UP</code> 且带预期标签。</li>
+<li>该 exporter 类型的关键指标存在且不陈旧。</li>
+<li>仪表盘可渲染，告警规则无错加载（<code>promtool check rules</code>）。</li>
+<li>故意制造一次抓取失败（在预发短暂停掉 exporter）会触发"exporter down"告警。</li>
 </ul>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_7">已知失败模式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>症状</th>
+<th>可能原因</th>
+<th>正确处置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>仪表盘绿但服务已死</td>
+<td>看着正常但用户报错</td>
+<td>"exporter down"与"target down"未分离</td>
+<td>拆分告警；对 <code>up == 0</code> 单独告警。</td>
+</tr>
+<tr>
+<td>缺标签</td>
+<td>告警触发却无人认领</td>
+<td>抓取时无 service/team/owner 标签</td>
+<td>在 <code>scrape_configs</code> 加标识标签。</td>
+</tr>
+<tr>
+<td>Exporter 成为安全漏洞</td>
+<td>指标可从不可信网络访问</td>
+<td>exporter 端口公开暴露</td>
+<td>绑定私有网卡；端口限制到 Prometheus。</td>
+</tr>
+<tr>
+<td>Exporter 权限过大</td>
+<td>数据库 exporter 有写/管理权限</td>
+<td>复用了管理账号</td>
+<td>创建最小权限只读统计用户。</td>
+</tr>
+<tr>
+<td>指标陈旧</td>
+<td>数值冻结、无告警</td>
+<td>exporter 在线但未采集</td>
+<td>查 exporter 日志与目标连接；对陈旧告警。</td>
+</tr>
+<tr>
+<td>基数爆炸</td>
+<td>Prometheus 内存/CPU 飙升</td>
+<td>高基数标签（逐请求 ID）</td>
+<td>抓取时丢弃/聚合高基数标签。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">回滚/移除<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ol>
+<li>移除 exporter 即移除可见性——移除前确认没有东西依赖它的告警。</li>
+<li>同时移除抓取任务与关联告警规则；引用已消失任务的孤立告警规则是噪声。</li>
+<li>若某 exporter 造成负载或安全问题，先限制其端口或停掉，再干净移除。</li>
+</ol>
+<h2 id="_9">安全注记<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
+<li>exporter 暴露服务元数据；把指标端点当作内部的，并限制到 Prometheus。</li>
+<li>数据库/服务 exporter 使用最小权限只读凭据；存于密钥管理系统。</li>
+<li>当指标敏感时使用 TLS 或私有网络。</li>
+<li>避免可能把标识（用户 ID、请求 ID）泄漏进指标的高基数标签。</li>
+</ul>
+<h2 id="_10">评审周期<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>负责人：平台/可观测性团队。</li>
+<li>每引入一种新 exporter 类型时复核告警基线。</li>
+<li>在 Prometheus 或 exporter 升级后重新校验 exporter-down 与 target-down 的拆分。</li>
+<li>添加或轮换数据库 exporter 时复核指标账号权限。</li>
+</ul>
+<h2 id="_11">相关文档<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../prometheus-alerting-standard/">Prometheus 告警标准</a></li>
+<li><a href="../opentelemetry-auto-instrumentation-standard/">OpenTelemetry 自动埋点标准</a></li>
+<li><a href="../../../standards-manual/databases/redis-operations-standard/">Redis 运维标准</a></li>
+<li><a href="../../../standards-manual/databases/mysql-operations-standard/">MySQL 运维标准</a></li>
+<li><a href="https://prometheus.io/docs/instrumenting/exporters/">Prometheus exporters 官方文档</a></li>
 </ul>
 
 
@@ -4269,7 +4418,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4279,7 +4428,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 13:53:36 UTC">2026年6月28日</span>
   </span>
 
     

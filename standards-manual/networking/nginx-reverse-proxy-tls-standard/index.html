@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Nginx reverse proxy and TLS standard for production HTTPS termination.">
+        <meta name="description" content="生产 Nginx/OpenResty 反向代理与 TLS 标准——配置分离、校验后重载、证书生命周期与回滚。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Nginx 反向代理与 TLS - DevOps 专家知识库" />
-<meta property="og:description" content="Nginx reverse proxy and TLS standard for production HTTPS termination." />
+<meta property="og:description" content="生产 Nginx/OpenResty 反向代理与 TLS 标准——配置分离、校验后重载、证书生命周期与回滚。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/networking/nginx-reverse-proxy-tls-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/networking/nginx-reverse-proxy-tls-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Nginx 反向代理与 TLS - DevOps 专家知识库" />
-<meta property="twitter:description" content="Nginx reverse proxy and TLS standard for production HTTPS termination." />
+<meta property="twitter:description" content="生产 Nginx/OpenResty 反向代理与 TLS 标准——配置分离、校验后重载、证书生命周期与回滚。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/networking/nginx-reverse-proxy-tls-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nginx-reverse-proxy-and-tls-standard" class="md-skip">
+        <a href="#nginx-tls" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3021,10 +2965,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3032,10 +2976,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Principles
+        适用场景
       
     </span>
   </a>
@@ -3043,10 +2987,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#basic-reverse-proxy-template" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic Reverse Proxy Template
+        非目标
       
     </span>
   </a>
@@ -3054,10 +2998,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tls-template" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        TLS Template
+        核心原则
       
     </span>
   </a>
@@ -3065,10 +3009,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#certificate-expiry-check" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Certificate Expiry Check
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        反向代理与显式上游
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-listener" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS listener
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        转发 header 必须一致
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变更流程
       
     </span>
   </a>
@@ -3076,10 +3070,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reload-procedure" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reload Procedure
+        证书生命周期
       
     </span>
   </a>
@@ -3087,10 +3081,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-failure-modes" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Failure Modes
+        校验
       
     </span>
   </a>
@@ -3098,10 +3092,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-notes" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Notes
+        已知失败模式
       
     </span>
   </a>
@@ -3109,10 +3103,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3513,34 +3540,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3884,34 +3883,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3982,10 +3953,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3993,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Principles
+        适用场景
       
     </span>
   </a>
@@ -4004,10 +3975,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#basic-reverse-proxy-template" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic Reverse Proxy Template
+        非目标
       
     </span>
   </a>
@@ -4015,10 +3986,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tls-template" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        TLS Template
+        核心原则
       
     </span>
   </a>
@@ -4026,10 +3997,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#certificate-expiry-check" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Certificate Expiry Check
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        反向代理与显式上游
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-listener" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS listener
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        转发 header 必须一致
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变更流程
       
     </span>
   </a>
@@ -4037,10 +4058,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reload-procedure" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reload Procedure
+        证书生命周期
       
     </span>
   </a>
@@ -4048,10 +4069,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-failure-modes" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Failure Modes
+        校验
       
     </span>
   </a>
@@ -4059,10 +4080,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-notes" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Notes
+        已知失败模式
       
     </span>
   </a>
@@ -4070,10 +4091,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4206,124 +4260,196 @@
   
 
 
-<h1 id="nginx-reverse-proxy-and-tls-standard">Nginx Reverse Proxy and TLS Standard<a class="headerlink" href="#nginx-reverse-proxy-and-tls-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines safe public patterns for deploying Nginx or OpenResty as a reverse proxy with TLS.</p>
-<h2 id="core-principles">Core Principles<a class="headerlink" href="#core-principles" title="Permanent link">&para;</a></h2>
+<h1 id="nginx-tls">Nginx 反向代理与 TLS 标准<a class="headerlink" href="#nginx-tls" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义将 Nginx 或 OpenResty 用作反向代理、在应用上游之前终止 TLS 的安全模式。</p>
+<p>本标准的核心判断：</p>
+<blockquote>
+<p>反向代理是请求路径上的实时生产依赖。每次配置变更都必须在应用前校验、应用后可回滚——因为一次错误的 reload 会让它后面的一切下线，而不仅仅是一个服务。</p>
+</blockquote>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
+<ul>
+<li>为一个或多个上游服务在 Nginx/OpenResty 上终止 HTTPS。</li>
+<li>需要一套跨服务一致、可评审的代理配置模式。</li>
+<li>管理 TLS 证书及其续期。</li>
+</ul>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不涵盖：</p>
+<ul>
+<li>Kubernetes 中的 Ingress 控制器（使用 Kubernetes Ingress 标准；TLS 与 header 原则仍适用）。</li>
+<li>WAF 规则设计或 DDoS 缓解。</li>
+<li>以 L4/TCP 负载均衡为主——连接级均衡见 HAProxy 标准。</li>
+<li>CDN 或边缘缓存策略。</li>
+</ul>
+<h2 id="_4">核心原则<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Separate public listener configuration from upstream service configuration.</li>
-<li>Use TLS certificates from a controlled lifecycle process.</li>
-<li>Do not publish real certificates, private keys, domains, or upstream addresses.</li>
-<li>Use health checks and reload validation before applying changes.</li>
-<li>Keep access logs useful while avoiding sensitive request data where possible.</li>
+<li>将公网 listener 配置与上游/服务配置分离，使各自可独立评审与变更。</li>
+<li>TLS 证书来自受控生命周期（尽量自动签发/续期）。</li>
+<li>切勿提交真实证书、私钥、域名或上游地址。</li>
+<li>reload 前必先 <code>nginx -t</code>；切勿把未校验的配置应用到运行中的代理。</li>
+<li>保持访问日志有用，同时避免敏感请求数据（不记录认证 header，不记录含密钥的完整 query string）。</li>
 </ol>
-<h2 id="basic-reverse-proxy-template">Basic Reverse Proxy Template<a class="headerlink" href="#basic-reverse-proxy-template" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<h2 id="_5">推荐标准<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">反向代理与显式上游<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>将上游单独定义并设置健康相关上限，使单个坏后端不会黑洞掉流量。</p>
+<div class="highlight"><pre><span></span><code><span class="k">upstream</span><span class="w"> </span><span class="s">example_upstream</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;backend-a-host&gt;:8080</span><span class="w"> </span><span class="s">max_fails=3</span><span class="w"> </span><span class="s">fail_timeout=30s</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;backend-b-host&gt;:8080</span><span class="w"> </span><span class="s">max_fails=3</span><span class="w"> </span><span class="s">fail_timeout=30s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
 <span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">service.example.com</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://example-upstream</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_connect_timeout</span><span class="w"> </span><span class="s">5s</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_send_timeout</span><span class="w"> </span><span class="s">60s</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_read_timeout</span><span class="w"> </span><span class="s">60s</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1"># 所有明文跳转到 HTTPS；不要在 :80 上提供应用。</span>
+<span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">301</span><span class="w"> </span><span class="s">https://</span><span class="nv">$host$request_uri</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Upstream example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">upstream</span><span class="w"> </span><span class="s">example-upstream</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="n">10.0.0.10</span><span class="p">:</span><span class="mi">8080</span><span class="w"> </span><span class="s">max_fails=3</span><span class="w"> </span><span class="s">fail_timeout=30s</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="n">10.0.0.11</span><span class="p">:</span><span class="mi">8080</span><span class="w"> </span><span class="s">max_fails=3</span><span class="w"> </span><span class="s">fail_timeout=30s</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="tls-template">TLS Template<a class="headerlink" href="#tls-template" title="Permanent link">&para;</a></h2>
+<h3 id="tls-listener">TLS listener<a class="headerlink" href="#tls-listener" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="w"> </span><span class="s">http2</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">http2</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
 <span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">service.example.com</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w"> </span><span class="s">/etc/nginx/certs/service.example.com.crt</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w">     </span><span class="s">/etc/nginx/certs/service.example.com.crt</span><span class="p">;</span>
 <span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w"> </span><span class="s">/etc/nginx/certs/service.example.com.key</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">ssl_protocols</span><span class="w"> </span><span class="s">TLSv1.2</span><span class="w"> </span><span class="s">TLSv1.3</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_protocols</span><span class="w">       </span><span class="s">TLSv1.2</span><span class="w"> </span><span class="s">TLSv1.3</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_ciphers</span><span class="w">         </span><span class="s">HIGH:!aNULL:!MD5</span><span class="p">;</span>
 <span class="w">    </span><span class="kn">ssl_prefer_server_ciphers</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_session_cache</span><span class="w">   </span><span class="s">shared:SSL:10m</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">client_max_body_size</span><span class="w"> </span><span class="mi">16m</span><span class="p">;</span><span class="w">   </span><span class="c1"># 按最大的合法上传体积设置</span>
 
 <span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://example-upstream</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="s">https</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://example_upstream</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_http_version</span><span class="w"> </span><span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w">              </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w">         </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w">   </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_connect_timeout</span><span class="w"> </span><span class="s">5s</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_send_timeout</span><span class="w">    </span><span class="s">60s</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_read_timeout</span><span class="w">    </span><span class="s">60s</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The key path is illustrative. Never commit actual private key files.</p>
-<h2 id="certificate-expiry-check">Certificate Expiry Check<a class="headerlink" href="#certificate-expiry-check" title="Permanent link">&para;</a></h2>
+<p>证书与私钥路径仅为示例。私钥文件必须使用严格权限，且切勿提交。</p>
+<h3 id="header">转发 header 必须一致<a class="headerlink" href="#header" title="Permanent link">&para;</a></h3>
+<p><code>X-Forwarded-Proto</code> 是重定向死循环最常见的来源：如果应用根据代理设错的 header 构造 HTTPS 跳转，浏览器会无限弹跳。在真正终止 TLS 的 listener 上把它设为 <code>$scheme</code>，并确保应用信任该代理。</p>
+<h2 id="_7">变更流程<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>把每次变更都当作请求路径上的受控变更。</p>
+<ol>
+<li>编辑相关配置片段（listener 或 upstream），而非一个大文件。</li>
+<li>校验语法与引用文件：</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nginx<span class="w"> </span>-t
+</code></pre></div>
+<ol>
+<li>reload（优雅；进行中的请求在旧 worker 上完成）：</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>nginx
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>nginx<span class="w"> </span>--no-pager
+</code></pre></div>
+<ol>
+<li>在认为变更完成前先校验行为（见下）。</li>
+<li>若校验失败，立即回滚——不要在线上反复试。</li>
+</ol>
+<h2 id="_8">证书生命周期<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>尽量自动签发与续期；手动续期是一场迟早会因某人忘记而发生的故障。</p>
+<p>检查在线端点的有效期：</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>s_client<span class="w"> </span>-servername<span class="w"> </span>service.example.com<span class="w"> </span>-connect<span class="w"> </span>service.example.com:443<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-dates
 </code></pre></div>
-<p>For local files:</p>
+<p>检查本地证书文件：</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-in<span class="w"> </span>/etc/nginx/certs/service.example.com.crt<span class="w"> </span>-noout<span class="w"> </span>-dates
 </code></pre></div>
-<h2 id="reload-procedure">Reload Procedure<a class="headerlink" href="#reload-procedure" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nginx<span class="w"> </span>-t
-sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>nginx
-sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>nginx<span class="w"> </span>--no-pager
-</code></pre></div>
-<p>Validation:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-I<span class="w"> </span>https://service.example.com
+<ul>
+<li>上生产前在预发测试续期。</li>
+<li>在到期前足够提前地对证书到期告警（见 Prometheus 告警/blackbox TLS 到期检查）。</li>
+<li>续期后 reload Nginx 以加载新证书。</li>
+</ul>
+<h2 id="_9">校验<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>nginx<span class="w"> </span>-t<span class="w">                                  </span><span class="c1"># 配置有效</span>
+curl<span class="w"> </span>-I<span class="w"> </span>https://service.example.com<span class="w">       </span><span class="c1"># 状态行 + header</span>
 curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.com/health
 </code></pre></div>
-<h2 id="common-failure-modes">Common Failure Modes<a class="headerlink" href="#common-failure-modes" title="Permanent link">&para;</a></h2>
+<p>确认：</p>
+<ul>
+<li>TLS 握手以预期协议成功，证书未过期。</li>
+<li>返回预期状态码，且 <code>X-Forwarded-Proto</code> 正确到达应用（无重定向死循环）。</li>
+<li>上游可从代理主机访问；两个后端都在服务。</li>
+<li>reload 后错误与访问日志没有 5xx 激增。</li>
+</ul>
+<h2 id="_10">已知失败模式<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Symptom</th>
-<th>Likely Cause</th>
-<th>Check</th>
+<th>症状</th>
+<th>可能原因</th>
+<th>检查/处置</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>502 Bad Gateway</td>
-<td>Upstream unavailable or wrong port</td>
-<td><code>curl</code> upstream from proxy host</td>
+<td>上游宕机或端口错误</td>
+<td>从代理主机 <code>curl</code> 上游；修正 <code>proxy_pass</code>/upstream。</td>
 </tr>
 <tr>
-<td>TLS warning</td>
-<td>Expired or wrong certificate</td>
-<td><code>openssl x509 -noout -dates</code></td>
+<td>504 Gateway Timeout</td>
+<td>上游慢；代理超时过低</td>
+<td>仅当上游确实慢时调高 <code>proxy_read_timeout</code>；否则修上游。</td>
 </tr>
 <tr>
-<td>Redirect loop</td>
-<td>Incorrect forwarded protocol</td>
-<td>Check <code>X-Forwarded-Proto</code> handling</td>
+<td>TLS 告警/握手失败</td>
+<td>证书过期或错误、缺链</td>
+<td><code>openssl x509 -noout -dates</code>；确保提供完整证书链。</td>
 </tr>
 <tr>
-<td>Large upload fails</td>
-<td>Body size too small</td>
-<td><code>client_max_body_size</code></td>
+<td>无限重定向</td>
+<td>应用据错误的 <code>X-Forwarded-Proto</code> 构造 HTTPS 跳转</td>
+<td>设 <code>X-Forwarded-Proto $scheme</code>；确保应用信任代理。</td>
 </tr>
 <tr>
-<td>Long request times out</td>
-<td>Proxy timeout too low</td>
-<td><code>proxy_read_timeout</code></td>
+<td>大上传被拒（413）</td>
+<td><code>client_max_body_size</code> 过小</td>
+<td>调到最大的合法上传体积。</td>
+</tr>
+<tr>
+<td>reload "成功"却仍用旧配置</td>
+<td>reload 被跳过或静默失败</td>
+<td>先 <code>nginx -t</code> 再 <code>systemctl reload</code>；查 <code>systemctl status</code>。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<h2 id="_11">回滚<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ol>
+<li>保留上一版配置（版本控制或带时间戳的副本），以便一步恢复。</li>
+<li>恢复旧配置片段，执行 <code>nginx -t</code>，再 <code>systemctl reload nginx</code>。</li>
+<li>若一次 reload 导致 Nginx 持续报错且配置无法校验，先恢复上一已知良好文件并 reload；不要在调试期间把代理留在损坏状态。</li>
+<li>证书回滚：恢复上一对有效证书/私钥并 reload。</li>
+</ol>
+<h2 id="_12">安全注记<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Store private keys with restrictive permissions.</li>
-<li>Use automation for renewal where possible.</li>
-<li>Test renewal in staging before production.</li>
-<li>Avoid logging authorization headers.</li>
-<li>Do not expose admin routes through public listeners unless explicitly required and protected.</li>
+<li>私钥使用严格权限（仅属主可读）；切勿提交。</li>
+<li>不记录 <code>Authorization</code> header、cookie，或可能携带 token 的完整 query string。</li>
+<li>除非明确需要并做了访问控制，否则不通过公网 listener 暴露管理或内部路由。</li>
+<li>禁用旧 TLS 版本（保留 TLS 1.2+）；按计划复核加密套件。</li>
+<li>持续给代理与 OpenResty/Lua 模块打补丁；代理是面向公网的。</li>
 </ul>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_13">评审周期<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
+<li>负责人：平台/网络团队。</li>
+<li>随推荐变化定期复核加密套件与协议设置。</li>
+<li>每季度确认证书续期自动化与到期告警仍有效。</li>
+<li>每当上游应用变更其跳转逻辑时，重新校验转发 header 处理。</li>
+</ul>
+<h2 id="_14">相关文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus 告警标准</a></li>
+<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter 监控标准</a></li>
+<li><a href="https://ssl-config.mozilla.org/">Mozilla SSL 配置生成器</a></li>
 </ul>
 
 
@@ -4347,7 +4473,7 @@ curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.c
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4357,7 +4483,7 @@ curl<span class="w"> </span>-sS<span class="w"> </span>https://service.example.c
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 13:53:36 UTC">2026年6月28日</span>
   </span>
 
     

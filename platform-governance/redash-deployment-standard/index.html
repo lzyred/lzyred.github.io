@@ -6,14 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Redash BI deployment standard for production data visualization.">
+        <meta name="description" content="Redash 部署标准，用于内部 BI 查询工具，覆盖数据源凭据、查询权限、仪表盘共享、备份和审计控制。">
       
       
       
         <link rel="canonical" href="https://blog.l2do.com/platform-governance/redash-deployment-standard/">
       
       
-        <link rel="prev" href="../publication-safety-checklist/">
+        <link rel="prev" href="../jumpserver-bastion-standard/">
       
       
         <link rel="next" href="../../cases-reviews/">
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Redash 部署 - DevOps 专家知识库" />
-<meta property="og:description" content="Redash BI deployment standard for production data visualization." />
+<meta property="og:description" content="Redash 部署标准，用于内部 BI 查询工具，覆盖数据源凭据、查询权限、仪表盘共享、备份和审计控制。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/platform-governance/redash-deployment-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/platform-governance/redash-deployment-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Redash 部署 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Redash BI deployment standard for production data visualization." />
+<meta property="twitter:description" content="Redash 部署标准，用于内部 BI 查询工具，覆盖数据源凭据、查询权限、仪表盘共享、备份和审计控制。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/platform-governance/redash-deployment-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#redash-deployment-standard" class="md-skip">
+        <a href="#redash" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2061,34 +2033,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -2152,10 +2096,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -2163,10 +2107,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#controls" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Controls
+        适用场景
       
     </span>
   </a>
@@ -2174,10 +2118,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-notes" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Notes
+        非目标
       
     </span>
   </a>
@@ -2185,10 +2129,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redash_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        将 Redash 与生产写路径分离
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        治理数据源凭据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制查询和仪表盘访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3441,34 +3490,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3806,34 +3827,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3904,10 +3897,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3915,10 +3908,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#controls" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Controls
+        适用场景
       
     </span>
   </a>
@@ -3926,10 +3919,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-notes" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Notes
+        非目标
       
     </span>
   </a>
@@ -3937,10 +3930,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redash_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        将 Redash 与生产写路径分离
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        治理数据源凭据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制查询和仪表盘访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4021,7 +4119,7 @@
         
       
       
-        <a href="../../tags/#tag:observability" class="md-tag md-tag-icon md-tag--observability">Observability</a>
+        <a href="../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
       
     
       
@@ -4033,7 +4131,7 @@
         
       
       
-        <a href="../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
+        <a href="../../tags/#tag:security" class="md-tag md-tag-icon md-tag--security">Security</a>
       
     
   </nav>
@@ -4043,22 +4141,120 @@
   
 
 
-<h1 id="redash-deployment-standard">Redash Deployment Standard<a class="headerlink" href="#redash-deployment-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes safe deployment and operation of Redash-style BI tools.</p>
-<h2 id="controls">Controls<a class="headerlink" href="#controls" title="Permanent link">&para;</a></h2>
+<h1 id="redash">Redash 部署标准<a class="headerlink" href="#redash" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何部署和运营 Redash 或类似内部 BI 查询工具。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>BI 工具是数据访问面，不只是仪表盘应用。</p>
+</blockquote>
+<p>Redash 能让运营数据更容易被查看，也可能暴露生产数据库、凭据、查询结果和业务敏感仪表盘。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>适用于：</p>
 <ul>
-<li>Protect admin access.</li>
-<li>Store data source credentials securely.</li>
-<li>Restrict query permissions.</li>
-<li>Back up metadata database.</li>
-<li>Review public dashboard sharing.</li>
+<li>内部团队需要基于 SQL 的仪表盘。</li>
+<li>数据源是只读或分析用途。</li>
+<li>查询访问能按用户组和数据源治理。</li>
+<li>仪表盘共享需要评审。</li>
 </ul>
-<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
-<p>BI tools can expose production data through queries and dashboards. Do not publish data source credentials, query results, or customer data.</p>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<p>不要让 Redash 以宽泛写入或管理员权限直连生产数据库。</p>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不定义数据仓库架构或分析建模，只覆盖运营部署控制。</p>
+<h2 id="_4">推荐标准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="redash_1">将 Redash 与生产写路径分离<a class="headerlink" href="#redash_1" title="Permanent link">&para;</a></h3>
+<p>尽可能使用只读账号、只读副本、数仓或受控视图。Redash 不应成为修改生产数据的路径。</p>
+<h3 id="_5">治理数据源凭据<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>每个数据源记录：</p>
 <ul>
-<li><a href="../../standards-manual/databases/mysql-operations-standard/">MySQL Operations Standard</a></li>
+<li>Owner。</li>
+<li>用途。</li>
+<li>凭据保存位置。</li>
+<li>权限范围。</li>
+<li>查询超时。</li>
+<li>网络访问路径。</li>
+<li>评审日期。</li>
+</ul>
+<p>避免使用无法轮转或无法归属的共享凭据。</p>
+<h3 id="_6">控制查询和仪表盘访问<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>定义：</p>
+<ul>
+<li>谁可以创建数据源。</li>
+<li>谁可以写查询。</li>
+<li>谁可以发布仪表盘。</li>
+<li>是否禁用 public link。</li>
+<li>敏感仪表盘如何评审。</li>
+</ul>
+<h2 id="_7">验证<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>通过条件：</p>
+<ul>
+<li>Redash web service 和 worker 健康。</li>
+<li>元数据数据库已备份。</li>
+<li>数据源凭据尽可能只读。</li>
+<li>测试查询在超时内成功。</li>
+<li>Public sharing 已禁用或受治理。</li>
+<li>Admin 用户已评审。</li>
+</ul>
+<h2 id="_8">失败模式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>生产凭据过宽</td>
+<td>BI 被攻陷会暴露或修改生产数据。</td>
+<td>使用只读范围账号。</td>
+</tr>
+<tr>
+<td>仪表盘公开分享</td>
+<td>敏感数据泄漏。</td>
+<td>禁用或评审 public link。</td>
+</tr>
+<tr>
+<td>长查询</td>
+<td>影响数据库性能。</td>
+<td>设置查询超时并使用副本。</td>
+</tr>
+<tr>
+<td>无元数据备份</td>
+<td>仪表盘和查询丢失。</td>
+<td>备份元数据数据库。</td>
+</tr>
+<tr>
+<td>共享 admin</td>
+<td>无法问责。</td>
+<td>使用实名用户和 MFA。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">回滚<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>回滚可能包括：</p>
+<ul>
+<li>禁用数据源。</li>
+<li>撤销凭据。</li>
+<li>移除 public sharing。</li>
+<li>恢复元数据数据库。</li>
+<li>将用户切回上一 BI 工具。</li>
+</ul>
+<p>如果怀疑凭据泄漏，恢复访问前先轮转。</p>
+<h2 id="_10">安全说明<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>不公开查询结果或客户数据。</li>
+<li>保护数据源凭据。</li>
+<li>使用最小权限数据库账号。</li>
+<li>审计 admin 和数据源变更。</li>
+<li>没有额外控制时，不要将 Redash 暴露到公网。</li>
+</ul>
+<h2 id="_11">评审周期<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>新数据集接入后、访问变化后、安全事故后，评审数据源、admin 访问、公开分享和备份。</p>
+<h2 id="_12">相关文档<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../standards-manual/databases/mysql-operations-standard/">MySQL 运维标准</a></li>
+<li><a href="../../standards-manual/templates/standard-document-template/">标准文档模板</a></li>
 </ul>
 
 
@@ -4082,7 +4278,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4092,7 +4288,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4148,7 +4344,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../publication-safety-checklist/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 发布安全检查清单">
+          <a href="../jumpserver-bastion-standard/" class="md-footer__link md-footer__link--prev" aria-label="上一页: JumpServer 堡垒机">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4158,7 +4354,7 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                发布安全检查清单
+                JumpServer 堡垒机
               </div>
             </div>
           </a>

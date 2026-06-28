@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Kafka and ZooKeeper operations standard for production message queue management.">
+        <meta name="description" content="Kafka（含/不含 ZooKeeper）运维标准——副本与 min.insync.replicas 持久化、分区/延迟监控、安全迁移与回滚。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Kafka 与 ZooKeeper - DevOps 专家知识库" />
-<meta property="og:description" content="Kafka and ZooKeeper operations standard for production message queue management." />
+<meta property="og:description" content="Kafka（含/不含 ZooKeeper）运维标准——副本与 min.insync.replicas 持久化、分区/延迟监控、安全迁移与回滚。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/middleware/kafka-zookeeper-operations-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/middleware/kafka-zookeeper-operations-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Kafka 与 ZooKeeper - DevOps 专家知识库" />
-<meta property="twitter:description" content="Kafka and ZooKeeper operations standard for production message queue management." />
+<meta property="twitter:description" content="Kafka（含/不含 ZooKeeper）运维标准——副本与 min.insync.replicas 持久化、分区/延迟监控、安全迁移与回滚。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/middleware/kafka-zookeeper-operations-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kafka-and-zookeeper-operations-standard" class="md-skip">
+        <a href="#kafka-zookeeper" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3252,10 +3196,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3263,10 +3207,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        适用场景
       
     </span>
   </a>
@@ -3274,10 +3218,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#planning-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Planning Checklist
+        非目标
       
     </span>
   </a>
@@ -3285,10 +3229,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-principles" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deployment Principles
+        规划检查清单
       
     </span>
   </a>
@@ -3296,10 +3240,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#migration-flow" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Migration Flow
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        持久化是三个设置，而非一个
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        部署
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        真正重要的监控
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迁移 / 升级
       
     </span>
   </a>
@@ -3307,10 +3301,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-commands" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Commands
+        校验
       
     </span>
   </a>
@@ -3318,10 +3312,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
+        已知失败模式
       
     </span>
   </a>
@@ -3329,10 +3323,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3482,34 +3509,6 @@
     
   
     服务器基线
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
   
 
     
@@ -3873,34 +3872,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3971,10 +3942,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3982,10 +3953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        适用场景
       
     </span>
   </a>
@@ -3993,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#planning-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Planning Checklist
+        非目标
       
     </span>
   </a>
@@ -4004,10 +3975,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-principles" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deployment Principles
+        规划检查清单
       
     </span>
   </a>
@@ -4015,10 +3986,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#migration-flow" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Migration Flow
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        持久化是三个设置，而非一个
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        部署
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        真正重要的监控
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迁移 / 升级
       
     </span>
   </a>
@@ -4026,10 +4047,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-commands" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Commands
+        校验
       
     </span>
   </a>
@@ -4037,10 +4058,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
+        已知失败模式
       
     </span>
   </a>
@@ -4048,10 +4069,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4146,6 +4200,16 @@
       
         
         
+      
+      
+        <a href="../../../tags/#tag:kafka" class="md-tag md-tag-icon">Kafka</a>
+      
+    
+      
+      
+      
+        
+        
           
         
       
@@ -4172,76 +4236,186 @@
   
 
 
-<h1 id="kafka-and-zookeeper-operations-standard">Kafka and ZooKeeper Operations Standard<a class="headerlink" href="#kafka-and-zookeeper-operations-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes public-safe deployment, migration, and validation practices for Kafka and ZooKeeper.</p>
-<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
-<p>Use this for legacy ZooKeeper-backed Kafka clusters and migration planning. For new systems, evaluate modern Kafka modes and managed streaming services.</p>
-<h2 id="planning-checklist">Planning Checklist<a class="headerlink" href="#planning-checklist" title="Permanent link">&para;</a></h2>
+<h1 id="kafka-zookeeper">Kafka 与 ZooKeeper 运维标准<a class="headerlink" href="#kafka-zookeeper" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何在生产环境安全运行 Kafka——包括现场仍常见的 ZooKeeper 后端集群——以及如何在不丢消息、不让消费者停滞的前提下迁移或升级。</p>
+<p>本标准的核心判断：</p>
+<blockquote>
+<p>Kafka 的持久化不是"副本因子 3"——而是副本因子、<code>min.insync.replicas</code> 与生产者 <code>acks</code> 三者的组合。这三者一起配错，无论你配了多少副本，一次单 broker 故障仍可能丢失一条已确认的消息。</p>
+</blockquote>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
+<ul>
+<li>运维自管 Kafka 集群（ZooKeeper 后端或 KRaft）。</li>
+<li>需要一套在事故复盘中站得住脚的持久化、监控与迁移实践。</li>
+<li>计划增加 broker、版本升级或集群迁移。</li>
+</ul>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不涵盖：</p>
+<ul>
+<li>流处理应用设计（Kafka Streams、ksqlDB、connector）。</li>
+<li>托管流服务内部机制——使用厂商的持久化/HA 契约；生产者/消费者与持久化判断仍适用。</li>
+<li>超出"作为受版本约束的计划变更"之外的完整 ZooKeeper→KRaft 迁移流程。</li>
+</ul>
+<h2 id="_4">规划检查清单<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Area</th>
-<th>Questions</th>
+<th>领域</th>
+<th>问题</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Brokers</td>
-<td>How many brokers and what storage class?</td>
+<td>Broker</td>
+<td>多少 broker、什么存储类、跨多少故障域？</td>
 </tr>
 <tr>
-<td>ZooKeeper</td>
-<td>Is ZooKeeper still required by the Kafka version?</td>
+<td>元数据</td>
+<td>ZooKeeper 还是 KRaft？该 Kafka 版本是否仍需 ZooKeeper？</td>
 </tr>
 <tr>
-<td>Topics</td>
-<td>What partitions, replication factors, and retention policies are required?</td>
+<td>Topic</td>
+<td>每个 topic 的分区数、副本因子、留存与清理策略？</td>
 </tr>
 <tr>
-<td>Clients</td>
-<td>Can producers and consumers tolerate rolling restarts?</td>
+<td>持久化</td>
+<td><code>acks</code>、<code>min.insync.replicas</code> 与副本因子——是否一致？</td>
 </tr>
 <tr>
-<td>Security</td>
-<td>Are authentication, authorization, and TLS required?</td>
+<td>客户端</td>
+<td>生产者/消费者能否容忍滚动重启与 rebalance？</td>
 </tr>
 <tr>
-<td>Observability</td>
-<td>Are broker, topic, consumer lag, and JVM metrics collected?</td>
+<td>安全</td>
+<td>是否需要认证（SASL）、授权（ACL）与 TLS？</td>
+</tr>
+<tr>
+<td>可观测性</td>
+<td>是否采集了欠副本分区、离线分区、消费延迟、JVM/GC？</td>
 </tr>
 </tbody>
 </table>
-<h2 id="deployment-principles">Deployment Principles<a class="headerlink" href="#deployment-principles" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Keep broker IDs stable.</li>
-<li>Store data on dedicated persistent volumes.</li>
-<li>Use replication factor greater than one for critical topics.</li>
-<li>Monitor under-replicated partitions and consumer lag.</li>
-<li>Test producer and consumer behavior before production cutover.</li>
-</ol>
-<h2 id="migration-flow">Migration Flow<a class="headerlink" href="#migration-flow" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Freeze topic topology changes.</li>
-<li>Capture topic list, partition count, replication factor, and consumer groups.</li>
-<li>Deploy target cluster.</li>
-<li>Configure secure connectivity between source and target.</li>
-<li>Mirror or copy data using an approved migration tool.</li>
-<li>Validate topic offsets and consumer lag.</li>
-<li>Cut over producers.</li>
-<li>Cut over consumers.</li>
-<li>Keep source cluster read-only until rollback window closes.</li>
-</ol>
-<h2 id="validation-commands">Validation Commands<a class="headerlink" href="#validation-commands" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>broker.example.com:9092<span class="w"> </span>--list
-kafka-consumer-groups.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>broker.example.com:9092<span class="w"> </span>--all-groups<span class="w"> </span>--describe
-kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>broker.example.com:9092<span class="w"> </span>--describe<span class="w"> </span>--topic<span class="w"> </span>example-topic
-</code></pre></div>
-<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
-<p>Rollback depends on whether producers have written to the target. Define the cutoff point before migration. If bidirectional writes are not supported, rollback requires stopping target writes and restoring producer routing to the source.</p>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_5">推荐标准<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">持久化是三个设置，而非一个<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>对一个不能丢失已确认写入的 topic：</p>
 <ul>
-<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter Monitoring Standard</a></li>
+<li><strong>副本因子 ≥ 3</strong>——承受一个 broker 丢失。</li>
+<li><strong><code>min.insync.replicas = 2</code></strong>——只有至少 2 个副本拥有该写入时才确认。</li>
+<li><strong>生产者 <code>acks=all</code></strong>——在确认前等待同步副本。</li>
+</ul>
+<p>副本因子 3 配 <code>acks=1</code>，若 leader 在副本追平前宕机仍会丢数据。三个设置必须一起选。代价是延迟，以及 RF=3/<code>min.insync=2</code> 的 topic 在同步副本掉到 2 以下时会转为只读——这是一项刻意的可用性 vs 持久性权衡。</p>
+<h3 id="_7">部署<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ol>
+<li>保持 broker ID 稳定；broker 是带身份的。</li>
+<li>把日志段放在专用持久卷上，按留存 × 吞吐规划容量。</li>
+<li>把 broker（及 ZooKeeper/KRaft 法定成员）分散到故障域；法定成员用奇数。</li>
+<li>按 topic 刻意设置留存（大小和/或时间）；无界留存会撑满磁盘并拖垮集群。</li>
+</ol>
+<h3 id="_8">真正重要的监控<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>欠副本分区</strong> &gt; 0 与<strong>离线分区</strong> &gt; 0 是数据丢失风险的先行指标——对其告警。</li>
+<li>每个组的<strong>消费延迟</strong>——消费者落后的信号。</li>
+<li>broker 磁盘使用 vs 留存；JVM 堆与 GC。</li>
+</ul>
+<h2 id="_9">迁移 / 升级<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>当作有明确切换点与回滚负责人的受控变更。</p>
+<ol>
+<li>窗口期冻结 topic 拓扑变更。</li>
+<li>捕获 topic 列表、分区数、副本因子、配置与消费者组。</li>
+<li>搭建/升级目标；升级时做<strong>滚动</strong> broker 重启（一次一个，等欠副本分区回到 0 再下一个）。</li>
+<li>集群迁移用经批准的工具（如 MirrorMaker 2）镜像数据，并配置安全连接。</li>
+<li>在目标上校验 topic offset 与消费延迟。</li>
+<li>先切<strong>生产者</strong>，再切<strong>消费者</strong>。</li>
+<li>在回滚窗口关闭前保持源集群只读。</li>
+</ol>
+<h2 id="_10">校验<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>&lt;broker&gt;:9092<span class="w"> </span>--describe<span class="w"> </span>--under-replicated-partitions
+kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>&lt;broker&gt;:9092<span class="w"> </span>--describe<span class="w"> </span>--topic<span class="w"> </span>example-topic
+kafka-consumer-groups.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span>&lt;broker&gt;:9092<span class="w"> </span>--all-groups<span class="w"> </span>--describe
+</code></pre></div>
+<p>确认：</p>
+<ul>
+<li>欠副本分区为 0、离线分区为 0。</li>
+<li>每个关键 topic 都有预期的副本因子与 <code>min.insync.replicas</code>。</li>
+<li>消费延迟有界且在收敛，而非增长。</li>
+<li>滚动重启/升级后，每个 broker 都重新加入了 ISR。</li>
+</ul>
+<h2 id="_11">已知失败模式<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>症状</th>
+<th>可能原因</th>
+<th>正确处置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>已确认消息丢失</td>
+<td>broker 故障后数据消失</td>
+<td><code>acks=1</code> 或 <code>min.insync.replicas=1</code></td>
+<td>用 <code>acks=all</code> + <code>min.insync.replicas=2</code> + RF≥3。</td>
+</tr>
+<tr>
+<td>Topic 转只读</td>
+<td>生产者被阻塞</td>
+<td>同步副本掉到 <code>min.insync.replicas</code> 以下</td>
+<td>恢复 broker；这是持久化权衡按设计生效。</td>
+</tr>
+<tr>
+<td>消费者落后</td>
+<td>延迟增长</td>
+<td>消费者慢、重分区或 broker 压力</td>
+<td>扩消费者/分区；排查 broker 负载。</td>
+</tr>
+<tr>
+<td>磁盘撑满</td>
+<td>broker 宕/集群不稳</td>
+<td>无界留存</td>
+<td>设留存；对磁盘告警；扩容或裁剪。</td>
+</tr>
+<tr>
+<td>滚动重启致丢失</td>
+<td>重启期间欠副本</td>
+<td>过早重启下一个 broker</td>
+<td>broker 之间等 URP=0。</td>
+</tr>
+<tr>
+<td>ZooKeeper 失去法定人数</td>
+<td>集群元数据不可用</td>
+<td>偶数/成员宕机</td>
+<td>ZK/KRaft 法定成员奇数跨故障域。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_12">回滚<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ol>
+<li>迁移<strong>前</strong>定义切换点——一旦生产者写入目标，回滚就变贵。</li>
+<li>若生产者尚未切换，回滚就是让它们留在源、拆掉目标。</li>
+<li>若已切换且无双向同步，回滚意味着停止目标写入并把生产者路由回源、接受这段缺口——要显式规划这一点。</li>
+<li>对失败的 broker 升级，在该 broker 重装旧版本并让其重新加入 ISR，再动下一个。</li>
+</ol>
+<h2 id="_13">安全注记<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>启用 SASL 认证与 ACL 授权；不要运行开放 broker。</li>
+<li>在需要保密处对客户端与 broker 间流量启用 TLS。</li>
+<li>切勿公开真实 broker 地址、含业务含义的 topic 名或凭据。</li>
+<li>限制谁可创建/修改 topic 与 ACL。</li>
+</ul>
+<h2 id="_14">评审周期<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li>负责人：平台/消息团队。</li>
+<li>当某 topic 的丢失容忍度变化时，重新确认持久化设置（<code>acks</code>/<code>min.insync</code>/RF）。</li>
+<li>每次 Kafka 升级重测滚动重启行为。</li>
+<li>在 ZooKeeper 支持被移除前，把 ZooKeeper→KRaft 过渡规划为受版本约束的变更。</li>
+</ul>
+<h2 id="_15">相关文档<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter 监控标准</a></li>
+<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus 告警标准</a></li>
+<li><a href="https://kafka.apache.org/documentation/">Kafka 官方文档</a></li>
 </ul>
 
 
@@ -4265,7 +4439,7 @@ kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:31:41 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4275,7 +4449,7 @@ kafka-topics.sh<span class="w"> </span>--bootstrap-server<span class="w"> </span
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:31:41 UTC">2026年6月28日</span>
   </span>
 
     

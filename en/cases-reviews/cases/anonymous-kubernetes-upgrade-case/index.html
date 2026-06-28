@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Anonymous Kubernetes upgrade case with zero-downtime strategy and lessons learned.">
+        <meta name="description" content="Anonymous case study of a minor-version Kubernetes upgrade — why add-ons and node-group strategy carried more risk than the control plane, with the validation and rollback model used.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Kubernetes Upgrade Case - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Anonymous Kubernetes upgrade case with zero-downtime strategy and lessons learned." />
+<meta property="og:description" content="Anonymous case study of a minor-version Kubernetes upgrade — why add-ons and node-group strategy carried more risk than the control plane, with the validation and rollback model used." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/cases-reviews/cases/anonymous-kubernetes-upgrade-case.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/cases-reviews/cases/anonymous-kubernetes-upgrade-case/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Kubernetes Upgrade Case - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Anonymous Kubernetes upgrade case with zero-downtime strategy and lessons learned." />
+<meta property="twitter:description" content="Anonymous case study of a minor-version Kubernetes upgrade — why add-ons and node-group strategy carried more risk than the control plane, with the validation and rollback model used." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/cases-reviews/cases/anonymous-kubernetes-upgrade-case.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2059,34 +2031,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../platform-governance/redash-deployment-standard/" class="md-nav__link">
         
   
@@ -2324,10 +2268,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#case-type" class="md-nav__link">
+  <a href="#core-lesson" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case Type
+        Core Lesson
       
     </span>
   </a>
@@ -2335,10 +2279,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
+  <a href="#context" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Background
+        Context
       
     </span>
   </a>
@@ -2346,10 +2290,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#challenges" class="md-nav__link">
+  <a href="#starting-state" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Challenges
+        Starting State
       
     </span>
   </a>
@@ -2357,10 +2301,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-solution" class="md-nav__link">
+  <a href="#constraints" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Solution
+        Constraints
       
     </span>
   </a>
@@ -2368,10 +2312,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-model" class="md-nav__link">
+  <a href="#plan" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Model
+        Plan
       
     </span>
   </a>
@@ -2379,10 +2323,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback-model" class="md-nav__link">
+  <a href="#execution-and-validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback Model
+        Execution and Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problems-encountered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems Encountered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result
       
     </span>
   </a>
@@ -2401,10 +2367,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-standards" class="md-nav__link">
+  <a href="#related-documents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Standards
+        Related Documents
       
     </span>
   </a>
@@ -3493,34 +3459,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3858,34 +3796,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3956,10 +3866,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#case-type" class="md-nav__link">
+  <a href="#core-lesson" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case Type
+        Core Lesson
       
     </span>
   </a>
@@ -3967,10 +3877,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
+  <a href="#context" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Background
+        Context
       
     </span>
   </a>
@@ -3978,10 +3888,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#challenges" class="md-nav__link">
+  <a href="#starting-state" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Challenges
+        Starting State
       
     </span>
   </a>
@@ -3989,10 +3899,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-solution" class="md-nav__link">
+  <a href="#constraints" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Solution
+        Constraints
       
     </span>
   </a>
@@ -4000,10 +3910,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-model" class="md-nav__link">
+  <a href="#plan" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Model
+        Plan
       
     </span>
   </a>
@@ -4011,10 +3921,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback-model" class="md-nav__link">
+  <a href="#execution-and-validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback Model
+        Execution and Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problems-encountered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems Encountered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result
       
     </span>
   </a>
@@ -4033,10 +3965,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-standards" class="md-nav__link">
+  <a href="#related-documents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Standards
+        Related Documents
       
     </span>
   </a>
@@ -4170,34 +4102,43 @@
 
 
 <h1 id="anonymous-kubernetes-upgrade-case">Anonymous Kubernetes Upgrade Case<a class="headerlink" href="#anonymous-kubernetes-upgrade-case" title="Permanent link">&para;</a></h1>
-<h2 id="case-type">Case Type<a class="headerlink" href="#case-type" title="Permanent link">&para;</a></h2>
-<p>Kubernetes platform upgrade and workload migration.</p>
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>An organization operated a Kubernetes cluster running an older minor version. The cluster hosted multiple stateless services, ingress routes, monitoring components, and stateful dependencies. The platform needed to move to a newer supported version while minimizing service interruption.</p>
+<blockquote>
 <p>All identifiers in this case are generic. No original service names, domains, regions, accounts, repositories, or customer details are preserved.</p>
-<h2 id="challenges">Challenges<a class="headerlink" href="#challenges" title="Permanent link">&para;</a></h2>
+</blockquote>
+<h2 id="core-lesson">Core Lesson<a class="headerlink" href="#core-lesson" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>The control-plane version bump is the part everyone plans for, and rarely the part that breaks. The real risk lived in the add-ons that had to move in lockstep with the new version, and in how worker nodes were replaced. Treating add-ons as first-class upgrade objects, and using new node groups as the rollback boundary, is what made this safe.</p>
+</blockquote>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p>An organization ran a Kubernetes cluster on an older minor version, hosting multiple stateless services, ingress routes, monitoring components, and stateful dependencies. It needed to move to a newer supported version with minimal interruption.</p>
+<h2 id="starting-state">Starting State<a class="headerlink" href="#starting-state" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The target Kubernetes version required add-on compatibility checks.</li>
-<li>Some workloads depended on ingress and load balancer behavior.</li>
-<li>Stateful components used persistent storage.</li>
-<li>Monitoring and alerting needed to remain available throughout the change.</li>
-<li>Old worker nodes could not be replaced all at once without risking capacity pressure.</li>
+<li>Single cluster, older supported minor version.</li>
+<li>Mixed workloads: stateless services, ingress, monitoring, and stateful components on persistent storage.</li>
+<li>Core add-ons (CNI, CoreDNS, kube-proxy, CSI, ingress controller, observability agents) at versions tied to the current Kubernetes version.</li>
 </ul>
-<h2 id="standard-solution">Standard Solution<a class="headerlink" href="#standard-solution" title="Permanent link">&para;</a></h2>
-<p>The upgrade was modeled as a phased migration:</p>
+<h2 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The target version required add-on compatibility checks.</li>
+<li>Some workloads depended on ingress and load-balancer behavior.</li>
+<li>Stateful components used persistent storage and could not tolerate data loss.</li>
+<li>Monitoring and alerting had to stay available throughout the change.</li>
+<li>Worker nodes could not all be replaced at once without risking capacity pressure.</li>
+</ul>
+<h2 id="plan">Plan<a class="headerlink" href="#plan" title="Permanent link">&para;</a></h2>
+<p>The upgrade was modeled as a phased migration, not a single switch:</p>
 <ol>
 <li>Build a baseline inventory of workloads, nodes, ingress, PVCs, add-ons, and alerts.</li>
-<li>Freeze unrelated infrastructure changes during the upgrade window.</li>
-<li>Upgrade the control plane using the platform-supported method.</li>
-<li>Upgrade core add-ons to versions compatible with the target Kubernetes version.</li>
-<li>Create a new worker node group with the target runtime and image.</li>
+<li>Freeze unrelated infrastructure changes for the window.</li>
+<li>Upgrade the control plane via the platform-supported method.</li>
+<li>Upgrade core add-ons to target-compatible versions.</li>
+<li>Create a new worker node group on the target version.</li>
 <li>Migrate workloads by cordoning and draining old nodes in small batches.</li>
-<li>Validate application health after each batch.</li>
-<li>Keep old nodes available until the observation window passes.</li>
-<li>Remove old nodes after metrics and business checks remain stable.</li>
+<li>Validate after each batch.</li>
+<li>Keep old nodes until the observation window passed, then remove them.</li>
 </ol>
-<h2 id="validation-model">Validation Model<a class="headerlink" href="#validation-model" title="Permanent link">&para;</a></h2>
-<p>The team used three validation layers:</p>
+<h2 id="execution-and-validation">Execution and Validation<a class="headerlink" href="#execution-and-validation" title="Permanent link">&para;</a></h2>
+<p>The team validated in three layers and stopped at the first failed layer:</p>
 <table>
 <thead>
 <tr>
@@ -4220,24 +4161,25 @@
 </tr>
 </tbody>
 </table>
-<h2 id="rollback-model">Rollback Model<a class="headerlink" href="#rollback-model" title="Permanent link">&para;</a></h2>
-<p>The control plane upgrade itself was treated as forward-only. Rollback protection came from:</p>
+<p>Workloads were moved in small batches; application health was confirmed against each batch before draining the next set of old nodes.</p>
+<h2 id="problems-encountered">Problems Encountered<a class="headerlink" href="#problems-encountered" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Keeping old worker nodes until workload validation passed.</li>
-<li>Migrating workloads gradually.</li>
-<li>Preserving manifest snapshots.</li>
-<li>Maintaining application rollback ability.</li>
-<li>Avoiding irreversible storage changes during the same window.</li>
+<li><strong>Add-on compatibility, not the control plane, caused the friction.</strong> Add-ons that lagged the new version produced DNS and networking flakiness until they were upgraded to match.</li>
+<li><strong>Storage pressure was nearly misdiagnosed as an upgrade bug.</strong> A PVC nearing capacity produced symptoms that looked upgrade-related; checking PVC headroom up front would have avoided the confusion.</li>
+<li>Ingress and CSI behavior needed explicit test cases — they were the workloads most sensitive to the change.</li>
 </ul>
+<h2 id="result">Result<a class="headerlink" href="#result" title="Permanent link">&para;</a></h2>
+<p>The cluster reached the target version with no sustained outage. Because old node groups were retained through the observation window, every issue was caught against a working fallback, and no irreversible storage change was made in the same window.</p>
 <h2 id="reusable-lessons">Reusable Lessons<a class="headerlink" href="#reusable-lessons" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Add-on compatibility often causes more practical risk than the control plane version change.</li>
-<li>New node groups provide a cleaner rollback boundary than in-place node mutation.</li>
+<li>Add-on compatibility usually carries more practical risk than the control-plane version change itself.</li>
+<li>New node groups give a cleaner rollback boundary than in-place node mutation.</li>
 <li>Ingress, CSI drivers, and monitoring agents deserve explicit test cases.</li>
-<li>PVC capacity should be checked before migration to avoid confusing upgrade issues with storage pressure.</li>
-<li>Every critical alert should link to a runbook before the maintenance window.</li>
+<li>Check PVC capacity before migrating, so storage pressure is not mistaken for an upgrade fault.</li>
+<li>Every critical alert should link to a runbook before the maintenance window opens.</li>
+<li>Treat the control-plane upgrade as forward-only; build rollback from node groups, manifest snapshots, and app-level rollback.</li>
 </ul>
-<h2 id="related-standards">Related Standards<a class="headerlink" href="#related-standards" title="Permanent link">&para;</a></h2>
+<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../system-design/production-architecture/eks-upgrade-standard/">EKS and Kubernetes Upgrade Standard</a></li>
 <li><a href="../../../system-design/production-architecture/nfs-pvc-capacity-management/">NFS PVC Capacity Management</a></li>
@@ -4265,7 +4207,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 15:17:17 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4275,7 +4217,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 15:17:17 UTC">June 28, 2026</span>
   </span>
 
     

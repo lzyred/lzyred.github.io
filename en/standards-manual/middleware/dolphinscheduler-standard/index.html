@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="DolphinScheduler operations standard for distributed workflow scheduling.">
+        <meta name="description" content="DolphinScheduler operations standard for workflow scheduling, metadata backup, worker capacity, dependency isolation, alerting, validation, and recovery.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="DolphinScheduler - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="DolphinScheduler operations standard for distributed workflow scheduling." />
+<meta property="og:description" content="DolphinScheduler operations standard for workflow scheduling, metadata backup, worker capacity, dependency isolation, alerting, validation, and recovery." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/middleware/dolphinscheduler-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/middleware/dolphinscheduler-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="DolphinScheduler - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="DolphinScheduler operations standard for distributed workflow scheduling." />
+<meta property="twitter:description" content="DolphinScheduler operations standard for workflow scheduling, metadata backup, worker capacity, dependency isolation, alerting, validation, and recovery." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/middleware/dolphinscheduler-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3319,13 +3263,74 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operational-areas" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operational Areas
+        When to Use
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#protect-metadata-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protect metadata first
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolate-worker-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolate worker capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-retries-and-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control retries and dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3334,6 +3339,50 @@
     <span class="md-ellipsis">
       
         Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-and-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback and Recovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3438,34 +3487,6 @@
     
   
     Server Baseline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
   
 
     
@@ -3829,34 +3850,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3938,13 +3931,74 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operational-areas" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operational Areas
+        When to Use
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#protect-metadata-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protect metadata first
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolate-worker-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolate worker capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-retries-and-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control retries and dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3953,6 +4007,50 @@
     <span class="md-ellipsis">
       
         Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-and-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback and Recovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4077,6 +4175,18 @@
         <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
+      
+    
   </nav>
 
 
@@ -4086,26 +4196,116 @@
 
 <h1 id="dolphinscheduler-operations-standard">DolphinScheduler Operations Standard<a class="headerlink" href="#dolphinscheduler-operations-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes public-safe operating guidance for DolphinScheduler or similar workflow schedulers.</p>
-<h2 id="operational-areas">Operational Areas<a class="headerlink" href="#operational-areas" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to operate DolphinScheduler or a similar distributed workflow scheduler.</p>
+<p>The core judgment:</p>
+<blockquote>
+<p>A scheduler is a production dependency when business processes wait for it.</p>
+</blockquote>
+<p>Workflow platforms need metadata protection, worker capacity control, dependency isolation, retry discipline, alerting, and recovery procedures.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when:</p>
 <ul>
-<li>Metadata database backup.</li>
-<li>Worker capacity.</li>
-<li>Task retry policy.</li>
-<li>Alerting.</li>
-<li>Permission model.</li>
-<li>Dependency isolation.</li>
+<li>Batch jobs or data workflows run through DolphinScheduler.</li>
+<li>Failed schedules can delay business processes.</li>
+<li>Multiple teams share workers or projects.</li>
+<li>Workflows call databases, object storage, APIs, or shell tasks.</li>
+</ul>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not teach workflow modeling, data pipeline design, or DolphinScheduler installation. It covers production operation boundaries for an already selected scheduler.</p>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="protect-metadata-first">Protect metadata first<a class="headerlink" href="#protect-metadata-first" title="Permanent link">&para;</a></h3>
+<p>The metadata database contains project definitions, schedules, task state, users, and execution history. Back it up and test restore before relying on the scheduler for critical jobs.</p>
+<h3 id="isolate-worker-capacity">Isolate worker capacity<a class="headerlink" href="#isolate-worker-capacity" title="Permanent link">&para;</a></h3>
+<p>Separate workers by workload class when possible:</p>
+<ul>
+<li>Lightweight control tasks.</li>
+<li>Heavy compute tasks.</li>
+<li>Data movement tasks.</li>
+<li>Risky shell tasks.</li>
+</ul>
+<p>Avoid letting one noisy workflow consume all worker capacity.</p>
+<h3 id="control-retries-and-dependencies">Control retries and dependencies<a class="headerlink" href="#control-retries-and-dependencies" title="Permanent link">&para;</a></h3>
+<p>Retries should match the failure type. Retrying a destructive or non-idempotent task can make failure worse.</p>
+<p>Document:</p>
+<ul>
+<li>Retry count.</li>
+<li>Retry interval.</li>
+<li>Timeout.</li>
+<li>Idempotency expectation.</li>
+<li>Upstream and downstream dependency.</li>
+<li>Owner.</li>
 </ul>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>Pass conditions:</p>
 <ul>
-<li>Scheduler process healthy.</li>
-<li>Worker process healthy.</li>
-<li>Metadata database reachable.</li>
-<li>Test workflow can run.</li>
-<li>Alerts are delivered.</li>
+<li>Master, worker, alert, and API services are healthy.</li>
+<li>Metadata database is reachable and backed up.</li>
+<li>Test workflow runs successfully.</li>
+<li>Failed workflow sends alert.</li>
+<li>Worker capacity and queue backlog are visible.</li>
+<li>Permissions prevent cross-team modification where required.</li>
 </ul>
+<h2 id="failure-modes">Failure Modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Result</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Metadata database lost</td>
+<td>Workflow definitions and state disappear.</td>
+<td>Back up and test restore.</td>
+</tr>
+<tr>
+<td>Worker saturation</td>
+<td>Schedules miss windows.</td>
+<td>Monitor worker slots and backlog.</td>
+</tr>
+<tr>
+<td>Unsafe retry</td>
+<td>Duplicate writes or side effects.</td>
+<td>Mark idempotency and retry rules.</td>
+</tr>
+<tr>
+<td>Shared shell permissions</td>
+<td>One workflow can affect host or other teams.</td>
+<td>Isolate workers and users.</td>
+</tr>
+<tr>
+<td>No alerting</td>
+<td>Failed workflows go unnoticed.</td>
+<td>Configure alert channels and owners.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback-and-recovery">Rollback and Recovery<a class="headerlink" href="#rollback-and-recovery" title="Permanent link">&para;</a></h2>
+<p>Recovery may include:</p>
+<ul>
+<li>Restart scheduler components.</li>
+<li>Disable a bad workflow.</li>
+<li>Restore metadata database.</li>
+<li>Re-run idempotent tasks.</li>
+<li>Manually reconcile non-idempotent task output.</li>
+</ul>
+<p>Do not blindly re-run workflows that write external state until idempotency is known.</p>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Restrict project and workflow edit permissions.</li>
+<li>Protect data source credentials.</li>
+<li>Avoid broad shell execution rights.</li>
+<li>Audit workflow changes for critical projects.</li>
+<li>Do not publish real workflow names, database names, or credentials.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review after missed schedules, metadata incidents, worker saturation, major version upgrades, or onboarding new teams.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="../kafka-zookeeper-operations-standard/">Kafka and ZooKeeper Operations Standard</a></li>
+<li><a href="../nacos-operations-standard/">Nacos Operations Standard</a></li>
 <li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
 </ul>
 
@@ -4130,7 +4330,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4140,7 +4340,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     

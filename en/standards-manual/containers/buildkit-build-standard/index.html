@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="BuildKit build standard for efficient and reproducible container image builds.">
+        <meta name="description" content="BuildKit build standard for reproducible container builds, cache safety, secret handling, provenance, validation, and rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="BuildKit Build Standard - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="BuildKit build standard for efficient and reproducible container image builds." />
+<meta property="og:description" content="BuildKit build standard for reproducible container builds, cache safety, secret handling, provenance, validation, and rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/containers/buildkit-build-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/containers/buildkit-build-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="BuildKit Build Standard - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="BuildKit build standard for efficient and reproducible container image builds." />
+<meta property="twitter:description" content="BuildKit build standard for reproducible container builds, cache safety, secret handling, provenance, validation, and rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/containers/buildkit-build-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -2682,10 +2626,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Cases
+        When to Use
       
     </span>
   </a>
@@ -2693,10 +2637,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#baseline" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Baseline
+        Non-Goals
       
     </span>
   </a>
@@ -2704,13 +2648,74 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-safety" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Build Safety
+        Recommended Standard
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separate-build-inputs-from-deployment-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separate build inputs from deployment state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pin-base-images-and-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pin base images and dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-secret-mounts-not-build-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use secret mounts, not build args
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treat-cache-as-shared-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Treat cache as shared state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#produce-traceable-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Produce traceable output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2719,6 +2724,50 @@
     <span class="md-ellipsis">
       
         Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3480,34 +3529,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3851,34 +3872,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3960,10 +3953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Cases
+        When to Use
       
     </span>
   </a>
@@ -3971,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#baseline" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Baseline
+        Non-Goals
       
     </span>
   </a>
@@ -3982,13 +3975,74 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-safety" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Build Safety
+        Recommended Standard
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separate-build-inputs-from-deployment-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separate build inputs from deployment state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pin-base-images-and-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pin base images and dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-secret-mounts-not-build-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use secret mounts, not build args
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treat-cache-as-shared-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Treat cache as shared state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#produce-traceable-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Produce traceable output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3997,6 +4051,50 @@
     <span class="md-ellipsis">
       
         Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4121,6 +4219,18 @@
         <a href="../../../tags/#tag:delivery" class="md-tag md-tag-icon md-tag--delivery">Delivery</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:security" class="md-tag md-tag-icon md-tag--security">Security</a>
+      
+    
   </nav>
 
 
@@ -4130,31 +4240,181 @@
 
 <h1 id="buildkit-build-standard">BuildKit Build Standard<a class="headerlink" href="#buildkit-build-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes safe use of BuildKit for container image builds.</p>
-<h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to use BuildKit and Docker Buildx for container image builds without leaking secrets, producing unreproducible images, or hiding supply-chain risk.</p>
+<p>The core judgment:</p>
+<blockquote>
+<p>A container build is a supply-chain event, not a packaging shortcut.</p>
+</blockquote>
+<p>BuildKit improves speed, caching, multi-platform output, and secret handling. Those benefits matter only when build inputs, secrets, cache sources, image tags, and validation are controlled.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when:</p>
 <ul>
-<li>Faster Dockerfile builds.</li>
-<li>Build cache optimization.</li>
-<li>Multi-platform image builds.</li>
-<li>CI/CD image pipelines.</li>
+<li>Building container images in CI/CD.</li>
+<li>Enabling <code>docker buildx</code> or remote BuildKit builders.</li>
+<li>Using build cache across pipelines.</li>
+<li>Building multi-platform images.</li>
+<li>Passing private dependency credentials to a build.</li>
+<li>Publishing images to a shared registry.</li>
 </ul>
-<h2 id="baseline">Baseline<a class="headerlink" href="#baseline" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>buildctl<span class="w"> </span>--version
-docker<span class="w"> </span>buildx<span class="w"> </span>version
-</code></pre></div>
-<h2 id="build-safety">Build Safety<a class="headerlink" href="#build-safety" title="Permanent link">&para;</a></h2>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not define application Dockerfile style in full, registry governance, or runtime Kubernetes deployment policy. It only covers build-time controls.</p>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="separate-build-inputs-from-deployment-state">Separate build inputs from deployment state<a class="headerlink" href="#separate-build-inputs-from-deployment-state" title="Permanent link">&para;</a></h3>
+<p>The build should consume source code, Dockerfile, lockfiles, build arguments, and approved secrets. It should not depend on mutable host state, local developer files, or runtime <code>.env</code>.</p>
+<p>Required inputs:</p>
 <ul>
-<li>Do not bake secrets into image layers.</li>
-<li>Use secret mounts for build-time credentials.</li>
-<li>Pin base image versions.</li>
-<li>Scan output images.</li>
-<li>Push only to approved registries.</li>
+<li>Dockerfile path.</li>
+<li>Build context.</li>
+<li>Base image tag or digest.</li>
+<li>Dependency lockfiles.</li>
+<li>Target platforms.</li>
+<li>Image tag and immutable digest output.</li>
+<li>Build secret names, not secret values.</li>
+</ul>
+<h3 id="pin-base-images-and-dependencies">Pin base images and dependencies<a class="headerlink" href="#pin-base-images-and-dependencies" title="Permanent link">&para;</a></h3>
+<p>Use explicit base image versions. For highly controlled environments, pin by digest and refresh through a scheduled update process.</p>
+<p>Avoid:</p>
+<ul>
+<li><code>FROM ubuntu:latest</code></li>
+<li>Unpinned package managers in release builds.</li>
+<li>Downloading scripts from arbitrary URLs during build.</li>
+<li>Embedding environment-specific configuration into image layers.</li>
+</ul>
+<h3 id="use-secret-mounts-not-build-args">Use secret mounts, not build args<a class="headerlink" href="#use-secret-mounts-not-build-args" title="Permanent link">&para;</a></h3>
+<p>Build arguments become visible in image history and build metadata. Use BuildKit secret mounts for private dependency tokens or package repository credentials.</p>
+<p>Pattern:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># syntax=docker/dockerfile:1.7</span>
+<span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>secret,id<span class="o">=</span>package_token<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>./scripts/install-private-deps.sh
+</code></pre></div>
+<p>Build command:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--secret<span class="w"> </span><span class="nv">id</span><span class="o">=</span>package_token,env<span class="o">=</span>PACKAGE_TOKEN<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tag<span class="w"> </span>registry.example.com/example/app:1.0.0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--push<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>.
+</code></pre></div>
+<p>Do not print secret values in build logs.</p>
+<h3 id="treat-cache-as-shared-state">Treat cache as shared state<a class="headerlink" href="#treat-cache-as-shared-state" title="Permanent link">&para;</a></h3>
+<p>Cache improves speed but can carry stale or unsafe assumptions.</p>
+<table>
+<thead>
+<tr>
+<th>Cache Type</th>
+<th>Use</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local cache</td>
+<td>Developer builds.</td>
+<td>Never relied on for release correctness.</td>
+</tr>
+<tr>
+<td>Registry cache</td>
+<td>CI speed-up.</td>
+<td>Namespace per project or trust boundary.</td>
+</tr>
+<tr>
+<td>Inline cache</td>
+<td>Rebuild optimization.</td>
+<td>Publish only for approved images.</td>
+</tr>
+</tbody>
+</table>
+<p>Invalidate cache deliberately when base images, package indexes, lockfiles, or security patches change.</p>
+<h3 id="produce-traceable-output">Produce traceable output<a class="headerlink" href="#produce-traceable-output" title="Permanent link">&para;</a></h3>
+<p>Every release image should have:</p>
+<ul>
+<li>Immutable digest.</li>
+<li>Source revision.</li>
+<li>Build timestamp.</li>
+<li>Builder identity.</li>
+<li>Target platform.</li>
+<li>SBOM or equivalent dependency inventory where available.</li>
+<li>Vulnerability scan result or exception record.</li>
 </ul>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span>--platform<span class="w"> </span>linux/amd64<span class="w"> </span>-t<span class="w"> </span>registry.example.com/example/app:1.0.0<span class="w"> </span>.
+<p>Before publishing a release image:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>buildx<span class="w"> </span>version
+docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span>--platform<span class="w"> </span>linux/amd64<span class="w"> </span>--tag<span class="w"> </span>registry.example.com/example/app:1.0.0<span class="w"> </span>--push<span class="w"> </span>.
+docker<span class="w"> </span>buildx<span class="w"> </span>imagetools<span class="w"> </span>inspect<span class="w"> </span>registry.example.com/example/app:1.0.0
 </code></pre></div>
+<p>Pass conditions:</p>
+<ul>
+<li>Build completes from a clean runner.</li>
+<li>Image digest is recorded.</li>
+<li>Target platforms match the release plan.</li>
+<li>No secret values appear in logs or image history.</li>
+<li>Vulnerability scan result is attached to the release record.</li>
+<li>A smoke test runs against the built image, not a local container.</li>
+</ul>
+<h2 id="failure-modes">Failure Modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Result</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Secret passed as build arg</td>
+<td>Secret can leak through history or metadata.</td>
+<td>Use BuildKit secret mounts.</td>
+</tr>
+<tr>
+<td>Unpinned base image</td>
+<td>Rebuild changes without source change.</td>
+<td>Pin versions or digests.</td>
+</tr>
+<tr>
+<td>Shared cache across trust boundaries</td>
+<td>One project influences another build.</td>
+<td>Scope cache by repository and trust domain.</td>
+</tr>
+<tr>
+<td>Multi-platform image untested</td>
+<td>Wrong architecture fails at runtime.</td>
+<td>Inspect manifest and smoke-test target platform.</td>
+</tr>
+<tr>
+<td>Build downloads mutable scripts</td>
+<td>Supply-chain drift.</td>
+<td>Vendor scripts or verify checksums.</td>
+</tr>
+<tr>
+<td>Image pushed without scan</td>
+<td>Known vulnerabilities ship silently.</td>
+<td>Make scan part of release gate.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<p>Rollback uses the previous approved image digest. Do not rebuild the old tag and assume it is identical.</p>
+<p>Keep:</p>
+<ul>
+<li>Previous digest.</li>
+<li>Dockerfile revision.</li>
+<li>SBOM or dependency inventory.</li>
+<li>Registry retention long enough for rollback.</li>
+</ul>
+<p>If a base image vulnerability triggers rebuild, treat the new image as a new release even when application code did not change.</p>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Do not use privileged remote builders without an owner and isolation model.</li>
+<li>Keep build credentials scoped to the registry or package repository they need.</li>
+<li>Avoid mounting the host Docker socket into untrusted build jobs.</li>
+<li>Do not copy <code>.git</code>, local credentials, or developer caches into the image context.</li>
+<li>Keep <code>.dockerignore</code> reviewed.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review this standard when enabling a new builder, changing cache strategy, adding private dependencies, adding a platform, or changing registry promotion rules.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="../docker-compose-stack-standard/">Docker Compose Stack Standard</a></li>
 <li><a href="../docker-host-operations-standard/">Docker Host Operations Standard</a></li>
 <li><a href="../../../change-delivery/cicd/jenkins-kubernetes-pipeline-standard/">Jenkins to Kubernetes Pipeline Standard</a></li>
 </ul>
@@ -4180,7 +4440,7 @@ docker<span class="w"> </span>buildx<span class="w"> </span>version
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4190,7 +4450,7 @@ docker<span class="w"> </span>buildx<span class="w"> </span>version
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     

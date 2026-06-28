@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Supervisor process management standard for non-containerized service supervision.">
+        <meta name="description" content="Supervisor 管理非容器 Linux 服务的标准，覆盖进程所有权、日志、重启策略、验证和迁移边界。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Supervisor 进程管理 - DevOps 专家知识库" />
-<meta property="og:description" content="Supervisor process management standard for non-containerized service supervision." />
+<meta property="og:description" content="Supervisor 管理非容器 Linux 服务的标准，覆盖进程所有权、日志、重启策略、验证和迁移边界。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/linux/supervisor-process-management-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/linux/supervisor-process-management-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Supervisor 进程管理 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Supervisor process management standard for non-containerized service supervision." />
+<meta property="twitter:description" content="Supervisor 管理非容器 Linux 服务的标准，覆盖进程所有权、日志、重启策略、验证和迁移边界。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/linux/supervisor-process-management-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#supervisor-process-management-standard" class="md-skip">
+        <a href="#supervisor" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3367,34 +3311,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3483,10 +3399,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3494,10 +3410,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Use
+        适用场景
       
     </span>
   </a>
@@ -3505,10 +3421,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#program-template" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Program Template
+        非目标
       
     </span>
   </a>
@@ -3516,10 +3432,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定义进程所有权
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用专用用户运行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置保持显式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        约束重启
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -3527,10 +3504,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3840,34 +3861,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3938,10 +3931,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3949,10 +3942,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Use
+        适用场景
       
     </span>
   </a>
@@ -3960,10 +3953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#program-template" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Program Template
+        非目标
       
     </span>
   </a>
@@ -3971,10 +3964,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定义进程所有权
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用专用用户运行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置保持显式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        约束重启
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -3982,10 +4036,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4096,6 +4194,18 @@
         
       
       
+        <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
       
     
@@ -4106,27 +4216,148 @@
   
 
 
-<h1 id="supervisor-process-management-standard">Supervisor Process Management Standard<a class="headerlink" href="#supervisor-process-management-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes using Supervisor for simple process management on Linux hosts.</p>
-<h2 id="when-to-use">When To Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
-<p>Use Supervisor for small legacy services or utilities. Prefer systemd or orchestrators for modern production workloads.</p>
-<h2 id="program-template">Program Template<a class="headerlink" href="#program-template" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">[program:example-service]</span>
-<span class="na">command</span><span class="o">=</span><span class="s">/opt/example/bin/start.sh</span>
-<span class="na">directory</span><span class="o">=</span><span class="s">/opt/example</span>
-<span class="na">autostart</span><span class="o">=</span><span class="s">true</span>
-<span class="na">autorestart</span><span class="o">=</span><span class="s">true</span>
-<span class="na">stdout_logfile</span><span class="o">=</span><span class="s">/var/log/example-service/out.log</span>
-<span class="na">stderr_logfile</span><span class="o">=</span><span class="s">/var/log/example-service/err.log</span>
-</code></pre></div>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>supervisorctl<span class="w"> </span>status
-supervisorctl<span class="w"> </span>tail<span class="w"> </span>example-service
-</code></pre></div>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h1 id="supervisor">Supervisor 进程管理标准<a class="headerlink" href="#supervisor" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义什么时候可以用 Supervisor 管理 Linux 进程，以及如何安全运行。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>Supervisor 是进程守护器，不是平台。</p>
+</blockquote>
+<p>它可以让主机上的简单进程保持运行，但不能替代 systemd、容器、编排、服务发现、密钥管理或高可用。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>适用于：</p>
 <ul>
-<li><a href="../server-baseline-standard/">Linux Server Baseline Standard</a></li>
+<li>尚未打包成 systemd 服务的遗留应用。</li>
+<li>单机小型后台 worker。</li>
+<li>容器化前的过渡进程。</li>
+<li>有明确主机 owner 的开发或内部工具。</li>
+</ul>
+<p>主机原生服务优先使用 systemd；需要调度、扩缩容或标准部署的可移植服务优先使用容器或 Kubernetes。</p>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不批准把关键分布式系统作为临时 Supervisor program 运行，也不覆盖应用生命周期设计。</p>
+<h2 id="_4">推荐标准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">定义进程所有权<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>每个 program 需要：</p>
+<ul>
+<li>Owner。</li>
+<li>Host。</li>
+<li>运行用户。</li>
+<li>工作目录。</li>
+<li>命令。</li>
+<li>环境变量来源。</li>
+<li>日志。</li>
+<li>重启策略。</li>
+<li>健康检查。</li>
+<li>停止和回滚流程。</li>
+</ul>
+<h3 id="_6">使用专用用户运行<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>除非有明确底层系统原因，不要以 root 运行应用进程。使用专用服务用户，并授予最小文件系统权限。</p>
+<h3 id="_7">配置保持显式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>示例：</p>
+<div class="highlight"><pre><span></span><code><span class="k">[program:example-worker]</span>
+<span class="na">command</span><span class="o">=</span><span class="s">/opt/example/bin/worker --config /etc/example/config.yml</span>
+<span class="na">directory</span><span class="o">=</span><span class="s">/opt/example</span>
+<span class="na">user</span><span class="o">=</span><span class="s">example</span>
+<span class="na">autostart</span><span class="o">=</span><span class="s">true</span>
+<span class="na">autorestart</span><span class="o">=</span><span class="s">unexpected</span>
+<span class="na">startsecs</span><span class="o">=</span><span class="s">10</span>
+<span class="na">stopsignal</span><span class="o">=</span><span class="s">TERM</span>
+<span class="na">stopwaitsecs</span><span class="o">=</span><span class="s">30</span>
+<span class="na">stdout_logfile</span><span class="o">=</span><span class="s">/var/log/example/worker.log</span>
+<span class="na">stderr_logfile</span><span class="o">=</span><span class="s">/var/log/example/worker.err.log</span>
+<span class="na">environment=APP_ENV</span><span class="o">=</span><span class="s">&quot;production&quot;</span>
+</code></pre></div>
+<p>避免把密钥写入 Supervisor 配置。密钥应来自批准的密钥源或受保护环境文件。</p>
+<h3 id="_8">约束重启<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>自动重启只有在进程能安全恢复时才有价值。如果进程持续崩溃，Supervisor 可能隐藏事故并消耗资源。</p>
+<p>需要告警：</p>
+<ul>
+<li>重启次数。</li>
+<li>fatal exit。</li>
+<li>backoff 或 flapping。</li>
+<li>日志错误率。</li>
+<li>日志造成的主机磁盘使用量。</li>
+</ul>
+<h2 id="_9">验证<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>supervisorctl<span class="w"> </span>status
+supervisorctl<span class="w"> </span>tail<span class="w"> </span>example-worker
+supervisorctl<span class="w"> </span>restart<span class="w"> </span>example-worker
+</code></pre></div>
+<p>通过条件：</p>
+<ul>
+<li>Program 以预期用户运行。</li>
+<li>日志写入已知路径。</li>
+<li>重启有效。</li>
+<li>Stop signal 能优雅终止。</li>
+<li>健康检查或外部监控确认服务行为。</li>
+</ul>
+<h2 id="_10">失败模式<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进程以 root 运行</td>
+<td>主机被攻陷的影响面扩大。</td>
+<td>使用专用用户。</td>
+</tr>
+<tr>
+<td>密钥写入配置</td>
+<td>凭据通过配置备份泄漏。</td>
+<td>使用受保护密钥源。</td>
+</tr>
+<tr>
+<td>无限重启循环</td>
+<td>事故被隐藏且主机负载升高。</td>
+<td>对重启和 fatal exit 告警。</td>
+</tr>
+<tr>
+<td>无日志轮转</td>
+<td>磁盘写满。</td>
+<td>配置日志轮转或外部日志。</td>
+</tr>
+<tr>
+<td>无健康检查</td>
+<td>进程存在但服务已坏。</td>
+<td>监控行为而不只看 PID。</td>
+</tr>
+<tr>
+<td>手工替换二进制</td>
+<td>运行版本不可追踪。</td>
+<td>记录发布版本和回滚 artifact。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">回滚<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>回滚需要已知上一版二进制或发布目录。</p>
+<p>推荐模式：</p>
+<ul>
+<li>部署版本化 release 目录。</li>
+<li>更新 <code>current</code> symlink。</li>
+<li>通过 Supervisor 重启。</li>
+<li>在验证窗口内保留上一版 release。</li>
+</ul>
+<p>如果配置也变更，reload 前保留上一版配置。</p>
+<h2 id="_12">安全说明<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li>限制 Supervisor 配置写权限。</li>
+<li>限制 <code>supervisorctl</code> 使用者。</li>
+<li>避免环境文件 world-readable。</li>
+<li>日志不得暴露凭据。</li>
+<li>评审绑定特权端口或访问主机设备的进程。</li>
+</ul>
+<h2 id="_13">评审周期<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>接入新进程、反复重启后、主机迁移前，以及判断是否迁移到 systemd 或容器前，评审本标准。</p>
+<h2 id="_14">相关文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../server-baseline-standard/">服务器基线标准</a></li>
+<li><a href="../../containers/docker-compose-stack-standard/">Docker Compose 栈标准</a></li>
+<li><a href="../../../reliable-operations/recovery/application-maintenance-health-check-standard/">应用健康检查标准</a></li>
 </ul>
 
 
@@ -4150,7 +4381,7 @@ supervisorctl<span class="w"> </span>tail<span class="w"> </span>example-service
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4160,7 +4391,7 @@ supervisorctl<span class="w"> </span>tail<span class="w"> </span>example-service
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     

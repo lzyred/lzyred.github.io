@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Application maintenance and health check standard for production readiness.">
+        <meta name="description" content="Standard for application maintenance health checks before, during, and after operational change, with layered validation and rollback triggers.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Application Health Check - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Application maintenance and health check standard for production readiness." />
+<meta property="og:description" content="Standard for application maintenance health checks before, during, and after operational change, with layered validation and rollback triggers." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/reliable-operations/recovery/application-maintenance-health-check-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/reliable-operations/recovery/application-maintenance-health-check-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Application Health Check - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Application maintenance and health check standard for production readiness." />
+<meta property="twitter:description" content="Standard for application maintenance health checks before, during, and after operational change, with layered validation and rollback triggers." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/reliable-operations/recovery/application-maintenance-health-check-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#application-maintenance-and-health-check-standard" class="md-skip">
+        <a href="#application-maintenance-health-check-standard" class="md-skip">
           Skip to content
         </a>
       
@@ -1576,34 +1576,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -1964,10 +1936,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#health-check-layers" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Health Check Layers
+        When to Use
       
     </span>
   </a>
@@ -1975,10 +1947,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#maintenance-workflow" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Maintenance Workflow
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#health-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Layers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-capture-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Capture baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-define-rollback-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Define rollback triggers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-monitor-during-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Monitor during change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-validate-after-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Validate after change
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -2143,34 +2242,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3449,34 +3520,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3814,34 +3857,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3923,10 +3938,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#health-check-layers" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Health Check Layers
+        When to Use
       
     </span>
   </a>
@@ -3934,10 +3949,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#maintenance-workflow" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Maintenance Workflow
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#health-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Layers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-capture-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Capture baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-define-rollback-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Define rollback triggers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-monitor-during-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Monitor during change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-validate-after-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Validate after change
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4047,6 +4189,18 @@
         
       
       
+        <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
       
     
@@ -4069,54 +4223,176 @@
   
 
 
-<h1 id="application-maintenance-and-health-check-standard">Application Maintenance and Health Check Standard<a class="headerlink" href="#application-maintenance-and-health-check-standard" title="Permanent link">&para;</a></h1>
+<h1 id="application-maintenance-health-check-standard">Application Maintenance Health Check Standard<a class="headerlink" href="#application-maintenance-health-check-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines a reusable model for application health checks and maintenance runbooks.</p>
-<h2 id="health-check-layers">Health Check Layers<a class="headerlink" href="#health-check-layers" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to validate application health during maintenance, deployment, patching, scaling, failover, or infrastructure change.</p>
+<p>The core judgment:</p>
+<blockquote>
+<p>A health check is a decision gate, not a green endpoint.</p>
+</blockquote>
+<p>Maintenance is safe only when the team knows what to check before change, what signals to watch during change, and what conditions trigger rollback.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard for:</p>
+<ul>
+<li>Deployment windows.</li>
+<li>OS patching or host reboot.</li>
+<li>Kubernetes node drain or upgrade.</li>
+<li>Database, cache, queue, or middleware maintenance.</li>
+<li>Network, ingress, certificate, or DNS changes.</li>
+<li>Post-incident recovery validation.</li>
+</ul>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not define every application's business logic. It defines the layered health model each application should map to its own checks.</p>
+<h2 id="health-layers">Health Layers<a class="headerlink" href="#health-layers" title="Permanent link">&para;</a></h2>
+<p>Validate in layers:</p>
 <table>
 <thead>
 <tr>
 <th>Layer</th>
-<th>Examples</th>
+<th>Question</th>
+<th>Example Signal</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Infrastructure</td>
-<td>Host, CPU, memory, disk, network.</td>
-</tr>
-<tr>
-<td>Runtime</td>
-<td>Process, container, pod, JVM, worker.</td>
-</tr>
-<tr>
-<td>Application</td>
-<td>HTTP health endpoint, queue consumer, scheduler.</td>
+<td>Process</td>
+<td>Is the service running?</td>
+<td>Process, pod, container, systemd, Supervisor.</td>
 </tr>
 <tr>
 <td>Dependency</td>
-<td>Database, cache, object storage, third-party API.</td>
+<td>Can it reach required dependencies?</td>
+<td>Database, cache, queue, object storage, API.</td>
 </tr>
 <tr>
-<td>User Journey</td>
-<td>Login, core API call, report generation, callback.</td>
+<td>Readiness</td>
+<td>Can it accept real traffic?</td>
+<td>Readiness endpoint, queue consumer state.</td>
+</tr>
+<tr>
+<td>User path</td>
+<td>Does a critical journey work?</td>
+<td>Login, create, read, payment, search, upload.</td>
+</tr>
+<tr>
+<td>Error budget</td>
+<td>Is the service within reliability guardrail?</td>
+<td>Error rate, latency, saturation, burn rate.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="maintenance-workflow">Maintenance Workflow<a class="headerlink" href="#maintenance-workflow" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Announce maintenance window.</li>
-<li>Confirm backup and rollback.</li>
-<li>Pause risky automated jobs.</li>
-<li>Apply change.</li>
-<li>Run technical validation.</li>
-<li>Run business smoke tests.</li>
-<li>Monitor for the observation window.</li>
-<li>Close with summary and follow-up items.</li>
-</ol>
+<p>Do not rely on process health alone.</p>
+<h2 id="procedure">Procedure<a class="headerlink" href="#procedure" title="Permanent link">&para;</a></h2>
+<h3 id="1-capture-baseline">1. Capture baseline<a class="headerlink" href="#1-capture-baseline" title="Permanent link">&para;</a></h3>
+<p>Before maintenance, record:</p>
+<ul>
+<li>Current version or host state.</li>
+<li>Request rate.</li>
+<li>Error rate.</li>
+<li>Latency.</li>
+<li>Saturation.</li>
+<li>Queue backlog.</li>
+<li>Dependency health.</li>
+<li>Current alerts.</li>
+</ul>
+<h3 id="2-define-rollback-triggers">2. Define rollback triggers<a class="headerlink" href="#2-define-rollback-triggers" title="Permanent link">&para;</a></h3>
+<p>Examples:</p>
+<ul>
+<li>Error rate exceeds guardrail for the observation window.</li>
+<li>Readiness stays below minimum capacity.</li>
+<li>Critical user path fails.</li>
+<li>Queue backlog grows beyond recovery threshold.</li>
+<li>Dependency connection errors increase.</li>
+</ul>
+<p>If rollback triggers are not defined before change, the team will debate them during incident pressure.</p>
+<h3 id="3-monitor-during-change">3. Monitor during change<a class="headerlink" href="#3-monitor-during-change" title="Permanent link">&para;</a></h3>
+<p>Watch both platform and application signals:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsS<span class="w"> </span>https://&lt;service-endpoint&gt;/healthz
+curl<span class="w"> </span>-fsS<span class="w"> </span>https://&lt;service-endpoint&gt;/readyz
+</code></pre></div>
+<p>For Kubernetes:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>deploy,pod
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>--sort-by<span class="o">=</span>.lastTimestamp
+</code></pre></div>
+<h3 id="4-validate-after-change">4. Validate after change<a class="headerlink" href="#4-validate-after-change" title="Permanent link">&para;</a></h3>
+<p>Run the agreed smoke test and observe for the required window. The service is not healthy just because the change command returned successfully.</p>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>Pass conditions:</p>
+<ul>
+<li>Health and readiness endpoints return expected status.</li>
+<li>Critical user journey succeeds.</li>
+<li>Error rate and latency are within baseline or planned range.</li>
+<li>No unexpected restart or crash loop.</li>
+<li>Dependency errors are not increasing.</li>
+<li>Alerts are clear or acknowledged with owner and deadline.</li>
+</ul>
+<h2 id="failure-modes">Failure Modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Result</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Only checks <code>/healthz</code></td>
+<td>Broken dependency goes unnoticed.</td>
+<td>Add readiness and dependency checks.</td>
+</tr>
+<tr>
+<td>No baseline</td>
+<td>Team cannot tell whether change worsened service.</td>
+<td>Capture metrics before change.</td>
+</tr>
+<tr>
+<td>No rollback trigger</td>
+<td>Recovery decision stalls.</td>
+<td>Define thresholds before change.</td>
+</tr>
+<tr>
+<td>Smoke test too shallow</td>
+<td>User path remains broken.</td>
+<td>Include critical business journey.</td>
+</tr>
+<tr>
+<td>Alerts silenced too broadly</td>
+<td>Real incident hidden.</td>
+<td>Scope maintenance silence tightly.</td>
+</tr>
+<tr>
+<td>No post-window observation</td>
+<td>Delayed failure missed.</td>
+<td>Set observation duration.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<p>Rollback to the previous safe state when rollback triggers fire and the current change is the likely cause.</p>
+<p>Rollback may mean:</p>
+<ul>
+<li>Revert deployment.</li>
+<li>Restore previous config.</li>
+<li>Stop maintenance.</li>
+<li>Re-enable previous route or DNS.</li>
+<li>Re-add drained capacity.</li>
+<li>Restore host or node state.</li>
+</ul>
+<p>If rollback cannot recover because data or schema changed, escalate to the service owner and incident commander.</p>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Do not put sensitive details in public health endpoints.</li>
+<li>Protect admin and diagnostic endpoints.</li>
+<li>Do not expose dependency credentials through health responses.</li>
+<li>Maintenance access should be time-bounded and audited.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review after failed maintenance, unclear rollback decisions, repeated false-green health checks, or new critical user paths.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../change-delivery/rollback/deployment-rollback-runbook/">Kubernetes Deployment Rollback Runbook</a></li>
+<li><a href="../../../change-delivery/rollback/deployment-rollback-runbook/">Deployment Rollback Runbook</a></li>
+<li><a href="../../../standards-manual/linux/system-os-patching-standard/">System OS Patching Standard</a></li>
 <li><a href="../../observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
 </ul>
 
@@ -4141,7 +4417,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4151,7 +4427,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     

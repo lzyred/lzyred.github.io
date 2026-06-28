@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="etcd operations standard for backup, restore, and cluster health management.">
+        <meta name="description" content="将 etcd 作为关键集群状态运维的标准——法定人数、defrag/告警处理、以恢复验证的快照备份，以及灾难恢复。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="etcd 运维 - DevOps 专家知识库" />
-<meta property="og:description" content="etcd operations standard for backup, restore, and cluster health management." />
+<meta property="og:description" content="将 etcd 作为关键集群状态运维的标准——法定人数、defrag/告警处理、以恢复验证的快照备份，以及灾难恢复。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/databases/etcd-operations-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/databases/etcd-operations-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="etcd 运维 - DevOps 专家知识库" />
-<meta property="twitter:description" content="etcd operations standard for backup, restore, and cluster health management." />
+<meta property="twitter:description" content="将 etcd 作为关键集群状态运维的标准——法定人数、defrag/告警处理、以恢复验证的快照备份，以及灾难恢复。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/databases/etcd-operations-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#etcd-operations-standard" class="md-skip">
+        <a href="#etcd" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -2930,10 +2874,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -2941,10 +2885,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operating-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operating Principles
+        适用场景
       
     </span>
   </a>
@@ -2952,10 +2896,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup
+        非目标
       
     </span>
   </a>
@@ -2963,10 +2907,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#health-checks" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Health Checks
+        运维原则
       
     </span>
   </a>
@@ -2974,10 +2918,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-notes" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes Notes
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        法定人数与成员数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        磁盘与大小是沉默的杀手
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        备份：快照，以恢复验证
       
     </span>
   </a>
@@ -2985,10 +2968,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#publication-safety" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Publication Safety
+        灾难恢复（恢复）
       
     </span>
   </a>
@@ -2996,10 +2979,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        校验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3491,34 +3529,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3862,34 +3872,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3960,10 +3942,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3971,10 +3953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operating-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operating Principles
+        适用场景
       
     </span>
   </a>
@@ -3982,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup
+        非目标
       
     </span>
   </a>
@@ -3993,10 +3975,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#health-checks" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Health Checks
+        运维原则
       
     </span>
   </a>
@@ -4004,10 +3986,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-notes" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes Notes
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        法定人数与成员数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        磁盘与大小是沉默的杀手
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        备份：快照，以恢复验证
       
     </span>
   </a>
@@ -4015,10 +4036,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#publication-safety" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Publication Safety
+        灾难恢复（恢复）
       
     </span>
   </a>
@@ -4026,10 +4047,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        校验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4162,33 +4238,154 @@
   
 
 
-<h1 id="etcd-operations-standard">etcd Operations Standard<a class="headerlink" href="#etcd-operations-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes public-safe etcd operations for Kubernetes and distributed systems.</p>
-<h2 id="operating-principles">Operating Principles<a class="headerlink" href="#operating-principles" title="Permanent link">&para;</a></h2>
+<h1 id="etcd">etcd 运维标准<a class="headerlink" href="#etcd" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何安全地把 etcd 作为 Kubernetes 及其他分布式系统的可信源来运维：法定人数如何决定可用性、磁盘延迟与数据库大小为何会悄悄引发故障，以及如何取一份你真正能恢复的快照。</p>
+<p>本标准的核心判断：</p>
+<blockquote>
+<p>etcd 不是"集群用的一个数据库"——对 Kubernetes 而言，它<strong>就是</strong>集群的记忆。丢失法定人数会让控制面停摆；丢失数据会丢掉整个集群。一份你从未恢复过的快照不是恢复方案。</p>
+</blockquote>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
 <ul>
-<li>Treat etcd as critical state.</li>
-<li>Use an odd number of members for quorum.</li>
-<li>Back up before cluster changes.</li>
-<li>Monitor leader changes, disk latency, database size, and alarms.</li>
-<li>Protect peer and client certificates.</li>
+<li>运行自管 etcd 集群（独立，或作为 Kubernetes 控制面存储）。</li>
+<li>需要一套针对集群状态的备份/恢复与灾难恢复流程。</li>
+<li>计划 etcd 或 Kubernetes 控制面的升级或成员变更。</li>
 </ul>
-<h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>snapshot<span class="w"> </span>save<span class="w"> </span>snapshot.db
-</code></pre></div>
-<p>Store snapshots encrypted and test restore regularly.</p>
-<h2 id="health-checks">Health Checks<a class="headerlink" href="#health-checks" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>endpoint<span class="w"> </span>health
-<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>endpoint<span class="w"> </span>status<span class="w"> </span>--write-out<span class="o">=</span>table
-</code></pre></div>
-<h2 id="kubernetes-notes">Kubernetes Notes<a class="headerlink" href="#kubernetes-notes" title="Permanent link">&para;</a></h2>
-<p>For managed Kubernetes, control plane etcd is usually provider-managed. For self-managed clusters, etcd backup and restore must be part of the platform runbook.</p>
-<h2 id="publication-safety">Publication Safety<a class="headerlink" href="#publication-safety" title="Permanent link">&para;</a></h2>
-<p>Do not publish real etcd certificates, keys, endpoints, snapshots, or cluster member names.</p>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不涵盖：</p>
 <ul>
-<li><a href="../../../system-design/production-architecture/kubeadm-installation-standard/">kubeadm Installation Standard</a></li>
-<li><a href="../../../system-design/production-architecture/kubernetes-cluster-provisioning-standard/">Kubernetes Cluster Provisioning Standard</a></li>
+<li>托管 Kubernetes（厂商掌管控制面 etcd）。你仍需应用级备份（Velero 等）；etcd 内部由厂商负责。</li>
+<li>基于 etcd 的应用数据建模。</li>
+<li>超出下述生产关键设置之外的调优。</li>
+</ul>
+<h2 id="_4">运维原则<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ol>
+<li>把 etcd 当作关键状态，严格变更管控。</li>
+<li>使用<strong>奇数</strong>成员（3 或 5），使丢失一个成员时仍保持法定人数。</li>
+<li>把 etcd 放在<strong>快速、低延迟磁盘</strong>上——etcd 受 fsync 约束，慢盘会引发 leader 切换与请求超时。</li>
+<li>任何集群变更<strong>之前</strong>取一份经验证的快照。</li>
+<li>监控 leader 切换、磁盘 fsync/backend-commit 延迟、数据库大小与已触发的告警。</li>
+</ol>
+<h2 id="_5">推荐标准<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">法定人数与成员数<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>etcd 需要多数成员（法定人数）才能服务写入。3 成员容忍 1 个失败；5 成员容忍 2 个。偶数成员只增加成本却不提升容错，且可能分裂选票。把成员分散到不同故障域。</p>
+<h3 id="_7">磁盘与大小是沉默的杀手<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>etcd 把每次写入落盘；高 fsync/backend-commit 延迟表现为频繁 leader 选举与 <code>etcdserver: request timed out</code>。</li>
+<li>数据库有配额（<code>--quota-backend-bytes</code>，默认约 2 GiB）。超出时 etcd 会触发 <strong><code>NOSPACE</code> 告警</strong>并转为<strong>只读</strong>——这是集群级故障。务必留足余量；按计划 compact 与 defrag。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 压缩（保留当前 revision），再 defrag 回收空间：</span>
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>compact<span class="w"> </span>&lt;rev&gt;
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>defrag
+<span class="c1"># 若已置 NOSPACE 告警，回收空间后清除：</span>
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>alarm<span class="w"> </span>list
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>alarm<span class="w"> </span>disarm
+</code></pre></div>
+<p>defrag 对单个成员有干扰（会短暂阻塞该成员）；逐个成员执行，从 follower 开始。</p>
+<h2 id="_8">备份：快照，以恢复验证<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>--endpoints<span class="o">=</span>&lt;endpoint&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cacert<span class="o">=</span>&lt;ca&gt;<span class="w"> </span>--cert<span class="o">=</span>&lt;cert&gt;<span class="w"> </span>--key<span class="o">=</span>&lt;key&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>snapshot<span class="w"> </span>save<span class="w"> </span>/backup/etcd-snapshot.db
+
+<span class="c1"># 校验快照一致性：</span>
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>snapshot<span class="w"> </span>status<span class="w"> </span>/backup/etcd-snapshot.db<span class="w"> </span>--write-out<span class="o">=</span>table
+</code></pre></div>
+<ul>
+<li>按计划取快照，并在每次集群变更（升级、增删成员）前取。</li>
+<li>快照加密并存放在 etcd 主机之外；其中包含全部集群状态，含 Secret。</li>
+<li><strong>按计划做恢复演练</strong>，恢复到隔离环境。从未恢复过的快照只是期望，不是备份。</li>
+</ul>
+<h2 id="_9">灾难恢复（恢复）<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>恢复 etcd 是破坏性操作，必须协调——对 Kubernetes 控制面，恢复期间必须停止 API server。</p>
+<ol>
+<li>在目标上停止 etcd（及依赖的 API server）进程。</li>
+<li>在每个成员上用匹配的 peer URL 将快照恢复到新的数据目录。</li>
+<li>从恢复的数据以新集群方式启动 etcd，再重启 API server。</li>
+<li>校验健康，并确认集群状态与快照的时间点一致。</li>
+</ol>
+<p>按 runbook 执行，有负责人，绝不在事故中临场发挥。</p>
+<h2 id="_10">校验<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>endpoint<span class="w"> </span>health<span class="w"> </span>--cluster
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>endpoint<span class="w"> </span>status<span class="w"> </span>--cluster<span class="w"> </span>--write-out<span class="o">=</span>table
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>alarm<span class="w"> </span>list
+</code></pre></div>
+<p>确认：</p>
+<ul>
+<li>所有 endpoint <code>healthy</code>；恰好一个 leader；无过多 leader 切换。</li>
+<li>数据库大小远低于配额；无 <code>NOSPACE</code>/<code>CORRUPT</code> 告警。</li>
+<li>对 Kubernetes，API server 响应正常，控制器正常协调。</li>
+<li>最近快照在周期内通过了恢复演练。</li>
+</ul>
+<h2 id="_11">已知失败模式<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>症状</th>
+<th>可能原因</th>
+<th>正确处置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>丢失法定人数</td>
+<td>写失败；控制面停摆</td>
+<td>过多成员宕机/偶数成员</td>
+<td>恢复成员或从快照恢复；用奇数成员。</td>
+</tr>
+<tr>
+<td>NOSPACE/只读</td>
+<td>集群拒绝写</td>
+<td>DB 超出后端配额</td>
+<td>compact、defrag，再 <code>alarm disarm</code>；刻意调大配额。</td>
+</tr>
+<tr>
+<td>频繁 leader 选举</td>
+<td>超时、不稳定</td>
+<td>磁盘 fsync 慢、网络延迟</td>
+<td>换快盘；查网络；隔离吵闹邻居。</td>
+</tr>
+<tr>
+<td>快照无法恢复</td>
+<td>恢复失败</td>
+<td>从未演练/快照不一致</td>
+<td>用 <code>snapshot status</code> 校验；安排恢复演练。</td>
+</tr>
+<tr>
+<td>证书/peer 不匹配</td>
+<td>成员无法加入</td>
+<td>恢复时 peer URL 或证书错误</td>
+<td>用匹配的 peer URL 恢复；保护/轮换证书。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_12">回滚<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ol>
+<li>集群变更前必先快照，以保有已知良好点。</li>
+<li>回滚失败的成员变更：用变更前快照恢复该成员并重新加入。</li>
+<li>回滚灾难性数据丢失：用最近一份经验证快照执行灾难恢复。</li>
+<li>任何恢复后保护并轮换 etcd 的 peer/client 证书。</li>
+</ol>
+<h2 id="_13">安全注记<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>切勿公开真实 etcd endpoint、证书、密钥、快照或成员名。</li>
+<li>快照包含全部集群状态含 Kubernetes Secret——像密钥一样加密并访问控制。</li>
+<li>在 peer 与 client 之间启用双向 TLS；限制谁可访问 client 端口。</li>
+<li>限制谁可执行 <code>snapshot</code>、<code>defrag</code>、<code>alarm</code> 与成员操作。</li>
+</ul>
+<h2 id="_14">评审周期<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li>负责人：平台/集群团队。</li>
+<li>每个周期验证一次成功的快照恢复演练。</li>
+<li>定期复核数据库大小、配额余量与磁盘延迟。</li>
+<li>每次控制面升级前重新确认 DR runbook。</li>
+</ul>
+<h2 id="_15">相关文档<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../system-design/production-architecture/kubernetes-cluster-provisioning-standard/">Kubernetes 集群供给标准</a></li>
+<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter 监控标准</a></li>
+<li><a href="https://etcd.io/docs/latest/op-guide/recovery/">etcd 灾难恢复官方文档</a></li>
 </ul>
 
 
@@ -4212,7 +4409,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:15:46 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4222,7 +4419,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:15:46 UTC">2026年6月28日</span>
   </span>
 
     

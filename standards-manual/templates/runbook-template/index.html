@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Standard runbook template for production incident response procedures.">
+        <meta name="description" content="生产 Runbook 模板，用于告警、事故和运维流程，包含分诊、决策路径、验证、回滚和关闭标准。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Runbook 模板 - DevOps 专家知识库" />
-<meta property="og:description" content="Standard runbook template for production incident response procedures." />
+<meta property="og:description" content="生产 Runbook 模板，用于告警、事故和运维流程，包含分诊、决策路径、验证、回滚和关闭标准。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/templates/runbook-template.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/templates/runbook-template/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Runbook 模板 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Standard runbook template for production incident response procedures." />
+<meta property="twitter:description" content="生产 Runbook 模板，用于告警、事故和运维流程，包含分诊、决策路径、验证、回滚和关闭标准。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/templates/runbook-template.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#runbook-template" class="md-skip">
+        <a href="#runbook" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3365,34 +3309,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3749,10 +3665,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3760,10 +3676,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#trigger" class="md-nav__link">
+  <a href="#runbook_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Trigger
+        Runbook 摘要
       
     </span>
   </a>
@@ -3771,10 +3687,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#impact" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Impact
+        触发条件
       
     </span>
   </a>
@@ -3782,10 +3698,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-triage" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Triage
+        影响
       
     </span>
   </a>
@@ -3793,10 +3709,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#diagnosis" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Diagnosis
+        前置条件
       
     </span>
   </a>
@@ -3804,22 +3720,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#response" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Response
+        初始分诊
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Response">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        诊断
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        响应路径
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="响应路径">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#path-a-low-risk" class="md-nav__link">
+  <a href="#path-a" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path A: Low Risk
+        Path A：低风险恢复
       
     </span>
   </a>
@@ -3827,10 +3765,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#path-b-high-risk" class="md-nav__link">
+  <a href="#path-b" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path B: High Risk
+        Path B：高风险恢复
       
     </span>
   </a>
@@ -3843,10 +3781,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        验证
       
     </span>
   </a>
@@ -3854,10 +3792,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
+        回滚或升级
       
     </span>
   </a>
@@ -3865,10 +3803,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#closure-criteria" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Closure Criteria
+        关闭标准
       
     </span>
   </a>
@@ -3876,10 +3814,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#post-incident-follow-up" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Incident Follow-Up
+        事故后跟进
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        质量门禁
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3910,34 +3870,6 @@
     
   
     迁移计划模板
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
   
 
     
@@ -4021,10 +3953,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -4032,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#trigger" class="md-nav__link">
+  <a href="#runbook_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Trigger
+        Runbook 摘要
       
     </span>
   </a>
@@ -4043,10 +3975,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#impact" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Impact
+        触发条件
       
     </span>
   </a>
@@ -4054,10 +3986,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-triage" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Triage
+        影响
       
     </span>
   </a>
@@ -4065,10 +3997,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#diagnosis" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Diagnosis
+        前置条件
       
     </span>
   </a>
@@ -4076,22 +4008,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#response" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Response
+        初始分诊
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Response">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        诊断
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        响应路径
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="响应路径">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#path-a-low-risk" class="md-nav__link">
+  <a href="#path-a" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path A: Low Risk
+        Path A：低风险恢复
       
     </span>
   </a>
@@ -4099,10 +4053,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#path-b-high-risk" class="md-nav__link">
+  <a href="#path-b" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Path B: High Risk
+        Path B：高风险恢复
       
     </span>
   </a>
@@ -4115,10 +4069,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        验证
       
     </span>
   </a>
@@ -4126,10 +4080,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
+        回滚或升级
       
     </span>
   </a>
@@ -4137,10 +4091,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#closure-criteria" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Closure Criteria
+        关闭标准
       
     </span>
   </a>
@@ -4148,10 +4102,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#post-incident-follow-up" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Incident Follow-Up
+        事故后跟进
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        质量门禁
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4272,54 +4248,175 @@
   
 
 
-<h1 id="runbook-template">Runbook Template<a class="headerlink" href="#runbook-template" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>Describe the alert, incident, or operation this runbook handles.</p>
-<h2 id="trigger">Trigger<a class="headerlink" href="#trigger" title="Permanent link">&para;</a></h2>
-<p>Describe what causes this runbook to be used.</p>
-<h2 id="impact">Impact<a class="headerlink" href="#impact" title="Permanent link">&para;</a></h2>
-<p>Describe user, service, platform, or data impact.</p>
-<h2 id="initial-triage">Initial Triage<a class="headerlink" href="#initial-triage" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>example-command
-</code></pre></div>
-<h2 id="diagnosis">Diagnosis<a class="headerlink" href="#diagnosis" title="Permanent link">&para;</a></h2>
+<h1 id="runbook">Runbook 模板<a class="headerlink" href="#runbook" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本模板用于告警、事故和可重复运维流程。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>Runbook 是压力下的决策路径，不是命令归档。</p>
+</blockquote>
+<p>它应帮助操作者判断发生了什么、什么动作安全、什么时候停止、如何证明恢复。</p>
+<h2 id="runbook_1">Runbook 摘要<a class="headerlink" href="#runbook_1" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Symptom</th>
-<th>Check</th>
-<th>Likely Cause</th>
+<th>字段</th>
+<th>值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Example symptom</td>
-<td>Example check</td>
-<td>Example cause</td>
+<td>Runbook 名称</td>
+<td><code>&lt;name&gt;</code></td>
+</tr>
+<tr>
+<td>服务或平台领域</td>
+<td><code>&lt;area&gt;</code></td>
+</tr>
+<tr>
+<td>Owner</td>
+<td><code>&lt;team-or-role&gt;</code></td>
+</tr>
+<tr>
+<td>严重级别范围</td>
+<td><code>&lt;severity&gt;</code></td>
+</tr>
+<tr>
+<td>最近评审</td>
+<td><code>&lt;date&gt;</code></td>
+</tr>
+<tr>
+<td>升级 owner</td>
+<td><code>&lt;role&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="response">Response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h2>
-<h3 id="path-a-low-risk">Path A: Low Risk<a class="headerlink" href="#path-a-low-risk" title="Permanent link">&para;</a></h3>
-<p>Steps.</p>
-<h3 id="path-b-high-risk">Path B: High Risk<a class="headerlink" href="#path-b-high-risk" title="Permanent link">&para;</a></h3>
-<p>Steps.</p>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>example-validation-command
-</code></pre></div>
-<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
-<p>Describe rollback commands or restore process.</p>
-<h2 id="closure-criteria">Closure Criteria<a class="headerlink" href="#closure-criteria" title="Permanent link">&para;</a></h2>
+<h2 id="_2">触发条件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>明确什么时候使用本 Runbook：</p>
 <ul>
-<li>Condition 1.</li>
-<li>Condition 2.</li>
-<li>Condition 3.</li>
+<li>告警名称。</li>
+<li>用户症状。</li>
+<li>维护任务。</li>
+<li>运维请求。</li>
+<li>人工发现条件。</li>
 </ul>
-<h2 id="post-incident-follow-up">Post-Incident Follow-Up<a class="headerlink" href="#post-incident-follow-up" title="Permanent link">&para;</a></h2>
+<h2 id="_3">影响<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>说明可能影响：</p>
 <ul>
-<li>Prevention item.</li>
-<li>Owner.</li>
-<li>Due date.</li>
+<li>用户影响。</li>
+<li>数据影响。</li>
+<li>平台影响。</li>
+<li>安全影响。</li>
+<li>影响面。</li>
+</ul>
+<h2 id="_4">前置条件<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>列出行动前需要具备的条件：</p>
+<ul>
+<li>访问权限。</li>
+<li>工具。</li>
+<li>目标 namespace、host、cluster 或 account。</li>
+<li>所需审批。</li>
+<li>备份或快照要求。</li>
+<li>已知回滚 owner。</li>
+</ul>
+<h2 id="_5">初始分诊<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>使用能先识别目标和风险、再改变状态的命令：</p>
+<div class="highlight"><pre><span></span><code>example<span class="w"> </span>status<span class="w"> </span><span class="nb">command</span>
+example<span class="w"> </span>describe<span class="w"> </span><span class="nb">command</span>
+example<span class="w"> </span>recent-events<span class="w"> </span><span class="nb">command</span>
+</code></pre></div>
+<p>记录当前状态、当前症状和是否有用户影响。</p>
+<h2 id="_6">诊断<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>检查</th>
+<th>可能原因</th>
+<th>下一路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>示例症状</td>
+<td>示例检查</td>
+<td>示例原因</td>
+<td>Path A</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">响应路径<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="path-a">Path A：低风险恢复<a class="headerlink" href="#path-a" title="Permanent link">&para;</a></h3>
+<p>适用于影响有限且动作可回退。</p>
+<ol>
+<li>步骤。</li>
+<li>验证。</li>
+<li>继续或升级。</li>
+</ol>
+<h3 id="path-b">Path B：高风险恢复<a class="headerlink" href="#path-b" title="Permanent link">&para;</a></h3>
+<p>适用于数据、安全或大范围可用性有风险。</p>
+<ol>
+<li>停止并通知 owner。</li>
+<li>保留证据。</li>
+<li>执行批准的缓解动作。</li>
+<li>验证。</li>
+<li>决定回滚或升级。</li>
+</ol>
+<h2 id="_8">验证<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>定义健康证据：</p>
+<div class="highlight"><pre><span></span><code>example<span class="w"> </span>validation<span class="w"> </span><span class="nb">command</span>
+</code></pre></div>
+<p>通过条件：</p>
+<ul>
+<li>服务健康恢复。</li>
+<li>错误或症状清除。</li>
+<li>用户路径可用。</li>
+<li>无新增 critical 告警。</li>
+<li>Owner 接受结果。</li>
+</ul>
+<h2 id="_9">回滚或升级<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>说明：</p>
+<ul>
+<li>什么可以回滚。</li>
+<li>什么不能回滚。</li>
+<li>什么时候升级。</li>
+<li>谁审批高风险动作。</li>
+<li>需要附带什么证据。</li>
+</ul>
+<h2 id="_10">关闭标准<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>只有以下条件满足才能关闭：</p>
+<ul>
+<li>触发告警已解决或被接受。</li>
+<li>验证通过。</li>
+<li>用户影响结束。</li>
+<li>跟进 owner 和截止时间存在。</li>
+<li>事故或变更记录已更新。</li>
+</ul>
+<h2 id="_11">事故后跟进<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>记录：</p>
+<ul>
+<li>根因或疑似根因。</li>
+<li>预防动作。</li>
+<li>监控缺口。</li>
+<li>Runbook 改进。</li>
+<li>Owner。</li>
+<li>截止时间。</li>
+</ul>
+<h2 id="_12">质量门禁<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>以下情况 Runbook 未就绪：</p>
+<ul>
+<li>以破坏性命令开头。</li>
+<li>没有影响检查。</li>
+<li>没有回滚或升级边界。</li>
+<li>没有定义健康状态。</li>
+<li>假设单一环境特定目标。</li>
+<li>包含密钥或真实运营标识符。</li>
+</ul>
+<h2 id="_13">相关文档<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../standard-document-template/">标准文档模板</a></li>
+<li><a href="../migration-plan-template/">迁移计划模板</a></li>
+<li><a href="../../../change-delivery/rollback/deployment-rollback-runbook/">部署回滚 Runbook</a></li>
 </ul>
 
 
@@ -4343,7 +4440,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4353,7 +4450,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     

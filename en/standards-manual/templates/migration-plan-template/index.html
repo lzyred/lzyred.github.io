@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Template for production migration plans with risk assessment and rollback strategy.">
+        <meta name="description" content="Public-safe migration plan template for production changes, including scope, risk, validation, rollback, communication, and post-migration review.">
       
       
       
@@ -16,7 +16,7 @@
         <link rel="prev" href="../runbook-template/">
       
       
-        <link rel="next" href="../devops-deep-article-quality-standard/">
+        <link rel="next" href="../../../tags/">
       
       
         
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Migration Plan Template - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Template for production migration plans with risk assessment and rollback strategy." />
+<meta property="og:description" content="Public-safe migration plan template for production changes, including scope, risk, validation, rollback, communication, and post-migration review." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/templates/migration-plan-template.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/templates/migration-plan-template/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Migration Plan Template - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Template for production migration plans with risk assessment and rollback strategy." />
+<meta property="twitter:description" content="Public-safe migration plan template for production changes, including scope, risk, validation, rollback, communication, and post-migration review." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/templates/migration-plan-template.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3365,34 +3309,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3788,6 +3704,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#background" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3838,10 +3776,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#current-architecture" class="md-nav__link">
+  <a href="#current-state" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Architecture
+        Current State
       
     </span>
   </a>
@@ -3849,10 +3787,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#target-architecture" class="md-nav__link">
+  <a href="#target-state" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Target Architecture
+        Target State
       
     </span>
   </a>
@@ -3860,10 +3798,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#risks" class="md-nav__link">
+  <a href="#risk-register" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Risks
+        Risk Register
       
     </span>
   </a>
@@ -3871,10 +3809,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#migration-steps" class="md-nav__link">
+  <a href="#migration-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Migration Steps
+        Migration Sequence
       
     </span>
   </a>
@@ -3882,10 +3820,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#validation-plan" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        Validation Plan
       
     </span>
   </a>
@@ -3893,10 +3831,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#rollback-plan" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
+        Rollback Plan
       
     </span>
   </a>
@@ -3925,38 +3863,32 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#quality-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quality Gate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documents
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -4043,6 +3975,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#background" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4093,10 +4047,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#current-architecture" class="md-nav__link">
+  <a href="#current-state" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Architecture
+        Current State
       
     </span>
   </a>
@@ -4104,10 +4058,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#target-architecture" class="md-nav__link">
+  <a href="#target-state" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Target Architecture
+        Target State
       
     </span>
   </a>
@@ -4115,10 +4069,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#risks" class="md-nav__link">
+  <a href="#risk-register" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Risks
+        Risk Register
       
     </span>
   </a>
@@ -4126,10 +4080,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#migration-steps" class="md-nav__link">
+  <a href="#migration-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Migration Steps
+        Migration Sequence
       
     </span>
   </a>
@@ -4137,10 +4091,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#validation-plan" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        Validation Plan
       
     </span>
   </a>
@@ -4148,10 +4102,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#rollback-plan" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
+        Rollback Plan
       
     </span>
   </a>
@@ -4174,6 +4128,28 @@
     <span class="md-ellipsis">
       
         Post-Migration Review
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quality-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quality Gate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documents
       
     </span>
   </a>
@@ -4296,70 +4272,221 @@
 
 <h1 id="migration-plan-template">Migration Plan Template<a class="headerlink" href="#migration-plan-template" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>Describe the migration and desired outcome.</p>
+<p>Use this template to plan a production migration before any irreversible network, data, platform, or application cutover.</p>
+<p>The core judgment:</p>
+<blockquote>
+<p>A migration plan is a decision record for risk, not a task list for copying resources.</p>
+</blockquote>
+<p>It should make the target state, safety checks, rollback boundary, and ownership clear enough that another engineer can review the plan without knowing the original environment.</p>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<p>Fill every section with public-safe placeholders. Do not include real customer names, domains, IP addresses, account IDs, bucket names, credentials, private repository URLs, or raw production evidence.</p>
+<h2 id="migration-summary">Migration Summary<a class="headerlink" href="#migration-summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Migration name</td>
+<td><code>&lt;short-name&gt;</code></td>
+</tr>
+<tr>
+<td>Owner</td>
+<td><code>&lt;team-or-role&gt;</code></td>
+</tr>
+<tr>
+<td>Migration family</td>
+<td>Network / storage / database / application / platform / mixed</td>
+</tr>
+<tr>
+<td>Source state</td>
+<td><code>&lt;generic-source-state&gt;</code></td>
+</tr>
+<tr>
+<td>Target state</td>
+<td><code>&lt;generic-target-state&gt;</code></td>
+</tr>
+<tr>
+<td>Planned window</td>
+<td><code>&lt;window&gt;</code></td>
+</tr>
+<tr>
+<td>Rollback decision owner</td>
+<td><code>&lt;role&gt;</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>Summarize the current state and reason for migration using public-safe labels.</p>
+<p>Explain why the migration is needed:</p>
+<ul>
+<li>Current limitation.</li>
+<li>Target outcome.</li>
+<li>Business or reliability driver.</li>
+<li>Constraints that shape the design.</li>
+</ul>
+<p>Do not start with commands. Start with the operational problem.</p>
 <h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
 <h3 id="in-scope">In Scope<a class="headerlink" href="#in-scope" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Item 1.</li>
+<li>Systems or data included.</li>
+<li>Traffic paths included.</li>
+<li>Teams affected.</li>
+<li>Validation responsibilities.</li>
 </ul>
 <h3 id="out-of-scope">Out of Scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Item 1.</li>
+<li>Systems intentionally excluded.</li>
+<li>Follow-up work that must not block the migration.</li>
+<li>Adjacent modernization that is not part of this cutover.</li>
 </ul>
-<h2 id="current-architecture">Current Architecture<a class="headerlink" href="#current-architecture" title="Permanent link">&para;</a></h2>
-<p>Describe the source system with generic labels.</p>
-<h2 id="target-architecture">Target Architecture<a class="headerlink" href="#target-architecture" title="Permanent link">&para;</a></h2>
-<p>Describe the target system with generic labels.</p>
-<h2 id="risks">Risks<a class="headerlink" href="#risks" title="Permanent link">&para;</a></h2>
+<h2 id="current-state">Current State<a class="headerlink" href="#current-state" title="Permanent link">&para;</a></h2>
+<p>Describe the current architecture with generic labels:</p>
+<ul>
+<li>Components.</li>
+<li>Data flows.</li>
+<li>Ownership.</li>
+<li>Known risks.</li>
+<li>Current monitoring.</li>
+<li>Current rollback path.</li>
+</ul>
+<h2 id="target-state">Target State<a class="headerlink" href="#target-state" title="Permanent link">&para;</a></h2>
+<p>Describe the intended state:</p>
+<ul>
+<li>Components.</li>
+<li>Data flows.</li>
+<li>Ownership changes.</li>
+<li>Security changes.</li>
+<li>Monitoring changes.</li>
+<li>Decommission plan for source resources.</li>
+</ul>
+<h2 id="risk-register">Risk Register<a class="headerlink" href="#risk-register" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>Risk</th>
 <th>Probability</th>
 <th>Impact</th>
+<th>Detection</th>
 <th>Mitigation</th>
+<th>Rollback Trigger</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Example risk</td>
+<td>Example: DNS clients keep old endpoint</td>
 <td>Medium</td>
 <td>High</td>
-<td>Example mitigation</td>
+<td>Resolver test and traffic logs</td>
+<td>Lower TTL before cutover</td>
+<td>More than expected traffic remains on old path</td>
 </tr>
 </tbody>
 </table>
-<h2 id="migration-steps">Migration Steps<a class="headerlink" href="#migration-steps" title="Permanent link">&para;</a></h2>
+<h2 id="migration-sequence">Migration Sequence<a class="headerlink" href="#migration-sequence" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Prepare target environment.</li>
+<li>Validate target access and observability.</li>
 <li>Sync data or configuration.</li>
-<li>Run validation.</li>
+<li>Run pre-cutover smoke tests.</li>
+<li>Freeze or drain source writes if required.</li>
 <li>Execute cutover.</li>
-<li>Monitor.</li>
+<li>Run post-cutover validation.</li>
+<li>Observe for the agreed window.</li>
+<li>Decide rollback, continue, or complete.</li>
+<li>Decommission source only after rollback window ends.</li>
 </ol>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<h2 id="validation-plan">Validation Plan<a class="headerlink" href="#validation-plan" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Check</th>
+<th>Expected Result</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Platform</td>
+<td>Target resources are healthy.</td>
+<td>No critical platform errors.</td>
+<td><code>&lt;role&gt;</code></td>
+</tr>
+<tr>
+<td>Network</td>
+<td>Required paths work and denied paths fail.</td>
+<td>Route behavior matches plan.</td>
+<td><code>&lt;role&gt;</code></td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Counts, size, checksum, or sample reads match.</td>
+<td>Drift is within accepted threshold.</td>
+<td><code>&lt;role&gt;</code></td>
+</tr>
+<tr>
+<td>Application</td>
+<td>Critical user path passes.</td>
+<td>Smoke test succeeds.</td>
+<td><code>&lt;role&gt;</code></td>
+</tr>
+<tr>
+<td>Monitoring</td>
+<td>Alerts and dashboards reflect target.</td>
+<td>Signals are visible.</td>
+<td><code>&lt;role&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback-plan">Rollback Plan<a class="headerlink" href="#rollback-plan" title="Permanent link">&para;</a></h2>
+<p>Define:</p>
 <ul>
-<li>Technical validation.</li>
-<li>Business smoke test.</li>
-<li>Monitoring validation.</li>
+<li>Rollback trigger.</li>
+<li>Rollback decision owner.</li>
+<li>Latest safe rollback time.</li>
+<li>Steps to return traffic or reads to source.</li>
+<li>How writes are reconciled.</li>
+<li>Data that must be preserved.</li>
+<li>Conditions where rollback is unsafe.</li>
 </ul>
-<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
-<p>Define rollback trigger, rollback owner, and rollback procedure.</p>
+<p>If rollback requires restoring data, state the restore source and expected recovery time.</p>
 <h2 id="communication-plan">Communication Plan<a class="headerlink" href="#communication-plan" title="Permanent link">&para;</a></h2>
+<p>Include:</p>
 <ul>
+<li>Change announcement.</li>
 <li>Maintenance window.</li>
-<li>Stakeholders.</li>
-<li>Status updates.</li>
+<li>Status update cadence.</li>
+<li>Escalation channel.</li>
 <li>Completion notice.</li>
+<li>Rollback notice template.</li>
 </ul>
 <h2 id="post-migration-review">Post-Migration Review<a class="headerlink" href="#post-migration-review" title="Permanent link">&para;</a></h2>
+<p>After completion, record:</p>
 <ul>
 <li>What changed.</li>
-<li>What worked.</li>
-<li>What failed.</li>
+<li>What validation proved.</li>
+<li>What failed or surprised the team.</li>
 <li>Follow-up actions.</li>
+<li>Decommission status.</li>
+<li>Monitoring or runbook updates.</li>
+</ul>
+<h2 id="quality-gate">Quality Gate<a class="headerlink" href="#quality-gate" title="Permanent link">&para;</a></h2>
+<p>The migration plan is not ready if:</p>
+<ul>
+<li>Rollback trigger is vague.</li>
+<li>Validation checks are only infrastructure-level and ignore user paths.</li>
+<li>Data ownership is unclear.</li>
+<li>Source deletion happens before rollback window.</li>
+<li>The plan contains environment-specific secrets or identifiers.</li>
+</ul>
+<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../cloud/cloud-network-migration-standard/">Cloud Network and Object Storage Migration Standard</a></li>
+<li><a href="../../../cases-reviews/cases/anonymous-object-storage-migration-case/">Object Storage Migration Case</a></li>
+<li><a href="../standard-document-template/">Standard Document Template</a></li>
 </ul>
 
 
@@ -4383,7 +4510,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4393,7 +4520,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4466,13 +4593,13 @@
         
         
           
-          <a href="../devops-deep-article-quality-standard/" class="md-footer__link md-footer__link--next" aria-label="Next: DevOps Deep Article Quality Standard">
+          <a href="../../../tags/" class="md-footer__link md-footer__link--next" aria-label="Next: Topic Index">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                DevOps Deep Article Quality Standard
+                Topic Index
               </div>
             </div>
             <div class="md-footer__button md-icon">

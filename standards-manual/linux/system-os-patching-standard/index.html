@@ -6,14 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="System OS patching standard for production Linux servers.">
+        <meta name="description" content="系统 OS 补丁标准，覆盖资产清单、风险分级、维护窗口、验证、回滚和沟通。">
       
       
       
         <link rel="canonical" href="https://blog.l2do.com/standards-manual/linux/system-os-patching-standard/">
       
       
-        <link rel="prev" href="../ubuntu-26-ai-fullstack-setup-v2/">
+        <link rel="prev" href="../server-baseline-standard/">
       
       
         <link rel="next" href="../supervisor-process-management-standard/">
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="系统 OS 补丁 - DevOps 专家知识库" />
-<meta property="og:description" content="System OS patching standard for production Linux servers." />
+<meta property="og:description" content="系统 OS 补丁标准，覆盖资产清单、风险分级、维护窗口、验证、回滚和沟通。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/linux/system-os-patching-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/linux/system-os-patching-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="系统 OS 补丁 - DevOps 专家知识库" />
-<meta property="twitter:description" content="System OS patching standard for production Linux servers." />
+<meta property="twitter:description" content="系统 OS 补丁标准，覆盖资产清单、风险分级、维护窗口、验证、回滚和沟通。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/linux/system-os-patching-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#system-os-patching-standard" class="md-skip">
+        <a href="#os" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3364,34 +3308,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -3455,10 +3371,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3466,10 +3382,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#process" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Process
+        适用场景
       
     </span>
   </a>
@@ -3477,10 +3393,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        非目标
       
     </span>
   </a>
@@ -3488,10 +3404,165 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        维护补丁 inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分类补丁紧急度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按故障域分批
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 准备
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 应用补丁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 必要时重启
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3829,34 +3900,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3927,10 +3970,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3938,10 +3981,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#process" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Process
+        适用场景
       
     </span>
   </a>
@@ -3949,10 +3992,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        非目标
       
     </span>
   </a>
@@ -3960,10 +4003,165 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        维护补丁 inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分类补丁紧急度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按故障域分批
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 准备
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 应用补丁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 必要时重启
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4096,26 +4294,193 @@
   
 
 
-<h1 id="system-os-patching-standard">System OS Patching Standard<a class="headerlink" href="#system-os-patching-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes operating system patch planning for Linux servers.</p>
-<h2 id="process">Process<a class="headerlink" href="#process" title="Permanent link">&para;</a></h2>
+<h1 id="os">系统 OS 补丁标准<a class="headerlink" href="#os" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何为 Linux 操作系统打补丁，避免把例行安全工作变成计划外故障。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>OS 补丁是以安全为动机的可靠性变更。</p>
+</blockquote>
+<p>补丁必须有计划、可观测、尽可能可回退，并绑定所有权。“到处跑升级命令”不是补丁策略。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>适用于：</p>
+<ul>
+<li>月度或紧急 Linux 补丁。</li>
+<li>Kernel 和 libc 更新。</li>
+<li>容器宿主机补丁。</li>
+<li>堡垒机、CI runner、监控和平台主机维护。</li>
+<li>主机补丁合规评审。</li>
+</ul>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不定义应用依赖升级、容器镜像重建策略或托管 OS 补丁服务内部实现。</p>
+<h2 id="_4">推荐标准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="inventory">维护补丁 inventory<a class="headerlink" href="#inventory" title="Permanent link">&para;</a></h3>
+<p>每台主机或节点组需要：</p>
+<ul>
+<li>Owner。</li>
+<li>环境。</li>
+<li>重要性。</li>
+<li>OS 版本。</li>
+<li>Kernel 版本。</li>
+<li>工作负载角色。</li>
+<li>重启容忍度。</li>
+<li>备份或重建路径。</li>
+<li>维护窗口。</li>
+</ul>
+<p>Owner 未知的主机不应静默打补丁，而应作为治理风险升级。</p>
+<h3 id="_5">分类补丁紧急度<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>使用条件</th>
+<th>时间线</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Routine</td>
+<td>普通安全与稳定性更新。</td>
+<td>计划维护窗口。</td>
+</tr>
+<tr>
+<td>Expedited</td>
+<td>漏洞可利用或暴露面高。</td>
+<td>批准的加速窗口内。</td>
+</tr>
+<tr>
+<td>Emergency</td>
+<td>正在被利用或严重暴露。</td>
+<td>事故管理变更。</td>
+</tr>
+</tbody>
+</table>
+<p>紧急补丁仍然需要沟通、回滚思考和变更后验证。</p>
+<h3 id="_6">按故障域分批<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>分波次补丁：</p>
 <ol>
-<li>Inventory hosts.</li>
-<li>Review security advisories.</li>
-<li>Test patches in non-production.</li>
-<li>Schedule maintenance.</li>
-<li>Apply updates.</li>
-<li>Reboot if required.</li>
-<li>Validate services.</li>
+<li>非生产或 canary 主机。</li>
+<li>每种角色的一台主机。</li>
+<li>一个可用区或节点池。</li>
+<li>剩余 fleet。</li>
 </ol>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>除非工作负载明确可容忍，否则不要同时补丁同一服务角色的所有主机。</p>
+<h2 id="_7">操作流程<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 准备<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>uname<span class="w"> </span>-a
+cat<span class="w"> </span>/etc/os-release
+df<span class="w"> </span>-h
 systemctl<span class="w"> </span>--failed
 </code></pre></div>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<p>确认：</p>
 <ul>
-<li><a href="../server-baseline-standard/">Linux Server Baseline Standard</a></li>
+<li>备份或重建路径。</li>
+<li>监控健康。</li>
+<li>服务 owner 已知情。</li>
+<li>容量能承受一台主机不可用。</li>
+<li>是否需要重启已明确。</li>
+</ul>
+<h3 id="2">2. 应用补丁<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>使用发行版包管理器和批准的软件源。生产补丁时避免临时下载包。</p>
+<p>Debian 或 Ubuntu 类系统：</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>list<span class="w"> </span>--upgradable
+sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
+</code></pre></div>
+<p>RHEL 类系统：</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>check-update
+sudo<span class="w"> </span>dnf<span class="w"> </span>upgrade
+</code></pre></div>
+<h3 id="3">3. 必要时重启<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>Kernel、libc、systemd 和驱动变更通常需要重启才生效。</p>
+<p>重启前：</p>
+<ul>
+<li>如适用，先 drain 工作负载。</li>
+<li>有状态服务按专属 runbook 停止或故障转移。</li>
+<li>确认告警静默或维护窗口。</li>
+</ul>
+<h2 id="_8">验证<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>补丁后：</p>
+<div class="highlight"><pre><span></span><code>uname<span class="w"> </span>-a
+systemctl<span class="w"> </span>--failed
+uptime
+journalctl<span class="w"> </span>-p<span class="w"> </span>err<span class="w"> </span>-b<span class="w"> </span>--no-pager<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-50
+</code></pre></div>
+<p>通过条件：</p>
+<ul>
+<li>主机可达。</li>
+<li>预期 kernel 或包版本已生效。</li>
+<li>关键服务运行中。</li>
+<li>监控报告健康。</li>
+<li>无异常启动或服务错误。</li>
+<li>应用冒烟测试通过。</li>
+</ul>
+<h2 id="_9">失败模式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一次补所有节点</td>
+<td>服务中断。</td>
+<td>按故障域分批。</td>
+</tr>
+<tr>
+<td>跳过重启</td>
+<td>易受攻击 kernel 仍在运行。</td>
+<td>跟踪 reboot-required 状态。</td>
+</tr>
+<tr>
+<td>无 owner 补丁</td>
+<td>影响未知服务。</td>
+<td>维护 inventory 和升级路径。</td>
+</tr>
+<tr>
+<td>软件源漂移</td>
+<td>不同主机收到不同包。</td>
+<td>使用批准 mirror 和版本记录。</td>
+</tr>
+<tr>
+<td>不检查磁盘</td>
+<td>包安装中途失败。</td>
+<td>补丁前检查可用磁盘。</td>
+</tr>
+<tr>
+<td>无回滚路径</td>
+<td>补丁失败变成长故障。</td>
+<td>准备备份、快照或重建计划。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_10">回滚<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>回滚取决于变更类型：</p>
+<ul>
+<li>用户态包可能可以降级。</li>
+<li>Kernel 可使用上一启动项。</li>
+<li>主机重建可能比手工修更安全。</li>
+<li>数据服务遵循服务专属恢复流程。</li>
+</ul>
+<p>如果补丁导致无法启动，按主机类别使用控制台访问、旧 kernel、快照恢复或镜像重建。</p>
+<h2 id="_11">安全说明<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li>补丁源必须是可信仓库。</li>
+<li>不要为了强行打补丁而关闭安全控制。</li>
+<li>例外必须记录 owner、原因、过期时间和补偿控制。</li>
+<li>紧急补丁凭据要限时。</li>
+<li>维护后验证补丁合规。</li>
+</ul>
+<h2 id="_12">评审周期<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>紧急补丁后、补丁相关事故后、新增主机类别或 OS 支持窗口变化时，评审本标准。</p>
+<h2 id="_13">相关文档<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../server-baseline-standard/">服务器基线标准</a></li>
+<li><a href="../../automation/shell-automation-standard/">Shell 自动化标准</a></li>
+<li><a href="../../../reliable-operations/recovery/application-maintenance-health-check-standard/">应用维护健康检查标准</a></li>
 </ul>
 
 
@@ -4139,7 +4504,7 @@ systemctl<span class="w"> </span>--failed
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4149,7 +4514,7 @@ systemctl<span class="w"> </span>--failed
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4205,7 +4570,7 @@ systemctl<span class="w"> </span>--failed
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../ubuntu-26-ai-fullstack-setup-v2/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Ubuntu 26.04 AI 开发环境">
+          <a href="../server-baseline-standard/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 服务器基线">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4215,7 +4580,7 @@ systemctl<span class="w"> </span>--failed
                 上一页
               </span>
               <div class="md-ellipsis">
-                Ubuntu 26.04 AI 开发环境
+                服务器基线
               </div>
             </div>
           </a>

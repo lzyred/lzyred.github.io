@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Argo CD GitOps standard for declarative continuous delivery on Kubernetes.">
+        <meta name="description" content="将 Argo CD 作为 GitOps 控制器运行的标准——按风险分级的同步策略、密钥处理、漂移控制、灾难恢复与回滚。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Argo CD GitOps - DevOps 专家知识库" />
-<meta property="og:description" content="Argo CD GitOps standard for declarative continuous delivery on Kubernetes." />
+<meta property="og:description" content="将 Argo CD 作为 GitOps 控制器运行的标准——按风险分级的同步策略、密钥处理、漂移控制、灾难恢复与回滚。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/change-delivery/cicd/argocd-gitops-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/change-delivery/cicd/argocd-gitops-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Argo CD GitOps - DevOps 专家知识库" />
-<meta property="twitter:description" content="Argo CD GitOps standard for declarative continuous delivery on Kubernetes." />
+<meta property="twitter:description" content="将 Argo CD 作为 GitOps 控制器运行的标准——按风险分级的同步策略、密钥处理、漂移控制、灾难恢复与回滚。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/change-delivery/cicd/argocd-gitops-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#argo-cd-gitops-standard" class="md-skip">
+        <a href="#argo-cd-gitops" class="md-skip">
           跳转至
         </a>
       
@@ -1235,10 +1235,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -1246,10 +1246,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gitops-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GitOps Principles
+        适用场景
       
     </span>
   </a>
@@ -1257,10 +1257,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation-model" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installation Model
+        非目标
       
     </span>
   </a>
@@ -1268,10 +1268,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#application-definition" class="md-nav__link">
+  <a href="#gitops" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Application Definition
+        GitOps 原则
       
     </span>
   </a>
@@ -1279,10 +1279,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sync-policy-guidance" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sync Policy Guidance
+        安装模型
       
     </span>
   </a>
@@ -1290,10 +1290,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notification-standard" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notification Standard
+        按风险分级的同步策略
       
     </span>
   </a>
@@ -1301,10 +1301,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup-and-restore" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup and Restore
+        密钥处理
       
     </span>
   </a>
@@ -1312,10 +1312,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Troubleshooting
+        漂移、回滚与恢复
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="漂移、回滚与恢复">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argo-cd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Argo CD 自身的灾难恢复
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        校验
       
     </span>
   </a>
@@ -1323,10 +1362,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚（操作小结）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -1707,34 +1790,6 @@
     
   
     ELFK 日志
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
   
 
     
@@ -2198,34 +2253,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3504,34 +3531,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3869,34 +3868,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3967,10 +3938,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3978,10 +3949,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gitops-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GitOps Principles
+        适用场景
       
     </span>
   </a>
@@ -3989,10 +3960,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation-model" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installation Model
+        非目标
       
     </span>
   </a>
@@ -4000,10 +3971,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#application-definition" class="md-nav__link">
+  <a href="#gitops" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Application Definition
+        GitOps 原则
       
     </span>
   </a>
@@ -4011,10 +3982,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sync-policy-guidance" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sync Policy Guidance
+        安装模型
       
     </span>
   </a>
@@ -4022,10 +3993,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notification-standard" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notification Standard
+        按风险分级的同步策略
       
     </span>
   </a>
@@ -4033,10 +4004,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup-and-restore" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup and Restore
+        密钥处理
       
     </span>
   </a>
@@ -4044,10 +4015,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Troubleshooting
+        漂移、回滚与恢复
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="漂移、回滚与恢复">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argo-cd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Argo CD 自身的灾难恢复
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        校验
       
     </span>
   </a>
@@ -4055,10 +4065,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚（操作小结）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4169,6 +4223,18 @@
         
       
       
+        <a href="../../../tags/#tag:kubernetes" class="md-tag md-tag-icon md-tag--kubernetes">Kubernetes</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
       
     
@@ -4179,34 +4245,93 @@
   
 
 
-<h1 id="argo-cd-gitops-standard">Argo CD GitOps Standard<a class="headerlink" href="#argo-cd-gitops-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes how to operate Argo CD as a GitOps deployment controller for Kubernetes.</p>
-<h2 id="gitops-principles">GitOps Principles<a class="headerlink" href="#gitops-principles" title="Permanent link">&para;</a></h2>
+<h1 id="argo-cd-gitops">Argo CD GitOps 标准<a class="headerlink" href="#argo-cd-gitops" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何将 Argo CD 作为 Kubernetes 的 GitOps 部署控制器运行：什么应放入 Git，让 Argo CD 以多强的力度进行协调，以及如何同时恢复应用和 Argo CD 自身。</p>
+<p>本标准的核心判断：</p>
+<blockquote>
+<p>GitOps 把风险从"谁执行了命令"转移到"Git 里是什么、以多快协调"。<code>selfHeal</code> 与 <code>prune</code> 不是便利开关——它们决定了一次错误提交或一次手工热修是自愈，还是在你不知情时被回退。要按风险分级、刻意地选择它们。</p>
+</blockquote>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
+<ul>
+<li>部署到 Kubernetes，并希望 Git 成为集群状态的唯一可信源。</li>
+<li>已运行或计划运行 Argo CD 作为协调控制器。</li>
+<li>需要一套站得住脚的同步策略、密钥处理模型与 GitOps 恢复方案。</li>
+</ul>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不涵盖：</p>
+<ul>
+<li>CI（构建与测试制品）。GitOps 是 CD 的一半；CI 的一半见 Jenkins-to-Kubernetes 流水线标准。</li>
+<li>清单模板选型（Helm vs Kustomize vs 纯 YAML），仅涉及其与同步的交互。</li>
+<li>超出此处单 Application 模型的多集群机群设计与 ApplicationSets 生成器。</li>
+</ul>
+<h2 id="gitops">GitOps 原则<a class="headerlink" href="#gitops" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Git is the desired-state source.</li>
-<li>Cluster changes should flow through reviewed commits.</li>
-<li>Secrets should be referenced through a secret management process, not stored in plain Git.</li>
-<li>Applications should have clear sync policies.</li>
-<li>Notifications should be routed without exposing webhook secrets.</li>
+<li>Git 是期望状态。集群变更通过评审过的提交流动，而非 <code>kubectl edit</code>。</li>
+<li>密钥通过密钥管理流程引用，绝不明文提交。</li>
+<li>每个 Application 都有与其风险分级匹配的刻意同步策略。</li>
+<li>漂移可见并按策略处理，而非到处静默覆盖。</li>
+<li>通知暴露状态，而非 webhook 密钥或 token。</li>
 </ol>
-<h2 id="installation-model">Installation Model<a class="headerlink" href="#installation-model" title="Permanent link">&para;</a></h2>
-<p>Use the official Argo CD manifests or Helm chart. For production, prefer high availability mode and separate the Argo CD namespace from application namespaces.</p>
-<p>Validation:</p>
+<h2 id="_4">安装模型<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>使用官方清单或 Helm chart。生产环境：</p>
+<ul>
+<li>以高可用模式运行 Argo CD。</li>
+<li>将 Argo CD 放在独立命名空间，与应用命名空间分离。</li>
+<li>通过 RBAC 限制谁可创建/修改 <code>Application</code> 与 <code>AppProject</code> 资源。</li>
+<li>将 <code>AppProject</code> 限定到各团队可部署的仓库、目标与资源类型——这才是真正的爆炸半径控制。</li>
+</ul>
+<p>校验：</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>argocd
-kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>argocd
 kubectl<span class="w"> </span>get<span class="w"> </span>applications<span class="w"> </span>-n<span class="w"> </span>argocd
+argocd<span class="w"> </span>app<span class="w"> </span>list
 </code></pre></div>
-<h2 id="application-definition">Application Definition<a class="headerlink" href="#application-definition" title="Permanent link">&para;</a></h2>
+<h2 id="_5">按风险分级的同步策略<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>这是核心决策。按服务匹配策略，而非按操作者的便利。</p>
+<table>
+<thead>
+<tr>
+<th>分级</th>
+<th><code>automated</code></th>
+<th><code>selfHeal</code></th>
+<th><code>prune</code></th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>生产/有状态</td>
+<td>关（手动同步）</td>
+<td>关</td>
+<td>关</td>
+<td>高风险服务；每次同步由人审批。</td>
+</tr>
+<tr>
+<td>标准服务</td>
+<td>开</td>
+<td>开</td>
+<td>关</td>
+<td>多数无状态服务；自动纠正漂移，删除保持手动。</td>
+</tr>
+<tr>
+<td>成熟、充分验证</td>
+<td>开</td>
+<td>开</td>
+<td>开</td>
+<td>评审与回滚很强；Git 完全掌管生命周期含删除。</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argoproj.io/v1alpha1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application</span>
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-service</span>
 <span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd</span>
 <span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">  </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-team</span>
 <span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/example/example-repo.git</span>
+<span class="w">    </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://git.example.com/example/example-repo.git</span>
 <span class="w">    </span><span class="nt">targetRevision</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
 <span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy/kubernetes</span>
 <span class="w">  </span><span class="nt">destination</span><span class="p">:</span>
@@ -4214,79 +4339,119 @@ kubectl<span class="w"> </span>get<span class="w"> </span>applications<span clas
 <span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-namespace</span>
 <span class="w">  </span><span class="nt">syncPolicy</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">automated</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="nt">selfHeal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">      </span><span class="c1"># 该分级下删除保持手动</span>
+<span class="w">      </span><span class="nt">selfHeal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">    </span><span class="c1"># 回退带外漂移</span>
 </code></pre></div>
-<h2 id="sync-policy-guidance">Sync Policy Guidance<a class="headerlink" href="#sync-policy-guidance" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Policy</th>
-<th>Use When</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Manual sync</td>
-<td>Production or high-risk services.</td>
-</tr>
-<tr>
-<td>Automated sync without prune</td>
-<td>Lower-risk services where deletion should remain manual.</td>
-</tr>
-<tr>
-<td>Automated sync with prune</td>
-<td>Mature services with strong review and rollback controls.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="notification-standard">Notification Standard<a class="headerlink" href="#notification-standard" title="Permanent link">&para;</a></h2>
-<p>Notifications should include:</p>
+<p>启用前需理解的两个开关：</p>
 <ul>
-<li>Application name.</li>
-<li>Sync status.</li>
-<li>Health status.</li>
-<li>Revision.</li>
-<li>Environment.</li>
-<li>Link to runbook or dashboard.</li>
+<li><strong><code>selfHeal: true</code></strong> 会回退任何直接对集群所做的变更。这正是其目的——但也意味着一次应急 <code>kubectl</code> 热修会在几分钟内被撤销。正确的应急路径是提交，或临时关闭自动同步，而不是与控制器对抗。</li>
+<li><strong><code>prune: true</code></strong> 允许 Argo CD 删除从 Git 中消失的资源。对生命周期整洁很有用，但若有人误删清单则很危险。仅用于评审很强的服务。</li>
 </ul>
-<p>Never commit notification webhook URLs or chat tokens in plain text.</p>
-<h2 id="backup-and-restore">Backup and Restore<a class="headerlink" href="#backup-and-restore" title="Permanent link">&para;</a></h2>
-<p>Export Argo CD application state:</p>
-<div class="highlight"><pre><span></span><code>argocd<span class="w"> </span>admin<span class="w"> </span><span class="nb">export</span><span class="w"> </span>&gt;<span class="w"> </span>argocd-export.yaml
+<h2 id="_6">密钥处理<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>明文密钥绝不入 Git。选定一种模型并一致应用：</p>
+<ul>
+<li>Sealed Secrets（在 Git 中加密，集群内解密），或</li>
+<li>从密钥管理系统拉取的外部 secret operator，或</li>
+<li>从 vault 挂载的 CSI secrets 驱动。</li>
+</ul>
+<p>Argo CD 的 <code>Application</code> 清单本身包含仓库 URL、项目名与集群引用；把导出物当作敏感拓扑对待。</p>
+<h2 id="_7">漂移、回滚与恢复<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="_8">回滚应用<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>由于 Git 是唯一可信源，回滚是一次 Git 操作：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 首选：revert 该提交，让 Argo CD 协调。</span>
+git<span class="w"> </span>revert<span class="w"> </span>&lt;bad-commit&gt;<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>push
+
+<span class="c1"># 或直接回滚到之前已同步的版本：</span>
+argocd<span class="w"> </span>app<span class="w"> </span><span class="nb">history</span><span class="w"> </span>example-service
+argocd<span class="w"> </span>app<span class="w"> </span>rollback<span class="w"> </span>example-service<span class="w"> </span>&lt;revision&gt;
 </code></pre></div>
-<p>Store exports securely. Review exports before sharing because repository URLs, project names, and cluster references can reveal internal topology.</p>
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<p>直接 <code>argocd app rollback</code> 用于快速恢复没问题，但随后要补一次 Git revert，使 Git 与集群不发生背离（尤其在 <code>selfHeal</code> 下，否则它会把集群拉回 Git HEAD）。</p>
+<h3 id="argo-cd">Argo CD 自身的灾难恢复<a class="headerlink" href="#argo-cd" title="Permanent link">&para;</a></h3>
+<p>Argo CD 是生产依赖；要为失去它做准备。</p>
+<div class="highlight"><pre><span></span><code>argocd<span class="w"> </span>admin<span class="w"> </span><span class="nb">export</span><span class="w"> </span>&gt;<span class="w"> </span>argocd-backup.yaml<span class="w">   </span><span class="c1"># 安全存放；包含拓扑</span>
+<span class="c1"># 恢复：</span>
+argocd<span class="w"> </span>admin<span class="w"> </span>import<span class="w"> </span>-<span class="w"> </span>&lt;<span class="w"> </span>argocd-backup.yaml
+</code></pre></div>
+<p>由于期望状态在 Git 中，重建的 Argo CD 加上 Git 仓库即可重建集群——但前提是 <code>Application</code>/<code>AppProject</code> 定义也被捕获（在 Git 或导出物中）。</p>
+<h2 id="_9">校验<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>argocd<span class="w"> </span>app<span class="w"> </span>get<span class="w"> </span>example-service
+kubectl<span class="w"> </span>get<span class="w"> </span>applications<span class="w"> </span>-n<span class="w"> </span>argocd
+</code></pre></div>
+<p>确认：</p>
+<ul>
+<li>变更的应用同步状态为 <code>Synced</code>、健康为 <code>Healthy</code>。</li>
+<li>已同步版本与目标 Git 提交一致。</li>
+<li>同步后没有意外的 <code>OutOfSync</code> 资源（漂移）。</li>
+<li>对启用 <code>prune</code> 的应用，没有删除你不打算删除的内容。</li>
+</ul>
+<h2 id="_10">已知失败模式<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Symptom</th>
-<th>Check</th>
+<th>症状</th>
+<th>可能原因</th>
+<th>检查/处置</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Application out of sync</td>
-<td>Git revision, generated manifests, ignored differences</td>
+<td>应用卡在 <code>OutOfSync</code></td>
+<td>在线漂移、被忽略的差异或生成清单不匹配</td>
+<td><code>argocd app diff</code>；协调，或刻意添加 <code>ignoreDifferences</code>。</td>
 </tr>
 <tr>
-<td>Sync fails</td>
-<td>RBAC, namespace existence, CRDs, admission policies</td>
+<td>同步失败</td>
+<td>RBAC、缺命名空间、缺 CRD、准入策略</td>
+<td>读同步错误；创建前置条件；检查 <code>AppProject</code> 白名单。</td>
 </tr>
 <tr>
-<td>Health unknown</td>
-<td>Resource health customization, CRD status fields</td>
+<td>应急修复反复被回退</td>
+<td><code>selfHeal</code> 在回退带外变更</td>
+<td>提交修复，或临时关闭自动同步；不要与控制器对抗。</td>
 </tr>
 <tr>
-<td>Repo connection fails</td>
-<td>Repository credentials, network, known hosts</td>
+<td>健康一直 <code>Unknown</code></td>
+<td>自定义资源缺健康评估</td>
+<td>添加资源健康自定义。</td>
+</tr>
+<tr>
+<td>仓库连接失败</td>
+<td>凭据、网络或未知 host key</td>
+<td>重新检查仓库凭据与连通性。</td>
+</tr>
+<tr>
+<td>意外删除</td>
+<td><code>prune: true</code> 加上被删除/误生成的清单</td>
+<td>通过 Git revert 恢复；重新评估该分级是否该用 prune。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_11">回滚（操作小结）<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ol>
+<li>优先对问题提交执行 <code>git revert</code>；让 Argo CD 协调回良好状态。</li>
+<li>为求快，<code>argocd app rollback</code> 到已知良好版本，随后让 Git 与之对齐。</li>
+<li>若问题出在 Argo CD 本身，关闭关键应用的自动同步以冻结集群，同时恢复控制器。</li>
+<li>用 <code>argocd admin export</code> 恢复 Argo CD；验证应用回到 <code>Synced</code>/<code>Healthy</code>。</li>
+</ol>
+<h2 id="_12">安全注记<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../jenkins-kubernetes-pipeline-standard/">Jenkins to Kubernetes Pipeline Standard</a></li>
-<li><a href="../../../platform-governance/publication-safety-checklist/">Publication Safety Checklist</a></li>
+<li>切勿明文提交密钥、webhook URL 或聊天 token。</li>
+<li>将 <code>AppProject</code> 限定到允许的仓库、目标与资源类型——以界定爆炸半径。</li>
+<li>使用 SSO 与最小权限 RBAC；限制谁可同步生产级应用。</li>
+<li>把 <code>argocd admin export</code> 输出当作敏感内部拓扑；加密存放。</li>
+<li>固定 Argo CD 版本并及时打补丁；它拥有集群级协调能力。</li>
+</ul>
+<h2 id="_13">评审周期<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>负责人：平台/交付团队。</li>
+<li>在重大变更时重新评审每个 Application 的风险分级与同步开关。</li>
+<li>按周期演练 Argo CD 灾难恢复（export/import），而非停留在纸面。</li>
+<li>当团队的部署范围变化时，重新检查 <code>AppProject</code> 白名单。</li>
+</ul>
+<h2 id="_14">相关文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../rollback/deployment-rollback-runbook/">部署回滚 Runbook</a></li>
+<li><a href="https://argo-cd.readthedocs.io/">Argo CD 官方文档</a></li>
 </ul>
 
 
@@ -4310,7 +4475,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>applications<span clas
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 13:53:36 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4320,7 +4485,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>applications<span clas
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 13:53:36 UTC">2026年6月28日</span>
   </span>
 
     

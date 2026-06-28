@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Docker Compose stack standard for multi-container service orchestration.">
+        <meta name="description" content="Docker Compose 栈运行标准，用于小型、过渡型或单机服务，要求明确所有权、状态、验证和回滚。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Docker Compose 栈 - DevOps 专家知识库" />
-<meta property="og:description" content="Docker Compose stack standard for multi-container service orchestration." />
+<meta property="og:description" content="Docker Compose 栈运行标准，用于小型、过渡型或单机服务，要求明确所有权、状态、验证和回滚。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/containers/docker-compose-stack-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/containers/docker-compose-stack-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Docker Compose 栈 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Docker Compose stack standard for multi-container service orchestration." />
+<meta property="twitter:description" content="Docker Compose 栈运行标准，用于小型、过渡型或单机服务，要求明确所有权、状态、验证和回滚。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/containers/docker-compose-stack-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker-compose-stack-standard" class="md-skip">
+        <a href="#docker-compose" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -2699,10 +2643,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -2710,10 +2654,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Use
+        适用场景
       
     </span>
   </a>
@@ -2721,10 +2665,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#stack-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stack Checklist
+        非目标
       
     </span>
   </a>
@@ -2732,10 +2676,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#compose-pattern" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Compose Pattern
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定义栈契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        固定镜像，把构建和运行分开
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把卷当作数据契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制网络暴露
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标准服务模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -2743,10 +2759,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        失败模式
       
     </span>
   </a>
@@ -2754,10 +2770,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3480,34 +3529,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3851,34 +3872,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3949,10 +3942,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3960,10 +3953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Use
+        适用场景
       
     </span>
   </a>
@@ -3971,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#stack-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stack Checklist
+        非目标
       
     </span>
   </a>
@@ -3982,10 +3975,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#compose-pattern" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Compose Pattern
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定义栈契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        固定镜像，把构建和运行分开
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        把卷当作数据契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制网络暴露
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标准服务模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -3993,10 +4058,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        失败模式
       
     </span>
   </a>
@@ -4004,10 +4069,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4121,6 +4219,18 @@
         <a href="../../../tags/#tag:delivery" class="md-tag md-tag-icon md-tag--delivery">Delivery</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
+      
+    
   </nav>
 
 
@@ -4128,45 +4238,220 @@
   
 
 
-<h1 id="docker-compose-stack-standard">Docker Compose Stack Standard<a class="headerlink" href="#docker-compose-stack-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines how to operate small or transitional service stacks with Docker Compose without publishing environment-specific secrets or runtime data.</p>
-<h2 id="when-to-use">When To Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
-<p>Use Docker Compose for development, demos, low-risk internal tools, or migration staging. Use Kubernetes or managed services for production workloads that require scheduling, autoscaling, or high availability.</p>
-<h2 id="stack-checklist">Stack Checklist<a class="headerlink" href="#stack-checklist" title="Permanent link">&para;</a></h2>
+<h1 id="docker-compose">Docker Compose 栈标准<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义什么时候可以使用 Docker Compose，以及如何运行 Compose 栈而不把它变成无人负责的隐形生产平台。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>Docker Compose 适合边界清晰的小栈，不适合伪装成编排平台。</p>
+</blockquote>
+<p>当服务边界小、运行主机明确、数据模型清楚、恢复路径已记录时，Compose 很有用。风险来自把它当作调度、高可用、密钥管理和发布治理的替代品。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>适用于：</p>
 <ul>
-<li>Pin image versions.</li>
-<li>Put persistent data in named volumes or documented bind mounts.</li>
-<li>Add restart policies.</li>
-<li>Configure log size limits.</li>
-<li>Keep <code>.env</code> files out of public repositories.</li>
-<li>Document backup and restore for every stateful service.</li>
-<li>Review exposed ports.</li>
+<li>本地开发和集成环境。</li>
+<li>演示或可丢弃测试栈。</li>
+<li>可用性要求较低的小型内部服务。</li>
+<li>迁移到 Kubernetes 或托管服务前的过渡工作负载。</li>
+<li>接受单机故障域的单主机工具。</li>
 </ul>
-<h2 id="compose-pattern">Compose Pattern<a class="headerlink" href="#compose-pattern" title="Permanent link">&para;</a></h2>
+<p>不适用于需要多节点调度、自动故障转移、水平扩展、强租户隔离或复杂发布治理的工作负载。</p>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不替代 Kubernetes、服务网格、托管数据库或完整平台运维标准，也不批准公开真实 <code>.env</code>、生产主机名、私有镜像仓库地址或凭据。</p>
+<h2 id="_4">推荐标准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">定义栈契约<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>每个 Compose 栈都需要一份简短契约：</p>
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>必须决策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td>谁负责部署、日志、备份和恢复。</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>栈运行在哪里，主机是否可丢弃。</td>
+</tr>
+<tr>
+<td>State</td>
+<td>哪些卷是业务数据，哪些只是缓存。</td>
+</tr>
+<tr>
+<td>Exposure</td>
+<td>哪些端口可达，以及从哪里可达。</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>运行期密钥来自哪里；不得提交 <code>.env</code>。</td>
+</tr>
+<tr>
+<td>Recovery</td>
+<td>如何重启、恢复或重建栈。</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td>镜像如何 pin 版本并晋级。</td>
+</tr>
+</tbody>
+</table>
+<p>如果没人拥有恢复，即使容器在运行，这个栈也不是生产就绪。</p>
+<h3 id="_6">固定镜像，把构建和运行分开<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>服务使用固定镜像 tag 或 digest。生产类栈不得拉取 <code>latest</code>。</p>
+<p>Compose 可以在开发环境构建镜像，但生产类栈应消费受控构建流水线产出的镜像。这能把构建凭据、源码和运行部署分开。</p>
+<h3 id="_7">把卷当作数据契约<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>命名卷和 bind mount 必须记录。</p>
+<table>
+<thead>
+<tr>
+<th>卷类型</th>
+<th>用途</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Named volume</td>
+<td>普通单机持久数据。</td>
+<td>需要备份与恢复路径。</td>
+</tr>
+<tr>
+<td>Bind mount</td>
+<td>主机集成文件、配置或上传。</td>
+<td>必须明确主机路径所有权和权限。</td>
+</tr>
+<tr>
+<td>tmpfs</td>
+<td>临时敏感或可丢弃运行数据。</td>
+<td>不得保存业务数据。</td>
+</tr>
+</tbody>
+</table>
+<p>删除卷前必须知道数据类别和负责人。</p>
+<h3 id="_8">控制网络暴露<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>不要把每个容器端口都发布到主机。优先使用内部 Compose network，只暴露边缘服务。</p>
+<p>记录：</p>
+<ul>
+<li>主机端口。</li>
+<li>协议。</li>
+<li>允许访问的客户端。</li>
+<li>反向代理或 TLS 边界。</li>
+<li>健康检查端点。</li>
+</ul>
+<h3 id="_9">标准服务模式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">app</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry.example.com/example/app:1.0.0</span>
 <span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
 <span class="w">    </span><span class="nt">env_file</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span>
 <span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080:8080&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-data:/var/lib/app</span>
 <span class="w">    </span><span class="nt">logging</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json-file</span>
 <span class="w">      </span><span class="nt">options</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">max-size</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100m&quot;</span>
 <span class="w">        </span><span class="nt">max-file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
+<span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;CMD&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;wget&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;-qO-&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;http://localhost:8080/healthz&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">app-data</span><span class="p">:</span>
 </code></pre></div>
-<p>Do not publish the actual <code>.env</code> file. Publish <code>.env.example</code> with placeholder values only.</p>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>可以发布带占位符的 <code>.env.example</code>，不得发布真实 <code>.env</code>。</p>
+<h2 id="_10">验证<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>部署前或变更后运行：</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>config
+docker<span class="w"> </span>compose<span class="w"> </span>pull
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 docker<span class="w"> </span>compose<span class="w"> </span>ps
 docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>--tail<span class="o">=</span><span class="m">100</span><span class="w"> </span>app
 </code></pre></div>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<p>通过条件：</p>
 <ul>
-<li><a href="../docker-host-operations-standard/">Docker Host Operations Standard</a></li>
+<li><code>docker compose config</code> 渲染结果符合预期。</li>
+<li>目标服务健康，或明确是一次性任务。</li>
+<li>只暴露预期端口。</li>
+<li>日志可读且有大小限制。</li>
+<li>状态卷可见，备份范围明确。</li>
+</ul>
+<h2 id="_11">失败模式<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用 <code>latest</code></td>
+<td>重启时部署未经评审版本。</td>
+<td>固定 tag 或 digest。</td>
+</tr>
+<tr>
+<td>Bind mount 未记录</td>
+<td>主机清理时丢数据。</td>
+<td>盘点主机路径和 owner。</td>
+</tr>
+<tr>
+<td>无日志限制</td>
+<td>主机磁盘被写满。</td>
+<td>设置日志轮转选项。</td>
+</tr>
+<tr>
+<td>端口失控</td>
+<td>内部服务意外可达。</td>
+<td>只暴露边缘端口。</td>
+</tr>
+<tr>
+<td>提交 <code>.env</code></td>
+<td>密钥泄漏。</td>
+<td>只提交 <code>.env.example</code>，本地分发密钥。</td>
+</tr>
+<tr>
+<td>无恢复测试</td>
+<td>备份信心是假的。</td>
+<td>对有状态服务做恢复验证。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_12">回滚<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>只有旧镜像与数据格式兼容时，容器回滚才安全。</p>
+<p>将镜像 tag 改回批准的上一版后执行：</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>pull
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<p>如果发布改动了数据库 schema、卷布局或文件格式，回滚前必须升级处理。此时恢复可能需要数据恢复，而不只是回退容器。</p>
+<h2 id="_13">安全说明<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>.env</code> 不进 git。</li>
+<li>除非有明确主机集成理由，否则避免特权容器。</li>
+<li>不要把 Docker socket 挂进应用容器。</li>
+<li>镜像支持时以非 root 用户运行。</li>
+<li>限制主机端口暴露。</li>
+<li>镜像仓库凭据不要写入 Compose 文件。</li>
+</ul>
+<h2 id="_14">评审周期<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>首次生产类使用前、镜像大版本升级前、主机事故后、迁移到 Kubernetes 或托管服务前，都要评审 Compose 栈。</p>
+<h2 id="_15">相关文档<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../docker-host-operations-standard/">Docker 主机运维标准</a></li>
+<li><a href="../buildkit-build-standard/">BuildKit 构建标准</a></li>
+<li><a href="../../networking/nginx-reverse-proxy-tls-standard/">Nginx 反向代理与 TLS 标准</a></li>
 </ul>
 
 
@@ -4190,7 +4475,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4200,7 +4485,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     

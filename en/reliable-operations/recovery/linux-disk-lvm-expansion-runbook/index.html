@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Linux disk and LVM expansion runbook for production storage emergency.">
+        <meta name="description" content="Runbook for safely expanding Linux storage with LVM — identify the right disk, extend PV/VG/LV, grow the filesystem online, validate, and escalate.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Disk and LVM Expansion - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Linux disk and LVM expansion runbook for production storage emergency." />
+<meta property="og:description" content="Runbook for safely expanding Linux storage with LVM — identify the right disk, extend PV/VG/LV, grow the filesystem online, validate, and escalate." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/reliable-operations/recovery/linux-disk-lvm-expansion-runbook.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/reliable-operations/recovery/linux-disk-lvm-expansion-runbook/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Disk and LVM Expansion - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Linux disk and LVM expansion runbook for production storage emergency." />
+<meta property="twitter:description" content="Runbook for safely expanding Linux storage with LVM — identify the right disk, extend PV/VG/LV, grow the filesystem online, validate, and escalate." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/reliable-operations/recovery/linux-disk-lvm-expansion-runbook.png" />
 </head>
   
@@ -1576,34 +1576,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -1869,10 +1841,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#trigger" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        Trigger
       
     </span>
   </a>
@@ -1880,10 +1852,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-warning" class="md-nav__link">
+  <a href="#preconditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Warning
+        Preconditions
       
     </span>
   </a>
@@ -1891,10 +1863,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-checks" class="md-nav__link">
+  <a href="#impact-check" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Checks
+        Impact Check
       
     </span>
   </a>
@@ -1902,24 +1874,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-a-new-disk-to-lvm" class="md-nav__link">
+  <a href="#procedure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Add a New Disk to LVM
+        Procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-add-the-new-disk-to-lvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Add the new disk to LVM
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#grow-filesystem" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-extend-the-logical-volume" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Grow Filesystem
+        2. Extend the logical volume
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-grow-the-filesystem-online" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Grow the filesystem (online)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1935,10 +1935,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#rollback-escalation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
+        Rollback / Escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Check
       
     </span>
   </a>
@@ -2187,34 +2198,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3493,34 +3476,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3858,34 +3813,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3956,10 +3883,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#trigger" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        Trigger
       
     </span>
   </a>
@@ -3967,10 +3894,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-warning" class="md-nav__link">
+  <a href="#preconditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Warning
+        Preconditions
       
     </span>
   </a>
@@ -3978,10 +3905,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-checks" class="md-nav__link">
+  <a href="#impact-check" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Checks
+        Impact Check
       
     </span>
   </a>
@@ -3989,24 +3916,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-a-new-disk-to-lvm" class="md-nav__link">
+  <a href="#procedure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Add a New Disk to LVM
+        Procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-add-the-new-disk-to-lvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Add the new disk to LVM
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#grow-filesystem" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-extend-the-logical-volume" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Grow Filesystem
+        2. Extend the logical volume
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-grow-the-filesystem-online" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Grow the filesystem (online)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4022,10 +3977,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rollback" class="md-nav__link">
+  <a href="#rollback-escalation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rollback
+        Rollback / Escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Check
       
     </span>
   </a>
@@ -4170,63 +4136,80 @@
 
 
 <h1 id="linux-disk-and-lvm-expansion-runbook">Linux Disk and LVM Expansion Runbook<a class="headerlink" href="#linux-disk-and-lvm-expansion-runbook" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This runbook describes how to safely expand Linux storage using a new disk, partition, LVM, and filesystem growth.</p>
-<h2 id="safety-warning">Safety Warning<a class="headerlink" href="#safety-warning" title="Permanent link">&para;</a></h2>
-<p>Disk operations can destroy data. Do not run formatting, partitioning, or LVM commands until the target disk is confirmed and approved.</p>
-<h2 id="initial-checks">Initial Checks<a class="headerlink" href="#initial-checks" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>lsblk
-blkid
-df<span class="w"> </span>-hT
-sudo<span class="w"> </span>pvs
-sudo<span class="w"> </span>vgs
-sudo<span class="w"> </span>lvs
-</code></pre></div>
-<p>Identify:</p>
+<h2 id="trigger">Trigger<a class="headerlink" href="#trigger" title="Permanent link">&para;</a></h2>
+<p>Use this runbook when a Linux volume is approaching capacity and must be expanded, typically on:</p>
 <ul>
-<li>New disk name.</li>
-<li>Existing volume group.</li>
-<li>Root or data logical volume.</li>
-<li>Filesystem type.</li>
-<li>Backup status.</li>
+<li>A disk-usage alert (e.g. filesystem &gt; 85%) for a host or data volume.</li>
+<li>A planned capacity increase ahead of growth.</li>
+<li>An incident where a full filesystem is causing write failures.</li>
 </ul>
-<h2 id="add-a-new-disk-to-lvm">Add a New Disk to LVM<a class="headerlink" href="#add-a-new-disk-to-lvm" title="Permanent link">&para;</a></h2>
-<p>Example target disk:</p>
-<div class="highlight"><pre><span></span><code>/dev/sdb
+<h2 id="preconditions">Preconditions<a class="headerlink" href="#preconditions" title="Permanent link">&para;</a></h2>
+<p>Before any destructive command, confirm all of:</p>
+<ul>
+<li><strong>A verified backup exists.</strong> LVM expansion is largely irreversible online; the real rollback is restore. Do not proceed without one.</li>
+<li>The exact target disk/volume is identified and approved — wrong-disk operations destroy data.</li>
+<li>The filesystem type is known (XFS vs ext4 — they grow with different tools).</li>
+<li>There is a change window or explicit approval, and a rollback owner is reachable.</li>
+</ul>
+<blockquote>
+<p>Core judgment: the dangerous part of LVM expansion is not the <code>lvextend</code> — it is acting on the wrong device. Almost all data-loss incidents here come from <code>pvcreate</code>/<code>mkfs</code> on a disk that was actually in use. Identify before you act.</p>
+</blockquote>
+<h2 id="impact-check">Impact Check<a class="headerlink" href="#impact-check" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>lsblk<span class="w">                 </span><span class="c1"># block devices, sizes, mountpoints</span>
+blkid<span class="w">                 </span><span class="c1"># filesystem types and UUIDs</span>
+df<span class="w"> </span>-hT<span class="w">                </span><span class="c1"># usage and fs type per mount</span>
+sudo<span class="w"> </span>pvs<span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>vgs<span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>lvs<span class="w">   </span><span class="c1"># current LVM layout</span>
 </code></pre></div>
-<p>Create a physical volume:</p>
+<p>Identify and write down: the new/empty disk name, the existing volume group, the target logical volume, the filesystem type, and confirm the new disk is <strong>not mounted and not already in a VG</strong>.</p>
+<h2 id="procedure">Procedure<a class="headerlink" href="#procedure" title="Permanent link">&para;</a></h2>
+<h3 id="1-add-the-new-disk-to-lvm">1. Add the new disk to LVM<a class="headerlink" href="#1-add-the-new-disk-to-lvm" title="Permanent link">&para;</a></h3>
+<p>Confirm the target disk is the new, unused one (e.g. <code>/dev/sdb</code>) — verify with <code>lsblk</code> that it has no partitions, no filesystem, and no mountpoint.</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pvcreate<span class="w"> </span>/dev/sdb
+sudo<span class="w"> </span>vgextend<span class="w"> </span>example_vg<span class="w"> </span>/dev/sdb
 </code></pre></div>
-<p>Extend volume group:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>vgextend<span class="w"> </span>example_vg<span class="w"> </span>/dev/sdb
+<h3 id="2-extend-the-logical-volume">2. Extend the logical volume<a class="headerlink" href="#2-extend-the-logical-volume" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Grow the LV into the new free space:</span>
+sudo<span class="w"> </span>lvextend<span class="w"> </span>-l<span class="w"> </span>+100%FREE<span class="w"> </span>/dev/example_vg/example_lv
 </code></pre></div>
-<p>Extend logical volume:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>lvextend<span class="w"> </span>-l<span class="w"> </span>+100%FREE<span class="w"> </span>/dev/example_vg/example_lv
+<h3 id="3-grow-the-filesystem-online">3. Grow the filesystem (online)<a class="headerlink" href="#3-grow-the-filesystem-online" title="Permanent link">&para;</a></h3>
+<p>Match the tool to the filesystem; both can grow a mounted filesystem.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># XFS (cannot shrink) — grow by mountpoint:</span>
+sudo<span class="w"> </span>xfs_growfs<span class="w"> </span>/data
+
+<span class="c1"># ext4 — grow by device:</span>
+sudo<span class="w"> </span>resize2fs<span class="w"> </span>/dev/example_vg/example_lv
 </code></pre></div>
-<h2 id="grow-filesystem">Grow Filesystem<a class="headerlink" href="#grow-filesystem" title="Permanent link">&para;</a></h2>
-<p>For XFS:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>xfs_growfs<span class="w"> </span>/
-</code></pre></div>
-<p>For ext4:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>resize2fs<span class="w"> </span>/dev/example_vg/example_lv
-</code></pre></div>
+<p>Alternatively, <code>lvextend -r</code> grows the LV and filesystem in one step.</p>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-hT
-sudo<span class="w"> </span>pvs
-sudo<span class="w"> </span>vgs
-sudo<span class="w"> </span>lvs
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>-hT<span class="w">                 </span><span class="c1"># new capacity visible on the target mount</span>
+sudo<span class="w"> </span>pvs<span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>vgs<span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>lvs
+dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w">           </span><span class="c1"># no filesystem/IO errors</span>
 </code></pre></div>
-<p>Application validation:</p>
+<p>Confirm:</p>
 <ul>
-<li>Service can write to the expanded path.</li>
-<li>Monitoring sees the new capacity.</li>
-<li>No filesystem errors appear in <code>dmesg</code>.</li>
+<li>The mountpoint shows the increased size, and free space is reclaimed.</li>
+<li>The application can write to the expanded path (test a real write).</li>
+<li>Monitoring/alerting reflects the new capacity and the usage alert clears.</li>
+<li>No filesystem or I/O errors in <code>dmesg</code>.</li>
 </ul>
-<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
-<p>LVM expansion rollback is not always simple. The safe rollback is a verified backup restore. For this reason, backup validation is required before the change.</p>
+<h2 id="rollback-escalation">Rollback / Escalation<a class="headerlink" href="#rollback-escalation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>There is no clean online shrink for XFS, and ext4 shrink is offline and risky.</strong> Treat expansion as forward-only.</li>
+<li>If the wrong device was modified or data is damaged, <strong>stop immediately</strong> and restore from the verified backup; do not attempt to "undo" with more LVM commands.</li>
+<li>If <code>lvextend</code> succeeded but <code>xfs_growfs</code>/<code>resize2fs</code> failed, the LV is larger but the filesystem is unchanged — safe to retry the grow step after diagnosing; the data is intact.</li>
+<li>Escalate to the storage/platform owner if the VG has no free space to extend into, or if the volume is on shared/SAN storage where the disk addition is owned by another team.</li>
+</ul>
+<h2 id="post-check">Post-Check<a class="headerlink" href="#post-check" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Capacity headroom is back above the alert threshold with margin.</li>
+<li>The capacity-growth trend is recorded so the next expansion is planned, not reactive.</li>
+<li>Update the host's documented disk layout.</li>
+</ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../standards-manual/linux/server-baseline-standard/">Linux Server Baseline Standard</a></li>
+<li><a href="../kubernetes-pvc-usage-alert-runbook/">Kubernetes PVC Usage Alert Runbook</a></li>
+<li><a href="../../../system-design/production-architecture/nfs-pvc-capacity-management/">NFS PVC Capacity Management</a></li>
 </ul>
 
 
@@ -4250,7 +4233,7 @@ sudo<span class="w"> </span>lvs
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:31:41 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4260,7 +4243,7 @@ sudo<span class="w"> </span>lvs
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:31:41 UTC">June 28, 2026</span>
   </span>
 
     

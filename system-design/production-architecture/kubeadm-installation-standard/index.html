@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="kubeadm installation standard for self-managed Kubernetes clusters.">
+        <meta name="description" content="kubeadm 安装标准，聚焦生产判断、控制面所有权、etcd 恢复、插件顺序、验证和重建边界。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="kubeadm 安装 - DevOps 专家知识库" />
-<meta property="og:description" content="kubeadm installation standard for self-managed Kubernetes clusters." />
+<meta property="og:description" content="kubeadm 安装标准，聚焦生产判断、控制面所有权、etcd 恢复、插件顺序、验证和重建边界。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/system-design/production-architecture/kubeadm-installation-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/system-design/production-architecture/kubeadm-installation-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="kubeadm 安装 - DevOps 专家知识库" />
-<meta property="twitter:description" content="kubeadm installation standard for self-managed Kubernetes clusters." />
+<meta property="twitter:description" content="kubeadm 安装标准，聚焦生产判断、控制面所有权、etcd 恢复、插件顺序、验证和重建边界。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/system-design/production-architecture/kubeadm-installation-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kubeadm-installation-standard" class="md-skip">
+        <a href="#kubeadm" class="md-skip">
           跳转至
         </a>
       
@@ -1004,10 +1004,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -1015,10 +1015,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#before-installation" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Before Installation
+        适用场景
       
     </span>
   </a>
@@ -1026,10 +1026,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-validation" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Validation
+        非目标
       
     </span>
   </a>
@@ -1037,10 +1037,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-ons" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Add-ons
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        先决定控制面模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        冻结插件顺序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拥有 etcd 恢复
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -1048,10 +1098,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-notes" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Notes
+        失败模式
       
     </span>
   </a>
@@ -1059,10 +1109,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚与重建边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -1691,34 +1774,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2162,34 +2217,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3468,34 +3495,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3833,34 +3832,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3931,10 +3902,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3942,10 +3913,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#before-installation" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Before Installation
+        适用场景
       
     </span>
   </a>
@@ -3953,10 +3924,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-validation" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Validation
+        非目标
       
     </span>
   </a>
@@ -3964,10 +3935,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-ons" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Add-ons
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        先决定控制面模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        冻结插件顺序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拥有 etcd 恢复
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -3975,10 +3996,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-notes" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Notes
+        失败模式
       
     </span>
   </a>
@@ -3986,10 +4007,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        回滚与重建边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4088,6 +4142,18 @@
         
       
       
+        <a href="../../../tags/#tag:architecture" class="md-tag md-tag-icon md-tag--architecture">Architecture</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:kubernetes" class="md-tag md-tag-icon md-tag--kubernetes">Kubernetes</a>
       
     
@@ -4100,7 +4166,7 @@
         
       
       
-        <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
+        <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
       
     
   </nav>
@@ -4110,39 +4176,154 @@
   
 
 
-<h1 id="kubeadm-installation-standard">kubeadm Installation Standard<a class="headerlink" href="#kubeadm-installation-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard summarizes safe kubeadm cluster installation practices for labs and self-managed environments.</p>
-<h2 id="before-installation">Before Installation<a class="headerlink" href="#before-installation" title="Permanent link">&para;</a></h2>
+<h1 id="kubeadm">kubeadm 安装标准<a class="headerlink" href="#kubeadm" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义什么时候以及如何使用 kubeadm 安装 Kubernetes 集群。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>kubeadm 只安装 Kubernetes，不替你运营平台。</p>
+</blockquote>
+<p>只有团队能够拥有控制面可用性、etcd 备份恢复、证书生命周期、节点维护、插件升级和事故恢复时，kubeadm 集群才适合生产。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>适用于：</p>
 <ul>
-<li>Confirm OS version.</li>
-<li>Disable swap.</li>
-<li>Configure container runtime.</li>
-<li>Load bridge networking modules.</li>
-<li>Configure time sync.</li>
-<li>Plan pod and service CIDRs.</li>
-<li>Plan control plane endpoint for HA clusters.</li>
+<li>无法使用或不适合使用托管 Kubernetes。</li>
+<li>团队需要显式控制控制面组件。</li>
+<li>环境存在强网络或基础设施约束。</li>
+<li>运维团队能投入并测试完整生命周期。</li>
 </ul>
-<h2 id="core-validation">Core Validation<a class="headerlink" href="#core-validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>kubeadm<span class="w"> </span>version
-kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
+<p>如果团队无法拥有 etcd 恢复、证书轮换和控制面补丁，优先使用托管 Kubernetes。</p>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不是逐命令安装记录，也不替代更完整的 <a href="../kubernetes-cluster-provisioning-standard/">Kubernetes 集群供给标准</a>。</p>
+<h2 id="_4">推荐标准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">先决定控制面模型<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>运行 kubeadm 前先决定：</p>
+<ul>
+<li>单控制面还是高可用控制面。</li>
+<li>API endpoint 与负载均衡归属。</li>
+<li>etcd 是 stacked 还是 external。</li>
+<li>证书颁发机构归属。</li>
+<li>升级顺序。</li>
+<li>备份与恢复流程。</li>
+<li>节点替换流程。</li>
+</ul>
+<p>不要先创建单控制面集群，事后在没有例外记录的情况下称为生产。</p>
+<h3 id="_6">冻结插件顺序<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>最小顺序：</p>
+<ol>
+<li>OS 与容器运行时基线。</li>
+<li>kubeadm、kubelet、kubectl 版本。</li>
+<li>控制面。</li>
+<li>CNI。</li>
+<li>CoreDNS。</li>
+<li>Metrics server。</li>
+<li>如需存储，安装 CSI。</li>
+<li>如需发布服务，安装 Ingress。</li>
+<li>可观测性 agent。</li>
+<li>备份和恢复验证。</li>
+</ol>
+<p>CNI、DNS、存储、Ingress 和可观测性验证前，不应接入应用。</p>
+<h3 id="etcd">拥有 etcd 恢复<a class="headerlink" href="#etcd" title="Permanent link">&para;</a></h3>
+<p>对 kubeadm 集群，etcd 是一等生产依赖。</p>
+<p>必须具备：</p>
+<ul>
+<li>Snapshot 计划。</li>
+<li>Snapshot 保留策略。</li>
+<li>恢复测试。</li>
+<li>Snapshot 加密与访问控制。</li>
+<li>恢复目标和预期停机说明。</li>
+</ul>
+<p>如果团队不能在测试环境恢复 etcd，集群就不是生产就绪。</p>
+<h2 id="_7">验证<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>安装后：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
 kubectl<span class="w"> </span>cluster-info
+kubectl<span class="w"> </span>get<span class="w"> </span>componentstatuses
 </code></pre></div>
-<h2 id="add-ons">Add-ons<a class="headerlink" href="#add-ons" title="Permanent link">&para;</a></h2>
-<p>Install and validate:</p>
+<p>还要验证：</p>
 <ul>
-<li>CNI plugin.</li>
-<li>Metrics server.</li>
-<li>Ingress controller.</li>
-<li>StorageClass.</li>
-<li>Monitoring.</li>
+<li>CNI Pod 到 Pod 连通。</li>
+<li>Pod 内 DNS 解析。</li>
+<li>Service 路由。</li>
+<li>Metrics server。</li>
+<li>如使用，StorageClass 与 PVC。</li>
+<li>如使用，Ingress 路径。</li>
+<li>etcd snapshot 和恢复演练。</li>
 </ul>
-<h2 id="safety-notes">Safety Notes<a class="headerlink" href="#safety-notes" title="Permanent link">&para;</a></h2>
-<p>Do not publish real join tokens, kubeconfig files, certificate keys, or internal control plane endpoints.</p>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_8">失败模式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无稳定 API endpoint</td>
+<td>控制面故障转移时客户端失败。</td>
+<td>使用自有 HA endpoint。</td>
+</tr>
+<tr>
+<td>无 etcd 恢复测试</td>
+<td>集群状态丢失不可恢复。</td>
+<td>接入工作负载前测试恢复。</td>
+</tr>
+<tr>
+<td>忽略证书生命周期</td>
+<td>证书过期导致集群异常。</td>
+<td>跟踪并演练轮换。</td>
+</tr>
+<tr>
+<td>安装后才选 CNI</td>
+<td>Pod 网络假设被打破。</td>
+<td>init 前选择 CNI。</td>
+</tr>
+<tr>
+<td>插件未定版本</td>
+<td>升级漂移。</td>
+<td>维护版本矩阵。</td>
+</tr>
+<tr>
+<td>应用先于可观测性接入</td>
+<td>第一次故障没有证据。</td>
+<td>工作负载前安装可观测性。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">回滚与重建边界<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>优先重建：</p>
 <ul>
-<li><a href="../kubernetes-cluster-provisioning-standard/">Kubernetes Cluster Provisioning Standard</a></li>
+<li>Pod 或 Service CIDR 错误。</li>
+<li>控制面 endpoint 设计错误。</li>
+<li>etcd 拓扑不适合生产。</li>
+<li>证书 CA 归属不清。</li>
+<li>集群还年轻且没有关键工作负载。</li>
+</ul>
+<p>优先原地修复：</p>
+<ul>
+<li>插件配置错误但数据面可恢复。</li>
+<li>节点池需要替换。</li>
+<li>版本偏移可在支持范围内纠正。</li>
+</ul>
+<h2 id="_10">安全说明<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>保护 kubeconfig 和 CA 材料。</li>
+<li>限制控制面主机访问。</li>
+<li>节点和管理员访问使用最小权限。</li>
+<li>加密 etcd 备份。</li>
+<li>不公开真实集群 endpoint 或证书。</li>
+<li>可行时保留审计日志。</li>
+</ul>
+<h2 id="_11">评审周期<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>每次 kubeadm 集群建设、Kubernetes minor 升级、证书轮换、etcd 事故或控制面拓扑变化前，评审本标准。</p>
+<h2 id="_12">相关文档<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../kubernetes-cluster-provisioning-standard/">Kubernetes 集群供给标准</a></li>
+<li><a href="../kubernetes-storage-ingress-standard/">Kubernetes 存储与 Ingress 标准</a></li>
+<li><a href="../../../standards-manual/linux/system-os-patching-standard/">系统 OS 补丁标准</a></li>
 </ul>
 
 
@@ -4166,7 +4347,7 @@ kubectl<span class="w"> </span>cluster-info
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4176,7 +4357,7 @@ kubectl<span class="w"> </span>cluster-info
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     

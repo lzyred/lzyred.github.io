@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Cloud network and object storage migration standard for cross-provider moves.">
+        <meta name="description" content="云网络与对象存储迁移标准，覆盖路由隔离、数据验证、切换、回滚和安全控制。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="云网络与对象存储迁移 - DevOps 专家知识库" />
-<meta property="og:description" content="Cloud network and object storage migration standard for cross-provider moves." />
+<meta property="og:description" content="云网络与对象存储迁移标准，覆盖路由隔离、数据验证、切换、回滚和安全控制。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/cloud/cloud-network-migration-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/cloud/cloud-network-migration-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="云网络与对象存储迁移 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Cloud network and object storage migration standard for cross-provider moves." />
+<meta property="twitter:description" content="云网络与对象存储迁移标准，覆盖路由隔离、数据验证、切换、回滚和安全控制。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/cloud/cloud-network-migration-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cloud-network-and-object-storage-migration-standard" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3365,34 +3309,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3574,10 +3490,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3585,10 +3501,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#network-planning" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Network Planning
+        适用场景
       
     </span>
   </a>
@@ -3596,10 +3512,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#connectivity-validation" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Connectivity Validation
+        非目标
       
     </span>
   </a>
@@ -3607,10 +3523,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#object-storage-migration" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Object Storage Migration
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拆分迁移平面
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        公开文档只用占位符
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立路由与身份矩阵
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分阶段迁移对象存储
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="验证">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        网络验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对象验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        切换
       
     </span>
   </a>
@@ -3618,10 +3634,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-notes" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Notes
+        回滚
       
     </span>
   </a>
@@ -3629,10 +3645,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3851,34 +3900,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3949,10 +3970,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3960,10 +3981,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#network-planning" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Network Planning
+        适用场景
       
     </span>
   </a>
@@ -3971,10 +3992,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#connectivity-validation" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Connectivity Validation
+        非目标
       
     </span>
   </a>
@@ -3982,10 +4003,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#object-storage-migration" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Object Storage Migration
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拆分迁移平面
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        公开文档只用占位符
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立路由与身份矩阵
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分阶段迁移对象存储
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="验证">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        网络验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对象验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        切换
       
     </span>
   </a>
@@ -3993,10 +4114,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-notes" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Notes
+        回滚
       
     </span>
   </a>
@@ -4004,10 +4125,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4121,6 +4275,30 @@
         <a href="../../../tags/#tag:migration" class="md-tag md-tag-icon md-tag--migration">Migration</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:networking" class="md-tag md-tag-icon md-tag--networking">Networking</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
+      
+    
   </nav>
 
 
@@ -4128,62 +4306,195 @@
   
 
 
-<h1 id="cloud-network-and-object-storage-migration-standard">Cloud Network and Object Storage Migration Standard<a class="headerlink" href="#cloud-network-and-object-storage-migration-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes safe planning for cloud network connectivity and object storage migration across providers or accounts.</p>
-<h2 id="network-planning">Network Planning<a class="headerlink" href="#network-planning" title="Permanent link">&para;</a></h2>
-<p>Document:</p>
+<h1 id="_1">云网络与对象存储迁移标准<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">目的<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何在账号、区域或云厂商之间规划和执行云网络与对象存储迁移。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>云迁移失败，较少是因为“复制做不到”，更多是因为路由、身份、DNS、元数据和回滚被当成了事后补丁。</p>
+</blockquote>
+<p>当应用流量、私有连接和数据路径同时变化时，网络迁移与对象存储迁移必须一起规划。</p>
+<h2 id="_3">适用场景<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
 <ul>
-<li>Source and target VPC or VNet CIDRs.</li>
-<li>Subnet layout.</li>
-<li>Routing tables.</li>
-<li>NAT and egress design.</li>
-<li>Security groups or firewall policies.</li>
-<li>DNS resolution.</li>
-<li>Private connectivity such as VPN, peering, transit gateway, or cloud connect.</li>
+<li>工作负载迁移到不同云账号、区域或云厂商。</li>
+<li>重建 VPC/VNet 网络边界。</li>
+<li>迁移对象存储 bucket 或 prefix。</li>
+<li>变更 DNS、私有连接、NAT 或出站路径。</li>
+<li>准备一次应用读写都切到新位置的 cutover。</li>
 </ul>
-<p>Use placeholder identifiers in public documents:</p>
-<div class="highlight"><pre><span></span><code>vpc-00000000000000000
-subnet-00000000000000000
-10.0.0.0/16
-203.0.113.10
+<h2 id="_4">非目标<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>本标准不覆盖数据库迁移内部细节、应用重构或厂商控制台步骤，只定义迁移安全控制模型。</p>
+<h2 id="_5">推荐标准<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">拆分迁移平面<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>三个平面独立规划：</p>
+<table>
+<thead>
+<tr>
+<th>平面</th>
+<th>范围</th>
+<th>失败信号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>网络</td>
+<td>CIDR、路由、防火墙规则、私有连接、DNS、出站。</td>
+<td>应用无法连接、连到旧目标或绕过策略。</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>对象数量、大小、元数据、加密、版本、生命周期。</td>
+<td>对象缺失、元数据错误、拒绝访问、读到旧数据。</td>
+</tr>
+<tr>
+<td>应用</td>
+<td>配置、端点选择、切换开关、读写行为。</td>
+<td>写入分裂或用户看到不一致数据。</td>
+</tr>
+</tbody>
+</table>
+<p>不要因为数据复制过一次就宣布迁移完成。完成意味着流量和所有权安全迁移。</p>
+<h3 id="_7">公开文档只用占位符<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>公开文档不得包含真实云账号、VPC、子网、bucket、域名、私有端点或 IP。使用 <code>&lt;source-vpc&gt;</code>、<code>&lt;target-bucket&gt;</code>、<code>&lt;private-service-endpoint&gt;</code> 这类占位符。</p>
+<h3 id="_8">建立路由与身份矩阵<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>数据移动前记录：</p>
+<ul>
+<li>源与目标网络边界。</li>
+<li>应用必需连接。</li>
+<li>DNS 名称和解析位置。</li>
+<li>安全组、防火墙策略和路由表。</li>
+<li>NAT 或出站路径。</li>
+<li>私有连接审批。</li>
+<li>迁移任务的 IAM 或角色映射。</li>
+</ul>
+<p>矩阵应同时展示允许路径和刻意阻断路径。</p>
+<h3 id="_9">分阶段迁移对象存储<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>使用分阶段迁移：</p>
+<ol>
+<li>盘点源 bucket 或 prefix。</li>
+<li>分类数据敏感性和保留要求。</li>
+<li>创建目标 bucket、加密、生命周期、日志和访问策略。</li>
+<li>执行初始全量同步。</li>
+<li>执行增量同步，直到漂移足够小。</li>
+<li>只有应用设计支持时才冻结或双写。</li>
+<li>将读写切到目标。</li>
+<li>验证、观察，并在回滚窗口内保留源。</li>
+</ol>
+<p>除非应用有冲突解决和所有权规则，否则不要长期双写。</p>
+<h2 id="_10">验证<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h3 id="_11">网络验证<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>从工作负载视角验证，而不是只从堡垒机验证：</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsS<span class="w"> </span>https://&lt;service-endpoint&gt;/healthz
+dig<span class="w"> </span>&lt;service-name&gt;
+nc<span class="w"> </span>-vz<span class="w"> </span>&lt;private-service-endpoint&gt;<span class="w"> </span>&lt;port&gt;
 </code></pre></div>
-<h2 id="connectivity-validation">Connectivity Validation<a class="headerlink" href="#connectivity-validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>ping<span class="w"> </span><span class="m">10</span>.0.0.10
-traceroute<span class="w"> </span><span class="m">10</span>.0.0.10
-curl<span class="w"> </span>-I<span class="w"> </span>https://service.example.com
-dig<span class="w"> </span>service.example.com
-</code></pre></div>
-<p>For private services, prefer application-level checks over raw ping.</p>
-<h2 id="object-storage-migration">Object Storage Migration<a class="headerlink" href="#object-storage-migration" title="Permanent link">&para;</a></h2>
-<p>Before migration:</p>
+<p>预期证据：</p>
 <ul>
-<li>Estimate object count and total size.</li>
-<li>Check object naming and prefix strategy.</li>
-<li>Validate permissions.</li>
-<li>Decide metadata preservation requirements.</li>
-<li>Plan incremental sync.</li>
-<li>Define cutover and rollback.</li>
+<li>DNS 解析到目标。</li>
+<li>私有端点只从批准网络可达。</li>
+<li>出站走预期路径。</li>
+<li>应拒绝路径确实被拒绝。</li>
+<li>日志显示预期来源身份。</li>
 </ul>
-<p>Validation:</p>
+<h3 id="_12">对象验证<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>验证：</p>
 <ul>
-<li>Object count comparison.</li>
-<li>Size comparison.</li>
-<li>Sample checksum comparison.</li>
-<li>Application read test.</li>
-<li>Access policy test.</li>
+<li>对象总数。</li>
+<li>逻辑总大小。</li>
+<li>抽样 checksum。</li>
+<li>元数据和 content type。</li>
+<li>加密状态。</li>
+<li>应用角色访问策略。</li>
+<li>应用读取路径。</li>
+<li>cutover 后写入路径。</li>
 </ul>
-<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<p>大规模存储使用确定性抽样和 inventory 对比，不要只信同步命令摘要。</p>
+<h2 id="_13">切换<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>Cutover 必须具备：</p>
 <ul>
-<li>Do not publish access keys or secret keys.</li>
-<li>Use temporary roles where possible.</li>
-<li>Restrict migration permissions to required buckets and prefixes.</li>
-<li>Encrypt objects at rest and in transit.</li>
-<li>Remove migration credentials after cutover.</li>
+<li>冻结或最终同步计划。</li>
+<li>DNS 或配置切换负责人。</li>
+<li>应用冒烟测试。</li>
+<li>监控负责人。</li>
+<li>回滚决策窗口。</li>
+<li>对受影响团队的通知。</li>
 </ul>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<p>如果回滚条件模糊，不要切换。团队必须知道什么信号触发回滚，以及谁可以拍板。</p>
+<h2 id="_14">回滚<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>当源保持完整，且写入没有分裂到不可协调时，回滚才可行。</p>
+<p>回滚方式：</p>
 <ul>
-<li><a href="../../../platform-governance/publication-safety-checklist/">Publication Safety Checklist</a></li>
+<li>DNS 或配置指回源。</li>
+<li>重新启用源路由。</li>
+<li>如有捕获，重放已接受写入。</li>
+<li>从保留源副本恢复。</li>
+</ul>
+<p>以下情况回滚高风险：</p>
+<ul>
+<li>源和目标都发生写入。</li>
+<li>对象版本或元数据不兼容变化。</li>
+<li>源生命周期策略删除了旧数据。</li>
+<li>应用 schema 或 URL 生成方式改变。</li>
+</ul>
+<h2 id="_15">失败模式<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CIDR 或路由冲突</td>
+<td>流量到达错误目标或不可达。</td>
+<td>切换前验证路由矩阵。</td>
+</tr>
+<tr>
+<td>忽略 DNS TTL</td>
+<td>部分客户端继续使用旧端点。</td>
+<td>降低 TTL 并测试 resolver 行为。</td>
+</tr>
+<tr>
+<td>IAM 不匹配</td>
+<td>同步成功但应用无法读取。</td>
+<td>用应用角色验证。</td>
+</tr>
+<tr>
+<td>元数据丢失</td>
+<td>下载、缓存或 content type 损坏。</td>
+<td>对比元数据，不只比较字节。</td>
+</tr>
+<tr>
+<td>过早删除源</td>
+<td>失去回滚。</td>
+<td>在回滚窗口内保留源。</td>
+</tr>
+<tr>
+<td>长期双写</td>
+<td>对象不一致。</td>
+<td>优先冻结、最终同步和单写入者。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_16">安全说明<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<ul>
+<li>使用最小权限的临时迁移角色。</li>
+<li>对象传输和静态存储都加密。</li>
+<li>不要意外复制公开访问策略。</li>
+<li>迁移期间记录数据访问。</li>
+<li>cutover 后移除迁移角色和临时路由。</li>
+<li>公开文档中的迁移证据必须通用化。</li>
+</ul>
+<h2 id="_17">评审周期<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<p>每次迁移波次前、每次 cutover 后，以及任何路由、DNS、IAM、对象元数据或回滚事故后，都要评审本标准。</p>
+<h2 id="_18">相关文档<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../cases-reviews/cases/anonymous-object-storage-migration-case/">对象存储迁移案例</a></li>
+<li><a href="../../iac/terraform-iac-standard/">Terraform IaC 标准</a></li>
+<li><a href="../../networking/nginx-reverse-proxy-tls-standard/">Nginx 反向代理与 TLS 标准</a></li>
 </ul>
 
 
@@ -4207,7 +4518,7 @@ dig<span class="w"> </span>service.example.com
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4217,7 +4528,7 @@ dig<span class="w"> </span>service.example.com
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     

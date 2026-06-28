@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Shell automation standard for reusable DevOps scripts and pipelines.">
+        <meta name="description" content="Shell 自动化标准，要求脚本具备幂等、dry-run、日志、错误处理和回滚边界，才能用于运维。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Shell 自动化 - DevOps 专家知识库" />
-<meta property="og:description" content="Shell automation standard for reusable DevOps scripts and pipelines." />
+<meta property="og:description" content="Shell 自动化标准，要求脚本具备幂等、dry-run、日志、错误处理和回滚边界，才能用于运维。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/automation/shell-automation-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/automation/shell-automation-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Shell 自动化 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Shell automation standard for reusable DevOps scripts and pipelines." />
+<meta property="twitter:description" content="Shell 自动化标准，要求脚本具备幂等、dry-run、日志、错误处理和回滚边界，才能用于运维。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/automation/shell-automation-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shell-automation-standard" class="md-skip">
+        <a href="#shell" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3365,34 +3309,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3630,10 +3546,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3641,10 +3557,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#script-requirements" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Script Requirements
+        适用场景
       
     </span>
   </a>
@@ -3652,10 +3568,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#public-template" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Public Template
+        非目标
       
     </span>
   </a>
@@ -3663,10 +3579,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        脚本先写运行契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有意识地使用 strict mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变更前验证输入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        让重复运行安全
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dry-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提供 dry-run 和审计输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3829,34 +3872,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3927,10 +3942,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3938,10 +3953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#script-requirements" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Script Requirements
+        适用场景
       
     </span>
   </a>
@@ -3949,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#public-template" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Public Template
+        非目标
       
     </span>
   </a>
@@ -3960,10 +3975,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        脚本先写运行契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有意识地使用 strict mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变更前验证输入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        让重复运行安全
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dry-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提供 dry-run 和审计输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4074,7 +4216,19 @@
         
       
       
-        <a href="../../../tags/#tag:delivery" class="md-tag md-tag-icon md-tag--delivery">Delivery</a>
+        <a href="../../../tags/#tag:linux" class="md-tag md-tag-icon md-tag--linux">Linux</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:standards" class="md-tag md-tag-icon md-tag--standards">Standards</a>
       
     
   </nav>
@@ -4084,31 +4238,155 @@
   
 
 
-<h1 id="shell-automation-standard">Shell Automation Standard<a class="headerlink" href="#shell-automation-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines how shell scripts should be cleaned and published as reusable DevOps automation.</p>
-<h2 id="script-requirements">Script Requirements<a class="headerlink" href="#script-requirements" title="Permanent link">&para;</a></h2>
+<h1 id="shell">Shell 自动化标准<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义 DevOps 自动化脚本的编写和运行要求。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>只要 shell 脚本会改变基础设施、数据、访问或发布状态，它就是生产自动化。</p>
+</blockquote>
+<p>小脚本很容易演变成运营控制面。它们也需要明确范围、安全输入、幂等、日志、验证和回滚。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>适用于会做以下事情的脚本：</p>
 <ul>
-<li>Use <code>set -euo pipefail</code> where compatible.</li>
-<li>Validate required commands.</li>
-<li>Provide dry-run for destructive actions.</li>
-<li>Log actions.</li>
-<li>Avoid hardcoded credentials, IPs, domains, and personal paths.</li>
-<li>Make thresholds configurable.</li>
+<li>修改服务器、容器、Kubernetes 对象或云资源。</li>
+<li>在 CI/CD job 中运行。</li>
+<li>轮转文件、日志、备份或证书。</li>
+<li>执行清理或迁移。</li>
+<li>被多个运维人员或团队共享。</li>
 </ul>
-<h2 id="public-template">Public Template<a class="headerlink" href="#public-template" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env bash</span>
-<span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail
-
-main<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;run safe operation&quot;</span>
-<span class="o">}</span>
-
-main<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
-</code></pre></div>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<p>一次性本地探索不需要完整模板，但未经评审不得升级为共享自动化。</p>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不要求所有任务都用 shell。若逻辑需要复杂状态、解析、API 重试或长期维护，应使用更合适的语言和库。</p>
+<h2 id="_4">推荐标准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">脚本先写运行契约<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>脚本头部或相邻 README 必须定义：</p>
 <ul>
-<li><a href="../../../platform-governance/publication-safety-checklist/">Publication Safety Checklist</a></li>
+<li>目的。</li>
+<li>目标环境。</li>
+<li>所需权限。</li>
+<li>输入和默认值。</li>
+<li>会修改哪些资源。</li>
+<li>dry-run 行为。</li>
+<li>验证命令。</li>
+<li>回滚或恢复边界。</li>
+</ul>
+<p>如果脚本说不清会改什么，就不能无人值守运行。</p>
+<h3 id="strict-mode">有意识地使用 strict mode<a class="headerlink" href="#strict-mode" title="Permanent link">&para;</a></h3>
+<p>基线：</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env bash</span>
+<span class="nb">set</span><span class="w"> </span>-Eeuo<span class="w"> </span>pipefail
+
+<span class="nb">trap</span><span class="w"> </span><span class="s1">&#39;echo &quot;error: line ${LINENO}&quot; &gt;&amp;2&#39;</span><span class="w"> </span>ERR
+</code></pre></div>
+<p>Strict mode 可以减少静默失败，但不能替代显式检查。预期内的非零结果要明确处理。</p>
+<h3 id="_6">变更前验证输入<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>验证：</p>
+<ul>
+<li>必需命令存在。</li>
+<li>必需文件存在。</li>
+<li>目标 namespace、host、cluster 或 account 是显式输入。</li>
+<li>破坏性参数需要显式确认或 <code>--yes</code>。</li>
+<li>输出路径不会指向根目录或空变量。</li>
+</ul>
+<p>避免脚本从当前 shell context 推断生产目标。</p>
+<h3 id="_7">让重复运行安全<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>优先幂等操作：</p>
+<ul>
+<li>创建前先检查。</li>
+<li>替换前先比较。</li>
+<li>覆盖前先备份。</li>
+<li>已完成步骤跳过。</li>
+<li>缺失可选资源只有在记录清楚时才当作正常。</li>
+</ul>
+<h3 id="dry-run">提供 dry-run 和审计输出<a class="headerlink" href="#dry-run" title="Permanent link">&para;</a></h3>
+<p>共享脚本应支持：</p>
+<div class="highlight"><pre><span></span><code>./script.sh<span class="w"> </span>--dry-run
+./script.sh<span class="w"> </span>--target<span class="w"> </span>&lt;target&gt;<span class="w"> </span>--yes
+</code></pre></div>
+<p>Dry-run 应展示计划动作但不修改状态。日志应包含时间、目标、动作、结果和可用的操作者上下文。</p>
+<h2 id="_8">验证<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>批准脚本前：</p>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>-n<span class="w"> </span>script.sh
+shellcheck<span class="w"> </span>script.sh
+./script.sh<span class="w"> </span>--dry-run<span class="w"> </span>--target<span class="w"> </span>&lt;test-target&gt;
+</code></pre></div>
+<p>通过条件：</p>
+<ul>
+<li>语法检查通过。</li>
+<li>ShellCheck 问题已修复或有理由。</li>
+<li>Dry-run 输出可理解。</li>
+<li>测试运行只影响测试目标。</li>
+<li>失败时非零退出。</li>
+<li>日志足够用于事故复盘。</li>
+</ul>
+<h2 id="_9">失败模式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>破坏性路径里变量为空</td>
+<td>删除或修改错误目标。</td>
+<td>使用 strict mode 和显式路径保护。</td>
+</tr>
+<tr>
+<td>依赖隐式当前 context</td>
+<td>跑到错误集群或账号。</td>
+<td>要求 target 参数，执行前打印目标。</td>
+</tr>
+<tr>
+<td>无幂等</td>
+<td>重跑造成重复变更或中途失败。</td>
+<td>每次 mutation 前检查状态。</td>
+</tr>
+<tr>
+<td>隐藏部分失败</td>
+<td>管道内命令失败但整体成功。</td>
+<td>使用 <code>pipefail</code> 和显式检查。</td>
+</tr>
+<tr>
+<td>无日志</td>
+<td>无法还原发生过什么。</td>
+<td>记录动作和结果。</td>
+</tr>
+<tr>
+<td>输出密钥</td>
+<td>凭据泄漏到 CI 日志。</td>
+<td>隐藏敏感值，共享脚本避免 <code>set -x</code>。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_10">回滚<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>脚本必须声明回滚边界：</p>
+<ul>
+<li>可通过另一条命令回退。</li>
+<li>可从备份恢复。</li>
+<li>无法安全回退。</li>
+<li>需要人工恢复。</li>
+</ul>
+<p>如果脚本删除数据、轮转凭据、改变防火墙规则或修改生产访问，首次生产使用前必须评审回滚方案。</p>
+<h2 id="_11">安全说明<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li>不在脚本中保存凭据。</li>
+<li>不打印 token 或私钥。</li>
+<li>生产自动化避免 <code>curl | bash</code>。</li>
+<li>下载产物尽量 pin 版本并校验 checksum。</li>
+<li>CI 使用最小权限服务账号。</li>
+<li>评审以 <code>sudo</code>、cluster-admin 或云 admin 权限运行的脚本。</li>
+</ul>
+<h2 id="_12">评审周期<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>共享自动化首次使用前、事故后、权限变化时、目标平台或 API 变化时，都要评审。</p>
+<h2 id="_13">相关文档<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../linux/server-baseline-standard/">服务器基线标准</a></li>
+<li><a href="../../linux/system-os-patching-standard/">系统 OS 补丁标准</a></li>
+<li><a href="../../../change-delivery/cicd/jenkins-kubernetes-pipeline-standard/">Jenkins 到 Kubernetes 流水线标准</a></li>
 </ul>
 
 
@@ -4132,7 +4410,7 @@ main<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</s
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4142,7 +4420,7 @@ main<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</s
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Application maintenance and health check standard for production readiness.">
+        <meta name="description" content="应用维护健康检查标准，用于运维变更前、中、后的分层验证和回滚触发判断。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="应用健康检查 - DevOps 专家知识库" />
-<meta property="og:description" content="Application maintenance and health check standard for production readiness." />
+<meta property="og:description" content="应用维护健康检查标准，用于运维变更前、中、后的分层验证和回滚触发判断。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/recovery/application-maintenance-health-check-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/reliable-operations/recovery/application-maintenance-health-check-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="应用健康检查 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Application maintenance and health check standard for production readiness." />
+<meta property="twitter:description" content="应用维护健康检查标准，用于运维变更前、中、后的分层验证和回滚触发判断。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/recovery/application-maintenance-health-check-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#application-maintenance-and-health-check-standard" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -1576,34 +1576,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -1953,10 +1925,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -1964,10 +1936,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#health-check-layers" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Health Check Layers
+        适用场景
       
     </span>
   </a>
@@ -1975,10 +1947,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#maintenance-workflow" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Maintenance Workflow
+        非目标
       
     </span>
   </a>
@@ -1986,10 +1958,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        健康层次
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 捕获基线
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 定义回滚触发条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 变更中监控
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 变更后验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -2143,34 +2242,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3449,34 +3520,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3814,34 +3857,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3912,10 +3927,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3923,10 +3938,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#health-check-layers" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Health Check Layers
+        适用场景
       
     </span>
   </a>
@@ -3934,10 +3949,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#maintenance-workflow" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Maintenance Workflow
+        非目标
       
     </span>
   </a>
@@ -3945,10 +3960,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        健康层次
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 捕获基线
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 定义回滚触发条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 变更中监控
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 变更后验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4047,6 +4189,18 @@
         
       
       
+        <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
       
     
@@ -4069,55 +4223,177 @@
   
 
 
-<h1 id="application-maintenance-and-health-check-standard">Application Maintenance and Health Check Standard<a class="headerlink" href="#application-maintenance-and-health-check-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines a reusable model for application health checks and maintenance runbooks.</p>
-<h2 id="health-check-layers">Health Check Layers<a class="headerlink" href="#health-check-layers" title="Permanent link">&para;</a></h2>
+<h1 id="_1">应用维护健康检查标准<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">目的<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>本标准定义在维护、发布、补丁、扩缩容、故障转移或基础设施变更期间，如何验证应用健康。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>健康检查是决策门禁，不是一个绿色端点。</p>
+</blockquote>
+<p>维护是否安全，取决于团队是否知道变更前查什么、变更中看什么、什么条件触发回滚。</p>
+<h2 id="_3">适用场景<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>适用于：</p>
+<ul>
+<li>发布窗口。</li>
+<li>OS 补丁或主机重启。</li>
+<li>Kubernetes 节点 drain 或升级。</li>
+<li>数据库、缓存、队列或中间件维护。</li>
+<li>网络、Ingress、证书或 DNS 变更。</li>
+<li>事故恢复后的验证。</li>
+</ul>
+<h2 id="_4">非目标<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>本标准不定义每个应用的业务逻辑，只定义应用应映射到自身检查的分层健康模型。</p>
+<h2 id="_5">健康层次<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>分层验证：</p>
 <table>
 <thead>
 <tr>
-<th>Layer</th>
-<th>Examples</th>
+<th>层</th>
+<th>问题</th>
+<th>示例信号</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Infrastructure</td>
-<td>Host, CPU, memory, disk, network.</td>
+<td>进程</td>
+<td>服务是否在运行？</td>
+<td>Process、Pod、Container、systemd、Supervisor。</td>
 </tr>
 <tr>
-<td>Runtime</td>
-<td>Process, container, pod, JVM, worker.</td>
+<td>依赖</td>
+<td>是否能访问必要依赖？</td>
+<td>数据库、缓存、队列、对象存储、API。</td>
 </tr>
 <tr>
-<td>Application</td>
-<td>HTTP health endpoint, queue consumer, scheduler.</td>
+<td>Readiness</td>
+<td>是否能接收真实流量？</td>
+<td>Readiness 端点、队列 consumer 状态。</td>
 </tr>
 <tr>
-<td>Dependency</td>
-<td>Database, cache, object storage, third-party API.</td>
+<td>用户路径</td>
+<td>关键旅程是否可用？</td>
+<td>登录、创建、读取、支付、搜索、上传。</td>
 </tr>
 <tr>
-<td>User Journey</td>
-<td>Login, core API call, report generation, callback.</td>
+<td>Error budget</td>
+<td>是否在可靠性护栏内？</td>
+<td>错误率、延迟、饱和、burn rate。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="maintenance-workflow">Maintenance Workflow<a class="headerlink" href="#maintenance-workflow" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Announce maintenance window.</li>
-<li>Confirm backup and rollback.</li>
-<li>Pause risky automated jobs.</li>
-<li>Apply change.</li>
-<li>Run technical validation.</li>
-<li>Run business smoke tests.</li>
-<li>Monitor for the observation window.</li>
-<li>Close with summary and follow-up items.</li>
-</ol>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<p>不要只依赖进程健康。</p>
+<h2 id="_6">操作流程<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 捕获基线<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>维护前记录：</p>
 <ul>
-<li><a href="../../../change-delivery/rollback/deployment-rollback-runbook/">Kubernetes Deployment Rollback Runbook</a></li>
-<li><a href="../../observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
+<li>当前版本或主机状态。</li>
+<li>请求量。</li>
+<li>错误率。</li>
+<li>延迟。</li>
+<li>饱和度。</li>
+<li>队列积压。</li>
+<li>依赖健康。</li>
+<li>当前告警。</li>
+</ul>
+<h3 id="2">2. 定义回滚触发条件<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>示例：</p>
+<ul>
+<li>错误率在观察窗口内超过护栏。</li>
+<li>Readiness 持续低于最低容量。</li>
+<li>关键用户路径失败。</li>
+<li>队列积压超过恢复阈值。</li>
+<li>依赖连接错误增加。</li>
+</ul>
+<p>如果变更前没有定义回滚触发条件，团队会在事故压力下争论。</p>
+<h3 id="3">3. 变更中监控<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>同时观察平台和应用信号：</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsS<span class="w"> </span>https://&lt;service-endpoint&gt;/healthz
+curl<span class="w"> </span>-fsS<span class="w"> </span>https://&lt;service-endpoint&gt;/readyz
+</code></pre></div>
+<p>Kubernetes：</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>deploy,pod
+kubectl<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>--sort-by<span class="o">=</span>.lastTimestamp
+</code></pre></div>
+<h3 id="4">4. 变更后验证<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p>执行约定冒烟测试，并观察约定窗口。变更命令成功返回，不等于服务健康。</p>
+<h2 id="_7">验证<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>通过条件：</p>
+<ul>
+<li>Health 和 readiness 端点返回预期状态。</li>
+<li>关键用户旅程成功。</li>
+<li>错误率和延迟处于基线或计划范围内。</li>
+<li>无异常重启或 crash loop。</li>
+<li>依赖错误没有增加。</li>
+<li>告警已清除，或有 owner 和截止时间。</li>
+</ul>
+<h2 id="_8">失败模式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>只查 <code>/healthz</code></td>
+<td>依赖损坏未被发现。</td>
+<td>增加 readiness 和依赖检查。</td>
+</tr>
+<tr>
+<td>无基线</td>
+<td>团队不知道变更是否恶化服务。</td>
+<td>变更前捕获指标。</td>
+</tr>
+<tr>
+<td>无回滚触发</td>
+<td>恢复决策停滞。</td>
+<td>变更前定义阈值。</td>
+</tr>
+<tr>
+<td>冒烟测试太浅</td>
+<td>用户路径仍然损坏。</td>
+<td>包含关键业务旅程。</td>
+</tr>
+<tr>
+<td>告警静默过宽</td>
+<td>真实事故被隐藏。</td>
+<td>限定维护静默范围。</td>
+</tr>
+<tr>
+<td>无观察窗口</td>
+<td>延迟故障被漏掉。</td>
+<td>设置观察时长。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">回滚<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>当回滚触发条件出现，且当前变更是合理原因时，回到上一安全状态。</p>
+<p>回滚可能是：</p>
+<ul>
+<li>回退部署。</li>
+<li>恢复上一配置。</li>
+<li>停止维护。</li>
+<li>恢复上一条路由或 DNS。</li>
+<li>重新加入被 drain 的容量。</li>
+<li>恢复主机或节点状态。</li>
+</ul>
+<p>如果因为数据或 schema 变化导致回滚无法恢复，升级给服务 owner 和事故指挥。</p>
+<h2 id="_10">安全说明<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>公开健康端点不得包含敏感细节。</li>
+<li>保护 admin 和诊断端点。</li>
+<li>不要通过健康响应暴露依赖凭据。</li>
+<li>维护访问应限时并审计。</li>
+</ul>
+<h2 id="_11">评审周期<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>维护失败后、回滚判断不清后、反复出现假健康后、关键用户路径变化后，评审本标准。</p>
+<h2 id="_12">相关文档<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../change-delivery/rollback/deployment-rollback-runbook/">部署回滚 Runbook</a></li>
+<li><a href="../../../standards-manual/linux/system-os-patching-standard/">系统 OS 补丁标准</a></li>
+<li><a href="../../observability/prometheus-alerting-standard/">Prometheus 告警标准</a></li>
 </ul>
 
 
@@ -4141,7 +4417,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4151,7 +4427,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     

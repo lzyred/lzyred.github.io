@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="ChartMuseum Helm repository standard for self-hosted chart distribution.">
+        <meta name="description" content="ChartMuseum Helm repository standard for self-hosted chart distribution with authentication, TLS, publishing control, retention, backup, validation, and rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="ChartMuseum Helm Repository - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="ChartMuseum Helm repository standard for self-hosted chart distribution." />
+<meta property="og:description" content="ChartMuseum Helm repository standard for self-hosted chart distribution with authentication, TLS, publishing control, retention, backup, validation, and rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/containers/chartmuseum-helm-repository-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/containers/chartmuseum-helm-repository-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="ChartMuseum Helm Repository - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="ChartMuseum Helm repository standard for self-hosted chart distribution." />
+<meta property="twitter:description" content="ChartMuseum Helm repository standard for self-hosted chart distribution with authentication, TLS, publishing control, retention, backup, validation, and rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/containers/chartmuseum-helm-repository-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -2766,13 +2710,74 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#controls" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Controls
+        When to Use
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control publishing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protect-repository-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protect repository access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retain-and-back-up-charts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retain and back up charts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2781,6 +2786,50 @@
     <span class="md-ellipsis">
       
         Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3458,34 +3507,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3829,34 +3850,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3938,13 +3931,74 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#controls" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Controls
+        When to Use
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control publishing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protect-repository-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protect repository access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retain-and-back-up-charts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retain and back up charts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3953,6 +4007,50 @@
     <span class="md-ellipsis">
       
         Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4098,22 +4196,104 @@
 
 <h1 id="chartmuseum-helm-repository-standard">ChartMuseum Helm Repository Standard<a class="headerlink" href="#chartmuseum-helm-repository-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes safe operation of ChartMuseum or a similar private Helm chart repository.</p>
-<h2 id="controls">Controls<a class="headerlink" href="#controls" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to operate ChartMuseum or a similar self-hosted Helm chart repository.</p>
+<p>The core judgment:</p>
+<blockquote>
+<p>A Helm repository is a deployment input. If it is mutable or unaudited, releases become hard to trust.</p>
+</blockquote>
+<p>ChartMuseum is useful for bounded internal chart distribution, but it must have authentication, publishing control, retention, backup, and version immutability expectations.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use ChartMuseum when:</p>
 <ul>
-<li>Enable authentication.</li>
-<li>Use TLS.</li>
-<li>Back up chart storage.</li>
-<li>Apply chart retention policies.</li>
-<li>Restrict publishing permission.</li>
+<li>A team needs a simple private Helm chart repository.</li>
+<li>Registry-native OCI chart storage is not yet available or not approved.</li>
+<li>Chart publishing and consumption are internal and bounded.</li>
 </ul>
+<p>Prefer OCI registry-based chart storage when it matches the platform registry standard.</p>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not define Helm chart authoring style, application release policy, or a full artifact registry strategy. It covers repository operation and publishing control only.</p>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="control-publishing">Control publishing<a class="headerlink" href="#control-publishing" title="Permanent link">&para;</a></h3>
+<p>Only CI/CD or approved release owners should publish charts. Publishing from laptops should be treated as an exception.</p>
+<p>Each chart version should map to:</p>
+<ul>
+<li>Source revision.</li>
+<li>Release owner.</li>
+<li>Chart version.</li>
+<li>Application version.</li>
+<li>Validation result.</li>
+</ul>
+<h3 id="protect-repository-access">Protect repository access<a class="headerlink" href="#protect-repository-access" title="Permanent link">&para;</a></h3>
+<p>Require TLS and authentication for private charts. Separate read and write credentials.</p>
+<h3 id="retain-and-back-up-charts">Retain and back up charts<a class="headerlink" href="#retain-and-back-up-charts" title="Permanent link">&para;</a></h3>
+<p>Back up chart storage and repository index. Define retention for old versions, but keep rollback versions long enough for production recovery.</p>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>example<span class="w"> </span>https://charts.example.com
+helm<span class="w"> </span>repo<span class="w"> </span>update
 helm<span class="w"> </span>search<span class="w"> </span>repo<span class="w"> </span>example
+helm<span class="w"> </span>pull<span class="w"> </span>example/&lt;chart-name&gt;<span class="w"> </span>--version<span class="w"> </span>&lt;version&gt;
 </code></pre></div>
+<p>Pass conditions:</p>
+<ul>
+<li>Repository index is reachable.</li>
+<li>Chart version can be pulled.</li>
+<li>Write access is restricted.</li>
+<li>Old rollback chart still exists.</li>
+<li>Backup includes chart packages and index.</li>
+</ul>
+<h2 id="failure-modes">Failure Modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Result</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chart version overwritten</td>
+<td>Release is not reproducible.</td>
+<td>Treat versions as immutable.</td>
+</tr>
+<tr>
+<td>Shared publish credential</td>
+<td>No accountability.</td>
+<td>Use CI identity or named owner.</td>
+</tr>
+<tr>
+<td>No TLS</td>
+<td>Chart and credentials exposed.</td>
+<td>Require HTTPS.</td>
+</tr>
+<tr>
+<td>Retention deletes rollback chart</td>
+<td>Rollback blocked.</td>
+<td>Keep rollback retention window.</td>
+</tr>
+<tr>
+<td>Repository index corrupt</td>
+<td>Deployments fail.</td>
+<td>Back up index and storage.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<p>Rollback requires the previous chart version and compatible values. Do not overwrite chart versions to roll back; deploy the previous version explicitly.</p>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Do not embed secrets in chart templates or values.</li>
+<li>Protect write credentials.</li>
+<li>Review chart dependencies.</li>
+<li>Avoid publishing internal hostnames or environment-specific defaults in public examples.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review when adding publishers, changing storage backend, migrating to OCI registry, or after failed chart deployment.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../harbor-registry-standard/">Harbor Registry Standard</a></li>
+<li><a href="../../../change-delivery/cicd/argocd-gitops-standard/">Argo CD GitOps Standard</a></li>
+<li><a href="../buildkit-build-standard/">BuildKit Build Standard</a></li>
 </ul>
 
 
@@ -4137,7 +4317,7 @@ helm<span class="w"> </span>search<span class="w"> </span>repo<span class="w"> <
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4147,7 +4327,7 @@ helm<span class="w"> </span>search<span class="w"> </span>repo<span class="w"> <
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     

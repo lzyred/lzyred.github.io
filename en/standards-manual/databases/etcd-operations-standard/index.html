@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="etcd operations standard for backup, restore, and cluster health management.">
+        <meta name="description" content="Standard for operating etcd as critical cluster state — quorum, defrag/alarm handling, snapshot backup proven by restore, and disaster recovery.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="etcd Operations - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="etcd operations standard for backup, restore, and cluster health management." />
+<meta property="og:description" content="Standard for operating etcd as critical cluster state — quorum, defrag/alarm handling, snapshot backup proven by restore, and disaster recovery." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/databases/etcd-operations-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/databases/etcd-operations-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="etcd Operations - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="etcd operations standard for backup, restore, and cluster health management." />
+<meta property="twitter:description" content="Standard for operating etcd as critical cluster state — quorum, defrag/alarm handling, snapshot backup proven by restore, and disaster recovery." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/databases/etcd-operations-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -2941,6 +2885,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#operating-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2952,10 +2918,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quorum-and-member-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quorum and member count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-and-size-are-the-silent-killers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disk and size are the silent killers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-snapshot-proven-by-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup: Snapshot, Proven by Restore
       
     </span>
   </a>
@@ -2963,10 +2968,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#health-checks" class="md-nav__link">
+  <a href="#disaster-recovery-restore" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Health Checks
+        Disaster Recovery (Restore)
       
     </span>
   </a>
@@ -2974,10 +2979,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-notes" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes Notes
+        Validation
       
     </span>
   </a>
@@ -2985,10 +2990,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#publication-safety" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Publication Safety
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3491,34 +3529,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3862,34 +3872,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3971,6 +3953,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#operating-principles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3982,10 +3986,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quorum-and-member-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quorum and member count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-and-size-are-the-silent-killers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disk and size are the silent killers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-snapshot-proven-by-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup: Snapshot, Proven by Restore
       
     </span>
   </a>
@@ -3993,10 +4036,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#health-checks" class="md-nav__link">
+  <a href="#disaster-recovery-restore" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Health Checks
+        Disaster Recovery (Restore)
       
     </span>
   </a>
@@ -4004,10 +4047,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-notes" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes Notes
+        Validation
       
     </span>
   </a>
@@ -4015,10 +4058,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#publication-safety" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Publication Safety
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4164,31 +4240,152 @@
 
 <h1 id="etcd-operations-standard">etcd Operations Standard<a class="headerlink" href="#etcd-operations-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes public-safe etcd operations for Kubernetes and distributed systems.</p>
-<h2 id="operating-principles">Operating Principles<a class="headerlink" href="#operating-principles" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to operate etcd safely as the source of truth for Kubernetes and other distributed systems: how quorum determines availability, why disk latency and database size quietly cause outages, and how to take a snapshot you can actually restore.</p>
+<p>The core judgment of this standard:</p>
+<blockquote>
+<p>etcd is not "a database the cluster uses" — for Kubernetes it <em>is</em> the cluster's memory. Losing quorum stalls the control plane; losing the data loses the cluster. A snapshot you have never restored is not a recovery plan.</p>
+</blockquote>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when you:</p>
 <ul>
-<li>Treat etcd as critical state.</li>
-<li>Use an odd number of members for quorum.</li>
-<li>Back up before cluster changes.</li>
-<li>Monitor leader changes, disk latency, database size, and alarms.</li>
-<li>Protect peer and client certificates.</li>
+<li>Run a self-managed etcd cluster (standalone or as the Kubernetes control-plane store).</li>
+<li>Need a backup/restore and disaster-recovery procedure for cluster state.</li>
+<li>Plan an etcd or Kubernetes control-plane upgrade or member change.</li>
 </ul>
-<h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>snapshot<span class="w"> </span>save<span class="w"> </span>snapshot.db
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>Managed Kubernetes, where the provider owns control-plane etcd. You still need application-level backups (Velero etc.); etcd internals are the provider's.</li>
+<li>Application data modeling on top of etcd.</li>
+<li>Tuning beyond the production-critical settings below.</li>
+</ul>
+<h2 id="operating-principles">Operating Principles<a class="headerlink" href="#operating-principles" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Treat etcd as critical state with strict change control.</li>
+<li>Use an <strong>odd</strong> number of members (3 or 5) so the cluster keeps quorum when one member is lost.</li>
+<li>Put etcd on <strong>fast, low-latency disks</strong> — etcd is fsync-bound, and slow disks cause leader changes and request timeouts.</li>
+<li>Take a verified snapshot <strong>before</strong> any cluster change.</li>
+<li>Monitor leader changes, disk fsync/backend-commit latency, database size, and raised alarms.</li>
+</ol>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="quorum-and-member-count">Quorum and member count<a class="headerlink" href="#quorum-and-member-count" title="Permanent link">&para;</a></h3>
+<p>etcd needs a majority (quorum) of members to serve writes. With 3 members it tolerates 1 failure; with 5 it tolerates 2. Even member counts add cost without improving fault tolerance and can split votes. Spread members across failure domains.</p>
+<h3 id="disk-and-size-are-the-silent-killers">Disk and size are the silent killers<a class="headerlink" href="#disk-and-size-are-the-silent-killers" title="Permanent link">&para;</a></h3>
+<ul>
+<li>etcd commits every write to disk; high fsync/backend-commit latency manifests as frequent leader elections and <code>etcdserver: request timed out</code>.</li>
+<li>The database has a quota (<code>--quota-backend-bytes</code>, default ~2 GiB). When exceeded, etcd raises a <strong><code>NOSPACE</code> alarm</strong> and goes <strong>read-only</strong> — a cluster-wide outage. Stay well under the quota; compact and defragment on a schedule.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># compaction (keep current revision), then defragment to reclaim space:</span>
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>compact<span class="w"> </span>&lt;rev&gt;
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>defrag
+<span class="c1"># if a NOSPACE alarm is set, clear it after reclaiming space:</span>
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>alarm<span class="w"> </span>list
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>alarm<span class="w"> </span>disarm
 </code></pre></div>
-<p>Store snapshots encrypted and test restore regularly.</p>
-<h2 id="health-checks">Health Checks<a class="headerlink" href="#health-checks" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>endpoint<span class="w"> </span>health
-<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>endpoint<span class="w"> </span>status<span class="w"> </span>--write-out<span class="o">=</span>table
+<p>Defrag is disruptive per member (it blocks that member briefly); do it one member at a time, starting with followers.</p>
+<h2 id="backup-snapshot-proven-by-restore">Backup: Snapshot, Proven by Restore<a class="headerlink" href="#backup-snapshot-proven-by-restore" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>--endpoints<span class="o">=</span>&lt;endpoint&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cacert<span class="o">=</span>&lt;ca&gt;<span class="w"> </span>--cert<span class="o">=</span>&lt;cert&gt;<span class="w"> </span>--key<span class="o">=</span>&lt;key&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>snapshot<span class="w"> </span>save<span class="w"> </span>/backup/etcd-snapshot.db
+
+<span class="c1"># verify the snapshot is consistent:</span>
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>snapshot<span class="w"> </span>status<span class="w"> </span>/backup/etcd-snapshot.db<span class="w"> </span>--write-out<span class="o">=</span>table
 </code></pre></div>
-<h2 id="kubernetes-notes">Kubernetes Notes<a class="headerlink" href="#kubernetes-notes" title="Permanent link">&para;</a></h2>
-<p>For managed Kubernetes, control plane etcd is usually provider-managed. For self-managed clusters, etcd backup and restore must be part of the platform runbook.</p>
-<h2 id="publication-safety">Publication Safety<a class="headerlink" href="#publication-safety" title="Permanent link">&para;</a></h2>
-<p>Do not publish real etcd certificates, keys, endpoints, snapshots, or cluster member names.</p>
+<ul>
+<li>Take snapshots on a schedule and before every cluster change (upgrade, member add/remove).</li>
+<li>Store snapshots encrypted and off the etcd hosts; they contain all cluster state, including Secrets.</li>
+<li><strong>Restore-test on a schedule</strong> into an isolated environment. A snapshot that has never been restored is a hope, not a backup.</li>
+</ul>
+<h2 id="disaster-recovery-restore">Disaster Recovery (Restore)<a class="headerlink" href="#disaster-recovery-restore" title="Permanent link">&para;</a></h2>
+<p>Restoring etcd is destructive and must be coordinated — for a Kubernetes control plane, the API server must be stopped while you restore.</p>
+<ol>
+<li>Stop the etcd (and dependent API server) processes on the target.</li>
+<li>Restore the snapshot into a new data directory on each member with matching peer URLs.</li>
+<li>Start etcd as a new cluster from the restored data, then restart the API server.</li>
+<li>Validate health and that cluster state matches the snapshot point in time.</li>
+</ol>
+<p>Do this from a runbook, with an owner, never improvised during an incident.</p>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>endpoint<span class="w"> </span>health<span class="w"> </span>--cluster
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>endpoint<span class="w"> </span>status<span class="w"> </span>--cluster<span class="w"> </span>--write-out<span class="o">=</span>table
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>etcdctl<span class="w"> </span>alarm<span class="w"> </span>list
+</code></pre></div>
+<p>Confirm:</p>
+<ul>
+<li>All endpoints are <code>healthy</code>; exactly one leader; no excessive leader changes.</li>
+<li>Database size is well under quota; no <code>NOSPACE</code>/<code>CORRUPT</code> alarms.</li>
+<li>For Kubernetes, the API server is responsive and controllers reconcile normally.</li>
+<li>The latest snapshot passed a restore test within its interval.</li>
+</ul>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Correct response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lost quorum</td>
+<td>Writes fail; control plane stalls</td>
+<td>Too many members down / even count</td>
+<td>Restore a member or recover from snapshot; use odd counts.</td>
+</tr>
+<tr>
+<td>NOSPACE / read-only</td>
+<td>Cluster refuses writes</td>
+<td>DB exceeded backend quota</td>
+<td>Compact, defrag, then <code>alarm disarm</code>; raise quota deliberately.</td>
+</tr>
+<tr>
+<td>Frequent leader elections</td>
+<td>Timeouts, instability</td>
+<td>Slow disk fsync, network latency</td>
+<td>Move to fast disks; check network; isolate noisy neighbors.</td>
+</tr>
+<tr>
+<td>Snapshot won't restore</td>
+<td>Restore fails</td>
+<td>Never restore-tested / inconsistent snapshot</td>
+<td><code>snapshot status</code> to verify; schedule restore tests.</td>
+</tr>
+<tr>
+<td>Cert/peer mismatch</td>
+<td>Members won't join</td>
+<td>Wrong peer URLs or certs on restore</td>
+<td>Restore with matching peer URLs; protect/rotate certs.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Always snapshot before a cluster change so you have a known-good point.</li>
+<li>To roll back a failed member change, recover the member from the pre-change snapshot and rejoin.</li>
+<li>To roll back catastrophic data loss, perform the disaster-recovery restore from the most recent verified snapshot.</li>
+<li>Protect and rotate etcd peer/client certificates after any recovery.</li>
+</ol>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Never publish real etcd endpoints, certificates, keys, snapshots, or member names.</li>
+<li>Snapshots contain all cluster state including Kubernetes Secrets — encrypt and access-control them like secrets.</li>
+<li>Enable mutual TLS between peers and clients; restrict who can reach the client port.</li>
+<li>Limit who can run <code>snapshot</code>, <code>defrag</code>, <code>alarm</code>, and member operations.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Owner: the platform/cluster team.</li>
+<li>Verify a successful snapshot restore test each interval.</li>
+<li>Re-check database size, quota headroom, and disk latency on a regular cadence.</li>
+<li>Re-confirm the DR runbook before each control-plane upgrade.</li>
+</ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../system-design/production-architecture/kubeadm-installation-standard/">kubeadm Installation Standard</a></li>
 <li><a href="../../../system-design/production-architecture/kubernetes-cluster-provisioning-standard/">Kubernetes Cluster Provisioning Standard</a></li>
+<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter Monitoring Standard</a></li>
+<li><a href="https://etcd.io/docs/latest/op-guide/recovery/">etcd disaster recovery documentation</a></li>
 </ul>
 
 
@@ -4212,7 +4409,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:15:46 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4222,7 +4419,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:15:46 UTC">June 28, 2026</span>
   </span>
 
     

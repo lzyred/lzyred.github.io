@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Jenkins to Kubernetes pipeline standard for container-based CI/CD.">
+        <meta name="description" content="Standard for Jenkins pipelines that build and deploy to Kubernetes — immutable image tags, secret handling, gated promotion, verified rollout, and rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Jenkins to Kubernetes Pipeline - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Jenkins to Kubernetes pipeline standard for container-based CI/CD." />
+<meta property="og:description" content="Standard for Jenkins pipelines that build and deploy to Kubernetes — immutable image tags, secret handling, gated promotion, verified rollout, and rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/change-delivery/cicd/jenkins-kubernetes-pipeline-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/change-delivery/cicd/jenkins-kubernetes-pipeline-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Jenkins to Kubernetes Pipeline - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Jenkins to Kubernetes pipeline standard for container-based CI/CD." />
+<meta property="twitter:description" content="Standard for Jenkins pipelines that build and deploy to Kubernetes — immutable image tags, secret handling, gated promotion, verified rollout, and rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/change-delivery/cicd/jenkins-kubernetes-pipeline-standard.png" />
 </head>
   
@@ -1274,6 +1274,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pipeline-stages" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1285,32 +1307,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#required-inputs" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Required Inputs
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#immutable-image-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Immutable image tags
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#credential-handling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Credential Handling
+        Credential handling
       
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#verified-gated-promotion" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        <li class="md-nav__item">
+        Verified, gated promotion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#example-jenkinsfile-skeleton" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example Jenkinsfile Skeleton
+        Example Jenkinsfile skeleton
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-production-deploy-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-Production Deploy Checklist
       
     </span>
   </a>
@@ -1318,10 +1379,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-deploy-safety" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes Deploy Safety
+        Validation
       
     </span>
   </a>
@@ -1329,10 +1390,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notification-standard" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notification Standard
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -1696,34 +1790,6 @@
     
   
     ELFK Logging
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
   
 
     
@@ -2187,34 +2253,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3493,34 +3531,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3858,34 +3868,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3967,6 +3949,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pipeline-stages" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3978,32 +3982,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#required-inputs" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Required Inputs
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#immutable-image-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Immutable image tags
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#credential-handling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Credential Handling
+        Credential handling
       
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#verified-gated-promotion" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        <li class="md-nav__item">
+        Verified, gated promotion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#example-jenkinsfile-skeleton" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example Jenkinsfile Skeleton
+        Example Jenkinsfile skeleton
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-production-deploy-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-Production Deploy Checklist
       
     </span>
   </a>
@@ -4011,10 +4054,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-deploy-safety" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes Deploy Safety
+        Validation
       
     </span>
   </a>
@@ -4022,10 +4065,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notification-standard" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notification Standard
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4135,6 +4211,18 @@
         
       
       
+        <a href="../../../tags/#tag:cicd" class="md-tag md-tag-icon md-tag--ci-cd">CI/CD</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:delivery" class="md-tag md-tag-icon md-tag--delivery">Delivery</a>
       
     
@@ -4159,109 +4247,77 @@
 
 <h1 id="jenkins-to-kubernetes-pipeline-standard">Jenkins to Kubernetes Pipeline Standard<a class="headerlink" href="#jenkins-to-kubernetes-pipeline-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes a safe Jenkins pipeline pattern for building container images and deploying to Kubernetes.</p>
-<h2 id="pipeline-stages">Pipeline Stages<a class="headerlink" href="#pipeline-stages" title="Permanent link">&para;</a></h2>
-<p>Use a predictable stage model:</p>
-<div class="highlight"><pre><span></span><code>checkout
-test
-build
-scan
-package
-push image
-deploy to staging
-smoke test
-manual approval
-deploy to production
-post-deploy verification
-</code></pre></div>
-<h2 id="required-inputs">Required Inputs<a class="headerlink" href="#required-inputs" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Input</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Git repository</td>
-<td><code>https://github.com/example/example-repo.git</code></td>
-</tr>
-<tr>
-<td>Branch</td>
-<td><code>main</code></td>
-</tr>
-<tr>
-<td>Image</td>
-<td><code>registry.example.com/example/app</code></td>
-</tr>
-<tr>
-<td>Version</td>
-<td>Git SHA or release tag</td>
-</tr>
-<tr>
-<td>Kubernetes namespace</td>
-<td><code>example-namespace</code></td>
-</tr>
-<tr>
-<td>Deployment name</td>
-<td><code>example-service</code></td>
-</tr>
-<tr>
-<td>Environment</td>
-<td><code>staging</code> or <code>production</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="credential-handling">Credential Handling<a class="headerlink" href="#credential-handling" title="Permanent link">&para;</a></h2>
-<p>Store credentials in Jenkins credentials or an external secret manager:</p>
+<p>This standard defines a safe Jenkins pipeline pattern for building container images and deploying them to Kubernetes: how to keep builds reproducible, how to handle credentials, and how to make production deploys gated, verified, and reversible.</p>
+<p>The core judgment of this standard:</p>
+<blockquote>
+<p>The pipeline's job is not "to deploy" — it is to make every deploy reproducible, attributable, and reversible. The single decision that delivers most of that is using an <strong>immutable image tag</strong> (the commit SHA), so what you tested is exactly what you ship and exactly what you can roll back to.</p>
+</blockquote>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when you:</p>
 <ul>
-<li>Git credentials.</li>
-<li>Registry credentials.</li>
-<li>Kubernetes deploy credentials.</li>
-<li>Notification webhook.</li>
-<li>Cloud credentials.</li>
+<li>Build container images and deploy to Kubernetes from Jenkins.</li>
+<li>Need a consistent stage model, credential model, and rollback path across services.</li>
+<li>Want CI (this standard) to hand off to GitOps CD, or to deploy directly with verification.</li>
 </ul>
-<p>Never hardcode credentials in Jenkinsfiles, shell scripts, or public documentation.</p>
-<h2 id="example-jenkinsfile-skeleton">Example Jenkinsfile Skeleton<a class="headerlink" href="#example-jenkinsfile-skeleton" title="Permanent link">&para;</a></h2>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>GitOps reconciliation — if Argo CD owns cluster state, the pipeline pushes the image and updates Git, and Argo CD deploys (see the Argo CD GitOps standard).</li>
+<li>Jenkins controller/agent infrastructure and scaling.</li>
+<li>Build-tool specifics for a given language.</li>
+</ul>
+<h2 id="pipeline-stages">Pipeline Stages<a class="headerlink" href="#pipeline-stages" title="Permanent link">&para;</a></h2>
+<p>Use a predictable stage model so failures are localized and promotion is explicit:</p>
+<div class="highlight"><pre><span></span><code>checkout → test → build image → scan → push image →
+deploy to staging → smoke test → manual approval → deploy to production → verify
+</code></pre></div>
+<p>Each stage must fail the build on error; a failing test or image scan must stop promotion, not warn and continue.</p>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="immutable-image-tags">Immutable image tags<a class="headerlink" href="#immutable-image-tags" title="Permanent link">&para;</a></h3>
+<p>Tag images with the Git commit SHA (and optionally a release tag), never a moving tag like <code>latest</code>. A moving tag means "what ran in staging" and "what runs in prod" can silently differ, and rollback has nothing precise to point at.</p>
+<h3 id="credential-handling">Credential handling<a class="headerlink" href="#credential-handling" title="Permanent link">&para;</a></h3>
+<p>Store all credentials in Jenkins credentials or an external secret manager — never hardcoded in <code>Jenkinsfile</code>, scripts, or docs:</p>
+<ul>
+<li>Git, registry, Kubernetes deploy, notification, and cloud credentials.</li>
+<li>Inject at the stage that needs them via <code>withCredentials</code>; never echo them.</li>
+</ul>
+<h3 id="verified-gated-promotion">Verified, gated promotion<a class="headerlink" href="#verified-gated-promotion" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Deploy to staging and run a real smoke test before any production stage.</li>
+<li>Gate production behind a manual approval (or a GitOps PR), recording who approved.</li>
+<li>After the production rollout, <strong>verify</strong> — do not declare success on "kubectl applied".</li>
+</ul>
+<h3 id="example-jenkinsfile-skeleton">Example Jenkinsfile skeleton<a class="headerlink" href="#example-jenkinsfile-skeleton" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="n">pipeline</span><span class="w"> </span><span class="o">{</span>
 <span class="w">  </span><span class="n">agent</span><span class="w"> </span><span class="n">any</span>
-
 <span class="w">  </span><span class="n">environment</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="n">IMAGE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;registry.example.com/example/app&#39;</span>
-<span class="w">    </span><span class="n">NAMESPACE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;example-namespace&#39;</span>
+<span class="w">    </span><span class="n">IMAGE</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;registry.example.com/example/app&#39;</span>
+<span class="w">    </span><span class="n">NAMESPACE</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;example-namespace&#39;</span>
 <span class="w">    </span><span class="n">DEPLOYMENT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;example-service&#39;</span>
 <span class="w">  </span><span class="o">}</span>
-
 <span class="w">  </span><span class="n">stages</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Checkout&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Checkout&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">checkout</span><span class="w"> </span><span class="n">scm</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Test&#39;</span><span class="o">)</span><span class="w">     </span><span class="o">{</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;make test&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Build&#39;</span><span class="o">)</span><span class="w">    </span><span class="o">{</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;docker build -t ${IMAGE}:${GIT_COMMIT} .&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Scan&#39;</span><span class="o">)</span><span class="w">     </span><span class="o">{</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;trivy image --exit-code 1 --severity HIGH,CRITICAL ${IMAGE}:${GIT_COMMIT}&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Push&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
 <span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<span class="w">        </span><span class="n">checkout</span><span class="w"> </span><span class="n">scm</span>
-<span class="w">      </span><span class="o">}</span>
-<span class="w">    </span><span class="o">}</span>
-
-<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Test&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;make test&#39;</span>
-<span class="w">      </span><span class="o">}</span>
-<span class="w">    </span><span class="o">}</span>
-
-<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Build Image&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;docker build -t ${IMAGE}:${GIT_COMMIT} .&#39;</span>
-<span class="w">      </span><span class="o">}</span>
-<span class="w">    </span><span class="o">}</span>
-
-<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Push Image&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<span class="w">        </span><span class="n">withCredentials</span><span class="o">([</span><span class="n">usernamePassword</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s1">&#39;registry-credentials&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">usernameVariable:</span><span class="w"> </span><span class="s1">&#39;REGISTRY_USER&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">passwordVariable:</span><span class="w"> </span><span class="s1">&#39;REGISTRY_PASSWORD&#39;</span><span class="o">)])</span><span class="w"> </span><span class="o">{</span>
-<span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;echo &quot;$REGISTRY_PASSWORD&quot; | docker login registry.example.com -u &quot;$REGISTRY_USER&quot; --password-stdin&#39;</span>
+<span class="w">        </span><span class="n">withCredentials</span><span class="o">([</span><span class="n">usernamePassword</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s1">&#39;registry-credentials&#39;</span><span class="o">,</span>
+<span class="w">            </span><span class="nl">usernameVariable:</span><span class="w"> </span><span class="s1">&#39;REG_USER&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">passwordVariable:</span><span class="w"> </span><span class="s1">&#39;REG_PASS&#39;</span><span class="o">)])</span><span class="w"> </span><span class="o">{</span>
+<span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;echo &quot;$REG_PASS&quot; | docker login registry.example.com -u &quot;$REG_USER&quot; --password-stdin&#39;</span>
 <span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;docker push ${IMAGE}:${GIT_COMMIT}&#39;</span>
 <span class="w">        </span><span class="o">}</span>
 <span class="w">      </span><span class="o">}</span>
 <span class="w">    </span><span class="o">}</span>
-
-<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Deploy&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Deploy staging&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;kubectl -n ${NAMESPACE}-staging set image deployment/${DEPLOYMENT} app=${IMAGE}:${GIT_COMMIT}&#39;</span>
+<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;kubectl -n ${NAMESPACE}-staging rollout status deployment/${DEPLOYMENT} --timeout=5m&#39;</span>
+<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;make smoke-test ENV=staging&#39;</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Approve&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="nl">message:</span><span class="w"> </span><span class="s1">&#39;Promote to production?&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Deploy production&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
 <span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
 <span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;kubectl -n ${NAMESPACE} set image deployment/${DEPLOYMENT} app=${IMAGE}:${GIT_COMMIT}&#39;</span>
 <span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;kubectl -n ${NAMESPACE} rollout status deployment/${DEPLOYMENT} --timeout=5m&#39;</span>
@@ -4270,33 +4326,96 @@ post-deploy verification
 <span class="w">  </span><span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div>
-<h2 id="kubernetes-deploy-safety">Kubernetes Deploy Safety<a class="headerlink" href="#kubernetes-deploy-safety" title="Permanent link">&para;</a></h2>
-<p>Before production deploy:</p>
+<p>The image scan (<code>trivy ... --exit-code 1</code>) blocks promotion on HIGH/CRITICAL vulnerabilities — a scan that only logs is theater.</p>
+<h2 id="pre-production-deploy-checklist">Pre-Production Deploy Checklist<a class="headerlink" href="#pre-production-deploy-checklist" title="Permanent link">&para;</a></h2>
+<p>Before the production stage:</p>
 <ul>
-<li>Confirm image tag is immutable.</li>
-<li>Confirm Kubernetes context and namespace.</li>
-<li>Confirm rollout strategy and readiness probes.</li>
-<li>Confirm rollback command.</li>
-<li>Confirm monitoring dashboard and alert ownership.</li>
+<li>Image tag is immutable (SHA) and is the exact artifact tested in staging.</li>
+<li>The target Kubernetes context and namespace are correct.</li>
+<li>The Deployment has readiness probes and a sane rollout strategy (<code>maxUnavailable</code>/<code>maxSurge</code>).</li>
+<li>The rollback command is known and tested.</li>
+<li>Monitoring dashboard and alert ownership exist for the service.</li>
 </ul>
-<p>Rollback:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/example-service
-kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service<span class="w"> </span>--timeout<span class="o">=</span>5m
+kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>example-service
 </code></pre></div>
-<h2 id="notification-standard">Notification Standard<a class="headerlink" href="#notification-standard" title="Permanent link">&para;</a></h2>
-<p>Notifications should include:</p>
+<p>Confirm:</p>
 <ul>
-<li>Job name.</li>
-<li>Build number.</li>
-<li>Git commit.</li>
-<li>Environment.</li>
-<li>Deployment status.</li>
-<li>Runbook link.</li>
+<li>Rollout completed; new pods are <code>Ready</code> with the expected image SHA.</li>
+<li>Smoke test passed in staging; post-deploy checks (error rate, latency) are within threshold in production.</li>
+<li>No crash-looping or readiness failures after the rollout window.</li>
 </ul>
-<p>Do not include webhook URLs, credentials, or sensitive logs in notification templates.</p>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Correct response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Staging ≠ production</td>
+<td>Works in staging, breaks in prod</td>
+<td>Moving tag (<code>latest</code>)</td>
+<td>Use immutable SHA tags end to end.</td>
+</tr>
+<tr>
+<td>Credentials leaked</td>
+<td>Secret in logs/repo</td>
+<td>Hardcoded in Jenkinsfile/echoed</td>
+<td>Use <code>withCredentials</code>; rotate the exposed secret.</td>
+</tr>
+<tr>
+<td>"Deployed" but broken</td>
+<td>Pipeline green, service failing</td>
+<td>Declared success on apply, not verified</td>
+<td>Use <code>rollout status</code> + smoke/post-deploy checks.</td>
+</tr>
+<tr>
+<td>Scan ignored</td>
+<td>Vulnerable image shipped</td>
+<td>Scan logs but doesn't fail build</td>
+<td>Make the scan fail on HIGH/CRITICAL.</td>
+</tr>
+<tr>
+<td>Rollout hangs</td>
+<td>Stuck at <code>rollout status</code></td>
+<td>Bad readiness probe or insufficient capacity</td>
+<td>Roll back; fix probe/capacity in staging.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/example-service
+kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/example-service<span class="w"> </span>--timeout<span class="o">=</span>5m
+</code></pre></div>
+<ol>
+<li>Because tags are immutable SHAs, rolling back means redeploying the previous known-good SHA (or <code>rollout undo</code> to the prior ReplicaSet).</li>
+<li>If the pipeline updates Git (GitOps), roll back by reverting the commit so the controller does not re-apply the bad version.</li>
+<li>Verify after rollback exactly as after a deploy — confirm pods, image SHA, and service health.</li>
+</ol>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Keep all credentials in Jenkins/secret manager; never in <code>Jenkinsfile</code>, scripts, or notifications.</li>
+<li>Scope deploy credentials to the target namespace; do not use cluster-admin in pipelines.</li>
+<li>Block promotion on image scans; pin base images.</li>
+<li>Do not include webhook URLs, tokens, or sensitive logs in notification templates — notify with job, build, commit, environment, status, and a runbook link only.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Owner: the delivery/platform team.</li>
+<li>Re-review the gate and scan thresholds when risk tolerance changes.</li>
+<li>Confirm rollback works (test it) on a cadence, not just on paper.</li>
+<li>Re-check deploy-credential scope when namespaces or clusters change.</li>
+</ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../system-design/production-architecture/eks-upgrade-standard/">EKS and Kubernetes Upgrade Standard</a></li>
+<li><a href="../argocd-gitops-standard/">Argo CD GitOps Standard</a></li>
+<li><a href="../../rollback/deployment-rollback-runbook/">Deployment Rollback Runbook</a></li>
 <li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
 </ul>
 
@@ -4321,7 +4440,7 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:15:46 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4331,7 +4450,7 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>example-namespace<span 
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:15:46 UTC">June 28, 2026</span>
   </span>
 
     

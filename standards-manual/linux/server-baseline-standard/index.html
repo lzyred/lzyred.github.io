@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Linux server baseline standard for OS hardening, patching, and initial configuration.">
+        <meta name="description" content="安全、可重复的 Linux 服务器基线标准——身份、补丁、SSH 加固、内核/limits、防火墙与校验，且 bootstrap 不含密钥。">
       
       
       
@@ -16,7 +16,7 @@
         <link rel="prev" href="../../middleware/dolphinscheduler-standard/">
       
       
-        <link rel="next" href="../ubuntu-26-ai-fullstack-setup-v2/">
+        <link rel="next" href="../system-os-patching-standard/">
       
       
         
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="服务器基线 - DevOps 专家知识库" />
-<meta property="og:description" content="Linux server baseline standard for OS hardening, patching, and initial configuration." />
+<meta property="og:description" content="安全、可重复的 Linux 服务器基线标准——身份、补丁、SSH 加固、内核/limits、防火墙与校验，且 bootstrap 不含密钥。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/linux/server-baseline-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/linux/server-baseline-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="服务器基线 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Linux server baseline standard for OS hardening, patching, and initial configuration." />
+<meta property="twitter:description" content="安全、可重复的 Linux 服务器基线标准——身份、补丁、SSH 加固、内核/limits、防火墙与校验，且 bootstrap 不含密钥。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/linux/server-baseline-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#linux-server-baseline-standard" class="md-skip">
+        <a href="#linux" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3399,10 +3343,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3410,10 +3354,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        适用场景
       
     </span>
   </a>
@@ -3421,10 +3365,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#baseline-principles" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Baseline Principles
+        范围与非目标
       
     </span>
   </a>
@@ -3432,22 +3376,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-procedure" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Procedure
+        基线原则
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Standard Procedure">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-identify-system" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Identify System
+        1. 识别系统
       
     </span>
   </a>
@@ -3455,10 +3410,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-update-packages" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Update Packages
+        2. 打补丁并安装基础工具
       
     </span>
   </a>
@@ -3466,10 +3421,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-configure-time-synchronization" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Configure Time Synchronization
+        3. 时间同步
       
     </span>
   </a>
@@ -3477,10 +3432,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-configure-ssh-access" class="md-nav__link">
+  <a href="#4-ssh" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Configure SSH Access
+        4. SSH 加固
       
     </span>
   </a>
@@ -3488,10 +3443,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-configure-command-history" class="md-nav__link">
+  <a href="#5-limits" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Configure Command History
+        5. 内核参数与 limits
       
     </span>
   </a>
@@ -3499,10 +3454,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-configure-kernel-and-limits" class="md-nav__link">
+  <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Configure Kernel and Limits
+        6. 防火墙：入站默认拒绝
       
     </span>
   </a>
@@ -3510,21 +3465,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#7-configure-firewall" class="md-nav__link">
+  <a href="#7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Configure Firewall
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-prepare-data-disks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. Prepare Data Disks
+        7. 数据盘
       
     </span>
   </a>
@@ -3537,10 +3481,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-checklist" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Checklist
+        校验清单
       
     </span>
   </a>
@@ -3548,10 +3492,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3562,34 +3550,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -3945,34 +3905,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -4043,10 +3975,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -4054,10 +3986,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        适用场景
       
     </span>
   </a>
@@ -4065,10 +3997,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#baseline-principles" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Baseline Principles
+        范围与非目标
       
     </span>
   </a>
@@ -4076,22 +4008,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-procedure" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Procedure
+        基线原则
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Standard Procedure">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-identify-system" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Identify System
+        1. 识别系统
       
     </span>
   </a>
@@ -4099,10 +4042,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-update-packages" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Update Packages
+        2. 打补丁并安装基础工具
       
     </span>
   </a>
@@ -4110,10 +4053,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-configure-time-synchronization" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Configure Time Synchronization
+        3. 时间同步
       
     </span>
   </a>
@@ -4121,10 +4064,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-configure-ssh-access" class="md-nav__link">
+  <a href="#4-ssh" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Configure SSH Access
+        4. SSH 加固
       
     </span>
   </a>
@@ -4132,10 +4075,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-configure-command-history" class="md-nav__link">
+  <a href="#5-limits" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Configure Command History
+        5. 内核参数与 limits
       
     </span>
   </a>
@@ -4143,10 +4086,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-configure-kernel-and-limits" class="md-nav__link">
+  <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Configure Kernel and Limits
+        6. 防火墙：入站默认拒绝
       
     </span>
   </a>
@@ -4154,21 +4097,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#7-configure-firewall" class="md-nav__link">
+  <a href="#7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Configure Firewall
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-prepare-data-disks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. Prepare Data Disks
+        7. 数据盘
       
     </span>
   </a>
@@ -4181,10 +4113,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-checklist" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Checklist
+        校验清单
       
     </span>
   </a>
@@ -4192,10 +4124,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4328,118 +4304,164 @@
   
 
 
-<h1 id="linux-server-baseline-standard">Linux Server Baseline Standard<a class="headerlink" href="#linux-server-baseline-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines a safe baseline for preparing Linux servers for DevOps workloads. It is intended for new servers, rebuilds, and post-provisioning hardening.</p>
-<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
-<p>The baseline applies to common Linux distributions such as Rocky Linux, CentOS-compatible systems, Ubuntu, and Debian. Provider-specific steps should be handled in separate cloud build templates.</p>
-<h2 id="baseline-principles">Baseline Principles<a class="headerlink" href="#baseline-principles" title="Permanent link">&para;</a></h2>
+<h1 id="linux">Linux 服务器基线标准<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义一套安全、可重复的 Linux 服务器基线，用于让服务器为生产负载做好准备：每台新服务器在运行任何东西之前先获得什么，并以一种可重复应用、可校验的方式加固。</p>
+<p>本标准的核心判断：</p>
+<blockquote>
+<p>基线只有可重复、可审计才有用。一台手工配置一次的服务器会漂移、不可信任；一份把真实 SSH 密钥、密码或内部镜像源写进 bootstrap 脚本的基线，一旦被分享就成了泄漏的凭据。让它幂等，并把密钥排除在外。</p>
+</blockquote>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>用于：</p>
+<ul>
+<li>新服务器、重建与供给后加固。</li>
+<li>定义配置管理工具（Ansible、cloud-init、镜像构建）应强制执行的基线。</li>
+<li>审计现有主机是否符合已知良好基线。</li>
+</ul>
+<h2 id="_3">范围与非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>适用于常见发行版（RHEL/Rocky 兼容、Ubuntu/Debian）。云厂商特定构建步骤属于云镜像模板，不在此处。本标准<strong>不</strong>涵盖应用部署、容器宿主细节（见 Docker 宿主标准），也不涵盖完整的 CIS 基准合规——它是这些之下的实用基线。</p>
+<h2 id="_4">基线原则<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Make changes idempotent where possible.</li>
-<li>Keep access control separate from application deployment.</li>
-<li>Prefer SSH key authentication over password login.</li>
-<li>Record every non-default system setting.</li>
-<li>Avoid embedding personal users, public keys, passwords, or internal mirrors in public scripts.</li>
-<li>Validate the server after each major configuration block.</li>
+<li>每一步都<strong>幂等</strong>，使基线可安全重复应用。</li>
+<li>访问控制与应用部署分离。</li>
+<li>优先 SSH 密钥认证；禁用密码与 root 登录。</li>
+<li>记录每一处非默认设置；未记录的改动就是未来的漂移。</li>
+<li><strong>绝不</strong>在公开脚本中写入真实用户、公钥、密码或内部镜像 URL——用占位符。</li>
+<li>在每个主要区块后校验，而非仅在最后。</li>
 </ol>
-<h2 id="standard-procedure">Standard Procedure<a class="headerlink" href="#standard-procedure" title="Permanent link">&para;</a></h2>
-<h3 id="1-identify-system">1. Identify System<a class="headerlink" href="#1-identify-system" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/etc/os-release
-uname<span class="w"> </span>-a
-hostnamectl
+<h2 id="_5">推荐标准<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 识别系统<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/etc/os-release<span class="p">;</span><span class="w"> </span>uname<span class="w"> </span>-a<span class="p">;</span><span class="w"> </span>hostnamectl
 </code></pre></div>
-<p>Record distribution, kernel, architecture, timezone, hostname, and primary network interface.</p>
-<h3 id="2-update-packages">2. Update Packages<a class="headerlink" href="#2-update-packages" title="Permanent link">&para;</a></h3>
-<p>For RHEL-compatible systems:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>makecache
-sudo<span class="w"> </span>dnf<span class="w"> </span>update<span class="w"> </span>-y
-sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vim<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>tar<span class="w"> </span>unzip<span class="w"> </span>net-tools<span class="w"> </span>lsof<span class="w"> </span>sysstat<span class="w"> </span>chrony<span class="w"> </span>bash-completion
+<p>记录发行版、内核、架构、时区、主机名与主网卡。</p>
+<h3 id="2">2. 打补丁并安装基础工具<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># RHEL/Rocky:</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>makecache<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>update<span class="w"> </span>-y
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vim<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>tar<span class="w"> </span>unzip<span class="w"> </span>lsof<span class="w"> </span>sysstat<span class="w"> </span>chrony<span class="w"> </span>bash-completion
+<span class="c1"># Debian/Ubuntu:</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade<span class="w"> </span>-y
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vim<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>tar<span class="w"> </span>unzip<span class="w"> </span>lsof<span class="w"> </span>sysstat<span class="w"> </span>chrony<span class="w"> </span>bash-completion
 </code></pre></div>
-<p>For Debian-compatible systems:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade<span class="w"> </span>-y
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vim<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span>tar<span class="w"> </span>unzip<span class="w"> </span>net-tools<span class="w"> </span>lsof<span class="w"> </span>sysstat<span class="w"> </span>chrony<span class="w"> </span>bash-completion
-</code></pre></div>
-<h3 id="3-configure-time-synchronization">3. Configure Time Synchronization<a class="headerlink" href="#3-configure-time-synchronization" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>chronyd<span class="w"> </span><span class="o">||</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>chrony
+<p>打补丁是基线的一部分，而非后续任务——持续节奏见 OS 补丁标准。</p>
+<h3 id="3">3. 时间同步<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>chronyd<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>chrony
 timedatectl
 chronyc<span class="w"> </span>sources<span class="w"> </span>-v
 </code></pre></div>
-<p>Use the timezone required by the service owner. For public examples:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>timedatectl<span class="w"> </span>set-timezone<span class="w"> </span>UTC
-</code></pre></div>
-<h3 id="4-configure-ssh-access">4. Configure SSH Access<a class="headerlink" href="#4-configure-ssh-access" title="Permanent link">&para;</a></h3>
-<p>Recommended settings:</p>
+<p>时钟漂移会破坏 TLS、token、日志与分布式系统；把可用的时间同步视为强制项。</p>
+<h3 id="4-ssh">4. SSH 加固<a class="headerlink" href="#4-ssh" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>PermitRootLogin no
 PasswordAuthentication no
 PubkeyAuthentication yes
 UseDNS no
-GSSAPIAuthentication no
 </code></pre></div>
-<p>Validation:</p>
+<p>重载前先校验，使坏配置永远不会把你锁在门外：</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>sshd<span class="w"> </span>-t
-sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>sshd<span class="w"> </span><span class="o">||</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>ssh
+sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>sshd<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>ssh
 </code></pre></div>
-<p>Never publish real SSH public keys or usernames in public scripts. Use placeholders such as <code>example-user</code> and <code>ssh-ed25519 AAAA... devops@example.com</code>.</p>
-<h3 id="5-configure-command-history">5. Configure Command History<a class="headerlink" href="#5-configure-command-history" title="Permanent link">&para;</a></h3>
-<p>Recommended:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/profile.d/history-policy.sh</span>
-<span class="s">export HISTTIMEFORMAT=&#39;%F %T &#39;</span>
-<span class="s">export HISTSIZE=10000</span>
-<span class="s">export HISTFILESIZE=20000</span>
-<span class="s">EOF</span>
-</code></pre></div>
-<p>Do not rely on shell history as a security audit log. Use centralized audit logging for regulated systems.</p>
-<h3 id="6-configure-kernel-and-limits">6. Configure Kernel and Limits<a class="headerlink" href="#6-configure-kernel-and-limits" title="Permanent link">&para;</a></h3>
-<p>Common baseline:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/sysctl.d/99-devops-baseline.conf</span>
-<span class="s">net.ipv4.ip_forward = 1</span>
-<span class="s">net.ipv4.tcp_tw_reuse = 1</span>
+<p>改 SSH 时保留一个活动会话，确认新登录可用后再关闭。公开示例中用占位符（<code>example-user</code>、<code>ssh-ed25519 AAAA... &lt;key-comment&gt;</code>）——绝不用真实密钥。</p>
+<h3 id="5-limits">5. 内核参数与 limits<a class="headerlink" href="#5-limits" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/sysctl.d/99-baseline.conf</span>
 <span class="s">vm.swappiness = 10</span>
 <span class="s">fs.file-max = 1048576</span>
 <span class="s">EOF</span>
-
 sudo<span class="w"> </span>sysctl<span class="w"> </span>--system
-</code></pre></div>
-<p>For service users:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/security/limits.d/99-devops-baseline.conf</span>
+
+cat<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39; | sudo tee /etc/security/limits.d/99-baseline.conf</span>
 <span class="s">* soft nofile 65535</span>
 <span class="s">* hard nofile 65535</span>
 <span class="s">* soft nproc 65535</span>
 <span class="s">* hard nproc 65535</span>
 <span class="s">EOF</span>
 </code></pre></div>
-<h3 id="7-configure-firewall">7. Configure Firewall<a class="headerlink" href="#7-configure-firewall" title="Permanent link">&para;</a></h3>
-<p>Use a default-deny inbound model where possible. Open only documented ports.</p>
-<p>For <code>firewalld</code>:</p>
+<p>仅在确实需要路由的主机（网关、容器宿主）上设 <code>net.ipv4.ip_forward = 1</code>——不要作为通用默认。</p>
+<h3 id="6">6. 防火墙：入站默认拒绝<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<p>只开放有记录的端口。云主机上让 OS 防火墙与安全组对齐，而非运行两套冲突策略。</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>firewalld
-sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--get-active-zones
 sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--add-service<span class="o">=</span>ssh<span class="w"> </span>--permanent
 sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
 </code></pre></div>
-<p>For cloud servers, align OS firewall rules with cloud security groups.</p>
-<h3 id="8-prepare-data-disks">8. Prepare Data Disks<a class="headerlink" href="#8-prepare-data-disks" title="Permanent link">&para;</a></h3>
-<p>Before formatting a disk:</p>
-<div class="highlight"><pre><span></span><code>lsblk
-blkid
-df<span class="w"> </span>-hT
-</code></pre></div>
-<p>Only format disks that have been explicitly approved and are not mounted. See <a href="../../../reliable-operations/recovery/linux-disk-lvm-expansion-runbook/">Linux Disk and LVM Expansion Runbook</a>.</p>
-<h2 id="validation-checklist">Validation Checklist<a class="headerlink" href="#validation-checklist" title="Permanent link">&para;</a></h2>
+<h3 id="7">7. 数据盘<a class="headerlink" href="#7" title="Permanent link">&para;</a></h3>
+<p>动任何盘前先检查；只格式化明确批准且未挂载的盘。见 <a href="../../../reliable-operations/recovery/linux-disk-lvm-expansion-runbook/">Linux 磁盘与 LVM 扩容 Runbook</a>。</p>
+<h2 id="_6">校验清单<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <ul>
-<li>System packages updated.</li>
-<li>Time sync enabled and healthy.</li>
-<li>SSH config validates.</li>
-<li>Firewall enabled or explicitly managed by cloud security groups.</li>
-<li>Baseline sysctl settings applied.</li>
-<li>Limits file installed where required.</li>
-<li>Disk layout documented.</li>
-<li>No plaintext credentials stored in bootstrap scripts.</li>
+<li>包已更新；若内核更新需要则已重启。</li>
+<li>时间同步启用且健康（<code>chronyc sources</code>）。</li>
+<li><code>sshd -t</code> 通过；密码与 root 登录已禁用；密钥登录已确认。</li>
+<li>防火墙已启用（或刻意委托给云安全组）。</li>
+<li>基线 sysctl 与 limits 已应用（<code>sysctl -a | grep swappiness</code>、<code>ulimit -n</code>）。</li>
+<li>磁盘布局已记录。</li>
+<li>任何 bootstrap 脚本中无明文凭据、真实密钥或内部 URL。</li>
 </ul>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_7">已知失败模式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>症状</th>
+<th>可能原因</th>
+<th>正确处置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>被 SSH 锁在门外</td>
+<td>变更后无法登录</td>
+<td>重载了坏 sshd 配置/没有可用密钥就禁了密钥外的方式</td>
+<td>一律先 <code>sshd -t</code>；保留会话；用控制台修复。</td>
+</tr>
+<tr>
+<td>漂移</td>
+<td>主机随时间分化</td>
+<td>一次性手工改动</td>
+<td>用配置管理驱动基线；幂等重复应用。</td>
+</tr>
+<tr>
+<td>密钥泄漏</td>
+<td>凭据暴露</td>
+<td>真实密钥/密码写进共享脚本</td>
+<td>用占位符 + 密钥注入；轮换泄漏的密钥。</td>
+</tr>
+<tr>
+<td>时钟漂移故障</td>
+<td>TLS/token/日志错误</td>
+<td>时间同步未运行</td>
+<td>确保 chrony 启用且源可达。</td>
+</tr>
+<tr>
+<td>防火墙冲突</td>
+<td>间歇性连通问题</td>
+<td>OS 防火墙与云 SG 不一致</td>
+<td>选定一个权威；对齐规则。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">回滚<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ol>
+<li>每个区块幂等且可独立回退；保留你修改文件的备份（<code>sshd_config</code>、sysctl、limits）。</li>
+<li>回滚 SSH 变更：恢复旧 <code>sshd_config</code>，<code>sshd -t</code>，reload——若被锁则用控制台会话。</li>
+<li>sysctl/limits：删除基线 drop-in 文件并重新应用（<code>sysctl --system</code>）。</li>
+<li>任何回滚后重跑校验清单。</li>
+</ol>
+<h2 id="_9">安全注记<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../reliable-operations/recovery/linux-disk-lvm-expansion-runbook/">Linux Disk and LVM Expansion Runbook</a></li>
-<li><a href="../../containers/docker-host-operations-standard/">Docker Host Operations Standard</a></li>
+<li>仅 SSH 密钥；无密码、无 root 登录。限制谁持有密钥。</li>
+<li>入站默认拒绝；记录每个开放端口及其负责人。</li>
+<li>不在公开/bootstrap 脚本中存放凭据、真实密钥、内部镜像 URL 或主机名。</li>
+<li>受监管系统使用集中式审计日志；shell 历史不是审计日志。</li>
+</ul>
+<h2 id="_10">评审周期<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>负责人：平台/基础设施团队。</li>
+<li>随发行版与推荐变化定期重做镜像基线。</li>
+<li>事故或重大变更后，按基线重新审计主机。</li>
+<li>当访问需求变化时复核 SSH 与防火墙策略。</li>
+</ul>
+<h2 id="_11">相关文档<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../reliable-operations/recovery/linux-disk-lvm-expansion-runbook/">Linux 磁盘与 LVM 扩容 Runbook</a></li>
+<li><a href="../../containers/docker-host-operations-standard/">Docker 宿主运维标准</a></li>
+<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter 监控标准</a></li>
 </ul>
 
 
@@ -4463,7 +4485,7 @@ df<span class="w"> </span>-hT
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4473,7 +4495,7 @@ df<span class="w"> </span>-hT
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:31:41 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4546,13 +4568,13 @@ df<span class="w"> </span>-hT
         
         
           
-          <a href="../ubuntu-26-ai-fullstack-setup-v2/" class="md-footer__link md-footer__link--next" aria-label="下一页: Ubuntu 26.04 AI 开发环境">
+          <a href="../system-os-patching-standard/" class="md-footer__link md-footer__link--next" aria-label="下一页: 系统 OS 补丁">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Ubuntu 26.04 AI 开发环境
+                系统 OS 补丁
               </div>
             </div>
             <div class="md-footer__button md-icon">

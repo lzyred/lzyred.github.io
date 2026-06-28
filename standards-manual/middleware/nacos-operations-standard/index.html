@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Nacos operations standard for service discovery and configuration management.">
+        <meta name="description" content="Nacos 运维标准，覆盖服务发现与配置管理的所有权、命名空间隔离、变更控制、验证、备份和回滚。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Nacos 运维 - DevOps 专家知识库" />
-<meta property="og:description" content="Nacos operations standard for service discovery and configuration management." />
+<meta property="og:description" content="Nacos 运维标准，覆盖服务发现与配置管理的所有权、命名空间隔离、变更控制、验证、备份和回滚。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/middleware/nacos-operations-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/standards-manual/middleware/nacos-operations-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Nacos 运维 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Nacos operations standard for service discovery and configuration management." />
+<meta property="twitter:description" content="Nacos 运维标准，覆盖服务发现与配置管理的所有权、命名空间隔离、变更控制、验证、备份和回滚。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/middleware/nacos-operations-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nacos-operations-standard" class="md-skip">
+        <a href="#nacos" class="md-skip">
           跳转至
         </a>
       
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3280,10 +3224,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3291,10 +3235,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deployment Principles
+        适用场景
       
     </span>
   </a>
@@ -3302,10 +3246,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes Checklist
+        非目标
       
     </span>
   </a>
@@ -3313,10 +3257,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#risk-areas" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Risk Areas
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定义命名空间和所有权边界
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制配置变更
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        防止发现层假健康
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -3324,10 +3318,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        备份与恢复
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3449,34 +3498,6 @@
     
   
     服务器基线
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
   
 
     
@@ -3840,34 +3861,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3938,10 +3931,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3949,10 +3942,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deployment Principles
+        适用场景
       
     </span>
   </a>
@@ -3960,10 +3953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes Checklist
+        非目标
       
     </span>
   </a>
@@ -3971,10 +3964,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#risk-areas" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Risk Areas
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定义命名空间和所有权边界
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制配置变更
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        防止发现层假健康
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证
       
     </span>
   </a>
@@ -3982,10 +4025,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        备份与恢复
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4099,6 +4197,18 @@
         <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
+      
+    
   </nav>
 
 
@@ -4106,31 +4216,150 @@
   
 
 
-<h1 id="nacos-operations-standard">Nacos Operations Standard<a class="headerlink" href="#nacos-operations-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes how to operate Nacos as a configuration and service discovery component.</p>
-<h2 id="deployment-principles">Deployment Principles<a class="headerlink" href="#deployment-principles" title="Permanent link">&para;</a></h2>
+<h1 id="nacos">Nacos 运维标准<a class="headerlink" href="#nacos" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何把 Nacos 作为服务发现和配置平台来运营。</p>
+<p>核心判断：</p>
+<blockquote>
+<p>Nacos 是运行时控制面。把它当成简单 key-value UI，会制造生产风险。</p>
+</blockquote>
+<p>服务注册、发现和配置变更都可能改变实时流量。Nacos 需要所有权、命名空间边界、变更评审、备份、监控和回滚。</p>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>适用于：</p>
 <ul>
-<li>Use a cluster for production.</li>
-<li>Store metadata in a managed or highly available database.</li>
-<li>Restrict console access.</li>
-<li>Back up configuration data.</li>
-<li>Monitor JVM, database connectivity, and service registration health.</li>
+<li>应用依赖 Nacos 做服务发现。</li>
+<li>配置通过 Nacos 在运行时变更。</li>
+<li>多个团队共享一个 Nacos 集群。</li>
+<li>Nacos 位于发布或故障转移关键路径上。</li>
 </ul>
-<h2 id="kubernetes-checklist">Kubernetes Checklist<a class="headerlink" href="#kubernetes-checklist" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>statefulset<span class="w"> </span>-n<span class="w"> </span>example-namespace
-kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>example-namespace
-kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>statefulset/example-nacos
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不定义应用框架用法或全部 Nacos 集群拓扑，只定义运营控制。</p>
+<h2 id="_4">推荐标准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">定义命名空间和所有权边界<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>每个 namespace 或 group 必须映射到：</p>
+<ul>
+<li>环境。</li>
+<li>应用 owner。</li>
+<li>变更审批人。</li>
+<li>访问角色。</li>
+<li>备份与恢复预期。</li>
+<li>命名规则。</li>
+</ul>
+<p>除非访问和命名规则能防误操作，不要把生产和非生产配置混在同一个 namespace。</p>
+<h3 id="_6">控制配置变更<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>运行时配置变更需要和发布同等纪律。</p>
+<p>必需字段：</p>
+<ul>
+<li>Config key。</li>
+<li>应用 owner。</li>
+<li>变更原因。</li>
+<li>预期影响。</li>
+<li>验证方法。</li>
+<li>回滚值。</li>
+<li>高风险服务的变更窗口。</li>
+</ul>
+<p>避免在没有记录路径的情况下直接在 UI 改生产配置。</p>
+<h3 id="_7">防止发现层假健康<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>服务发现只有在实例健康真实反映服务状态时才有价值。应用应在 ready 后注册、关闭时注销，并暴露有意义的健康检查。</p>
+<p>关注：</p>
+<ul>
+<li>陈旧实例。</li>
+<li>权重错误。</li>
+<li>集群或 metadata 错误。</li>
+<li>注册 churn 过大。</li>
+<li>发现延迟。</li>
+</ul>
+<h2 id="_8">验证<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>运营检查：</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsS<span class="w"> </span>http://&lt;nacos-endpoint&gt;/nacos/v1/ns/operator/metrics
+curl<span class="w"> </span>-fsS<span class="w"> </span>http://&lt;nacos-endpoint&gt;/nacos/v1/ns/instance/list?serviceName<span class="o">=</span>&lt;service-name&gt;
 </code></pre></div>
-<h2 id="risk-areas">Risk Areas<a class="headerlink" href="#risk-areas" title="Permanent link">&para;</a></h2>
+<p>通过条件：</p>
 <ul>
-<li>Configuration changes can affect many services.</li>
-<li>Database credentials must be secret-managed.</li>
-<li>Console access should not be public.</li>
+<li>集群节点健康。</li>
+<li>应用能读取预期配置。</li>
+<li>配置变更事件到达客户端。</li>
+<li>服务实例数量符合预期。</li>
+<li>不健康实例不会被服务。</li>
+<li>配置和元数据有备份。</li>
 </ul>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_9">备份与恢复<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>备份：</p>
 <ul>
-<li><a href="../../../system-design/production-architecture/kubernetes-cluster-provisioning-standard/">Kubernetes Cluster Provisioning Standard</a></li>
+<li>如外置数据库，备份 Nacos 数据库。</li>
+<li>配置导出。</li>
+<li>Namespace 和 group 映射。</li>
+<li>访问策略。</li>
+<li>集群配置。</li>
+</ul>
+<p>恢复必须在非生产环境测试。没有恢复过的备份文件，只是希望。</p>
+<h2 id="_10">失败模式<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>后果</th>
+<th>预防</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未评审配置编辑</td>
+<td>实时服务行为意外变化。</td>
+<td>要求变更记录和回滚值。</td>
+</tr>
+<tr>
+<td>共享 namespace 滥用</td>
+<td>一个团队影响另一个服务。</td>
+<td>分离 namespace 和角色。</td>
+</tr>
+<tr>
+<td>陈旧服务实例</td>
+<td>流量打到死实例。</td>
+<td>基于 readiness 的注册和健康检查。</td>
+</tr>
+<tr>
+<td>无配置备份</td>
+<td>误删后无法恢复。</td>
+<td>导出配置并备份数据库。</td>
+</tr>
+<tr>
+<td>共享 admin 账号</td>
+<td>无法审计。</td>
+<td>使用个人或基于角色的访问。</td>
+</tr>
+<tr>
+<td>客户端无法访问 Nacos</td>
+<td>服务启动或发现失败。</td>
+<td>监控客户端错误和集群端点。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">回滚<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>回滚可能是：</p>
+<ul>
+<li>恢复上一配置值。</li>
+<li>回退 namespace 或 group 映射。</li>
+<li>移除错误服务实例 metadata。</li>
+<li>对破坏性变更从数据库备份恢复。</li>
+</ul>
+<p>高风险配置变更前必须捕获旧值，并使用与发布验证相同的客户端路径验证回滚。</p>
+<h2 id="_12">安全说明<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li>启用认证，避免共享 admin 凭据。</li>
+<li>按团队和环境限制 namespace 访问。</li>
+<li>不要用明文配置保存原始应用密钥。</li>
+<li>审计生产配置变更。</li>
+<li>不要公开暴露 Nacos 端点。</li>
+<li>按要求加密数据库和备份访问。</li>
+</ul>
+<h2 id="_13">评审周期<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>配置事故后、namespace 增长时、访问权限变化时、版本升级时，或 Nacos 成为更多团队依赖时，评审本标准。</p>
+<h2 id="_14">相关文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../../reliable-operations/recovery/application-maintenance-health-check-standard/">应用维护健康检查标准</a></li>
+<li><a href="../../../system-design/production-architecture/kubernetes-cluster-provisioning-standard/">Kubernetes 集群供给标准</a></li>
+<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus 告警标准</a></li>
 </ul>
 
 
@@ -4154,7 +4383,7 @@ kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4164,7 +4393,7 @@ kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 18:10:44 UTC">2026年6月28日</span>
   </span>
 
     

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="ELFK logging stack standard for Elasticsearch, Logstash, Filebeat, and Kibana.">
+        <meta name="description" content="Elasticsearch/Logstash/Filebeat/Kibana 日志栈标准——索引生命周期与留存、磁盘水位安全、结构化日志与访问控制。">
       
       
       
@@ -16,7 +16,7 @@
         <link rel="prev" href="../loki-logging-standard/">
       
       
-        <link rel="next" href="../node-exporter-standard/">
+        <link rel="next" href="../signoz-observability-standard/">
       
       
         
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="ELFK 日志 - DevOps 专家知识库" />
-<meta property="og:description" content="ELFK logging stack standard for Elasticsearch, Logstash, Filebeat, and Kibana." />
+<meta property="og:description" content="Elasticsearch/Logstash/Filebeat/Kibana 日志栈标准——索引生命周期与留存、磁盘水位安全、结构化日志与访问控制。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/observability/elfk-logging-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/reliable-operations/observability/elfk-logging-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="ELFK 日志 - DevOps 专家知识库" />
-<meta property="twitter:description" content="ELFK logging stack standard for Elasticsearch, Logstash, Filebeat, and Kibana." />
+<meta property="twitter:description" content="Elasticsearch/Logstash/Filebeat/Kibana 日志栈标准——索引生命周期与留存、磁盘水位安全、结构化日志与访问控制。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/observability/elfk-logging-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#elfk-logging-standard" class="md-skip">
+        <a href="#elfk" class="md-skip">
           跳转至
         </a>
       
@@ -1610,10 +1610,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -1621,10 +1621,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Principles
+        适用场景
       
     </span>
   </a>
@@ -1632,10 +1632,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        非目标
       
     </span>
   </a>
@@ -1643,10 +1643,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        核心原则
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结构化日志与一致结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ilm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        用 ILM 控制留存
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        容量与磁盘水位
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        访问控制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        校验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚/恢复
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -1657,34 +1784,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -2143,34 +2242,6 @@
     
   
     JumpServer 堡垒机
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    发布安全检查清单
   
 
     
@@ -3449,34 +3520,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI 开发环境
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3814,34 +3857,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps 深度文章质量标准
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3912,10 +3927,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3923,10 +3938,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Principles
+        适用场景
       
     </span>
   </a>
@@ -3934,10 +3949,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        非目标
       
     </span>
   </a>
@@ -3945,10 +3960,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        核心原则
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推荐标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="推荐标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结构化日志与一致结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ilm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        用 ILM 控制留存
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        容量与磁盘水位
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        访问控制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        校验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚/恢复
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全注记
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -4043,6 +4185,16 @@
       
         
         
+      
+      
+        <a href="../../../tags/#tag:logging" class="md-tag md-tag-icon">Logging</a>
+      
+    
+      
+      
+      
+        
+        
           
         
       
@@ -4069,23 +4221,146 @@
   
 
 
-<h1 id="elfk-logging-standard">ELFK Logging Standard<a class="headerlink" href="#elfk-logging-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes Elasticsearch, Logstash, Filebeat, and Kibana style logging stacks.</p>
-<h2 id="principles">Principles<a class="headerlink" href="#principles" title="Permanent link">&para;</a></h2>
+<h1 id="elfk">ELFK 日志标准<a class="headerlink" href="#elfk" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何运行 ELFK（Elasticsearch、Logstash、Filebeat、Kibana）日志栈，使其保持可用、可负担，且自身不成为故障或数据泄漏的来源。</p>
+<p>本标准的核心判断：</p>
+<blockquote>
+<p>日志栈以两种可预见的方式失败：它撑满自己的磁盘并转为只读（恰在你最需要时让日志下线），或它悄悄把密钥与个人数据索引进一个可搜索的存储。留存/生命周期与"索引什么"不是调优——它们就是设计。</p>
+</blockquote>
+<h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在以下情况使用本标准：</p>
 <ul>
-<li>Use structured logs.</li>
-<li>Keep index retention controlled.</li>
-<li>Restrict Kibana access.</li>
-<li>Avoid indexing secrets or personal data.</li>
-<li>Monitor disk usage and index health.</li>
+<li>运行自管的基于 Elasticsearch 的日志栈（ELFK/ELK 或等价的 OpenSearch）。</li>
+<li>需要受控的留存、索引生命周期与日志访问。</li>
+<li>决定采集什么，以及如何防止存储被撑满。</li>
 </ul>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sS<span class="w"> </span>http://elasticsearch.example.internal:9200/_cluster/health
-</code></pre></div>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准不涵盖：</p>
 <ul>
-<li><a href="../loki-logging-standard/">Loki Logging Standard</a></li>
+<li>在 ELFK 与指标式日志系统（Loki）之间的选择——该权衡见 Loki 日志标准。</li>
+<li>全文搜索相关性调优或 APM。</li>
+<li>超出下述容量安全原则之外的集群容量计算。</li>
+</ul>
+<h2 id="_4">核心原则<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ol>
+<li>使用<strong>结构化日志</strong>（字段一致的 JSON），使日志可查询，而非只能 grep。</li>
+<li>用<strong>索引生命周期管理（ILM）</strong>控制留存——每个索引都有明确的滚动与删除策略。</li>
+<li>防范磁盘水位：磁盘撑满时 Elasticsearch 会转为只读，因此容量与留存必须使你保持在水位以下。</li>
+<li>限制 Kibana 与 Elasticsearch API；日志是敏感的。</li>
+<li>不要索引密钥、token、凭据、完整请求体或个人数据。</li>
+</ol>
+<h2 id="_5">推荐标准<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">结构化日志与一致结构<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>输出字段稳定的 JSON 日志（时间戳、级别、service、env、trace id）。在 Filebeat 或 Logstash 做解析/富化，而非索引自由文本——非结构化日志会撑爆存储且难以查询。</p>
+<h3 id="ilm">用 ILM 控制留存<a class="headerlink" href="#ilm" title="Permanent link">&para;</a></h3>
+<p>定义 ILM 策略，使索引按大小/年龄滚动并按计划删除。没有它，索引会一直增长直到触发磁盘水位、集群转为只读。</p>
+<div class="highlight"><pre><span></span><code><span class="err">PUT</span><span class="w"> </span><span class="err">_ilm/policy/logs</span><span class="mi">-</span><span class="err">policy</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;policy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;phases&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;hot&quot;</span><span class="p">:</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;rollover&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;max_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;50gb&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max_age&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1d&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;delete&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;min_age&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;14d&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;delete&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>留存来自刻意的决策（成本 vs 你实际回溯多久），而非"全都留着"。</p>
+<h3 id="_7">容量与磁盘水位<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>Elasticsearch 有磁盘水位（low/high/flood-stage）。到 flood 阶段它会把索引设为只读——一次往往与你正在排查的事故同时发生的日志故障。留出余量：按峰值写入 × 留存规划存储，在远早于水位时对磁盘使用告警，并确保 ILM 删除确实在执行。</p>
+<h3 id="_8">访问控制<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>将 Kibana 置于认证与最小权限角色之后；不要公开暴露。</li>
+<li>将 Elasticsearch HTTP API 限制到可信网络/客户端。</li>
+<li>日志常含敏感数据——把读取访问当作一种特权。</li>
+</ul>
+<h2 id="_9">校验<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sS<span class="w"> </span>http://&lt;es-host&gt;:9200/_cluster/health?pretty
+curl<span class="w"> </span>-sS<span class="w"> </span>http://&lt;es-host&gt;:9200/_cat/indices?v
+curl<span class="w"> </span>-sS<span class="w"> </span>http://&lt;es-host&gt;:9200/_cat/allocation?v<span class="w">   </span><span class="c1"># 每节点磁盘使用</span>
+</code></pre></div>
+<p>确认：</p>
+<ul>
+<li>集群健康为 <code>green</code>（或有正当理由的 <code>yellow</code>），而非 <code>red</code>。</li>
+<li>ILM 正在按计划滚动并<strong>删除</strong>旧索引（<code>_cat/indices</code> 显示增长有界）。</li>
+<li>磁盘使用在 high 水位之下并有余量。</li>
+<li>Filebeat/Logstash 正在投递；无大量写入积压。</li>
+<li>抽查日志不含密钥或完整敏感载荷。</li>
+</ul>
+<h2 id="_10">已知失败模式<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>症状</th>
+<th>可能原因</th>
+<th>正确处置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>集群只读</td>
+<td>写入停止；出现 <code>read_only_allow_delete</code> 标志</td>
+<td>磁盘触发 flood 水位</td>
+<td>释放空间/删旧索引；清除该 block；修复留存。</td>
+</tr>
+<tr>
+<td>无界增长</td>
+<td>磁盘稳步撑满</td>
+<td>无 ILM，或 ILM 删除未运行</td>
+<td>应用带滚动+删除的 ILM；验证其执行。</td>
+</tr>
+<tr>
+<td>存储暴涨</td>
+<td>成本/磁盘飙升</td>
+<td>索引了非结构化/高基数字段</td>
+<td>结构化日志；在 Filebeat/Logstash 丢弃噪声字段。</td>
+</tr>
+<tr>
+<td>索引中含密钥</td>
+<td>敏感数据可被搜索</td>
+<td>索引了请求体/header/token</td>
+<td>在投递端过滤；清除受影响索引；修源头。</td>
+</tr>
+<tr>
+<td>Kibana 暴露</td>
+<td>未授权访问日志</td>
+<td>无认证/开放网络</td>
+<td>将 Kibana 置于认证后；限制网络。</td>
+</tr>
+<tr>
+<td>集群红</td>
+<td>分片未分配</td>
+<td>节点丢失、磁盘或分片分配问题</td>
+<td>查 <code>_cat/allocation</code> 与 allocation explain；恢复容量。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">回滚/恢复<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ol>
+<li>恢复只读集群：释放磁盘（删除或迁移旧索引），再清除 <code>read_only_allow_delete</code> block；随后修复 ILM/留存以防复发。</li>
+<li>回滚 ILM/策略变更：恢复上一策略；ILM 向前生效，故按预期留存核对索引年龄。</li>
+<li>对必须留存以合规的索引保留快照备份；从快照恢复，而非仅依赖在线集群。</li>
+</ol>
+<h2 id="_12">安全注记<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li>切勿索引密钥、token、凭据、authorization header、完整请求体或个人数据——在到达存储前于 Filebeat/Logstash 过滤。</li>
+<li>限制 Kibana 与 ES API；使用 TLS 与认证。</li>
+<li>切勿公开真实主机名、endpoint 或索引内容。</li>
+<li>把快照当作敏感物（含日志数据）。</li>
+</ul>
+<h2 id="_13">评审周期<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>负责人：平台/可观测性团队。</li>
+<li>定期重新确认留存 vs 成本与排查需求。</li>
+<li>验证 ILM 滚动/删除确实在运行、磁盘余量稳定。</li>
+<li>每接入新日志源时复核索引了哪些字段。</li>
+</ul>
+<h2 id="_14">相关文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../loki-logging-standard/">Loki 日志标准</a></li>
+<li><a href="../exporter-monitoring-standard/">Prometheus Exporter 监控标准</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html">Elasticsearch 索引生命周期管理</a></li>
 </ul>
 
 
@@ -4109,7 +4384,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:15:46 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4119,7 +4394,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:15:46 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4192,13 +4467,13 @@
         
         
           
-          <a href="../node-exporter-standard/" class="md-footer__link md-footer__link--next" aria-label="下一页: Node Exporter">
+          <a href="../signoz-observability-standard/" class="md-footer__link md-footer__link--next" aria-label="下一页: SigNoz 可观测性">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Node Exporter
+                SigNoz 可观测性
               </div>
             </div>
             <div class="md-footer__button md-icon">

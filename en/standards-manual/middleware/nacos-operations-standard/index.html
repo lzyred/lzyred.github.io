@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Nacos operations standard for service discovery and configuration management.">
+        <meta name="description" content="Nacos operations standard for service discovery and configuration management with ownership, namespace isolation, change control, validation, backup, and rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Nacos Operations - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Nacos operations standard for service discovery and configuration management." />
+<meta property="og:description" content="Nacos operations standard for service discovery and configuration management with ownership, namespace isolation, change control, validation, backup, and rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/middleware/nacos-operations-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/middleware/nacos-operations-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Nacos Operations - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Nacos operations standard for service discovery and configuration management." />
+<meta property="twitter:description" content="Nacos operations standard for service discovery and configuration management with ownership, namespace isolation, change control, validation, backup, and rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/middleware/nacos-operations-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3291,10 +3235,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-principles" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deployment Principles
+        When to Use
       
     </span>
   </a>
@@ -3302,10 +3246,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-checklist" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes Checklist
+        Non-Goals
       
     </span>
   </a>
@@ -3313,10 +3257,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#risk-areas" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Risk Areas
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-namespace-and-ownership-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define namespace and ownership boundaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control configuration changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protect-discovery-from-false-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protect discovery from false health
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-and-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup and Restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3449,34 +3498,6 @@
     
   
     Server Baseline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
   
 
     
@@ -3840,34 +3861,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3949,10 +3942,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-principles" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deployment Principles
+        When to Use
       
     </span>
   </a>
@@ -3960,10 +3953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubernetes-checklist" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kubernetes Checklist
+        Non-Goals
       
     </span>
   </a>
@@ -3971,10 +3964,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#risk-areas" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Risk Areas
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-namespace-and-ownership-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define namespace and ownership boundaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control configuration changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protect-discovery-from-false-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protect discovery from false health
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-and-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup and Restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4099,6 +4197,18 @@
         <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
       
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
+      
+    
   </nav>
 
 
@@ -4108,29 +4218,148 @@
 
 <h1 id="nacos-operations-standard">Nacos Operations Standard<a class="headerlink" href="#nacos-operations-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes how to operate Nacos as a configuration and service discovery component.</p>
-<h2 id="deployment-principles">Deployment Principles<a class="headerlink" href="#deployment-principles" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to operate Nacos as a service discovery and configuration platform.</p>
+<p>The core judgment:</p>
+<blockquote>
+<p>Nacos is a runtime control plane. Treating it as a simple key-value UI creates production risk.</p>
+</blockquote>
+<p>Service registration, discovery, and configuration changes can alter live traffic. Nacos requires ownership, namespace boundaries, change review, backup, monitoring, and rollback.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when:</p>
 <ul>
-<li>Use a cluster for production.</li>
-<li>Store metadata in a managed or highly available database.</li>
-<li>Restrict console access.</li>
-<li>Back up configuration data.</li>
-<li>Monitor JVM, database connectivity, and service registration health.</li>
+<li>Applications depend on Nacos for service discovery.</li>
+<li>Configuration is changed at runtime through Nacos.</li>
+<li>Multiple teams share one Nacos cluster.</li>
+<li>Nacos sits on the critical path for deployment or failover.</li>
 </ul>
-<h2 id="kubernetes-checklist">Kubernetes Checklist<a class="headerlink" href="#kubernetes-checklist" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>statefulset<span class="w"> </span>-n<span class="w"> </span>example-namespace
-kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>example-namespace
-kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </span>example-namespace<span class="w"> </span>statefulset/example-nacos
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not define application framework usage or every Nacos cluster topology. It defines operational controls.</p>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="define-namespace-and-ownership-boundaries">Define namespace and ownership boundaries<a class="headerlink" href="#define-namespace-and-ownership-boundaries" title="Permanent link">&para;</a></h3>
+<p>Each namespace or group must map to:</p>
+<ul>
+<li>Environment.</li>
+<li>Application owner.</li>
+<li>Change approver.</li>
+<li>Access role.</li>
+<li>Backup and restore expectation.</li>
+<li>Naming rule.</li>
+</ul>
+<p>Do not mix production and non-production configuration in the same namespace unless access and naming rules prevent accidents.</p>
+<h3 id="control-configuration-changes">Control configuration changes<a class="headerlink" href="#control-configuration-changes" title="Permanent link">&para;</a></h3>
+<p>Runtime config changes need the same discipline as deployments.</p>
+<p>Required fields:</p>
+<ul>
+<li>Config key.</li>
+<li>Application owner.</li>
+<li>Reason.</li>
+<li>Expected effect.</li>
+<li>Validation method.</li>
+<li>Rollback value.</li>
+<li>Change window for high-risk services.</li>
+</ul>
+<p>Avoid editing production config directly in the UI without a recorded change path.</p>
+<h3 id="protect-discovery-from-false-health">Protect discovery from false health<a class="headerlink" href="#protect-discovery-from-false-health" title="Permanent link">&para;</a></h3>
+<p>Service discovery is only useful when instance health reflects reality. Applications should register only when ready, deregister on shutdown, and expose meaningful health checks.</p>
+<p>Watch for:</p>
+<ul>
+<li>Stale instances.</li>
+<li>Incorrect weight.</li>
+<li>Wrong cluster or metadata.</li>
+<li>Large registration churn.</li>
+<li>Discovery latency.</li>
+</ul>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>Operational checks:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsS<span class="w"> </span>http://&lt;nacos-endpoint&gt;/nacos/v1/ns/operator/metrics
+curl<span class="w"> </span>-fsS<span class="w"> </span>http://&lt;nacos-endpoint&gt;/nacos/v1/ns/instance/list?serviceName<span class="o">=</span>&lt;service-name&gt;
 </code></pre></div>
-<h2 id="risk-areas">Risk Areas<a class="headerlink" href="#risk-areas" title="Permanent link">&para;</a></h2>
+<p>Pass conditions:</p>
 <ul>
-<li>Configuration changes can affect many services.</li>
-<li>Database credentials must be secret-managed.</li>
-<li>Console access should not be public.</li>
+<li>Cluster nodes are healthy.</li>
+<li>Applications can read expected config.</li>
+<li>Config change event reaches clients.</li>
+<li>Service instances match expected count.</li>
+<li>Unhealthy instances are not served.</li>
+<li>Backup exists for configuration and metadata.</li>
 </ul>
+<h2 id="backup-and-restore">Backup and Restore<a class="headerlink" href="#backup-and-restore" title="Permanent link">&para;</a></h2>
+<p>Backup:</p>
+<ul>
+<li>Nacos database if externalized.</li>
+<li>Configuration exports.</li>
+<li>Namespace and group mapping.</li>
+<li>Access policy.</li>
+<li>Cluster configuration.</li>
+</ul>
+<p>Restore must be tested in a non-production environment. A backup file that has never been restored is only a hope.</p>
+<h2 id="failure-modes">Failure Modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Result</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unreviewed config edit</td>
+<td>Live service behavior changes unexpectedly.</td>
+<td>Require change record and rollback value.</td>
+</tr>
+<tr>
+<td>Shared namespace misuse</td>
+<td>One team breaks another service.</td>
+<td>Separate namespaces and roles.</td>
+</tr>
+<tr>
+<td>Stale service instance</td>
+<td>Traffic goes to dead target.</td>
+<td>Readiness-aware registration and health checks.</td>
+</tr>
+<tr>
+<td>No config backup</td>
+<td>Cannot recover after mistaken delete.</td>
+<td>Export and database backup.</td>
+</tr>
+<tr>
+<td>Admin account shared</td>
+<td>No auditability.</td>
+<td>Individual or role-based access.</td>
+</tr>
+<tr>
+<td>Client cannot reach Nacos</td>
+<td>Service startup or discovery fails.</td>
+<td>Monitor client errors and cluster endpoints.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<p>Rollback may mean:</p>
+<ul>
+<li>Restore previous config value.</li>
+<li>Revert namespace or group mapping.</li>
+<li>Remove bad service instance metadata.</li>
+<li>Restore database from backup for destructive changes.</li>
+</ul>
+<p>For high-risk config, capture previous value before change and validate rollback in the same client path used for release validation.</p>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Enable authentication and avoid shared admin credentials.</li>
+<li>Restrict namespace access by team and environment.</li>
+<li>Do not store raw application secrets in plain config.</li>
+<li>Audit production config changes.</li>
+<li>Protect Nacos endpoints from public exposure.</li>
+<li>Encrypt database and backup access where required.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review after config incidents, namespace growth, access changes, version upgrades, or when Nacos becomes a dependency for additional teams.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="../../../reliable-operations/recovery/application-maintenance-health-check-standard/">Application Health Check Standard</a></li>
 <li><a href="../../../system-design/production-architecture/kubernetes-cluster-provisioning-standard/">Kubernetes Cluster Provisioning Standard</a></li>
+<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
 </ul>
 
 
@@ -4154,7 +4383,7 @@ kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4164,7 +4393,7 @@ kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     

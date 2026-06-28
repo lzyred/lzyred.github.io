@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Redis operations standard for caching and session store production operations.">
+        <meta name="description" content="Standard for running Redis in production as a cache or state store, covering durability choice, memory policy, failover topology, safe migration, and rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Redis Operations - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Redis operations standard for caching and session store production operations." />
+<meta property="og:description" content="Standard for running Redis in production as a cache or state store, covering durability choice, memory policy, failover topology, safe migration, and rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/databases/redis-operations-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/databases/redis-operations-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Redis Operations - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Redis operations standard for caching and session store production operations." />
+<meta property="twitter:description" content="Standard for running Redis in production as a cache or state store, covering durability choice, memory policy, failover topology, safe migration, and rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/databases/redis-operations-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -2885,10 +2829,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operating-principles" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operating Principles
+        When to Use
       
     </span>
   </a>
@@ -2896,10 +2840,93 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decide-the-role-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decide the Role First
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#host-tuning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Host Tuning
+        Host tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instance baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choose-persistence-from-the-role-not-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choose persistence from the role, not by default
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-failover-an-explicit-design-not-an-afterthought" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Make failover an explicit design, not an afterthought
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Procedure
       
     </span>
   </a>
@@ -2907,10 +2934,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#single-instance-baseline" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Single Instance Baseline
+        Validation
       
     </span>
   </a>
@@ -2918,10 +2945,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#persistence-choices" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Persistence Choices
+        Known Failure Modes
       
     </span>
   </a>
@@ -2929,21 +2956,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#aof-migration-procedure" class="md-nav__link">
+  <a href="#rollback" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AOF Migration Procedure
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cluster-migration-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cluster Migration Notes
+        Rollback
       
     </span>
   </a>
@@ -2955,6 +2971,17 @@
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3513,34 +3540,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3884,34 +3883,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3993,10 +3964,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operating-principles" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operating Principles
+        When to Use
       
     </span>
   </a>
@@ -4004,10 +3975,93 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decide-the-role-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decide the Role First
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#host-tuning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Host Tuning
+        Host tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instance baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choose-persistence-from-the-role-not-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choose persistence from the role, not by default
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-failover-an-explicit-design-not-an-afterthought" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Make failover an explicit design, not an afterthought
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Procedure
       
     </span>
   </a>
@@ -4015,10 +4069,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#single-instance-baseline" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Single Instance Baseline
+        Validation
       
     </span>
   </a>
@@ -4026,10 +4080,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#persistence-choices" class="md-nav__link">
+  <a href="#known-failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Persistence Choices
+        Known Failure Modes
       
     </span>
   </a>
@@ -4037,21 +4091,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#aof-migration-procedure" class="md-nav__link">
+  <a href="#rollback" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AOF Migration Procedure
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cluster-migration-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cluster Migration Notes
+        Rollback
       
     </span>
   </a>
@@ -4063,6 +4106,17 @@
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4180,6 +4234,16 @@
       
         
         
+      
+      
+        <a href="../../../tags/#tag:redis" class="md-tag md-tag-icon">Redis</a>
+      
+    
+      
+      
+      
+        
+        
           
         
       
@@ -4196,100 +4260,228 @@
 
 <h1 id="redis-operations-standard">Redis Operations Standard<a class="headerlink" href="#redis-operations-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines installation, persistence, migration, and cluster practices for Redis.</p>
-<h2 id="operating-principles">Operating Principles<a class="headerlink" href="#operating-principles" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Disable Transparent Huge Pages for Redis hosts.</li>
-<li>Set Linux overcommit and file descriptor limits deliberately.</li>
-<li>Protect Redis with network isolation and authentication.</li>
-<li>Choose RDB, AOF, or mixed persistence based on recovery requirements.</li>
-<li>Test migration and restore procedures before production use.</li>
-</ol>
-<h2 id="host-tuning">Host Tuning<a class="headerlink" href="#host-tuning" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>never<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/sys/kernel/mm/transparent_hugepage/enabled
-<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;vm.overcommit_memory = 1&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/sysctl.d/99-redis.conf
-sudo<span class="w"> </span>sysctl<span class="w"> </span>--system
-</code></pre></div>
-<p>Set limits:</p>
-<div class="highlight"><pre><span></span><code>redis soft nofile 65535
-redis hard nofile 65535
-</code></pre></div>
-<h2 id="single-instance-baseline">Single Instance Baseline<a class="headerlink" href="#single-instance-baseline" title="Permanent link">&para;</a></h2>
-<p>Recommended configuration concepts:</p>
-<div class="highlight"><pre><span></span><code>bind 127.0.0.1 10.0.0.10
-protected-mode yes
-port 6379
-dir /var/lib/redis
-appendonly yes
-appendfsync everysec
-maxmemory-policy noeviction
-</code></pre></div>
-<p>Store credentials in a secret manager. Do not commit <code>requirepass</code> values.</p>
-<h2 id="persistence-choices">Persistence Choices<a class="headerlink" href="#persistence-choices" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to run Redis safely in production, and how to change a running Redis deployment without losing data or availability.</p>
+<p>The core judgment of this standard:</p>
+<blockquote>
+<p>Redis behaves very differently as a disposable cache than as a system of record. Decide which one each instance is <strong>before</strong> you choose persistence, eviction, and failover — most Redis incidents come from treating one as the other.</p>
+</blockquote>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when you:</p>
+<ul>
+<li>Run self-managed Redis for caching, session storage, rate limiting, queues, or locks.</li>
+<li>Need to choose between RDB, AOF, or both for a given workload.</li>
+<li>Plan a Redis version upgrade, host move, or topology change.</li>
+<li>Need a memory-pressure and failover posture you can defend in an incident review.</li>
+</ul>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>Application data-model design (key naming, TTL strategy, hot-key avoidance).</li>
+<li>Managed Redis services where the provider owns persistence and failover. Use the provider's durability and failover contract instead.</li>
+<li>Redis as a primary database for data that cannot be reconstructed. That is a deliberate architecture decision with its own review.</li>
+<li>Module-specific operations (search, time series, JSON) beyond core server behavior.</li>
+</ul>
+<h2 id="decide-the-role-first">Decide the Role First<a class="headerlink" href="#decide-the-role-first" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Mode</th>
-<th>Use Case</th>
-<th>Trade-Off</th>
+<th>Role</th>
+<th>Loss tolerance</th>
+<th>Persistence</th>
+<th>Eviction</th>
+<th>Failover</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>RDB</td>
-<td>Periodic snapshots</td>
-<td>Faster restart, possible data loss between snapshots.</td>
+<td>Pure cache</td>
+<td>Data is reconstructable</td>
+<td>RDB or none</td>
+<td><code>allkeys-lru</code> / <code>allkeys-lfu</code></td>
+<td>Optional; clients tolerate cold cache</td>
 </tr>
 <tr>
-<td>AOF</td>
-<td>Better durability</td>
-<td>Larger files and rewrite management required.</td>
-</tr>
-<tr>
-<td>Mixed</td>
-<td>Balanced durability and restore speed</td>
-<td>Requires version support and testing.</td>
+<td>State store (sessions, queues, locks)</td>
+<td>Loss causes user-visible failure</td>
+<td>AOF (often AOF + RDB)</td>
+<td><code>noeviction</code></td>
+<td>Required, with replica + automated failover</td>
 </tr>
 </tbody>
 </table>
-<h2 id="aof-migration-procedure">AOF Migration Procedure<a class="headerlink" href="#aof-migration-procedure" title="Permanent link">&para;</a></h2>
+<p>Write the role down per instance. Every later setting follows from it. A cache that quietly switched to <code>noeviction</code> will start returning write errors under memory pressure; a state store left on <code>allkeys-lru</code> will silently evict the data you needed.</p>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="host-tuning">Host tuning<a class="headerlink" href="#host-tuning" title="Permanent link">&para;</a></h3>
+<p>Redis is sensitive to a few host settings. Set them deliberately and record them as part of the host baseline.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Transparent Huge Pages cause latency spikes during fork/save.</span>
+<span class="nb">echo</span><span class="w"> </span>never<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/sys/kernel/mm/transparent_hugepage/enabled
+
+<span class="c1"># Allow background-save fork to succeed under memory pressure.</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;vm.overcommit_memory = 1&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/sysctl.d/99-redis.conf
+sudo<span class="w"> </span>sysctl<span class="w"> </span>--system
+</code></pre></div>
+<p>Raise file-descriptor limits to cover <code>maxclients</code> plus headroom:</p>
+<div class="highlight"><pre><span></span><code>redis soft nofile 65535
+redis hard nofile 65535
+</code></pre></div>
+<h3 id="instance-baseline">Instance baseline<a class="headerlink" href="#instance-baseline" title="Permanent link">&para;</a></h3>
+<p>Start from a minimal, explicit configuration. Bind to private interfaces only, keep protected mode on, and set a memory ceiling and eviction policy that match the role.</p>
+<div class="highlight"><pre><span></span><code>bind 127.0.0.1 &lt;private-interface&gt;
+protected-mode yes
+port 6379
+dir /var/lib/redis
+
+# Role: state store example
+appendonly yes
+appendfsync everysec
+maxmemory 4gb
+maxmemory-policy noeviction
+</code></pre></div>
+<p>Supply <code>requirepass</code> and any ACL users through a secret manager. Never commit a real password, and never publish a real bind address or hostname.</p>
+<h3 id="choose-persistence-from-the-role-not-by-default">Choose persistence from the role, not by default<a class="headerlink" href="#choose-persistence-from-the-role-not-by-default" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Recovery behavior</th>
+<th>Cost</th>
+<th>Use when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RDB only</td>
+<td>Point-in-time snapshot; loses writes since the last save</td>
+<td>Cheap, fast restart</td>
+<td>Cache, or state where minute-scale loss is acceptable</td>
+</tr>
+<tr>
+<td>AOF only</td>
+<td>Replays the command log; loses at most ~1s with <code>everysec</code></td>
+<td>Larger files, periodic rewrite</td>
+<td>State store needing low loss</td>
+</tr>
+<tr>
+<td>AOF + RDB</td>
+<td>RDB for fast restart, AOF for durability</td>
+<td>Highest disk/IO</td>
+<td>State store needing both fast restart and low loss</td>
+</tr>
+</tbody>
+</table>
+<p><code>appendfsync always</code> is durable but slow; reserve it for cases that genuinely cannot tolerate the <code>everysec</code> window, and load-test it first.</p>
+<h3 id="make-failover-an-explicit-design-not-an-afterthought">Make failover an explicit design, not an afterthought<a class="headerlink" href="#make-failover-an-explicit-design-not-an-afterthought" title="Permanent link">&para;</a></h3>
+<p>A single Redis instance is a single point of failure for whatever depends on it. For a state store:</p>
+<ul>
+<li>Run at least one replica on a separate host/zone.</li>
+<li>Use Redis Sentinel or Redis Cluster for automated failover; do not rely on manual promotion during an incident.</li>
+<li>Confirm the <strong>client library</strong> refreshes topology on failover. Many outages are client-side: the server failed over correctly but clients kept dialing the old primary.</li>
+<li>Test failover under load in staging before you depend on it.</li>
+</ul>
+<h2 id="migration-procedure">Migration Procedure<a class="headerlink" href="#migration-procedure" title="Permanent link">&para;</a></h2>
+<p>Use this for a host move, version upgrade, or topology change. Treat it as a change with a rollback owner present.</p>
 <ol>
-<li>Confirm Redis version compatibility.</li>
-<li>Stop writes or enter a controlled maintenance window.</li>
-<li>Generate or rewrite AOF on the source.</li>
-<li>Copy AOF to the target through a secure channel.</li>
-<li>Verify checksum.</li>
-<li>Start target Redis.</li>
-<li>Validate keys, memory, persistence status, and application behavior.</li>
+<li>Record the baseline: role, <code>INFO persistence</code>, <code>INFO replication</code>, key count, memory, and the application error rate.</li>
+<li>Confirm source and target Redis versions are compatible (AOF/RDB format and replication compatibility).</li>
+<li>Stand up the target and replicate from the source (<code>REPLICAOF</code>) so it catches up live, rather than copying a stale dump where possible.</li>
+<li>If using a file copy instead, stop writes or enter a maintenance window, generate the AOF/RDB, copy over a secure channel, and verify the checksum:</li>
 </ol>
-<p>Example checksum:</p>
 <div class="highlight"><pre><span></span><code>sha256sum<span class="w"> </span>appendonly.aof
 </code></pre></div>
-<h2 id="cluster-migration-notes">Cluster Migration Notes<a class="headerlink" href="#cluster-migration-notes" title="Permanent link">&para;</a></h2>
-<p>For Redis Cluster:</p>
-<ul>
-<li>Preserve slot ownership information.</li>
-<li>Migrate one shard or replica group at a time.</li>
-<li>Validate <code>cluster_state:ok</code>.</li>
-<li>Confirm application clients support cluster topology refresh.</li>
-<li>Keep rollback data until post-migration checks pass.</li>
-</ul>
-<p>Validation:</p>
-<div class="highlight"><pre><span></span><code>redis-cli<span class="w"> </span>-h<span class="w"> </span><span class="m">10</span>.0.0.10<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span><span class="w"> </span>INFO<span class="w"> </span>persistence
-redis-cli<span class="w"> </span>-h<span class="w"> </span><span class="m">10</span>.0.0.10<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span><span class="w"> </span>INFO<span class="w"> </span>replication
-redis-cli<span class="w"> </span>-h<span class="w"> </span><span class="m">10</span>.0.0.10<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span><span class="w"> </span>CLUSTER<span class="w"> </span>INFO
+<ol>
+<li>For Redis Cluster, migrate one shard/replica group at a time and confirm slot ownership after each step.</li>
+<li>Cut clients over to the target.</li>
+<li>Validate (see below) before decommissioning the source.</li>
+<li>Keep the source intact until post-migration checks pass through an agreed observation window.</li>
+</ol>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>redis-cli<span class="w"> </span>-h<span class="w"> </span>&lt;redis-host&gt;<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span><span class="w"> </span>INFO<span class="w"> </span>persistence
+redis-cli<span class="w"> </span>-h<span class="w"> </span>&lt;redis-host&gt;<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span><span class="w"> </span>INFO<span class="w"> </span>replication
+redis-cli<span class="w"> </span>-h<span class="w"> </span>&lt;redis-host&gt;<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span><span class="w"> </span>CLUSTER<span class="w"> </span>INFO<span class="w">     </span><span class="c1"># cluster only</span>
 </code></pre></div>
+<p>Confirm:</p>
+<ul>
+<li><code>INFO persistence</code> shows the expected <code>aof_enabled</code>, last save/rewrite succeeded, and no <code>rdb_last_bgsave_status:err</code>.</li>
+<li><code>INFO replication</code> shows replicas connected and <code>master_link_status:up</code>; replication offset lag is bounded.</li>
+<li>For cluster, <code>cluster_state:ok</code> and the expected slot count are assigned.</li>
+<li>Key count and memory match the baseline; the application error rate is unchanged.</li>
+</ul>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Correct response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Write errors under load</td>
+<td><code>OOM command not allowed</code></td>
+<td><code>maxmemory</code> reached with <code>noeviction</code></td>
+<td>Add capacity, shard, or change policy only if the role allows eviction.</td>
+</tr>
+<tr>
+<td>Silent data loss</td>
+<td>Keys disappear unexpectedly</td>
+<td>Eviction policy evicting a state store</td>
+<td>Set <code>noeviction</code> for state stores; size memory for the working set.</td>
+</tr>
+<tr>
+<td>Latency spikes during save</td>
+<td>Periodic stalls</td>
+<td>THP enabled, or fork under memory pressure</td>
+<td>Disable THP; set <code>overcommit_memory=1</code>; ensure save headroom.</td>
+</tr>
+<tr>
+<td>Stale reads after failover</td>
+<td>Clients hit the old primary</td>
+<td>Client not refreshing topology</td>
+<td>Use a Sentinel/Cluster-aware client; verify failover behavior.</td>
+</tr>
+<tr>
+<td>Restart loses recent writes</td>
+<td>Data older than expected after restart</td>
+<td>RDB-only on a state store</td>
+<td>Enable AOF for state stores.</td>
+</tr>
+<tr>
+<td>AOF won't load</td>
+<td>Redis refuses to start</td>
+<td>Corrupt/truncated AOF</td>
+<td>Repair with <code>redis-check-aof --fix</code> on a copy; restore from backup if needed.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Keep the source instance and its data until validation passes; do not delete on cutover day.</li>
+<li>To roll back a migration, point clients back at the source and confirm <code>INFO replication</code> and key counts.</li>
+<li>To roll back a config change, restore the previous config file and restart through the service manager during a window.</li>
+<li>Rotate <code>requirepass</code>/ACL credentials after any emergency access.</li>
+</ol>
 <h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Do not expose Redis directly to the public internet.</li>
-<li>Restrict access by security group, firewall, or network policy.</li>
-<li>Use TLS where supported and required.</li>
-<li>Rotate credentials after migration or emergency access.</li>
+<li>Never expose Redis to the public internet. Restrict by security group, firewall, or network policy to known clients.</li>
+<li>Require authentication (<code>requirepass</code> or ACL users); store credentials in a secret manager.</li>
+<li>Use TLS where the workload requires confidentiality in transit.</li>
+<li>Disable or rename dangerous commands (<code>FLUSHALL</code>, <code>CONFIG</code>, <code>KEYS</code>) for application-facing users via ACLs.</li>
+<li>Rotate credentials after migration, host moves, or emergency access.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Owner: the team that owns the dependent service.</li>
+<li>Re-confirm the documented role per instance on each major change.</li>
+<li>Review eviction and <code>maxmemory</code> whenever the working set grows.</li>
+<li>Re-test failover on each Redis minor upgrade and each client-library upgrade.</li>
 </ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../linux/server-baseline-standard/">Linux Server Baseline Standard</a></li>
-<li><a href="../../../platform-governance/publication-safety-checklist/">Publication Safety Checklist</a></li>
+<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter Monitoring Standard</a></li>
+<li><a href="../../../reliable-operations/observability/prometheus-alerting-standard/">Prometheus Alerting Standard</a></li>
+<li><a href="https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/">Redis persistence documentation</a></li>
 </ul>
 
 
@@ -4313,7 +4505,7 @@ redis-cli<span class="w"> </span>-h<span class="w"> </span><span class="m">10</s
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 13:53:36 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4323,7 +4515,7 @@ redis-cli<span class="w"> </span>-h<span class="w"> </span><span class="m">10</s
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 13:53:36 UTC">June 28, 2026</span>
   </span>
 
     

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="kubeadm installation standard for self-managed Kubernetes clusters.">
+        <meta name="description" content="kubeadm installation standard focused on production judgment, control-plane ownership, etcd recovery, add-on sequence, validation, and rebuild boundaries.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="kubeadm Installation - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="kubeadm installation standard for self-managed Kubernetes clusters." />
+<meta property="og:description" content="kubeadm installation standard focused on production judgment, control-plane ownership, etcd recovery, add-on sequence, validation, and rebuild boundaries." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/system-design/production-architecture/kubeadm-installation-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/system-design/production-architecture/kubeadm-installation-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="kubeadm Installation - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="kubeadm installation standard for self-managed Kubernetes clusters." />
+<meta property="twitter:description" content="kubeadm installation standard focused on production judgment, control-plane ownership, etcd recovery, add-on sequence, validation, and rebuild boundaries." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/system-design/production-architecture/kubeadm-installation-standard.png" />
 </head>
   
@@ -1015,10 +1015,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#before-installation" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Before Installation
+        When to Use
       
     </span>
   </a>
@@ -1026,10 +1026,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-validation" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Validation
+        Non-Goals
       
     </span>
   </a>
@@ -1037,10 +1037,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-ons" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Add-ons
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decide-the-control-plane-model-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decide the control-plane model first
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#freeze-the-add-on-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freeze the add-on sequence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#own-etcd-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Own etcd recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
       
     </span>
   </a>
@@ -1048,10 +1098,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-notes" class="md-nav__link">
+  <a href="#failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Notes
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-and-rebuild-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback and Rebuild Boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -1691,34 +1774,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2162,34 +2217,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -3468,34 +3495,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3833,34 +3832,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3942,10 +3913,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#before-installation" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Before Installation
+        When to Use
       
     </span>
   </a>
@@ -3953,10 +3924,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-validation" class="md-nav__link">
+  <a href="#non-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Validation
+        Non-Goals
       
     </span>
   </a>
@@ -3964,10 +3935,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-ons" class="md-nav__link">
+  <a href="#recommended-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Add-ons
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decide-the-control-plane-model-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decide the control-plane model first
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#freeze-the-add-on-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freeze the add-on sequence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#own-etcd-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Own etcd recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
       
     </span>
   </a>
@@ -3975,10 +3996,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#safety-notes" class="md-nav__link">
+  <a href="#failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Safety Notes
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-and-rebuild-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback and Rebuild Boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4088,6 +4142,18 @@
         
       
       
+        <a href="../../../tags/#tag:architecture" class="md-tag md-tag-icon md-tag--architecture">Architecture</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
         <a href="../../../tags/#tag:kubernetes" class="md-tag md-tag-icon md-tag--kubernetes">Kubernetes</a>
       
     
@@ -4100,7 +4166,7 @@
         
       
       
-        <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
+        <a href="../../../tags/#tag:reliability" class="md-tag md-tag-icon md-tag--reliability">Reliability</a>
       
     
   </nav>
@@ -4112,37 +4178,152 @@
 
 <h1 id="kubeadm-installation-standard">kubeadm Installation Standard<a class="headerlink" href="#kubeadm-installation-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard summarizes safe kubeadm cluster installation practices for labs and self-managed environments.</p>
-<h2 id="before-installation">Before Installation<a class="headerlink" href="#before-installation" title="Permanent link">&para;</a></h2>
+<p>This standard defines when and how to use kubeadm for Kubernetes cluster installation.</p>
+<p>The core judgment:</p>
+<blockquote>
+<p>kubeadm installs Kubernetes; it does not operate the platform for you.</p>
+</blockquote>
+<p>A kubeadm cluster is appropriate only when the team can own control-plane availability, etcd backup and restore, certificate lifecycle, node maintenance, add-on upgrades, and incident recovery.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use kubeadm when:</p>
 <ul>
-<li>Confirm OS version.</li>
-<li>Disable swap.</li>
-<li>Configure container runtime.</li>
-<li>Load bridge networking modules.</li>
-<li>Configure time sync.</li>
-<li>Plan pod and service CIDRs.</li>
-<li>Plan control plane endpoint for HA clusters.</li>
+<li>Managed Kubernetes is unavailable or unsuitable.</li>
+<li>The team needs explicit control over control-plane components.</li>
+<li>The environment has strong network or infrastructure constraints.</li>
+<li>Operators can staff and test the full lifecycle.</li>
 </ul>
-<h2 id="core-validation">Core Validation<a class="headerlink" href="#core-validation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>kubeadm<span class="w"> </span>version
-kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
-kubectl<span class="w"> </span>cluster-info
-</code></pre></div>
-<h2 id="add-ons">Add-ons<a class="headerlink" href="#add-ons" title="Permanent link">&para;</a></h2>
-<p>Install and validate:</p>
+<p>Prefer managed Kubernetes when the team cannot own etcd recovery, certificate rotation, and control-plane patching.</p>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard is not a step-by-step installation transcript. It does not replace the broader <a href="../kubernetes-cluster-provisioning-standard/">Kubernetes Cluster Provisioning Standard</a>.</p>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="decide-the-control-plane-model-first">Decide the control-plane model first<a class="headerlink" href="#decide-the-control-plane-model-first" title="Permanent link">&para;</a></h3>
+<p>Before running kubeadm, decide:</p>
 <ul>
-<li>CNI plugin.</li>
+<li>Single control plane or highly available control plane.</li>
+<li>API endpoint and load balancer ownership.</li>
+<li>etcd stacked or external.</li>
+<li>Certificate authority ownership.</li>
+<li>Upgrade sequence.</li>
+<li>Backup and restore procedure.</li>
+<li>Node replacement procedure.</li>
+</ul>
+<p>Do not create a single-control-plane cluster and later call it production without a deliberate exception.</p>
+<h3 id="freeze-the-add-on-sequence">Freeze the add-on sequence<a class="headerlink" href="#freeze-the-add-on-sequence" title="Permanent link">&para;</a></h3>
+<p>Minimum sequence:</p>
+<ol>
+<li>OS and container runtime baseline.</li>
+<li>kubeadm, kubelet, kubectl versions.</li>
+<li>Control plane.</li>
+<li>CNI.</li>
+<li>CoreDNS.</li>
 <li>Metrics server.</li>
-<li>Ingress controller.</li>
-<li>StorageClass.</li>
-<li>Monitoring.</li>
+<li>CSI if storage is required.</li>
+<li>Ingress if services are published.</li>
+<li>Observability agents.</li>
+<li>Backup and restore validation.</li>
+</ol>
+<p>Applications should not be onboarded before CNI, DNS, storage, ingress, and observability are validated.</p>
+<h3 id="own-etcd-recovery">Own etcd recovery<a class="headerlink" href="#own-etcd-recovery" title="Permanent link">&para;</a></h3>
+<p>For kubeadm clusters, etcd is a first-class production dependency.</p>
+<p>Required:</p>
+<ul>
+<li>Snapshot schedule.</li>
+<li>Snapshot retention.</li>
+<li>Restore test.</li>
+<li>Encryption and access control for snapshots.</li>
+<li>Documentation of restore target and expected downtime.</li>
 </ul>
-<h2 id="safety-notes">Safety Notes<a class="headerlink" href="#safety-notes" title="Permanent link">&para;</a></h2>
-<p>Do not publish real join tokens, kubeconfig files, certificate keys, or internal control plane endpoints.</p>
+<p>If the team cannot restore etcd in a test environment, the cluster is not production-ready.</p>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>After installation:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+kubectl<span class="w"> </span>cluster-info
+kubectl<span class="w"> </span>get<span class="w"> </span>componentstatuses
+</code></pre></div>
+<p>Also validate:</p>
+<ul>
+<li>CNI pod-to-pod connectivity.</li>
+<li>DNS resolution from a pod.</li>
+<li>Service routing.</li>
+<li>Metrics server.</li>
+<li>StorageClass and PVC if used.</li>
+<li>Ingress path if used.</li>
+<li>etcd snapshot and restore rehearsal.</li>
+</ul>
+<h2 id="failure-modes">Failure Modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Result</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No stable API endpoint</td>
+<td>Control-plane failover breaks clients.</td>
+<td>Use an owned HA endpoint.</td>
+</tr>
+<tr>
+<td>No etcd restore test</td>
+<td>Cluster state loss becomes unrecoverable.</td>
+<td>Test restore before onboarding workloads.</td>
+</tr>
+<tr>
+<td>Certificate lifecycle ignored</td>
+<td>Cluster fails unexpectedly at expiry.</td>
+<td>Track and rehearse rotation.</td>
+</tr>
+<tr>
+<td>CNI chosen after install</td>
+<td>Pod networking assumptions break.</td>
+<td>Select CNI before cluster init.</td>
+</tr>
+<tr>
+<td>Add-ons unversioned</td>
+<td>Upgrade drift.</td>
+<td>Maintain version matrix.</td>
+</tr>
+<tr>
+<td>Apps onboarded before observability</td>
+<td>First failure has no evidence.</td>
+<td>Install observability before workloads.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback-and-rebuild-boundary">Rollback and Rebuild Boundary<a class="headerlink" href="#rollback-and-rebuild-boundary" title="Permanent link">&para;</a></h2>
+<p>Prefer rebuild when:</p>
+<ul>
+<li>Pod or service CIDRs are wrong.</li>
+<li>Control-plane endpoint design is wrong.</li>
+<li>etcd topology is wrong for production.</li>
+<li>Certificate authority ownership is unclear.</li>
+<li>The cluster is young and has no critical workloads.</li>
+</ul>
+<p>Prefer in-place repair when:</p>
+<ul>
+<li>Add-on configuration is wrong but data plane is recoverable.</li>
+<li>Node pool needs replacement.</li>
+<li>Version skew can be corrected within supported bounds.</li>
+</ul>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Protect kubeconfig and certificate authority material.</li>
+<li>Restrict control-plane host access.</li>
+<li>Use least privilege for node and admin access.</li>
+<li>Encrypt etcd backups.</li>
+<li>Do not publish real cluster endpoints or certificates.</li>
+<li>Keep audit logs where feasible.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review before each kubeadm cluster build, Kubernetes minor upgrade, certificate rotation, etcd incident, or control-plane topology change.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../kubernetes-cluster-provisioning-standard/">Kubernetes Cluster Provisioning Standard</a></li>
+<li><a href="../kubernetes-storage-ingress-standard/">Kubernetes Storage and Ingress Standard</a></li>
+<li><a href="../../../standards-manual/linux/system-os-patching-standard/">System OS Patching Standard</a></li>
 </ul>
 
 
@@ -4166,7 +4347,7 @@ kubectl<span class="w"> </span>cluster-info
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4176,7 +4357,7 @@ kubectl<span class="w"> </span>cluster-info
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     

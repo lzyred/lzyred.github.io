@@ -6,14 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Redash BI deployment standard for production data visualization.">
+        <meta name="description" content="Redash deployment standard for internal BI query tools with data-source credentials, query permissions, dashboard sharing, backup, and audit controls.">
       
       
       
         <link rel="canonical" href="https://blog.l2do.com/en/platform-governance/redash-deployment-standard/">
       
       
-        <link rel="prev" href="../publication-safety-checklist/">
+        <link rel="prev" href="../jumpserver-bastion-standard/">
       
       
         <link rel="next" href="../../cases-reviews/">
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Redash Deployment - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Redash BI deployment standard for production data visualization." />
+<meta property="og:description" content="Redash deployment standard for internal BI query tools with data-source credentials, query permissions, dashboard sharing, backup, and audit controls." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/platform-governance/redash-deployment-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/platform-governance/redash-deployment-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Redash Deployment - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Redash BI deployment standard for production data visualization." />
+<meta property="twitter:description" content="Redash deployment standard for internal BI query tools with data-source credentials, query permissions, dashboard sharing, backup, and audit controls." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/platform-governance/redash-deployment-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2061,34 +2033,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -2163,10 +2107,104 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#controls" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Controls
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separate-redash-from-production-write-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separate Redash from production write paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#govern-data-source-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Govern data source credentials
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-query-and-dashboard-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control query and dashboard access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
       
     </span>
   </a>
@@ -2178,6 +2216,17 @@
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3441,34 +3490,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../standards-manual/linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3806,34 +3827,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../standards-manual/templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3915,10 +3908,104 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#controls" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Controls
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Standard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separate-redash-from-production-write-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separate Redash from production write paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#govern-data-source-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Govern data source credentials
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-query-and-dashboard-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control query and dashboard access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
       
     </span>
   </a>
@@ -3930,6 +4017,17 @@
     <span class="md-ellipsis">
       
         Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4021,7 +4119,7 @@
         
       
       
-        <a href="../../tags/#tag:observability" class="md-tag md-tag-icon md-tag--observability">Observability</a>
+        <a href="../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
       
     
       
@@ -4033,7 +4131,7 @@
         
       
       
-        <a href="../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
+        <a href="../../tags/#tag:security" class="md-tag md-tag-icon md-tag--security">Security</a>
       
     
   </nav>
@@ -4045,20 +4143,118 @@
 
 <h1 id="redash-deployment-standard">Redash Deployment Standard<a class="headerlink" href="#redash-deployment-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes safe deployment and operation of Redash-style BI tools.</p>
-<h2 id="controls">Controls<a class="headerlink" href="#controls" title="Permanent link">&para;</a></h2>
+<p>This standard defines how to deploy and operate Redash or a similar internal BI query tool.</p>
+<p>The core judgment:</p>
+<blockquote>
+<p>A BI tool is a data access surface, not just a dashboard application.</p>
+</blockquote>
+<p>Redash can make operational data easier to inspect, but it can also expose production databases, credentials, query results, and business-sensitive dashboards.</p>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when:</p>
 <ul>
-<li>Protect admin access.</li>
-<li>Store data source credentials securely.</li>
-<li>Restrict query permissions.</li>
-<li>Back up metadata database.</li>
-<li>Review public dashboard sharing.</li>
+<li>Internal teams need SQL-based dashboards.</li>
+<li>Data sources are read-only or analytics-oriented.</li>
+<li>Query access can be governed by group and data source.</li>
+<li>Dashboard sharing must be reviewed.</li>
 </ul>
+<p>Do not connect Redash directly to production databases with broad write or administrative privileges.</p>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not define data warehouse architecture or analytics modeling. It only covers operational deployment controls.</p>
+<h2 id="recommended-standard">Recommended Standard<a class="headerlink" href="#recommended-standard" title="Permanent link">&para;</a></h2>
+<h3 id="separate-redash-from-production-write-paths">Separate Redash from production write paths<a class="headerlink" href="#separate-redash-from-production-write-paths" title="Permanent link">&para;</a></h3>
+<p>Use read-only accounts, replicas, warehouses, or curated views where possible. Redash should not be a path for modifying production data.</p>
+<h3 id="govern-data-source-credentials">Govern data source credentials<a class="headerlink" href="#govern-data-source-credentials" title="Permanent link">&para;</a></h3>
+<p>For every data source, record:</p>
+<ul>
+<li>Owner.</li>
+<li>Purpose.</li>
+<li>Credential storage location.</li>
+<li>Permission scope.</li>
+<li>Query timeout.</li>
+<li>Network access path.</li>
+<li>Review date.</li>
+</ul>
+<p>Avoid shared credentials that cannot be rotated or attributed.</p>
+<h3 id="control-query-and-dashboard-access">Control query and dashboard access<a class="headerlink" href="#control-query-and-dashboard-access" title="Permanent link">&para;</a></h3>
+<p>Define:</p>
+<ul>
+<li>Who can create data sources.</li>
+<li>Who can write queries.</li>
+<li>Who can publish dashboards.</li>
+<li>Whether public links are disabled.</li>
+<li>How sensitive dashboards are reviewed.</li>
+</ul>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>Pass conditions:</p>
+<ul>
+<li>Redash web service and worker are healthy.</li>
+<li>Metadata database is backed up.</li>
+<li>Data source credentials are read-only where possible.</li>
+<li>Test query succeeds within timeout.</li>
+<li>Public sharing is disabled or governed.</li>
+<li>Admin users are reviewed.</li>
+</ul>
+<h2 id="failure-modes">Failure Modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure Mode</th>
+<th>Result</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Broad production credential</td>
+<td>BI compromise exposes or changes production data.</td>
+<td>Use read-only scoped accounts.</td>
+</tr>
+<tr>
+<td>Public dashboard sharing</td>
+<td>Sensitive data leaks.</td>
+<td>Disable or review public links.</td>
+</tr>
+<tr>
+<td>Long-running queries</td>
+<td>Database performance impact.</td>
+<td>Set query timeout and use replicas.</td>
+</tr>
+<tr>
+<td>No metadata backup</td>
+<td>Dashboards and queries are lost.</td>
+<td>Back up metadata database.</td>
+</tr>
+<tr>
+<td>Shared admin access</td>
+<td>No accountability.</td>
+<td>Use named users and MFA.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<p>Rollback may include:</p>
+<ul>
+<li>Disable a data source.</li>
+<li>Revoke a credential.</li>
+<li>Remove public sharing.</li>
+<li>Restore metadata database.</li>
+<li>Route users back to the previous BI tool.</li>
+</ul>
+<p>If a credential is suspected leaked, rotate it before restoring access.</p>
 <h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
-<p>BI tools can expose production data through queries and dashboards. Do not publish data source credentials, query results, or customer data.</p>
+<ul>
+<li>Do not publish query results or customer data.</li>
+<li>Protect data source credentials.</li>
+<li>Use least-privilege database accounts.</li>
+<li>Audit admin and data-source changes.</li>
+<li>Keep Redash off the public internet unless additional controls exist.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<p>Review data sources, admin access, public sharing, and backups after onboarding new datasets, after access changes, and after security incidents.</p>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../standards-manual/databases/mysql-operations-standard/">MySQL Operations Standard</a></li>
+<li><a href="../../standards-manual/templates/standard-document-template/">Standard Document Template</a></li>
 </ul>
 
 
@@ -4082,7 +4278,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4092,7 +4288,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 18:10:44 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4148,7 +4344,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../publication-safety-checklist/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Publication Safety Checklist">
+          <a href="../jumpserver-bastion-standard/" class="md-footer__link md-footer__link--prev" aria-label="Previous: JumpServer and Bastion Access">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4158,7 +4354,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Publication Safety Checklist
+                JumpServer and Bastion Access
               </div>
             </div>
           </a>

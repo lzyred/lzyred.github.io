@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="MySQL operations standard for production deployment, backup, and recovery.">
+        <meta name="description" content="Standard for production MySQL — account model, backup that is proven by restore, replication-aware migration, break-glass recovery, and rollback.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="MySQL Operations - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="MySQL operations standard for production deployment, backup, and recovery." />
+<meta property="og:description" content="Standard for production MySQL — account model, backup that is proven by restore, replication-aware migration, break-glass recovery, and rollback." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/databases/mysql-operations-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/standards-manual/databases/mysql-operations-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="MySQL Operations - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="MySQL operations standard for production deployment, backup, and recovery." />
+<meta property="twitter:description" content="Standard for production MySQL — account model, backup that is proven by restore, replication-aware migration, break-glass recovery, and rollback." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/standards-manual/databases/mysql-operations-standard.png" />
 </head>
   
@@ -1568,34 +1568,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Node Exporter
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
         
   
@@ -2039,34 +2011,6 @@
     
   
     JumpServer and Bastion Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Publication Safety Checklist
   
 
     
@@ -2857,10 +2801,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
       
     </span>
   </a>
@@ -2909,13 +2864,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Backup Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prove-the-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prove the backup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#migration-standard" class="md-nav__link">
+  <a href="#migration-and-upgrade" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Migration Standard
+        Migration and Upgrade
       
     </span>
   </a>
@@ -2923,10 +2895,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#root-password-reset" class="md-nav__link">
+  <a href="#break-glass-root-password-reset" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Root Password Reset
+        Break-Glass: Root Password Reset
       
     </span>
   </a>
@@ -2934,10 +2906,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#benchmarking" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Benchmarking
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -3524,34 +3540,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/ubuntu-26-ai-fullstack-setup-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ubuntu 26.04 AI Dev Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
@@ -3895,34 +3883,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DevOps Deep Article Quality Standard
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -4004,10 +3964,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals
       
     </span>
   </a>
@@ -4056,13 +4027,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Backup Standard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prove-the-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prove the backup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#migration-standard" class="md-nav__link">
+  <a href="#migration-and-upgrade" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Migration Standard
+        Migration and Upgrade
       
     </span>
   </a>
@@ -4070,10 +4058,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#root-password-reset" class="md-nav__link">
+  <a href="#break-glass-root-password-reset" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Root Password Reset
+        Break-Glass: Root Password Reset
       
     </span>
   </a>
@@ -4081,10 +4069,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#benchmarking" class="md-nav__link">
+  <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Benchmarking
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Cycle
       
     </span>
   </a>
@@ -4202,6 +4234,16 @@
       
         
         
+      
+      
+        <a href="../../../tags/#tag:mysql" class="md-tag md-tag-icon">MySQL</a>
+      
+    
+      
+      
+      
+        
+        
           
         
       
@@ -4218,28 +4260,42 @@
 
 <h1 id="mysql-operations-standard">MySQL Operations Standard<a class="headerlink" href="#mysql-operations-standard" title="Permanent link">&para;</a></h1>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines public-safe MySQL installation, backup, migration, and recovery practices.</p>
-<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
-<p>Use this for self-managed MySQL, cloud RDS-style MySQL, and migration planning. Provider-specific commands should be placed in cloud-specific appendices.</p>
+<p>This standard defines safe, reusable practices for running self-managed MySQL in production: how to set up an instance, how to back it up so the backup is actually recoverable, how to migrate or upgrade without data loss, and how to recover under pressure.</p>
+<p>The core judgment of this standard:</p>
+<blockquote>
+<p>A backup you have never restored is a hypothesis, not a backup. Treat restore time and restore success — not backup completion — as the metric that matters.</p>
+</blockquote>
+<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<p>Use this standard when you:</p>
+<ul>
+<li>Run self-managed MySQL (bare metal, VM, or container) where you own backup and recovery.</li>
+<li>Plan a version upgrade, host move, or cross-environment migration.</li>
+<li>Need a defensible account, backup, and recovery posture for an audit or incident review.</li>
+</ul>
+<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<p>This standard does not cover:</p>
+<ul>
+<li>Managed MySQL (RDS-style) internals. Use the provider's backup, failover, and point-in-time-recovery contract; this standard's account model and migration validation still apply.</li>
+<li>Query and schema design, indexing, or application-level performance tuning.</li>
+<li>Provider-specific commands, which belong in a cloud appendix, not here.</li>
+</ul>
 <h2 id="operating-principles">Operating Principles<a class="headerlink" href="#operating-principles" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Prefer managed database services when operational maturity is limited.</li>
-<li>Separate administrative accounts from application accounts.</li>
+<li>Prefer a managed database service when operational maturity or on-call depth is limited.</li>
+<li>Separate administrative accounts from application accounts; grant least privilege.</li>
 <li>Never publish initial root passwords, generated credentials, or connection strings.</li>
-<li>Test backup restore, not only backup creation.</li>
-<li>Use controlled maintenance windows for major upgrades and migrations.</li>
+<li>Prove backups by restoring them on a schedule, not by checking that the backup job exited 0.</li>
+<li>Make major upgrades and migrations controlled changes with a window, a rollback plan, and an owner.</li>
 </ol>
 <h2 id="installation-baseline">Installation Baseline<a class="headerlink" href="#installation-baseline" title="Permanent link">&para;</a></h2>
 <p>For self-managed MySQL:</p>
 <ul>
-<li>Use a supported MySQL version.</li>
-<li>Create a dedicated <code>mysql</code> system user.</li>
-<li>Store data on a dedicated volume.</li>
-<li>Set explicit character set and collation.</li>
-<li>Configure slow query logging.</li>
-<li>Enable service management through systemd.</li>
+<li>Use a supported MySQL version with a defined end-of-life date.</li>
+<li>Run as a dedicated <code>mysql</code> system user; keep data on a dedicated volume.</li>
+<li>Set character set and collation explicitly (<code>utf8mb4</code> unless you have a specific reason).</li>
+<li>Enable slow query logging and a sane <code>long_query_time</code>.</li>
+<li>Manage the service through systemd so restart and boot behavior are predictable.</li>
 </ul>
-<p>Example configuration concepts:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[mysqld]</span>
 <span class="na">datadir</span><span class="o">=</span><span class="s">/var/lib/mysql</span>
 <span class="na">socket</span><span class="o">=</span><span class="s">/var/lib/mysql/mysql.sock</span>
@@ -4249,64 +4305,160 @@
 <span class="na">long_query_time</span><span class="o">=</span><span class="s">1</span>
 <span class="na">max_connections</span><span class="o">=</span><span class="s">500</span>
 </code></pre></div>
+<p>Size <code>max_connections</code> to what the host can actually serve; an unreachable connection ceiling just converts a load spike into a different failure.</p>
 <h2 id="account-model">Account Model<a class="headerlink" href="#account-model" title="Permanent link">&para;</a></h2>
-<p>Use least privilege:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;app_user&#39;</span><span class="o">@</span><span class="s1">&#39;10.0.0.%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&lt;REDACTED_PASSWORD&gt;&#39;</span><span class="p">;</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="w"> </span><span class="k">INSERT</span><span class="p">,</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">,</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">example_db</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;app_user&#39;</span><span class="o">@</span><span class="s1">&#39;10.0.0.%&#39;</span><span class="p">;</span>
+<p>Use least privilege and scope hosts tightly:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;app_user&#39;</span><span class="o">@</span><span class="s1">&#39;10.%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&lt;from-secret-manager&gt;&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="w"> </span><span class="k">INSERT</span><span class="p">,</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">,</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">example_db</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;app_user&#39;</span><span class="o">@</span><span class="s1">&#39;10.%&#39;</span><span class="p">;</span>
 <span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
 </code></pre></div>
-<p>The password placeholder must be replaced through a secret manager, not committed to a repository.</p>
+<ul>
+<li>The password placeholder must be supplied through a secret manager, never committed.</li>
+<li>Application users get DML on their schema only — not <code>ALL PRIVILEGES</code>, not <code>*.*</code>.</li>
+<li>Administrative and migration accounts are separate and used deliberately, not shared with the app.</li>
+</ul>
 <h2 id="backup-standard">Backup Standard<a class="headerlink" href="#backup-standard" title="Permanent link">&para;</a></h2>
-<p>Use both logical and physical backup when appropriate.</p>
-<p>Logical backup:</p>
+<p>Choose the backup method by dataset size and recovery objective.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Good for</th>
+<th>Restore characteristic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logical (<code>mysqldump</code> / <code>mysqlpump</code>)</td>
+<td>Small/medium datasets, portability, single-table recovery</td>
+<td>Slower restore; replays SQL</td>
+</tr>
+<tr>
+<td>Physical (e.g. Percona XtraBackup)</td>
+<td>Large datasets, fast full restore</td>
+<td>Fast restore; version/layout sensitive</td>
+</tr>
+<tr>
+<td>Binary logs</td>
+<td>Point-in-time recovery on top of a base backup</td>
+<td>Replays to a target timestamp</td>
+</tr>
+</tbody>
+</table>
+<p>Logical backup example:</p>
 <div class="highlight"><pre><span></span><code>mysqldump<span class="w"> </span>--single-transaction<span class="w"> </span>--routines<span class="w"> </span>--triggers<span class="w"> </span>--events<span class="w"> </span>example_db<span class="w"> </span>&gt;<span class="w"> </span>example_db.sql
 </code></pre></div>
-<p>Physical backup tools are better for larger datasets. Always document:</p>
+<p>For every backup, document: type, schedule, retention, encryption, <strong>restore-test frequency</strong>, and the owner/escalation path. Combine a periodic base backup with binary logs when you need point-in-time recovery.</p>
+<h3 id="prove-the-backup">Prove the backup<a class="headerlink" href="#prove-the-backup" title="Permanent link">&para;</a></h3>
+<p>On a schedule, restore the latest backup into an isolated instance and validate it:</p>
 <ul>
-<li>Backup type.</li>
-<li>Backup schedule.</li>
-<li>Retention period.</li>
-<li>Encryption method.</li>
-<li>Restore test frequency.</li>
-<li>Owner and escalation path.</li>
+<li>Row counts on critical tables match expectations.</li>
+<li>Application-level integrity checks or checksums pass.</li>
+<li>Record the <strong>time to restore</strong> — it is your real recovery objective, and it only gets worse as data grows.</li>
 </ul>
-<h2 id="migration-standard">Migration Standard<a class="headerlink" href="#migration-standard" title="Permanent link">&para;</a></h2>
-<p>Before migration:</p>
+<h2 id="migration-and-upgrade">Migration and Upgrade<a class="headerlink" href="#migration-and-upgrade" title="Permanent link">&para;</a></h2>
+<p>Before:</p>
 <ul>
-<li>Confirm source and target versions.</li>
-<li>Check character set and collation.</li>
-<li>Estimate data size and downtime.</li>
-<li>Validate network throughput.</li>
-<li>Freeze schema changes.</li>
-<li>Prepare rollback plan.</li>
+<li>Confirm source and target versions and the supported upgrade path (do not skip unsupported jumps).</li>
+<li>Check character set/collation compatibility.</li>
+<li>Estimate data size, restore time, and required downtime.</li>
+<li>Validate network throughput for the transfer.</li>
+<li>Freeze schema changes for the window.</li>
+<li>Write the rollback plan and confirm the owner.</li>
 </ul>
-<p>Migration validation:</p>
+<p>Replication-based migration is usually safer than a stop-the-world dump: replicate to the target, let it catch up, then cut over during a short window.</p>
+<p>Validation:</p>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">important_table</span><span class="p">;</span>
-<span class="k">SHOW</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
-<span class="k">SHOW</span><span class="w"> </span><span class="n">REPLICA</span><span class="w"> </span><span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">REPLICA</span><span class="w"> </span><span class="n">STATUS</span><span class="err">\</span><span class="k">G</span><span class="w">   </span><span class="c1">-- MySQL 8.0.22+</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="n">STATUS</span><span class="err">\</span><span class="k">G</span><span class="w">     </span><span class="c1">-- older versions</span>
 </code></pre></div>
-<p>Use checksums or application-level validation for critical tables.</p>
-<h2 id="root-password-reset">Root Password Reset<a class="headerlink" href="#root-password-reset" title="Permanent link">&para;</a></h2>
-<p>Root password reset is a break-glass procedure. It should require:</p>
+<p>Confirm <code>Replica_IO_Running</code> / <code>Replica_SQL_Running</code> are <code>Yes</code>, <code>Seconds_Behind_Source</code> is 0, and <code>Last_Error</code> is empty before cutover. Use checksums (e.g. <code>pt-table-checksum</code>) or application-level validation for critical tables.</p>
+<h2 id="break-glass-root-password-reset">Break-Glass: Root Password Reset<a class="headerlink" href="#break-glass-root-password-reset" title="Permanent link">&para;</a></h2>
+<p>Root password reset (<code>--skip-grant-tables</code> or equivalent) is a break-glass procedure, not routine maintenance. It removes authentication from the running server, so require:</p>
 <ul>
-<li>Approval.</li>
-<li>Maintenance window.</li>
-<li>Console or host-level access.</li>
-<li>Audit record.</li>
-<li>Immediate credential rotation after recovery.</li>
+<li>Approval and a maintenance window.</li>
+<li>Console or host-level access (never over an exposed network port).</li>
+<li>An audit record of who did it and why.</li>
+<li>Immediate credential rotation and a return to normal authentication afterward.</li>
 </ul>
 <p>Do not publish environment-specific reset passwords or internal access paths.</p>
-<h2 id="benchmarking">Benchmarking<a class="headerlink" href="#benchmarking" title="Permanent link">&para;</a></h2>
-<p>Use benchmarking to compare configurations, not to prove production capacity in isolation.</p>
-<p>Example:</p>
-<div class="highlight"><pre><span></span><code>sysbench<span class="w"> </span>oltp_read_write<span class="w"> </span>--mysql-host<span class="o">=</span>db.example.internal<span class="w"> </span>--mysql-user<span class="o">=</span>example-user<span class="w"> </span>--mysql-db<span class="o">=</span>example_db<span class="w"> </span>prepare
-sysbench<span class="w"> </span>oltp_read_write<span class="w"> </span>--mysql-host<span class="o">=</span>db.example.internal<span class="w"> </span>--mysql-user<span class="o">=</span>example-user<span class="w"> </span>--mysql-db<span class="o">=</span>example_db<span class="w"> </span>run
-</code></pre></div>
-<p>Provide the database password through a protected client configuration or secret injection mechanism rather than a command-line argument.</p>
-<p>Avoid running benchmarks against production without explicit approval.</p>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Service is up via systemd; error log shows no crash-recovery loops.</li>
+<li>Replication (if used) is running with zero lag and no errors.</li>
+<li>The most recent restore test passed within its scheduled interval.</li>
+<li>Slow query log is being written and reviewed.</li>
+<li>Application connects with the least-privilege account, not an admin account.</li>
+</ul>
+<h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Correct response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backup completes but won't restore</td>
+<td>Restore fails or data is incomplete</td>
+<td>Never restore-tested; missing routines/events</td>
+<td>Restore-test on a schedule; back up with <code>--routines --triggers --events</code>.</td>
+</tr>
+<tr>
+<td>Replication stops silently</td>
+<td>Lag grows; <code>Last_Error</code> set</td>
+<td>Schema drift, conflicting writes, binlog gap</td>
+<td>Read <code>SHOW REPLICA STATUS</code>; fix root cause; reseed if needed.</td>
+</tr>
+<tr>
+<td>Cutover data loss</td>
+<td>Rows missing after migration</td>
+<td>Cut over before replica caught up</td>
+<td>Require <code>Seconds_Behind_Source = 0</code> and checksums before cutover.</td>
+</tr>
+<tr>
+<td>Connection storms</td>
+<td><code>Too many connections</code></td>
+<td><code>max_connections</code> too low or leaked connections</td>
+<td>Fix pooling; size limits to host capacity.</td>
+</tr>
+<tr>
+<td>Character set corruption</td>
+<td>Mojibake after migration</td>
+<td>Source/target charset mismatch</td>
+<td>Verify <code>utf8mb4</code> end to end before migrating.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Keep the source instance and the pre-change backup until post-migration validation passes.</li>
+<li>To roll back a cutover, point applications back to the source and confirm row counts and replication.</li>
+<li>For a failed upgrade, restore from the pre-upgrade backup onto the prior version; do not attempt to downgrade data files in place.</li>
+<li>Rotate any credentials exposed during the change.</li>
+</ol>
+<h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Bind to private interfaces; never expose MySQL to the public internet.</li>
+<li>Encrypt backups and restrict who can read them — a backup is a full copy of the data.</li>
+<li>Keep credentials in a secret manager; pass them via protected client config or injection, not on the command line (it leaks into process lists and shell history).</li>
+<li>Audit administrative access; rotate after any break-glass event.</li>
+</ul>
+<h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Owner: the database/platform team.</li>
+<li>Verify a successful restore test at the scheduled interval (the single most important check).</li>
+<li>Re-confirm the supported upgrade path before each MySQL major upgrade.</li>
+<li>Re-check account privileges when a new service starts using the database.</li>
+</ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../platform-governance/publication-safety-checklist/">Publication Safety Checklist</a></li>
+<li><a href="../../../reliable-operations/observability/exporter-monitoring-standard/">Prometheus Exporter Monitoring Standard</a></li>
+<li><a href="../redis-operations-standard/">Redis Operations Standard</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/backup-and-recovery.html">MySQL backup and recovery documentation</a></li>
 </ul>
 
 
@@ -4330,7 +4482,7 @@ sysbench<span class="w"> </span>oltp_read_write<span class="w"> </span>--mysql-h
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 13:53:36 UTC">June 28, 2026</span>
   </span>
 
     
@@ -4340,7 +4492,7 @@ sysbench<span class="w"> </span>oltp_read_write<span class="w"> </span>--mysql-h
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 13:53:36 UTC">June 28, 2026</span>
   </span>
 
     
