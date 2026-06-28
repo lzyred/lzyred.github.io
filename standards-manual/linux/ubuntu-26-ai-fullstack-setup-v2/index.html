@@ -1,0 +1,6015 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Ubuntu 26.04 LTS 个人 AI 全栈开发工作站配置手册，覆盖 Go、Python、Vue.js、Claude API 与向量数据库的完整工具链安装与配置。">
+      
+      
+      
+        <link rel="canonical" href="https://blog.l2do.com/standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/">
+      
+      
+        <link rel="prev" href="../server-baseline-standard/">
+      
+      
+        <link rel="next" href="../system-os-patching-standard/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+          <link rel="alternate" href="../../../en/standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/brand/l2do-devops.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Ubuntu 26.04 AI 开发环境 - DevOps 专家知识库</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/site-experience.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  <script
+  defer
+  src="https://cloud.umami.is/script.js"
+  data-website-id="bdf9ed28-289e-416c-b470-3d833e8eac22"
+></script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Ubuntu 26.04 AI 开发环境 - DevOps 专家知识库" />
+<meta property="og:description" content="Ubuntu 26.04 LTS 个人 AI 全栈开发工作站配置手册，覆盖 Go、Python、Vue.js、Claude API 与向量数据库的完整工具链安装与配置。" />
+<meta property="og:image" content="https://blog.l2do.com/assets/images/social/standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://blog.l2do.com/standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Ubuntu 26.04 AI 开发环境 - DevOps 专家知识库" />
+<meta property="twitter:description" content="Ubuntu 26.04 LTS 个人 AI 全栈开发工作站配置手册，覆盖 Go、Python、Vue.js、Claude API 与向量数据库的完整工具链安装与配置。" />
+<meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ubuntu-2604-ai-v20" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="DevOps 专家知识库" class="md-header__button md-logo" aria-label="DevOps 专家知识库" data-md-component="logo">
+      
+  <img src="../../../assets/brand/l2do-devops.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DevOps 专家知识库
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ubuntu 26.04 AI 开发环境
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../en/standards-manual/linux/ubuntu-26-ai-fullstack-setup-v2/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lzyred/lzyred.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lzyred/lzyred.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../capability-map/" class="md-tabs__link">
+          
+  
+  
+  能力地图
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../system-design/" class="md-tabs__link">
+          
+  
+  
+  系统设计
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../change-delivery/" class="md-tabs__link">
+          
+  
+  
+  变更交付
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../reliable-operations/" class="md-tabs__link">
+          
+  
+  
+  可靠运行
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../platform-governance/" class="md-tabs__link">
+          
+  
+  
+  平台治理
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../cases-reviews/" class="md-tabs__link">
+          
+  
+  
+  案例复盘
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  标准手册
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="DevOps 专家知识库" class="md-nav__button md-logo" aria-label="DevOps 专家知识库" data-md-component="logo">
+      
+  <img src="../../../assets/brand/l2do-devops.svg" alt="logo">
+
+    </a>
+    DevOps 专家知识库
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lzyred/lzyred.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lzyred/lzyred.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    能力地图
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    能力地图
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../capability-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    能力地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../capability-map/topology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps 能力拓扑
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../capability-map/maturity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    价值与成熟度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../capability-map/self-assessment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自评与成长路径
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../capability-map/content-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    内容成熟度地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统设计
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生产架构
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    生产架构
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../system-design/production-architecture/aws-eks-production-ha-cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS EKS 生产级高可用集群
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../system-design/production-architecture/kubernetes-cluster-provisioning-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes 集群供给
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../system-design/production-architecture/kubernetes-storage-ingress-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes 存储与 Ingress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../system-design/production-architecture/kubeadm-installation-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kubeadm 安装
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../system-design/production-architecture/eks-upgrade-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EKS 与 Kubernetes 升级
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../system-design/production-architecture/nfs-pvc-capacity-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NFS PVC 容量管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    变更交付
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    变更交付
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../change-delivery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    变更交付
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD 与 GitOps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CI/CD 与 GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../change-delivery/cicd/argocd-gitops-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Argo CD GitOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../change-delivery/cicd/jenkins-kubernetes-pipeline-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jenkins 到 Kubernetes 流水线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    回滚设计
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    回滚设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../change-delivery/rollback/deployment-rollback-runbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    部署回滚 Runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    可靠运行
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    可靠运行
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reliable-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    可靠运行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    可观测性
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    可观测性
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reliable-operations/observability/prometheus-alerting-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus 告警
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reliable-operations/observability/exporter-monitoring-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporter 监控
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reliable-operations/observability/loki-logging-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loki 日志
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reliable-operations/observability/elfk-logging-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ELFK 日志
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reliable-operations/observability/node-exporter-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node Exporter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reliable-operations/observability/signoz-observability-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SigNoz 可观测性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    故障恢复
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    故障恢复
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reliable-operations/recovery/kubernetes-pvc-usage-alert-runbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PVC 使用率告警
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reliable-operations/recovery/linux-disk-lvm-expansion-runbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    磁盘与 LVM 扩容
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reliable-operations/recovery/tls-certificate-expiry-runbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TLS 证书过期
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reliable-operations/recovery/application-maintenance-health-check-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    应用健康检查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    平台治理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    平台治理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform-governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    平台治理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform-governance/gitlab-operations-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitLab 运维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform-governance/jumpserver-bastion-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JumpServer 堡垒机
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform-governance/publication-safety-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    发布安全检查清单
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform-governance/redash-deployment-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redash 部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例复盘
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    案例复盘
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases-reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    案例复盘
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实战案例
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    实战案例
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases-reviews/cases/anonymous-kubernetes-upgrade-case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes 升级案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases-reviews/cases/anonymous-object-storage-migration-case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    对象存储迁移案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases-reviews/cases/anonymous-containerization-migration-case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    应用容器化案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    标准手册
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    标准手册
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    标准手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    容器
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    容器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/docker-host-operations-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker 主机运维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/buildkit-build-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BuildKit 构建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/docker-compose-stack-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Compose 栈
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/harbor-registry-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Harbor 镜像仓库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/chartmuseum-helm-repository-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ChartMuseum Helm 仓库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据库
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据库
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/mysql-operations-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL 运维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/redis-operations-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redis 运维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/mongodb-operations-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MongoDB 运维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/etcd-operations-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    etcd 运维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_4" id="__nav_8_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    网络
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../networking/nginx-reverse-proxy-tls-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx 反向代理与 TLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../networking/haproxy-load-balancing-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HAProxy 负载均衡
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../networking/openvpn-access-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN 访问
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../networking/openwrt-network-device-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenWrt 网络设备
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../networking/samba-file-sharing-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Samba 文件共享
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_5" id="__nav_8_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中间件
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    中间件
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/api-gateway-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API 网关
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/kafka-zookeeper-operations-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kafka 与 ZooKeeper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/nacos-operations-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nacos 运维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/dolphinscheduler-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DolphinScheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8_6" id="__nav_8_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux 与系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux 与系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../server-baseline-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服务器基线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu 26.04 AI 开发环境
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu 26.04 AI 开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        适用范围与约束声明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架构总览
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0：预检
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1：系统基础配置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 1：系统基础配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 系统更新与基础工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-swap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Swap 配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 禁用休眠与息屏
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-fcitx5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 中文输入法（Fcitx5）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-nerd-fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Nerd Fonts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-tmux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 tmux（终端复用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2：Shell 环境架构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 2：Shell 环境架构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 建立统一环境变量文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 API Key 管理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-direnvper-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 direnv（per-project 环境变量）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-gitignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 全局 .gitignore
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3git-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3：Git 与 SSH 配置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-4vscode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4：VSCode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-5go" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5：Go 开发环境
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-6python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6：Python 开发环境
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 6：Python 开发环境">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-pyenv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 安装 pyenv
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 安装 uv
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-7nodejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 7：Node.js / 前端环境
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-8docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 8：Docker 容器环境
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-9docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 9：本地服务编排（docker-compose）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-10claude" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 10：Claude 客户端
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 10：Claude 客户端">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        情况说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#101-aclaude-code-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 选项 A：Claude Code CLI（官方支持，推荐）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-b-claude-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 选项 B：非官方 Claude Desktop（社区维护）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-11ollama-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 11：Ollama（本地 LLM）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 12：项目工作流模板
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 12：项目工作流模板">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-makefile-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Makefile 模板（AI 后端项目）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 新项目初始化脚本
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-13langfuse-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 13：Langfuse 配置（LLM 可观测性）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 14：最终验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        维护说明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="维护说明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        日常更新
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键文件备份清单
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        手册覆盖边界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system-os-patching-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统 OS 补丁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supervisor-process-management-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supervisor 进程管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_7" id="__nav_8_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    云与 IaC
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    云与 IaC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/cloud-network-migration-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    云网络与对象存储迁移
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../iac/terraform-iac-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terraform IaC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/shell-automation-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell 自动化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_8" id="__nav_8_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模板与检查单
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    模板与检查单
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/standard-document-template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    标准文档模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/runbook-template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runbook 模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/migration-plan-template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    迁移计划模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/devops-deep-article-quality-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps 深度文章质量标准
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    主题索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        适用范围与约束声明
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架构总览
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0：预检
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1：系统基础配置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 1：系统基础配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 系统更新与基础工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-swap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Swap 配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 禁用休眠与息屏
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-fcitx5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 中文输入法（Fcitx5）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-nerd-fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Nerd Fonts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-tmux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 tmux（终端复用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2：Shell 环境架构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 2：Shell 环境架构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 建立统一环境变量文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 API Key 管理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-direnvper-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 direnv（per-project 环境变量）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-gitignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 全局 .gitignore
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3git-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3：Git 与 SSH 配置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-4vscode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4：VSCode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-5go" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5：Go 开发环境
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-6python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6：Python 开发环境
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 6：Python 开发环境">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-pyenv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 安装 pyenv
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 安装 uv
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-7nodejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 7：Node.js / 前端环境
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-8docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 8：Docker 容器环境
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-9docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 9：本地服务编排（docker-compose）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-10claude" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 10：Claude 客户端
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 10：Claude 客户端">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        情况说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#101-aclaude-code-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 选项 A：Claude Code CLI（官方支持，推荐）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-b-claude-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 选项 B：非官方 Claude Desktop（社区维护）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-11ollama-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 11：Ollama（本地 LLM）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 12：项目工作流模板
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 12：项目工作流模板">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-makefile-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Makefile 模板（AI 后端项目）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 新项目初始化脚本
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-13langfuse-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 13：Langfuse 配置（LLM 可观测性）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 14：最终验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        维护说明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="维护说明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        日常更新
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键文件备份清单
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        手册覆盖边界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="导航栏" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    首页
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    标准手册
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../server-baseline-standard/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Linux 与系统
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:automation" class="md-tag md-tag-icon md-tag--automation">Automation</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:linux" class="md-tag md-tag-icon md-tag--linux">Linux</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../../../tags/#tag:platform" class="md-tag md-tag-icon md-tag--platform">Platform</a>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="ubuntu-2604-ai-v20">Ubuntu 26.04 AI 全栈开发环境配置手册 v2.0<a class="headerlink" href="#ubuntu-2604-ai-v20" title="Permanent link">&para;</a></h1>
+<h2 id="_1">适用范围与约束声明<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><strong>适用：</strong>
+- OS：Ubuntu 26.04 LTS Desktop（GNOME，X11 或 Wayland）
+- 硬件：x86_64，无 GPU，8GB+ RAM
+- 用途：个人 AI 应用开发工作站（Go + Python + Vue.js + Claude API + 向量数据库）
+- 执行身份：具备 <code>sudo</code> 权限的普通用户</p>
+<p><strong>不适用：</strong>
+- 服务器 / headless 环境
+- NVIDIA GPU 场景（不覆盖 CUDA 安装）
+- 生产部署（本手册仅覆盖本地开发工作流）
+- 多人共享机器（secrets 管理策略需调整）</p>
+<p><strong>风险声明：</strong>
+- Claude Desktop Linux 版为社区非官方构建，Anthropic 不提供支持
+- Ollama 在纯 CPU 环境下推理速度有限，仅适合开发期流程验证
+- 本手册涉及修改 shell 配置、添加第三方 APT 仓库，建议在全新安装的系统上执行</p>
+<p><strong>预计耗时：</strong> 2.5–4 小时（含下载时间）</p>
+<hr />
+<h2 id="_2">架构总览<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>开发工作站组件栈
+├── 系统层
+│   ├── Ubuntu 26.04 基础配置（禁休眠、中文输入、Swap）
+│   └── Shell 环境（Bash + direnv + 统一 env 文件）
+├── 工具层
+│   ├── Git + SSH + 全局 .gitignore
+│   ├── VSCode（官方 .deb）
+│   └── tmux（终端复用）
+├── 语言层
+│   ├── Go（官方 tarball）
+│   ├── Python（pyenv + uv）
+│   └── Node.js（nvm + pnpm）
+├── 容器层
+│   └── Docker Engine + Compose（统一 docker-compose 管理本地服务）
+├── 服务层（docker-compose 统一编排）
+│   ├── Qdrant（向量数据库）
+│   ├── PostgreSQL + pgvector（关系型 + 向量）
+│   ├── Redis（缓存 / 会话 / 队列）
+│   └── Langfuse（LLM 可观测性）
+├── AI 客户端层
+│   ├── Claude Code CLI（官方 Linux 路径）
+│   ├── Claude Desktop（非官方 .deb，可选）
+│   └── Ollama（本地 LLM，开发期成本控制）
+└── 项目模板层
+    ├── Makefile（工作流标准化）
+    ├── .envrc（per-project 环境变量）
+    └── docker-compose.yml（本地服务编排）
+</code></pre></div>
+<p><strong>核心设计原则：</strong>
+- Shell 环境变量单一来源：<code>~/.config/devenv/env.sh</code>，<code>~/.bashrc</code> 只 source 一次
+- 本地服务统一 docker-compose 管理，不直接 <code>docker run</code>
+- 开发期用 Ollama 验证流程，仅在集成测试和生产调用 Claude API，控制成本
+- per-project 环境变量用 direnv 隔离，不污染全局</p>
+<hr />
+<h2 id="phase-0">Phase 0：预检<a class="headerlink" href="#phase-0" title="Permanent link">&para;</a></h2>
+<p>执行所有后续步骤前，先确认环境满足基础条件。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 确认系统版本</span>
+lsb_release<span class="w"> </span>-a
+
+<span class="c1"># 确认是 GNOME 桌面</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$XDG_CURRENT_DESKTOP</span>
+
+<span class="c1"># 检查可用磁盘空间（建议 /home 至少剩余 40GB）</span>
+df<span class="w"> </span>-h<span class="w"> </span>~
+
+<span class="c1"># 检查内存</span>
+free<span class="w"> </span>-h
+
+<span class="c1"># 确认 sudo 可用</span>
+sudo<span class="w"> </span>whoami<span class="w">    </span><span class="c1"># 应返回 root</span>
+
+<span class="c1"># 确认网络（如需代理请提前配置）</span>
+curl<span class="w"> </span>-fsSL<span class="w"> </span>https://go.dev/VERSION?m<span class="o">=</span>text
+</code></pre></div>
+<p><strong>继续前提：</strong> 磁盘剩余 ≥ 40GB，RAM ≥ 8GB，网络可访问境外资源。</p>
+<hr />
+<h2 id="phase-1">Phase 1：系统基础配置<a class="headerlink" href="#phase-1" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 系统更新与基础工具<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
+
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>curl<span class="w"> </span>wget<span class="w"> </span>git<span class="w"> </span>build-essential<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ca-certificates<span class="w"> </span>gnupg<span class="w"> </span>lsb-release<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>software-properties-common<span class="w"> </span>apt-transport-https<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>unzip<span class="w"> </span>zip<span class="w"> </span>jq<span class="w"> </span>tree<span class="w"> </span>htop<span class="w"> </span>net-tools<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>tmux<span class="w"> </span>xclip<span class="w"> </span>libfuse2<span class="w"> </span>imagemagick<span class="w"> </span>p7zip-full<span class="w"> </span>icoutils
+</code></pre></div>
+<p><strong>验证：</strong>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>--version<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>curl<span class="w"> </span>--version<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>tmux<span class="w"> </span>-V
+</code></pre></div></p>
+<hr />
+<h3 id="12-swap">1.2 Swap 配置<a class="headerlink" href="#12-swap" title="Permanent link">&para;</a></h3>
+<p><strong>为什么：</strong> 纯 CPU 运行 Embedding 模型或 Ollama 推理时，内存压力显著。没有 Swap 会触发 OOM Killer，进程被强制终止。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 检查当前 Swap 状态</span>
+free<span class="w"> </span>-h<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>swapon<span class="w"> </span>--show
+
+<span class="c1"># 如果没有 Swap，创建 8GB Swapfile</span>
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span>swapon<span class="w"> </span>--show<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span>.<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>sudo<span class="w"> </span>fallocate<span class="w"> </span>-l<span class="w"> </span>8G<span class="w"> </span>/swapfile
+<span class="w">  </span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/swapfile
+<span class="w">  </span>sudo<span class="w"> </span>mkswap<span class="w"> </span>/swapfile
+<span class="w">  </span>sudo<span class="w"> </span>swapon<span class="w"> </span>/swapfile
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;/swapfile none swap sw 0 0&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/fstab
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Swapfile created&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># 降低 swappiness（开发机不应频繁使用 Swap，只作保底）</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;vm.swappiness=10&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/sysctl.d/99-swappiness.conf
+sudo<span class="w"> </span>sysctl<span class="w"> </span>-p<span class="w"> </span>/etc/sysctl.d/99-swappiness.conf
+</code></pre></div>
+<p><strong>验证：</strong>
+<div class="highlight"><pre><span></span><code>free<span class="w"> </span>-h<span class="w">    </span><span class="c1"># SWAP 行应显示 8G 可用</span>
+cat<span class="w"> </span>/proc/sys/vm/swappiness<span class="w">    </span><span class="c1"># 应返回 10</span>
+</code></pre></div></p>
+<hr />
+<h3 id="13">1.3 禁用休眠与息屏<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># systemd 层屏蔽所有休眠目标</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>mask<span class="w"> </span>sleep.target<span class="w"> </span>suspend.target<span class="w"> </span>hibernate.target<span class="w"> </span>hybrid-sleep.target
+
+<span class="c1"># GNOME 层关闭息屏与自动挂起</span>
+gsettings<span class="w"> </span><span class="nb">set</span><span class="w"> </span>org.gnome.settings-daemon.plugins.power<span class="w"> </span>sleep-inactive-ac-type<span class="w"> </span><span class="s1">&#39;nothing&#39;</span>
+gsettings<span class="w"> </span><span class="nb">set</span><span class="w"> </span>org.gnome.settings-daemon.plugins.power<span class="w"> </span>sleep-inactive-battery-type<span class="w"> </span><span class="s1">&#39;nothing&#39;</span>
+gsettings<span class="w"> </span><span class="nb">set</span><span class="w"> </span>org.gnome.desktop.session<span class="w"> </span>idle-delay<span class="w"> </span><span class="m">0</span>
+gsettings<span class="w"> </span><span class="nb">set</span><span class="w"> </span>org.gnome.desktop.screensaver<span class="w"> </span>lock-enabled<span class="w"> </span><span class="nb">false</span>
+gsettings<span class="w"> </span><span class="nb">set</span><span class="w"> </span>org.gnome.desktop.screensaver<span class="w"> </span>idle-activation-enabled<span class="w"> </span><span class="nb">false</span>
+</code></pre></div>
+<p><strong>验证：</strong>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>is-enabled<span class="w"> </span>sleep.target<span class="w">    </span><span class="c1"># 应返回 masked</span>
+gsettings<span class="w"> </span>get<span class="w"> </span>org.gnome.desktop.session<span class="w"> </span>idle-delay<span class="w">    </span><span class="c1"># 应返回 uint32 0</span>
+</code></pre></div></p>
+<p><strong>回滚（如需恢复休眠）：</strong>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>unmask<span class="w"> </span>sleep.target<span class="w"> </span>suspend.target<span class="w"> </span>hibernate.target<span class="w"> </span>hybrid-sleep.target
+</code></pre></div></p>
+<hr />
+<h3 id="14-fcitx5">1.4 中文输入法（Fcitx5）<a class="headerlink" href="#14-fcitx5" title="Permanent link">&para;</a></h3>
+<p><strong>为什么选 Fcitx5 而不是 IBus：</strong> Ubuntu 22.04 起 Fcitx5 已是 Linux 桌面首选输入框架，与 Wayland 兼容更好，中文扩展（拼音、五笔、Rime）更完整，社区维护更活跃。IBus 在 GNOME Wayland 下有已知的光标跟随问题。</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>fcitx5<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>fcitx5-chinese-addons<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>fcitx5-frontend-gtk4<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>fcitx5-frontend-qt5<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>im-config
+
+<span class="c1"># 设置为系统默认输入法框架</span>
+im-config<span class="w"> </span>-n<span class="w"> </span>fcitx5
+
+<span class="c1"># 设置开机自启</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/.config/autostart
+cat<span class="w"> </span>&gt;<span class="w"> </span>~/.config/autostart/fcitx5.desktop<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">[Desktop Entry]</span>
+<span class="s">Name=Fcitx5</span>
+<span class="s">Exec=fcitx5</span>
+<span class="s">Terminal=false</span>
+<span class="s">Type=Application</span>
+<span class="s">Categories=System;Utility;</span>
+<span class="s">StartupNotify=false</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<p><strong>注销并重新登录后：</strong>
+<div class="highlight"><pre><span></span><code>fcitx5<span class="w"> </span><span class="p">&amp;</span>
+fcitx5-configtool<span class="w">    </span><span class="c1"># 在 Input Method 中添加 Pinyin（拼音）</span>
+</code></pre></div></p>
+<p><strong>VSCode 中文输入问题（已知问题）：</strong></p>
+<p>VSCode 从应用菜单启动时不继承 Fcitx5 环境变量，导致无法输入中文。解决方法：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建 VSCode 启动脚本，从终端启动以继承环境</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>~/.local/bin/code-fcitx<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">#!/bin/bash</span>
+<span class="s">export GTK_IM_MODULE=fcitx</span>
+<span class="s">export QT_IM_MODULE=fcitx</span>
+<span class="s">export XMODIFIERS=@im=fcitx</span>
+<span class="s">exec code &quot;$@&quot;</span>
+<span class="s">EOF</span>
+chmod<span class="w"> </span>+x<span class="w"> </span>~/.local/bin/code-fcitx
+
+<span class="c1"># 修改桌面快捷方式使用该脚本</span>
+sudo<span class="w"> </span>cp<span class="w"> </span>/usr/share/applications/code.desktop<span class="w"> </span>~/.local/share/applications/
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s|Exec=/usr/share/code/code|Exec=/home/&#39;</span><span class="s2">&quot;</span><span class="nv">$USER</span><span class="s2">&quot;</span><span class="s1">&#39;/.local/bin/code-fcitx|g&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>~/.local/share/applications/code.desktop
+</code></pre></div>
+<p><strong>常见失败模式：</strong>
+- Wayland 下输入法不跟随光标：Fcitx5 → Behavior → 勾选 "Show preedit in application window"
+- 切换快捷键冲突：默认 <code>Ctrl+Space</code>，可在 Fcitx5 Config → Global Options 中修改</p>
+<hr />
+<h3 id="15-nerd-fonts">1.5 Nerd Fonts<a class="headerlink" href="#15-nerd-fonts" title="Permanent link">&para;</a></h3>
+<p><strong>为什么：</strong> VSCode 和终端（tmux、oh-my-posh 等）使用图标字体，未安装 Nerd Fonts 会显示方块乱码。</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.local/share/fonts/JetBrainsMono
+
+<span class="c1"># 下载 JetBrainsMono Nerd Font（推荐：等宽、连字支持好）</span>
+wget<span class="w"> </span>-q<span class="w"> </span><span class="s2">&quot;https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-O<span class="w"> </span>/tmp/JetBrainsMono.zip
+
+unzip<span class="w"> </span>-o<span class="w"> </span>/tmp/JetBrainsMono.zip<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;JetBrainsMonoNerdFont-Regular.ttf&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;JetBrainsMonoNerdFont-Bold.ttf&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;JetBrainsMonoNerdFont-Italic.ttf&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span>~/.local/share/fonts/JetBrainsMono/
+
+fc-cache<span class="w"> </span>-fv
+rm<span class="w"> </span>/tmp/JetBrainsMono.zip
+</code></pre></div>
+<p><strong>VSCode 中启用：</strong> Settings → <code>editor.fontFamily</code> → <code>'JetBrainsMono Nerd Font', monospace</code></p>
+<hr />
+<h3 id="16-tmux">1.6 tmux（终端复用）<a class="headerlink" href="#16-tmux" title="Permanent link">&para;</a></h3>
+<p><strong>为什么：</strong> AI 开发同时需要运行：后端服务、前端 dev server、docker compose 日志、LLM 推理进程。tmux 允许在一个终端窗口管理多个会话和窗格，且 SSH 断连后进程不丢失。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 基础 tmux 配置（鼠标支持 + 合理快捷键）</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>~/.tmux.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s"># 前缀键改为 Ctrl+a（比默认 Ctrl+b 更顺手）</span>
+<span class="s">unbind C-b</span>
+<span class="s">set-option -g prefix C-a</span>
+<span class="s">bind-key C-a send-prefix</span>
+
+<span class="s"># 鼠标支持</span>
+<span class="s">set -g mouse on</span>
+
+<span class="s"># 窗口从 1 开始编号（与键盘布局一致）</span>
+<span class="s">set -g base-index 1</span>
+<span class="s">setw -g pane-base-index 1</span>
+
+<span class="s"># 快捷键：垂直 / 水平分割</span>
+<span class="s">bind | split-window -h -c &quot;#{pane_current_path}&quot;</span>
+<span class="s">bind - split-window -v -c &quot;#{pane_current_path}&quot;</span>
+
+<span class="s"># 增大历史记录行数</span>
+<span class="s">set -g history-limit 10000</span>
+
+<span class="s"># 256 色支持</span>
+<span class="s">set -g default-terminal &quot;screen-256color&quot;</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<p><strong>常用快捷键参考：</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>垂直分割</td>
+<td><code>Ctrl+a</code> <code>|</code></td>
+</tr>
+<tr>
+<td>水平分割</td>
+<td><code>Ctrl+a</code> <code>-</code></td>
+</tr>
+<tr>
+<td>切换窗格</td>
+<td><code>Ctrl+a</code> 方向键</td>
+</tr>
+<tr>
+<td>新建窗口</td>
+<td><code>Ctrl+a</code> <code>c</code></td>
+</tr>
+<tr>
+<td>切换窗口</td>
+<td><code>Ctrl+a</code> 数字</td>
+</tr>
+<tr>
+<td>分离会话</td>
+<td><code>Ctrl+a</code> <code>d</code></td>
+</tr>
+<tr>
+<td>重连会话</td>
+<td><code>tmux attach</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="phase-2shell">Phase 2：Shell 环境架构<a class="headerlink" href="#phase-2shell" title="Permanent link">&para;</a></h2>
+<p><strong>为什么单独作为一个 Phase：</strong> 后续所有工具都需要修改环境变量。如果每个工具各自追加到 <code>~/.bashrc</code>，会产生重复条目、顺序错乱、幂等性失效等问题。本 Phase 建立统一的环境变量管理架构，后续工具全部写入这个统一文件。</p>
+<h3 id="21">2.1 建立统一环境变量文件<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建目录结构</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/.config/devenv
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/.config/dev-secrets
+
+<span class="c1"># 创建统一 env 文件（所有工具的 PATH 和 export 集中在此）</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>~/.config/devenv/env.sh<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s"># ============================================================</span>
+<span class="s"># Dev Environment - 统一管理，工具安装时追加到此文件</span>
+<span class="s"># ============================================================</span>
+
+<span class="s"># Go</span>
+<span class="s">export PATH=$PATH:/usr/local/go/bin</span>
+<span class="s">export GOPATH=$HOME/go</span>
+<span class="s">export PATH=$PATH:$GOPATH/bin</span>
+
+<span class="s"># pyenv</span>
+<span class="s">export PYENV_ROOT=&quot;$HOME/.pyenv&quot;</span>
+<span class="s">[[ -d $PYENV_ROOT/bin ]] &amp;&amp; export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;</span>
+<span class="s">command -v pyenv &gt; /dev/null &amp;&amp; eval &quot;$(pyenv init -)&quot;</span>
+
+<span class="s"># uv</span>
+<span class="s">export PATH=&quot;$HOME/.local/bin:$PATH&quot;</span>
+
+<span class="s"># nvm（通过 nvm.sh 加载）</span>
+<span class="s">export NVM_DIR=&quot;$HOME/.nvm&quot;</span>
+<span class="s">[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; source &quot;$NVM_DIR/nvm.sh&quot;</span>
+<span class="s">[ -s &quot;$NVM_DIR/bash_completion&quot; ] &amp;&amp; source &quot;$NVM_DIR/bash_completion&quot;</span>
+
+<span class="s"># direnv hook</span>
+<span class="s">command -v direnv &gt; /dev/null &amp;&amp; eval &quot;$(direnv hook bash)&quot;</span>
+
+<span class="s"># 本地 bin</span>
+<span class="s">export PATH=&quot;$HOME/.local/bin:$PATH&quot;</span>
+
+<span class="s"># Secrets（API Keys 等，不纳入 Git）</span>
+<span class="s">[ -f &quot;$HOME/.config/dev-secrets/keys.env&quot; ] &amp;&amp; source &quot;$HOME/.config/dev-secrets/keys.env&quot;</span>
+<span class="s">EOF</span>
+
+<span class="c1"># ~/.bashrc 只添加一行 source（幂等，添加前检查是否已存在）</span>
+grep<span class="w"> </span>-q<span class="w"> </span><span class="s1">&#39;devenv/env.sh&#39;</span><span class="w"> </span>~/.bashrc<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;[ -f &quot;$HOME/.config/devenv/env.sh&quot; ] &amp;&amp; source &quot;$HOME/.config/devenv/env.sh&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div>
+<h3 id="22-api-key">2.2 API Key 管理<a class="headerlink" href="#22-api-key" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建 secrets 文件（权限 600，仅当前用户可读）</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>~/.config/dev-secrets/keys.env<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s"># Anthropic</span>
+<span class="s">export ANTHROPIC_API_KEY=&quot;&lt;ANTHROPIC_API_KEY&gt;&quot;</span>
+
+<span class="s"># OpenAI（如需）</span>
+<span class="s"># export OPENAI_API_KEY=&quot;&lt;OPENAI_API_KEY&gt;&quot;</span>
+
+<span class="s"># 本地服务（无需保密，但统一放这里方便项目引用）</span>
+<span class="s">export QDRANT_HOST=&quot;localhost&quot;</span>
+<span class="s">export QDRANT_PORT=&quot;6333&quot;</span>
+<span class="s">export REDIS_URL=&quot;redis://localhost:6379&quot;</span>
+<span class="s">export DATABASE_URL=&quot;postgresql://devuser:&lt;LOCAL_DEV_POSTGRES_PASSWORD&gt;@localhost:5432/devdb&quot;</span>
+<span class="s">EOF</span>
+
+chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.config/dev-secrets/keys.env
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div>
+<p><strong>验证：</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$ANTHROPIC_API_KEY</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c1-10<span class="w">    </span><span class="c1"># 显示 Key 前 10 位</span>
+</code></pre></div></p>
+<hr />
+<h3 id="23-direnvper-project">2.3 direnv（per-project 环境变量）<a class="headerlink" href="#23-direnvper-project" title="Permanent link">&para;</a></h3>
+<p><strong>为什么：</strong> 全局 secrets 文件适合通用 Key，但不同项目有不同的模型选择、不同的服务端口、不同的 DB 名。direnv 实现进入目录自动加载、离开自动卸载，互不污染。</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>direnv
+<span class="c1"># direnv hook 已在 env.sh 中配置，直接生效</span>
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div>
+<p><strong>每个项目的用法：</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/projects/my-ai-app
+
+cat<span class="w"> </span>&gt;<span class="w"> </span>.envrc<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s"># 项目专属变量（覆盖全局）</span>
+<span class="s">export ANTHROPIC_API_KEY=&quot;&lt;PROJECT_ANTHROPIC_API_KEY&gt;&quot;</span>
+<span class="s">export MODEL=&quot;claude-sonnet-4-6&quot;</span>
+<span class="s">export QDRANT_COLLECTION=&quot;my-app-vectors&quot;</span>
+<span class="s">export LOG_LEVEL=&quot;debug&quot;</span>
+<span class="s">EOF</span>
+
+direnv<span class="w"> </span>allow<span class="w"> </span>.<span class="w">    </span><span class="c1"># 首次允许加载</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;.envrc&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore<span class="w">    </span><span class="c1"># 不提交 secrets</span>
+</code></pre></div></p>
+<hr />
+<h3 id="24-gitignore">2.4 全局 .gitignore<a class="headerlink" href="#24-gitignore" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.excludesfile<span class="w"> </span>~/.gitignore_global
+
+cat<span class="w"> </span>&gt;<span class="w"> </span>~/.gitignore_global<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s"># Secrets</span>
+<span class="s">.env</span>
+<span class="s">.env.*</span>
+<span class="s">.envrc</span>
+<span class="s">*.key</span>
+<span class="s">*.pem</span>
+<span class="s">*.p12</span>
+<span class="s">*_rsa</span>
+<span class="s">*_ed25519</span>
+
+<span class="s"># Python</span>
+<span class="s">__pycache__/</span>
+<span class="s">*.py[cod]</span>
+<span class="s">*.pyo</span>
+<span class="s">.venv/</span>
+<span class="s">venv/</span>
+<span class="s">.pytest_cache/</span>
+<span class="s">*.egg-info/</span>
+<span class="s">dist/</span>
+<span class="s">build/</span>
+
+<span class="s"># Go</span>
+<span class="s">*.exe</span>
+<span class="s">*.test</span>
+<span class="s">vendor/</span>
+
+<span class="s"># Node.js</span>
+<span class="s">node_modules/</span>
+<span class="s">dist/</span>
+<span class="s">.nuxt/</span>
+<span class="s">.output/</span>
+
+<span class="s"># IDE</span>
+<span class="s">.idea/</span>
+<span class="s">.vscode/settings.json</span>
+<span class="s">*.swp</span>
+<span class="s">*.swo</span>
+
+<span class="s"># OS</span>
+<span class="s">.DS_Store</span>
+<span class="s">Thumbs.db</span>
+
+<span class="s"># Logs &amp; Data</span>
+<span class="s">*.log</span>
+<span class="s">*.sqlite</span>
+<span class="s">*.db</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<hr />
+<h2 id="phase-3git-ssh">Phase 3：Git 与 SSH 配置<a class="headerlink" href="#phase-3git-ssh" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Git 基础配置</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;Your Name&quot;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;you@example.com&quot;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.editor<span class="w"> </span><span class="s2">&quot;code --wait&quot;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>init.defaultBranch<span class="w"> </span>main
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>pull.rebase<span class="w"> </span><span class="nb">false</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>push.autoSetupRemote<span class="w"> </span><span class="nb">true</span>
+
+<span class="c1"># SSH Key 生成（如已有可跳过）</span>
+<span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>~/.ssh/id_ed25519<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;you@example.com&quot;</span><span class="w"> </span>-f<span class="w"> </span>~/.ssh/id_ed25519
+
+<span class="c1"># SSH config 模板（多账户 / 多服务器场景）</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/.ssh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>~/.ssh
+cat<span class="w"> </span>&gt;<span class="w"> </span>~/.ssh/config<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s"># GitHub 主账户</span>
+<span class="s">Host github.com</span>
+<span class="s">  HostName github.com</span>
+<span class="s">  User git</span>
+<span class="s">  IdentityFile ~/.ssh/id_ed25519</span>
+<span class="s">  AddKeysToAgent yes</span>
+
+<span class="s"># 开发服务器（按需填写）</span>
+<span class="s"># Host dev-server</span>
+<span class="s">#   HostName 192.168.1.xxx</span>
+<span class="s">#   User ubuntu</span>
+<span class="s">#   IdentityFile ~/.ssh/id_ed25519</span>
+<span class="s">#   ServerAliveInterval 60</span>
+<span class="s">EOF</span>
+chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/config
+
+<span class="c1"># 输出公钥，复制到 GitHub → Settings → SSH Keys</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== 你的 SSH 公钥（复制到 GitHub）===&quot;</span>
+cat<span class="w"> </span>~/.ssh/id_ed25519.pub
+</code></pre></div>
+<p><strong>验证（添加 SSH Key 到 GitHub 后）：</strong>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com<span class="w">    </span><span class="c1"># 应返回 &quot;Hi username! You&#39;ve successfully authenticated&quot;</span>
+</code></pre></div></p>
+<hr />
+<h2 id="phase-4vscode">Phase 4：VSCode<a class="headerlink" href="#phase-4vscode" title="Permanent link">&para;</a></h2>
+<p><strong>为什么用官方 .deb 而不是 Snap：</strong> Snap 版 VSCode 运行在沙箱中，对 <code>/home</code> 之外的路径、系统 socket、Go/Python 工具链的访问有限制，会导致 LSP 路径解析失败。官方 .deb 无此限制。</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://packages.microsoft.com/keys/microsoft.asc<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/usr/share/keyrings/packages.microsoft.gpg<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] \</span>
+<span class="s2">  https://packages.microsoft.com/repos/code stable main&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/vscode.list
+
+sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>code
+code<span class="w"> </span>--version
+</code></pre></div>
+<p><strong>VSCode 核心配置</strong>（<code>Ctrl+Shift+P</code> → "Open User Settings JSON"）：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;editor.fontFamily&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;JetBrainsMono Nerd Font&#39;, &#39;Courier New&#39;, monospace&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;editor.fontSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;editor.lineHeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.6</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;editor.tabSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;editor.minimap.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;editor.bracketPairColorization.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;editor.inlayHints.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;terminal.integrated.fontFamily&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;JetBrainsMono Nerd Font&#39;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;terminal.integrated.fontSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;files.autoSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onFocusChange&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;workbench.colorTheme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Default Dark Modern&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;explorer.confirmDelete&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;[python]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;editor.defaultFormatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ms-python.black-formatter&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;[go]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;editor.defaultFormatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;golang.go&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;[vue]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;editor.defaultFormatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Vue.volar&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>扩展安装：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 语言核心（必装）</span>
+code<span class="w"> </span>--install-extension<span class="w"> </span>golang.go
+code<span class="w"> </span>--install-extension<span class="w"> </span>ms-python.python
+code<span class="w"> </span>--install-extension<span class="w"> </span>ms-python.pylance
+code<span class="w"> </span>--install-extension<span class="w"> </span>ms-python.black-formatter
+code<span class="w"> </span>--install-extension<span class="w"> </span>Vue.volar
+
+<span class="c1"># 代码质量</span>
+code<span class="w"> </span>--install-extension<span class="w"> </span>esbenp.prettier-vscode
+code<span class="w"> </span>--install-extension<span class="w"> </span>dbaeumer.vscode-eslint
+code<span class="w"> </span>--install-extension<span class="w"> </span>streetsidesoftware.code-spell-checker
+
+<span class="c1"># Git</span>
+code<span class="w"> </span>--install-extension<span class="w"> </span>eamodio.gitlens
+code<span class="w"> </span>--install-extension<span class="w"> </span>mhutchie.git-graph
+
+<span class="c1"># 容器与工具</span>
+code<span class="w"> </span>--install-extension<span class="w"> </span>ms-azuretools.vscode-docker
+code<span class="w"> </span>--install-extension<span class="w"> </span>humao.rest-client
+code<span class="w"> </span>--install-extension<span class="w"> </span>mechatroner.rainbow-csv
+code<span class="w"> </span>--install-extension<span class="w"> </span>redhat.vscode-yaml
+</code></pre></div>
+<hr />
+<h2 id="phase-5go">Phase 5：Go 开发环境<a class="headerlink" href="#phase-5go" title="Permanent link">&para;</a></h2>
+<p><strong>为什么用官方 tarball：</strong> Ubuntu apt 仓库的 Go 版本通常落后官方 1–2 个版本。Go 的更新频率约每 6 个月一个大版本，工具链更新也依赖具体版本，建议直接用官方包。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 获取最新版本号并安装</span>
+<span class="nv">GO_LATEST</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://go.dev/VERSION?m<span class="o">=</span>text<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1<span class="k">)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing: </span><span class="nv">$GO_LATEST</span><span class="s2">&quot;</span>
+
+wget<span class="w"> </span><span class="s2">&quot;https://go.dev/dl/</span><span class="si">${</span><span class="nv">GO_LATEST</span><span class="si">}</span><span class="s2">.linux-amd64.tar.gz&quot;</span><span class="w"> </span>-O<span class="w"> </span>/tmp/go.tar.gz
+sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/usr/local/go
+sudo<span class="w"> </span>tar<span class="w"> </span>-C<span class="w"> </span>/usr/local<span class="w"> </span>-xzf<span class="w"> </span>/tmp/go.tar.gz
+rm<span class="w"> </span>/tmp/go.tar.gz
+
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div>
+<p><strong>验证：</strong>
+<div class="highlight"><pre><span></span><code>go<span class="w"> </span>version
+go<span class="w"> </span>env<span class="w"> </span>GOPATH
+</code></pre></div></p>
+<p><strong>安装核心 Go 工具：</strong></p>
+<div class="highlight"><pre><span></span><code>go<span class="w"> </span>install<span class="w"> </span>golang.org/x/tools/gopls@latest<span class="w">           </span><span class="c1"># Language Server（VSCode Go 必需）</span>
+go<span class="w"> </span>install<span class="w"> </span>github.com/go-delve/delve/cmd/dlv@latest<span class="w">   </span><span class="c1"># 调试器</span>
+go<span class="w"> </span>install<span class="w"> </span>golang.org/x/tools/cmd/goimports@latest<span class="w">    </span><span class="c1"># import 自动管理</span>
+go<span class="w"> </span>install<span class="w"> </span>github.com/golangci/golangci-lint/cmd/golangci-lint@latest<span class="w">  </span><span class="c1"># Linter</span>
+go<span class="w"> </span>install<span class="w"> </span>github.com/air-verse/air@latest<span class="w">             </span><span class="c1"># 热重载（开发期自动重启）</span>
+</code></pre></div>
+<p><strong>常见失败模式：</strong>
+- <code>gopls: command not found</code>：<code>$GOPATH/bin</code> 未在 PATH 中，检查 <code>~/.config/devenv/env.sh</code>
+- <code>go install</code> 报网络超时：配置 GOPROXY <code>go env -w GOPROXY=https://goproxy.cn,direct</code>（国内环境）</p>
+<hr />
+<h2 id="phase-6python">Phase 6：Python 开发环境<a class="headerlink" href="#phase-6python" title="Permanent link">&para;</a></h2>
+<h3 id="61-pyenv">6.1 安装 pyenv<a class="headerlink" href="#61-pyenv" title="Permanent link">&para;</a></h3>
+<p><strong>为什么 pyenv 而不是 conda：</strong> conda 适合数据科学场景（大量二进制依赖），AI 应用开发场景（API 调用、服务开发）不需要 conda 的复杂性。pyenv 轻量、与 uv 配合更好。</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libssl-dev<span class="w"> </span>zlib1g-dev<span class="w"> </span>libbz2-dev<span class="w"> </span>libreadline-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libsqlite3-dev<span class="w"> </span>libncursesw5-dev<span class="w"> </span>xz-utils<span class="w"> </span>tk-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libxml2-dev<span class="w"> </span>libxmlsec1-dev<span class="w"> </span>libffi-dev<span class="w"> </span>liblzma-dev
+
+curl<span class="w"> </span>https://pyenv.run<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+
+<span class="c1"># 安装 Python 3.12（AI 生态支持最好的稳定版本）</span>
+pyenv<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12.0
+pyenv<span class="w"> </span>global<span class="w"> </span><span class="m">3</span>.12.0
+
+python<span class="w"> </span>--version<span class="w">    </span><span class="c1"># Python 3.12.0</span>
+</code></pre></div>
+<h3 id="62-uv">6.2 安装 uv<a class="headerlink" href="#62-uv" title="Permanent link">&para;</a></h3>
+<p><strong>为什么 uv 而不是 pip/poetry：</strong> uv 用 Rust 实现，依赖解析和安装速度比 pip 快 10–100 倍，兼容 pip 语法，内置 venv 管理，2024 年后已成为 Python 工具链新标准。</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+uv<span class="w"> </span>--version
+</code></pre></div>
+<p><strong>AI 项目典型依赖（在项目目录中按需安装）：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/projects/my-ai-app
+uv<span class="w"> </span>init<span class="w"> </span>.
+uv<span class="w"> </span>add<span class="w"> </span>anthropic<span class="w">                  </span><span class="c1"># Claude SDK</span>
+uv<span class="w"> </span>add<span class="w"> </span>openai<span class="w">                     </span><span class="c1"># OpenAI 兼容接口（Ollama 也用此）</span>
+uv<span class="w"> </span>add<span class="w"> </span>langchain<span class="w"> </span>langchain-anthropic<span class="w"> </span>langchain-community
+uv<span class="w"> </span>add<span class="w"> </span>qdrant-client<span class="w">              </span><span class="c1"># Qdrant 向量数据库</span>
+uv<span class="w"> </span>add<span class="w"> </span>sentence-transformers<span class="w">      </span><span class="c1"># 本地 Embedding（CPU）</span>
+uv<span class="w"> </span>add<span class="w"> </span>fastapi<span class="w"> </span><span class="s2">&quot;uvicorn[standard]&quot;</span><span class="w">  </span><span class="c1"># API 服务</span>
+uv<span class="w"> </span>add<span class="w"> </span>redis<span class="w">                      </span><span class="c1"># Redis 客户端</span>
+uv<span class="w"> </span>add<span class="w"> </span>python-dotenv<span class="w">              </span><span class="c1"># .env 文件加载</span>
+uv<span class="w"> </span>add<span class="w"> </span>pytest<span class="w"> </span>pytest-asyncio<span class="w">      </span><span class="c1"># 测试</span>
+</code></pre></div>
+<p><strong>说明：</strong><code>sentence-transformers</code> 在 CPU 环境下默认安装 CPU 版 PyTorch（约 500MB），首次 <code>import</code> 时自动下载 Embedding 模型（约 90MB）。</p>
+<hr />
+<h2 id="phase-7nodejs">Phase 7：Node.js / 前端环境<a class="headerlink" href="#phase-7nodejs" title="Permanent link">&para;</a></h2>
+<p><strong>为什么 nvm 而不是 apt：</strong> apt 的 Node.js 通常是旧 LTS 版本。前端生态对 Node.js 版本敏感，nvm 支持多版本共存。</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-o-<span class="w"> </span>https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+
+nvm<span class="w"> </span>install<span class="w"> </span>--lts
+nvm<span class="w"> </span>use<span class="w"> </span>--lts
+nvm<span class="w"> </span><span class="nb">alias</span><span class="w"> </span>default<span class="w"> </span>lts/*
+
+node<span class="w"> </span>--version<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>--version
+</code></pre></div>
+<p><strong>安装 pnpm（替代 npm）：</strong></p>
+<p><strong>为什么 pnpm：</strong> pnpm 通过硬链接共享依赖，磁盘占用比 npm/yarn 低 60%，安装速度更快，在 monorepo 场景下优势尤为明显。</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>pnpm
+pnpm<span class="w"> </span>--version
+
+<span class="c1"># Vue 项目脚手架</span>
+pnpm<span class="w"> </span>add<span class="w"> </span>-g<span class="w"> </span>@vue/cli
+<span class="c1"># 或使用 Vite（推荐）：pnpm create vite my-app --template vue-ts</span>
+</code></pre></div>
+<hr />
+<h2 id="phase-8docker">Phase 8：Docker 容器环境<a class="headerlink" href="#phase-8docker" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 清理旧版本</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>-y<span class="w"> </span>docker<span class="w"> </span>docker-engine<span class="w"> </span>docker.io<span class="w"> </span>containerd<span class="w"> </span>runc<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+
+<span class="c1"># 安装 Docker Engine</span>
+sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>-d<span class="w"> </span>/etc/apt/keyrings
+curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/docker.gpg
+sudo<span class="w"> </span>chmod<span class="w"> </span>a+r<span class="w"> </span>/etc/apt/keyrings/docker.gpg
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] \</span>
+<span class="s2">  https://download.docker.com/linux/ubuntu \</span>
+<span class="s2">  </span><span class="k">$(</span>lsb_release<span class="w"> </span>-cs<span class="k">)</span><span class="s2"> stable&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list
+
+sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
+
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>docker
+</code></pre></div>
+<p><strong>注销并重新登录后验证：</strong>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>hello-world
+docker<span class="w"> </span>compose<span class="w"> </span>version
+</code></pre></div></p>
+<p><strong>常见失败模式：</strong>
+- <code>Got permission denied</code>：未重新登录，<code>newgrp docker</code> 可临时生效
+- <code>lsb_release -cs</code> 返回未知代号：手动查看 Docker 支持列表，Ubuntu 26.04 代号为 <code>oracular</code> 或 <code>noble</code>，确认后替换</p>
+<hr />
+<h2 id="phase-9docker-compose">Phase 9：本地服务编排（docker-compose）<a class="headerlink" href="#phase-9docker-compose" title="Permanent link">&para;</a></h2>
+<p><strong>核心原则：</strong> 所有本地依赖服务通过一个 <code>docker-compose.yml</code> 统一管理，不手动 <code>docker run</code>。</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>~/dev-services/data/<span class="o">{</span>qdrant,postgres,redis,langfuse<span class="o">}</span>
+<span class="nb">cd</span><span class="w"> </span>~/dev-services
+</code></pre></div>
+<p><strong>创建 <code>~/dev-services/docker-compose.yml</code>：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ~/dev-services/docker-compose.yml</span>
+<span class="c1"># 本地开发服务编排：向量库 + 关系型DB + 缓存 + LLM可观测性</span>
+<span class="c1"># 使用：docker compose up -d / docker compose down</span>
+
+<span class="nt">services</span><span class="p">:</span>
+
+<span class="w">  </span><span class="c1"># ── 向量数据库 ──────────────────────────────────────────</span>
+<span class="w">  </span><span class="nt">qdrant</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qdrant/qdrant:latest</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev-qdrant</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;6333:6333&quot;</span><span class="w">    </span><span class="c1"># HTTP / REST API</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;6334:6334&quot;</span><span class="w">    </span><span class="c1"># gRPC</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/qdrant:/qdrant/storage</span>
+<span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;CMD&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;curl&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;-f&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;http://localhost:6333/healthz&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+
+<span class="w">  </span><span class="c1"># ── PostgreSQL + pgvector ────────────────────────────────</span>
+<span class="w">  </span><span class="nt">postgres</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pgvector/pgvector:pg16</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev-postgres</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devuser</span>
+<span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;LOCAL_DEV_POSTGRES_PASSWORD&gt;</span>
+<span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devdb</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5432:5432&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/postgres:/var/lib/postgresql/data</span>
+<span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;CMD-SHELL&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;pg_isready</span><span class="nv"> </span><span class="s">-U</span><span class="nv"> </span><span class="s">devuser</span><span class="nv"> </span><span class="s">-d</span><span class="nv"> </span><span class="s">devdb&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+
+<span class="w">  </span><span class="c1"># ── Redis ────────────────────────────────────────────────</span>
+<span class="w">  </span><span class="nt">redis</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis:7-alpine</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev-redis</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;6379:6379&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/redis:/data</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis-server --appendonly yes</span>
+<span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;CMD&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;redis-cli&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;ping&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3s</span>
+<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+
+<span class="w">  </span><span class="c1"># ── Langfuse（LLM 调用可观测性）────────────────────────</span>
+<span class="w">  </span><span class="nt">langfuse</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">langfuse/langfuse:latest</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev-langfuse</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">postgres</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3000:3000&quot;</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">DATABASE_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql://devuser:&lt;LOCAL_DEV_POSTGRES_PASSWORD&gt;@postgres:5432/langfuse</span>
+<span class="w">      </span><span class="nt">NEXTAUTH_SECRET</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;LOCAL_DEV_NEXTAUTH_SECRET&gt;</span>
+<span class="w">      </span><span class="nt">NEXTAUTH_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:3000</span>
+<span class="w">      </span><span class="nt">SALT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;LOCAL_DEV_SALT&gt;</span>
+</code></pre></div>
+<p><strong>操作命令：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dev-services
+
+<span class="c1"># 启动所有服务</span>
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+
+<span class="c1"># 查看状态</span>
+docker<span class="w"> </span>compose<span class="w"> </span>ps
+
+<span class="c1"># 查看日志</span>
+docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>qdrant
+
+<span class="c1"># 停止（保留数据）</span>
+docker<span class="w"> </span>compose<span class="w"> </span>stop
+
+<span class="c1"># 停止并删除容器（数据保留在 ./data/）</span>
+docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div>
+<p><strong>验证所有服务：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Qdrant</span>
+curl<span class="w"> </span>http://localhost:6333/healthz
+
+<span class="c1"># PostgreSQL</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dev-postgres<span class="w"> </span>pg_isready<span class="w"> </span>-U<span class="w"> </span>devuser
+
+<span class="c1"># Redis</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dev-redis<span class="w"> </span>redis-cli<span class="w"> </span>ping<span class="w">    </span><span class="c1"># 应返回 PONG</span>
+
+<span class="c1"># Langfuse Web UI：浏览器打开 http://localhost:3000</span>
+<span class="c1"># 首次进入注册账号（本地账号，无需真实邮箱）</span>
+</code></pre></div>
+<hr />
+<h2 id="phase-10claude">Phase 10：Claude 客户端<a class="headerlink" href="#phase-10claude" title="Permanent link">&para;</a></h2>
+<h3 id="_3">情况说明<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>Anthropic <strong>官方不提供</strong> Linux 版 Claude Desktop。官方为 Linux 开发者提供的路径是 <strong>Claude Code CLI</strong>（功能完整，支持 MCP）。</p>
+<p>社区项目 <code>aaddrick/claude-desktop-debian</code> 通过重新打包官方 Windows Electron 包提供 Linux .deb 构建，是目前最成熟的非官方方案。两个选项适用于不同工作风格，按需选择，<strong>不需要都安装</strong>。</p>
+<h3 id="101-aclaude-code-cli">10.1 选项 A：Claude Code CLI（官方支持，推荐）<a class="headerlink" href="#101-aclaude-code-cli" title="Permanent link">&para;</a></h3>
+<p>适合：终端工作流、AI 辅助编码、MCP 工具集成。</p>
+<p><strong>前置条件：</strong> Phase 7 已安装 Node.js。</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@anthropic-ai/claude-code
+claude<span class="w"> </span>--version
+
+<span class="c1"># 认证（通过 API Key 或浏览器登录）</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;&lt;ANTHROPIC_API_KEY&gt;&quot;</span>
+claude<span class="w"> </span>--print<span class="w"> </span><span class="s2">&quot;Hello&quot;</span><span class="w">    </span><span class="c1"># 验证连通性</span>
+</code></pre></div>
+<p><strong>MCP 配置（连接本地工具）：</strong></p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;<span class="w"> </span>~/.claude.json<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">{</span>
+<span class="s">  &quot;mcpServers&quot;: {}</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<hr />
+<h3 id="102-b-claude-desktop">10.2 选项 B：非官方 Claude Desktop（社区维护）<a class="headerlink" href="#102-b-claude-desktop" title="Permanent link">&para;</a></h3>
+<p>适合：需要 GUI 界面、对话式工作流、不习惯纯终端。</p>
+<blockquote>
+<p>⚠️ <strong>声明：</strong> <code>aaddrick/claude-desktop-debian</code> 是社区项目，非 Anthropic 官方支持。
+代码开源（MIT/Apache 双协议），使用 GPG 签名包，风险可控，但<strong>不等于官方安全背书</strong>。
+安装前建议查阅项目 GitHub 页面确认最新状态。</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="c1"># 安装前置依赖</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libfuse2
+
+<span class="c1"># 添加 GPG Key 和仓库</span>
+curl<span class="w"> </span>-fsSL<span class="w"> </span>https://pkg.claude-desktop-debian.dev/KEY.gpg<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/claude-desktop.gpg
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [signed-by=/usr/share/keyrings/claude-desktop.gpg arch=amd64,arm64] \</span>
+<span class="s2">  https://pkg.claude-desktop-debian.dev stable main&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/claude-desktop.list
+
+sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>claude-desktop
+</code></pre></div>
+<p><strong>GNOME Wayland 热键修复（如使用 Wayland 会话）：</strong>
+<div class="highlight"><pre><span></span><code>claude-desktop<span class="w"> </span>--install-gnome-hotkey
+</code></pre></div></p>
+<p><strong>MCP 配置文件：</strong> <code>~/.config/Claude/claude_desktop_config.json</code></p>
+<p><strong>验证：</strong> 从应用菜单启动，登录 Anthropic 账号。</p>
+<hr />
+<h2 id="phase-11ollama-llm">Phase 11：Ollama（本地 LLM）<a class="headerlink" href="#phase-11ollama-llm" title="Permanent link">&para;</a></h2>
+<p><strong>为什么：</strong> 开发期间反复调用 Claude API 有成本。Ollama 在本地运行开源小模型，提供 OpenAI 兼容接口。用本地模型验证业务流程，用 Claude API 做集成测试和生产调用。</p>
+<p><strong>CPU 环境的现实预期：</strong> 7B 模型在 8 核 CPU 上推理速度约 2–8 token/s（明显慢于 GPU），适合用于流程验证，不适合交互式使用。</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://ollama.com/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+
+<span class="c1"># 验证安装</span>
+ollama<span class="w"> </span>--version
+
+<span class="c1"># 拉取 CPU 友好的小模型</span>
+<span class="c1"># qwen2.5:1.5b - 约 1GB，CPU 速度较快，适合快速验证</span>
+ollama<span class="w"> </span>pull<span class="w"> </span>qwen2.5:1.5b
+
+<span class="c1"># 测试</span>
+ollama<span class="w"> </span>run<span class="w"> </span>qwen2.5:1.5b<span class="w"> </span><span class="s2">&quot;Hello, respond with one sentence&quot;</span>
+</code></pre></div>
+<p><strong>Ollama 服务管理：</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ollama 安装后自动注册 systemd 服务</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>ollama
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>ollama<span class="w">    </span><span class="c1"># 开机自启</span>
+
+<span class="c1"># Ollama 暴露 OpenAI 兼容接口</span>
+curl<span class="w"> </span>http://localhost:11434/api/tags<span class="w">    </span><span class="c1"># 列出已下载的模型</span>
+</code></pre></div></p>
+<p><strong>在代码中切换本地/云端模型（Python 示例）：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="c1"># 开发期：本地 Ollama</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ENV&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;development&quot;</span><span class="p">:</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+        <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:11434/v1&quot;</span><span class="p">,</span>
+        <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;ollama&quot;</span>    <span class="c1"># Ollama 不验证 key，随便填</span>
+    <span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;qwen2.5:1.5b&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># 生产：真实 API</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">anthropic</span>
+    <span class="c1"># 使用 anthropic 客户端</span>
+</code></pre></div>
+<hr />
+<h2 id="phase-12">Phase 12：项目工作流模板<a class="headerlink" href="#phase-12" title="Permanent link">&para;</a></h2>
+<p>这部分不是安装步骤，而是<strong>每个新项目创建时的标准初始化模板</strong>。</p>
+<h3 id="121-makefile-ai">12.1 Makefile 模板（AI 后端项目）<a class="headerlink" href="#121-makefile-ai" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c"># Makefile - AI 后端项目工作流标准化</span>
+<span class="c"># 用法：make dev / make test / make lint / make clean</span>
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">dev</span> <span class="n">test</span> <span class="n">lint</span> <span class="n">clean</span> <span class="n">build</span> <span class="n">docker</span>-<span class="n">up</span> <span class="n">docker</span>-<span class="n">down</span>
+
+<span class="c"># ── 开发 ─────────────────────────────────────────────────────</span>
+<span class="nf">dev</span><span class="o">:</span><span class="w"> </span><span class="n">docker</span>-<span class="n">up</span>
+<span class="w">    </span>uv<span class="w"> </span>run<span class="w"> </span>uvicorn<span class="w"> </span>app.main:app<span class="w"> </span>--reload<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
+
+<span class="nf">dev-go</span><span class="o">:</span>
+<span class="w">    </span>air<span class="w">    </span><span class="c1"># Go 热重载（需安装 github.com/air-verse/air）</span>
+
+<span class="c"># ── 测试 ─────────────────────────────────────────────────────</span>
+<span class="nf">test</span><span class="o">:</span>
+<span class="w">    </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-v<span class="w"> </span>--tb<span class="o">=</span>short
+
+<span class="nf">test-unit</span><span class="o">:</span>
+<span class="w">    </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/unit/<span class="w"> </span>-v
+
+<span class="nf">test-integration</span><span class="o">:</span>
+<span class="w">    </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/integration/<span class="w"> </span>-v<span class="w"> </span>-m<span class="w"> </span>integration
+
+<span class="c"># ── 代码质量 ─────────────────────────────────────────────────</span>
+<span class="nf">lint</span><span class="o">:</span>
+<span class="w">    </span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>app/<span class="w"> </span>tests/
+<span class="w">    </span>uv<span class="w"> </span>run<span class="w"> </span>mypy<span class="w"> </span>app/
+
+<span class="nf">lint-go</span><span class="o">:</span>
+<span class="w">    </span>golangci-lint<span class="w"> </span>run<span class="w"> </span>./...
+
+<span class="nf">format</span><span class="o">:</span>
+<span class="w">    </span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>app/<span class="w"> </span>tests/
+
+<span class="c"># ── Docker 服务 ──────────────────────────────────────────────</span>
+<span class="nf">docker-up</span><span class="o">:</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>~/dev-services<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<span class="w">    </span>@echo<span class="w"> </span><span class="s2">&quot;等待服务就绪...&quot;</span>
+<span class="w">    </span>@sleep<span class="w"> </span><span class="m">3</span>
+<span class="w">    </span>@docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dev-redis<span class="w"> </span>redis-cli<span class="w"> </span>ping<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✓ Redis&quot;</span>
+<span class="w">    </span>@curl<span class="w"> </span>-sf<span class="w"> </span>http://localhost:6333/healthz<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✓ Qdrant&quot;</span>
+
+<span class="nf">docker-down</span><span class="o">:</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>~/dev-services<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>stop
+
+<span class="c"># ── 构建 ─────────────────────────────────────────────────────</span>
+<span class="nf">build</span><span class="o">:</span>
+<span class="w">    </span>uv<span class="w"> </span>build
+
+<span class="c"># ── 清理 ─────────────────────────────────────────────────────</span>
+<span class="nf">clean</span><span class="o">:</span>
+<span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-name<span class="w"> </span>__pycache__<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{}</span><span class="w"> </span>+<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.pyc&quot;</span><span class="w"> </span>-delete<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span>rm<span class="w"> </span>-rf<span class="w"> </span>.pytest_cache<span class="w"> </span>dist<span class="w"> </span>build
+</code></pre></div>
+<hr />
+<h3 id="122">12.2 新项目初始化脚本<a class="headerlink" href="#122" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># ~/bin/new-ai-project（可执行，用于快速创建新项目）</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>~/.local/bin/new-ai-project<span class="w"> </span><span class="s">&lt;&lt; &#39;SCRIPT&#39;</span>
+<span class="s">#!/bin/bash</span>
+<span class="s">set -e</span>
+
+<span class="s">PROJECT_NAME=&quot;${1:?用法: new-ai-project &lt;project-name&gt;}&quot;</span>
+<span class="s">PROJECT_DIR=&quot;$HOME/projects/$PROJECT_NAME&quot;</span>
+
+<span class="s">mkdir -p &quot;$PROJECT_DIR&quot;</span>
+<span class="s">cd &quot;$PROJECT_DIR&quot;</span>
+
+<span class="s"># Git 初始化</span>
+<span class="s">git init</span>
+<span class="s">cp ~/.gitignore_global .gitignore</span>
+
+<span class="s"># direnv 配置</span>
+<span class="s">cat &gt; .envrc &lt;&lt; &#39;EOF&#39;</span>
+<span class="s"># 项目环境变量 - 按需修改</span>
+<span class="s">export MODEL=&quot;claude-sonnet-4-6&quot;</span>
+<span class="s">export LOG_LEVEL=&quot;debug&quot;</span>
+<span class="s">EOF</span>
+<span class="s">direnv allow .</span>
+
+<span class="s"># Python 项目初始化</span>
+<span class="s">uv init .</span>
+<span class="s">uv add anthropic langchain langchain-anthropic qdrant-client fastapi &quot;uvicorn[standard]&quot; python-dotenv</span>
+
+<span class="s"># 复制 Makefile 模板</span>
+<span class="s">cp ~/templates/Makefile .</span>
+
+<span class="s"># 基础目录结构</span>
+<span class="s">mkdir -p app tests/{unit,integration} docs</span>
+
+<span class="s">echo &quot;✓ 项目 $PROJECT_NAME 初始化完成: $PROJECT_DIR&quot;</span>
+<span class="s">SCRIPT</span>
+
+chmod<span class="w"> </span>+x<span class="w"> </span>~/.local/bin/new-ai-project
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/projects<span class="w"> </span>~/templates
+</code></pre></div>
+<hr />
+<h2 id="phase-13langfuse-llm">Phase 13：Langfuse 配置（LLM 可观测性）<a class="headerlink" href="#phase-13langfuse-llm" title="Permanent link">&para;</a></h2>
+<p><strong>为什么必须有可观测性：</strong> AI 应用的调试和优化依赖对每次 LLM 调用的追踪：prompt 内容、响应时间、token 消耗、检索命中率、向量相似度分布。没有这一层，debug 靠 print，优化靠猜。</p>
+<p>Langfuse 已在 Phase 9 的 docker-compose 中包含，启动后访问 <code>http://localhost:3000</code> 注册本地账号。</p>
+<p><strong>Python 接入：</strong></p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span>langfuse
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># 在项目入口处初始化</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langfuse</span><span class="w"> </span><span class="kn">import</span> <span class="n">Langfuse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langfuse.callback</span><span class="w"> </span><span class="kn">import</span> <span class="n">CallbackHandler</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">langfuse</span> <span class="o">=</span> <span class="n">Langfuse</span><span class="p">(</span>
+    <span class="n">public_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANGFUSE_PUBLIC_KEY&quot;</span><span class="p">],</span>
+    <span class="n">secret_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANGFUSE_SECRET_KEY&quot;</span><span class="p">],</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;http://localhost:3000&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># 与 LangChain 集成</span>
+<span class="n">langfuse_handler</span> <span class="o">=</span> <span class="n">CallbackHandler</span><span class="p">(</span>
+    <span class="n">public_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANGFUSE_PUBLIC_KEY&quot;</span><span class="p">],</span>
+    <span class="n">secret_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANGFUSE_SECRET_KEY&quot;</span><span class="p">],</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;http://localhost:3000&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># 使用</span>
+<span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">},</span> <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;callbacks&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">langfuse_handler</span><span class="p">]})</span>
+</code></pre></div>
+<p><strong>接入后可追踪：</strong>
+- 每次 LLM 调用的完整 prompt 和 response
+- Token 消耗（输入/输出分别统计）
+- 端到端 RAG pipeline 延迟分解
+- 向量检索命中的 chunk 内容</p>
+<hr />
+<h2 id="phase-14">Phase 14：最终验证<a class="headerlink" href="#phase-14" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;==============================&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  AI 全栈环境最终验证&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;==============================&quot;</span>
+
+<span class="c1"># 系统</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[系统]&quot;</span>
+lsb_release<span class="w"> </span>-d<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print &quot;OS:&quot;, $2, $3}&#39;</span>
+free<span class="w"> </span>-h<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Mem<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print &quot;RAM:&quot;, $2}&#39;</span>
+swapon<span class="w"> </span>--show<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>NAME<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print &quot;Swap:&quot;, $3}&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Swap: 未配置&quot;</span>
+systemctl<span class="w"> </span>is-enabled<span class="w"> </span>sleep.target<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span>masked<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;休眠: 已禁用&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;休眠: 未禁用&quot;</span>
+
+<span class="c1"># 工具链</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[工具链]&quot;</span>
+git<span class="w"> </span>--version
+go<span class="w"> </span>version
+python<span class="w"> </span>--version
+node<span class="w"> </span>--version<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print &quot;Node.js:&quot;, $1}&#39;</span>
+pnpm<span class="w"> </span>--version<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print &quot;pnpm:&quot;, $1}&#39;</span>
+docker<span class="w"> </span>--version<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1, $2, $3}&#39;</span>
+docker<span class="w"> </span>compose<span class="w"> </span>version
+uv<span class="w"> </span>--version
+direnv<span class="w"> </span>--version<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print &quot;direnv:&quot;, $2}&#39;</span>
+tmux<span class="w"> </span>-V
+code<span class="w"> </span>--version<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print &quot;VSCode:&quot;, $1}&#39;</span>
+
+<span class="c1"># AI 工具</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[AI 工具]&quot;</span>
+claude<span class="w"> </span>--version<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Claude Code CLI: 未安装&quot;</span>
+ollama<span class="w"> </span>--version<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Ollama: 未安装&quot;</span>
+
+<span class="c1"># 本地服务</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[本地服务]&quot;</span>
+curl<span class="w"> </span>-sf<span class="w"> </span>http://localhost:6333/healthz<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Qdrant: ✓ Running&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Qdrant: ✗ Not running&quot;</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dev-redis<span class="w"> </span>redis-cli<span class="w"> </span>ping<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span>PONG<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Redis: ✓ Running&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Redis: ✗ Not running&quot;</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dev-postgres<span class="w"> </span>pg_isready<span class="w"> </span>-U<span class="w"> </span>devuser<span class="w"> </span>-q<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;PostgreSQL: ✓ Running&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;PostgreSQL: ✗ Not running&quot;</span>
+curl<span class="w"> </span>-sf<span class="w"> </span>http://localhost:3000<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Langfuse: ✓ Running (http://localhost:3000)&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Langfuse: ✗ Not running&quot;</span>
+
+<span class="c1"># API 连通性</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[API 连通性]&quot;</span>
+<span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ANTHROPIC_API_KEY</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ANTHROPIC_API_KEY: ✓ 已设置&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ANTHROPIC_API_KEY: ✗ 未设置&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;==============================&quot;</span>
+</code></pre></div>
+<p><strong>端对端 API 测试：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建临时测试目录和 venv</span>
+<span class="nb">cd</span><span class="w"> </span>/tmp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>api-test<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>api-test
+uv<span class="w"> </span>init<span class="w"> </span>.<span class="w"> </span>--quiet
+uv<span class="w"> </span>add<span class="w"> </span>anthropic<span class="w"> </span>--quiet
+
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">import anthropic</span>
+<span class="s">import sys</span>
+
+<span class="s">try:</span>
+<span class="s">    client = anthropic.Anthropic()</span>
+<span class="s">    msg = client.messages.create(</span>
+<span class="s">        model=&quot;claude-sonnet-4-6&quot;,</span>
+<span class="s">        max_tokens=32,</span>
+<span class="s">        messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Reply with exactly: API_OK&quot;}]</span>
+<span class="s">    )</span>
+<span class="s">    print(f&quot;Claude API: ✓ {msg.content[0].text}&quot;)</span>
+<span class="s">except Exception as e:</span>
+<span class="s">    print(f&quot;Claude API: ✗ {e}&quot;, file=sys.stderr)</span>
+<span class="s">    sys.exit(1)</span>
+<span class="s">EOF</span>
+
+<span class="nb">cd</span><span class="w"> </span>~<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/tmp/api-test
+</code></pre></div>
+<hr />
+<h2 id="_4">维护说明<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">日常更新<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 系统包（建议每周）</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
+
+<span class="c1"># Go 工具链（按需，追 gopls 更新）</span>
+go<span class="w"> </span>install<span class="w"> </span>golang.org/x/tools/gopls@latest
+
+<span class="c1"># uv 自身（月度）</span>
+uv<span class="w"> </span>self<span class="w"> </span>update
+
+<span class="c1"># Node.js（LTS 大版本约每年一次）</span>
+nvm<span class="w"> </span>install<span class="w"> </span>--lts<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>nvm<span class="w"> </span><span class="nb">alias</span><span class="w"> </span>default<span class="w"> </span>lts/*
+
+<span class="c1"># Docker 镜像（按需）</span>
+<span class="nb">cd</span><span class="w"> </span>~/dev-services<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>pull<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+
+<span class="c1"># Claude Code CLI（随 claude.ai 版本更新）</span>
+npm<span class="w"> </span>update<span class="w"> </span>-g<span class="w"> </span>@anthropic-ai/claude-code
+
+<span class="c1"># Claude Desktop 非官方包（apt 源自动更新）</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y<span class="w"> </span>claude-desktop
+
+<span class="c1"># Ollama 模型</span>
+ollama<span class="w"> </span>pull<span class="w"> </span>qwen2.5:1.5b<span class="w">    </span><span class="c1"># 更新到最新版本</span>
+</code></pre></div>
+<h3 id="_6">关键文件备份清单<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>文件 / 目录</th>
+<th>内容</th>
+<th>是否入 Git</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/.config/devenv/env.sh</code></td>
+<td>环境变量配置</td>
+<td>✓（无 secrets）</td>
+</tr>
+<tr>
+<td><code>~/.config/dev-secrets/keys.env</code></td>
+<td>API Keys</td>
+<td>✗ 绝不</td>
+</tr>
+<tr>
+<td><code>~/.ssh/config</code></td>
+<td>SSH 配置</td>
+<td>✓（脱敏后）</td>
+</tr>
+<tr>
+<td><code>~/.gitignore_global</code></td>
+<td>全局 gitignore</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>~/.tmux.conf</code></td>
+<td>tmux 配置</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>~/dev-services/docker-compose.yml</code></td>
+<td>本地服务编排</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>~/dev-services/data/</code></td>
+<td>数据库数据</td>
+<td>✗（定期备份到其他位置）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">手册覆盖边界<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><strong>本手册不覆盖：</strong>
+- 网络代理 / 镜像源配置（依赖用户网络环境）
+- NVIDIA GPU / CUDA 安装
+- 生产环境部署（Kubernetes、云服务器）
+- 团队共享开发环境（secrets 管理需重新设计）</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 05:55:09 UTC">2026年6月28日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+  
+
+
+
+
+<h2 id="__comments">评论</h2>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="lzyred/lzyred.github.io"
+  data-repo-id="R_kgDOTDAykw"
+  data-category="General"
+  data-category-id="DIC_kwDOTDAyk84DAAWG"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async>
+</script>
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../server-baseline-standard/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 服务器基线">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                服务器基线
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../system-os-patching-standard/" class="md-footer__link md-footer__link--next" aria-label="下一页: 系统 OS 补丁">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                系统 OS 补丁
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 L2DO DevOps Knowledge Base
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/lzyred/lzyred.github.io" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.footer", "navigation.top", "toc.follow", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": {"Architecture": "architecture", "Automation": "automation", "CI/CD": "ci-cd", "Cloud": "cloud", "Containers": "containers", "Databases": "databases", "Delivery": "delivery", "IaC": "iac", "Kubernetes": "kubernetes", "Linux": "linux", "Middleware": "middleware", "Migration": "migration", "Networking": "networking", "Observability": "observability", "Platform": "platform", "Reliability": "reliability", "Runbook": "runbook", "Security": "security", "Standards": "standards"}, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>
