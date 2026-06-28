@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="SigNoz observability standard for traces, metrics, and logs in a single stack.">
+        <meta name="description" content="SigNoz 可观测性标准，覆盖在同一技术栈中管理 traces、metrics 和 logs 的生产判断。">
       
       
       
@@ -16,7 +16,7 @@
         <link rel="prev" href="../node-exporter-standard/">
       
       
-        <link rel="next" href="../../recovery/kubernetes-pvc-usage-alert-runbook/">
+        <link rel="next" href="../opentelemetry-auto-instrumentation-standard/">
       
       
         
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="SigNoz 可观测性 - DevOps 专家知识库" />
-<meta property="og:description" content="SigNoz observability standard for traces, metrics, and logs in a single stack." />
+<meta property="og:description" content="SigNoz 可观测性标准，覆盖在同一技术栈中管理 traces、metrics 和 logs 的生产判断。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/observability/signoz-observability-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/reliable-operations/observability/signoz-observability-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="SigNoz 可观测性 - DevOps 专家知识库" />
-<meta property="twitter:description" content="SigNoz observability standard for traces, metrics, and logs in a single stack." />
+<meta property="twitter:description" content="SigNoz 可观测性标准，覆盖在同一技术栈中管理 traces、metrics 和 logs 的生产判断。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/observability/signoz-observability-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#signoz-observability-standard" class="md-skip">
+        <a href="#signoz" class="md-skip">
           跳转至
         </a>
       
@@ -1666,10 +1666,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -1677,10 +1677,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#coverage" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Coverage
+        覆盖范围
       
     </span>
   </a>
@@ -1688,10 +1688,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deployment Checklist
+        部署检查清单
       
     </span>
   </a>
@@ -1699,10 +1699,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#kubernetes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        Kubernetes 部署
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes 部署">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        部署验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -1713,6 +1763,90 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opentelemetry-auto-instrumentation-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenTelemetry 自动埋点
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java-otel-instrumentation-runbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java OpenTelemetry 埋点
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loki-binary-alerting-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loki 二进制部署与告警
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1852,6 +1986,34 @@
     
   
     TLS 证书过期
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recovery/harbor-certificate-rotation-runbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Harbor 证书轮换
   
 
     
@@ -2310,6 +2472,94 @@
     
   
     应用容器化案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度剖析
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    深度剖析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases-reviews/deep-dives/monitoring-migration-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    监控迁移的本质是路由迁移
   
 
     
@@ -3712,10 +3962,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3723,10 +3973,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#coverage" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Coverage
+        覆盖范围
       
     </span>
   </a>
@@ -3734,10 +3984,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-checklist" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deployment Checklist
+        部署检查清单
       
     </span>
   </a>
@@ -3745,10 +3995,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#kubernetes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        Kubernetes 部署
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes 部署">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        部署验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回滚
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已知失败模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
       
     </span>
   </a>
@@ -3869,29 +4169,82 @@
   
 
 
-<h1 id="signoz-observability-standard">SigNoz Observability Standard<a class="headerlink" href="#signoz-observability-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard describes when and how to use SigNoz or OpenTelemetry-compatible observability stacks.</p>
-<h2 id="coverage">Coverage<a class="headerlink" href="#coverage" title="Permanent link">&para;</a></h2>
+<h1 id="signoz">SigNoz 可观测性标准<a class="headerlink" href="#signoz" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准说明何时以及如何使用 SigNoz 或兼容 OpenTelemetry 的可观测性栈。</p>
+<h2 id="_2">覆盖范围<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Metrics.</li>
-<li>Traces.</li>
-<li>Logs.</li>
-<li>Service maps.</li>
-<li>Application latency and error analysis.</li>
+<li>指标。</li>
+<li>链路追踪。</li>
+<li>日志。</li>
+<li>服务拓扑。</li>
+<li>应用延迟与错误分析。</li>
 </ul>
-<h2 id="deployment-checklist">Deployment Checklist<a class="headerlink" href="#deployment-checklist" title="Permanent link">&para;</a></h2>
+<h2 id="_3">部署检查清单<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Define retention.</li>
-<li>Restrict UI access.</li>
-<li>Configure OpenTelemetry Collector.</li>
-<li>Avoid sending secrets in spans or logs.</li>
-<li>Validate ingestion with a test service.</li>
+<li>定义留存周期。</li>
+<li>限制 UI 访问。</li>
+<li>配置 OpenTelemetry Collector。</li>
+<li>避免在 span 或日志中发送密钥。</li>
+<li>使用测试服务验证数据写入。</li>
 </ul>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="kubernetes">Kubernetes 部署<a class="headerlink" href="#kubernetes" title="Permanent link">&para;</a></h2>
+<p>先决定 SigNoz 的定位：实验工具、团队级可观测性平台，还是生产服务。这个答案决定存储、访问和回滚要求。</p>
+<p>部署前确认：</p>
 <ul>
-<li><a href="../exporter-monitoring-standard/">Prometheus Exporter Monitoring Standard</a></li>
-<li><a href="../loki-logging-standard/">Loki Logging Standard</a></li>
+<li>如果使用持久化存储，默认 StorageClass 支持卷扩容，并具备合适的回收策略。</li>
+<li>固定 chart 版本。</li>
+<li>创建独立命名空间。</li>
+<li>评审 ClickHouse、collector、Alertmanager、frontend 和 query service 的资源请求与限制。</li>
+</ul>
+<h3 id="_4">部署验证<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>所有 SigNoz Pod 均为 <code>Ready</code>，ClickHouse 集群健康。</li>
+<li>ClickHouse 表已经初始化，然后 collector 才开始写入。</li>
+<li>OpenTelemetry collector Pod 正在运行，并能被已埋点应用访问。</li>
+<li>前端通过受控访问方式暴露，不把 <code>kubectl port-forward</code> 误当成生产访问。</li>
+<li>已知测试工作负载能发送 span 或指标；首次验证时扩大 UI 时间范围。</li>
+</ul>
+<h3 id="_5">回滚<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>对 release 执行 <code>helm uninstall</code>。</li>
+<li>只有在明确批准后才删除 PVC，因为其中保存遥测数据。</li>
+<li>确认命名空间内没有共享资源后，才删除命名空间。</li>
+<li>从曾指向该栈的应用中移除埋点注解或 agent 配置。</li>
+</ul>
+<h3 id="_6">已知失败模式<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>collector 早于表初始化启动</td>
+<td>ClickHouse schema 未初始化</td>
+</tr>
+<tr>
+<td>存储无法增长</td>
+<td>StorageClass 不支持扩容，或回收策略不合适</td>
+</tr>
+<tr>
+<td>没有应用遥测数据</td>
+<td>已埋点应用使用了错误的 collector 端点</td>
+</tr>
+<tr>
+<td>暴露方式被误认为生产访问</td>
+<td>平台只能通过 <code>port-forward</code> 访问</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">相关文档<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../opentelemetry-auto-instrumentation-standard/">OpenTelemetry 自动埋点标准</a></li>
+<li><a href="../java-otel-instrumentation-runbook/">Java 应用 OpenTelemetry 埋点 Runbook</a></li>
+<li><a href="../exporter-monitoring-standard/">Prometheus Exporter 监控标准</a></li>
+<li><a href="../loki-logging-standard/">Loki 日志标准</a></li>
 </ul>
 
 
@@ -3915,7 +4268,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:02:49 UTC">2026年6月28日</span>
   </span>
 
     
@@ -3925,7 +4278,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:02:49 UTC">2026年6月28日</span>
   </span>
 
     
@@ -3998,13 +4351,13 @@
         
         
           
-          <a href="../../recovery/kubernetes-pvc-usage-alert-runbook/" class="md-footer__link md-footer__link--next" aria-label="下一页: PVC 使用率告警">
+          <a href="../opentelemetry-auto-instrumentation-standard/" class="md-footer__link md-footer__link--next" aria-label="下一页: OpenTelemetry 自动埋点">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                PVC 使用率告警
+                OpenTelemetry 自动埋点
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -4061,7 +4414,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.footer", "navigation.top", "toc.follow", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": {"Architecture": "architecture", "Automation": "automation", "CI/CD": "ci-cd", "Cloud": "cloud", "Containers": "containers", "Databases": "databases", "Delivery": "delivery", "IaC": "iac", "Kubernetes": "kubernetes", "Linux": "linux", "Middleware": "middleware", "Migration": "migration", "Networking": "networking", "Observability": "observability", "Platform": "platform", "Reliability": "reliability", "Runbook": "runbook", "Security": "security", "Standards": "standards"}, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.footer", "navigation.top", "toc.follow", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": {"Architecture": "architecture", "Automation": "automation", "CI/CD": "ci-cd", "Cloud": "cloud", "Containers": "containers", "Databases": "databases", "Delivery": "delivery", "IaC": "iac", "Kubernetes": "kubernetes", "Linux": "linux", "Middleware": "middleware", "Migration": "migration", "Networking": "networking", "Observability": "observability", "OpenTelemetry": "opentelemetry", "Platform": "platform", "Reliability": "reliability", "Runbook": "runbook", "Security": "security", "Standards": "standards"}, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

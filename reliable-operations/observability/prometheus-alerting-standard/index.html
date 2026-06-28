@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Prometheus alerting standard with alert rules, routing, and silence policies.">
+        <meta name="description" content="Prometheus 告警标准，覆盖告警规则、路由、静默策略和发布前评审。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Prometheus 告警 - DevOps 专家知识库" />
-<meta property="og:description" content="Prometheus alerting standard with alert rules, routing, and silence policies." />
+<meta property="og:description" content="Prometheus 告警标准，覆盖告警规则、路由、静默策略和发布前评审。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/observability/prometheus-alerting-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/reliable-operations/observability/prometheus-alerting-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Prometheus 告警 - DevOps 专家知识库" />
-<meta property="twitter:description" content="Prometheus alerting standard with alert rules, routing, and silence policies." />
+<meta property="twitter:description" content="Prometheus 告警标准，覆盖告警规则、路由、静默策略和发布前评审。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/reliable-operations/observability/prometheus-alerting-standard.png" />
 </head>
   
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#prometheus-alerting-standard" class="md-skip">
+        <a href="#prometheus" class="md-skip">
           跳转至
         </a>
       
@@ -1526,10 +1526,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -1537,10 +1537,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alert-design-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alert Design Principles
+        告警设计原则
       
     </span>
   </a>
@@ -1548,10 +1548,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-labels" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended Labels
+        推荐标签
       
     </span>
   </a>
@@ -1559,10 +1559,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-annotations" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended Annotations
+        推荐注解
       
     </span>
   </a>
@@ -1570,10 +1570,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-rule-pvc-capacity" class="md-nav__link">
+  <a href="#pvc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example Rule: PVC Capacity
+        示例规则：PVC 容量
       
     </span>
   </a>
@@ -1581,10 +1581,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alert-review-checklist" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alert Review Checklist
+        告警评审清单
       
     </span>
   </a>
@@ -1592,10 +1592,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notification-routing" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notification Routing
+        通知路由
       
     </span>
   </a>
@@ -1603,10 +1603,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-anti-patterns" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Anti-Patterns
+        常见反模式
       
     </span>
   </a>
@@ -1614,10 +1614,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        相关文档
       
     </span>
   </a>
@@ -1773,6 +1773,90 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opentelemetry-auto-instrumentation-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenTelemetry 自动埋点
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java-otel-instrumentation-runbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java OpenTelemetry 埋点
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loki-binary-alerting-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loki 二进制部署与告警
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1907,6 +1991,34 @@
     
   
     TLS 证书过期
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recovery/harbor-certificate-rotation-runbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Harbor 证书轮换
   
 
     
@@ -2365,6 +2477,94 @@
     
   
     应用容器化案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度剖析
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    深度剖析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cases-reviews/deep-dives/monitoring-migration-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    监控迁移的本质是路由迁移
   
 
     
@@ -3767,10 +3967,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        目的
       
     </span>
   </a>
@@ -3778,10 +3978,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alert-design-principles" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alert Design Principles
+        告警设计原则
       
     </span>
   </a>
@@ -3789,10 +3989,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-labels" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended Labels
+        推荐标签
       
     </span>
   </a>
@@ -3800,10 +4000,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-annotations" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended Annotations
+        推荐注解
       
     </span>
   </a>
@@ -3811,10 +4011,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-rule-pvc-capacity" class="md-nav__link">
+  <a href="#pvc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example Rule: PVC Capacity
+        示例规则：PVC 容量
       
     </span>
   </a>
@@ -3822,10 +4022,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alert-review-checklist" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alert Review Checklist
+        告警评审清单
       
     </span>
   </a>
@@ -3833,10 +4033,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notification-routing" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notification Routing
+        通知路由
       
     </span>
   </a>
@@ -3844,10 +4044,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-anti-patterns" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Anti-Patterns
+        常见反模式
       
     </span>
   </a>
@@ -3855,10 +4055,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-documents" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Documents
+        相关文档
       
     </span>
   </a>
@@ -3979,32 +4179,32 @@
   
 
 
-<h1 id="prometheus-alerting-standard">Prometheus Alerting Standard<a class="headerlink" href="#prometheus-alerting-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines how to write, review, and operate Prometheus alerts for public reusable DevOps documentation.</p>
-<h2 id="alert-design-principles">Alert Design Principles<a class="headerlink" href="#alert-design-principles" title="Permanent link">&para;</a></h2>
+<h1 id="prometheus">Prometheus 告警标准<a class="headerlink" href="#prometheus" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本标准定义如何为可公开复用的 DevOps 文档编写、评审和运维 Prometheus 告警。</p>
+<h2 id="_2">告警设计原则<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Alert only on symptoms that need human action.</li>
-<li>Use warning and critical levels with different urgency.</li>
-<li>Include service, environment, owner, and runbook labels.</li>
-<li>Avoid alerting on short transient spikes unless the service requires it.</li>
-<li>Every critical alert must have a runbook.</li>
-<li>Alert messages must be safe to share and must not include secrets.</li>
+<li>只对需要人工行动的症状告警。</li>
+<li>使用 warning 和 critical 区分不同紧急程度。</li>
+<li>包含 service、environment、owner 和 runbook 等标签。</li>
+<li>除非服务特性要求，否则不要对短暂尖峰告警。</li>
+<li>每个 critical 告警都必须有对应 runbook。</li>
+<li>告警消息必须可以安全分享，不能包含密钥。</li>
 </ol>
-<h2 id="recommended-labels">Recommended Labels<a class="headerlink" href="#recommended-labels" title="Permanent link">&para;</a></h2>
+<h2 id="_3">推荐标签<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nt">labels</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">warning</span>
 <span class="w">  </span><span class="nt">team</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">platform</span>
 <span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-service</span>
 <span class="w">  </span><span class="nt">runbook</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes-pvc-usage-alert-runbook</span>
 </code></pre></div>
-<h2 id="recommended-annotations">Recommended Annotations<a class="headerlink" href="#recommended-annotations" title="Permanent link">&para;</a></h2>
+<h2 id="_4">推荐注解<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nt">annotations</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PVC</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">above</span><span class="nv"> </span><span class="s">warning</span><span class="nv"> </span><span class="s">threshold&quot;</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PVC</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.persistentvolumeclaim</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">namespace</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.namespace</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$value</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">percent</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">available</span><span class="nv"> </span><span class="s">capacity.&quot;</span>
 <span class="w">  </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Check</span><span class="nv"> </span><span class="s">recent</span><span class="nv"> </span><span class="s">growth,</span><span class="nv"> </span><span class="s">confirm</span><span class="nv"> </span><span class="s">owner,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">follow</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">PVC</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">runbook.&quot;</span>
 </code></pre></div>
-<h2 id="example-rule-pvc-capacity">Example Rule: PVC Capacity<a class="headerlink" href="#example-rule-pvc-capacity" title="Permanent link">&para;</a></h2>
+<h2 id="pvc">示例规则：PVC 容量<a class="headerlink" href="#pvc" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nt">groups</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes-storage</span>
 <span class="w">    </span><span class="nt">rules</span><span class="p">:</span>
@@ -4033,58 +4233,59 @@
 <span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PVC</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.persistentvolumeclaim</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">namespace</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.namespace</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">above</span><span class="nv"> </span><span class="s">90%</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">10</span><span class="nv"> </span><span class="s">minutes.&quot;</span>
 <span class="w">          </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Execute</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">PVC</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">runbook</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">notify</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">owner.&quot;</span>
 </code></pre></div>
-<h2 id="alert-review-checklist">Alert Review Checklist<a class="headerlink" href="#alert-review-checklist" title="Permanent link">&para;</a></h2>
-<p>Before enabling a new alert:</p>
+<h2 id="_5">告警评审清单<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>启用新告警前，确认：</p>
 <ul>
-<li>The alert has a clear owner.</li>
-<li>The expression has been tested in Prometheus.</li>
-<li>The threshold is based on operational risk, not arbitrary values.</li>
-<li>The <code>for</code> duration filters normal noise.</li>
-<li>The alert includes a runbook label.</li>
-<li>The message does not expose secrets, real internal domains, or customer data.</li>
-<li>The notification route matches severity.</li>
-<li>The alert has been observed in a staging or test environment when possible.</li>
+<li>告警有明确负责人。</li>
+<li>表达式已经在 Prometheus 中测试。</li>
+<li>阈值来自运维风险，而不是随意数字。</li>
+<li><code>for</code> 持续时间能过滤正常噪声。</li>
+<li>告警包含 runbook 标签。</li>
+<li>消息不暴露密钥、真实内部域名或客户数据。</li>
+<li>通知路由匹配严重级别。</li>
+<li>条件允许时，告警已在预发或测试环境观察过。</li>
 </ul>
-<h2 id="notification-routing">Notification Routing<a class="headerlink" href="#notification-routing" title="Permanent link">&para;</a></h2>
-<p>Use this model:</p>
+<h2 id="_6">通知路由<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>使用以下模型：</p>
 <table>
 <thead>
 <tr>
-<th>Severity</th>
-<th>Route</th>
-<th>Expected Response</th>
+<th>严重级别</th>
+<th>路由</th>
+<th>期望响应</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>info</td>
-<td>Dashboard or low-priority channel</td>
-<td>Review during business hours.</td>
+<td>仪表盘或低优先级频道</td>
+<td>工作时间内查看。</td>
 </tr>
 <tr>
 <td>warning</td>
-<td>Team notification channel</td>
-<td>Acknowledge and plan action.</td>
+<td>团队通知频道</td>
+<td>确认并计划处理。</td>
 </tr>
 <tr>
 <td>critical</td>
-<td>On-call channel</td>
-<td>Immediate response.</td>
+<td>值班频道</td>
+<td>立即响应。</td>
 </tr>
 </tbody>
 </table>
-<p>Public examples should use placeholder channels such as <code>platform-alerts</code> and never include webhook URLs.</p>
-<h2 id="common-anti-patterns">Common Anti-Patterns<a class="headerlink" href="#common-anti-patterns" title="Permanent link">&para;</a></h2>
+<p>公开示例只使用 <code>platform-alerts</code> 这类占位频道，绝不包含 webhook URL。</p>
+<h2 id="_7">常见反模式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Alerting on every pod restart without context.</li>
-<li>Using critical severity for capacity warning.</li>
-<li>Embedding real hostnames or domains in alert examples.</li>
-<li>Creating alerts without runbooks.</li>
-<li>Alerting on metrics that disappear during outages without using <code>absent()</code> where appropriate.</li>
+<li>对每一次 Pod 重启都无上下文告警。</li>
+<li>把容量 warning 设置成 critical。</li>
+<li>在告警示例中嵌入真实主机名或域名。</li>
+<li>创建没有 runbook 的告警。</li>
+<li>对故障期间会消失的指标告警，却没有在适当位置使用 <code>absent()</code>。</li>
 </ul>
-<h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<h2 id="_8">相关文档<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../recovery/kubernetes-pvc-usage-alert-runbook/">Kubernetes PVC Usage Alert Runbook</a></li>
+<li><a href="../../recovery/kubernetes-pvc-usage-alert-runbook/">Kubernetes PVC 使用率告警 Runbook</a></li>
+<li><a href="../../../cases-reviews/deep-dives/monitoring-migration-deep-dive/">监控迁移是路由迁移，不是服务器迁移</a></li>
 </ul>
 
 
@@ -4108,7 +4309,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月27日 15:08:30 UTC">2026年6月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:02:49 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4118,7 +4319,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月25日 12:05:39 UTC">2026年6月25日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 11:02:49 UTC">2026年6月28日</span>
   </span>
 
     
@@ -4254,7 +4455,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.footer", "navigation.top", "toc.follow", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": {"Architecture": "architecture", "Automation": "automation", "CI/CD": "ci-cd", "Cloud": "cloud", "Containers": "containers", "Databases": "databases", "Delivery": "delivery", "IaC": "iac", "Kubernetes": "kubernetes", "Linux": "linux", "Middleware": "middleware", "Migration": "migration", "Networking": "networking", "Observability": "observability", "Platform": "platform", "Reliability": "reliability", "Runbook": "runbook", "Security": "security", "Standards": "standards"}, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.footer", "navigation.top", "toc.follow", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": {"Architecture": "architecture", "Automation": "automation", "CI/CD": "ci-cd", "Cloud": "cloud", "Containers": "containers", "Databases": "databases", "Delivery": "delivery", "IaC": "iac", "Kubernetes": "kubernetes", "Linux": "linux", "Middleware": "middleware", "Migration": "migration", "Networking": "networking", "Observability": "observability", "OpenTelemetry": "opentelemetry", "Platform": "platform", "Reliability": "reliability", "Runbook": "runbook", "Security": "security", "Standards": "standards"}, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
