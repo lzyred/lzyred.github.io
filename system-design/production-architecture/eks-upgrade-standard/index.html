@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="升级 Kubernetes 集群（EKS 或自管）的标准——控制面/插件/节点的有序升级、废弃 API 检查、节点组迁移与回滚触发器。">
+        <meta name="description" content="在不发生计划外停机的前提下升级 Kubernetes 集群（EKS 或自管）的标准——三个必须按序耦合的升级、一次升级前的 API 兼容性检查、一个可逆的节点模型，以及围绕真正能回退的层设计的回滚。">
       
       
       
@@ -31,7 +31,7 @@
     
     
       
-        <title>EKS 与 Kubernetes 升级 - DevOps 专家知识库</title>
+        <title>EKS 与 Kubernetes 升级 - DevOps 生产契约地图</title>
       
     
     
@@ -72,16 +72,16 @@
     
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="EKS 与 Kubernetes 升级 - DevOps 专家知识库" />
-<meta property="og:description" content="升级 Kubernetes 集群（EKS 或自管）的标准——控制面/插件/节点的有序升级、废弃 API 检查、节点组迁移与回滚触发器。" />
+<meta property="og:title" content="EKS 与 Kubernetes 升级 - DevOps 生产契约地图" />
+<meta property="og:description" content="在不发生计划外停机的前提下升级 Kubernetes 集群（EKS 或自管）的标准——三个必须按序耦合的升级、一次升级前的 API 兼容性检查、一个可逆的节点模型，以及围绕真正能回退的层设计的回滚。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/system-design/production-architecture/eks-upgrade-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://blog.l2do.com/system-design/production-architecture/eks-upgrade-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="EKS 与 Kubernetes 升级 - DevOps 专家知识库" />
-<meta property="twitter:description" content="升级 Kubernetes 集群（EKS 或自管）的标准——控制面/插件/节点的有序升级、废弃 API 检查、节点组迁移与回滚触发器。" />
+<meta property="twitter:title" content="EKS 与 Kubernetes 升级 - DevOps 生产契约地图" />
+<meta property="twitter:description" content="在不发生计划外停机的前提下升级 Kubernetes 集群（EKS 或自管）的标准——三个必须按序耦合的升级、一次升级前的 API 兼容性检查、一个可逆的节点模型，以及围绕真正能回退的层设计的回滚。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/system-design/production-architecture/eks-upgrade-standard.png" />
 </head>
   
@@ -118,7 +118,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../.." title="DevOps 专家知识库" class="md-header__button md-logo" aria-label="DevOps 专家知识库" data-md-component="logo">
+    <a href="../../.." title="DevOps 生产契约地图" class="md-header__button md-logo" aria-label="DevOps 生产契约地图" data-md-component="logo">
       
   <img src="../../../assets/brand/l2do-devops.svg" alt="logo">
 
@@ -131,7 +131,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            DevOps 专家知识库
+            DevOps 生产契约地图
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -463,12 +463,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="DevOps 专家知识库" class="md-nav__button md-logo" aria-label="DevOps 专家知识库" data-md-component="logo">
+    <a href="../../.." title="DevOps 生产契约地图" class="md-nav__button md-logo" aria-label="DevOps 生产契约地图" data-md-component="logo">
       
   <img src="../../../assets/brand/l2do-devops.svg" alt="logo">
 
     </a>
-    DevOps 专家知识库
+    DevOps 生产契约地图
   </label>
   
     <div class="md-nav__source">
@@ -578,7 +578,7 @@
   <span class="md-ellipsis">
     
   
-    能力地图
+    概览
   
 
     
@@ -671,6 +671,150 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工程表达力
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工程表达力
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../capability-map/writing-for-incidents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为凌晨三点的读者而写
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../capability-map/collaboration-is-handoff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    协作就是可接管性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../capability-map/translating-risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    双向翻译风险
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -782,7 +926,7 @@
   <span class="md-ellipsis">
     
   
-    系统设计
+    概览
   
 
     
@@ -1035,7 +1179,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        目的
+        执行摘要
       
     </span>
   </a>
@@ -1057,7 +1201,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        非目标
+        假设
       
     </span>
   </a>
@@ -1068,7 +1212,7 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        升级原则
+        按比例缩放
       
     </span>
   </a>
@@ -1079,7 +1223,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        升级前评估
+        升级原则
       
     </span>
   </a>
@@ -1088,6 +1232,17 @@
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        升级前评估
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         标准升级序列
@@ -1135,7 +1290,7 @@
   <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 把核心插件升级到目标兼容版本
+        4. 把核心插件升到目标兼容版本
       
     </span>
   </a>
@@ -1146,7 +1301,7 @@
   <a href="#5-drain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 加新节点组，逐步 drain 旧节点
+        5. 新增一个节点组，逐步 drain 旧的
       
     </span>
   </a>
@@ -1157,7 +1312,7 @@
   <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. 校验，再下线旧节点
+        6. 验证，然后下线旧节点
       
     </span>
   </a>
@@ -1170,21 +1325,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        校验
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        已知失败模式
+        验证
       
     </span>
   </a>
@@ -1195,7 +1339,7 @@
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        回滚
+        已知失败模式
       
     </span>
   </a>
@@ -1206,7 +1350,7 @@
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        升级后复盘
+        回滚
       
     </span>
   </a>
@@ -1217,7 +1361,7 @@
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        安全注记
+        升级后复盘
       
     </span>
   </a>
@@ -1228,7 +1372,7 @@
   <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        评审周期
+        安全说明
       
     </span>
   </a>
@@ -1237,6 +1381,17 @@
       
         <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -3999,7 +4154,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        目的
+        执行摘要
       
     </span>
   </a>
@@ -4021,7 +4176,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        非目标
+        假设
       
     </span>
   </a>
@@ -4032,7 +4187,7 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        升级原则
+        按比例缩放
       
     </span>
   </a>
@@ -4043,7 +4198,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        升级前评估
+        升级原则
       
     </span>
   </a>
@@ -4052,6 +4207,17 @@
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        升级前评估
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         标准升级序列
@@ -4099,7 +4265,7 @@
   <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 把核心插件升级到目标兼容版本
+        4. 把核心插件升到目标兼容版本
       
     </span>
   </a>
@@ -4110,7 +4276,7 @@
   <a href="#5-drain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 加新节点组，逐步 drain 旧节点
+        5. 新增一个节点组，逐步 drain 旧的
       
     </span>
   </a>
@@ -4121,7 +4287,7 @@
   <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. 校验，再下线旧节点
+        6. 验证，然后下线旧节点
       
     </span>
   </a>
@@ -4134,21 +4300,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        校验
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        已知失败模式
+        验证
       
     </span>
   </a>
@@ -4159,7 +4314,7 @@
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        回滚
+        已知失败模式
       
     </span>
   </a>
@@ -4170,7 +4325,7 @@
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        升级后复盘
+        回滚
       
     </span>
   </a>
@@ -4181,7 +4336,7 @@
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        安全注记
+        升级后复盘
       
     </span>
   </a>
@@ -4192,7 +4347,7 @@
   <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        评审周期
+        安全说明
       
     </span>
   </a>
@@ -4201,6 +4356,17 @@
       
         <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复审周期
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -4337,59 +4503,92 @@
 
 
 <h1 id="eks-kubernetes">EKS 与 Kubernetes 升级标准<a class="headerlink" href="#eks-kubernetes" title="Permanent link">&para;</a></h1>
-<h2 id="_1">目的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>本标准定义安全升级托管（EKS 类）或自管 Kubernetes 集群跨一个小版本、且不引发计划外故障的流程。</p>
-<p>本标准的核心判断：</p>
-<blockquote>
-<p>Kubernetes 升级是三个耦合的升级——控制面、插件、节点——必须按序进行，外加一次在开始<strong>之前</strong>就能发现破坏的 API 兼容性检查。多数升级事故不是控制面，而是某个不再匹配版本的插件，或某个使用了新版本已移除 API 的工作负载。</p>
-</blockquote>
+<h2 id="_1">执行摘要<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>一次 Kubernetes 小版本升级不是一个升级。它是<strong>三个必须按顺序耦合的升级——控制面、然后插件、然后节点——外加一次必须在它们任何一个之前运行的兼容性检查。</strong> 控制面的版本号最显眼，但真正影响应用的故障，通常暴露在插件偏斜、目标版本已移除的 API、准入或转换 webhook、PDB、节点迁移这些耦合处。</p>
+<p>事故来自那些耦合。控制面动了之后还停在旧版本的某个插件，会产出看起来像控制面问题、其实不是的 DNS、网络或存储抖动。一个仍在调用新版本已移除 API 的工作负载，会在它的控制器重启的那一刻崩掉——而那可能是几小时之后，远在升级被宣布"完成"之后。一个阻塞全部驱逐的 <code>PodDisruptionBudget</code>，会让节点 drain 卡在半途，一部分工作负载在新版本、一部分在旧版本。</p>
+<p>最后一个完全可逆的时间点，是控制面升级开始之前。升级前的兼容性检查，会在旧版本仍然承载流量时，找出被移除的 API、不兼容的 CRD、失效的 webhook 和版本偏斜的插件。跳过它，你就会在 drain 期间发现同样的事实——那时半个集群已经迁移，控制面也已经无法回退。这份标准，主要讲的就是把发现提前，并让节点、插件、应用这些仍可回退的路径保持开放，直到新版本在真实流量下证明了自己。</p>
 <h2 id="_2">适用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>在以下情况使用本标准：</p>
 <ul>
 <li>跨小版本升级 EKS、自管 Kubernetes 或兼容平台。</li>
 <li>作为平台升级的一部分替换工作节点组。</li>
-<li>升级核心插件（CNI、CoreDNS、kube-proxy、CSI 驱动、ingress、可观测性 agent）。</li>
+<li>升级核心插件（CNI、CoreDNS、kube-proxy、CSI 驱动、Ingress 控制器、cert-manager、metrics-server）。</li>
 </ul>
-<p>这是<strong>升级</strong>标准。新建集群见集群供给标准；本标准假设集群已在运行。</p>
-<h2 id="_3">非目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>本标准不涵盖：</p>
+<p>这是<strong>升级</strong>标准，它假设你已有一个运行中的集群。不要把它当作：</p>
 <ul>
-<li>集群初次创建（见 Kubernetes 集群供给标准）。</li>
-<li>应用发布机制（见部署回滚 Runbook）。</li>
-<li>某云厂商确切的控制台/CLI 步骤——在本序列内使用厂商记录的升级路径。</li>
+<li>集群创建指南——见 Kubernetes 集群供给标准。</li>
+<li>应用发布流程——见部署回滚 Runbook。</li>
+<li>某个云厂商精确控制台/CLI 步骤的替代——在本序列<strong>内部</strong>使用云厂商记录的升级路径。</li>
+<li>跳过小版本的办法——一次只升一个小版本，除非平台明确支持更大跨度。</li>
 </ul>
-<h2 id="_4">升级原则<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_3">假设<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本标准假设：</p>
+<ul>
+<li>集群当前处于受支持版本，只升级到下一个小版本。</li>
+<li>工作负载以无状态为主，状态放在托管数据服务里，或放在你能验证 CSI 驱动兼容性的存储里。</li>
+<li>你有能力新增一个节点组，而不是原地变更节点——正是这一点让节点回滚变成"停止 drain"而不是"把一个节点降级回去"。</li>
+<li>集群状态和密钥有加密的备份路径（平台的流程，或自管集群的 etcd 备份）。</li>
+<li>升级后有一个观察窗口，期间旧节点组、兼容的插件版本和应用回滚路径保持可用。托管控制面本身应按单向变更处理。</li>
+</ul>
+<p>如果你的集群落后好几个小版本，这就不是一次升级——而是一连串有计划的升级，每一次都端到端跑完，因为 Kubernetes 只支持单小版本跳跃，且每一步都有偏斜规则。</p>
+<h2 id="_4">按比例缩放<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>下面的完整序列，是按一个承载真实流量的生产集群校准的。让投入匹配风险：</p>
+<ul>
+<li><strong>一个可以压缩流程的集群</strong>应同时满足：没有客户流量、没有关键 StatefulSet/PVC 依赖、停机或重建 RTO 已被接受、集群状态可以从代码重建。可以缩短观察窗口或用更大的批次 drain，但前提是已经完成 API 兼容性检查，并且旧节点组保留到冒烟测试和指标通过之后。</li>
+<li><strong>一个无状态集群</strong>可以更激进地 drain，因为节点迁移的回滚是"停止 drain、uncordon 或扩容旧节点组、把工作负载重新调度回去"——但只在旧节点组还存在的时候。一旦你下线它，回滚就变成在新版本上重新发布应用，而不是回到那个已知良好的节点版本。在你把"无状态"当成安全网之前，让旧节点组挺过观察窗口。当存在有状态工作负载、且一次糟糕的节点迁移无法靠重新调度撤销时，分批、验证过的 drain 才最重要。</li>
+<li><strong>一个有状态或有严格 SLA 的集群</strong>需要完整模型：小批 drain、批次间验证、观察窗口、演练过的恢复。这里不要因为小集群路径允许就跳过分批 drain。</li>
+</ul>
+<p>永远不会被缩放掉的那个检查，是 API 兼容性的升级前预检。其余一切都随一场宕机的代价而伸缩。</p>
+<h2 id="_5">升级原则<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>一次升一个小版本</strong>，除非平台明确支持更大跨度。</li>
-<li>把插件当作集群的一部分，而非可选项——控制面与插件的版本偏移是破坏的首要原因。</li>
-<li>按序升级：控制面 → 插件 → 节点。</li>
-<li>优先<strong>新节点组 + drain</strong>，而非就地改节点，使回滚是"停止 drain"而非"给节点降级"。</li>
-<li>在宣布完成前同时校验 Kubernetes 健康与应用行为。</li>
-<li>预先定义回滚触发器，并在观察窗口内保持回滚路径开放。</li>
+<li><strong>一次只升一个小版本</strong>，除非平台明确支持更大跳跃。</li>
+<li>把插件当作集群的一部分，而非可选附加——控制面与插件之间的版本偏斜是首要的故障来源。</li>
+<li>严格<strong>按序升级：控制面 → 插件 → 节点。</strong></li>
+<li>优先<strong>新节点组 + drain</strong>，而非原地变更节点，让节点回滚是"停止 drain、uncordon 或扩容旧节点组"，而不是"把一个节点降级回去"。</li>
+<li>在宣布完成前，验证 Kubernetes 健康和应用行为两者。</li>
+<li>提前定义回滚触发条件，并在观察窗口内保持回滚路径开放。</li>
 </ol>
-<h2 id="_5">升级前评估<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>捕获基线并运行兼容性检查——这里正是你预防故障之处。</p>
+<h2 id="_6">升级前评估<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>捕获基线并运行兼容性检查。这是你预防宕机的地方——趁一切还在旧版本、可逆的时候。</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>version
 kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
 kubectl<span class="w"> </span>get<span class="w"> </span>deploy,statefulset,daemonset<span class="w"> </span>-A
 kubectl<span class="w"> </span>get<span class="w"> </span>ingress,svc,pvc,storageclass<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>pdb<span class="w"> </span>-A<span class="w">                 </span><span class="c1"># 检查 ALLOWED DISRUPTIONS——为 0 的 PDB 会卡住 drain</span>
 kubectl<span class="w"> </span>top<span class="w"> </span>nodes<span class="p">;</span><span class="w"> </span>kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w"> </span>-A
 </code></pre></div>
+<p>同时<strong>现在</strong>就从监控里捕获一份<strong>基线错误率、延迟和 SLO burn rate</strong>，趁集群还在旧版本上健康。下面的回滚触发条件必须是预先批准的数字阈值或 SLO 偏移，而不是事故中途临时定义的口径。</p>
 <table>
 <thead>
 <tr>
-<th>领域</th>
+<th>区域</th>
 <th>检查</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>废弃 API</strong></td>
-<td>找出使用了目标版本已移除 API 的工作负载（如用 <code>pluto</code>/<code>kubent</code>）。这是价值最高的检查。</td>
+<td><strong>目标版本已移除的 API</strong></td>
+<td>找出仍在使用目标版本已移除 API 的工作负载（如 <code>pluto</code>、<code>kubent</code>）。在清单、Helm chart、GitOps 仓库和 CI 模板都停止输出这些 API 之前，阻断升级。</td>
+</tr>
+<tr>
+<td>CRD 与转换 webhook</td>
+<td>确认 CRD 版本、stored versions 和转换 webhook 与目标版本兼容。失效的转换 webhook 可能让已有对象无法读取，或阻塞控制器 reconcile。</td>
+</tr>
+<tr>
+<td>准入 webhook</td>
+<td>在控制面升级前验证 mutating/validating webhook、证书有效期、timeout policy、failure policy 和 API 兼容性。失效的 webhook 可能在升级后阻塞 Pod 创建。</td>
+</tr>
+<tr>
+<td>聚合 API 与 APIService</td>
+<td>检查 <code>APIService</code> 健康度和扩展 API 兼容性。聚合 API 失效时，核心 Kubernetes 看起来健康，控制器或 CLI 却可能失败。</td>
+</tr>
+<tr>
+<td>Operator 与控制器</td>
+<td>确认 operator 版本、controller-runtime 兼容性、leader election 和 RBAC 与目标 Kubernetes 版本匹配。控制器常常在升级数小时后才暴露目标版本已移除 API 的问题。</td>
 </tr>
 <tr>
 <td>插件</td>
-<td>CNI、CoreDNS、kube-proxy、CSI 驱动、ingress 控制器、cert-manager、metrics-server 与目标版本的兼容性。</td>
+<td>CNI、CoreDNS、kube-proxy、CSI 驱动、Ingress 控制器、cert-manager、metrics-server 与目标版本的兼容性。</td>
 </tr>
 <tr>
 <td>工作负载</td>
@@ -4405,128 +4604,137 @@ kubectl<span class="w"> </span>top<span class="w"> </span>nodes<span class="p">;
 </tr>
 <tr>
 <td>访问</td>
-<td>IAM/RBAC、服务账号，以及可用的应急（break-glass）路径。</td>
+<td>IAM/RBAC、服务账号，以及一条可用的 break-glass 路径。</td>
 </tr>
 </tbody>
 </table>
-<p>一个阻断所有驱逐的 PDB，或一个仍在使用的废弃 API，会让升级中途卡住——现在就找出来，而不是在 drain 时。</p>
-<h2 id="_6">标准升级序列<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>一个阻塞全部驱逐的 PDB、一个目标版本已移除的 API，或一个不兼容的 webhook/控制器，都会让升级卡在半途——现在就找出它们，而不是在 drain 期间。</p>
+<h2 id="_7">标准升级序列<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <h3 id="1">1. 冻结并通告<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<p>窗口期暂停无关部署与基础设施变更。沟通影响、回滚标准与负责人。</p>
+<p>为该窗口暂停无关的部署和基础设施变更。沟通影响、回滚标准和负责人。</p>
 <h3 id="2">2. 备份集群状态<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>all<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span>&gt;<span class="w"> </span>cluster-workloads.snapshot.yaml
 kubectl<span class="w"> </span>get<span class="w"> </span>configmap,ingress,svc,pvc,storageclass<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span>&gt;<span class="w"> </span>cluster-config.snapshot.yaml
 </code></pre></div>
-<p><strong>不要</strong>把 Secret 值导出为明文。通过平台的加密流程备份密钥；自管集群用推荐的加密方式备份 etcd（见 etcd 标准）。</p>
+<p><strong>不要</strong>把 Secret 值导出成明文。通过平台的加密流程备份密钥；对自管集群，用推荐的加密方法备份 etcd（见 etcd 标准）。</p>
 <h3 id="3">3. 升级控制面<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
-<p>通过厂商/集群工具升级；等待 API server 健康。</p>
+<p>通过云商/集群工具升级，并等待<strong>云商上报的</strong>升级完成状态（例如托管集群回到 <code>ACTIVE</code>），而不只是 <code>/readyz</code> 通过——一次托管控制面升级可能在 <code>/readyz</code> 上报健康、而云商仍在滚动它。随后先验证 API server discovery、准入/转换 webhook、聚合 API 和核心控制器，再触碰插件或节点。</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>--raw<span class="o">=</span><span class="s1">&#39;/readyz?verbose&#39;</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>--raw<span class="o">=</span><span class="s1">&#39;/apis&#39;</span><span class="w"> </span>&gt;/dev/null
+kubectl<span class="w"> </span>get<span class="w"> </span>apiservice
 kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 </code></pre></div>
-<h3 id="4">4. 把核心插件升级到目标兼容版本<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<h3 id="4">4. 把核心插件升到目标兼容版本<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
 kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/coredns<span class="w"> </span>-n<span class="w"> </span>kube-system
 kubectl<span class="w"> </span>get<span class="w"> </span>daemonset<span class="w"> </span>-n<span class="w"> </span>kube-system
 </code></pre></div>
-<p>在移动工作负载之前做——以新版本加入的节点需要兼容的 CNI/kube-proxy。</p>
-<h3 id="5-drain">5. 加新节点组，逐步 drain 旧节点<a class="headerlink" href="#5-drain" title="Permanent link">&para;</a></h3>
-<p>在目标版本上创建新节点组，再小批量移动工作负载：</p>
+<p>在迁移工作负载<strong>之前</strong>做这一步——以新版本加入的节点需要兼容的 CNI/kube-proxy。这是最常被跳过的一步，也是那些"控制面升级搞坏了 DNS"报告背后、其实是插件偏斜的那一步。</p>
+<h3 id="5-drain">5. 新增一个节点组，逐步 drain 旧的<a class="headerlink" href="#5-drain" title="Permanent link">&para;</a></h3>
+<p>在目标版本上创建一个新节点组，然后小批迁移工作负载：</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cordon<span class="w"> </span>&lt;old-node&gt;
 kubectl<span class="w"> </span>drain<span class="w"> </span>&lt;old-node&gt;<span class="w"> </span>--ignore-daemonsets<span class="w"> </span>--delete-emptydir-data<span class="w"> </span>--timeout<span class="o">=</span>10m
 </code></pre></div>
-<p>每批后先校验应用健康再继续。这是可逆模型：若某批异常，停下并保留仍健康的旧节点。</p>
-<h3 id="6">6. 校验，再下线旧节点<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
-<p>观察窗口后，缩容并移除旧节点组。保留快照与记录。</p>
-<h2 id="_7">校验<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>每一批之后验证应用健康再继续。这就是可逆模型：如果某一批行为异常，就停下并保留旧的（仍然健康的）节点。</p>
+<h3 id="6">6. 验证，然后下线旧节点<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<p>观察窗口之后，缩容并移除旧节点组。保留快照和记录。</p>
+<h2 id="_8">验证<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
 kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-A<span class="w"> </span>--sort-by<span class="o">=</span><span class="s1">&#39;.lastTimestamp&#39;</span>
 kubectl<span class="w"> </span>get<span class="w"> </span>ingress,pvc<span class="w"> </span>-A
 </code></pre></div>
-<p>应用校验必须包括：HTTP 健康、核心 API/登录冒烟、后台任务处理、数据库连通、外部 webhook/回调，以及告警/仪表盘仍可用。仅在这些通过且指标在观察窗口内稳定后才宣布成功。</p>
-<h2 id="_8">已知失败模式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>应用验证必须包括：HTTP 健康、一个核心 API/登录冒烟测试、后台作业处理、数据库连通性、外部 webhook/回调，以及告警/看板仍然工作。只有在这些通过、且指标在观察窗口内稳定之后，才宣布成功——而不是在新节点组 <code>Ready</code> 时。</p>
+<h2 id="_9">已知失败模式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>失败模式</th>
 <th>症状</th>
 <th>可能原因</th>
-<th>正确处置</th>
+<th>正确响应</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>废弃 API 破坏</td>
-<td>升级后控制器/CI 失败</td>
-<td>工作负载用了目标已移除的 API</td>
-<td>升级<strong>前</strong>用 <code>pluto</code>/<code>kubent</code> 找出；迁移清单。</td>
+<td>目标版本已移除的 API</td>
+<td>升级后控制器/CI 失败，有时几小时后才发生</td>
+<td>工作负载、chart、CRD、webhook 或控制器仍在使用目标版本已移除的 API</td>
+<td>升级<strong>前</strong>用 <code>pluto</code>/<code>kubent</code> 找出；迁移清单和控制器依赖。</td>
 </tr>
 <tr>
-<td>插件版本偏移</td>
+<td>Webhook/APIService 不兼容</td>
+<td>Pod 创建、控制器 reconcile 或 CLI discovery 失败</td>
+<td>准入 webhook、转换 webhook 或聚合 API 不兼容或不可用</td>
+<td>在节点迁移前验证 webhook 证书、failure policy、timeout 和 <code>APIService</code> 健康度。</td>
+</tr>
+<tr>
+<td>插件版本偏斜</td>
 <td>控制面升级后 DNS/网络/存储不稳</td>
 <td>插件未升到匹配版本</td>
-<td>移动节点前先升插件。</td>
+<td>在迁移节点前升级插件。</td>
 </tr>
 <tr>
-<td>drain 卡住</td>
-<td><code>kubectl drain</code> 挂起</td>
-<td>PDB 阻断驱逐/单副本</td>
-<td>修 PDB/副本；切勿盲目 <code>--force</code>。</td>
+<td>Drain 卡住</td>
+<td><code>kubectl drain</code> 在迁移途中挂起</td>
+<td>PDB 阻塞驱逐 / 单副本</td>
+<td>修 PDB/副本数；绝不盲目 <code>--force</code>。</td>
 </tr>
 <tr>
 <td>Pod 无法调度</td>
 <td>节点迁移后 Pending</td>
-<td>新组 taint/label/容量不匹配</td>
-<td>对齐 label/taint/规格；检查资源请求。</td>
+<td>新节点组上的污点/标签/容量不匹配</td>
+<td>匹配标签/污点/规格；检查资源请求。</td>
 </tr>
 <tr>
 <td>存储无法挂载</td>
 <td>StatefulSet Pod 卡住</td>
 <td>CSI 驱动不兼容</td>
-<td>在评估阶段核实 CSI 兼容；回滚节点。</td>
+<td>在升级前评估中验证 CSI 兼容性；回滚节点。</td>
 </tr>
 <tr>
 <td>控制面不可逆</td>
 <td>出问题后无法降级</td>
-<td>托管升级只能向前</td>
-<td>用节点/插件/应用回滚 + 备份恢复（见下）。</td>
+<td>托管升级是单向的</td>
+<td>通过节点/插件/应用回滚 + 备份恢复（见下）。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_9">回滚<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<p>托管控制面升级通常<strong>不</strong>可直接逆转——围绕可逆层设计回滚。</p>
+<h2 id="_10">回滚<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>托管控制面升级通常<strong>不</strong>直接可逆——所以回滚是围绕那些仍然可逆的层设计的。这恰恰是为什么原则 4（新节点组 + drain）重要：即使控制面不可逆，它也让节点迁移保持可逆。</p>
 <ol>
-<li><strong>立即停止节点迁移</strong>；在旧节点组仍受支持时保留/重建它。</li>
-<li>在安全处把<strong>插件</strong>回滚到兼容版本。</li>
+<li>立即<strong>停止节点迁移</strong>；在旧节点组仍受支持时 uncordon 或扩容旧节点组。</li>
+<li>在确认安全可行时，把<strong>插件</strong>回滚到兼容版本。</li>
 <li>回滚<strong>应用</strong>部署（<code>kubectl rollout undo</code>）。</li>
-<li>若数据受影响，从<strong>备份</strong>恢复有状态组件。</li>
+<li>如果数据受影响，从<strong>备份</strong>恢复有状态组件。</li>
 </ol>
-<p>开始前定义回滚触发器：</p>
+<p>开始前定义回滚触发条件：</p>
 <ul>
-<li>核心业务冒烟测试失败。</li>
-<li>错误率超阈值持续超过约 10 分钟。</li>
+<li>一个核心业务冒烟测试失败。</li>
+<li>预先批准的 SLO 触发条件在约定时长内被击穿，例如 5xx 率 &gt; <code>&lt;threshold&gt;</code>、p95/p99 延迟 &gt; <code>&lt;threshold&gt;</code>，或 burn-rate delta &gt; <code>&lt;threshold&gt;</code> 持续超过 <code>&lt;duration&gt;</code>。</li>
 <li>关键 Pod 无法调度。</li>
-<li>存储 attach/mount 错误命中有状态负载。</li>
-<li>Ingress/负载均衡器行为破坏外部流量。</li>
+<li>存储挂载错误打到有状态工作负载。</li>
+<li>Ingress/负载均衡器行为破坏了外部流量。</li>
 </ul>
-<h2 id="_10">升级后复盘<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
-<p>记录源/目标版本、插件升级前后版本、节点组变更、废弃 API 发现、事故与缓解，以及后续工作。</p>
-<h2 id="_11">安全注记<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h2 id="_11">升级后复盘<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>记录源/目标版本、前后的插件版本、节点组变更、目标版本已移除的 API、webhook/APIService 发现、事故与缓解、后续工作。</p>
+<h2 id="_12">安全说明<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <ul>
-<li>备份期间绝不把 Secret 值导出为明文；用加密/密钥管理系统备份。</li>
-<li>在下线旧路径前，验证 RBAC、IAM 与应急访问在新版本上仍可用。</li>
-<li>切勿公开真实集群名、账号 ID、endpoint 或节点名。</li>
+<li>备份时绝不把 Secret 值导出成明文；用加密/密钥管理器备份。</li>
+<li>在下线旧路径前，验证 RBAC、IAM 和 break-glass 访问在新版本上仍然工作。</li>
+<li>不要发布真实集群名、账号 ID、端点或节点名。</li>
 </ul>
-<h2 id="_12">评审周期<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h2 id="_13">复审周期<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
 <ul>
 <li>负责人：平台/集群团队。</li>
-<li>每次升级前重跑废弃 API 与插件兼容性检查。</li>
-<li>每个升级窗口前重新确认回滚触发器与备份/恢复路径。</li>
-<li>跟踪 Kubernetes 版本支持窗口，使升级是计划性的，而非被生命周期终点逼迫。</li>
+<li>每次升级前重新运行已移除 API、webhook/APIService、控制器和插件兼容性检查。</li>
+<li>每个升级窗口前重新确认回滚触发条件和备份/恢复路径。</li>
+<li>跟踪 Kubernetes 版本的支持窗口，让升级是有计划的，而不是被生命周期终止逼着做的。</li>
 </ul>
-<h2 id="_13">相关文档<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<h2 id="_14">相关文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../kubernetes-cluster-provisioning-standard/">Kubernetes 集群供给标准</a></li>
 <li><a href="../kubernetes-storage-ingress-standard/">Kubernetes 存储与 Ingress 标准</a></li>
+<li><a href="../aws-eks-production-ha-cluster/">AWS EKS 生产级高可用集群标准</a></li>
 <li><a href="../../../change-delivery/rollback/deployment-rollback-runbook/">部署回滚 Runbook</a></li>
 <li><a href="../../../standards-manual/databases/etcd-operations-standard/">etcd 运维标准</a></li>
 </ul>
@@ -4552,7 +4760,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>ingress,pvc<span class
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 14:31:41 UTC">2026年6月28日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月1日 00:01:02 UTC">2026年7月1日</span>
   </span>
 
     

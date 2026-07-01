@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>DevOps 专家知识库 Blog</title>
+    <title>DevOps 生产契约地图 Updates</title>
     <link>https://blog.l2do.com/blog/</link>
-    <description>DevOps 专家知识库的站点演进、深度文章和维护决策记录。</description>
+    <description>面向生产架构、交付、可靠性、可观测性和平台治理的文章更新。</description>
     <language>zh</language>
     <lastBuildDate>Sat, 27 Jun 2026 00:00:00 GMT</lastBuildDate>
 

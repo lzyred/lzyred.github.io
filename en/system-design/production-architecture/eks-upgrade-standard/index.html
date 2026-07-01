@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Standard for upgrading a Kubernetes cluster (EKS or self-managed) — sequenced control-plane/add-on/node upgrades, deprecated-API checks, node-group migration, and rollback triggers.">
+        <meta name="description" content="Standard for upgrading a Kubernetes cluster (EKS or self-managed) without an unplanned outage — three coupled upgrades in sequence, a pre-flight API-compatibility check, a reversible node model, and rollback designed around the layers that can actually be reversed.">
       
       
       
@@ -31,7 +31,7 @@
     
     
       
-        <title>EKS and Kubernetes Upgrade - Expert DevOps Knowledge Base</title>
+        <title>EKS and Kubernetes Upgrade - DevOps Production Contract Map</title>
       
     
     
@@ -72,16 +72,16 @@
     
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="EKS and Kubernetes Upgrade - Expert DevOps Knowledge Base" />
-<meta property="og:description" content="Standard for upgrading a Kubernetes cluster (EKS or self-managed) — sequenced control-plane/add-on/node upgrades, deprecated-API checks, node-group migration, and rollback triggers." />
+<meta property="og:title" content="EKS and Kubernetes Upgrade - DevOps Production Contract Map" />
+<meta property="og:description" content="Standard for upgrading a Kubernetes cluster (EKS or self-managed) without an unplanned outage — three coupled upgrades in sequence, a pre-flight API-compatibility check, a reversible node model, and rollback designed around the layers that can actually be reversed." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/system-design/production-architecture/eks-upgrade-standard.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://blog.l2do.com/en/system-design/production-architecture/eks-upgrade-standard/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="EKS and Kubernetes Upgrade - Expert DevOps Knowledge Base" />
-<meta property="twitter:description" content="Standard for upgrading a Kubernetes cluster (EKS or self-managed) — sequenced control-plane/add-on/node upgrades, deprecated-API checks, node-group migration, and rollback triggers." />
+<meta property="twitter:title" content="EKS and Kubernetes Upgrade - DevOps Production Contract Map" />
+<meta property="twitter:description" content="Standard for upgrading a Kubernetes cluster (EKS or self-managed) without an unplanned outage — three coupled upgrades in sequence, a pre-flight API-compatibility check, a reversible node model, and rollback designed around the layers that can actually be reversed." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/system-design/production-architecture/eks-upgrade-standard.png" />
 </head>
   
@@ -118,7 +118,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../" title="Expert DevOps Knowledge Base" class="md-header__button md-logo" aria-label="Expert DevOps Knowledge Base" data-md-component="logo">
+    <a href="../../../" title="DevOps Production Contract Map" class="md-header__button md-logo" aria-label="DevOps Production Contract Map" data-md-component="logo">
       
   <img src="../../../../assets/brand/l2do-devops.svg" alt="logo">
 
@@ -131,7 +131,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Expert DevOps Knowledge Base
+            DevOps Production Contract Map
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -463,12 +463,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../" title="Expert DevOps Knowledge Base" class="md-nav__button md-logo" aria-label="Expert DevOps Knowledge Base" data-md-component="logo">
+    <a href="../../../" title="DevOps Production Contract Map" class="md-nav__button md-logo" aria-label="DevOps Production Contract Map" data-md-component="logo">
       
   <img src="../../../../assets/brand/l2do-devops.svg" alt="logo">
 
     </a>
-    Expert DevOps Knowledge Base
+    DevOps Production Contract Map
   </label>
   
     <div class="md-nav__source">
@@ -578,7 +578,7 @@
   <span class="md-ellipsis">
     
   
-    Capability Map
+    Overview
   
 
     
@@ -671,6 +671,150 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering Communication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering Communication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../capability-map/writing-for-incidents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing for the Reader at 3 a.m.
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../capability-map/collaboration-is-handoff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collaboration Is Takeover-Ability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../capability-map/translating-risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Translating Risk in Both Directions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -782,7 +926,7 @@
   <span class="md-ellipsis">
     
   
-    System Design
+    Overview
   
 
     
@@ -1032,10 +1176,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#executive-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        Executive Summary
       
     </span>
   </a>
@@ -1043,10 +1187,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+  <a href="#when-to-use-this-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to Use
+        When to Use This Standard
       
     </span>
   </a>
@@ -1054,10 +1198,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#non-goals" class="md-nav__link">
+  <a href="#assumptions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Non-Goals
+        Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proportional-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proportional Scaling
       
     </span>
   </a>
@@ -3996,10 +4151,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#executive-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose
+        Executive Summary
       
     </span>
   </a>
@@ -4007,10 +4162,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+  <a href="#when-to-use-this-standard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to Use
+        When to Use This Standard
       
     </span>
   </a>
@@ -4018,10 +4173,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#non-goals" class="md-nav__link">
+  <a href="#assumptions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Non-Goals
+        Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proportional-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proportional Scaling
       
     </span>
   </a>
@@ -4337,44 +4503,61 @@
 
 
 <h1 id="eks-and-kubernetes-upgrade-standard">EKS and Kubernetes Upgrade Standard<a class="headerlink" href="#eks-and-kubernetes-upgrade-standard" title="Permanent link">&para;</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>This standard defines a safe process for upgrading a managed (EKS-style) or self-managed Kubernetes cluster from one minor version to the next, without an unplanned outage.</p>
-<p>The core judgment of this standard:</p>
-<blockquote>
-<p>A Kubernetes upgrade is three coupled upgrades — control plane, add-ons, and nodes — that must happen in order, plus an API-compatibility check that catches breakage <em>before</em> you start. Most upgrade incidents are not the control plane; they are an add-on that no longer matches the version, or a workload using an API the new version removed.</p>
-</blockquote>
-<h2 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h2>
+<h2 id="executive-summary">Executive Summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h2>
+<p>A Kubernetes minor-version upgrade is not one upgrade. It is <strong>three coupled upgrades that must happen in order — control plane, then add-ons, then nodes — plus one compatibility check that has to run before any of them.</strong> The control-plane version is the most visible part, but the application-impacting failures usually surface through add-on skew, APIs removed in the target version, admission or conversion webhooks, PDBs, or node migration.</p>
+<p>The incidents come from the couplings. An add-on left at the old version after the control plane moves produces flaky DNS, networking, or storage that looks like a control-plane problem and is not. A workload still calling an API the new version removed breaks the moment its controller restarts — which may be hours later, long after the upgrade was declared "done." A <code>PodDisruptionBudget</code> that blocks all eviction stalls the node drain halfway through, with some workloads on the new version and some on the old.</p>
+<p>The last fully reversible point is before the control-plane upgrade starts. A pre-flight compatibility check finds removed APIs, incompatible CRDs, broken webhooks, and skewed add-ons while the old version is still serving traffic. Skip it, and you discover the same facts during the drain, when half the cluster has already moved and the control plane can no longer be rolled back. This standard is mostly about doing the discovery early and keeping node, add-on, and application rollback paths open until the new version has proven itself under real traffic.</p>
+<h2 id="when-to-use-this-standard">When to Use This Standard<a class="headerlink" href="#when-to-use-this-standard" title="Permanent link">&para;</a></h2>
 <p>Use this standard when you:</p>
 <ul>
 <li>Upgrade EKS, self-managed Kubernetes, or a compatible platform across a minor version.</li>
 <li>Replace worker node groups as part of a platform upgrade.</li>
-<li>Upgrade core add-ons (CNI, CoreDNS, kube-proxy, CSI drivers, ingress, observability agents).</li>
+<li>Upgrade core add-ons (CNI, CoreDNS, kube-proxy, CSI drivers, ingress controller, cert-manager, metrics-server).</li>
 </ul>
-<p>This is the <strong>upgrade</strong> standard. Standing up a new cluster is covered by the cluster provisioning standard; this assumes a running cluster.</p>
-<h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
-<p>This standard does not cover:</p>
+<p>This is the <strong>upgrade</strong> standard, and it assumes a running cluster. Do not use it as:</p>
 <ul>
-<li>Initial cluster creation (see the Kubernetes cluster provisioning standard).</li>
-<li>Application rollout mechanics (see the deployment rollback runbook).</li>
-<li>A specific cloud provider's exact console/CLI steps — use the provider's documented upgrade path within this sequence.</li>
+<li>A cluster-creation guide — see the Kubernetes cluster provisioning standard.</li>
+<li>An application rollout procedure — see the deployment rollback runbook.</li>
+<li>A substitute for a provider's exact console/CLI steps — use the provider's documented upgrade path <em>inside</em> this sequence.</li>
+<li>A way to skip minor versions — upgrade one minor version at a time unless the platform explicitly supports a larger jump.</li>
 </ul>
+<h2 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h2>
+<p>This standard assumes:</p>
+<ul>
+<li>A cluster currently in a supported version, upgrading to the next minor version only.</li>
+<li>Mostly stateless workloads, with state in managed data services or in storage whose CSI driver compatibility you can verify.</li>
+<li>The ability to add a new node group rather than mutate nodes in place — this is what makes node rollback "stop draining" instead of "un-upgrade a node."</li>
+<li>An encrypted backup path for cluster state and secrets (the platform's process, or etcd backup for self-managed clusters).</li>
+<li>An observation window after the upgrade during which old node groups, compatible add-on versions, and application rollback paths remain available. The managed control plane itself should be treated as forward-only.</li>
+</ul>
+<p>If your cluster is several minor versions behind, this is not one upgrade — it is a planned sequence of them, each run end to end, because Kubernetes only supports single-minor-version jumps and skew rules apply at every step.</p>
+<h2 id="proportional-scaling">Proportional Scaling<a class="headerlink" href="#proportional-scaling" title="Permanent link">&para;</a></h2>
+<p>The full sequence below is calibrated for a production cluster carrying real traffic. Match the effort to the risk:</p>
+<ul>
+<li><strong>A compressible cluster</strong> has no customer traffic, no critical StatefulSet/PVC dependency, an accepted downtime or rebuild RTO, and a cluster state that can be recreated from code. You may shorten the observation window or drain in larger batches, but only after running the API-compatibility check and keeping the old node group until smoke tests and metrics pass.</li>
+<li><strong>A stateless cluster</strong> can drain more aggressively because node-migration rollback is "stop the drain, uncordon or scale the old node group, and reschedule there" — but only while that old node group still exists. Once you decommission it, rollback becomes an application redeploy on the new version, not a return to the known-good node version. Keep the old group through the observation window before you call statelessness a safety net. The batched, validated drain matters most when stateful workloads are present and a bad node migration cannot be undone by rescheduling.</li>
+<li><strong>A cluster with stateful workloads or strict SLAs</strong> needs the full model: small drain batches, validation between batches, the observation window, and rehearsed restore. Do not skip the batched drain here just because the small-cluster path allows it.</li>
+</ul>
+<p>The check that never scales away is the API-compatibility pre-flight. Everything else flexes with how much an outage would cost.</p>
 <h2 id="upgrade-principles">Upgrade Principles<a class="headerlink" href="#upgrade-principles" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Upgrade <strong>one minor version at a time</strong> unless the platform explicitly supports a larger jump.</li>
-<li>Treat add-ons as part of the cluster, not optional extras — version-skew between control plane and add-ons is a top cause of breakage.</li>
-<li>Upgrade in sequence: control plane → add-ons → nodes.</li>
-<li>Prefer <strong>new node groups + drain</strong> over in-place node mutation, so rollback is "stop draining" rather than "un-upgrade a node".</li>
+<li>Treat add-ons as part of the cluster, not optional extras — version skew between control plane and add-ons is a top cause of breakage.</li>
+<li>Upgrade strictly <strong>in sequence: control plane → add-ons → nodes.</strong></li>
+<li>Prefer <strong>new node group + drain</strong> over in-place node mutation, so node rollback is "stop draining, uncordon or scale the old group," not "un-upgrade a node."</li>
 <li>Validate both Kubernetes health and application behavior before declaring done.</li>
 <li>Define rollback triggers up front and keep rollback paths open through the observation window.</li>
 </ol>
 <h2 id="pre-upgrade-assessment">Pre-Upgrade Assessment<a class="headerlink" href="#pre-upgrade-assessment" title="Permanent link">&para;</a></h2>
-<p>Capture a baseline and run the compatibility checks — this is where you prevent the outage.</p>
+<p>Capture a baseline and run the compatibility checks. This is where you prevent the outage — while everything is still on the old version and reversible.</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>version
 kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
 kubectl<span class="w"> </span>get<span class="w"> </span>deploy,statefulset,daemonset<span class="w"> </span>-A
 kubectl<span class="w"> </span>get<span class="w"> </span>ingress,svc,pvc,storageclass<span class="w"> </span>-A
+kubectl<span class="w"> </span>get<span class="w"> </span>pdb<span class="w"> </span>-A<span class="w">                 </span><span class="c1"># check ALLOWED DISRUPTIONS — a PDB at 0 will stall the drain</span>
 kubectl<span class="w"> </span>top<span class="w"> </span>nodes<span class="p">;</span><span class="w"> </span>kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w"> </span>-A
 </code></pre></div>
+<p>Also capture a <strong>baseline error rate, latency, and SLO burn rate</strong> from your monitoring now, while the cluster is healthy on the old version. The rollback triggers below must be pre-approved numeric thresholds or SLO deltas, not improvised during the incident.</p>
 <table>
 <thead>
 <tr>
@@ -4384,8 +4567,24 @@ kubectl<span class="w"> </span>top<span class="w"> </span>nodes<span class="p">;
 </thead>
 <tbody>
 <tr>
-<td><strong>Deprecated APIs</strong></td>
-<td>Find workloads using APIs removed in the target version (e.g. with <code>kubectl deprecations</code>/<code>pluto</code>/<code>kubent</code>). This is the highest-value check.</td>
+<td><strong>APIs removed in the target version</strong></td>
+<td>Find workloads using APIs removed in the target version (e.g. <code>pluto</code>, <code>kubent</code>). Block the upgrade until manifests, Helm charts, GitOps repos, and CI templates stop emitting those APIs.</td>
+</tr>
+<tr>
+<td>CRDs and conversion webhooks</td>
+<td>Confirm CRD versions, stored versions, and conversion webhooks are compatible with the target version. A broken conversion webhook can make existing objects unreadable or block controller reconciliation.</td>
+</tr>
+<tr>
+<td>Admission webhooks</td>
+<td>Validate mutating/validating webhooks, certificate expiry, timeout policy, failure policy, and API compatibility before the control plane moves. A failing webhook can block pod creation after the upgrade.</td>
+</tr>
+<tr>
+<td>Aggregated APIs and APIService</td>
+<td>Check <code>APIService</code> health and extension API compatibility. Broken aggregated APIs can make controllers or CLIs fail even when core Kubernetes looks healthy.</td>
+</tr>
+<tr>
+<td>Operators and controllers</td>
+<td>Confirm operator versions, controller-runtime compatibility, leader election, and RBAC against the target Kubernetes version. Controllers often surface APIs removed in the target version hours after the upgrade.</td>
 </tr>
 <tr>
 <td>Add-ons</td>
@@ -4409,7 +4608,7 @@ kubectl<span class="w"> </span>top<span class="w"> </span>nodes<span class="p">;
 </tr>
 </tbody>
 </table>
-<p>A PDB that blocks all eviction, or a deprecated API still in use, will stall the upgrade midway — find these now, not during the drain.</p>
+<p>A PDB that blocks all eviction, an API removed in the target version, or an incompatible webhook/controller will stall the upgrade midway — find these now, not during the drain.</p>
 <h2 id="standard-upgrade-sequence">Standard Upgrade Sequence<a class="headerlink" href="#standard-upgrade-sequence" title="Permanent link">&para;</a></h2>
 <h3 id="1-freeze-and-announce">1. Freeze and announce<a class="headerlink" href="#1-freeze-and-announce" title="Permanent link">&para;</a></h3>
 <p>Pause unrelated deploys and infra changes for the window. Communicate impact, rollback criteria, and owners.</p>
@@ -4419,8 +4618,10 @@ kubectl<span class="w"> </span>get<span class="w"> </span>configmap,ingress,svc,
 </code></pre></div>
 <p>Do <strong>not</strong> export Secret values to plaintext. Back up secrets via the platform's encrypted process; for self-managed clusters, back up etcd with the recommended encrypted method (see the etcd standard).</p>
 <h3 id="3-upgrade-the-control-plane">3. Upgrade the control plane<a class="headerlink" href="#3-upgrade-the-control-plane" title="Permanent link">&para;</a></h3>
-<p>Upgrade via the provider/cluster tool; wait for the API server to be healthy.</p>
+<p>Upgrade via the provider/cluster tool, and wait for the <strong>provider-reported</strong> upgrade-complete status (e.g. the managed cluster back to <code>ACTIVE</code>), not only a passing <code>/readyz</code> — a managed control-plane upgrade can report healthy on <code>/readyz</code> while the provider is still rolling it out. Then validate API server discovery, admission/conversion webhooks, aggregated APIs, and core controllers before touching add-ons or nodes.</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>--raw<span class="o">=</span><span class="s1">&#39;/readyz?verbose&#39;</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>--raw<span class="o">=</span><span class="s1">&#39;/apis&#39;</span><span class="w"> </span>&gt;/dev/null
+kubectl<span class="w"> </span>get<span class="w"> </span>apiservice
 kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 </code></pre></div>
 <h3 id="4-upgrade-core-add-ons-to-target-compatible-versions">4. Upgrade core add-ons to target-compatible versions<a class="headerlink" href="#4-upgrade-core-add-ons-to-target-compatible-versions" title="Permanent link">&para;</a></h3>
@@ -4428,7 +4629,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/coredns<span class="w"> </span>-n<span class="w"> </span>kube-system
 kubectl<span class="w"> </span>get<span class="w"> </span>daemonset<span class="w"> </span>-n<span class="w"> </span>kube-system
 </code></pre></div>
-<p>Do this before moving workloads — nodes joining on the new version need compatible CNI/kube-proxy.</p>
+<p>Do this <strong>before</strong> moving workloads — nodes joining on the new version need compatible CNI/kube-proxy. This is the step most often skipped and the one that produces "the control plane upgrade broke DNS" reports that are really add-on skew.</p>
 <h3 id="5-add-a-new-node-group-drain-the-old-gradually">5. Add a new node group, drain the old gradually<a class="headerlink" href="#5-add-a-new-node-group-drain-the-old-gradually" title="Permanent link">&para;</a></h3>
 <p>Create a new node group on the target version, then move workloads in small batches:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cordon<span class="w"> </span>&lt;old-node&gt;
@@ -4442,7 +4643,7 @@ kubectl<span class="w"> </span>drain<span class="w"> </span>&lt;old-node&gt;<spa
 kubectl<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-A<span class="w"> </span>--sort-by<span class="o">=</span><span class="s1">&#39;.lastTimestamp&#39;</span>
 kubectl<span class="w"> </span>get<span class="w"> </span>ingress,pvc<span class="w"> </span>-A
 </code></pre></div>
-<p>Application validation must include: HTTP health, a core API/login smoke test, background-job processing, database connectivity, external webhooks/callbacks, and that alerting/dashboards still work. Declare success only after these pass and metrics are stable through the observation window.</p>
+<p>Application validation must include: HTTP health, a core API/login smoke test, background-job processing, database connectivity, external webhooks/callbacks, and that alerting/dashboards still work. Declare success only after these pass and metrics are stable through the observation window — not when the new node group is <code>Ready</code>.</p>
 <h2 id="known-failure-modes">Known Failure Modes<a class="headerlink" href="#known-failure-modes" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4455,10 +4656,16 @@ kubectl<span class="w"> </span>get<span class="w"> </span>ingress,pvc<span class
 </thead>
 <tbody>
 <tr>
-<td>Deprecated API breakage</td>
-<td>Controllers/CI fail post-upgrade</td>
-<td>Workload used an API removed in target</td>
-<td>Find with <code>pluto</code>/<code>kubent</code> <strong>before</strong> upgrading; migrate manifests.</td>
+<td>API removed in target version</td>
+<td>Controllers/CI fail post-upgrade, sometimes hours later</td>
+<td>Workload, chart, CRD, webhook, or controller still uses an API removed in the target version</td>
+<td>Find with <code>pluto</code>/<code>kubent</code> <strong>before</strong> upgrading; migrate manifests and controller dependencies.</td>
+</tr>
+<tr>
+<td>Webhook/APIService incompatibility</td>
+<td>Pod creation, controller reconciliation, or CLI discovery fails</td>
+<td>Admission webhook, conversion webhook, or aggregated API is incompatible or unavailable</td>
+<td>Validate webhook certificates, failure policies, timeouts, and <code>APIService</code> health before node migration.</td>
 </tr>
 <tr>
 <td>Add-on version skew</td>
@@ -4468,7 +4675,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>ingress,pvc<span class
 </tr>
 <tr>
 <td>Drain stalls</td>
-<td><code>kubectl drain</code> hangs</td>
+<td><code>kubectl drain</code> hangs mid-migration</td>
 <td>PDB blocks eviction / single replica</td>
 <td>Fix PDB/replicas; never <code>--force</code> blindly.</td>
 </tr>
@@ -4493,9 +4700,9 @@ kubectl<span class="w"> </span>get<span class="w"> </span>ingress,pvc<span class
 </tbody>
 </table>
 <h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
-<p>Managed control-plane upgrades are usually <strong>not</strong> directly reversible — design rollback around the reversible layers.</p>
+<p>Managed control-plane upgrades are usually <strong>not</strong> directly reversible — so rollback is designed around the layers that still are. This is exactly why principle 4 (new node group + drain) matters: it keeps node migration reversible even though the control plane is not.</p>
 <ol>
-<li><strong>Stop node migration</strong> immediately; keep/recreate old node groups while they are still supported.</li>
+<li><strong>Stop node migration</strong> immediately; uncordon or scale the old node group while it is still supported.</li>
 <li>Roll back <strong>add-ons</strong> to compatible versions where safe.</li>
 <li>Roll back <strong>application</strong> deployments (<code>kubectl rollout undo</code>).</li>
 <li>Restore stateful components from <strong>backups</strong> if data was affected.</li>
@@ -4503,13 +4710,13 @@ kubectl<span class="w"> </span>get<span class="w"> </span>ingress,pvc<span class
 <p>Define rollback triggers before starting:</p>
 <ul>
 <li>A core business smoke test fails.</li>
-<li>Error rate exceeds threshold for more than ~10 minutes.</li>
+<li>A pre-approved SLO trigger is breached for the agreed duration, such as 5xx rate &gt; <code>&lt;threshold&gt;</code>, p95/p99 latency &gt; <code>&lt;threshold&gt;</code>, or burn-rate delta &gt; <code>&lt;threshold&gt;</code> for more than <code>&lt;duration&gt;</code>.</li>
 <li>Critical pods cannot schedule.</li>
 <li>Storage attach/mount errors hit stateful workloads.</li>
 <li>Ingress/load-balancer behavior breaks external traffic.</li>
 </ul>
 <h2 id="post-upgrade-review">Post-Upgrade Review<a class="headerlink" href="#post-upgrade-review" title="Permanent link">&para;</a></h2>
-<p>Record source/target versions, add-on versions before/after, node-group changes, deprecated-API findings, incidents and mitigations, and follow-up work.</p>
+<p>Record source/target versions, add-on versions before/after, node-group changes, APIs removed in the target version, webhook/APIService findings, incidents and mitigations, and follow-up work.</p>
 <h2 id="security-notes">Security Notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Never export Secret values to plaintext during backup; use encrypted/secret-manager backups.</li>
@@ -4519,7 +4726,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>ingress,pvc<span class
 <h2 id="review-cycle">Review Cycle<a class="headerlink" href="#review-cycle" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Owner: the platform/cluster team.</li>
-<li>Re-run the deprecated-API and add-on compatibility check before every upgrade.</li>
+<li>Re-run checks for APIs removed in the target version, webhook/APIService compatibility, controller compatibility, and add-on compatibility before every upgrade.</li>
 <li>Re-confirm rollback triggers and the backup/restore path before each upgrade window.</li>
 <li>Track the Kubernetes version support window so upgrades are planned, not forced by end-of-support.</li>
 </ul>
@@ -4527,6 +4734,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>ingress,pvc<span class
 <ul>
 <li><a href="../kubernetes-cluster-provisioning-standard/">Kubernetes Cluster Provisioning Standard</a></li>
 <li><a href="../kubernetes-storage-ingress-standard/">Kubernetes Storage and Ingress Standard</a></li>
+<li><a href="../aws-eks-production-ha-cluster/">AWS EKS Production HA Cluster Standard</a></li>
 <li><a href="../../../change-delivery/rollback/deployment-rollback-runbook/">Deployment Rollback Runbook</a></li>
 <li><a href="../../../standards-manual/databases/etcd-operations-standard/">etcd Operations Standard</a></li>
 </ul>
@@ -4552,7 +4760,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>ingress,pvc<span class
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 14:31:41 UTC">June 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 1, 2026 00:01:02 UTC">July 1, 2026</span>
   </span>
 
     

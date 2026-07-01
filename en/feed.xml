@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>Expert DevOps Knowledge Base Blog</title>
+    <title>DevOps Production Contract Map Updates</title>
     <link>https://blog.l2do.com/en/blog/</link>
-    <description>Site evolution, deep articles, and maintenance decisions for the Expert DevOps Knowledge Base.</description>
+    <description>Article updates for production architecture, delivery, reliability, observability, and platform governance.</description>
     <language>en</language>
     <lastBuildDate>Sat, 27 Jun 2026 00:00:00 GMT</lastBuildDate>
 
