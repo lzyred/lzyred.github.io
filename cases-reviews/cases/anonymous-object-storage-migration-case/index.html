@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="跨厂商对象存储迁移的匿名案例——增量同步、为何计数/大小检查不足，以及写切换才是真正的风险点。">
+        <meta name="description" content="跨厂商对象存储迁移匿名案例：把写切换视为权威迁移，而不是复制任务的收尾。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="对象存储迁移案例 - DevOps 生产契约地图" />
-<meta property="og:description" content="跨厂商对象存储迁移的匿名案例——增量同步、为何计数/大小检查不足，以及写切换才是真正的风险点。" />
+<meta property="og:description" content="跨厂商对象存储迁移匿名案例：把写切换视为权威迁移，而不是复制任务的收尾。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/cases-reviews/cases/anonymous-object-storage-migration-case.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/cases-reviews/cases/anonymous-object-storage-migration-case/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="对象存储迁移案例 - DevOps 生产契约地图" />
-<meta property="twitter:description" content="跨厂商对象存储迁移的匿名案例——增量同步、为何计数/大小检查不足，以及写切换才是真正的风险点。" />
+<meta property="twitter:description" content="跨厂商对象存储迁移匿名案例：把写切换视为权威迁移，而不是复制任务的收尾。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/cases-reviews/cases/anonymous-object-storage-migration-case.png" />
 </head>
   
@@ -2562,7 +2562,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        核心经验
+        这篇案例真正讨论什么
       
     </span>
   </a>
@@ -2573,7 +2573,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        背景
+        决策框架
       
     </span>
   </a>
@@ -2606,7 +2606,7 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        计划
+        迁移模型
       
     </span>
   </a>
@@ -2617,7 +2617,7 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        执行
+        执行顺序
       
     </span>
   </a>
@@ -2628,7 +2628,7 @@
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        遇到的问题
+        验证证据
       
     </span>
   </a>
@@ -2639,6 +2639,78 @@
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
+        暴露出来的失败模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="暴露出来的失败模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数量和大小匹配，但抽样失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前缀映射是一种产品契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        元数据也是数据的一部分
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        凭据必须有结束日期
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可逆边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         结果
       
     </span>
@@ -2647,10 +2719,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       
-        可复用经验
+        可复用审查问题
       
     </span>
   </a>
@@ -2658,7 +2730,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -4041,7 +4113,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        核心经验
+        这篇案例真正讨论什么
       
     </span>
   </a>
@@ -4052,7 +4124,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        背景
+        决策框架
       
     </span>
   </a>
@@ -4085,7 +4157,7 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        计划
+        迁移模型
       
     </span>
   </a>
@@ -4096,7 +4168,7 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        执行
+        执行顺序
       
     </span>
   </a>
@@ -4107,7 +4179,7 @@
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        遇到的问题
+        验证证据
       
     </span>
   </a>
@@ -4118,6 +4190,78 @@
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
+        暴露出来的失败模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="暴露出来的失败模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数量和大小匹配，但抽样失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前缀映射是一种产品契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        元数据也是数据的一部分
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        凭据必须有结束日期
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可逆边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         结果
       
     </span>
@@ -4126,10 +4270,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       
-        可复用经验
+        可复用审查问题
       
     </span>
   </a>
@@ -4137,7 +4281,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -4275,61 +4419,203 @@
 
 <h1 id="_1">匿名对象存储迁移案例<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>本案例中所有标识均为通用化。未保留任何原始 bucket 名、域名、区域、客户数据或访问凭据。</p>
+<p>本案例中所有标识均已通用化。未保留任何原始 bucket 名、域名、区域、客户数据、访问密钥、前缀或应用名。</p>
 </blockquote>
-<h2 id="_2">核心经验<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>对象计数与总大小一致，只证明你复制了<em>某些东西</em>，而非<em>正确地</em>复制了它。完整性需要抽样校验和与一次真实的应用读取；而真正承载风险的时刻是<strong>写切换</strong>——切换前回滚轻而易举，切换后回滚意味着对账。</p>
-</blockquote>
-<h2 id="_3">背景<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>某工程团队需要把应用文件从一个对象存储厂商迁移到另一个，同时保持可用性并尽量减少数据不一致。应用持续地既读又写对象。</p>
+<h2 id="_2">这篇案例真正讨论什么<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>这次迁移看起来是数据复制问题，实质上是权威迁移问题。</p>
+<p>写切换前，源 bucket 仍是事实来源。失败时通常只要把读重新指回源即可。写切换后，新对象和更新开始落到目标。自那一刻起，回滚不再是改路由，而是对账。</p>
+<p>这个边界塑造了整个计划。团队把所有危险的不确定性都前移到写切换之前，并让写切换成为最后一个小步骤，而不是大复制任务结束后的庆祝动作。</p>
+<h2 id="_3">决策框架<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>决策问题</th>
+<th>为什么重要</th>
+<th>必须回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每个阶段谁是事实来源？</td>
+<td>没有权威模型，“回滚”这两个字会变得含糊。</td>
+<td>写切换前源为权威；目标只有在明确批准后才成为权威。</td>
+</tr>
+<tr>
+<td>如何证明正确性？</td>
+<td>对象数量和总字节数可能一致，但具体对象、元数据或访问行为仍然错误。</td>
+<td>Manifest、增量账本、抽样校验和、元数据检查、应用读取。</td>
+</tr>
+<tr>
+<td>写入迁移后会改变什么？</td>
+<td>写切换把恢复方式从重指向变成对账。</td>
+<td>目标接收写入前，已有回滚和正向对账计划。</td>
+</tr>
+<tr>
+<td>读切换期间如何保证新写入可见？</td>
+<td>读指向目标、写仍指向源时，如果忽略复制延迟，新写入可能对读不可见。</td>
+<td>新写入路径已被栅栏化、支持 read-through/fallback，或明确不属于读后写一致性要求，直到最终增量关闭。</td>
+</tr>
+</tbody>
+</table>
+<p>这次案例变安全的关键，是团队停止问“同步跑完了吗”，开始问“哪个存储当前有权接收事实”。</p>
 <h2 id="_4">起始状态<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
-<li>源厂商上的在线对象存储，处于持续读写流量下。</li>
-<li>对象按映射到应用语义的前缀组织。</li>
-<li>没有足够长的维护窗口来"停服、全量复制、再切换"。</li>
+<li>应用持续在源厂商对象存储上读写。</li>
+<li>对象前缀承载应用语义。</li>
+<li>部分对象的元数据和访问行为对应用有意义，不只是字节内容有意义。</li>
+<li>没有足够长的维护窗口支持全量冻结、复制、再切换。</li>
+<li>长期迁移凭据不可接受。</li>
 </ul>
 <h2 id="_5">约束<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
-<li>应用必须保持可用；长时间冻结不可接受。</li>
-<li>源与目标之间的数据不一致必须最小化。</li>
-<li>必须在不泄漏长期凭据的前提下授予目标访问。</li>
+<li>应用必须保持可用。</li>
+<li>数据不一致必须被限制且可观察。</li>
+<li>迁移凭据必须是临时、可吊销的。</li>
+<li>源与目标布局差异必须在首次全量复制前审查。</li>
+<li>源存储必须在写切换观察期后才退出回滚路径。</li>
 </ul>
-<h2 id="_6">计划<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>迁移采用增量同步模型，使写入能在全量复制期间继续：</p>
+<h2 id="_6">迁移模型<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>团队用了三本账。这是最重要的设计选择。</p>
+<table>
+<thead>
+<tr>
+<th>账本</th>
+<th>作用</th>
+<th>防止的失败</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>盘点 Manifest</td>
+<td>声明哪些 bucket、前缀、对象类别、元数据和访问规则在范围内。</td>
+<td>复制了错误形状的数据，直到很晚才发现前缀缺失。</td>
+</tr>
+<tr>
+<td>同步账本</td>
+<td>记录全量复制完成情况、增量窗口、重试、差异和未解决对象。</td>
+<td>把“命令结束”误当成“迁移正确”。</td>
+</tr>
+<tr>
+<td>应用验证账本</td>
+<td>记录真实应用读取、抽样写入、元数据行为和权限检查。</td>
+<td>字节迁过去了，但应用仍然无法使用。</td>
+</tr>
+</tbody>
+</table>
+<p>这些账不是流程装饰。它们是判断回滚会不会丢数据的唯一依据。</p>
+<h2 id="_7">执行顺序<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <ol>
-<li>盘点源 bucket 与前缀。</li>
-<li>估算对象数量与总大小。</li>
-<li>创建目标 bucket 与访问策略。</li>
-<li>执行初次全量同步。</li>
-<li>比较对象计数与抽样校验和。</li>
-<li>对全量复制期间变更的对象做增量同步。</li>
-<li>将应用<strong>读</strong>切到目标。</li>
-<li>将应用<strong>写</strong>切到目标。</li>
-<li>回滚窗口内保持源只读。</li>
+<li>从源 bucket、前缀、对象数量、字节总量、元数据要求、生命周期策略和访问规则生成盘点 Manifest。</li>
+<li>创建目标 bucket、策略、生命周期行为、加密设置和临时迁移凭据。</li>
+<li>应用继续从源读写时，执行初次全量同步。</li>
+<li>将差异和重试失败记录到同步账本，而不是藏在工具日志里。</li>
+<li>对全量复制期间变更的对象执行增量同步，并追踪 create、update、delete、overwrite、tombstone 或版本语义。</li>
+<li>验证数量和大小后，按前缀、对象大小、对象年龄、存储类别进行分层抽样校验和。</li>
+<li>在不迁移写入权威的情况下，对目标执行应用读取测试。</li>
+<li>只有在新写入可见性已通过足够快的复制、read-through fallback、写栅栏，或明确说明该路径没有读后写要求后，才把读切到目标。</li>
+<li>对最终增量窗口执行写冻结、写栅栏或严格顺序控制。</li>
+<li>未解决差异被接受或清零后，才把写切到目标。</li>
+<li>源在回滚窗口内保持只读；迁移关闭后吊销临时凭据。</li>
 </ol>
-<h2 id="_7">执行<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>全量同步运行时，应用仍从源提供服务。全量复制后，团队用增量同步对账增量，然后先把读切到目标（低风险——源对写仍是权威）。仅在读被验证后才切换写，这是不可逆的一步。</p>
-<h2 id="_8">遇到的问题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_8">验证证据<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>证据</th>
+<th>为什么数量和大小不够</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前缀级 Manifest 对比</td>
+<td>全局数量可能掩盖某个前缀缺失或错放。</td>
+</tr>
+<tr>
+<td>分层抽样校验和</td>
+<td>总字节数可以一致，但部分对象内容不同。按前缀、大小和年龄抽样比单纯随机点查更有力。</td>
+</tr>
+<tr>
+<td>元数据对比</td>
+<td>Content-Type、缓存头、加密和 ACL 行为可能在字节一致时仍破坏应用。</td>
+</tr>
+<tr>
+<td>变更语义</td>
+<td>删除、覆盖、tombstone、对象版本和列表一致性决定目标代表当前事实，还是只代表已复制历史。</td>
+</tr>
+<tr>
+<td>应用读取</td>
+<td>SDK 行为、签名 URL、Range Read、重定向和权限路径无法由存储 CLI 输出证明。</td>
+</tr>
+<tr>
+<td>最终增量账本</td>
+<td>真正危险的是迁移期间持续变化的对象，不是已经干净复制的冷数据。</td>
+</tr>
+<tr>
+<td>写切换观察</td>
+<td>新写入必须能从目标读到、被下游任务看见，且不能意外落回源路径。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">暴露出来的失败模式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="_10">数量和大小匹配，但抽样失败<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>第一次聚合对比看起来干净。一次校验和抽样发现了少量对象不匹配。问题小到不会改变全局总量，却足以证明团队不能只相信聚合数字。</p>
+<p>这些对象被重新同步，抽样策略也被扩大。团队保留了差异记录，而不是把它从记忆里擦掉，因为这份记录后来解释了为什么可以进入写切换。</p>
+<h3 id="_11">前缀映射是一种产品契约<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>一个前缀假设与目标布局准备方式不一致。如果全量同步后才发现，成本会是大规模重复制；如果写切换后才发现，成本还会包括对账和应用混乱。</p>
+<p>盘点 Manifest 把前缀映射变成了复制前决策。这正是发现错误的正确位置。</p>
+<h3 id="_12">元数据也是数据的一部分<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>部分应用行为依赖元数据和访问语义，而不只依赖对象字节。即使字节完全一致，也可能破坏响应、缓存行为或客户端下载。</p>
+<p>团队在写切换前加入应用读取测试，捕捉到了存储级 diff 看不到的问题。</p>
+<h3 id="_13">凭据必须有结束日期<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>临时迁移访问太方便，很容易意外变成永久访问。团队把凭据吊销作为迁移关闭的一部分，而不是“以后清理”。</p>
+<h2 id="_14">可逆边界<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>迁移有两种完全不同的回滚状态：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>权威</th>
+<th>回滚成本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>读切换前</td>
+<td>源接收读和写。</td>
+<td>无用户侧回滚；目标可以重建。</td>
+</tr>
+<tr>
+<td>读切换后、写切换前</td>
+<td>源仍接收写；目标服务读。</td>
+<td>将读重新指向源，并调查目标行为。</td>
+</tr>
+<tr>
+<td>写切换后</td>
+<td>目标接收新写入、更新、删除和覆盖。</td>
+<td>回滚需要反向同步或对账；只改路由不够，源只读本身也不能保留目标侧变更。</td>
+</tr>
+</tbody>
+</table>
+<p>因此最终写切换被当作最小、最受控的步骤。能提前证明的，都必须在它之前证明。</p>
+<h2 id="_15">结果<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>迁移完成，无长时间停机，未检测到数据丢失。更重要的是，团队知道每个阶段为什么可以继续。数量、大小、校验和、元数据检查、应用读取和增量对账，回答的是不同问题。</p>
+<p>长期经验是：对象存储迁移应围绕权威和证据设计。复制工具移动字节；迁移计划移动对事实的责任。</p>
+<h2 id="_16">可复用审查问题<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>抽样中计数与大小一致，内容却不一致。</strong> 相同的对象数与总字节仍允许少数对象不匹配；只有抽样校验和发现了它，促成一次定向重新同步。</li>
-<li><strong>首次同步前需复核前缀映射。</strong> 一个与目标布局不符的前缀假设会把对象错放；事先复核映射避免了大规模重新复制。</li>
-<li>为迁移签发的临时凭据必须被跟踪，以便事后立即吊销。</li>
+<li>每个阶段哪个存储是权威？</li>
+<li>哪些前缀或对象类别如果晚发现会非常昂贵？</li>
+<li>元数据、ACL、生命周期规则、加密设置和签名 URL 行为是否属于正确性？</li>
+<li>全量复制期间的 create、update、delete、overwrite、tombstone 和对象版本如何被追踪？</li>
+<li>读切换期间，什么保证一个新写入对象仍能被读到？</li>
+<li>什么测试能证明应用可以从目标读取，而不只是目标上有字节？</li>
+<li>如果写切换后已有新写入落到目标，失败时究竟怎么处理？</li>
+<li>临时迁移凭据什么时候吊销？</li>
 </ul>
-<h2 id="_9">结果<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<p>迁移完成，读、随后写都切到目标，无长时间停机，未检测到数据丢失。源存储在回滚窗口内保持只读，因此有风险的写切换有明确的回退。</p>
-<h2 id="_10">可复用经验<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h2 id="_17">相关文档<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
 <ul>
-<li>计数与大小检查是必要但<strong>不充分</strong>的——加上抽样校验和与一次应用读测试。</li>
-<li><strong>写切换</strong>是真正的风险点；按"先读后写"排序，使危险步骤最后、且被隔离。</li>
-<li>在首次同步前复核前缀/路径映射，而非之后。</li>
-<li>为迁移签发临时凭据，完成后立即吊销。</li>
-<li>回滚窗口内保持源只读，使回滚是"重指向"而非"重建"。</li>
-</ul>
-<h2 id="_11">相关文档<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
-<ul>
+<li><a href="../../../standards-manual/cloud/cloud-network-migration-standard/">云网络与对象存储迁移标准</a></li>
+<li><a href="../../../standards-manual/templates/migration-plan-template/">迁移计划模板</a></li>
 <li><a href="../../../standards-manual/iac/terraform-iac-standard/">Terraform IaC 标准</a></li>
-<li><a href="../../../system-design/production-architecture/nfs-pvc-capacity-management/">NFS PVC 容量管理</a></li>
 </ul>
 
 
@@ -4353,7 +4639,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 15:17:17 UTC">2026年6月28日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月2日 01:04:31 UTC">2026年7月2日</span>
   </span>
 
     

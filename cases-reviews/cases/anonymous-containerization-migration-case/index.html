@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="将主机托管服务迁移到容器的匿名案例——真正风险在哪里（配置、状态、依赖）、切换计划与可复用经验。">
+        <meta name="description" content="将主机托管应用迁移到容器的匿名案例：先把旧主机隐藏的运行时契约显式化，再谈镜像与切流。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="应用容器化案例 - DevOps 生产契约地图" />
-<meta property="og:description" content="将主机托管服务迁移到容器的匿名案例——真正风险在哪里（配置、状态、依赖）、切换计划与可复用经验。" />
+<meta property="og:description" content="将主机托管应用迁移到容器的匿名案例：先把旧主机隐藏的运行时契约显式化，再谈镜像与切流。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/cases-reviews/cases/anonymous-containerization-migration-case.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/cases-reviews/cases/anonymous-containerization-migration-case/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="应用容器化案例 - DevOps 生产契约地图" />
-<meta property="twitter:description" content="将主机托管服务迁移到容器的匿名案例——真正风险在哪里（配置、状态、依赖）、切换计划与可复用经验。" />
+<meta property="twitter:description" content="将主机托管应用迁移到容器的匿名案例：先把旧主机隐藏的运行时契约显式化，再谈镜像与切流。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/cases-reviews/cases/anonymous-containerization-migration-case.png" />
 </head>
   
@@ -2590,7 +2590,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        核心经验
+        这篇案例真正讨论什么
       
     </span>
   </a>
@@ -2601,7 +2601,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        背景
+        决策框架
       
     </span>
   </a>
@@ -2634,7 +2634,7 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        计划
+        迁移契约
       
     </span>
   </a>
@@ -2645,7 +2645,7 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        执行
+        执行顺序
       
     </span>
   </a>
@@ -2656,7 +2656,7 @@
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        遇到的问题
+        验证证据
       
     </span>
   </a>
@@ -2667,6 +2667,78 @@
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
+        暴露出来的失败模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="暴露出来的失败模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本地状态其实是产品状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        启动顺序是一种隐藏 API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cron 在发布叙事之外
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置像一次记忆泄漏
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可逆边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         结果
       
     </span>
@@ -2675,10 +2747,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        可复用经验
+        可复用审查问题
       
     </span>
   </a>
@@ -2686,7 +2758,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -4041,7 +4113,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        核心经验
+        这篇案例真正讨论什么
       
     </span>
   </a>
@@ -4052,7 +4124,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        背景
+        决策框架
       
     </span>
   </a>
@@ -4085,7 +4157,7 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        计划
+        迁移契约
       
     </span>
   </a>
@@ -4096,7 +4168,7 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        执行
+        执行顺序
       
     </span>
   </a>
@@ -4107,7 +4179,7 @@
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        遇到的问题
+        验证证据
       
     </span>
   </a>
@@ -4118,6 +4190,78 @@
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
+        暴露出来的失败模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="暴露出来的失败模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本地状态其实是产品状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        启动顺序是一种隐藏 API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cron 在发布叙事之外
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置像一次记忆泄漏
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可逆边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         结果
       
     </span>
@@ -4126,10 +4270,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        可复用经验
+        可复用审查问题
       
     </span>
   </a>
@@ -4137,7 +4281,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -4275,56 +4419,193 @@
 
 <h1 id="_1">匿名应用容器化迁移案例<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>本案例中所有标识均为通用化。未保留任何原始服务名、主机名、域名、镜像或凭据。</p>
+<p>本案例中所有标识均已通用化。未保留任何原始服务名、主机名、域名、镜像、仓库或凭据。</p>
 </blockquote>
-<h2 id="_2">核心经验<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>容器化的难点很少在 Dockerfile，而在旧主机替你承载的隐式状态——本地文件、环境里的配置、启动顺序，以及 cron 式的旁路任务。容器会把这些假设显式化，而这正是若不先暴露它们、迁移就会崩的地方。</p>
-</blockquote>
-<h2 id="_3">背景<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>一套遗留应用栈运行在手工管理的主机上，需要迁移到容器化部署模型，以实现可重复部署和更易扩展。团队拥有该应用及其部署，但对停机容忍度有限。</p>
+<h2 id="_2">这篇案例真正讨论什么<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>这次迁移里最有价值的经验，不是“写一个 Dockerfile，然后把服务搬进去”。真正的经验是：旧主机本身早已是应用的一部分。</p>
+<p>它提供了本地目录、shell profile、软件包版本、证书、cron 任务、启动时序、日志路径，以及少量没有写下来的运维记忆。团队无法让部署变得可重复，直到这些主机行为被拆成一个显式的运行时契约。</p>
+<p>这改变了迁移顺序。镜像构建不是第一个严肃里程碑。第一个严肃里程碑是证明：旧主机过去偷偷替应用做的每件事，在新模型里都有明确归属。</p>
+<h2 id="_3">决策框架<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>迁移只有在三件事持续成立时才允许进入生产流量：</p>
+<table>
+<thead>
+<tr>
+<th>决策问题</th>
+<th>生产流量前必须有的答案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>容器重启时哪些状态会消失？</td>
+<td>每个可写路径都已外部化、可确定重建，或被明确声明为可丢弃。</td>
+</tr>
+<tr>
+<td>旧进程为什么能启动成功？</td>
+<td>端口、依赖、启动顺序、配置文件、证书和后台任务都已记录并验证。</td>
+</tr>
+<tr>
+<td>回滚边界在哪里？</td>
+<td>原主机部署保持在线，直到容器化服务证明读、写、任务、日志、告警都等价。</td>
+</tr>
+</tbody>
+</table>
+<p>这让团队把“容器化”当成运行时契约提取，而不是打包工作。</p>
 <h2 id="_4">起始状态<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
-<li>服务在长期存活的主机上手工部署与配置。</li>
-<li>配置散落在本地文件、环境变量和运维人员的记忆中。</li>
-<li>部分本地磁盘状态与日志路径被默认为持久。</li>
-<li>服务间启动顺序是隐式的，未声明。</li>
+<li>长期存活的主机经过多次手工补丁和配置调整。</li>
+<li>部署脚本只记录了部分运行行为。</li>
+<li>一些应用文件写在本地磁盘上，并被默认为持久。</li>
+<li>少量配置存在于主机文件或 shell 启动文件中，而不是源代码管理下的配置。</li>
+<li>定时任务和维护任务运行在主进程旁边，没有进入发布流水线。</li>
+<li>服务之间的启动顺序靠习惯和时序维持，不靠就绪检查声明。</li>
 </ul>
 <h2 id="_5">约束<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
 <li>迁移期间服务必须保持可用。</li>
-<li>凭据不能以明文进入新平台。</li>
-<li>在新部署被验证之前，必须保留回滚到原主机的能力。</li>
+<li>凭据不能烤进镜像，也不能以明文文件搬运。</li>
+<li>新部署必须支持渐进式流量切换。</li>
+<li>旧主机在新运行时契约被证明前，必须仍能作为回滚路径。</li>
+<li>同一窗口内不允许夹带无关应用变更。</li>
 </ul>
-<h2 id="_6">计划<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_6">迁移契约<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>每个服务迁移前，团队先填一张小契约，而不是先动 Dockerfile：</p>
+<table>
+<thead>
+<tr>
+<th>契约域</th>
+<th>必须回答的问题</th>
+<th>证据示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进程</td>
+<td>什么命令启动服务？启动前必须存在什么？</td>
+<td>Entrypoint、就绪探针、依赖检查。</td>
+</tr>
+<tr>
+<td>配置</td>
+<td>哪些值随环境变化？它们存在哪里？</td>
+<td>Config map 或环境变量清单；镜像层中没有密钥。</td>
+</tr>
+<tr>
+<td>密钥</td>
+<td>运行时需要哪些凭据？如何轮换？</td>
+<td>密钥管理引用与吊销步骤。</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>哪些路径可写？哪些必须跨重启保留？</td>
+<td>卷映射、对象存储路径，或显式可丢弃缓存。</td>
+</tr>
+<tr>
+<td>任务</td>
+<td>哪些 cron 或旁路任务属于产品行为？</td>
+<td>任务计划、Owner、重试规则和告警。</td>
+</tr>
+<tr>
+<td>可观测性</td>
+<td>迁移后如何看见服务？</td>
+<td>日志、指标、链路、仪表盘和告警路由。</td>
+</tr>
+<tr>
+<td>回滚</td>
+<td>什么条件让回到主机是安全的？</td>
+<td>主机部署仍与同一数据权威兼容。</td>
+</tr>
+</tbody>
+</table>
+<p>只有这张表有了明确 Owner，镜像构建才真正有意义。</p>
+<h2 id="_7">执行顺序<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <ol>
-<li>盘点每个服务：端口、依赖、数据路径、启动顺序，以及 cron/旁路任务。</li>
-<li>用固定基础镜像构建镜像；不用浮动 <code>latest</code>。</li>
-<li>外部化配置（env/config map），并把凭据移入密钥管理系统。</li>
-<li>定义显式的健康/就绪检查。</li>
-<li>部署到预发并跑冒烟测试。</li>
-<li>逐步切换流量。</li>
-<li>在稳定前保留原主机部署作为回滚路径。</li>
+<li>盘点运行中主机的进程列表、开放端口、挂载路径、软件包版本、证书、定时任务和启动文件。</li>
+<li>将每个可写路径分类为持久数据、缓存、生成产物或意外状态。</li>
+<li>把配置移入显式环境/config 对象，把凭据移入密钥管理系统。</li>
+<li>用可重复输入构建固定镜像；不使用浮动基础镜像标签，不在启动时临时安装包。</li>
+<li>增加启动、存活和就绪检查，让它们表达真实依赖就绪，而不只是进程存在。</li>
+<li>把旁路任务重建为有调度、重试、Owner 和告警的工作负载。</li>
+<li>在预发环境使用接近生产的配置，并注入依赖失败。</li>
+<li>在旧主机仍作为写入权威时，切一小部分生产流量。</li>
+<li>只有读、写、任务、日志和告警都通过等价验证后，才扩大流量。</li>
 </ol>
-<h2 id="_7">执行<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>团队逐个服务容器化，从一个无状态组件开始。配置从主机文件中抽出，转入环境/config；密钥移到密钥管理系统，而非烤进镜像。加入健康检查，使编排器能区分"已启动"与"已就绪"。每个镜像都先在预发验证，再切任何生产流量。</p>
-<h2 id="_8">遇到的问题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_8">验证证据<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>团队没有把“容器能启动”当成证据。验收更接近下面这张表：</p>
+<table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>为什么重要</th>
+<th>通过条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>读路径等价</td>
+<td>新运行时必须能访问旧主机能访问的每个依赖。</td>
+<td>主机和容器执行同一组功能读测试均通过。</td>
+</tr>
+<tr>
+<td>写路径持久性</td>
+<td>容器重启不能删除产品状态。</td>
+<td>重启测试保留必需文件，或能重建可丢弃文件。</td>
+</tr>
+<tr>
+<td>启动门控</td>
+<td>并行调度会暴露隐藏的时序假设。</td>
+<td>依赖不可用时服务不会进入 ready 状态。</td>
+</tr>
+<tr>
+<td>任务等价</td>
+<td>cron 式行为也是生产行为，即便不在 Web 进程里。</td>
+<td>定时任务只执行一次、按规则重试、失败有告警。</td>
+</tr>
+<tr>
+<td>日志与指标路径</td>
+<td>看不见的“可用”不能进入生产。</td>
+<td>日志、指标和关键告警以新标签出现。</td>
+</tr>
+<tr>
+<td>回滚演练</td>
+<td>没执行过一次的回滚计划只是愿望。</td>
+<td>流量能回到主机部署，且不需要数据对账。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">暴露出来的失败模式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="_10">本地状态其实是产品状态<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>一个组件把文件写到看似临时的路径。旧主机让这个路径多年跨重启存活，所以团队不再意识到它的存在。容器重调度后，这个路径立刻消失。</p>
+<p>修复不是“把所有目录都挂卷”。团队把该路径拆成持久产品数据、生成缓存和意外残留。只有持久部分迁入受管存储，其余要么可重建，要么可丢弃。</p>
+<h3 id="api">启动顺序是一种隐藏 API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<p>旧栈以大家熟悉的顺序启动。容器平台会并行调度。一个过去“通常会在依赖之后启动”的服务开始 crash loop。</p>
+<p>长期修复不是 sleep 循环，而是就绪门控和依赖检查。服务可以启动，但在它依赖的行为出现前，不能接收流量。</p>
+<h3 id="cron">Cron 在发布叙事之外<a class="headerlink" href="#cron" title="Permanent link">&para;</a></h3>
+<p>几个小维护任务不属于应用发布产物。它们不在核心请求路径上，因此容易被漏掉；但它们一旦缺席，用户迟早会感受到。</p>
+<p>这些任务被作为一等工作负载迁移：有重试、有 Owner、有告警。这一刻团队才停止把 Web 进程误认为完整服务。</p>
+<h3 id="_11">配置像一次记忆泄漏<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>有些设置存在，只是因为过去某次事故中有人手工调过主机。它们并不戏剧化，也不邪门，只是没有进入任何持久记录。</p>
+<p>团队通过比较主机与容器的运行行为、环境变量、配置文件和启动日志找到这些差异。任何解释不了的设置都被视为发布阻断项，而不是无害差异。</p>
+<h2 id="_12">可逆边界<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>只有在旧主机部署仍与同一数据权威兼容时，回滚才容易。因此第一阶段生产迁移被刻意压小：</p>
 <ul>
-<li><strong>隐藏的本地状态</strong>：某服务把文件写到主机一直提供的本地路径。在容器中这会在重启时消失，直到把它迁到受管卷。</li>
-<li><strong>隐式启动顺序</strong>：某服务假设依赖已起；容器并行启动，于是它崩溃循环，直到加入就绪门控。</li>
-<li><strong>配置漂移暴露</strong>：只存在于主机上（且只在某位运维记忆里）的设置，只能靠对比行为发现，而非读文件。</li>
+<li>流量可以在主机和容器之间移动。</li>
+<li>写入仍进入两个版本都理解的数据路径。</li>
+<li>没有 schema、存储布局或凭据轮换让主机版本失效。</li>
+<li>观察窗口结束前，定时任务和告警必须在真实条件下运行过。</li>
 </ul>
-<h2 id="_9">结果<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<p>所有服务迁移完成且无持续停机。切换是渐进的，原主机在观察窗口内保留，因此每个问题都是在有可用回退的情况下被发现，而非在一次性单向迁移中。</p>
-<h2 id="_10">可复用经验<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>一旦某个步骤会让主机版本无法服务同一份数据，该步骤就被移出第一次切流，作为独立变更处理。</p>
+<h2 id="_13">结果<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>服务迁移完成，未发生持续停机。关键不是最终镜像，而是那份运行时契约：它让后续服务更快迁移，也更容易审核。</p>
+<p>这次案例也改变了团队对“可以容器化”的定义：可以，不是指应用能被塞进镜像；而是指它能解释自己的配置、状态、任务、依赖和可观测性，不再借用一台长期主机上的隐性事实。</p>
+<h2 id="_14">可复用审查问题<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
 <ul>
-<li>写任何 Dockerfile 之前，先盘点<strong>依赖、配置与磁盘状态</strong>——风险就在那里。</li>
-<li>用就绪探针把启动顺序显式化；不要依赖时序。</li>
-<li>把密钥迁入密钥管理系统作为迁移的一部分，绝不进镜像。</li>
-<li>一次迁一个服务，并在验证通过前把旧部署作为在线回滚路径保留。</li>
-<li>把"只有一个人知道的配置"当作需尽早暴露的迁移风险。</li>
+<li>旧主机有哪些部分正在被当作不可见基础设施？</li>
+<li>如果容器在另一台节点上重启，什么会丢？</li>
+<li>哪些后台任务对产品正确性是必需的？</li>
+<li>哪些依赖失败应该让服务保持 unready，而不是 crash loop？</li>
+<li>流量能否回到旧主机且不需要数据对账？</li>
+<li>哪些设置只是因为某个人曾经手工修过事故才存在？</li>
 </ul>
-<h2 id="_11">相关文档<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h2 id="_15">相关文档<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../system-design/production-architecture/kubernetes-cluster-provisioning-standard/">Kubernetes 集群供给标准</a></li>
 <li><a href="../../../change-delivery/rollback/deployment-rollback-runbook/">部署回滚 Runbook</a></li>
@@ -4352,7 +4633,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 15:17:17 UTC">2026年6月28日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月2日 01:04:31 UTC">2026年7月2日</span>
   </span>
 
     

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Anonymous case study of migrating a host-managed service to containers — where the real risk lived (config, state, dependencies), the cutover plan, and reusable lessons.">
+        <meta name="description" content="Anonymous case study of moving a host-managed application into containers by first exposing the runtime contract hidden inside the old hosts.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Application Containerization Case - DevOps Production Contract Map" />
-<meta property="og:description" content="Anonymous case study of migrating a host-managed service to containers — where the real risk lived (config, state, dependencies), the cutover plan, and reusable lessons." />
+<meta property="og:description" content="Anonymous case study of moving a host-managed application into containers by first exposing the runtime contract hidden inside the old hosts." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/cases-reviews/cases/anonymous-containerization-migration-case.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/cases-reviews/cases/anonymous-containerization-migration-case/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Application Containerization Case - DevOps Production Contract Map" />
-<meta property="twitter:description" content="Anonymous case study of migrating a host-managed service to containers — where the real risk lived (config, state, dependencies), the cutover plan, and reusable lessons." />
+<meta property="twitter:description" content="Anonymous case study of moving a host-managed application into containers by first exposing the runtime contract hidden inside the old hosts." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/cases-reviews/cases/anonymous-containerization-migration-case.png" />
 </head>
   
@@ -2587,10 +2587,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-lesson" class="md-nav__link">
+  <a href="#what-this-case-is-really-about" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Lesson
+        What This Case Is Really About
       
     </span>
   </a>
@@ -2598,10 +2598,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#context" class="md-nav__link">
+  <a href="#decision-frame" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context
+        Decision Frame
       
     </span>
   </a>
@@ -2609,10 +2609,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#starting-state" class="md-nav__link">
+  <a href="#starting-conditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Starting State
+        Starting Conditions
       
     </span>
   </a>
@@ -2631,10 +2631,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#plan" class="md-nav__link">
+  <a href="#migration-contract" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Plan
+        Migration Contract
       
     </span>
   </a>
@@ -2642,10 +2642,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execution" class="md-nav__link">
+  <a href="#execution-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Execution
+        Execution Sequence
       
     </span>
   </a>
@@ -2653,10 +2653,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#problems-encountered" class="md-nav__link">
+  <a href="#validation-evidence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Problems Encountered
+        Validation Evidence
       
     </span>
   </a>
@@ -2664,10 +2664,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#result" class="md-nav__link">
+  <a href="#failure-modes-that-surfaced" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Result
+        Failure Modes That Surfaced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Failure Modes That Surfaced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-state-was-product-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local State Was Product State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#startup-order-was-a-hidden-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Startup Order Was a Hidden API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cron-was-outside-the-deployment-story" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cron Was Outside the Deployment Story
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-was-a-memory-leak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Was a Memory Leak
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reversibility-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversibility Boundary
       
     </span>
   </a>
@@ -2675,10 +2736,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reusable-lessons" class="md-nav__link">
+  <a href="#outcome" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reusable Lessons
+        Outcome
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusable-review-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reusable Review Questions
       
     </span>
   </a>
@@ -4038,10 +4110,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-lesson" class="md-nav__link">
+  <a href="#what-this-case-is-really-about" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Lesson
+        What This Case Is Really About
       
     </span>
   </a>
@@ -4049,10 +4121,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#context" class="md-nav__link">
+  <a href="#decision-frame" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context
+        Decision Frame
       
     </span>
   </a>
@@ -4060,10 +4132,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#starting-state" class="md-nav__link">
+  <a href="#starting-conditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Starting State
+        Starting Conditions
       
     </span>
   </a>
@@ -4082,10 +4154,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#plan" class="md-nav__link">
+  <a href="#migration-contract" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Plan
+        Migration Contract
       
     </span>
   </a>
@@ -4093,10 +4165,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execution" class="md-nav__link">
+  <a href="#execution-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Execution
+        Execution Sequence
       
     </span>
   </a>
@@ -4104,10 +4176,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#problems-encountered" class="md-nav__link">
+  <a href="#validation-evidence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Problems Encountered
+        Validation Evidence
       
     </span>
   </a>
@@ -4115,10 +4187,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#result" class="md-nav__link">
+  <a href="#failure-modes-that-surfaced" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Result
+        Failure Modes That Surfaced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Failure Modes That Surfaced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-state-was-product-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local State Was Product State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#startup-order-was-a-hidden-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Startup Order Was a Hidden API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cron-was-outside-the-deployment-story" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cron Was Outside the Deployment Story
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-was-a-memory-leak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Was a Memory Leak
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reversibility-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversibility Boundary
       
     </span>
   </a>
@@ -4126,10 +4259,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reusable-lessons" class="md-nav__link">
+  <a href="#outcome" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reusable Lessons
+        Outcome
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusable-review-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reusable Review Questions
       
     </span>
   </a>
@@ -4275,54 +4419,191 @@
 
 <h1 id="anonymous-application-containerization-migration-case">Anonymous Application Containerization Migration Case<a class="headerlink" href="#anonymous-application-containerization-migration-case" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>All identifiers in this case are generic. No original service names, hostnames, domains, images, or credentials are preserved.</p>
+<p>All identifiers in this case are generic. No original service names, hostnames, domains, images, repositories, or credentials are preserved.</p>
 </blockquote>
-<h2 id="core-lesson">Core Lesson<a class="headerlink" href="#core-lesson" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>The hard part of containerization is rarely the Dockerfile. It is the implicit state the old host carried for you — local files, ambient config, startup order, and cron-style side jobs. Containers make those assumptions explicit, and that is exactly where the migration breaks if you do not surface them first.</p>
-</blockquote>
-<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
-<p>A legacy application stack ran on manually managed hosts and needed to move to a containerized deployment model for repeatable deploys and easier scaling. The team owned the application and its deployment but had limited tolerance for downtime.</p>
-<h2 id="starting-state">Starting State<a class="headerlink" href="#starting-state" title="Permanent link">&para;</a></h2>
+<h2 id="what-this-case-is-really-about">What This Case Is Really About<a class="headerlink" href="#what-this-case-is-really-about" title="Permanent link">&para;</a></h2>
+<p>The useful lesson in this migration was not "write a Dockerfile and move the service." The useful lesson was that the old hosts were already part of the application.</p>
+<p>They provided local directories, shell profiles, package versions, certificates, cron jobs, startup timing, log paths, and a small amount of undocumented operator memory. The team could not make the deployment repeatable until those host behaviors were turned into an explicit runtime contract.</p>
+<p>That changed the sequence of the migration. Image build was not the first serious milestone. The first serious milestone was proving that everything the old host quietly did for the application had a named owner in the new model.</p>
+<h2 id="decision-frame">Decision Frame<a class="headerlink" href="#decision-frame" title="Permanent link">&para;</a></h2>
+<p>The migration was accepted only if three conditions stayed true:</p>
+<table>
+<thead>
+<tr>
+<th>Decision question</th>
+<th>Required answer before production traffic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What state can disappear on container restart?</td>
+<td>Every writable path is either externalized, rebuilt deterministically, or declared disposable.</td>
+</tr>
+<tr>
+<td>What made the old process start successfully?</td>
+<td>Ports, dependencies, startup order, config files, certificates, and background jobs are documented and tested.</td>
+</tr>
+<tr>
+<td>Where is the rollback boundary?</td>
+<td>The original host deployment remains live until the containerized service proves read, write, job, log, and alert parity.</td>
+</tr>
+</tbody>
+</table>
+<p>This forced the team to treat "containerization" as a contract extraction exercise, not a packaging exercise.</p>
+<h2 id="starting-conditions">Starting Conditions<a class="headerlink" href="#starting-conditions" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Services deployed and configured by hand on long-lived hosts.</li>
-<li>Configuration spread across local files, environment, and operator memory.</li>
-<li>Some local on-disk state and log paths assumed to be persistent.</li>
-<li>Startup order between services was implicit, not declared.</li>
+<li>Long-lived hosts had been patched and configured by hand.</li>
+<li>Deployment scripts captured only part of the runtime behavior.</li>
+<li>Some application files were written to local disk and assumed persistent.</li>
+<li>A few settings existed in host files or shell startup files rather than in source-controlled configuration.</li>
+<li>Scheduled jobs and maintenance tasks ran beside the main process, not inside the deploy pipeline.</li>
+<li>Startup order between services was enforced by habit and timing, not by readiness checks.</li>
 </ul>
 <h2 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The service had to stay available during the migration.</li>
-<li>Credentials could not move into the new platform in plaintext.</li>
-<li>Rollback to the original hosts had to remain possible until the new deployment was proven.</li>
+<li>The service had to remain available during the migration.</li>
+<li>Credentials could not be baked into images or copied as plaintext files.</li>
+<li>The new deployment had to support gradual traffic movement.</li>
+<li>The old hosts had to stay usable as rollback until the new runtime contract was proven.</li>
+<li>No unrelated application change was allowed in the same window.</li>
 </ul>
-<h2 id="plan">Plan<a class="headerlink" href="#plan" title="Permanent link">&para;</a></h2>
+<h2 id="migration-contract">Migration Contract<a class="headerlink" href="#migration-contract" title="Permanent link">&para;</a></h2>
+<p>Before a service moved, the team filled a small contract instead of starting with the Dockerfile:</p>
+<table>
+<thead>
+<tr>
+<th>Contract area</th>
+<th>Question that had to be answered</th>
+<th>Example evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Process</td>
+<td>What command starts the service and what must exist before it starts?</td>
+<td>Entrypoint, readiness probe, dependency check.</td>
+</tr>
+<tr>
+<td>Configuration</td>
+<td>Which values vary by environment and where are they stored?</td>
+<td>Config map or environment inventory, no secrets in image layers.</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>Which credentials are required at runtime and how are they rotated?</td>
+<td>Secret manager reference and revocation procedure.</td>
+</tr>
+<tr>
+<td>State</td>
+<td>Which paths are writable and which must survive restart?</td>
+<td>Volume mapping, object storage path, or explicit disposable cache.</td>
+</tr>
+<tr>
+<td>Jobs</td>
+<td>Which cron or side jobs are part of the product behavior?</td>
+<td>Job schedule, owner, retry rule, and alert.</td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>How will the service be seen after it moves?</td>
+<td>Logs, metrics, traces, dashboards, and alert routing.</td>
+</tr>
+<tr>
+<td>Rollback</td>
+<td>What makes returning to the host safe?</td>
+<td>Host deployment remains compatible with the same data authority.</td>
+</tr>
+</tbody>
+</table>
+<p>Only after this table had owners did the image build become useful.</p>
+<h2 id="execution-sequence">Execution Sequence<a class="headerlink" href="#execution-sequence" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Inventory every service: ports, dependencies, data paths, startup order, and cron/side jobs.</li>
-<li>Build images from pinned base images; no floating <code>latest</code>.</li>
-<li>Externalize configuration (env/config maps) and move credentials into secret management.</li>
-<li>Define explicit health/readiness checks.</li>
-<li>Deploy to staging and run smoke tests.</li>
-<li>Cut over traffic gradually.</li>
-<li>Keep the original host deployment as the rollback path until stable.</li>
+<li>Inventory the running host with process list, open ports, mounted paths, package versions, certificates, scheduled tasks, and startup files.</li>
+<li>Classify every writable path as persistent data, cache, generated artifact, or accidental state.</li>
+<li>Move configuration into explicit environment/config objects and move credentials into secret management.</li>
+<li>Build pinned images from repeatable inputs; no floating base tags, no ad hoc packages installed during startup.</li>
+<li>Add startup, liveness, and readiness checks that model real dependency readiness, not just process existence.</li>
+<li>Recreate side jobs as scheduled jobs with the same ownership and alert path as the main service.</li>
+<li>Run staging with production-shaped config and dependency failures injected.</li>
+<li>Shift a small slice of production traffic while the old host deployment remains writable authority.</li>
+<li>Expand traffic only after parity checks pass for reads, writes, jobs, logs, and alerts.</li>
 </ol>
-<h2 id="execution">Execution<a class="headerlink" href="#execution" title="Permanent link">&para;</a></h2>
-<p>The team containerized one service at a time, starting with a stateless component. Configuration was pulled out of host files into environment/config; secrets moved to a secret manager rather than being baked into images. Health checks were added so the orchestrator could tell "started" from "ready". Each image was validated in staging before any production traffic shifted.</p>
-<h2 id="problems-encountered">Problems Encountered<a class="headerlink" href="#problems-encountered" title="Permanent link">&para;</a></h2>
+<h2 id="validation-evidence">Validation Evidence<a class="headerlink" href="#validation-evidence" title="Permanent link">&para;</a></h2>
+<p>The team did not accept "the container starts" as evidence. The acceptance checks were closer to this:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Why it mattered</th>
+<th>Pass condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read path parity</td>
+<td>The new runtime had to reach every dependency the host reached.</td>
+<td>Same functional read tests passed from host and container.</td>
+</tr>
+<tr>
+<td>Write path durability</td>
+<td>Container restart must not delete product state.</td>
+<td>Restart test preserved required files or recreated disposable ones.</td>
+</tr>
+<tr>
+<td>Startup gating</td>
+<td>Parallel scheduling would reveal hidden timing assumptions.</td>
+<td>Dependency unavailable test kept the service out of ready state.</td>
+</tr>
+<tr>
+<td>Job parity</td>
+<td>Cron-like behavior was part of production, even if it was not in the app server.</td>
+<td>Scheduled jobs ran once, retried correctly, and alerted on failure.</td>
+</tr>
+<tr>
+<td>Log and metric path</td>
+<td>A working service without visibility is not production-ready.</td>
+<td>Logs, metrics, and key alerts appeared under the new labels.</td>
+</tr>
+<tr>
+<td>Rollback drill</td>
+<td>A rollback plan that is not executed once is only a hope.</td>
+<td>Traffic returned to host deployment without data reconciliation.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="failure-modes-that-surfaced">Failure Modes That Surfaced<a class="headerlink" href="#failure-modes-that-surfaced" title="Permanent link">&para;</a></h2>
+<h3 id="local-state-was-product-state">Local State Was Product State<a class="headerlink" href="#local-state-was-product-state" title="Permanent link">&para;</a></h3>
+<p>One component wrote files to a path that looked like scratch space. On the old host the path survived restarts for years, so the team had stopped noticing it. In the container it disappeared immediately after rescheduling.</p>
+<p>The fix was not "mount everything." The path was split into durable product data, generated cache, and accidental residue. Only the durable part moved to managed storage. The rest became rebuildable or disposable.</p>
+<h3 id="startup-order-was-a-hidden-api">Startup Order Was a Hidden API<a class="headerlink" href="#startup-order-was-a-hidden-api" title="Permanent link">&para;</a></h3>
+<p>The old stack started in a familiar sequence. The container platform scheduled components in parallel. A service that previously "usually started after its dependency" began crash-looping.</p>
+<p>The durable fix was readiness gating and dependency checks, not sleep loops. The service was allowed to start, but it was not allowed to receive traffic until the dependency behavior it required was present.</p>
+<h3 id="cron-was-outside-the-deployment-story">Cron Was Outside the Deployment Story<a class="headerlink" href="#cron-was-outside-the-deployment-story" title="Permanent link">&para;</a></h3>
+<p>Several small maintenance tasks were not part of the application release artifact. They were easy to miss because they were not on the critical request path, yet customers would have noticed their absence later.</p>
+<p>Those jobs were migrated as first-class workload objects with retry behavior, ownership, and alerts. This was the point where the team stopped treating the web process as the whole service.</p>
+<h3 id="configuration-was-a-memory-leak">Configuration Was a Memory Leak<a class="headerlink" href="#configuration-was-a-memory-leak" title="Permanent link">&para;</a></h3>
+<p>Some settings existed only because a host had been adjusted during an earlier incident. They were not malicious or dramatic. They were simply not represented anywhere durable.</p>
+<p>The team found them by comparing runtime behavior, environment, config files, and startup logs between host and container. Any setting that could not be explained was treated as a release blocker, not as a harmless difference.</p>
+<h2 id="reversibility-boundary">Reversibility Boundary<a class="headerlink" href="#reversibility-boundary" title="Permanent link">&para;</a></h2>
+<p>Rollback was easy only while the old host deployment remained compatible with the same data authority. The team therefore kept the first production phase deliberately narrow:</p>
 <ul>
-<li><strong>Hidden local state</strong>: a service wrote files to a local path the host had always provided. In a container this vanished on restart until it was moved to a managed volume.</li>
-<li><strong>Implicit startup order</strong>: one service assumed a dependency was already up; containers started in parallel, so it crash-looped until readiness gating was added.</li>
-<li><strong>Config drift surfaced</strong>: settings that lived only on the host (and only in one operator's memory) had to be discovered by diffing behavior, not by reading a file.</li>
+<li>Traffic could move between host and container.</li>
+<li>Writes still landed in a data path both versions understood.</li>
+<li>No schema, storage layout, or credential rotation made the host version unusable.</li>
+<li>The observation window ended only after scheduled jobs and alerting had run under real conditions.</li>
 </ul>
-<h2 id="result">Result<a class="headerlink" href="#result" title="Permanent link">&para;</a></h2>
-<p>All services migrated with no sustained outage. The cutover was gradual and the original hosts were retained through an observation window, so each issue was caught against a working fallback rather than in a one-way move.</p>
-<h2 id="reusable-lessons">Reusable Lessons<a class="headerlink" href="#reusable-lessons" title="Permanent link">&para;</a></h2>
+<p>The moment a migration step would make the host version unable to serve the same data, that step was moved out of the first cutover and treated as a separate change.</p>
+<h2 id="outcome">Outcome<a class="headerlink" href="#outcome" title="Permanent link">&para;</a></h2>
+<p>The service moved without sustained outage because the team discovered the unsafe parts before the traffic cutover. The most valuable artifact was not the final image. It was the runtime contract that made later services faster to move and easier to review.</p>
+<p>The case also changed the team's definition of "ready for containers": ready meant that the service could explain its configuration, state, jobs, dependencies, and observability without borrowing facts from a long-lived host.</p>
+<h2 id="reusable-review-questions">Reusable Review Questions<a class="headerlink" href="#reusable-review-questions" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Inventory <strong>dependencies, config, and on-disk state</strong> before writing any Dockerfile — that is where the risk is.</li>
-<li>Make startup order explicit with readiness probes; do not rely on timing.</li>
-<li>Move secrets to a secret manager as part of the migration, never into images.</li>
-<li>Migrate one service at a time and keep the old deployment as a live rollback path until validation passes.</li>
-<li>Treat "config only one person knows" as a migration risk to surface early.</li>
+<li>Which parts of the old host are being treated as invisible infrastructure?</li>
+<li>What would be lost if the container restarted on a different node?</li>
+<li>Which background jobs are required for the product to remain correct?</li>
+<li>Which dependency failures should keep the service unready rather than crash-looping?</li>
+<li>Can traffic return to the old host without reconciling data?</li>
+<li>Which settings exist only because someone once fixed an incident by hand?</li>
 </ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4352,7 +4633,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 15:17:17 UTC">June 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 2, 2026 01:04:31 UTC">July 2, 2026</span>
   </span>
 
     

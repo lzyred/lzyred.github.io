@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Anonymous case study of a cross-provider object storage migration — incremental sync, why count/size checks are insufficient, and the write-cutover as the true risk point.">
+        <meta name="description" content="Anonymous case study of a cross-provider object storage migration that treated write cutover as an authority change, not a copy-job finish line.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Object Storage Migration Case - DevOps Production Contract Map" />
-<meta property="og:description" content="Anonymous case study of a cross-provider object storage migration — incremental sync, why count/size checks are insufficient, and the write-cutover as the true risk point." />
+<meta property="og:description" content="Anonymous case study of a cross-provider object storage migration that treated write cutover as an authority change, not a copy-job finish line." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/cases-reviews/cases/anonymous-object-storage-migration-case.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/cases-reviews/cases/anonymous-object-storage-migration-case/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Object Storage Migration Case - DevOps Production Contract Map" />
-<meta property="twitter:description" content="Anonymous case study of a cross-provider object storage migration — incremental sync, why count/size checks are insufficient, and the write-cutover as the true risk point." />
+<meta property="twitter:description" content="Anonymous case study of a cross-provider object storage migration that treated write cutover as an authority change, not a copy-job finish line." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/cases-reviews/cases/anonymous-object-storage-migration-case.png" />
 </head>
   
@@ -2559,10 +2559,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-lesson" class="md-nav__link">
+  <a href="#what-this-case-is-really-about" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Lesson
+        What This Case Is Really About
       
     </span>
   </a>
@@ -2570,10 +2570,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#context" class="md-nav__link">
+  <a href="#decision-frame" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context
+        Decision Frame
       
     </span>
   </a>
@@ -2581,10 +2581,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#starting-state" class="md-nav__link">
+  <a href="#starting-conditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Starting State
+        Starting Conditions
       
     </span>
   </a>
@@ -2603,10 +2603,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#plan" class="md-nav__link">
+  <a href="#migration-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Plan
+        Migration Model
       
     </span>
   </a>
@@ -2614,10 +2614,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execution" class="md-nav__link">
+  <a href="#execution-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Execution
+        Execution Sequence
       
     </span>
   </a>
@@ -2625,10 +2625,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#problems-encountered" class="md-nav__link">
+  <a href="#validation-evidence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Problems Encountered
+        Validation Evidence
       
     </span>
   </a>
@@ -2636,10 +2636,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#result" class="md-nav__link">
+  <a href="#failure-modes-that-surfaced" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Result
+        Failure Modes That Surfaced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Failure Modes That Surfaced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#count-and-size-matched-while-a-sample-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Count and Size Matched While a Sample Failed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefix-mapping-was-a-product-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefix Mapping Was a Product Contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-was-part-of-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata Was Part of the Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credentials-needed-an-end-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Credentials Needed an End Date
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reversibility-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversibility Boundary
       
     </span>
   </a>
@@ -2647,10 +2708,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reusable-lessons" class="md-nav__link">
+  <a href="#outcome" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reusable Lessons
+        Outcome
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusable-review-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reusable Review Questions
       
     </span>
   </a>
@@ -4038,10 +4110,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-lesson" class="md-nav__link">
+  <a href="#what-this-case-is-really-about" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Lesson
+        What This Case Is Really About
       
     </span>
   </a>
@@ -4049,10 +4121,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#context" class="md-nav__link">
+  <a href="#decision-frame" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context
+        Decision Frame
       
     </span>
   </a>
@@ -4060,10 +4132,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#starting-state" class="md-nav__link">
+  <a href="#starting-conditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Starting State
+        Starting Conditions
       
     </span>
   </a>
@@ -4082,10 +4154,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#plan" class="md-nav__link">
+  <a href="#migration-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Plan
+        Migration Model
       
     </span>
   </a>
@@ -4093,10 +4165,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execution" class="md-nav__link">
+  <a href="#execution-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Execution
+        Execution Sequence
       
     </span>
   </a>
@@ -4104,10 +4176,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#problems-encountered" class="md-nav__link">
+  <a href="#validation-evidence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Problems Encountered
+        Validation Evidence
       
     </span>
   </a>
@@ -4115,10 +4187,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#result" class="md-nav__link">
+  <a href="#failure-modes-that-surfaced" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Result
+        Failure Modes That Surfaced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Failure Modes That Surfaced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#count-and-size-matched-while-a-sample-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Count and Size Matched While a Sample Failed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefix-mapping-was-a-product-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefix Mapping Was a Product Contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-was-part-of-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata Was Part of the Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credentials-needed-an-end-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Credentials Needed an End Date
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reversibility-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversibility Boundary
       
     </span>
   </a>
@@ -4126,10 +4259,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reusable-lessons" class="md-nav__link">
+  <a href="#outcome" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reusable Lessons
+        Outcome
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusable-review-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reusable Review Questions
       
     </span>
   </a>
@@ -4275,61 +4419,203 @@
 
 <h1 id="anonymous-object-storage-migration-case">Anonymous Object Storage Migration Case<a class="headerlink" href="#anonymous-object-storage-migration-case" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>All identifiers in this case are generic. No original bucket names, domains, regions, customer data, or access credentials are preserved.</p>
+<p>All identifiers in this case are generic. No original bucket names, domains, regions, customer data, access keys, prefixes, or application names are preserved.</p>
 </blockquote>
-<h2 id="core-lesson">Core Lesson<a class="headerlink" href="#core-lesson" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>Matching object counts and total size proves you copied <em>something</em>, not that you copied it <em>correctly</em>. Integrity needs sample checksums and a real application read; and the moment that actually carries risk is the <strong>write cutover</strong> — before it, rollback is trivial, and after it, rollback means reconciliation.</p>
-</blockquote>
-<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
-<p>An engineering team needed to move application files from one object storage provider to another while preserving availability and minimizing data inconsistency. The application both read and wrote objects continuously.</p>
-<h2 id="starting-state">Starting State<a class="headerlink" href="#starting-state" title="Permanent link">&para;</a></h2>
+<h2 id="what-this-case-is-really-about">What This Case Is Really About<a class="headerlink" href="#what-this-case-is-really-about" title="Permanent link">&para;</a></h2>
+<p>The migration looked like a data-copy problem. It was really an authority-change problem.</p>
+<p>Before the write cutover, the source bucket was still the system of record. A failed attempt could usually roll back by pointing reads back to the source. After the write cutover, new objects and updates began landing on the target. From that moment, rollback stopped being a routing change and became reconciliation.</p>
+<p>That single boundary shaped the whole plan. The team moved all dangerous uncertainty before the write cutover and made the cutover the last small step, not the celebration after a large copy job.</p>
+<h2 id="decision-frame">Decision Frame<a class="headerlink" href="#decision-frame" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Decision question</th>
+<th>Why it mattered</th>
+<th>Required answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What is the source of truth at each phase?</td>
+<td>Without an authority model, rollback language becomes vague.</td>
+<td>Source is authoritative before write cutover; target becomes authoritative only after explicit approval.</td>
+</tr>
+<tr>
+<td>How will correctness be proven?</td>
+<td>Object count and total bytes can match while specific objects, metadata, or access behavior are wrong.</td>
+<td>Manifest, delta ledger, checksum sampling, metadata checks, and application reads.</td>
+</tr>
+<tr>
+<td>What changes after writes move?</td>
+<td>Write cutover changes recovery from repointing to reconciling.</td>
+<td>A rollback and forward-reconciliation plan exists before target writes begin.</td>
+</tr>
+<tr>
+<td>How are fresh writes kept visible during read cutover?</td>
+<td>Reading from target while writing to source can hide newly written objects if replication lag is ignored.</td>
+<td>Fresh-write paths are fenced, read-through/fallback-enabled, or explicitly outside the read-after-write contract until the final delta closes.</td>
+</tr>
+</tbody>
+</table>
+<p>The case became safe when the team stopped asking "did the sync finish?" and started asking "which store currently has the right to accept truth?"</p>
+<h2 id="starting-conditions">Starting Conditions<a class="headerlink" href="#starting-conditions" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Live object storage on the source provider, under continuous read and write traffic.</li>
-<li>Objects organized by prefixes that mapped to application meaning.</li>
-<li>No maintenance window long enough to "stop, copy everything, switch".</li>
+<li>The application continuously read and wrote objects on the source provider.</li>
+<li>Object prefixes carried application meaning.</li>
+<li>Some objects had metadata and access behavior that mattered to the application, not just bytes.</li>
+<li>There was no maintenance window long enough for a full freeze-copy-switch migration.</li>
+<li>Long-lived migration credentials were not acceptable.</li>
 </ul>
 <h2 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The application had to stay available; a long freeze was not acceptable.</li>
-<li>Data inconsistency between source and target had to be minimized.</li>
-<li>Access had to be granted to the target without leaking long-lived credentials.</li>
+<li>The application had to remain available.</li>
+<li>Data inconsistency had to be bounded and observable.</li>
+<li>Credentials used for migration had to be temporary and revocable.</li>
+<li>Source and target layout differences had to be reviewed before the first bulk copy.</li>
+<li>The source had to remain available as a rollback path until after the write cutover observation period.</li>
 </ul>
-<h2 id="plan">Plan<a class="headerlink" href="#plan" title="Permanent link">&para;</a></h2>
-<p>The migration used an incremental sync model so writes could continue during the bulk copy:</p>
+<h2 id="migration-model">Migration Model<a class="headerlink" href="#migration-model" title="Permanent link">&para;</a></h2>
+<p>The team used three ledgers. This was the most important design choice.</p>
+<table>
+<thead>
+<tr>
+<th>Ledger</th>
+<th>Purpose</th>
+<th>Failure it prevents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inventory manifest</td>
+<td>Declares which buckets, prefixes, object classes, metadata, and access rules are in scope.</td>
+<td>Copying the wrong shape of data and discovering missing prefixes late.</td>
+</tr>
+<tr>
+<td>Sync ledger</td>
+<td>Records bulk-copy completion, delta windows, retries, mismatches, and unresolved objects.</td>
+<td>Treating "command finished" as equivalent to "migration correct."</td>
+</tr>
+<tr>
+<td>Application validation ledger</td>
+<td>Records real application reads, sampled writes, metadata behavior, and permission checks.</td>
+<td>Migrating bytes that the application still cannot use.</td>
+</tr>
+</tbody>
+</table>
+<p>The ledgers were not bureaucracy. They were the only way to know whether a rollback would lose data or merely change routing.</p>
+<h2 id="execution-sequence">Execution Sequence<a class="headerlink" href="#execution-sequence" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Inventory source buckets and prefixes.</li>
-<li>Estimate object count and total size.</li>
-<li>Create target buckets and access policies.</li>
-<li>Run the initial bulk sync.</li>
-<li>Compare object counts and sample checksums.</li>
-<li>Run incremental sync for objects changed during the bulk copy.</li>
-<li>Switch application <strong>reads</strong> to the target.</li>
-<li>Switch application <strong>writes</strong> to the target.</li>
-<li>Keep the source read-only during the rollback window.</li>
+<li>Build the inventory manifest from source buckets, prefixes, object counts, byte totals, metadata requirements, lifecycle policies, and access rules.</li>
+<li>Create target buckets, policies, lifecycle behavior, encryption settings, and temporary migration credentials.</li>
+<li>Run the initial bulk sync while the application continued reading and writing from the source.</li>
+<li>Record mismatches and retry failures in the sync ledger instead of hiding them in tool logs.</li>
+<li>Run delta sync for objects changed during the bulk copy, tracking create, update, delete, overwrite, and tombstone or versioning semantics.</li>
+<li>Validate counts and sizes, then perform stratified checksum sampling across prefixes, object sizes, object ages, and storage classes.</li>
+<li>Run application read tests against the target without moving write authority.</li>
+<li>Move reads to the target only after fresh-write visibility is handled through fast enough replication, read-through fallback, write fencing, or an explicit statement that the affected path has no read-after-write requirement.</li>
+<li>Freeze, fence, or tightly sequence writes for the final delta window.</li>
+<li>Move writes to the target only after unresolved mismatches were accepted or cleared.</li>
+<li>Keep the source read-only through the rollback window and revoke temporary credentials after closure.</li>
 </ol>
-<h2 id="execution">Execution<a class="headerlink" href="#execution" title="Permanent link">&para;</a></h2>
-<p>Bulk sync ran while the application kept serving from the source. After bulk copy, the team reconciled the delta with an incremental sync, then moved reads to the target first (low risk — the source was still authoritative for writes). Only after reads were validated did they cut over writes, which is the irreversible step.</p>
-<h2 id="problems-encountered">Problems Encountered<a class="headerlink" href="#problems-encountered" title="Permanent link">&para;</a></h2>
+<h2 id="validation-evidence">Validation Evidence<a class="headerlink" href="#validation-evidence" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Evidence</th>
+<th>Why count and size were not enough</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prefix-level manifest comparison</td>
+<td>A global count can hide a missing or misplaced prefix.</td>
+</tr>
+<tr>
+<td>Stratified checksum sampling</td>
+<td>Total bytes can match while selected objects differ. Sampling by prefix, size, and age catches more than random spot checks alone.</td>
+</tr>
+<tr>
+<td>Metadata comparison</td>
+<td>Content-Type, cache headers, encryption, and ACL behavior can break applications even when bytes match.</td>
+</tr>
+<tr>
+<td>Mutation semantics</td>
+<td>Deletes, overwrites, tombstones, object versions, and list consistency decide whether the target represents current truth or only copied history.</td>
+</tr>
+<tr>
+<td>Application reads</td>
+<td>SDK behavior, signed URLs, range reads, redirects, and permission paths are not proven by storage CLI output.</td>
+</tr>
+<tr>
+<td>Final delta ledger</td>
+<td>The dangerous objects are the ones changing during the migration, not the cold archive that copied cleanly.</td>
+</tr>
+<tr>
+<td>Write-cutover observation</td>
+<td>New writes must be readable from the target, visible to downstream jobs, and absent from unexpected source paths.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="failure-modes-that-surfaced">Failure Modes That Surfaced<a class="headerlink" href="#failure-modes-that-surfaced" title="Permanent link">&para;</a></h2>
+<h3 id="count-and-size-matched-while-a-sample-failed">Count and Size Matched While a Sample Failed<a class="headerlink" href="#count-and-size-matched-while-a-sample-failed" title="Permanent link">&para;</a></h3>
+<p>The first comparison looked clean at aggregate level. A checksum sample found mismatches in a small set of objects. The issue was not large enough to move the global totals, but it was large enough to prove that the team could not trust aggregate numbers alone.</p>
+<p>Those objects were re-synced and the sample strategy was widened. The team kept the mismatch record instead of erasing it from memory, because that record later justified why the write cutover could proceed.</p>
+<h3 id="prefix-mapping-was-a-product-contract">Prefix Mapping Was a Product Contract<a class="headerlink" href="#prefix-mapping-was-a-product-contract" title="Permanent link">&para;</a></h3>
+<p>One prefix assumption did not match how the target layout had been prepared. If the team had discovered it after bulk sync, the cost would have been a large re-copy. If it had discovered it after write cutover, the cost would have included reconciliation and possible application confusion.</p>
+<p>The inventory manifest made prefix mapping a pre-copy decision. This was the right place to find the mistake.</p>
+<h3 id="metadata-was-part-of-the-data">Metadata Was Part of the Data<a class="headerlink" href="#metadata-was-part-of-the-data" title="Permanent link">&para;</a></h3>
+<p>Some application behavior depended on metadata and access semantics rather than only object bytes. A byte-perfect migration could still have broken responses, caching behavior, or client downloads.</p>
+<p>The team added application read tests before write cutover, which caught issues a storage-level diff would not have seen.</p>
+<h3 id="credentials-needed-an-end-date">Credentials Needed an End Date<a class="headerlink" href="#credentials-needed-an-end-date" title="Permanent link">&para;</a></h3>
+<p>Temporary migration access was convenient enough that it could have become permanent by accident. The team treated credential revocation as part of the migration closure, not as a cleanup someday.</p>
+<h2 id="reversibility-boundary">Reversibility Boundary<a class="headerlink" href="#reversibility-boundary" title="Permanent link">&para;</a></h2>
+<p>The migration had two rollback regimes:</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Authority</th>
+<th>Rollback cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Before read cutover</td>
+<td>Source accepts reads and writes.</td>
+<td>No customer-facing rollback; target can be rebuilt.</td>
+</tr>
+<tr>
+<td>After read cutover, before write cutover</td>
+<td>Source still accepts writes; target serves reads.</td>
+<td>Repoint reads to source and investigate target behavior.</td>
+</tr>
+<tr>
+<td>After write cutover</td>
+<td>Target accepts new writes, updates, deletes, and overwrites.</td>
+<td>Rollback requires reverse sync or reconciliation; routing alone is not enough, and source read-only by itself does not preserve target-side mutations.</td>
+</tr>
+</tbody>
+</table>
+<p>The final write cutover was therefore treated as the smallest, most controlled step. Everything possible was proven before it.</p>
+<h2 id="outcome">Outcome<a class="headerlink" href="#outcome" title="Permanent link">&para;</a></h2>
+<p>The migration completed without extended outage and without detected data loss. More importantly, the team knew why it was safe to continue at each phase. Counts, sizes, checksums, metadata checks, application reads, and delta reconciliation all answered different questions.</p>
+<p>The lasting lesson was that object storage migration should be designed around authority and evidence. Copy tools move bytes; migration plans move responsibility for truth.</p>
+<h2 id="reusable-review-questions">Reusable Review Questions<a class="headerlink" href="#reusable-review-questions" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Count and size agreed while content did not, in a sample.</strong> Equal object counts and total bytes still allowed a few mismatched objects; only sample checksums caught it, prompting a targeted re-sync.</li>
-<li><strong>Prefix mapping needed review before the first sync.</strong> A prefix assumption that did not match the target layout would have mis-filed objects; reviewing the mapping up front avoided a large re-copy.</li>
-<li>Temporary credentials issued for the migration had to be tracked so they could be revoked immediately afterward.</li>
-</ul>
-<h2 id="result">Result<a class="headerlink" href="#result" title="Permanent link">&para;</a></h2>
-<p>The migration completed with reads and then writes moved to the target, no extended outage, and no detected data loss. Source storage was kept read-only through the rollback window, so the risky write cutover had a defined fallback.</p>
-<h2 id="reusable-lessons">Reusable Lessons<a class="headerlink" href="#reusable-lessons" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Count and size checks are necessary but <strong>not sufficient</strong> — add sample checksums and an application read test.</li>
-<li>The <strong>write cutover</strong> is the true point of risk; sequence reads-then-writes so the dangerous step is last and isolated.</li>
-<li>Review prefix/path mapping before the first sync, not after.</li>
-<li>Issue temporary credentials for the migration and revoke them immediately when done.</li>
-<li>Keep the source read-only through the rollback window so rollback is "repoint", not "reconstruct".</li>
+<li>Which store is authoritative before, during, and after each phase?</li>
+<li>Which prefixes or object classes would be expensive to discover late?</li>
+<li>Are metadata, ACLs, lifecycle rules, encryption settings, and signed URL behavior part of correctness?</li>
+<li>How are creates, updates, deletes, overwrites, tombstones, and object versions tracked during bulk copy?</li>
+<li>During read cutover, what guarantees that a newly written object remains visible to the reader?</li>
+<li>What test proves the application can read from the target, not merely that the target contains bytes?</li>
+<li>What exactly happens if the write cutover fails after new writes have landed?</li>
+<li>When are temporary migration credentials revoked?</li>
 </ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="../../../standards-manual/cloud/cloud-network-migration-standard/">Network and Object Storage Migration Standard</a></li>
+<li><a href="../../../standards-manual/templates/migration-plan-template/">Migration Plan Template</a></li>
 <li><a href="../../../standards-manual/iac/terraform-iac-standard/">Terraform IaC Standard</a></li>
-<li><a href="../../../system-design/production-architecture/nfs-pvc-capacity-management/">NFS PVC Capacity Management</a></li>
 </ul>
 
 
@@ -4353,7 +4639,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 15:17:17 UTC">June 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 2, 2026 01:04:31 UTC">July 2, 2026</span>
   </span>
 
     

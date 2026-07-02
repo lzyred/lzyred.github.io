@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Anonymous case study of a minor-version Kubernetes upgrade — why add-ons and node-group strategy carried more risk than the control plane, with the validation and rollback model used.">
+        <meta name="description" content="Anonymous case study of a Kubernetes minor-version upgrade where add-ons, node replacement, and rollback boundaries carried more risk than the control-plane operation.">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Kubernetes Upgrade Case - DevOps Production Contract Map" />
-<meta property="og:description" content="Anonymous case study of a minor-version Kubernetes upgrade — why add-ons and node-group strategy carried more risk than the control plane, with the validation and rollback model used." />
+<meta property="og:description" content="Anonymous case study of a Kubernetes minor-version upgrade where add-ons, node replacement, and rollback boundaries carried more risk than the control-plane operation." />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/cases-reviews/cases/anonymous-kubernetes-upgrade-case.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/en/cases-reviews/cases/anonymous-kubernetes-upgrade-case/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Kubernetes Upgrade Case - DevOps Production Contract Map" />
-<meta property="twitter:description" content="Anonymous case study of a minor-version Kubernetes upgrade — why add-ons and node-group strategy carried more risk than the control plane, with the validation and rollback model used." />
+<meta property="twitter:description" content="Anonymous case study of a Kubernetes minor-version upgrade where add-ons, node replacement, and rollback boundaries carried more risk than the control-plane operation." />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/cases-reviews/cases/anonymous-kubernetes-upgrade-case.png" />
 </head>
   
@@ -2531,10 +2531,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-lesson" class="md-nav__link">
+  <a href="#what-this-case-is-really-about" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Lesson
+        What This Case Is Really About
       
     </span>
   </a>
@@ -2542,10 +2542,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#context" class="md-nav__link">
+  <a href="#decision-frame" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context
+        Decision Frame
       
     </span>
   </a>
@@ -2553,10 +2553,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#starting-state" class="md-nav__link">
+  <a href="#starting-conditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Starting State
+        Starting Conditions
       
     </span>
   </a>
@@ -2575,10 +2575,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#plan" class="md-nav__link">
+  <a href="#upgrade-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Plan
+        Upgrade Model
       
     </span>
   </a>
@@ -2586,10 +2586,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execution-and-validation" class="md-nav__link">
+  <a href="#execution-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Execution and Validation
+        Execution Sequence
       
     </span>
   </a>
@@ -2597,10 +2597,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#problems-encountered" class="md-nav__link">
+  <a href="#validation-evidence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Problems Encountered
+        Validation Evidence
       
     </span>
   </a>
@@ -2608,10 +2608,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#result" class="md-nav__link">
+  <a href="#failure-modes-that-surfaced" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Result
+        Failure Modes That Surfaced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Failure Modes That Surfaced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-on-lag-looked-like-application-instability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add-On Lag Looked Like Application Instability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poddisruptionbudgets-became-capacity-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PodDisruptionBudgets Became Capacity Contracts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-symptoms-nearly-hid-under-the-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Symptoms Nearly Hid Under the Upgrade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-had-to-be-upgraded-as-part-of-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring Had to Be Upgraded as Part of the System
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reversibility-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversibility Boundary
       
     </span>
   </a>
@@ -2619,10 +2680,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reusable-lessons" class="md-nav__link">
+  <a href="#outcome" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reusable Lessons
+        Outcome
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusable-review-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reusable Review Questions
       
     </span>
   </a>
@@ -4038,10 +4110,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-lesson" class="md-nav__link">
+  <a href="#what-this-case-is-really-about" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Lesson
+        What This Case Is Really About
       
     </span>
   </a>
@@ -4049,10 +4121,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#context" class="md-nav__link">
+  <a href="#decision-frame" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context
+        Decision Frame
       
     </span>
   </a>
@@ -4060,10 +4132,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#starting-state" class="md-nav__link">
+  <a href="#starting-conditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Starting State
+        Starting Conditions
       
     </span>
   </a>
@@ -4082,10 +4154,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#plan" class="md-nav__link">
+  <a href="#upgrade-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Plan
+        Upgrade Model
       
     </span>
   </a>
@@ -4093,10 +4165,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execution-and-validation" class="md-nav__link">
+  <a href="#execution-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Execution and Validation
+        Execution Sequence
       
     </span>
   </a>
@@ -4104,10 +4176,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#problems-encountered" class="md-nav__link">
+  <a href="#validation-evidence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Problems Encountered
+        Validation Evidence
       
     </span>
   </a>
@@ -4115,10 +4187,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#result" class="md-nav__link">
+  <a href="#failure-modes-that-surfaced" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Result
+        Failure Modes That Surfaced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Failure Modes That Surfaced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-on-lag-looked-like-application-instability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add-On Lag Looked Like Application Instability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poddisruptionbudgets-became-capacity-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PodDisruptionBudgets Became Capacity Contracts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-symptoms-nearly-hid-under-the-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Symptoms Nearly Hid Under the Upgrade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-had-to-be-upgraded-as-part-of-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring Had to Be Upgraded as Part of the System
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reversibility-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversibility Boundary
       
     </span>
   </a>
@@ -4126,10 +4259,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reusable-lessons" class="md-nav__link">
+  <a href="#outcome" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reusable Lessons
+        Outcome
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusable-review-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reusable Review Questions
       
     </span>
   </a>
@@ -4275,81 +4419,179 @@
 
 <h1 id="anonymous-kubernetes-upgrade-case">Anonymous Kubernetes Upgrade Case<a class="headerlink" href="#anonymous-kubernetes-upgrade-case" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>All identifiers in this case are generic. No original service names, domains, regions, accounts, repositories, or customer details are preserved.</p>
+<p>All identifiers in this case are generic. No original service names, domains, regions, accounts, repositories, manifests, or customer details are preserved.</p>
 </blockquote>
-<h2 id="core-lesson">Core Lesson<a class="headerlink" href="#core-lesson" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>The control-plane version bump is the part everyone plans for, and rarely the part that breaks. The real risk lived in the add-ons that had to move in lockstep with the new version, and in how worker nodes were replaced. Treating add-ons as first-class upgrade objects, and using new node groups as the rollback boundary, is what made this safe.</p>
-</blockquote>
-<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
-<p>An organization ran a Kubernetes cluster on an older minor version, hosting multiple stateless services, ingress routes, monitoring components, and stateful dependencies. It needed to move to a newer supported version with minimal interruption.</p>
-<h2 id="starting-state">Starting State<a class="headerlink" href="#starting-state" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Single cluster, older supported minor version.</li>
-<li>Mixed workloads: stateless services, ingress, monitoring, and stateful components on persistent storage.</li>
-<li>Core add-ons (CNI, CoreDNS, kube-proxy, CSI, ingress controller, observability agents) at versions tied to the current Kubernetes version.</li>
-</ul>
-<h2 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h2>
-<ul>
-<li>The target version required add-on compatibility checks.</li>
-<li>Some workloads depended on ingress and load-balancer behavior.</li>
-<li>Stateful components used persistent storage and could not tolerate data loss.</li>
-<li>Monitoring and alerting had to stay available throughout the change.</li>
-<li>Worker nodes could not all be replaced at once without risking capacity pressure.</li>
-</ul>
-<h2 id="plan">Plan<a class="headerlink" href="#plan" title="Permanent link">&para;</a></h2>
-<p>The upgrade was modeled as a phased migration, not a single switch:</p>
-<ol>
-<li>Build a baseline inventory of workloads, nodes, ingress, PVCs, add-ons, and alerts.</li>
-<li>Freeze unrelated infrastructure changes for the window.</li>
-<li>Upgrade the control plane via the platform-supported method.</li>
-<li>Upgrade core add-ons to target-compatible versions.</li>
-<li>Create a new worker node group on the target version.</li>
-<li>Migrate workloads by cordoning and draining old nodes in small batches.</li>
-<li>Validate after each batch.</li>
-<li>Keep old nodes until the observation window passed, then remove them.</li>
-</ol>
-<h2 id="execution-and-validation">Execution and Validation<a class="headerlink" href="#execution-and-validation" title="Permanent link">&para;</a></h2>
-<p>The team validated in three layers and stopped at the first failed layer:</p>
+<h2 id="what-this-case-is-really-about">What This Case Is Really About<a class="headerlink" href="#what-this-case-is-really-about" title="Permanent link">&para;</a></h2>
+<p>The visible change was a Kubernetes minor-version upgrade. The real change was a compatibility-envelope migration.</p>
+<p>The control plane was only one clock. The cluster also had an API-removal clock, an add-on compatibility clock, a worker-node runtime clock, and a workload-behavior clock. The upgrade became safe only after the team stopped asking "can the control plane move?" and started asking "which part of the cluster loses reversibility at each step?"</p>
+<p>That distinction mattered because the platform could upgrade the control plane quickly, but it could not prove that DNS, CNI, ingress, storage, observability, PodDisruptionBudgets, and application assumptions would all keep behaving under the new version.</p>
+<h2 id="decision-frame">Decision Frame<a class="headerlink" href="#decision-frame" title="Permanent link">&para;</a></h2>
+<p>The upgrade was split around three decisions:</p>
 <table>
 <thead>
 <tr>
-<th>Layer</th>
-<th>Examples</th>
+<th>Decision</th>
+<th>Why it mattered</th>
+<th>Required evidence</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Cluster health</td>
-<td>API readiness, node readiness, system pods, events.</td>
+<td>Treat add-ons as upgrade subjects, not background components.</td>
+<td>CNI, CoreDNS, kube-proxy, CSI, ingress, and observability agents define whether workloads actually run.</td>
+<td>Target-version compatibility matrix and health checks for each add-on.</td>
 </tr>
 <tr>
-<td>Workload health</td>
-<td>Pod readiness, rollout status, logs, probes, job completion.</td>
+<td>Replace nodes through new node groups.</td>
+<td>In-place mutation makes rollback ambiguous and hides capacity problems.</td>
+<td>New nodes join cleanly, old nodes remain drainable, and workloads can move in batches.</td>
 </tr>
 <tr>
-<td>Business smoke tests</td>
-<td>Login, core API calls, scheduled jobs, external callbacks, dashboard visibility.</td>
+<td>Keep irreversible changes out of the window.</td>
+<td>A control-plane upgrade is already hard enough to reason about.</td>
+<td>No storage migration, schema migration, or credential rotation that would break rollback.</td>
 </tr>
 </tbody>
 </table>
-<p>Workloads were moved in small batches; application health was confirmed against each batch before draining the next set of old nodes.</p>
-<h2 id="problems-encountered">Problems Encountered<a class="headerlink" href="#problems-encountered" title="Permanent link">&para;</a></h2>
+<p>This made the upgrade a sequence of gates instead of a single maintenance event.</p>
+<h2 id="starting-conditions">Starting Conditions<a class="headerlink" href="#starting-conditions" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Add-on compatibility, not the control plane, caused the friction.</strong> Add-ons that lagged the new version produced DNS and networking flakiness until they were upgraded to match.</li>
-<li><strong>Storage pressure was nearly misdiagnosed as an upgrade bug.</strong> A PVC nearing capacity produced symptoms that looked upgrade-related; checking PVC headroom up front would have avoided the confusion.</li>
-<li>Ingress and CSI behavior needed explicit test cases — they were the workloads most sensitive to the change.</li>
+<li>One production cluster on an older supported minor version.</li>
+<li>Mixed workloads: stateless services, ingress, monitoring, scheduled jobs, and stateful components using persistent volumes.</li>
+<li>Core add-ons tied to the current Kubernetes version.</li>
+<li>Alerting existed, but not every critical alert had an explicit runbook.</li>
+<li>Some workloads had strict PodDisruptionBudgets that had not been tested against node replacement.</li>
+<li>Custom resources, admission or conversion webhooks, aggregated APIs, and controllers had to be checked as part of the API surface, not treated as application detail.</li>
 </ul>
-<h2 id="result">Result<a class="headerlink" href="#result" title="Permanent link">&para;</a></h2>
-<p>The cluster reached the target version with no sustained outage. Because old node groups were retained through the observation window, every issue was caught against a working fallback, and no irreversible storage change was made in the same window.</p>
-<h2 id="reusable-lessons">Reusable Lessons<a class="headerlink" href="#reusable-lessons" title="Permanent link">&para;</a></h2>
+<h2 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Add-on compatibility usually carries more practical risk than the control-plane version change itself.</li>
-<li>New node groups give a cleaner rollback boundary than in-place node mutation.</li>
-<li>Ingress, CSI drivers, and monitoring agents deserve explicit test cases.</li>
-<li>Check PVC capacity before migrating, so storage pressure is not mistaken for an upgrade fault.</li>
-<li>Every critical alert should link to a runbook before the maintenance window opens.</li>
-<li>Treat the control-plane upgrade as forward-only; build rollback from node groups, manifest snapshots, and app-level rollback.</li>
+<li>The cluster had to remain available through the change.</li>
+<li>Worker nodes could not all be replaced at once without capacity pressure.</li>
+<li>Persistent-volume behavior had to be verified, not assumed.</li>
+<li>Monitoring and alert delivery had to survive the upgrade.</li>
+<li>The old node group had to remain a working fallback until the observation window passed.</li>
+</ul>
+<h2 id="upgrade-model">Upgrade Model<a class="headerlink" href="#upgrade-model" title="Permanent link">&para;</a></h2>
+<p>The team modeled the upgrade as four clocks that had to be synchronized:</p>
+<table>
+<thead>
+<tr>
+<th>Clock</th>
+<th>What could break</th>
+<th>Gate before moving on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API surface</td>
+<td>Removed or changed Kubernetes APIs, CRDs, admission/conversion webhooks, aggregated APIs, and controllers.</td>
+<td>No active manifest, CRD, webhook, APIService, or controller depended on an incompatible API behavior.</td>
+</tr>
+<tr>
+<td>Add-ons</td>
+<td>DNS, networking, proxying, ingress, storage, metrics, logs.</td>
+<td>Add-on versions matched the target release and passed health checks.</td>
+</tr>
+<tr>
+<td>Nodes</td>
+<td>Runtime, kernel, kubelet, image pull, capacity, drain behavior.</td>
+<td>New node group admitted pods and old nodes drained in small batches.</td>
+</tr>
+<tr>
+<td>Workloads</td>
+<td>PDBs, probes, startup timing, persistent storage, external callbacks.</td>
+<td>Batch smoke tests passed and alert noise stayed explainable.</td>
+</tr>
+</tbody>
+</table>
+<p>The team did not let a green control plane count as a green cluster.</p>
+<h2 id="execution-sequence">Execution Sequence<a class="headerlink" href="#execution-sequence" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Freeze unrelated infrastructure and application changes.</li>
+<li>Inventory APIs, add-ons, nodes, ingress routes, PVCs, PDBs, critical workloads, alerts, and runbooks.</li>
+<li>Scan manifests, CRDs, admission webhooks, conversion webhooks, APIService health, and controllers for deprecated or removed API behavior.</li>
+<li>Snapshot critical manifests and platform settings so rollback was not dependent on memory.</li>
+<li>Upgrade the control plane through the supported platform path.</li>
+<li>Upgrade or pin add-ons to target-compatible versions in a controlled order.</li>
+<li>Create a new worker node group at the target version.</li>
+<li>Move workloads by cordoning and draining old nodes in small batches.</li>
+<li>Validate cluster health, workload health, storage behavior, ingress behavior, and monitoring after each batch.</li>
+<li>Keep old nodes until the observation window passed, then remove them deliberately.</li>
+</ol>
+<h2 id="validation-evidence">Validation Evidence<a class="headerlink" href="#validation-evidence" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Evidence</th>
+<th>Stop condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API</td>
+<td>Deprecated API scan, CRD versions, webhook readiness, APIService health, controller logs, admission behavior.</td>
+<td>Any active workload, CRD, webhook, APIService, or controller still needs an incompatible API path.</td>
+</tr>
+<tr>
+<td>Add-ons</td>
+<td>CoreDNS resolution, CNI connectivity, kube-proxy behavior, CSI attach/mount, ingress routing, metrics/log delivery.</td>
+<td>A core add-on is unhealthy, unsupported, or unverifiable.</td>
+</tr>
+<tr>
+<td>Node movement</td>
+<td>New node readiness, image pulls, daemonsets, drain duration, pending pods, PDB blocks.</td>
+<td>Drain requires force deleting critical pods or creates sustained capacity pressure.</td>
+</tr>
+<tr>
+<td>Workloads</td>
+<td>Rollout status, readiness, startup latency, error rate, scheduled job completion.</td>
+<td>Any critical workload cannot complete a batch smoke test.</td>
+</tr>
+<tr>
+<td>Operations</td>
+<td>Alerts, dashboards, on-call routing, runbook links.</td>
+<td>A critical failure mode cannot be seen or routed during the window.</td>
+</tr>
+</tbody>
+</table>
+<p>The most important validation habit was stopping at the first unclear layer. If DNS became flaky after add-on movement, the team did not continue draining nodes and hope the symptom would disappear under more change.</p>
+<h2 id="failure-modes-that-surfaced">Failure Modes That Surfaced<a class="headerlink" href="#failure-modes-that-surfaced" title="Permanent link">&para;</a></h2>
+<h3 id="add-on-lag-looked-like-application-instability">Add-On Lag Looked Like Application Instability<a class="headerlink" href="#add-on-lag-looked-like-application-instability" title="Permanent link">&para;</a></h3>
+<p>The control-plane operation completed cleanly, but a version mismatch in networking and DNS components produced intermittent failures. At first those failures looked like workload regressions.</p>
+<p>The compatibility matrix prevented the team from debugging the wrong layer for too long. Add-ons were moved back into the center of the upgrade plan, and each one gained an explicit health check.</p>
+<h3 id="poddisruptionbudgets-became-capacity-contracts">PodDisruptionBudgets Became Capacity Contracts<a class="headerlink" href="#poddisruptionbudgets-became-capacity-contracts" title="Permanent link">&para;</a></h3>
+<p>Some PDBs were written as if disruption were a rare single-pod event. During node replacement they became hard constraints on drain speed and batch size.</p>
+<p>The fix was not to bypass PDBs. The team adjusted batch size, added capacity where needed, and treated "cannot drain safely" as evidence that the workload's availability contract needed review.</p>
+<h3 id="storage-symptoms-nearly-hid-under-the-upgrade">Storage Symptoms Nearly Hid Under the Upgrade<a class="headerlink" href="#storage-symptoms-nearly-hid-under-the-upgrade" title="Permanent link">&para;</a></h3>
+<p>One persistent volume was close to capacity before the window. Its symptoms appeared during the upgrade and could have been misread as a version problem.</p>
+<p>PVC headroom and attach/mount checks were added to the preflight gate. The lesson was simple: storage pressure that already exists will use the upgrade window as camouflage.</p>
+<h3 id="monitoring-had-to-be-upgraded-as-part-of-the-system">Monitoring Had to Be Upgraded as Part of the System<a class="headerlink" href="#monitoring-had-to-be-upgraded-as-part-of-the-system" title="Permanent link">&para;</a></h3>
+<p>Observability agents were not "after the upgrade" work. If logs, metrics, or alerts disappeared during the window, the team would lose the ability to decide whether to continue.</p>
+<p>Monitoring components were therefore treated as part of the upgrade path, with their own version checks and smoke tests.</p>
+<h2 id="reversibility-boundary">Reversibility Boundary<a class="headerlink" href="#reversibility-boundary" title="Permanent link">&para;</a></h2>
+<p>The control-plane upgrade was treated as forward-moving. The practical rollback model came from keeping workloads movable:</p>
+<ul>
+<li>Old node groups remained available until the target node group handled real workload batches.</li>
+<li>Manifest snapshots preserved the ability to roll back workload definitions.</li>
+<li>Application rollback remained separate from cluster upgrade rollback.</li>
+<li>No storage layout change or schema change was allowed in the same window.</li>
+<li>The team did not remove the old node group until alerts, scheduled jobs, ingress, DNS, and storage behavior had survived the observation period.</li>
+</ul>
+<p>This avoided a false rollback promise. The plan did not pretend the entire cluster could time-travel; it preserved the parts that mattered for service recovery.</p>
+<h2 id="outcome">Outcome<a class="headerlink" href="#outcome" title="Permanent link">&para;</a></h2>
+<p>The cluster reached the target version without sustained outage. The decisive move was not the control-plane operation. It was building a reversible path for workloads and forcing add-ons, nodes, storage, and observability to pass their own gates.</p>
+<p>After the upgrade, the team's review checklist changed. A Kubernetes upgrade was no longer considered ready because the target version was supported. It was ready only when the compatibility envelope had been made visible.</p>
+<h2 id="reusable-review-questions">Reusable Review Questions<a class="headerlink" href="#reusable-review-questions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Which add-ons must move before workloads can be trusted on the target version?</li>
+<li>Which APIs are removed or changed between the current and target versions?</li>
+<li>Are CRDs, admission/conversion webhooks, APIService objects, and controllers compatible with the target version?</li>
+<li>Can every critical workload drain without force deletion?</li>
+<li>What capacity is required to keep old and new node groups alive at the same time?</li>
+<li>Which storage checks prove attach, mount, capacity, and application reads?</li>
+<li>Can the team see DNS, ingress, storage, and workload failures during the window?</li>
+<li>What exactly remains reversible after the control plane moves?</li>
 </ul>
 <h2 id="related-documents">Related Documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4379,7 +4621,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 28, 2026 15:17:17 UTC">June 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 2, 2026 01:04:31 UTC">July 2, 2026</span>
   </span>
 
     

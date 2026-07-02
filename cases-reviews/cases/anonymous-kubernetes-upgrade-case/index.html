@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Kubernetes 小版本升级的匿名案例——为何插件与节点组策略比控制面风险更大，以及所用的校验与回滚模型。">
+        <meta name="description" content="Kubernetes 小版本升级匿名案例：真正风险不在控制面动作本身，而在插件、节点替换和回滚边界。">
       
       
       
@@ -73,7 +73,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Kubernetes 升级案例 - DevOps 生产契约地图" />
-<meta property="og:description" content="Kubernetes 小版本升级的匿名案例——为何插件与节点组策略比控制面风险更大，以及所用的校验与回滚模型。" />
+<meta property="og:description" content="Kubernetes 小版本升级匿名案例：真正风险不在控制面动作本身，而在插件、节点替换和回滚边界。" />
 <meta property="og:image" content="https://blog.l2do.com/assets/images/social/cases-reviews/cases/anonymous-kubernetes-upgrade-case.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -81,7 +81,7 @@
 <meta property="og:url" content="https://blog.l2do.com/cases-reviews/cases/anonymous-kubernetes-upgrade-case/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Kubernetes 升级案例 - DevOps 生产契约地图" />
-<meta property="twitter:description" content="Kubernetes 小版本升级的匿名案例——为何插件与节点组策略比控制面风险更大，以及所用的校验与回滚模型。" />
+<meta property="twitter:description" content="Kubernetes 小版本升级匿名案例：真正风险不在控制面动作本身，而在插件、节点替换和回滚边界。" />
 <meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/cases-reviews/cases/anonymous-kubernetes-upgrade-case.png" />
 </head>
   
@@ -2534,7 +2534,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        核心经验
+        这篇案例真正讨论什么
       
     </span>
   </a>
@@ -2545,7 +2545,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        背景
+        决策框架
       
     </span>
   </a>
@@ -2578,7 +2578,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        计划
+        升级模型
       
     </span>
   </a>
@@ -2589,7 +2589,7 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        执行与校验
+        执行顺序
       
     </span>
   </a>
@@ -2600,7 +2600,7 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        遇到的问题
+        验证证据
       
     </span>
   </a>
@@ -2611,6 +2611,78 @@
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
+        暴露出来的失败模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="暴露出来的失败模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        插件滞后看起来像应用不稳定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poddisruptionbudget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PodDisruptionBudget 变成容量契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        存储症状差点藏进升级里
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        监控必须作为系统一起升级
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可逆边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         结果
       
     </span>
@@ -2619,10 +2691,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        可复用经验
+        可复用审查问题
       
     </span>
   </a>
@@ -2630,7 +2702,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -4041,7 +4113,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        核心经验
+        这篇案例真正讨论什么
       
     </span>
   </a>
@@ -4052,7 +4124,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        背景
+        决策框架
       
     </span>
   </a>
@@ -4085,7 +4157,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        计划
+        升级模型
       
     </span>
   </a>
@@ -4096,7 +4168,7 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        执行与校验
+        执行顺序
       
     </span>
   </a>
@@ -4107,7 +4179,7 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        遇到的问题
+        验证证据
       
     </span>
   </a>
@@ -4118,6 +4190,78 @@
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
+        暴露出来的失败模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="暴露出来的失败模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        插件滞后看起来像应用不稳定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poddisruptionbudget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PodDisruptionBudget 变成容量契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        存储症状差点藏进升级里
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        监控必须作为系统一起升级
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可逆边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         结果
       
     </span>
@@ -4126,10 +4270,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        可复用经验
+        可复用审查问题
       
     </span>
   </a>
@@ -4137,7 +4281,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -4275,83 +4419,181 @@
 
 <h1 id="kubernetes">匿名 Kubernetes 升级案例<a class="headerlink" href="#kubernetes" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>本案例中所有标识均为通用化。未保留任何原始服务名、域名、区域、账号、仓库或客户细节。</p>
+<p>本案例中所有标识均已通用化。未保留任何原始服务名、域名、区域、账号、仓库、清单或客户细节。</p>
 </blockquote>
-<h2 id="_1">核心经验<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>控制面版本升级是人人都会规划的部分，却很少是出问题的部分。真正的风险在于必须与新版本同步推进的插件，以及工作节点如何被替换。把插件当作一等升级对象、用新节点组作为回滚边界，正是让这次升级安全的关键。</p>
-</blockquote>
-<h2 id="_2">背景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>某组织在较旧的小版本上运行一个 Kubernetes 集群，承载多个无状态服务、ingress 路由、监控组件与有状态依赖。需要在尽量不中断的前提下迁移到较新的受支持版本。</p>
-<h2 id="_3">起始状态<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<ul>
-<li>单集群，较旧的受支持小版本。</li>
-<li>混合负载：无状态服务、ingress、监控，以及位于持久存储上的有状态组件。</li>
-<li>核心插件（CNI、CoreDNS、kube-proxy、CSI、ingress 控制器、可观测性 agent）的版本与当前 Kubernetes 版本绑定。</li>
-</ul>
-<h2 id="_4">约束<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<ul>
-<li>目标版本需要插件兼容性检查。</li>
-<li>部分负载依赖 ingress 与负载均衡器行为。</li>
-<li>有状态组件使用持久存储，不能容忍数据丢失。</li>
-<li>监控与告警在整个变更期间必须保持可用。</li>
-<li>工作节点不能一次性全部替换，否则有容量压力风险。</li>
-</ul>
-<h2 id="_5">计划<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>把升级建模为分阶段迁移，而非一次切换：</p>
-<ol>
-<li>建立工作负载、节点、ingress、PVC、插件与告警的基线清单。</li>
-<li>窗口期冻结无关基础设施变更。</li>
-<li>通过平台支持的方式升级控制面。</li>
-<li>把核心插件升级到目标兼容版本。</li>
-<li>在目标版本上创建新工作节点组。</li>
-<li>通过小批量 cordon/drain 旧节点来迁移工作负载。</li>
-<li>每批后校验。</li>
-<li>保留旧节点至观察窗口通过，再移除。</li>
-</ol>
-<h2 id="_6">执行与校验<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>团队分三层校验，并在第一层失败处停止：</p>
+<h2 id="_1">这篇案例真正讨论什么<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>表面变更是 Kubernetes 小版本升级。真实变更是一次兼容性边界迁移。</p>
+<p>控制面只是其中一个时钟。集群里还有 API 移除时钟、插件兼容时钟、工作节点运行时时钟和工作负载行为时钟。团队只有停止问“控制面能不能升”，转而问“每一步会让集群的哪一部分失去可逆性”，升级才开始变安全。</p>
+<p>这个区别很关键。平台可以很快升级控制面，但它不能替团队证明 DNS、CNI、ingress、存储、可观测性、PodDisruptionBudget 和应用假设都会在新版本下继续成立。</p>
+<h2 id="_2">决策框架<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>升级被拆成三个核心决策：</p>
 <table>
 <thead>
 <tr>
-<th>层</th>
-<th>示例</th>
+<th>决策</th>
+<th>为什么重要</th>
+<th>必需证据</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>集群健康</td>
-<td>API 就绪、节点就绪、系统 Pod、事件。</td>
+<td>把插件当作升级对象，而不是背景组件。</td>
+<td>CNI、CoreDNS、kube-proxy、CSI、ingress 和可观测性 agent 决定负载是否真的能运行。</td>
+<td>目标版本兼容矩阵，以及每个插件的健康检查。</td>
 </tr>
 <tr>
-<td>负载健康</td>
-<td>Pod 就绪、发布状态、日志、探针、任务完成。</td>
+<td>通过新节点组替换节点。</td>
+<td>就地改节点会让回滚含糊，并隐藏容量问题。</td>
+<td>新节点能干净加入，旧节点可 drain，工作负载能分批迁移。</td>
 </tr>
 <tr>
-<td>业务冒烟</td>
-<td>登录、核心 API 调用、定时任务、外部回调、仪表盘可见性。</td>
+<td>把不可逆变更排除在窗口外。</td>
+<td>控制面升级本身已经足够难推理。</td>
+<td>没有存储迁移、schema 迁移或会破坏回滚的凭据轮换。</td>
 </tr>
 </tbody>
 </table>
-<p>工作负载小批量迁移；在 drain 下一批旧节点之前，先对每批确认应用健康。</p>
-<h2 id="_7">遇到的问题<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>这让升级从一个维护事件变成一组门禁序列。</p>
+<h2 id="_3">起始状态<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>造成摩擦的是插件兼容性，而非控制面。</strong> 落后于新版本的插件产生了 DNS 与网络抖动，直到升级到匹配版本。</li>
-<li><strong>存储压力险些被误判为升级 bug。</strong> 一个接近容量的 PVC 产生了看似与升级相关的症状；事先检查 PVC 余量本可避免混淆。</li>
-<li>ingress 与 CSI 行为需要显式测试用例——它们是对本次变更最敏感的负载。</li>
+<li>一个生产集群运行在较旧但仍受支持的小版本上。</li>
+<li>混合负载：无状态服务、ingress、监控、定时任务，以及使用持久卷的有状态组件。</li>
+<li>核心插件与当前 Kubernetes 版本绑定。</li>
+<li>已有告警，但不是每条关键告警都有明确 runbook。</li>
+<li>部分工作负载的 PodDisruptionBudget 很严格，且没有经历过节点替换验证。</li>
+<li>自定义资源、admission/conversion webhook、聚合 API 与控制器必须作为 API 表面检查，而不是被当成应用细节。</li>
 </ul>
-<h2 id="_8">结果<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p>集群达到目标版本且无持续停机。由于旧节点组在观察窗口内保留，每个问题都是在有可用回退下被发现，且同一窗口内未做任何不可逆的存储变更。</p>
-<h2 id="_9">可复用经验<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h2 id="_4">约束<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
-<li>插件兼容性通常比控制面版本变更本身带来更大的实际风险。</li>
-<li>新节点组比就地改节点提供更干净的回滚边界。</li>
-<li>ingress、CSI 驱动与监控 agent 值得显式测试用例。</li>
-<li>迁移前检查 PVC 容量，以免把存储压力误认为升级故障。</li>
-<li>在维护窗口开启前，每条关键告警都应链接到 runbook。</li>
-<li>把控制面升级视为只能向前；用节点组、清单快照与应用级回滚构建回滚。</li>
+<li>变更期间集群必须保持可用。</li>
+<li>不能一次性替换所有工作节点，否则会产生容量压力。</li>
+<li>持久卷行为必须被验证，而不是被默认相信。</li>
+<li>监控和告警投递在升级期间必须存活。</li>
+<li>旧节点组在观察窗口通过前必须仍是可用回退。</li>
 </ul>
-<h2 id="_10">相关文档<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h2 id="_5">升级模型<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>团队把升级建模为四个需要同步的时钟：</p>
+<table>
+<thead>
+<tr>
+<th>时钟</th>
+<th>可能破坏什么</th>
+<th>继续前的门禁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API 表面</td>
+<td>被移除或改变的 Kubernetes API、CRD、admission/conversion webhook、聚合 API 和控制器。</td>
+<td>没有活跃清单、CRD、webhook、APIService 或控制器依赖不兼容的 API 行为。</td>
+</tr>
+<tr>
+<td>插件</td>
+<td>DNS、网络、代理、ingress、存储、指标、日志。</td>
+<td>插件版本匹配目标版本，并通过健康检查。</td>
+</tr>
+<tr>
+<td>节点</td>
+<td>Runtime、内核、kubelet、镜像拉取、容量、drain 行为。</td>
+<td>新节点组可承载 Pod，旧节点可小批量 drain。</td>
+</tr>
+<tr>
+<td>工作负载</td>
+<td>PDB、探针、启动时序、持久存储、外部回调。</td>
+<td>批次冒烟通过，告警噪音可解释。</td>
+</tr>
+</tbody>
+</table>
+<p>团队没有把绿色控制面等同于绿色集群。</p>
+<h2 id="_6">执行顺序<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<ol>
+<li>冻结无关基础设施和应用变更。</li>
+<li>盘点 API、插件、节点、ingress 路由、PVC、PDB、关键负载、告警和 runbook。</li>
+<li>扫描清单、CRD、admission webhook、conversion webhook、APIService 健康状态与控制器，寻找废弃或移除的 API 行为。</li>
+<li>快照关键清单和平台配置，让回滚不依赖记忆。</li>
+<li>通过平台支持路径升级控制面。</li>
+<li>按受控顺序将插件升级或固定到目标兼容版本。</li>
+<li>在目标版本上创建新的工作节点组。</li>
+<li>通过 cordon/drain 旧节点小批量迁移工作负载。</li>
+<li>每批后验证集群健康、负载健康、存储行为、ingress 行为和监控。</li>
+<li>旧节点保留到观察窗口通过后，再有意移除。</li>
+</ol>
+<h2 id="_7">验证证据<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>证据</th>
+<th>停止条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API</td>
+<td>废弃 API 扫描、CRD 版本、webhook 就绪、APIService 健康、控制器日志、Admission 行为。</td>
+<td>任一活跃负载、CRD、webhook、APIService 或控制器仍需要不兼容 API 路径。</td>
+</tr>
+<tr>
+<td>插件</td>
+<td>CoreDNS 解析、CNI 连通性、kube-proxy 行为、CSI attach/mount、ingress 路由、指标/日志投递。</td>
+<td>核心插件不健康、不受支持或无法验证。</td>
+</tr>
+<tr>
+<td>节点迁移</td>
+<td>新节点 ready、镜像拉取、daemonset、drain 耗时、pending Pod、PDB 阻塞。</td>
+<td>drain 必须强删关键 Pod，或造成持续容量压力。</td>
+</tr>
+<tr>
+<td>工作负载</td>
+<td>发布状态、readiness、启动延迟、错误率、定时任务完成。</td>
+<td>任一关键负载无法完成批次冒烟。</td>
+</tr>
+<tr>
+<td>运维</td>
+<td>告警、仪表盘、值班路由、runbook 链接。</td>
+<td>窗口内看不见或路由不了关键失败模式。</td>
+</tr>
+</tbody>
+</table>
+<p>最重要的验证习惯，是在第一层不清楚时停止。如果 DNS 在插件迁移后变得不稳定，团队不会继续 drain 节点并期待症状被更多变更冲掉。</p>
+<h2 id="_8">暴露出来的失败模式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="_9">插件滞后看起来像应用不稳定<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>控制面动作顺利完成，但网络和 DNS 组件的版本不匹配带来了间歇失败。最初这些失败看起来像工作负载回归。</p>
+<p>兼容矩阵避免团队在错误层面调试太久。插件被重新放回升级计划中心，并且每个插件都补上显式健康检查。</p>
+<h3 id="poddisruptionbudget">PodDisruptionBudget 变成容量契约<a class="headerlink" href="#poddisruptionbudget" title="Permanent link">&para;</a></h3>
+<p>有些 PDB 写得像“偶发单 Pod 中断”的保护。到了节点替换阶段，它们变成 drain 速度和批次大小的硬约束。</p>
+<p>修复不是绕过 PDB。团队调整批次大小，在必要处增加容量，并把“无法安全 drain”视为工作负载可用性契约需要复查的证据。</p>
+<h3 id="_10">存储症状差点藏进升级里<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>一个持久卷在窗口前就接近容量上限。它在升级期间暴露出的症状，很容易被误读为版本问题。</p>
+<p>PVC 余量、attach/mount 检查因此被加入预检门禁。经验很简单：升级前已经存在的存储压力，会借升级窗口伪装成升级故障。</p>
+<h3 id="_11">监控必须作为系统一起升级<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>可观测性 agent 不是“升级后再说”的工作。如果日志、指标或告警在窗口内消失，团队就失去了判断是否继续的能力。</p>
+<p>因此监控组件被纳入升级路径，有自己的版本检查和冒烟测试。</p>
+<h2 id="_12">可逆边界<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>控制面升级被视为向前推进。实际回滚模型来自保持工作负载可移动：</p>
+<ul>
+<li>旧节点组保留到目标节点组承载真实工作负载批次。</li>
+<li>清单快照保留回滚工作负载定义的能力。</li>
+<li>应用回滚与集群升级回滚保持分离。</li>
+<li>同一窗口内不做存储布局变更或 schema 变更。</li>
+<li>旧节点组只有在告警、定时任务、ingress、DNS 和存储行为都熬过观察期后才移除。</li>
+</ul>
+<p>这避免了虚假的回滚承诺。计划没有假装整个集群可以时光倒流，而是保留了服务恢复真正需要的部分。</p>
+<h2 id="_13">结果<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>集群到达目标版本，未发生持续停机。决定性动作不是控制面操作本身，而是为工作负载建立可逆路径，并强制插件、节点、存储和可观测性各自过门禁。</p>
+<p>升级后，团队的审查清单也变了。Kubernetes 升级不再因为目标版本受支持就被认为准备好了。只有兼容性边界被看见，它才准备好。</p>
+<h2 id="_14">可复用审查问题<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li>哪些插件必须先移动，才能相信工作负载在目标版本上运行？</li>
+<li>当前版本到目标版本之间，哪些 API 被移除或改变？</li>
+<li>CRD、admission/conversion webhook、APIService 与控制器是否兼容目标版本？</li>
+<li>每个关键工作负载都能在不强删 Pod 的情况下 drain 吗？</li>
+<li>同时保留新旧节点组需要多少容量？</li>
+<li>哪些存储检查能证明 attach、mount、容量和应用读取？</li>
+<li>窗口内能否看见 DNS、ingress、存储和工作负载失败？</li>
+<li>控制面移动之后，究竟还有哪些部分可逆？</li>
+</ul>
+<h2 id="_15">相关文档<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../system-design/production-architecture/eks-upgrade-standard/">EKS 与 Kubernetes 升级标准</a></li>
 <li><a href="../../../system-design/production-architecture/nfs-pvc-capacity-management/">NFS PVC 容量管理</a></li>
@@ -4379,7 +4621,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月28日 15:17:17 UTC">2026年6月28日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月2日 01:04:31 UTC">2026年7月2日</span>
   </span>
 
     
