@@ -1,0 +1,85 @@
+/*
+ * Global viewport safety spacing.
+ *
+ * Material uses the same .md-grid utility for the header, document shell and
+ * footer. Keeping the gutter at this level gives every page type one stable
+ * horizontal boundary instead of relying on unrelated page-specific padding.
+ */
+:root {
+  --l2do-viewport-gutter: clamp(24px, 3.25vw, 56px);
+  --l2do-compact-gutter: 24px;
+}
+
+.md-grid {
+  width: calc(100% - var(--l2do-viewport-gutter) - var(--l2do-viewport-gutter));
+  max-width: 1520px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Portal pages previously added their own 18–28px padding. The global grid now
+   owns viewport spacing, so remove the second, inconsistent spacing layer. */
+body.l2do-portal-page .md-main__inner {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/* Full-bleed homepage surfaces keep their background edge-to-edge while their
+   readable and interactive content aligns to the same safe viewport boundary. */
+.l2do-home-hero {
+  padding-right: max(var(--l2do-viewport-gutter), calc((100vw - 1320px) / 2));
+  padding-left: max(var(--l2do-viewport-gutter), calc((100vw - 1320px) / 2));
+}
+
+.l2do-home-content {
+  width: calc(100% - var(--l2do-viewport-gutter) - var(--l2do-viewport-gutter));
+  max-width: 1320px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/* Chinese display headlines need balanced wrapping. Without this, the wide
+   Runbook title can leave one orphan character on desktop and the AI title can
+   split a semantic phrase on narrow phones. */
+.l2do-runbook-hero h2,
+.l2do-ai-hero h2 {
+  text-wrap: balance;
+}
+
+.l2do-runbook-hero h2 {
+  font-size: clamp(2rem, 3.4vw, 2.85rem);
+}
+
+/* Keep horizontally scrollable task selectors inside the content safe area.
+   Negative margins made the first and last controls appear attached to the
+   device edge on narrow screens. */
+@media screen and (max-width: 44.984375em) {
+  .l2do-task-tabs {
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+    scroll-padding-right: var(--l2do-compact-gutter);
+    scroll-padding-left: var(--l2do-compact-gutter);
+  }
+
+  .l2do-ai-hero h2 {
+    font-size: 1.85rem;
+  }
+
+  .l2do-mobile-tools {
+    right: max(16px, env(safe-area-inset-right));
+    left: max(16px, env(safe-area-inset-left));
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Very narrow phones still keep a readable buffer without sacrificing the
+   minimum usable width of tables, code blocks and task cards. */
+@media screen and (max-width: 22.5em) {
+  :root {
+    --l2do-viewport-gutter: 20px;
+  }
+}

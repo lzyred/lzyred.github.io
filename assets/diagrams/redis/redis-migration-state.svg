@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">Redis migration state</title>
+  <desc id="desc">Planned migration from baseline through replication, maintenance window, role change, validation, and observation.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#46636f"/></marker><style>.box{fill:#f4f8f8;stroke:#46636f;stroke-width:2}.gate{fill:#fff7dd;stroke:#8a6d1d;stroke-width:2}.risk{fill:#fff0ee;stroke:#9a443b;stroke-width:2}.t{font:18px sans-serif;fill:#18323b;text-anchor:middle}.s{font:14px sans-serif;fill:#49626b;text-anchor:middle}.a{stroke:#46636f;stroke-width:2;fill:none;marker-end:url(#arrow)}</style></defs>
+  <rect class="box" x="40" y="80" width="190" height="75" rx="12"/><text class="t" x="135" y="111">记录基线</text><text class="s" x="135" y="136">Capture baseline</text>
+  <rect class="box" x="295" y="80" width="190" height="75" rx="12"/><text class="t" x="390" y="111">目标复制追平</text><text class="s" x="390" y="136">Target catches up</text>
+  <rect class="gate" x="550" y="80" width="190" height="75" rx="12"/><text class="t" x="645" y="111">维护窗口</text><text class="s" x="645" y="136">Maintenance window</text>
+  <rect class="gate" x="805" y="80" width="220" height="75" rx="12"/><text class="t" x="915" y="111">确认最终复制位置</text><text class="s" x="915" y="136">Verify final offset</text>
+  <rect class="box" x="805" y="300" width="220" height="75" rx="12"/><text class="t" x="915" y="331">完成角色变更</text><text class="s" x="915" y="356">Change roles</text>
+  <rect class="box" x="550" y="300" width="190" height="75" rx="12"/><text class="t" x="645" y="331">客户端切换</text><text class="s" x="645" y="356">Switch clients</text>
+  <rect class="gate" x="295" y="300" width="190" height="75" rx="12"/><text class="t" x="390" y="331">业务验证</text><text class="s" x="390" y="356">Validate service</text>
+  <rect class="box" x="40" y="300" width="190" height="75" rx="12"/><text class="t" x="135" y="331">观察窗口</text><text class="s" x="135" y="356">Observation</text>
+  <rect class="risk" x="390" y="490" width="320" height="80" rx="12"/><text class="t" x="550" y="520">目标已变化：回切是新迁移</text><text class="s" x="550" y="547">Failback becomes a new migration</text>
+  <path class="a" d="M230 117H295"/><path class="a" d="M485 117H550"/><path class="a" d="M740 117H805"/><path class="a" d="M915 155V300"/><path class="a" d="M805 337H740"/><path class="a" d="M550 337H485"/><path class="a" d="M295 337H230"/><path class="a" d="M390 375V440H550V490"/>
+</svg>

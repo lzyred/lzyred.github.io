@@ -1,0 +1,149 @@
+/*
+ * Cross-component responsive invariants discovered during screenshot review.
+ * These rules intentionally load after the type-scale layer so tablet defaults
+ * cannot override the final mobile composition.
+ */
+
+/* Material's list selector has higher specificity than the task component.
+   Remove the inherited list offset and align row content with the panel header. */
+.md-typeset .l2do-task-assets > .l2do-task-asset {
+  margin-left: 0 !important;
+}
+
+.md-typeset .l2do-task-assets > .l2do-task-asset > a {
+  padding-left: 18px;
+}
+
+@media screen and (max-width: 44.984375em) {
+  .l2do-task-workspace {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .l2do-task-filters,
+  .l2do-task-results,
+  .l2do-task-panel {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .l2do-task-status {
+    margin-top: 2px;
+  }
+
+  .md-typeset .l2do-task-assets > .l2do-task-asset > a {
+    padding-left: 15px;
+  }
+
+  .l2do-runbook-item {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) 24px;
+    gap: 10px;
+  }
+
+  .l2do-runbook-risk {
+    grid-column: 1 / -1;
+  }
+
+  .l2do-runbook-item__title {
+    min-width: 0;
+    grid-column: 1;
+  }
+
+  .l2do-runbook-item__arrow {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  /* Preserve the search context without sacrificing the actual query field. */
+  .l2do-runbook-search {
+    display: grid;
+    min-height: 64px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+    align-content: center;
+    padding: 8px 12px;
+  }
+
+  .l2do-runbook-search input {
+    min-width: 0;
+    font-size: 13.5px;
+  }
+
+  /* Long breadcrumb trails produced clipped fragments on narrow screens.
+     Keep the two useful levels and remove Material's oversized vertical inset. */
+  body.l2do-article-page .md-path {
+    width: 100%;
+    min-height: 24px;
+    margin: 0 0 16px;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body.l2do-article-page .md-path__list {
+    display: flex;
+    min-width: 0;
+    min-height: 24px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  body.l2do-article-page .md-path__item {
+    display: none;
+    min-width: 0;
+    line-height: 24px;
+  }
+
+  body.l2do-article-page .md-path__item:nth-last-child(-n + 2) {
+    display: flex;
+  }
+
+  body.l2do-article-page .md-path__link {
+    min-width: 0;
+  }
+
+  body.l2do-article-page .md-path__link .md-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Wide system diagrams must remain legible rather than being scaled down to
+     an unreadable thumbnail. The diagram itself scrolls inside the article. */
+  body.l2do-article-page .md-typeset .mermaid {
+    padding-bottom: 8px;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body.l2do-article-page .md-typeset .mermaid svg {
+    width: 680px !important;
+    min-width: 680px;
+    max-width: none;
+  }
+
+  /* The article toolbar is available on upward intent, not permanently laid
+     over the paragraph being read. */
+  body.l2do-article-page .l2do-mobile-tools {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(calc(100% + 24px));
+    transition: opacity 160ms ease, transform 180ms ease;
+  }
+
+  body.l2do-article-page .l2do-mobile-tools.is-visible,
+  body.l2do-article-page .l2do-mobile-tools:focus-within {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.l2do-article-page .l2do-mobile-tools {
+    transition: none;
+  }
+}

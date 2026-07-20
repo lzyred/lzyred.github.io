@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">从代码到用户并在失败后恢复的 DevOps 链路</title>
+  <desc id="desc">代码依次经过验证、发布和观察；如果验证失败，进入停止、回滚或恢复路径。</desc>
+  <style>
+    .bg{fill:#f8fafc}.line{stroke:#0f766e;stroke-width:4;fill:none}.node{fill:#fff;stroke:#0f766e;stroke-width:2}.risk{fill:#fffbeb;stroke:#b45309;stroke-width:2}.t{font:600 28px system-ui,sans-serif;fill:#0f172a}.s{font:400 18px system-ui,sans-serif;fill:#475569}.a{font:600 19px system-ui,sans-serif;fill:#92400e}
+    @media (prefers-color-scheme:dark){.bg{fill:#111827}.node{fill:#1f2937}.risk{fill:#292524}.t{fill:#f8fafc}.s{fill:#cbd5e1}.a{fill:#fbbf24}.line{stroke:#2dd4bf}}
+  </style>
+  <rect class="bg" width="1200" height="300" rx="24"/>
+  <path class="line" d="M210 105H330M470 105H590M730 105H850M990 105H1030"/>
+  <path class="line" d="M950 165V220H620"/>
+  <path class="line" d="M620 220H260V165" stroke-dasharray="10 10"/>
+  <rect class="node" x="50" y="55" width="160" height="110" rx="16"/>
+  <text class="t" x="130" y="101" text-anchor="middle">代码</text><text class="s" x="130" y="132" text-anchor="middle">版本与变更</text>
+  <rect class="node" x="330" y="55" width="140" height="110" rx="16"/>
+  <text class="t" x="400" y="101" text-anchor="middle">验证</text><text class="s" x="400" y="132" text-anchor="middle">测试与检查</text>
+  <rect class="node" x="590" y="55" width="140" height="110" rx="16"/>
+  <text class="t" x="660" y="101" text-anchor="middle">发布</text><text class="s" x="660" y="132" text-anchor="middle">分批与门禁</text>
+  <rect class="node" x="850" y="55" width="140" height="110" rx="16"/>
+  <text class="t" x="920" y="101" text-anchor="middle">观察</text><text class="s" x="920" y="132" text-anchor="middle">用户与系统</text>
+  <rect class="node" x="1030" y="55" width="120" height="110" rx="16"/>
+  <text class="t" x="1090" y="101" text-anchor="middle">用户</text><text class="s" x="1090" y="132" text-anchor="middle">稳定使用</text>
+  <rect class="risk" x="420" y="205" width="360" height="60" rx="14"/>
+  <text class="a" x="600" y="242" text-anchor="middle">失败：停止、回滚、修复或恢复</text>
+</svg>

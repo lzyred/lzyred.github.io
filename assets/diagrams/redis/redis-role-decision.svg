@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">Redis data role decision</title>
+  <desc id="desc">Decision tree from rebuildable cache to recoverable state and correctness-sensitive state.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#46636f"/></marker>
+    <style>.box{fill:#f4f8f8;stroke:#46636f;stroke-width:2}.decision{fill:#fff7dd;stroke:#8a6d1d;stroke-width:2}.risk{fill:#fff0ee;stroke:#9a443b;stroke-width:2}.t{font:20px sans-serif;fill:#18323b;text-anchor:middle}.s{font:15px sans-serif;fill:#49626b;text-anchor:middle}.a{stroke:#46636f;stroke-width:2;fill:none;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect class="box" x="420" y="30" width="260" height="70" rx="12"/><text class="t" x="550" y="60">Redis 数据 / Redis data</text><text class="s" x="550" y="84">先定义业务契约</text>
+  <rect class="decision" x="405" y="145" width="290" height="75" rx="12"/><text class="t" x="550" y="176">能否从权威系统重建？</text><text class="s" x="550" y="201">Rebuild from source of truth?</text>
+  <rect class="box" x="70" y="290" width="270" height="90" rx="12"/><text class="t" x="205" y="324">可重建缓存</text><text class="s" x="205" y="350">Rebuildable cache</text>
+  <rect class="decision" x="690" y="285" width="330" height="100" rx="12"/><text class="t" x="855" y="320">能否通过业务补偿恢复？</text><text class="s" x="855" y="348">Recover through business</text><text class="s" x="855" y="370">compensation?</text>
+  <rect class="box" x="500" y="480" width="270" height="90" rx="12"/><text class="t" x="635" y="514">可恢复短期状态</text><text class="s" x="635" y="540">Recoverable state</text>
+  <rect class="risk" x="805" y="480" width="270" height="90" rx="12"/><text class="t" x="940" y="514">正确性敏感状态</text><text class="s" x="940" y="540">Architecture review required</text>
+  <path class="a" d="M550 100 V145"/><path class="a" d="M405 182 H205 V290"/><path class="a" d="M695 182 H855 V285"/><path class="a" d="M855 385 V430 H635 V480"/><path class="a" d="M855 385 V430 H940 V480"/>
+  <text class="s" x="305" y="170">是 / Yes</text><text class="s" x="790" y="170">否 / No</text><text class="s" x="705" y="425">是 / Yes</text><text class="s" x="925" y="425">否 / No</text>
+</svg>

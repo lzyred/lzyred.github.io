@@ -1,0 +1,41 @@
+/* Keep wide production evidence inside the article viewport.
+   Tables and code may scroll locally; they must never widen the whole page. */
+.md-content,
+.md-content__inner,
+.md-typeset {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* The document contract is part of the article header, not an optional drawer.
+   Keep it visible even when Material updates transient hidden state during navigation. */
+.l2do-document-contract {
+  display: flex !important;
+  min-height: 38px;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.md-typeset pre,
+.md-typeset .highlight,
+.md-typeset .mermaid {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.md-typeset img,
+.md-typeset svg {
+  max-width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 44.984375em) {
+  .md-typeset table:not([class]) {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+}

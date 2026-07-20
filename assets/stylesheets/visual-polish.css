@@ -1,0 +1,703 @@
+/*
+ * Final visual acceptance layer.
+ *
+ * This file owns the shared type scale and density rules that must remain
+ * consistent across the homepage, portals and long-form articles. It is loaded
+ * last so component files can keep their structural responsibilities without
+ * each inventing a different visual scale.
+ */
+:root {
+  --l2do-type-page-title: clamp(38px, 3.2vw, 48px);
+  --l2do-type-portal-hero: clamp(38px, 3vw, 46px);
+  --l2do-type-section-title: clamp(24px, 2vw, 30px);
+  --l2do-type-card-title: 17px;
+  --l2do-type-body: 16px;
+  --l2do-type-body-small: 14px;
+  --l2do-type-label: 12px;
+  --l2do-line-body: 1.72;
+}
+
+/* Global chrome */
+.l2do-global-nav a {
+  padding: 9px 12px;
+  font-size: 14px;
+}
+
+.md-search__input,
+.md-search__input::placeholder {
+  font-size: 14px;
+}
+
+.md-header .md-source__repository,
+.md-header .md-source__fact {
+  font-size: 12px;
+}
+
+.md-nav {
+  font-size: 14px;
+}
+
+.md-nav__link {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  line-height: 1.5;
+}
+
+.md-nav--secondary {
+  font-size: 13.5px;
+}
+
+/* Shared portal title and introduction */
+body.l2do-portal-page .md-content__inner > h1 {
+  max-width: 900px;
+  margin-top: 6px;
+  margin-bottom: 14px;
+  font-size: var(--l2do-type-page-title);
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+body.l2do-portal-page .l2do-section-intro {
+  max-width: 840px;
+  margin-bottom: 8px;
+  color: var(--l2do-text-muted);
+  font-size: var(--l2do-type-body);
+  line-height: var(--l2do-line-body);
+}
+
+body.l2do-portal-page .l2do-card-kicker,
+body.l2do-portal-page [class$="__eyebrow"] {
+  font-size: 11px;
+}
+
+/* Task console */
+.l2do-task-tab {
+  padding: 12px 13px 14px;
+  font-size: 15px;
+}
+
+.l2do-task-workspace {
+  grid-template-columns: 224px minmax(0, 1fr);
+  gap: 26px;
+}
+
+.l2do-task-filters {
+  padding: 19px;
+}
+
+.l2do-task-filter-group > strong {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.l2do-filter-chip {
+  min-height: 34px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.l2do-task-status {
+  font-size: 13px;
+}
+
+.l2do-task-panel__header {
+  padding: 25px 27px;
+}
+
+.l2do-task-panel__header h2 {
+  font-size: 27px;
+  line-height: 1.22;
+}
+
+.l2do-task-panel__header p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.l2do-task-panel__count {
+  font-size: 12.5px;
+}
+
+.l2do-task-assets {
+  list-style: none !important;
+}
+
+.l2do-task-asset,
+.l2do-task-asset::marker {
+  list-style: none !important;
+  content: "";
+}
+
+.l2do-task-asset a {
+  padding: 19px 27px;
+}
+
+.l2do-task-asset strong {
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.l2do-task-asset p {
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.l2do-task-asset__meta span {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+/* Runbook operations console */
+.l2do-runbook-hero {
+  gap: 34px;
+  padding: 36px;
+}
+
+.l2do-runbook-eyebrow,
+.l2do-ai-eyebrow {
+  font-size: 11.5px;
+}
+
+.l2do-runbook-hero h2 {
+  max-width: 620px;
+  font-size: var(--l2do-type-portal-hero);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.l2do-runbook-hero p {
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.l2do-runbook-stat {
+  min-height: 96px;
+  padding: 18px;
+}
+
+.l2do-runbook-stat span {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.l2do-runbook-stat strong {
+  margin-top: 9px;
+  font-size: 24px;
+}
+
+.l2do-runbook-sequence > div {
+  min-height: 104px;
+  padding: 18px;
+}
+
+.l2do-runbook-sequence span {
+  font-size: 11.5px;
+}
+
+.l2do-runbook-sequence strong {
+  font-size: 15px;
+}
+
+.l2do-runbook-sequence small {
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.l2do-runbook-search {
+  min-height: 48px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.l2do-runbook-search span {
+  font-size: 12px;
+}
+
+.l2do-runbook-search input {
+  font-size: 14px;
+}
+
+.l2do-runbook-filter {
+  min-height: 36px;
+  padding: 6px 11px;
+  font-size: 12.5px;
+}
+
+.l2do-runbook-status {
+  font-size: 13px;
+}
+
+.l2do-runbook-item {
+  grid-template-columns: 128px minmax(0, 1fr) minmax(240px, 0.58fr) 34px;
+  min-height: 116px;
+  padding: 19px 20px 19px 24px;
+}
+
+.l2do-runbook-risk {
+  padding: 6px 9px;
+  font-size: 11px;
+}
+
+.l2do-runbook-item__title strong {
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.l2do-runbook-item__title span,
+.l2do-runbook-item__conditions span {
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.l2do-runbook-item__conditions b {
+  font-size: 11px;
+}
+
+/* AI engineering portal */
+.l2do-ai-hero {
+  gap: 40px;
+  padding: 40px;
+}
+
+.l2do-ai-hero h2 {
+  max-width: 650px;
+  font-size: var(--l2do-type-portal-hero);
+  line-height: 1.07;
+  letter-spacing: -0.045em;
+}
+
+.l2do-ai-hero p {
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.l2do-ai-feature span,
+.l2do-ai-library-card span {
+  font-size: 11px;
+}
+
+.l2do-ai-feature strong {
+  font-size: 18px;
+}
+
+.l2do-ai-feature small {
+  color: #aab6ca;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.l2do-ai-loop-node {
+  min-height: 124px;
+  padding: 18px;
+}
+
+.l2do-ai-loop-node span {
+  font-size: 11px;
+}
+
+.l2do-ai-loop-node strong {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.l2do-ai-loop-node small {
+  color: #94a3b8;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.l2do-ai-principle {
+  min-height: 176px;
+  padding: 21px;
+}
+
+.l2do-ai-principle span {
+  font-size: 11.5px;
+}
+
+.l2do-ai-principle strong {
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.l2do-ai-principle p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.l2do-ai-library-card {
+  min-height: 184px;
+  padding: 24px;
+}
+
+.l2do-ai-library-card strong {
+  font-size: 22px;
+  line-height: 1.35;
+}
+
+.l2do-ai-library-card p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Technical-domain portal */
+body.l2do-topics-page .md-content__inner > h2 {
+  font-size: 26px;
+  line-height: 1.3;
+}
+
+body.l2do-topics-page .l2do-domain-card {
+  min-height: 188px;
+  padding: 22px;
+}
+
+body.l2do-topics-page .l2do-domain-card .l2do-card-kicker {
+  font-size: 11px;
+}
+
+body.l2do-topics-page .l2do-domain-card > strong {
+  font-size: 21px;
+  line-height: 1.35;
+}
+
+body.l2do-topics-page .l2do-domain-card--featured > strong {
+  font-size: 24px;
+}
+
+body.l2do-topics-page .l2do-domain-card > span:not(.l2do-card-kicker):not(.l2do-domain-card__icon):not(.l2do-domain-card__recommended):not(.l2do-domain-card__footer) {
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+body.l2do-topics-page .l2do-domain-card__footer {
+  font-size: 12px;
+}
+
+/* Long-form article */
+body.l2do-article-page .md-typeset {
+  font-size: 17px;
+  line-height: 1.82;
+}
+
+.l2do-article-header {
+  margin-bottom: 34px;
+  padding-bottom: 30px;
+}
+
+.l2do-article-header__type {
+  font-size: 13px;
+}
+
+.l2do-article-header h1 {
+  max-width: 900px;
+  font-size: clamp(40px, 3.6vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.l2do-article-header__taxonomy,
+.l2do-article-meta,
+.l2do-article-actions a,
+.l2do-article-actions button {
+  font-size: 13px;
+}
+
+.l2do-article-meta {
+  min-height: 36px;
+  padding: 7px 11px;
+}
+
+body.l2do-article-page .md-typeset h2 {
+  margin-top: 2.15em;
+  font-size: 29px;
+  line-height: 1.3;
+}
+
+body.l2do-article-page .md-typeset h3 {
+  margin-top: 1.8em;
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+body.l2do-article-page .md-typeset table:not([class]),
+body.l2do-article-page .md-typeset code,
+body.l2do-article-page .md-typeset pre {
+  font-size: 14px;
+}
+
+/* Homepage secondary content: preserve the display hero, improve supporting copy. */
+.l2do-featured-card__meta {
+  font-size: 12px;
+}
+
+.l2do-featured-card p,
+.l2do-update-timeline span {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.l2do-update-timeline time {
+  font-size: 13px;
+}
+
+@media screen and (max-width: 60em) {
+  .l2do-runbook-item {
+    grid-template-columns: 116px minmax(0, 1fr) 30px;
+  }
+}
+
+@media screen and (max-width: 44.984375em) {
+  :root {
+    --l2do-type-page-title: 32px;
+    --l2do-type-portal-hero: 34px;
+    --l2do-type-section-title: 24px;
+  }
+
+  body.l2do-portal-page .md-content__inner > h1 {
+    margin-top: 0;
+    font-size: 32px;
+    line-height: 1.16;
+  }
+
+  body.l2do-portal-page .l2do-section-intro {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .l2do-task-tabs {
+    gap: 2px;
+    scrollbar-width: none;
+  }
+
+  .l2do-task-tab {
+    padding: 10px 8px 12px;
+    font-size: 14px;
+  }
+
+  .l2do-task-filters {
+    padding: 18px;
+  }
+
+  .l2do-task-panel__header {
+    padding: 22px 24px;
+  }
+
+  .l2do-task-panel__header h2 {
+    font-size: 25px;
+  }
+
+  .l2do-task-asset a {
+    padding: 20px 24px;
+  }
+
+  .l2do-task-asset strong {
+    font-size: 16px;
+  }
+
+  .l2do-task-asset p {
+    font-size: 14px;
+  }
+
+  .l2do-runbook-hero,
+  .l2do-ai-hero {
+    gap: 24px;
+    padding: 26px 20px;
+  }
+
+  .l2do-runbook-hero h2,
+  .l2do-ai-hero h2 {
+    font-size: 34px;
+    line-height: 1.08;
+  }
+
+  .l2do-runbook-hero p,
+  .l2do-ai-hero p {
+    font-size: 14px;
+    line-height: 1.68;
+  }
+
+  .l2do-runbook-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .l2do-runbook-stat {
+    min-height: 88px;
+    padding: 15px;
+  }
+
+  .l2do-runbook-stat span {
+    font-size: 10.5px;
+  }
+
+  .l2do-runbook-stat strong {
+    font-size: 22px;
+  }
+
+  .l2do-runbook-sequence > div {
+    min-height: 96px;
+    padding: 15px;
+  }
+
+  .l2do-runbook-sequence strong {
+    font-size: 14px;
+  }
+
+  .l2do-runbook-sequence small {
+    font-size: 12px;
+  }
+
+  .l2do-runbook-filters {
+    gap: 6px;
+  }
+
+  .l2do-runbook-filter {
+    min-height: 36px;
+    font-size: 12px;
+  }
+
+  .l2do-runbook-item {
+    padding: 18px 16px 18px 20px;
+  }
+
+  .l2do-runbook-risk {
+    font-size: 10.5px;
+  }
+
+  .l2do-runbook-item__title strong {
+    font-size: 16px;
+  }
+
+  .l2do-runbook-item__title span {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .l2do-ai-loop {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .l2do-ai-loop-node {
+    min-height: 132px;
+    padding: 15px;
+  }
+
+  .l2do-ai-loop-node strong {
+    margin-top: 10px;
+    font-size: 15px;
+  }
+
+  .l2do-ai-loop-node small {
+    font-size: 12px;
+  }
+
+  .l2do-ai-principles {
+    display: block;
+    margin: 20px 0 30px;
+    border: 1px solid var(--l2do-border);
+    border-radius: 15px;
+    background: var(--l2do-surface);
+    overflow: hidden;
+  }
+
+  .l2do-ai-principle {
+    display: grid;
+    min-height: 0;
+    grid-template-columns: 32px minmax(0, 1fr);
+    column-gap: 10px;
+    margin: 0;
+    border: 0;
+    border-bottom: 1px solid var(--l2do-border);
+    border-radius: 0;
+    padding: 18px;
+  }
+
+  .l2do-ai-principle:last-child {
+    border-bottom: 0;
+  }
+
+  .l2do-ai-principle span {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin-top: 2px;
+  }
+
+  .l2do-ai-principle strong {
+    grid-column: 2;
+    margin: 0 0 5px;
+    font-size: 16px;
+  }
+
+  .l2do-ai-principle p {
+    grid-column: 2;
+    font-size: 13.5px;
+  }
+
+  .l2do-ai-library-card {
+    min-height: 164px;
+    padding: 21px;
+  }
+
+  .l2do-ai-library-card strong {
+    font-size: 20px;
+  }
+
+  body.l2do-topics-page .md-content__inner > h2 {
+    font-size: 24px;
+  }
+
+  body.l2do-topics-page .l2do-domain-card {
+    min-height: 0;
+    padding: 20px;
+  }
+
+  body.l2do-topics-page .l2do-domain-card > strong,
+  body.l2do-topics-page .l2do-domain-card--featured > strong {
+    font-size: 20px;
+  }
+
+  body.l2do-topics-page .l2do-domain-card > span:not(.l2do-card-kicker):not(.l2do-domain-card__icon):not(.l2do-domain-card__recommended):not(.l2do-domain-card__footer) {
+    font-size: 14px;
+  }
+
+  body.l2do-article-page .md-typeset {
+    font-size: 16px;
+    line-height: 1.78;
+  }
+
+  .l2do-article-header h1 {
+    font-size: 34px;
+    line-height: 1.14;
+  }
+
+  .l2do-article-header__taxonomy,
+  .l2do-article-meta,
+  .l2do-article-actions a,
+  .l2do-article-actions button {
+    font-size: 12px;
+  }
+
+  body.l2do-article-page .md-typeset h2 {
+    font-size: 25px;
+  }
+
+  body.l2do-article-page .md-typeset h3 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 22.5em) {
+  body.l2do-portal-page .md-content__inner > h1,
+  .l2do-runbook-hero h2,
+  .l2do-ai-hero h2,
+  .l2do-article-header h1 {
+    font-size: 30px;
+  }
+
+  .l2do-ai-loop {
+    grid-template-columns: 1fr;
+  }
+}

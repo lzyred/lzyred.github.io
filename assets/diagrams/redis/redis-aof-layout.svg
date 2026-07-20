@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" role="img" aria-labelledby="title desc">
+  <title id="title">Redis 7 multipart AOF layout</title>
+  <desc id="desc">Manifest, base file and incremental AOF files form one persistence set.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#46636f"/></marker><style>.box{fill:#f4f8f8;stroke:#46636f;stroke-width:2}.main{fill:#fff7dd;stroke:#8a6d1d;stroke-width:2}.t{font:18px sans-serif;fill:#18323b;text-anchor:middle}.s{font:14px sans-serif;fill:#49626b;text-anchor:middle}.a{stroke:#46636f;stroke-width:2;fill:none;marker-end:url(#arrow)}</style></defs>
+  <rect class="main" x="370" y="30" width="260" height="70" rx="12"/><text class="t" x="500" y="60">appenddirname</text><text class="s" x="500" y="84">一个完整文件集 / One file set</text>
+  <rect class="box" x="60" y="190" width="230" height="80" rx="12"/><text class="t" x="175" y="222">Manifest</text><text class="s" x="175" y="248">记录文件与加载顺序</text>
+  <rect class="box" x="385" y="190" width="230" height="80" rx="12"/><text class="t" x="500" y="222">Base AOF 或 RDB</text><text class="s" x="500" y="248">基础数据集 / Base dataset</text>
+  <rect class="box" x="710" y="190" width="230" height="80" rx="12"/><text class="t" x="825" y="222">Incremental AOF</text><text class="s" x="825" y="248">一个或多个增量文件</text>
+  <rect class="main" x="330" y="340" width="340" height="60" rx="12"/><text class="t" x="500" y="376">必须整体管理并整体验证</text>
+  <path class="a" d="M500 100V145H175V190"/><path class="a" d="M500 100V190"/><path class="a" d="M500 145H825V190"/><path class="a" d="M175 270V315H500V340"/><path class="a" d="M500 270V340"/><path class="a" d="M825 270V315H500V340"/>
+</svg>

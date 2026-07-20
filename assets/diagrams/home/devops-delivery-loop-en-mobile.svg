@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 250" role="img" aria-labelledby="title desc">
+  <title id="title">Mobile DevOps delivery and recovery path</title>
+  <desc id="desc">Code moves through validation and release to observation and users. Failure leads to stop, rollback, repair, or recovery.</desc>
+  <style>
+    .bg{fill:#f8fafc}.line{stroke:#0f766e;stroke-width:3;fill:none}.node{fill:#fff;stroke:#0f766e;stroke-width:1.8}.risk{fill:#fffbeb;stroke:#b45309;stroke-width:1.8}.t{font:600 15px system-ui,sans-serif;fill:#0f172a}.s{font:400 10px system-ui,sans-serif;fill:#475569}.a{font:600 10.5px system-ui,sans-serif;fill:#92400e}
+    @media (prefers-color-scheme:dark){.bg{fill:#111827}.node{fill:#1f2937}.risk{fill:#292524}.t{fill:#f8fafc}.s{fill:#cbd5e1}.a{fill:#fbbf24}.line{stroke:#2dd4bf}}
+  </style>
+  <rect class="bg" width="360" height="250" rx="18"/>
+  <path class="line" d="M95 60H133M227 60H265M312 92V130H227M133 160H95"/>
+  <path class="line" d="M265 160H227M180 190V205" stroke-dasharray="7 6"/>
+  <rect class="node" x="15" y="25" width="80" height="70" rx="12"/>
+  <text class="t" x="55" y="55" text-anchor="middle">Code</text><text class="s" x="55" y="75" text-anchor="middle">Change</text>
+  <rect class="node" x="133" y="25" width="94" height="70" rx="12"/>
+  <text class="t" x="180" y="55" text-anchor="middle">Validate</text><text class="s" x="180" y="75" text-anchor="middle">Tests</text>
+  <rect class="node" x="265" y="25" width="80" height="70" rx="12"/>
+  <text class="t" x="305" y="55" text-anchor="middle">Release</text><text class="s" x="305" y="75" text-anchor="middle">Staged</text>
+  <rect class="node" x="133" y="125" width="94" height="70" rx="12"/>
+  <text class="t" x="180" y="155" text-anchor="middle">Observe</text><text class="s" x="180" y="175" text-anchor="middle">Signals</text>
+  <rect class="node" x="15" y="125" width="80" height="70" rx="12"/>
+  <text class="t" x="55" y="155" text-anchor="middle">Users</text><text class="s" x="55" y="175" text-anchor="middle">Service</text>
+  <rect class="risk" x="105" y="205" width="210" height="34" rx="10"/>
+  <text class="a" x="210" y="227" text-anchor="middle">Failure: stop / roll back / recover</text>
+</svg>
