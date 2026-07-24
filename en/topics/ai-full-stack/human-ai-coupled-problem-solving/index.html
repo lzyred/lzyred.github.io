@@ -6,43 +6,39 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An AI engineering entry point for real software delivery, covering task contracts, repository context, permission boundaries, verification evidence, and Codex best practices.">
+        <meta name="description" content="Turn an abstract request like "the navigation overlaps, clean it up" into a runnable metric, a whole-site baseline, and an enforced CI gate — so a human's intent becomes a self-checking invariant instead of a one-time review.">
       
       
       
-        <link rel="canonical" href="https://blog.l2do.com/en/ai/">
+        <link rel="canonical" href="https://blog.l2do.com/en/topics/ai-full-stack/human-ai-coupled-problem-solving/">
       
       
-        <link rel="prev" href="../runbooks/">
-      
-      
-        <link rel="next" href="../topics/">
       
       
         
-          <link rel="alternate" href="../../ai/" hreflang="zh">
+          <link rel="alternate" href="../../../../topics/ai-full-stack/human-ai-coupled-problem-solving/" hreflang="zh">
         
           <link rel="alternate" href="./" hreflang="en">
         
       
       
-      <link rel="icon" href="../../assets/brand/l2do-devops.svg">
+      <link rel="icon" href="../../../../assets/brand/l2do-devops.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
   
     
       
-        <title>AI Engineering - L2DO DevOps Documentation</title>
+        <title>From "the navigation is confusing" to an enforced invariant: an entry-ambiguity system for human–AI intent alignment - L2DO DevOps Documentation</title>
       
     
   
 
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,11 +51,11 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/site-experience.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/site-experience.css">
     
-      <link rel="stylesheet" href="../../assets/stylesheets/command-center.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/command-center.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -77,33 +73,33 @@
     
     
   
-  <link rel="stylesheet" href="../../assets/stylesheets/content-overflow.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/article-actions.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/portal-enhancements.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/operational-portals.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/responsive-gutters.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/visual-polish.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/layout-guardrails.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/document-lifecycle.css">
-  <script defer src="../../assets/javascripts/article-actions.js"></script>
-  <script defer src="../../assets/javascripts/portal-enhancements.js"></script>
-  <script defer src="../../assets/javascripts/operational-portals.js"></script>
-  <script defer src="../../assets/javascripts/mobile-reading-tools.js"></script>
-  <script defer src="../../assets/javascripts/outcome-tracking.js"></script>
+  <link rel="stylesheet" href="../../../../assets/stylesheets/content-overflow.css">
+  <link rel="stylesheet" href="../../../../assets/stylesheets/article-actions.css">
+  <link rel="stylesheet" href="../../../../assets/stylesheets/portal-enhancements.css">
+  <link rel="stylesheet" href="../../../../assets/stylesheets/operational-portals.css">
+  <link rel="stylesheet" href="../../../../assets/stylesheets/responsive-gutters.css">
+  <link rel="stylesheet" href="../../../../assets/stylesheets/visual-polish.css">
+  <link rel="stylesheet" href="../../../../assets/stylesheets/layout-guardrails.css">
+  <link rel="stylesheet" href="../../../../assets/stylesheets/document-lifecycle.css">
+  <script defer src="../../../../assets/javascripts/article-actions.js"></script>
+  <script defer src="../../../../assets/javascripts/portal-enhancements.js"></script>
+  <script defer src="../../../../assets/javascripts/operational-portals.js"></script>
+  <script defer src="../../../../assets/javascripts/mobile-reading-tools.js"></script>
+  <script defer src="../../../../assets/javascripts/outcome-tracking.js"></script>
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="AI Engineering - L2DO DevOps Documentation" />
-<meta property="og:description" content="An AI engineering entry point for real software delivery, covering task contracts, repository context, permission boundaries, verification evidence, and Codex best practices." />
-<meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/ai/index.png" />
+<meta property="og:title" content="From "the navigation is confusing" to an enforced invariant: an entry-ambiguity system for human–AI intent alignment - L2DO DevOps Documentation" />
+<meta property="og:description" content="Turn an abstract request like "the navigation overlaps, clean it up" into a runnable metric, a whole-site baseline, and an enforced CI gate — so a human's intent becomes a self-checking invariant instead of a one-time review." />
+<meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/topics/ai-full-stack/human-ai-coupled-problem-solving.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://blog.l2do.com/en/ai/" />
+<meta property="og:url" content="https://blog.l2do.com/en/topics/ai-full-stack/human-ai-coupled-problem-solving/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="AI Engineering - L2DO DevOps Documentation" />
-<meta property="twitter:description" content="An AI engineering entry point for real software delivery, covering task contracts, repository context, permission boundaries, verification evidence, and Codex best practices." />
-<meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/ai/index.png" />
+<meta property="twitter:title" content="From "the navigation is confusing" to an enforced invariant: an entry-ambiguity system for human–AI intent alignment - L2DO DevOps Documentation" />
+<meta property="twitter:description" content="Turn an abstract request like "the navigation overlaps, clean it up" into a runnable metric, a whole-site baseline, and an enforced CI gate — so a human's intent becomes a self-checking invariant instead of a one-time review." />
+<meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/topics/ai-full-stack/human-ai-coupled-problem-solving.png" />
 </head>
   
   
@@ -123,7 +119,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ai-engineering-workspace" class="md-skip">
+        <a href="#from-the-navigation-is-confusing-to-an-enforced-invariant-an-entry-ambiguity-system-for-humanai-intent-alignment" class="md-skip">
           Skip to content
         </a>
       
@@ -139,9 +135,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../" title="L2DO DevOps Documentation" class="md-header__button md-logo" aria-label="L2DO DevOps Documentation" data-md-component="logo">
+    <a href="../../../" title="L2DO DevOps Documentation" class="md-header__button md-logo" aria-label="L2DO DevOps Documentation" data-md-component="logo">
       
-  <img src="../../assets/brand/l2do-devops.svg" alt="logo">
+  <img src="../../../../assets/brand/l2do-devops.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -158,7 +154,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AI Engineering
+              From "the navigation is confusing" to an enforced invariant: an entry-ambiguity system for human–AI intent alignment
             
           </span>
         </div>
@@ -205,7 +201,7 @@
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../ai/" hreflang="zh" class="md-select__link">
+            <a href="../../../../topics/ai-full-stack/human-ai-coupled-problem-solving/" hreflang="zh" class="md-select__link">
               中文
             </a>
           </li>
@@ -293,9 +289,7 @@
           
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -304,9 +298,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../" title="L2DO DevOps Documentation" class="md-nav__button md-logo" aria-label="L2DO DevOps Documentation" data-md-component="logo">
+    <a href="../../../" title="L2DO DevOps Documentation" class="md-nav__button md-logo" aria-label="L2DO DevOps Documentation" data-md-component="logo">
       
-  <img src="../../assets/brand/l2do-devops.svg" alt="logo">
+  <img src="../../../../assets/brand/l2do-devops.svg" alt="logo">
 
     </a>
     L2DO DevOps Documentation
@@ -333,7 +327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../../" class="md-nav__link">
         
   
   
@@ -360,7 +354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tasks/" class="md-nav__link">
+      <a href="../../../tasks/" class="md-nav__link">
         
   
   
@@ -387,7 +381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../runbooks/" class="md-nav__link">
+      <a href="../../../runbooks/" class="md-nav__link">
         
   
   
@@ -411,19 +405,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../ai/" class="md-nav__link">
         
   
   
@@ -439,7 +424,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -479,7 +463,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
@@ -608,7 +592,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/kubernetes/" class="md-nav__link ">
+            <a href="../../kubernetes/" class="md-nav__link ">
               
   
   
@@ -713,7 +697,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/aws-eks-production-ha-cluster/" class="md-nav__link">
+      <a href="../../kubernetes/aws-eks-production-ha-cluster/" class="md-nav__link">
         
   
   
@@ -741,7 +725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/eks-upgrade-standard/" class="md-nav__link">
+      <a href="../../kubernetes/eks-upgrade-standard/" class="md-nav__link">
         
   
   
@@ -769,7 +753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/kubeadm-installation-standard/" class="md-nav__link">
+      <a href="../../kubernetes/kubeadm-installation-standard/" class="md-nav__link">
         
   
   
@@ -797,7 +781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/kubernetes-cluster-provisioning-standard/" class="md-nav__link">
+      <a href="../../kubernetes/kubernetes-cluster-provisioning-standard/" class="md-nav__link">
         
   
   
@@ -825,7 +809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/kubernetes-storage-ingress-standard/" class="md-nav__link">
+      <a href="../../kubernetes/kubernetes-storage-ingress-standard/" class="md-nav__link">
         
   
   
@@ -853,7 +837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/nfs-pvc-capacity-management/" class="md-nav__link">
+      <a href="../../kubernetes/nfs-pvc-capacity-management/" class="md-nav__link">
         
   
   
@@ -940,7 +924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/kubernetes-pvc-usage-alert-runbook/" class="md-nav__link">
+      <a href="../../kubernetes/kubernetes-pvc-usage-alert-runbook/" class="md-nav__link">
         
   
   
@@ -1027,7 +1011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/anonymous-kubernetes-upgrade-case/" class="md-nav__link">
+      <a href="../../kubernetes/anonymous-kubernetes-upgrade-case/" class="md-nav__link">
         
   
   
@@ -1095,7 +1079,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/containers/" class="md-nav__link ">
+            <a href="../../containers/" class="md-nav__link ">
               
   
   
@@ -1198,7 +1182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/buildkit-build-standard/" class="md-nav__link">
+      <a href="../../containers/buildkit-build-standard/" class="md-nav__link">
         
   
   
@@ -1226,7 +1210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/chartmuseum-helm-repository-standard/" class="md-nav__link">
+      <a href="../../containers/chartmuseum-helm-repository-standard/" class="md-nav__link">
         
   
   
@@ -1254,7 +1238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/docker-compose-stack-standard/" class="md-nav__link">
+      <a href="../../containers/docker-compose-stack-standard/" class="md-nav__link">
         
   
   
@@ -1282,7 +1266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/docker-host-operations-standard/" class="md-nav__link">
+      <a href="../../containers/docker-host-operations-standard/" class="md-nav__link">
         
   
   
@@ -1310,7 +1294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/harbor-registry-standard/" class="md-nav__link">
+      <a href="../../containers/harbor-registry-standard/" class="md-nav__link">
         
   
   
@@ -1397,7 +1381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/harbor-certificate-rotation-runbook/" class="md-nav__link">
+      <a href="../../containers/harbor-certificate-rotation-runbook/" class="md-nav__link">
         
   
   
@@ -1484,7 +1468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/anonymous-containerization-migration-case/" class="md-nav__link">
+      <a href="../../containers/anonymous-containerization-migration-case/" class="md-nav__link">
         
   
   
@@ -1550,7 +1534,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/linux/" class="md-nav__link ">
+            <a href="../../linux/" class="md-nav__link ">
               
   
   
@@ -1649,7 +1633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/linux/server-baseline-standard/" class="md-nav__link">
+      <a href="../../linux/server-baseline-standard/" class="md-nav__link">
         
   
   
@@ -1677,7 +1661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/linux/supervisor-process-management-standard/" class="md-nav__link">
+      <a href="../../linux/supervisor-process-management-standard/" class="md-nav__link">
         
   
   
@@ -1705,7 +1689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/linux/system-os-patching-standard/" class="md-nav__link">
+      <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
   
@@ -1792,7 +1776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/linux/linux-disk-lvm-expansion-runbook/" class="md-nav__link">
+      <a href="../../linux/linux-disk-lvm-expansion-runbook/" class="md-nav__link">
         
   
   
@@ -1858,7 +1842,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/cloud/" class="md-nav__link ">
+            <a href="../../cloud/" class="md-nav__link ">
               
   
   
@@ -1953,7 +1937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/cloud/cloud-network-migration-standard/" class="md-nav__link">
+      <a href="../../cloud/cloud-network-migration-standard/" class="md-nav__link">
         
   
   
@@ -2040,7 +2024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/cloud/anonymous-object-storage-migration-case/" class="md-nav__link">
+      <a href="../../cloud/anonymous-object-storage-migration-case/" class="md-nav__link">
         
   
   
@@ -2106,7 +2090,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/networking/" class="md-nav__link ">
+            <a href="../../networking/" class="md-nav__link ">
               
   
   
@@ -2209,7 +2193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/networking/haproxy-load-balancing-standard/" class="md-nav__link">
+      <a href="../../networking/haproxy-load-balancing-standard/" class="md-nav__link">
         
   
   
@@ -2237,7 +2221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/networking/nginx-reverse-proxy-tls-standard/" class="md-nav__link">
+      <a href="../../networking/nginx-reverse-proxy-tls-standard/" class="md-nav__link">
         
   
   
@@ -2265,7 +2249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/networking/openvpn-access-standard/" class="md-nav__link">
+      <a href="../../networking/openvpn-access-standard/" class="md-nav__link">
         
   
   
@@ -2293,7 +2277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/networking/openwrt-network-device-standard/" class="md-nav__link">
+      <a href="../../networking/openwrt-network-device-standard/" class="md-nav__link">
         
   
   
@@ -2321,7 +2305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/networking/samba-file-sharing-standard/" class="md-nav__link">
+      <a href="../../networking/samba-file-sharing-standard/" class="md-nav__link">
         
   
   
@@ -2408,7 +2392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/networking/tls-certificate-expiry-runbook/" class="md-nav__link">
+      <a href="../../networking/tls-certificate-expiry-runbook/" class="md-nav__link">
         
   
   
@@ -2472,7 +2456,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/platform/" class="md-nav__link ">
+            <a href="../../platform/" class="md-nav__link ">
               
   
   
@@ -2571,7 +2555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/platform/gitlab-operations-standard/" class="md-nav__link">
+      <a href="../../platform/gitlab-operations-standard/" class="md-nav__link">
         
   
   
@@ -2599,7 +2583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/platform/jumpserver-bastion-standard/" class="md-nav__link">
+      <a href="../../platform/jumpserver-bastion-standard/" class="md-nav__link">
         
   
   
@@ -2627,7 +2611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/platform/redash-deployment-standard/" class="md-nav__link">
+      <a href="../../platform/redash-deployment-standard/" class="md-nav__link">
         
   
   
@@ -2760,7 +2744,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/redis/" class="md-nav__link ">
+            <a href="../../redis/" class="md-nav__link ">
               
   
   
@@ -2859,7 +2843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/redis/redis-memory-availability-standard/" class="md-nav__link">
+      <a href="../../redis/redis-memory-availability-standard/" class="md-nav__link">
         
   
   
@@ -2887,7 +2871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/redis/redis-operations-standard/" class="md-nav__link">
+      <a href="../../redis/redis-operations-standard/" class="md-nav__link">
         
   
   
@@ -2915,7 +2899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/redis/redis-persistence-backup-standard/" class="md-nav__link">
+      <a href="../../redis/redis-persistence-backup-standard/" class="md-nav__link">
         
   
   
@@ -3004,7 +2988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/redis/redis-aof-recovery-runbook/" class="md-nav__link">
+      <a href="../../redis/redis-aof-recovery-runbook/" class="md-nav__link">
         
   
   
@@ -3032,7 +3016,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/redis/redis-migration-failover-runbook/" class="md-nav__link">
+      <a href="../../redis/redis-migration-failover-runbook/" class="md-nav__link">
         
   
   
@@ -3096,7 +3080,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/mysql/" class="md-nav__link ">
+            <a href="../../mysql/" class="md-nav__link ">
               
   
   
@@ -3191,7 +3175,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/mysql/mysql-operations-standard/" class="md-nav__link">
+      <a href="../../mysql/mysql-operations-standard/" class="md-nav__link">
         
   
   
@@ -3255,7 +3239,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/mongodb/" class="md-nav__link ">
+            <a href="../../mongodb/" class="md-nav__link ">
               
   
   
@@ -3350,7 +3334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/mongodb/mongodb-operations-standard/" class="md-nav__link">
+      <a href="../../mongodb/mongodb-operations-standard/" class="md-nav__link">
         
   
   
@@ -3414,7 +3398,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/etcd/" class="md-nav__link ">
+            <a href="../../etcd/" class="md-nav__link ">
               
   
   
@@ -3509,7 +3493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/etcd/etcd-operations-standard/" class="md-nav__link">
+      <a href="../../etcd/etcd-operations-standard/" class="md-nav__link">
         
   
   
@@ -3573,7 +3557,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/middleware/" class="md-nav__link ">
+            <a href="../../middleware/" class="md-nav__link ">
               
   
   
@@ -3674,7 +3658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/middleware/api-gateway-standard/" class="md-nav__link">
+      <a href="../../middleware/api-gateway-standard/" class="md-nav__link">
         
   
   
@@ -3702,7 +3686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/middleware/dolphinscheduler-standard/" class="md-nav__link">
+      <a href="../../middleware/dolphinscheduler-standard/" class="md-nav__link">
         
   
   
@@ -3730,7 +3714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/middleware/kafka-zookeeper-operations-standard/" class="md-nav__link">
+      <a href="../../middleware/kafka-zookeeper-operations-standard/" class="md-nav__link">
         
   
   
@@ -3758,7 +3742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/middleware/nacos-operations-standard/" class="md-nav__link">
+      <a href="../../middleware/nacos-operations-standard/" class="md-nav__link">
         
   
   
@@ -3889,7 +3873,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/delivery/" class="md-nav__link ">
+            <a href="../../delivery/" class="md-nav__link ">
               
   
   
@@ -3984,7 +3968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/delivery/rollback-is-a-product-capability/" class="md-nav__link">
+      <a href="../../delivery/rollback-is-a-product-capability/" class="md-nav__link">
         
   
   
@@ -4073,7 +4057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/delivery/argocd-gitops-standard/" class="md-nav__link">
+      <a href="../../delivery/argocd-gitops-standard/" class="md-nav__link">
         
   
   
@@ -4101,7 +4085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/delivery/jenkins-kubernetes-pipeline-standard/" class="md-nav__link">
+      <a href="../../delivery/jenkins-kubernetes-pipeline-standard/" class="md-nav__link">
         
   
   
@@ -4188,7 +4172,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/delivery/deployment-rollback-runbook/" class="md-nav__link">
+      <a href="../../delivery/deployment-rollback-runbook/" class="md-nav__link">
         
   
   
@@ -4252,7 +4236,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/automation/" class="md-nav__link ">
+            <a href="../../automation/" class="md-nav__link ">
               
   
   
@@ -4347,7 +4331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/automation/shell-automation-standard/" class="md-nav__link">
+      <a href="../../automation/shell-automation-standard/" class="md-nav__link">
         
   
   
@@ -4411,7 +4395,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/infrastructure-as-code/" class="md-nav__link ">
+            <a href="../../infrastructure-as-code/" class="md-nav__link ">
               
   
   
@@ -4506,7 +4490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/infrastructure-as-code/terraform-iac-standard/" class="md-nav__link">
+      <a href="../../infrastructure-as-code/terraform-iac-standard/" class="md-nav__link">
         
   
   
@@ -4635,7 +4619,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/observability/" class="md-nav__link ">
+            <a href="../../observability/" class="md-nav__link ">
               
   
   
@@ -4730,7 +4714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/monitoring-migration-deep-dive/" class="md-nav__link">
+      <a href="../../observability/monitoring-migration-deep-dive/" class="md-nav__link">
         
   
   
@@ -4827,7 +4811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/elfk-logging-standard/" class="md-nav__link">
+      <a href="../../observability/elfk-logging-standard/" class="md-nav__link">
         
   
   
@@ -4855,7 +4839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/exporter-monitoring-standard/" class="md-nav__link">
+      <a href="../../observability/exporter-monitoring-standard/" class="md-nav__link">
         
   
   
@@ -4883,7 +4867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/loki-binary-alerting-standard/" class="md-nav__link">
+      <a href="../../observability/loki-binary-alerting-standard/" class="md-nav__link">
         
   
   
@@ -4911,7 +4895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/loki-logging-standard/" class="md-nav__link">
+      <a href="../../observability/loki-logging-standard/" class="md-nav__link">
         
   
   
@@ -4939,7 +4923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/prometheus-alerting-standard/" class="md-nav__link">
+      <a href="../../observability/prometheus-alerting-standard/" class="md-nav__link">
         
   
   
@@ -4967,7 +4951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/signoz-observability-standard/" class="md-nav__link">
+      <a href="../../observability/signoz-observability-standard/" class="md-nav__link">
         
   
   
@@ -5039,7 +5023,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/opentelemetry/" class="md-nav__link ">
+            <a href="../../opentelemetry/" class="md-nav__link ">
               
   
   
@@ -5136,7 +5120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/what-is-opentelemetry/" class="md-nav__link">
+      <a href="../../opentelemetry/what-is-opentelemetry/" class="md-nav__link">
         
   
   
@@ -5164,7 +5148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/signals-context-and-pipelines/" class="md-nav__link">
+      <a href="../../opentelemetry/signals-context-and-pipelines/" class="md-nav__link">
         
   
   
@@ -5251,7 +5235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/first-trace-tutorial/" class="md-nav__link">
+      <a href="../../opentelemetry/first-trace-tutorial/" class="md-nav__link">
         
   
   
@@ -5338,7 +5322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/auto-instrumentation-standard/" class="md-nav__link">
+      <a href="../../opentelemetry/auto-instrumentation-standard/" class="md-nav__link">
         
   
   
@@ -5429,7 +5413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/auto-instrumentation-rollout-runbook/" class="md-nav__link">
+      <a href="../../opentelemetry/auto-instrumentation-rollout-runbook/" class="md-nav__link">
         
   
   
@@ -5457,7 +5441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/java-agent-rollout-runbook/" class="md-nav__link">
+      <a href="../../opentelemetry/java-agent-rollout-runbook/" class="md-nav__link">
         
   
   
@@ -5485,7 +5469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/troubleshooting-missing-telemetry/" class="md-nav__link">
+      <a href="../../opentelemetry/troubleshooting-missing-telemetry/" class="md-nav__link">
         
   
   
@@ -5572,7 +5556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/compatibility-and-configuration-reference/" class="md-nav__link">
+      <a href="../../opentelemetry/compatibility-and-configuration-reference/" class="md-nav__link">
         
   
   
@@ -5636,7 +5620,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/operations/" class="md-nav__link ">
+            <a href="../../operations/" class="md-nav__link ">
               
   
   
@@ -5731,7 +5715,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/operations/application-maintenance-health-check-standard/" class="md-nav__link">
+      <a href="../../operations/application-maintenance-health-check-standard/" class="md-nav__link">
         
   
   
@@ -5860,7 +5844,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/ai-full-stack/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -5955,7 +5939,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/ai-full-stack/codex-engineering-best-practices/" class="md-nav__link">
+      <a href="../codex-engineering-best-practices/" class="md-nav__link">
         
   
   
@@ -6042,7 +6026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/ai-full-stack/codex-power-user-practice/" class="md-nav__link">
+      <a href="../codex-power-user-practice/" class="md-nav__link">
         
   
   
@@ -6106,7 +6090,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/engineering-practice/" class="md-nav__link ">
+            <a href="../../engineering-practice/" class="md-nav__link ">
               
   
   
@@ -6205,7 +6189,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/engineering-practice/collaboration-is-handoff/" class="md-nav__link">
+      <a href="../../engineering-practice/collaboration-is-handoff/" class="md-nav__link">
         
   
   
@@ -6233,7 +6217,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/engineering-practice/translating-risk/" class="md-nav__link">
+      <a href="../../engineering-practice/translating-risk/" class="md-nav__link">
         
   
   
@@ -6261,7 +6245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/engineering-practice/writing-for-incidents/" class="md-nav__link">
+      <a href="../../engineering-practice/writing-for-incidents/" class="md-nav__link">
         
   
   
@@ -6325,7 +6309,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/documentation/" class="md-nav__link ">
+            <a href="../../documentation/" class="md-nav__link ">
               
   
   
@@ -6424,7 +6408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/documentation/migration-plan-template/" class="md-nav__link">
+      <a href="../../documentation/migration-plan-template/" class="md-nav__link">
         
   
   
@@ -6452,7 +6436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/documentation/runbook-template/" class="md-nav__link">
+      <a href="../../documentation/runbook-template/" class="md-nav__link">
         
   
   
@@ -6480,7 +6464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/documentation/standard-document-template/" class="md-nav__link">
+      <a href="../../documentation/standard-document-template/" class="md-nav__link">
         
   
   
@@ -6540,9 +6524,7 @@
             
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -6553,6 +6535,113 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#three-line-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Three-line summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-the-abstract-intent-gap-measured-across-the-whole-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem: the abstract-intent gap, measured across the whole site
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-definition-intent-metric-enforced-invariant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core definition: intent → metric → enforced invariant
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works-the-enforced-loop-run-on-the-real-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works: the enforced loop, run on the real site
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundaries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#counterexample-when-not-to-build-a-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counterexample: when not to build a gate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actionable-next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actionable next step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related content
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-structural-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The structural model
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -6565,8 +6654,6 @@
               
                 
 
-  
-
 
 
   
@@ -6576,92 +6663,338 @@
               <article class="md-content__inner md-typeset">
                 
   
+    
+    
+    <header class="l2do-article-header" data-document-lifecycle aria-label="Document trust status">
+      <div class="l2do-article-header__kickers">
+        <span class="l2do-article-header__type">CONCEPT</span>
+      </div>
+      <h1>From "the navigation is confusing" to an enforced invariant: an entry-ambiguity system for human–AI intent alignment</h1>
+      <div class="l2do-article-header__taxonomy" data-article-taxonomy></div>
+      <dl class="l2do-lifecycle-grid">
+        <div class="l2do-lifecycle-field">
+          <dt>Content maturity</dt>
+          <dd>candidate</dd>
+        </div>
+        <div class="l2do-lifecycle-field">
+          <dt>Content review</dt>
+          <dd>self-reviewed</dd>
+        </div>
+        <div class="l2do-lifecycle-field">
+          <dt>Technical verification</dt>
+          <dd>not-verified</dd>
+        </div>
+        
+        
+        <div class="l2do-lifecycle-field l2do-lifecycle-field--wide">
+          <dt>Supported versions</dt>
+          <dd>
+            
+              
+                Method is version-independent; the worked system runs the repository's own entry-ambiguity grader and gate against an MkDocs build observed in 2026-07
+              
+            
+          </dd>
+        </div>
+        <div class="l2do-lifecycle-field">
+          <dt>Risk level</dt>
+          <dd>medium</dd>
+        </div>
+        
+      </dl>
+      <div class="l2do-article-actions" aria-label="Document actions">
+        <button type="button" data-copy-page-link>Copy link</button>
+        <button type="button" data-print-page>Print</button>
+        <a href="https://github.com/lzyred/lzyred.github.io" target="_blank" rel="noopener" data-umami-event="github_clicked" data-umami-event-location="article_header" data-umami-event-destination="lzyred/lzyred.github.io">Published repository</a>
+        <a href="https://github.com/lzyred/lzyred.github.io/issues/new" target="_blank" rel="noopener" data-umami-event="feedback_clicked" data-umami-event-location="article_header">Feedback</a>
+      </div>
+    </header>
+  
   
                   
-  
 
-
-
-  
-  
-
-
-<h1 id="ai-engineering-workspace">AI engineering workspace<a class="headerlink" href="#ai-engineering-workspace" title="Permanent link">&para;</a></h1>
-<p class="l2do-section-intro">This portal does not sell generic “AI productivity.” It places Codex and other engineering agents inside a software-delivery system with explicit scope, permissions, verification, and human acceptance.</p>
-
-<div data-ai-portal>
-  <section class="l2do-ai-hero">
-    <div>
-      <span class="l2do-ai-eyebrow">AI ENGINEERING / AGENT OPERATIONS</span>
-      <h2>Make engineering agents produce evidence, not piles of code</h2>
-      <p>High-quality AI development does not come from a longer prompt. It comes from designing the objective, context, tools, permissions, verification, and stop conditions as one reviewable loop.</p>
-      <a class="l2do-ai-feature" href="../topics/ai-full-stack/codex-engineering-best-practices/">
-        <span>FEATURED STANDARD</span>
-        <strong>Codex engineering best practices</strong>
-        <small>A production-ready operating standard that can be applied directly to a real repository.</small>
-      </a>
-    </div>
-    <div class="l2do-ai-loop" aria-label="AI engineering loop">
-      <div class="l2do-ai-loop-node"><span>01 / DEFINE</span><strong>Define a falsifiable outcome</strong><small>Outcome, scope, exclusions, acceptance, stop point</small></div>
-      <div class="l2do-ai-loop-node"><span>02 / GROUND</span><strong>Establish repository facts</strong><small>Branch, rules, dependencies, current state, risk</small></div>
-      <div class="l2do-ai-loop-node"><span>03 / EXECUTE</span><strong>Make a reviewable change</strong><small>Controlled permissions, clear diff, visible state</small></div>
-      <div class="l2do-ai-loop-node"><span>04 / PROVE</span><strong>Close with evidence</strong><small>Tests, build, runtime, screenshots, human judgment</small></div>
-    </div>
-  </section>
-
-  <div class="l2do-ai-principles">
-    <section class="l2do-ai-principle"><span>01</span><strong>A task is not a wish</strong><p>Turn “improve this” into a verifiable change contract so the agent cannot silently expand scope.</p></section>
-    <section class="l2do-ai-principle"><span>02</span><strong>More context is not always better</strong><p>Provide facts that change decisions and keep repository guidance close to the directory where it applies.</p></section>
-    <section class="l2do-ai-principle"><span>03</span><strong>Autonomy is not unlimited access</strong><p>Default to read-only and minimum write scope; keep external actions, production state, and merge behind explicit boundaries.</p></section>
-    <section class="l2do-ai-principle"><span>04</span><strong>Completion must be provable</strong><p>A successful build proves only that the project builds. Experience, security, and business outcomes need independent evidence.</p></section>
-  </div>
-
-  <div class="l2do-home-section-header">
-    <div><span class="l2do-card-kicker">START HERE</span><h2>Core learning and practice</h2></div>
-    <p>Start with the execution standard, learn the agent operating model, then use a real failure to understand how to detect and stop infinite refactoring.</p>
-  </div>
-
-  <div class="l2do-ai-library">
-    <a class="l2do-ai-library-card l2do-ai-library-card--primary" href="../topics/ai-full-stack/codex-engineering-best-practices/">
-      <span>STANDARD · EXECUTION</span>
-      <div><strong>Codex engineering best practices</strong><p>Task contracts, context preflight, permissions, branch strategy, verification ladder, delivery template, and failure modes.</p></div>
-      <b>→</b>
-    </a>
-    <a class="l2do-ai-library-card" href="../topics/ai-full-stack/codex-power-user-practice/">
-      <span>CONCEPT · DEEP DIVE</span>
-      <div><strong>From using Codex to operating an engineering agent</strong><p>Understand the boundaries between AGENTS.md, skills, MCP, subagents, and durable feedback layers.</p></div>
-      <b>→</b>
-    </a>
-    <a class="l2do-ai-library-card" href="../topics/ai-full-stack/ai-project-infinite-refactoring/">
-      <span>POSTMORTEM · SYSTEM THINKING</span>
-      <div><strong>Why AI projects get messier as they improve</strong><p>A real “merged successfully, delivered unsuccessfully” postmortem that builds four failure systems, five delivery truths, and a six-step stop loop.</p></div>
-      <b>→</b>
-    </a>
-      <a class="l2do-ai-library-card" href="../topics/ai-full-stack/human-ai-coupled-problem-solving/">
-      <span>CONCEPT · DEEP DIVE</span>
-      <div><strong>From &quot;the navigation is confusing&quot; to an enforced invariant: an entry-ambiguity system for human–AI intent alignment</strong><p>Turn an abstract request like &quot;the navigation overlaps, clean it up&quot; into a runnable metric, a whole-site baseline, and an enforced CI gate — so a human&#39;s intent becomes a self-checking invariant instead of a one-time review.</p></div>
-      <b>→</b>
-    </a>
-  </div>
-</div>
-
-
-
-
-
-
-
-  
-  
-
-
-
-  
-
-
-  
+  <nav class="md-tags" >
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <span class="md-tag md-tag-icon md-tag--architecture">Architecture</span>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <span class="md-tag md-tag-icon md-tag--automation">Automation</span>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <span class="md-tag md-tag-icon md-tag--delivery">Delivery</span>
+      
+    
+  </nav>
+
+
   
+  
+
+
+<h1 id="from-the-navigation-is-confusing-to-an-enforced-invariant-an-entry-ambiguity-system-for-humanai-intent-alignment">From "the navigation is confusing" to an enforced invariant: an entry-ambiguity system for human–AI intent alignment<a class="headerlink" href="#from-the-navigation-is-confusing-to-an-enforced-invariant-an-entry-ambiguity-system-for-humanai-intent-alignment" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>When a human can only state intent abstractly and will not review every detail, alignment does not come from a longer brief or a one-time measurement. It comes from a system: encode the intent as a metric, baseline the whole site, and install a gate that blocks new drift.</p>
+</blockquote>
+<h2 id="three-line-summary">Three-line summary<a class="headerlink" href="#three-line-summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The hard case</td>
+<td>The request is abstract and fused ("the four nav entries overlap, optimize them") and the human will not audit 74 pages</td>
+</tr>
+<tr>
+<td>Why a demo is not enough</td>
+<td>Measuring one page once proves nothing survives; intent must become an invariant that CI keeps enforcing</td>
+</tr>
+<tr>
+<td>The system</td>
+<td>grader (measure) + policy (canonical + ≤1 cross-cut) + gate (enforce, with a tracked-debt baseline)</td>
+</tr>
+<tr>
+<td>Proof, not slogan</td>
+<td>13 of 74 pages breach budget today; the gate adopts them, passes, and <strong>catches an injected regression at exit 1</strong></td>
+</tr>
+</tbody>
+</table>
+<!-- lifecycle-section:problem -->
+<h2 id="problem-the-abstract-intent-gap-measured-across-the-whole-site">Problem: the abstract-intent gap, measured across the whole site<a class="headerlink" href="#problem-the-abstract-intent-gap-measured-across-the-whole-site" title="Permanent link">&para;</a></h2>
+<p>A maintainer looks at the top navigation — <code>Tasks</code>, <code>Runbooks</code>, <code>AI Engineering</code>, <code>Topics</code> — and says:</p>
+<blockquote>
+<p>These four entries cross-overlap and feel messy. Optimize them.</p>
+</blockquote>
+<p>That sentence is real but <strong>abstract, fused, and unreviewed</strong>. Handed raw to an AI it produces scope explosion or a wrong guess, and <code>mkdocs build --strict</code> passing proves mechanical integrity, not that intent was met. The question:</p>
+<blockquote>
+<p>How does a human who expresses abstractly, and will not review every detail, keep AI output aligned to true intent — not once, but permanently?</p>
+</blockquote>
+<p>You cannot review everything, and you cannot re-review after every future change. You need a metric and a gate.</p>
+<blockquote>
+<p><strong>Case box ① — the whole-site diagnosis, measured.</strong> A grader (<code>tools/nav-entry-ambiguity-grader.mjs</code>) models a browsing reader and counts, per content page, how many distinct top-level entries present a curated door to it. Run over the entire site:</p>
+<div class="highlight"><pre><span></span><code>$ node tools/nav-entry-ambiguity-grader.mjs dist --all
+...
+site=zh  content_pages=74  ambiguity_histogram={&quot;1&quot;:38,&quot;2&quot;:23,&quot;3&quot;:11,&quot;4&quot;:2}
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Entry-ambiguity</th>
+<th style="text-align: right;">Pages</th>
+<th>Reading</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">38</td>
+<td>canonical door only — predictable</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">23</td>
+<td>canonical + one cross-cut — healthy</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">11</td>
+<td>over-claimed</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td>claimed by every entry — worst</td>
+</tr>
+</tbody>
+</table>
+<p><strong>13 of 74 pages (18%) exceed a "canonical + one cross-cut" budget</strong>, and <strong>8 of those 13 are runbooks</strong> (including both ambiguity-4 pages). The overlap is not a feeling; it is a distribution with a dominant cause: the Runbooks console (by type), the Tasks portal (by goal), and Home spotlights all re-home the same runbooks that already live under Topics.</p>
+</blockquote>
+<!-- lifecycle-section:definition -->
+<h2 id="core-definition-intent-metric-enforced-invariant">Core definition: intent → metric → enforced invariant<a class="headerlink" href="#core-definition-intent-metric-enforced-invariant" title="Permanent link">&para;</a></h2>
+<p><strong>Intent alignment under abstraction</strong> means reducing an intent the human can only state abstractly to an <strong>observable metric a program computes</strong>, then binding that metric as an <strong>invariant a gate enforces</strong> — so the number cannot drift and the human never has to re-read the site.</p>
+<p>The intent "a reader can predict which door to open" becomes <strong>entry-ambiguity</strong> (doors per page), the policy <strong>canonical + at most one intentional cross-cut</strong> (budget = 2), and the invariant a <strong>gate in CI</strong>.</p>
+<p>The system has three parts:</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Tool</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Measure</td>
+<td><code>nav-entry-ambiguity-grader.mjs</code></td>
+<td>turn the complaint into a number, whole-site</td>
+</tr>
+<tr>
+<td>Policy</td>
+<td>budget 2 + per-type intentional cross-cut</td>
+<td>define what "aligned" means</td>
+</tr>
+<tr>
+<td>Enforce</td>
+<td><code>verify-nav-ambiguity.mjs</code> + <code>config/nav-ambiguity-baseline.json</code></td>
+<td>block new violations; adopt existing debt explicitly</td>
+</tr>
+</tbody>
+</table>
+<p>This is the ordinary discipline of building with LLMs — <strong>turn intent into an eval, then into a gate.</strong> A gate has a property a summary lacks: it cannot be sweet-talked, and it does not forget. (An earlier review of <em>this</em> article accepted an AI's confident "7/10" until evidence forced it to 3.5; a gate would have failed silently-confident prose on contact.)</p>
+<!-- lifecycle-section:mechanism -->
+<h2 id="how-it-works-the-enforced-loop-run-on-the-real-site">How it works: the enforced loop, run on the real site<a class="headerlink" href="#how-it-works-the-enforced-loop-run-on-the-real-site" title="Permanent link">&para;</a></h2>
+<div class="mermaid">flowchart TD
+    A[Abstract intent:&lt;br/&gt;the nav overlaps, optimize it] --&gt; B[Encode: entry-ambiguity grader]
+    B --&gt; C[Baseline whole site:&lt;br/&gt;13 of 74 over budget]
+    C --&gt; D[Policy: canonical + one cross-cut&lt;br/&gt;budget = 2]
+    D --&gt; E[Adopt current debt as&lt;br/&gt;tracked baseline]
+    E --&gt; F[Gate in CI:&lt;br/&gt;verify-nav-ambiguity.mjs]
+    F --&gt; G{New page over budget&lt;br/&gt;and not baselined?}
+    G -- yes --&gt; H[FAIL exit 1:&lt;br/&gt;name the page and its doors]
+    G -- no --&gt; I[PASS: intent stays enforced]
+    H --&gt; J[Give it one canonical door&lt;br/&gt;+ one cross-cut, or justify]
+    J --&gt; F</div>
+<h3 id="step-12-human-names-the-intent-ai-encodes-it-honestly">Step 1–2 — human names the intent; AI encodes it, honestly<a class="headerlink" href="#step-12-human-names-the-intent-ai-encodes-it-honestly" title="Permanent link">&para;</a></h3>
+<p>Reader tasks (reach the Redis AOF runbook, reach <em>what is OpenTelemetry</em>, reach Codex practice, find recovery without knowing the tech) stand in for "usable navigation." The grader models a <strong>browsing</strong> reader: it follows only curated links inside each page's main content and deliberately <strong>ignores the global sidebar/tabs</strong> (which expose the whole tree everywhere). Ambiguity is a <strong>structural proxy</strong> for prediction cost, not a user study.</p>
+<h3 id="step-3-baseline-the-whole-site-and-locate-every-lever">Step 3 — baseline the whole site, and locate every lever<a class="headerlink" href="#step-3-baseline-the-whole-site-and-locate-every-lever" title="Permanent link">&para;</a></h3>
+<p>The distribution above is the baseline. Each door is source-traceable: Home spotlights (<code>docs/*/index.md</code>), the Tasks leaf list (<code>docs/*/tasks/index.md</code>), the Runbooks console (<code>docs/*/runbooks/index.md</code>), and the canonical Topics card. Runbooks carry three cross-cuts at once, which is why they dominate.</p>
+<h3 id="step-4-policy-per-page-type">Step 4 — policy per page type<a class="headerlink" href="#step-4-policy-per-page-type" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Page type</th>
+<th>Canonical</th>
+<th>Intentional cross-cut</th>
+<th>Budget</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>runbook</td>
+<td>Topics</td>
+<td>Runbooks console (incident fast-door)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>standard / reference</td>
+<td>Topics</td>
+<td>Tasks (when goal-relevant)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>concept / case</td>
+<td>Topics</td>
+<td>none by default</td>
+<td>≤2</td>
+</tr>
+</tbody>
+</table>
+<p>The rule is uniform — <strong>canonical plus at most one intentional cross-cut</strong> — and Home spotlights are editorial, not a structural door.</p>
+<h3 id="step-5-prove-the-change-is-real-then-enforce-it">Step 5 — prove the change is real, then enforce it<a class="headerlink" href="#step-5-prove-the-change-is-real-then-enforce-it" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>Case box ② — real before/after, then the closed loop.</strong> For the worst page, a throwaway copy dropped the Home spotlight and the Tasks leaf, was <strong>rebuilt through the real pipeline</strong> (198 pages, <code>--strict</code>), and re-graded:</p>
+<div class="highlight"><pre><span></span><code>BEFORE (real dist)      redis-aof-recovery-runbook   ambiguity=4  [Home,Runbooks,Tasks,Topics]
+AFTER  (rebuilt temp)   redis-aof-recovery-runbook   ambiguity=2  [Runbooks,Topics]
+</code></pre></div>
+<p>But a one-off fix is not alignment. The gate adopts the 13 current offenders as <strong>tracked debt</strong> (<code>config/nav-ambiguity-baseline.json</code>) so it can be turned on today, and it blocks anything new. Proof it actually closes the loop — a page was over-homed on Home in a rebuilt site and the committed gate caught it:</p>
+<div class="highlight"><pre><span></span><code>$ node tools/verify-nav-ambiguity.mjs &lt;regressed-dist&gt;
+new_violations: [ { page: /topics/opentelemetry/what-is-opentelemetry/, ambiguity: 3 } ]
+FAIL: 1 content page exceeds budget 2 and is not in the tracked baseline   → exit 1
+
+$ node tools/verify-nav-ambiguity.mjs dist    # real site
+PASS: no new entry-ambiguity violations beyond the tracked baseline        → exit 0
+</code></pre></div>
+<p>The gate is wired into <code>make verify</code> (<code>site-verify</code>), so the invariant now runs on every build.</p>
+<p><strong>Honesty notes, not footnotes.</strong> (1) The "after" is a temp experiment; shipping the consolidation is a separate, owner-approved task. (2) The gate currently checks the canonical (zh) site; the en site is structurally mirrored and gating it is a tracked next step. (3) The grader itself once reported a falsely reassuring "no change" because of a path-parsing bug, caught only when a sanity check contradicted it — <strong>an eval you do not scrutinize lies as smoothly as an AI summary.</strong></p>
+</blockquote>
+<h3 id="step-6-the-human-verifies-alignment-by-reading-the-gate-not-the-site">Step 6 — the human verifies alignment by reading the gate, not the site<a class="headerlink" href="#step-6-the-human-verifies-alignment-by-reading-the-gate-not-the-site" title="Permanent link">&para;</a></h3>
+<p>The maintainer no longer audits 74 pages. They read one gate result: current debt tracked, zero new violations. Intent has become an invariant.</p>
+<!-- lifecycle-section:boundaries -->
+<h2 id="boundaries">Boundaries<a class="headerlink" href="#boundaries" title="Permanent link">&para;</a></h2>
+<p>Applies when the requirement is abstract or fused, the human cannot review every detail, the intent reduces to a computable proxy, and automation otherwise proves only mechanical integrity.</p>
+<p>Does not apply to a single-point failure with a known runbook, an intent that is genuinely subjective and resists any honest proxy, a security event needing escalation, or a case where no human will own the target.</p>
+<p>The metric is a proxy, so <strong>Goodhart applies</strong>: driving ambiguity to 0 strips useful discoverability. The budget is 2, not 0, and a human still owns whether the proxy is the <em>right</em> proxy and whether a baseline row may be added.</p>
+<!-- lifecycle-section:counterexample -->
+<h2 id="counterexample-when-not-to-build-a-gate">Counterexample: when not to build a gate<a class="headerlink" href="#counterexample-when-not-to-build-a-gate" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>A mobile menu label is clipped.</p>
+</blockquote>
+<p>That is a visual defect; fix the CSS, do not build an eval. Likewise an ambiguity of <strong>2</strong> is healthy. The system's job is to hold the line against the <strong>3s and 4s</strong> a reader cannot predict — not to minimize every page to 1. Unpredictable ambiguity is the enemy, not ambiguity.</p>
+<!-- lifecycle-section:next_step -->
+<h2 id="actionable-next-step">Actionable next step<a class="headerlink" href="#actionable-next-step" title="Permanent link">&para;</a></h2>
+<ol>
+<li>baseline your site:
+   <div class="highlight"><pre><span></span><code>node<span class="w"> </span>tools/nav-entry-ambiguity-grader.mjs<span class="w"> </span>dist<span class="w"> </span>--all
+</code></pre></div></li>
+<li>set a budget and a per-type cross-cut policy;</li>
+<li>adopt current debt explicitly and enforce new work:
+   <div class="highlight"><pre><span></span><code>node<span class="w"> </span>tools/verify-nav-ambiguity.mjs<span class="w"> </span>dist<span class="w"> </span>--update-baseline<span class="w">   </span><span class="c1"># once</span>
+node<span class="w"> </span>tools/verify-nav-ambiguity.mjs<span class="w"> </span>dist<span class="w">                     </span><span class="c1"># in CI, blocks new drift</span>
+</code></pre></div></li>
+<li>drive the baseline down by consolidating real pages — a separate, owner-approved task;</li>
+<li>extend the gate to the en site and, if useful, add a vision-based legibility grader.</li>
+</ol>
+<p>This article ships the <strong>system and its gate</strong>, not a homepage redesign.</p>
+<!-- lifecycle-section:related_content -->
+<h2 id="related-content">Related content<a class="headerlink" href="#related-content" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../ai-project-infinite-refactoring/">Why AI projects get messier as they improve</a>: the five-layer delivery-evidence and stop-condition framework this system relies on — kept there, not repeated here.</li>
+<li><a href="../codex-engineering-best-practices/">Codex engineering best practices</a>: task contracts, permission boundaries, and verification stages for real repository collaboration.</li>
+</ul>
+<h2 id="the-structural-model">The structural model<a class="headerlink" href="#the-structural-model" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>abstract intent
+→ encode as a grader (measure)
+→ baseline the whole site
+→ set a policy (canonical + one cross-cut)
+→ adopt debt, install a gate (enforce)
+→ human reads the gate, not the site
+= alignment that survives the human never reading every detail, and never regresses silently
+</code></pre></div>
+<p>An abstract requirement is not the problem; an <strong>unenforced</strong> one is. The gate does not make the human review more — it makes the small thing they do check keep deciding the outcome, on every future build.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
 
 
 
@@ -6684,46 +7017,6 @@
       
         <footer class="md-footer">
   
-    
-      
-        
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../runbooks/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Runbooks">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Runbooks
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../topics/" class="md-footer__link md-footer__link--next" aria-label="Next: Technical domains">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Technical domains
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -6771,16 +7064,16 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.path", "navigation.tracking", "navigation.footer", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": {"Architecture": "architecture", "Automation": "automation", "Cloud": "cloud", "Containers": "containers", "Databases": "databases", "Delivery": "delivery", "IaC": "iac", "Kubernetes": "kubernetes", "Linux": "linux", "Middleware": "middleware", "Migration": "migration", "Networking": "networking", "Observability": "observability", "Platform": "platform", "Reliability": "reliability", "Security": "security"}, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.indexes", "navigation.path", "navigation.tracking", "navigation.footer", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": {"Architecture": "architecture", "Automation": "automation", "Cloud": "cloud", "Containers": "containers", "Databases": "databases", "Delivery": "delivery", "IaC": "iac", "Kubernetes": "kubernetes", "Linux": "linux", "Middleware": "middleware", "Migration": "migration", "Networking": "networking", "Observability": "observability", "Platform": "platform", "Reliability": "reliability", "Security": "security"}, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../assets/javascripts/mermaid.min.js"></script>
+        <script src="../../../../assets/javascripts/mermaid.min.js"></script>
       
-        <script src="../../assets/javascripts/mermaid-init.js"></script>
+        <script src="../../../../assets/javascripts/mermaid-init.js"></script>
       
-        <script src="../../assets/javascripts/site-experience.js"></script>
+        <script src="../../../../assets/javascripts/site-experience.js"></script>
       
     
   </body>

@@ -1,48 +1,44 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An AI engineering entry point for real software delivery, covering task contracts, repository context, permission boundaries, verification evidence, and Codex best practices.">
+        <meta name="description" content="把"导航交叉重叠，理一下"这类抽象需求变成一个能跑的指标、一份全站基线、一道 CI 门禁——让人的意图变成能自我检查的不变量，而不是一次性评审。">
       
       
       
-        <link rel="canonical" href="https://blog.l2do.com/en/ai/">
+        <link rel="canonical" href="https://blog.l2do.com/topics/ai-full-stack/human-ai-coupled-problem-solving/">
       
       
-        <link rel="prev" href="../runbooks/">
-      
-      
-        <link rel="next" href="../topics/">
       
       
         
-          <link rel="alternate" href="../../ai/" hreflang="zh">
+          <link rel="alternate" href="./" hreflang="zh">
         
-          <link rel="alternate" href="./" hreflang="en">
+          <link rel="alternate" href="../../../en/topics/ai-full-stack/human-ai-coupled-problem-solving/" hreflang="en">
         
       
       
-      <link rel="icon" href="../../assets/brand/l2do-devops.svg">
+      <link rel="icon" href="../../../assets/brand/l2do-devops.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
   
     
       
-        <title>AI Engineering - L2DO DevOps Documentation</title>
+        <title>从"导航很乱"到一条能自我执行的不变量：人机意图对齐的入口歧义度系统 - L2DO DevOps 文档</title>
       
     
   
 
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,11 +51,11 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/site-experience.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/site-experience.css">
     
-      <link rel="stylesheet" href="../../assets/stylesheets/command-center.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/command-center.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -77,33 +73,33 @@
     
     
   
-  <link rel="stylesheet" href="../../assets/stylesheets/content-overflow.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/article-actions.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/portal-enhancements.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/operational-portals.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/responsive-gutters.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/visual-polish.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/layout-guardrails.css">
-  <link rel="stylesheet" href="../../assets/stylesheets/document-lifecycle.css">
-  <script defer src="../../assets/javascripts/article-actions.js"></script>
-  <script defer src="../../assets/javascripts/portal-enhancements.js"></script>
-  <script defer src="../../assets/javascripts/operational-portals.js"></script>
-  <script defer src="../../assets/javascripts/mobile-reading-tools.js"></script>
-  <script defer src="../../assets/javascripts/outcome-tracking.js"></script>
+  <link rel="stylesheet" href="../../../assets/stylesheets/content-overflow.css">
+  <link rel="stylesheet" href="../../../assets/stylesheets/article-actions.css">
+  <link rel="stylesheet" href="../../../assets/stylesheets/portal-enhancements.css">
+  <link rel="stylesheet" href="../../../assets/stylesheets/operational-portals.css">
+  <link rel="stylesheet" href="../../../assets/stylesheets/responsive-gutters.css">
+  <link rel="stylesheet" href="../../../assets/stylesheets/visual-polish.css">
+  <link rel="stylesheet" href="../../../assets/stylesheets/layout-guardrails.css">
+  <link rel="stylesheet" href="../../../assets/stylesheets/document-lifecycle.css">
+  <script defer src="../../../assets/javascripts/article-actions.js"></script>
+  <script defer src="../../../assets/javascripts/portal-enhancements.js"></script>
+  <script defer src="../../../assets/javascripts/operational-portals.js"></script>
+  <script defer src="../../../assets/javascripts/mobile-reading-tools.js"></script>
+  <script defer src="../../../assets/javascripts/outcome-tracking.js"></script>
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="AI Engineering - L2DO DevOps Documentation" />
-<meta property="og:description" content="An AI engineering entry point for real software delivery, covering task contracts, repository context, permission boundaries, verification evidence, and Codex best practices." />
-<meta property="og:image" content="https://blog.l2do.com/assets/images/social/en/ai/index.png" />
+<meta property="og:title" content="从"导航很乱"到一条能自我执行的不变量：人机意图对齐的入口歧义度系统 - L2DO DevOps 文档" />
+<meta property="og:description" content="把"导航交叉重叠，理一下"这类抽象需求变成一个能跑的指标、一份全站基线、一道 CI 门禁——让人的意图变成能自我检查的不变量，而不是一次性评审。" />
+<meta property="og:image" content="https://blog.l2do.com/assets/images/social/topics/ai-full-stack/human-ai-coupled-problem-solving.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://blog.l2do.com/en/ai/" />
+<meta property="og:url" content="https://blog.l2do.com/topics/ai-full-stack/human-ai-coupled-problem-solving/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="AI Engineering - L2DO DevOps Documentation" />
-<meta property="twitter:description" content="An AI engineering entry point for real software delivery, covering task contracts, repository context, permission boundaries, verification evidence, and Codex best practices." />
-<meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/en/ai/index.png" />
+<meta property="twitter:title" content="从"导航很乱"到一条能自我执行的不变量：人机意图对齐的入口歧义度系统 - L2DO DevOps 文档" />
+<meta property="twitter:description" content="把"导航交叉重叠，理一下"这类抽象需求变成一个能跑的指标、一份全站基线、一道 CI 门禁——让人的意图变成能自我检查的不变量，而不是一次性评审。" />
+<meta property="twitter:image" content="https://blog.l2do.com/assets/images/social/topics/ai-full-stack/human-ai-coupled-problem-solving.png" />
 </head>
   
   
@@ -123,8 +119,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#ai-engineering-workspace" class="md-skip">
-          Skip to content
+        <a href="#_1" class="md-skip">
+          跳转至
         </a>
       
     </div>
@@ -138,10 +134,10 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../" title="L2DO DevOps Documentation" class="md-header__button md-logo" aria-label="L2DO DevOps Documentation" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="L2DO DevOps 文档" class="md-header__button md-logo" aria-label="L2DO DevOps 文档" data-md-component="logo">
       
-  <img src="../../assets/brand/l2do-devops.svg" alt="logo">
+  <img src="../../../assets/brand/l2do-devops.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -152,13 +148,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            L2DO DevOps Documentation
+            L2DO DevOps 文档
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AI Engineering
+              从"导航很乱"到一条能自我执行的不变量：人机意图对齐的入口歧义度系统
             
           </span>
         </div>
@@ -198,20 +194,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Select language">
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../ai/" hreflang="zh" class="md-select__link">
+            <a href="./" hreflang="zh" class="md-select__link">
               中文
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="./" hreflang="en" class="md-select__link">
+            <a href="../../../en/topics/ai-full-stack/human-ai-coupled-problem-solving/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -232,16 +228,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="查找">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -254,7 +250,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            正在初始化搜索引擎
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -266,7 +262,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/lzyred/lzyred.github.io" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/lzyred/lzyred.github.io" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -293,27 +289,25 @@
           
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../" title="L2DO DevOps Documentation" class="md-nav__button md-logo" aria-label="L2DO DevOps Documentation" data-md-component="logo">
+    <a href="../../.." title="L2DO DevOps 文档" class="md-nav__button md-logo" aria-label="L2DO DevOps 文档" data-md-component="logo">
       
-  <img src="../../assets/brand/l2do-devops.svg" alt="logo">
+  <img src="../../../assets/brand/l2do-devops.svg" alt="logo">
 
     </a>
-    L2DO DevOps Documentation
+    L2DO DevOps 文档
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/lzyred/lzyred.github.io" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/lzyred/lzyred.github.io" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -333,14 +327,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Home
+    首页
   
 
     
@@ -360,14 +354,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../tasks/" class="md-nav__link">
+      <a href="../../../tasks/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Tasks
+    按任务进入
   
 
     
@@ -387,14 +381,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../runbooks/" class="md-nav__link">
+      <a href="../../../runbooks/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Runbooks
+    Runbook 作战台
   
 
     
@@ -411,26 +405,17 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../ai/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AI Engineering
+    AI 工程
   
 
     
@@ -439,7 +424,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -479,14 +463,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Topics
+    技术领域
   
 
     
@@ -508,7 +492,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Topics
+    技术领域
   
 
           </label>
@@ -555,7 +539,7 @@
   <span class="md-ellipsis">
     
   
-    Platform and infrastructure
+    平台与基础设施
   
 
     
@@ -571,7 +555,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Platform and infrastructure
+    平台与基础设施
   
 
           </label>
@@ -608,7 +592,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/kubernetes/" class="md-nav__link ">
+            <a href="../../kubernetes/" class="md-nav__link ">
               
   
   
@@ -684,7 +668,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -700,7 +684,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -713,14 +697,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/aws-eks-production-ha-cluster/" class="md-nav__link">
+      <a href="../../kubernetes/aws-eks-production-ha-cluster/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS EKS Production High Availability Cluster Design and Delivery Standard
+    AWS EKS 生产级高可用集群设计与交付标准
   
 
     
@@ -741,14 +725,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/eks-upgrade-standard/" class="md-nav__link">
+      <a href="../../kubernetes/eks-upgrade-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    EKS and Kubernetes Upgrade Standard
+    EKS 与 Kubernetes 升级标准
   
 
     
@@ -769,14 +753,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/kubeadm-installation-standard/" class="md-nav__link">
+      <a href="../../kubernetes/kubeadm-installation-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    kubeadm Installation Standard
+    kubeadm 安装标准
   
 
     
@@ -797,14 +781,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/kubernetes-cluster-provisioning-standard/" class="md-nav__link">
+      <a href="../../kubernetes/kubernetes-cluster-provisioning-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Kubernetes Cluster Provisioning Standard
+    Kubernetes 集群供给标准
   
 
     
@@ -825,14 +809,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/kubernetes-storage-ingress-standard/" class="md-nav__link">
+      <a href="../../kubernetes/kubernetes-storage-ingress-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Kubernetes Storage and Ingress Standard
+    Kubernetes 存储与 Ingress 标准
   
 
     
@@ -853,14 +837,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/nfs-pvc-capacity-management/" class="md-nav__link">
+      <a href="../../kubernetes/nfs-pvc-capacity-management/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    NFS PVC Capacity Management
+    NFS PVC 容量管理
   
 
     
@@ -911,7 +895,7 @@
   <span class="md-ellipsis">
     
   
-    Operations and recovery
+    操作与恢复
   
 
     
@@ -927,7 +911,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations and recovery
+    操作与恢复
   
 
           </label>
@@ -940,14 +924,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/kubernetes-pvc-usage-alert-runbook/" class="md-nav__link">
+      <a href="../../kubernetes/kubernetes-pvc-usage-alert-runbook/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    PVC Usage Alert Runbook
+    PVC 使用率告警 Runbook
   
 
     
@@ -998,7 +982,7 @@
   <span class="md-ellipsis">
     
   
-    Cases
+    案例与复盘
   
 
     
@@ -1014,7 +998,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Cases
+    案例与复盘
   
 
           </label>
@@ -1027,14 +1011,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/kubernetes/anonymous-kubernetes-upgrade-case/" class="md-nav__link">
+      <a href="../../kubernetes/anonymous-kubernetes-upgrade-case/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    An Anonymous Kubernetes Upgrade Case
+    匿名 Kubernetes 升级案例
   
 
     
@@ -1095,14 +1079,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/containers/" class="md-nav__link ">
+            <a href="../../containers/" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Containers and images
+    容器与镜像
   
 
     
@@ -1124,7 +1108,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Containers and images
+    容器与镜像
   
 
           </label>
@@ -1169,7 +1153,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -1185,7 +1169,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -1198,14 +1182,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/buildkit-build-standard/" class="md-nav__link">
+      <a href="../../containers/buildkit-build-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    BuildKit Build Standard
+    BuildKit 构建标准
   
 
     
@@ -1226,14 +1210,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/chartmuseum-helm-repository-standard/" class="md-nav__link">
+      <a href="../../containers/chartmuseum-helm-repository-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ChartMuseum Helm Repository Standard
+    ChartMuseum Helm 仓库标准
   
 
     
@@ -1254,14 +1238,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/docker-compose-stack-standard/" class="md-nav__link">
+      <a href="../../containers/docker-compose-stack-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Docker Compose Stack Standard
+    Docker Compose 栈标准
   
 
     
@@ -1282,14 +1266,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/docker-host-operations-standard/" class="md-nav__link">
+      <a href="../../containers/docker-host-operations-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Docker Host Operations Standard
+    Docker 主机运维标准
   
 
     
@@ -1310,14 +1294,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/harbor-registry-standard/" class="md-nav__link">
+      <a href="../../containers/harbor-registry-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Harbor Registry Standard
+    Harbor 镜像仓库标准
   
 
     
@@ -1368,7 +1352,7 @@
   <span class="md-ellipsis">
     
   
-    Operations and recovery
+    操作与恢复
   
 
     
@@ -1384,7 +1368,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations and recovery
+    操作与恢复
   
 
           </label>
@@ -1397,14 +1381,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/harbor-certificate-rotation-runbook/" class="md-nav__link">
+      <a href="../../containers/harbor-certificate-rotation-runbook/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Harbor Certificate Rotation Runbook
+    Harbor 证书轮换 Runbook
   
 
     
@@ -1455,7 +1439,7 @@
   <span class="md-ellipsis">
     
   
-    Cases
+    案例与复盘
   
 
     
@@ -1471,7 +1455,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Cases
+    案例与复盘
   
 
           </label>
@@ -1484,14 +1468,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/containers/anonymous-containerization-migration-case/" class="md-nav__link">
+      <a href="../../containers/anonymous-containerization-migration-case/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Anonymous Application Containerization Migration Case
+    匿名应用容器化迁移案例
   
 
     
@@ -1550,7 +1534,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/linux/" class="md-nav__link ">
+            <a href="../../linux/" class="md-nav__link ">
               
   
   
@@ -1620,7 +1604,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -1636,7 +1620,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -1649,14 +1633,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/linux/server-baseline-standard/" class="md-nav__link">
+      <a href="../../linux/server-baseline-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Linux Server Baseline Standard
+    Linux 服务器基线标准
   
 
     
@@ -1677,14 +1661,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/linux/supervisor-process-management-standard/" class="md-nav__link">
+      <a href="../../linux/supervisor-process-management-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Supervisor Process Management Standard
+    Supervisor 进程管理标准
   
 
     
@@ -1705,14 +1689,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/linux/system-os-patching-standard/" class="md-nav__link">
+      <a href="../../linux/system-os-patching-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    System OS Patching Standard
+    系统 OS 补丁标准
   
 
     
@@ -1763,7 +1747,7 @@
   <span class="md-ellipsis">
     
   
-    Operations and recovery
+    操作与恢复
   
 
     
@@ -1779,7 +1763,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations and recovery
+    操作与恢复
   
 
           </label>
@@ -1792,14 +1776,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/linux/linux-disk-lvm-expansion-runbook/" class="md-nav__link">
+      <a href="../../linux/linux-disk-lvm-expansion-runbook/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Linux Disk and LVM Expansion Runbook
+    Linux 磁盘与 LVM 扩容 Runbook
   
 
     
@@ -1858,14 +1842,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/cloud/" class="md-nav__link ">
+            <a href="../../cloud/" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Cloud and object storage
+    云与对象存储
   
 
     
@@ -1887,7 +1871,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Cloud and object storage
+    云与对象存储
   
 
           </label>
@@ -1924,7 +1908,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -1940,7 +1924,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -1953,14 +1937,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/cloud/cloud-network-migration-standard/" class="md-nav__link">
+      <a href="../../cloud/cloud-network-migration-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Cloud Network and Object Storage Migration Standard
+    云网络与对象存储迁移标准
   
 
     
@@ -2011,7 +1995,7 @@
   <span class="md-ellipsis">
     
   
-    Cases
+    案例与复盘
   
 
     
@@ -2027,7 +2011,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Cases
+    案例与复盘
   
 
           </label>
@@ -2040,14 +2024,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/cloud/anonymous-object-storage-migration-case/" class="md-nav__link">
+      <a href="../../cloud/anonymous-object-storage-migration-case/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Anonymous Object Storage Migration Case
+    匿名对象存储迁移案例
   
 
     
@@ -2106,14 +2090,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/networking/" class="md-nav__link ">
+            <a href="../../networking/" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Networking and access
+    网络与访问
   
 
     
@@ -2135,7 +2119,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Networking and access
+    网络与访问
   
 
           </label>
@@ -2180,7 +2164,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -2196,7 +2180,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -2209,14 +2193,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/networking/haproxy-load-balancing-standard/" class="md-nav__link">
+      <a href="../../networking/haproxy-load-balancing-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    HAProxy Load Balancing Standard
+    HAProxy 负载均衡标准
   
 
     
@@ -2237,14 +2221,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/networking/nginx-reverse-proxy-tls-standard/" class="md-nav__link">
+      <a href="../../networking/nginx-reverse-proxy-tls-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Nginx Reverse Proxy and TLS Standard
+    Nginx 反向代理与 TLS 标准
   
 
     
@@ -2265,14 +2249,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/networking/openvpn-access-standard/" class="md-nav__link">
+      <a href="../../networking/openvpn-access-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    OpenVPN Access Standard
+    OpenVPN 访问标准
   
 
     
@@ -2293,14 +2277,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/networking/openwrt-network-device-standard/" class="md-nav__link">
+      <a href="../../networking/openwrt-network-device-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    OpenWrt Network Device Standard
+    OpenWrt 网络设备标准
   
 
     
@@ -2321,14 +2305,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/networking/samba-file-sharing-standard/" class="md-nav__link">
+      <a href="../../networking/samba-file-sharing-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Samba File Sharing Standard
+    Samba 文件共享标准
   
 
     
@@ -2379,7 +2363,7 @@
   <span class="md-ellipsis">
     
   
-    Operations and recovery
+    操作与恢复
   
 
     
@@ -2395,7 +2379,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations and recovery
+    操作与恢复
   
 
           </label>
@@ -2408,14 +2392,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/networking/tls-certificate-expiry-runbook/" class="md-nav__link">
+      <a href="../../networking/tls-certificate-expiry-runbook/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    TLS Certificate Expiry Runbook
+    TLS 证书过期 Runbook
   
 
     
@@ -2472,14 +2456,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/platform/" class="md-nav__link ">
+            <a href="../../platform/" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Platform tools
+    平台工具
   
 
     
@@ -2501,7 +2485,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Platform tools
+    平台工具
   
 
           </label>
@@ -2542,7 +2526,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -2558,7 +2542,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -2571,14 +2555,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/platform/gitlab-operations-standard/" class="md-nav__link">
+      <a href="../../platform/gitlab-operations-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    GitLab Operations Standard
+    GitLab 运维标准
   
 
     
@@ -2599,14 +2583,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/platform/jumpserver-bastion-standard/" class="md-nav__link">
+      <a href="../../platform/jumpserver-bastion-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    JumpServer and Bastion Access Standard
+    JumpServer 堡垒机访问标准
   
 
     
@@ -2627,14 +2611,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/platform/redash-deployment-standard/" class="md-nav__link">
+      <a href="../../platform/redash-deployment-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Redash Governance Standard
+    Redash 治理标准
   
 
     
@@ -2709,7 +2693,7 @@
   <span class="md-ellipsis">
     
   
-    Data and middleware
+    数据与中间件
   
 
     
@@ -2725,7 +2709,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Data and middleware
+    数据与中间件
   
 
           </label>
@@ -2760,7 +2744,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/redis/" class="md-nav__link ">
+            <a href="../../redis/" class="md-nav__link ">
               
   
   
@@ -2830,7 +2814,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -2846,7 +2830,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -2859,14 +2843,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/redis/redis-memory-availability-standard/" class="md-nav__link">
+      <a href="../../redis/redis-memory-availability-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Redis Memory and Availability Standard
+    Redis 内存与高可用标准
   
 
     
@@ -2887,14 +2871,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/redis/redis-operations-standard/" class="md-nav__link">
+      <a href="../../redis/redis-operations-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Redis Production Operations Standard
+    Redis 生产运维标准
   
 
     
@@ -2915,14 +2899,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/redis/redis-persistence-backup-standard/" class="md-nav__link">
+      <a href="../../redis/redis-persistence-backup-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Redis Persistence and Data Protection Standard
+    Redis 持久化与数据保护标准
   
 
     
@@ -2975,7 +2959,7 @@
   <span class="md-ellipsis">
     
   
-    Operations and recovery
+    操作与恢复
   
 
     
@@ -2991,7 +2975,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations and recovery
+    操作与恢复
   
 
           </label>
@@ -3004,14 +2988,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/redis/redis-aof-recovery-runbook/" class="md-nav__link">
+      <a href="../../redis/redis-aof-recovery-runbook/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Redis AOF Inspection and Recovery Runbook
+    Redis AOF 检查与恢复 Runbook
   
 
     
@@ -3032,14 +3016,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/redis/redis-migration-failover-runbook/" class="md-nav__link">
+      <a href="../../redis/redis-migration-failover-runbook/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Redis Migration and Failover Runbook
+    Redis 迁移与故障切换 Runbook
   
 
     
@@ -3096,7 +3080,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/mysql/" class="md-nav__link ">
+            <a href="../../mysql/" class="md-nav__link ">
               
   
   
@@ -3162,7 +3146,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -3178,7 +3162,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -3191,14 +3175,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/mysql/mysql-operations-standard/" class="md-nav__link">
+      <a href="../../mysql/mysql-operations-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    MySQL Operations Standard
+    MySQL 运维标准
   
 
     
@@ -3255,7 +3239,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/mongodb/" class="md-nav__link ">
+            <a href="../../mongodb/" class="md-nav__link ">
               
   
   
@@ -3321,7 +3305,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -3337,7 +3321,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -3350,14 +3334,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/mongodb/mongodb-operations-standard/" class="md-nav__link">
+      <a href="../../mongodb/mongodb-operations-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    MongoDB Operations Standard
+    MongoDB 运维标准
   
 
     
@@ -3414,7 +3398,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/etcd/" class="md-nav__link ">
+            <a href="../../etcd/" class="md-nav__link ">
               
   
   
@@ -3480,7 +3464,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -3496,7 +3480,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -3509,14 +3493,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/etcd/etcd-operations-standard/" class="md-nav__link">
+      <a href="../../etcd/etcd-operations-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    etcd Operations Standard
+    etcd 运维标准
   
 
     
@@ -3573,14 +3557,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/middleware/" class="md-nav__link ">
+            <a href="../../middleware/" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Middleware
+    中间件
   
 
     
@@ -3602,7 +3586,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Middleware
+    中间件
   
 
           </label>
@@ -3645,7 +3629,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -3661,7 +3645,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -3674,14 +3658,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/middleware/api-gateway-standard/" class="md-nav__link">
+      <a href="../../middleware/api-gateway-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API Gateway Standard
+    API Gateway 标准
   
 
     
@@ -3702,14 +3686,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/middleware/dolphinscheduler-standard/" class="md-nav__link">
+      <a href="../../middleware/dolphinscheduler-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    DolphinScheduler Operations Standard
+    DolphinScheduler 运维标准
   
 
     
@@ -3730,14 +3714,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/middleware/kafka-zookeeper-operations-standard/" class="md-nav__link">
+      <a href="../../middleware/kafka-zookeeper-operations-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Kafka and ZooKeeper Operations Standard
+    Kafka 与 ZooKeeper 运维标准
   
 
     
@@ -3758,14 +3742,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/middleware/nacos-operations-standard/" class="md-nav__link">
+      <a href="../../middleware/nacos-operations-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Nacos Operations Standard
+    Nacos 运维标准
   
 
     
@@ -3836,7 +3820,7 @@
   <span class="md-ellipsis">
     
   
-    Delivery and automation
+    交付与自动化
   
 
     
@@ -3852,7 +3836,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Delivery and automation
+    交付与自动化
   
 
           </label>
@@ -3889,14 +3873,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/delivery/" class="md-nav__link ">
+            <a href="../../delivery/" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Delivery and rollback
+    交付与回滚
   
 
     
@@ -3918,7 +3902,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Delivery and rollback
+    交付与回滚
   
 
           </label>
@@ -3955,7 +3939,7 @@
   <span class="md-ellipsis">
     
   
-    Understand
+    理解与原理
   
 
     
@@ -3971,7 +3955,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Understand
+    理解与原理
   
 
           </label>
@@ -3984,14 +3968,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/delivery/rollback-is-a-product-capability/" class="md-nav__link">
+      <a href="../../delivery/rollback-is-a-product-capability/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Rollback Is a Product-Recovery Capability
+    回滚是一种产品恢复能力
   
 
     
@@ -4044,7 +4028,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -4060,7 +4044,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -4073,14 +4057,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/delivery/argocd-gitops-standard/" class="md-nav__link">
+      <a href="../../delivery/argocd-gitops-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Argo CD GitOps Standard
+    Argo CD GitOps 标准
   
 
     
@@ -4101,14 +4085,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/delivery/jenkins-kubernetes-pipeline-standard/" class="md-nav__link">
+      <a href="../../delivery/jenkins-kubernetes-pipeline-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Jenkins to Kubernetes Pipeline Standard
+    Jenkins 到 Kubernetes 流水线标准
   
 
     
@@ -4159,7 +4143,7 @@
   <span class="md-ellipsis">
     
   
-    Operations and recovery
+    操作与恢复
   
 
     
@@ -4175,7 +4159,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations and recovery
+    操作与恢复
   
 
           </label>
@@ -4188,14 +4172,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/delivery/deployment-rollback-runbook/" class="md-nav__link">
+      <a href="../../delivery/deployment-rollback-runbook/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Deployment Rollback Runbook
+    部署回滚 Runbook
   
 
     
@@ -4252,14 +4236,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/automation/" class="md-nav__link ">
+            <a href="../../automation/" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Automation
+    自动化
   
 
     
@@ -4281,7 +4265,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Automation
+    自动化
   
 
           </label>
@@ -4318,7 +4302,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -4334,7 +4318,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -4347,14 +4331,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/automation/shell-automation-standard/" class="md-nav__link">
+      <a href="../../automation/shell-automation-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Shell Automation Standard
+    Shell 自动化标准
   
 
     
@@ -4411,14 +4395,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/infrastructure-as-code/" class="md-nav__link ">
+            <a href="../../infrastructure-as-code/" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Infrastructure as code
+    基础设施即代码
   
 
     
@@ -4440,7 +4424,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Infrastructure as code
+    基础设施即代码
   
 
           </label>
@@ -4477,7 +4461,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -4493,7 +4477,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -4506,14 +4490,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/infrastructure-as-code/terraform-iac-standard/" class="md-nav__link">
+      <a href="../../infrastructure-as-code/terraform-iac-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Terraform IaC Standard
+    Terraform IaC 标准
   
 
     
@@ -4584,7 +4568,7 @@
   <span class="md-ellipsis">
     
   
-    Observability, reliability, and operations
+    可观测性、可靠性与生产运维
   
 
     
@@ -4600,7 +4584,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Observability, reliability, and operations
+    可观测性、可靠性与生产运维
   
 
           </label>
@@ -4635,14 +4619,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/observability/" class="md-nav__link ">
+            <a href="../../observability/" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Observability
+    可观测性
   
 
     
@@ -4664,7 +4648,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Observability
+    可观测性
   
 
           </label>
@@ -4701,7 +4685,7 @@
   <span class="md-ellipsis">
     
   
-    Understand
+    理解与原理
   
 
     
@@ -4717,7 +4701,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Understand
+    理解与原理
   
 
           </label>
@@ -4730,14 +4714,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/monitoring-migration-deep-dive/" class="md-nav__link">
+      <a href="../../observability/monitoring-migration-deep-dive/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Monitoring Migration Is a Routing Migration, Not a Server Migration
+    监控迁移的本质是路由迁移，而非服务器迁移
   
 
     
@@ -4798,7 +4782,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -4814,7 +4798,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -4827,14 +4811,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/elfk-logging-standard/" class="md-nav__link">
+      <a href="../../observability/elfk-logging-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ELFK Logging Standard
+    ELFK 日志标准
   
 
     
@@ -4855,14 +4839,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/exporter-monitoring-standard/" class="md-nav__link">
+      <a href="../../observability/exporter-monitoring-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Prometheus Exporter Monitoring Standard
+    Prometheus Exporter 监控标准
   
 
     
@@ -4883,14 +4867,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/loki-binary-alerting-standard/" class="md-nav__link">
+      <a href="../../observability/loki-binary-alerting-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Loki Binary Deployment and Alerting Standard
+    Loki 二进制部署与告警标准
   
 
     
@@ -4911,14 +4895,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/loki-logging-standard/" class="md-nav__link">
+      <a href="../../observability/loki-logging-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Loki Logging Standard
+    Loki 日志标准
   
 
     
@@ -4939,14 +4923,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/prometheus-alerting-standard/" class="md-nav__link">
+      <a href="../../observability/prometheus-alerting-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Prometheus Alerting Standard
+    Prometheus 告警标准
   
 
     
@@ -4967,14 +4951,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/observability/signoz-observability-standard/" class="md-nav__link">
+      <a href="../../observability/signoz-observability-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    SigNoz Observability Standard
+    SigNoz 可观测性标准
   
 
     
@@ -5039,7 +5023,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/opentelemetry/" class="md-nav__link ">
+            <a href="../../opentelemetry/" class="md-nav__link ">
               
   
   
@@ -5107,7 +5091,7 @@
   <span class="md-ellipsis">
     
   
-    Understand
+    理解与原理
   
 
     
@@ -5123,7 +5107,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Understand
+    理解与原理
   
 
           </label>
@@ -5136,14 +5120,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/what-is-opentelemetry/" class="md-nav__link">
+      <a href="../../opentelemetry/what-is-opentelemetry/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    What Is OpenTelemetry?
+    什么是 OpenTelemetry
   
 
     
@@ -5164,14 +5148,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/signals-context-and-pipelines/" class="md-nav__link">
+      <a href="../../opentelemetry/signals-context-and-pipelines/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Signals, Context, and Pipelines
+    信号、上下文与 Pipeline
   
 
     
@@ -5222,7 +5206,7 @@
   <span class="md-ellipsis">
     
   
-    Getting started
+    开始使用
   
 
     
@@ -5238,7 +5222,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Getting started
+    开始使用
   
 
           </label>
@@ -5251,14 +5235,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/first-trace-tutorial/" class="md-nav__link">
+      <a href="../../opentelemetry/first-trace-tutorial/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Generate Your First Trace
+    生成第一条 Trace
   
 
     
@@ -5309,7 +5293,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -5325,7 +5309,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -5338,14 +5322,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/auto-instrumentation-standard/" class="md-nav__link">
+      <a href="../../opentelemetry/auto-instrumentation-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    OpenTelemetry Auto-Instrumentation Production Standard
+    OpenTelemetry 自动埋点生产标准
   
 
     
@@ -5400,7 +5384,7 @@
   <span class="md-ellipsis">
     
   
-    Operations and recovery
+    操作与恢复
   
 
     
@@ -5416,7 +5400,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations and recovery
+    操作与恢复
   
 
           </label>
@@ -5429,14 +5413,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/auto-instrumentation-rollout-runbook/" class="md-nav__link">
+      <a href="../../opentelemetry/auto-instrumentation-rollout-runbook/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    OpenTelemetry Auto-Instrumentation Canary Rollout Runbook
+    OpenTelemetry 自动埋点灰度发布 Runbook
   
 
     
@@ -5457,14 +5441,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/java-agent-rollout-runbook/" class="md-nav__link">
+      <a href="../../opentelemetry/java-agent-rollout-runbook/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    OpenTelemetry Java Agent Canary Rollout Runbook
+    OpenTelemetry Java Agent 灰度发布 Runbook
   
 
     
@@ -5485,14 +5469,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/troubleshooting-missing-telemetry/" class="md-nav__link">
+      <a href="../../opentelemetry/troubleshooting-missing-telemetry/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Troubleshooting Missing OpenTelemetry Data
+    OpenTelemetry 遥测缺失故障排查
   
 
     
@@ -5543,7 +5527,7 @@
   <span class="md-ellipsis">
     
   
-    Reference
+    参考资料
   
 
     
@@ -5559,7 +5543,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Reference
+    参考资料
   
 
           </label>
@@ -5572,14 +5556,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/opentelemetry/compatibility-and-configuration-reference/" class="md-nav__link">
+      <a href="../../opentelemetry/compatibility-and-configuration-reference/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    OpenTelemetry Compatibility and Configuration Reference
+    OpenTelemetry 兼容性与配置参考
   
 
     
@@ -5636,14 +5620,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/operations/" class="md-nav__link ">
+            <a href="../../operations/" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Production operations
+    生产运维
   
 
     
@@ -5665,7 +5649,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production operations
+    生产运维
   
 
           </label>
@@ -5702,7 +5686,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -5718,7 +5702,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -5731,14 +5715,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/operations/application-maintenance-health-check-standard/" class="md-nav__link">
+      <a href="../../operations/application-maintenance-health-check-standard/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Application Maintenance Health Check Standard
+    应用维护健康检查标准
   
 
     
@@ -5809,7 +5793,7 @@
   <span class="md-ellipsis">
     
   
-    Engineering effectiveness
+    工程效能
   
 
     
@@ -5825,7 +5809,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Engineering effectiveness
+    工程效能
   
 
           </label>
@@ -5860,14 +5844,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/ai-full-stack/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    AI Full Stack
+    AI 全栈工程
   
 
     
@@ -5889,7 +5873,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    AI Full Stack
+    AI 全栈工程
   
 
           </label>
@@ -5926,7 +5910,7 @@
   <span class="md-ellipsis">
     
   
-    Production design
+    生产设计
   
 
     
@@ -5942,7 +5926,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Production design
+    生产设计
   
 
           </label>
@@ -5955,14 +5939,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/ai-full-stack/codex-engineering-best-practices/" class="md-nav__link">
+      <a href="../codex-engineering-best-practices/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Codex Engineering Standard
+    Codex 工程开发标准
   
 
     
@@ -6013,7 +5997,7 @@
   <span class="md-ellipsis">
     
   
-    Understand
+    理解与原理
   
 
     
@@ -6029,7 +6013,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Understand
+    理解与原理
   
 
           </label>
@@ -6042,14 +6026,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/ai-full-stack/codex-power-user-practice/" class="md-nav__link">
+      <a href="../codex-power-user-practice/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    From Using Codex to Operating an Engineering Agent
+    从会用 Codex 到驾驭工程代理
   
 
     
@@ -6106,14 +6090,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/engineering-practice/" class="md-nav__link ">
+            <a href="../../engineering-practice/" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Engineering collaboration
+    工程协作
   
 
     
@@ -6135,7 +6119,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Engineering collaboration
+    工程协作
   
 
           </label>
@@ -6176,7 +6160,7 @@
   <span class="md-ellipsis">
     
   
-    Understand
+    理解与原理
   
 
     
@@ -6192,7 +6176,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Understand
+    理解与原理
   
 
           </label>
@@ -6205,14 +6189,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/engineering-practice/collaboration-is-handoff/" class="md-nav__link">
+      <a href="../../engineering-practice/collaboration-is-handoff/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Collaboration Is Takeover-Ability
+    协作就是可接管性
   
 
     
@@ -6233,14 +6217,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/engineering-practice/translating-risk/" class="md-nav__link">
+      <a href="../../engineering-practice/translating-risk/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Translating Risk in Both Directions
+    双向翻译风险
   
 
     
@@ -6261,14 +6245,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/engineering-practice/writing-for-incidents/" class="md-nav__link">
+      <a href="../../engineering-practice/writing-for-incidents/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Writing for the Reader at 3 a.m.
+    为凌晨三点的读者而写
   
 
     
@@ -6325,14 +6309,14 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../topics/documentation/" class="md-nav__link ">
+            <a href="../../documentation/" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Documentation templates
+    文档模板
   
 
     
@@ -6354,7 +6338,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Documentation templates
+    文档模板
   
 
           </label>
@@ -6395,7 +6379,7 @@
   <span class="md-ellipsis">
     
   
-    Reference
+    参考资料
   
 
     
@@ -6411,7 +6395,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Reference
+    参考资料
   
 
           </label>
@@ -6424,14 +6408,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/documentation/migration-plan-template/" class="md-nav__link">
+      <a href="../../documentation/migration-plan-template/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Migration Plan Template
+    迁移计划模板
   
 
     
@@ -6452,14 +6436,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/documentation/runbook-template/" class="md-nav__link">
+      <a href="../../documentation/runbook-template/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Runbook Template
+    Runbook 模板
   
 
     
@@ -6480,14 +6464,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../topics/documentation/standard-document-template/" class="md-nav__link">
+      <a href="../../documentation/standard-document-template/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Standard Document Template
+    标准文档模板
   
 
     
@@ -6540,19 +6524,124 @@
             
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        先用三行读完结论
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        问题：抽象意图的鸿沟——并已在全站量化
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心定义：意图 → 指标 → 可执行的不变量
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工作机制：在真实站点上跑通被执行的闭环
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        反例：什么时候不该建门禁
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行下一步
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结构化模型
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -6565,8 +6654,6 @@
               
                 
 
-  
-
 
 
   
@@ -6576,92 +6663,338 @@
               <article class="md-content__inner md-typeset">
                 
   
+    
+    
+    <header class="l2do-article-header" data-document-lifecycle aria-label="文档可信度状态">
+      <div class="l2do-article-header__kickers">
+        <span class="l2do-article-header__type">CONCEPT</span>
+      </div>
+      <h1>从"导航很乱"到一条能自我执行的不变量：人机意图对齐的入口歧义度系统</h1>
+      <div class="l2do-article-header__taxonomy" data-article-taxonomy></div>
+      <dl class="l2do-lifecycle-grid">
+        <div class="l2do-lifecycle-field">
+          <dt>内容成熟度</dt>
+          <dd>candidate</dd>
+        </div>
+        <div class="l2do-lifecycle-field">
+          <dt>内容审查</dt>
+          <dd>self-reviewed</dd>
+        </div>
+        <div class="l2do-lifecycle-field">
+          <dt>技术验证</dt>
+          <dd>not-verified</dd>
+        </div>
+        
+        
+        <div class="l2do-lifecycle-field l2do-lifecycle-field--wide">
+          <dt>适用版本</dt>
+          <dd>
+            
+              
+                方法与版本无关；示例系统针对 2026-07 观察到的一次 MkDocs 构建，运行仓库自带的入口歧义度 grader 与门禁
+              
+            
+          </dd>
+        </div>
+        <div class="l2do-lifecycle-field">
+          <dt>风险等级</dt>
+          <dd>medium</dd>
+        </div>
+        
+      </dl>
+      <div class="l2do-article-actions" aria-label="文档快捷操作">
+        <button type="button" data-copy-page-link>复制链接</button>
+        <button type="button" data-print-page>打印</button>
+        <a href="https://github.com/lzyred/lzyred.github.io" target="_blank" rel="noopener" data-umami-event="github_clicked" data-umami-event-location="article_header" data-umami-event-destination="lzyred/lzyred.github.io">发布仓库</a>
+        <a href="https://github.com/lzyred/lzyred.github.io/issues/new" target="_blank" rel="noopener" data-umami-event="feedback_clicked" data-umami-event-location="article_header">反馈</a>
+      </div>
+    </header>
+  
   
                   
-  
 
-
-
-  
-  
-
-
-<h1 id="ai-engineering-workspace">AI engineering workspace<a class="headerlink" href="#ai-engineering-workspace" title="Permanent link">&para;</a></h1>
-<p class="l2do-section-intro">This portal does not sell generic “AI productivity.” It places Codex and other engineering agents inside a software-delivery system with explicit scope, permissions, verification, and human acceptance.</p>
-
-<div data-ai-portal>
-  <section class="l2do-ai-hero">
-    <div>
-      <span class="l2do-ai-eyebrow">AI ENGINEERING / AGENT OPERATIONS</span>
-      <h2>Make engineering agents produce evidence, not piles of code</h2>
-      <p>High-quality AI development does not come from a longer prompt. It comes from designing the objective, context, tools, permissions, verification, and stop conditions as one reviewable loop.</p>
-      <a class="l2do-ai-feature" href="../topics/ai-full-stack/codex-engineering-best-practices/">
-        <span>FEATURED STANDARD</span>
-        <strong>Codex engineering best practices</strong>
-        <small>A production-ready operating standard that can be applied directly to a real repository.</small>
-      </a>
-    </div>
-    <div class="l2do-ai-loop" aria-label="AI engineering loop">
-      <div class="l2do-ai-loop-node"><span>01 / DEFINE</span><strong>Define a falsifiable outcome</strong><small>Outcome, scope, exclusions, acceptance, stop point</small></div>
-      <div class="l2do-ai-loop-node"><span>02 / GROUND</span><strong>Establish repository facts</strong><small>Branch, rules, dependencies, current state, risk</small></div>
-      <div class="l2do-ai-loop-node"><span>03 / EXECUTE</span><strong>Make a reviewable change</strong><small>Controlled permissions, clear diff, visible state</small></div>
-      <div class="l2do-ai-loop-node"><span>04 / PROVE</span><strong>Close with evidence</strong><small>Tests, build, runtime, screenshots, human judgment</small></div>
-    </div>
-  </section>
-
-  <div class="l2do-ai-principles">
-    <section class="l2do-ai-principle"><span>01</span><strong>A task is not a wish</strong><p>Turn “improve this” into a verifiable change contract so the agent cannot silently expand scope.</p></section>
-    <section class="l2do-ai-principle"><span>02</span><strong>More context is not always better</strong><p>Provide facts that change decisions and keep repository guidance close to the directory where it applies.</p></section>
-    <section class="l2do-ai-principle"><span>03</span><strong>Autonomy is not unlimited access</strong><p>Default to read-only and minimum write scope; keep external actions, production state, and merge behind explicit boundaries.</p></section>
-    <section class="l2do-ai-principle"><span>04</span><strong>Completion must be provable</strong><p>A successful build proves only that the project builds. Experience, security, and business outcomes need independent evidence.</p></section>
-  </div>
-
-  <div class="l2do-home-section-header">
-    <div><span class="l2do-card-kicker">START HERE</span><h2>Core learning and practice</h2></div>
-    <p>Start with the execution standard, learn the agent operating model, then use a real failure to understand how to detect and stop infinite refactoring.</p>
-  </div>
-
-  <div class="l2do-ai-library">
-    <a class="l2do-ai-library-card l2do-ai-library-card--primary" href="../topics/ai-full-stack/codex-engineering-best-practices/">
-      <span>STANDARD · EXECUTION</span>
-      <div><strong>Codex engineering best practices</strong><p>Task contracts, context preflight, permissions, branch strategy, verification ladder, delivery template, and failure modes.</p></div>
-      <b>→</b>
-    </a>
-    <a class="l2do-ai-library-card" href="../topics/ai-full-stack/codex-power-user-practice/">
-      <span>CONCEPT · DEEP DIVE</span>
-      <div><strong>From using Codex to operating an engineering agent</strong><p>Understand the boundaries between AGENTS.md, skills, MCP, subagents, and durable feedback layers.</p></div>
-      <b>→</b>
-    </a>
-    <a class="l2do-ai-library-card" href="../topics/ai-full-stack/ai-project-infinite-refactoring/">
-      <span>POSTMORTEM · SYSTEM THINKING</span>
-      <div><strong>Why AI projects get messier as they improve</strong><p>A real “merged successfully, delivered unsuccessfully” postmortem that builds four failure systems, five delivery truths, and a six-step stop loop.</p></div>
-      <b>→</b>
-    </a>
-      <a class="l2do-ai-library-card" href="../topics/ai-full-stack/human-ai-coupled-problem-solving/">
-      <span>CONCEPT · DEEP DIVE</span>
-      <div><strong>From &quot;the navigation is confusing&quot; to an enforced invariant: an entry-ambiguity system for human–AI intent alignment</strong><p>Turn an abstract request like &quot;the navigation overlaps, clean it up&quot; into a runnable metric, a whole-site baseline, and an enforced CI gate — so a human&#39;s intent becomes a self-checking invariant instead of a one-time review.</p></div>
-      <b>→</b>
-    </a>
-  </div>
-</div>
-
-
-
-
-
-
-
-  
-  
-
-
-
-  
-
-
-  
+  <nav class="md-tags" >
     
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <span class="md-tag md-tag-icon md-tag--architecture">Architecture</span>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <span class="md-tag md-tag-icon md-tag--automation">Automation</span>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <span class="md-tag md-tag-icon md-tag--delivery">Delivery</span>
+      
+    
+  </nav>
+
+
   
+  
+
+
+<h1 id="_1">从"导航很乱"到一条能自我执行的不变量：人机意图对齐的入口歧义度系统<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>当人只能抽象表达意图、又不会审查每个细节时，对齐不来自更长的需求文档，也不来自一次性测量，而来自一套系统：把意图编码成指标，为全站建立基线，再装一道拦住新漂移的门禁。</p>
+</blockquote>
+<h2 id="_2">先用三行读完结论<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>判断什么</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>难在哪</td>
+<td>需求抽象且融合（"四个导航入口重叠，优化一下"），而人不会审查 74 页</td>
+</tr>
+<tr>
+<td>为什么"演示"不够</td>
+<td>测一页一次证明不了任何东西能存活；意图必须变成 CI 持续执行的不变量</td>
+</tr>
+<tr>
+<td>这套系统</td>
+<td>grader（测量）+ 策略（canonical + 至多一个横切）+ 门禁（执行，带已采纳的债务基线）</td>
+</tr>
+<tr>
+<td>是证据不是口号</td>
+<td>今天 74 页中有 13 页超标；门禁采纳它们并通过，且<strong>以 exit 1 拦住了一次注入的回归</strong></td>
+</tr>
+</tbody>
+</table>
+<!-- lifecycle-section:problem -->
+<h2 id="_3">问题：抽象意图的鸿沟——并已在全站量化<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>维护者看着顶部导航——<code>任务</code>、<code>Runbook</code>、<code>AI 工程</code>、<code>领域</code>——说：</p>
+<blockquote>
+<p>这四个入口交叉重叠，看着很乱，优化一下。</p>
+</blockquote>
+<p>这句话真实，但<strong>抽象、融合、未经审查</strong>。原样甩给 AI，会得到范围爆炸或猜歪意图，而 <code>mkdocs build --strict</code> 通过只证明机械完整，不证明意图达成。问题是：</p>
+<blockquote>
+<p>一个抽象表达、又不会审查每个细节的人，如何让 AI 产出对齐真实意图——不是一次，而是永久？</p>
+</blockquote>
+<p>你无法审查全部，也无法在每次未来改动后重新审查。你需要一个指标和一道门禁。</p>
+<blockquote>
+<p><strong>案例盒① —— 全站诊断，且已量化。</strong> grader（<code>tools/nav-entry-ambiguity-grader.mjs</code>）模拟浏览型读者，对每个内容页统计有几个不同顶层入口给它一条策展门。跑遍全站：</p>
+<div class="highlight"><pre><span></span><code>$ node tools/nav-entry-ambiguity-grader.mjs dist --all
+...
+site=zh  content_pages=74  ambiguity_histogram={&quot;1&quot;:38,&quot;2&quot;:23,&quot;3&quot;:11,&quot;4&quot;:2}
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">入口歧义度</th>
+<th style="text-align: right;">页数</th>
+<th>解读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">38</td>
+<td>只有 canonical 门——可预测</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">23</td>
+<td>canonical + 一个横切——健康</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">11</td>
+<td>过度呈现</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td>被每个入口都争——最差</td>
+</tr>
+</tbody>
+</table>
+<p><strong>74 页中有 13 页（18%）超过"canonical + 一个横切"的预算</strong>，且<strong>这 13 页里有 8 页是 runbook</strong>（含两个歧义度 4 的页）。重叠不是感觉，而是一个有主因的分布：Runbook 控制台（按类型）、Tasks 门户（按目标）、Home 精选，都在重复呈现那些本已住在 Topics 下的 runbook。</p>
+</blockquote>
+<!-- lifecycle-section:definition -->
+<h2 id="_4">核心定义：意图 → 指标 → 可执行的不变量<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p><strong>抽象下的意图对齐</strong>是指：把一个人只能抽象表达的意图，收敛成一个<strong>程序能计算的可观察指标</strong>，再把这个指标绑定成一条<strong>门禁执行的不变量</strong>——于是数字不会漂移，人也永远不必重读全站。</p>
+<p>意图"读者能预测该点哪扇门"变成 <strong>入口歧义度</strong>（每页几扇门），策略是 <strong>canonical + 至多一个有意横切</strong>（预算 = 2），不变量是一道 <strong>CI 门禁</strong>。</p>
+<p>系统有三部分：</p>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>工具</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>测量</td>
+<td><code>nav-entry-ambiguity-grader.mjs</code></td>
+<td>把抱怨变成一个全站的数字</td>
+</tr>
+<tr>
+<td>策略</td>
+<td>预算 2 + 每类页型的有意横切</td>
+<td>定义"对齐"是什么</td>
+</tr>
+<tr>
+<td>执行</td>
+<td><code>verify-nav-ambiguity.mjs</code> + <code>config/nav-ambiguity-baseline.json</code></td>
+<td>拦住新违规；显式采纳现有债务</td>
+</tr>
+</tbody>
+</table>
+<p>这就是用 LLM 做东西的基本功——<strong>把意图变成 eval，再变成门禁。</strong> 门禁有总结所不具备的性质：它无法被甜言蜜语糊弄，也不会遗忘。（对<em>本文</em>早先的一次评审曾接受了 AI 自信的"7 分"，直到证据把它逼到 3.5；门禁一碰就会让自信的散文失败。）</p>
+<!-- lifecycle-section:mechanism -->
+<h2 id="_5">工作机制：在真实站点上跑通被执行的闭环<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<div class="mermaid">flowchart TD
+    A[抽象意图：&lt;br/&gt;导航重叠，优化它] --&gt; B[编码：入口歧义度 grader]
+    B --&gt; C[全站基线：&lt;br/&gt;74 页中 13 页超标]
+    C --&gt; D[策略：canonical + 一个横切&lt;br/&gt;预算 = 2]
+    D --&gt; E[把现有债务采纳为&lt;br/&gt;可追踪基线]
+    E --&gt; F[CI 门禁：&lt;br/&gt;verify-nav-ambiguity.mjs]
+    F --&gt; G{新页超标&lt;br/&gt;且不在基线？}
+    G -- 是 --&gt; H[FAIL exit 1：&lt;br/&gt;点名页面及其门]
+    G -- 否 --&gt; I[PASS：意图持续被执行]
+    H --&gt; J[给它一个 canonical 门&lt;br/&gt;+ 一个横切，或说明理由]
+    J --&gt; F</div>
+<h3 id="ai">第一、二步 —— 人命名意图；AI 诚实地编码<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h3>
+<p>读者任务（到达 Redis AOF runbook、到达 <em>OpenTelemetry 是什么</em>、到达 Codex 实践、不知道技术时找到恢复资产）代表"可用导航"。grader 模拟<strong>浏览型</strong>读者：只跟随每页正文里的策展链接，故意<strong>忽略全局侧栏／标签页</strong>（它们到处摊开整棵树）。歧义度是预测成本的<strong>结构代理</strong>，不是用户实测。</p>
+<h3 id="_6">第三步 —— 为全站建立基线，并定位每个杠杆<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>上面的分布就是基线。每扇门都可溯源：Home 精选（<code>docs/*/index.md</code>）、Tasks 叶子列表（<code>docs/*/tasks/index.md</code>）、Runbook 控制台（<code>docs/*/runbooks/index.md</code>）、canonical 的 Topics 卡。runbook 同时背着三个横切，所以它们占了大头。</p>
+<h3 id="_7">第四步 —— 每种页型的策略<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>页型</th>
+<th>canonical</th>
+<th>有意横切</th>
+<th>预算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>runbook</td>
+<td>Topics</td>
+<td>Runbook 控制台（事故快捷门）</td>
+<td>2</td>
+</tr>
+<tr>
+<td>standard / reference</td>
+<td>Topics</td>
+<td>Tasks（与目标相关时）</td>
+<td>2</td>
+</tr>
+<tr>
+<td>concept / case</td>
+<td>Topics</td>
+<td>默认无</td>
+<td>≤2</td>
+</tr>
+</tbody>
+</table>
+<p>规则是统一的——<strong>canonical 加至多一个有意横切</strong>——而 Home 精选是编辑行为，不是结构性的门。</p>
+<h3 id="_8">第五步 —— 先证明改动为真，再把它执行成不变量<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>案例盒② —— 真实前后对比，然后闭环。</strong> 对最差的页面，一份废弃副本去掉了 Home 精选和 Tasks 叶子，用<strong>真实管线重建</strong>（198 页，<code>--strict</code>），再重新评分：</p>
+<div class="highlight"><pre><span></span><code>BEFORE (真实 dist)     redis-aof-recovery-runbook   ambiguity=4  [Home,Runbooks,Tasks,Topics]
+AFTER  (重建的临时副本) redis-aof-recovery-runbook   ambiguity=2  [Runbooks,Topics]
+</code></pre></div>
+<p>但一次性修复不是对齐。门禁把当前 13 个违规采纳为<strong>可追踪债务</strong>（<code>config/nav-ambiguity-baseline.json</code>），从而今天就能启用，并拦住任何新增。它确实闭环的证据——在一次重建的站点里把某页在 Home 上过度呈现，已提交的门禁抓住了它：</p>
+<div class="highlight"><pre><span></span><code>$ node tools/verify-nav-ambiguity.mjs &lt;引入回归的 dist&gt;
+new_violations: [ { page: /topics/opentelemetry/what-is-opentelemetry/, ambiguity: 3 } ]
+FAIL: 1 个内容页超过预算 2 且不在基线中   → exit 1
+
+$ node tools/verify-nav-ambiguity.mjs dist    # 真实站点
+PASS: 除追踪基线外无新违规                   → exit 0
+</code></pre></div>
+<p>门禁已接进 <code>make verify</code>（<code>site-verify</code>），因此这条不变量现在每次构建都会运行。</p>
+<p><strong>诚实说明，不是脚注。</strong> (1) "after"是临时实验；上线整合是另一个需 owner 批准的任务。(2) 门禁当前检查 canonical（zh）站点；en 站结构对称，为它加门是一个已记录的下一步。(3) grader 本身曾因路径解析 bug 报出一个虚假安心的"没变化"，只因 sanity check 与它矛盾才被抓住——<strong>你不去审视的 eval，会像 AI 总结一样顺滑地撒谎。</strong></p>
+</blockquote>
+<h3 id="_9">第六步 —— 人靠读门禁验证对齐，而不是读全站<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>维护者不再审查 74 页，而是读一条门禁结果：现有债务已追踪、零新违规。意图已经变成不变量。</p>
+<!-- lifecycle-section:boundaries -->
+<h2 id="_10">边界<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>适用于：需求抽象或融合、人无法审查每个细节、意图能收敛成可计算代理、且自动化否则只能证明机械完整。</p>
+<p>不适用于：已有现成 runbook 的单点故障、本质主观且抗拒任何诚实代理的意图、需要立即升级的安全事件、或没有人愿意认领目标的情况。</p>
+<p>指标是代理，所以 <strong>Goodhart 定律成立</strong>：把歧义度压到 0 会抹掉有用的可发现性。预算是 2 而非 0，人仍要判断这个代理是不是<em>对的</em>代理、以及能否往基线里加行。</p>
+<!-- lifecycle-section:counterexample -->
+<h2 id="_11">反例：什么时候不该建门禁<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>移动端某个菜单标签被截断。</p>
+</blockquote>
+<p>这是视觉缺陷，改 CSS，别写 eval。同样，歧义度为 <strong>2</strong> 是健康的。系统的职责是守住那些读者无法预测的 <strong>3 和 4</strong>，而不是把每页压到 1。敌人是<strong>不可预测的</strong>歧义，不是歧义本身。</p>
+<!-- lifecycle-section:next_step -->
+<h2 id="_12">可执行下一步<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ol>
+<li>为你的站点建立基线：
+   <div class="highlight"><pre><span></span><code>node<span class="w"> </span>tools/nav-entry-ambiguity-grader.mjs<span class="w"> </span>dist<span class="w"> </span>--all
+</code></pre></div></li>
+<li>定预算和每类页型的横切策略；</li>
+<li>显式采纳现有债务，并对新工作执行：
+   <div class="highlight"><pre><span></span><code>node<span class="w"> </span>tools/verify-nav-ambiguity.mjs<span class="w"> </span>dist<span class="w"> </span>--update-baseline<span class="w">   </span><span class="c1"># 一次</span>
+node<span class="w"> </span>tools/verify-nav-ambiguity.mjs<span class="w"> </span>dist<span class="w">                     </span><span class="c1"># 进 CI，拦住新漂移</span>
+</code></pre></div></li>
+<li>通过整合真实页面把基线往下压——这是另一个需 owner 批准的任务；</li>
+<li>把门禁扩展到 en 站，并在有用时加一个基于视觉的可读性 grader。</li>
+</ol>
+<p>本文交付的是<strong>系统及其门禁</strong>，不是首页重设计。</p>
+<!-- lifecycle-section:related_content -->
+<h2 id="_13">相关内容<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../ai-project-infinite-refactoring/">AI 项目为什么越改越乱</a>：本系统依赖的五层交付证据与停止条件框架在那篇里——保留在那里，不在此重复。</li>
+<li><a href="../codex-engineering-best-practices/">Codex 工程开发最佳实践</a>：真实仓库协作中的任务契约、权限边界与验证阶梯。</li>
+</ul>
+<h2 id="_14">结构化模型<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>抽象意图
+→ 编码成 grader（测量）
+→ 为全站建立基线
+→ 定策略（canonical + 一个横切）
+→ 采纳债务，装门禁（执行）
+→ 人读门禁，而非读全站
+= 即使人从不读完每个细节、也永不静默回归的对齐
+</code></pre></div>
+<p>抽象需求本身不是问题，<strong>未被执行</strong>的需求才是。门禁不让人审查更多——它让人真正检查的那一小步，在未来每一次构建上都继续决定结果。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
 
 
 
@@ -6677,53 +7010,13 @@
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Back to top
+  回到页面顶部
 </button>
         
       </main>
       
         <footer class="md-footer">
   
-    
-      
-        
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../runbooks/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Runbooks">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Runbooks
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../topics/" class="md-footer__link md-footer__link--next" aria-label="Next: Technical domains">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Technical domains
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -6771,16 +7064,16 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.path", "navigation.tracking", "navigation.footer", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": {"Architecture": "architecture", "Automation": "automation", "Cloud": "cloud", "Containers": "containers", "Databases": "databases", "Delivery": "delivery", "IaC": "iac", "Kubernetes": "kubernetes", "Linux": "linux", "Middleware": "middleware", "Migration": "migration", "Networking": "networking", "Observability": "observability", "Platform": "platform", "Reliability": "reliability", "Security": "security"}, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.path", "navigation.tracking", "navigation.footer", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": {"Architecture": "architecture", "Automation": "automation", "Cloud": "cloud", "Containers": "containers", "Databases": "databases", "Delivery": "delivery", "IaC": "iac", "Kubernetes": "kubernetes", "Linux": "linux", "Middleware": "middleware", "Migration": "migration", "Networking": "networking", "Observability": "observability", "Platform": "platform", "Reliability": "reliability", "Security": "security"}, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../assets/javascripts/mermaid.min.js"></script>
+        <script src="../../../assets/javascripts/mermaid.min.js"></script>
       
-        <script src="../../assets/javascripts/mermaid-init.js"></script>
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
       
-        <script src="../../assets/javascripts/site-experience.js"></script>
+        <script src="../../../assets/javascripts/site-experience.js"></script>
       
     
   </body>

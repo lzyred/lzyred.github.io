@@ -6125,7 +6125,7 @@
   <a href="#_18" class="md-nav__link">
     <span class="md-ellipsis">
       
-        真实案例：把“优化站点”收敛为可验收变更
+        相关标准与概念
       
     </span>
   </a>
@@ -6134,17 +6134,6 @@
       
         <li class="md-nav__item">
   <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        相关站内文章
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
     <span class="md-ellipsis">
       
         官方参考
@@ -6859,7 +6848,7 @@
   <a href="#_18" class="md-nav__link">
     <span class="md-ellipsis">
       
-        真实案例：把“优化站点”收敛为可验收变更
+        相关标准与概念
       
     </span>
   </a>
@@ -6868,17 +6857,6 @@
       
         <li class="md-nav__item">
   <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        相关站内文章
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
     <span class="md-ellipsis">
       
         官方参考
@@ -7372,14 +7350,12 @@ git<span class="w"> </span>diff
 <p>截至 2026 年 7 月，本标准覆盖 ChatGPT Web/Desktop、Codex CLI、IDE、Cloud、AGENTS.md、Skills、MCP、插件、沙箱、审批、Git worktree 与 PR Review。稳定边界是：目标与证据先于修改；权限先于自主；外部内容默认不可信；最小 diff 先于广泛重构；人工接受先于 Merge 和 Publication。</p>
 <h3 id="_17">实例：修复文档站而不制造第二轮问题<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
 <p>任务是删除错误公开 Portal、深化五篇文章、限制 CI 仅 main 触发。合格执行应核对基线和工作流；明确 Tab 是 <code>&lt;title&gt;</code>；删除 Portal 源和入口；在十个双语文件中增加有解释价值的图和实例；把质量与发布串在 main push；明确本地验证和未运行项；只创建 Draft PR，不合并、不发布。</p>
-<h2 id="_18">真实案例：把“优化站点”收敛为可验收变更<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
-<p>一次文档站任务最初只有“优化站点”这个目标。合格的 Codex 执行不是继续扩大视觉重构，而是先把目标改写成可验收边界：删除错误入口、让 canonical Markdown 承担案例内容、让 main push 同时完成质量门禁和发布门禁，并把本地 <code>make verify MKDOCS=mkdocs</code> 作为提交前证据。</p>
-<p>这个案例的关键不是某个页面变漂亮，而是每个结论都有落点：源文件承载内容，workflow 承载发布条件，生成站点和搜索索引证明读者能找到内容，人工 review 决定是否可以合并。部署证据必须指向 <a href="https://github.com/lzyred/lzyred.github.io/commits/main" data-evidence-link="deployment-commit">发布提交记录</a>；在证据出现前，只能声明“本地验证通过”，不能声明“线上已恢复”。</p>
-<h2 id="_19">相关站内文章<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<h2 id="_18">相关标准与概念<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../codex-power-user-practice/">从使用 Codex 到运营工程 Agent</a> 解释任务合同、上下文、工具权限和证据循环如何让本标准落地。</li>
+<li><a href="../ai-project-infinite-refactoring/">AI 项目为什么越改越乱</a>：这些控制所依赖的交付证据分层与停止条件。</li>
+<li><a href="../human-ai-coupled-problem-solving/">从"导航很乱"到一条能自我执行的不变量</a>：把抽象需求变成能跑的指标和门禁。</li>
 </ul>
-<h2 id="_20">官方参考<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<h2 id="_19">官方参考<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://developers.openai.com/codex/">OpenAI Codex documentation</a></li>
 <li><a href="https://developers.openai.com/codex/guides/agents-md">Custom instructions with AGENTS.md</a></li>

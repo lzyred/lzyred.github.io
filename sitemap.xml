@@ -46,6 +46,11 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/topics/ai-full-stack/codex-power-user-practice/"/>
     </url>
     <url>
+        <loc>https://blog.l2do.com/topics/ai-full-stack/human-ai-coupled-problem-solving/</loc>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/topics/ai-full-stack/human-ai-coupled-problem-solving/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/topics/ai-full-stack/human-ai-coupled-problem-solving/"/>
+    </url>
+    <url>
         <loc>https://blog.l2do.com/topics/automation/</loc>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/topics/automation/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/topics/automation/"/>
@@ -534,6 +539,11 @@
         <loc>https://blog.l2do.com/en/topics/ai-full-stack/codex-power-user-practice/</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/topics/ai-full-stack/codex-power-user-practice/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/topics/ai-full-stack/codex-power-user-practice/"/>
+    </url>
+    <url>
+        <loc>https://blog.l2do.com/en/topics/ai-full-stack/human-ai-coupled-problem-solving/</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://blog.l2do.com/en/topics/ai-full-stack/human-ai-coupled-problem-solving/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://blog.l2do.com/topics/ai-full-stack/human-ai-coupled-problem-solving/"/>
     </url>
     <url>
         <loc>https://blog.l2do.com/en/topics/automation/</loc>
